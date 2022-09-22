@@ -35,7 +35,11 @@ public class SuperBTWDefinitions {
 	
 		id_deathClub = 20019,
 		
-		id_bedroll = 20020;
+		id_bedroll = 20020,
+		
+		id_mortarBucket = 20021,
+		
+		id_trowel = 20022;
 		
 	private static final int
 		id_branchBlock = 2000,
@@ -63,6 +67,8 @@ public class SuperBTWDefinitions {
 	public static Item bowStringing;
 	public static Item deathClub;
 	public static Item fcItemBedroll;
+	public static Item mortarBucket;
+	public static Item trowel;
 	
 	public static Block branchBlock;
 	public static Block sunflower;
@@ -90,6 +96,8 @@ public class SuperBTWDefinitions {
 		hoeStoneNew = ( new FCItemHoe( id_hoeStoneNew, EnumToolMaterial.BONE ) ).setUnlocalizedName( "hoeStone" );;
 		bowStringing = new SuperBTWItemBowStringing(id_bowStringing - 256);
 		deathClub = new SuperBTWItemDeathClub(id_deathClub - 256);
+		mortarBucket = new SuperBTWItemMortarBucket(id_mortarBucket - 256);
+		trowel = new SuperBTWItemTrowel(id_trowel - 256);
 		
 		branchBlock = new SuperBTWBlockBranch(id_branchBlock);
 		Item.itemsList[branchBlock.blockID] = new ItemBlock(branchBlock.blockID - 256); 
