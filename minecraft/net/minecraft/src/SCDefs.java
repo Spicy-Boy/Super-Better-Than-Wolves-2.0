@@ -65,13 +65,13 @@ public class SCDefs {
 						pumpkinHarvested,
 						pumpkinCarved,
 						pumpkinJack,
-						pumpkinStem,
+						SCpumpkinStem,
 						pumpkinVineDead, pumpkinVine, 
 						pumpkinVineFlowering, pumpkinStemDead;
 	
 	public static Block melonWater, melonCanary, melonHoneydew, melonCantaloupe,
 						melonHarvested, melonCanaryHarvested,
-						melonStem,
+						SCmelonStem,
 						melonVine, melonVineSleeping,
 						melonVineFlowering, melonVineFloweringSleeping;
 	
@@ -139,12 +139,12 @@ public class SCDefs {
 		pumpkinStemDead = new SCBlockGourdStemDead(id_pumpkinStemDead);
 		Item.itemsList[pumpkinStemDead.blockID] = new ItemBlock(pumpkinStemDead.blockID - 256);
 		
-		pumpkinStem = new SCBlockGourdStem(id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFlowering, pumpkinStemDead).setCanBePossessed(false);
-		Item.itemsList[pumpkinStem.blockID] = new ItemBlock(pumpkinStem.blockID - 256);
+		SCpumpkinStem = new SCBlockGourdStem(id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFlowering, pumpkinStemDead).setCanBePossessed(false);
+		Item.itemsList[SCpumpkinStem.blockID] = new ItemBlock(SCpumpkinStem.blockID - 256);
 		
 		//Items
 		//pumpkinSeeds = new FCItemSeedFood( id_pumpkinSeeds - 256, 1, 0F, pumpkinStem.blockID).setCreativeTab(CreativeTabs.tabDecorations).setUnlocalizedName( "SCSeedsPumpkin" );
-		Item.itemsList[Item.pumpkinSeeds.itemID] = new FCItemSeedFood( Item.pumpkinSeeds.itemID - 256, 1, 0F, pumpkinStem.blockID).setUnlocalizedName( "seeds_pumpkin" ).SetAsBasicChickenFood();
+		Item.itemsList[Item.pumpkinSeeds.itemID] = new FCItemSeedFood( Item.pumpkinSeeds.itemID - 256, 1, 0F, SCpumpkinStem.blockID).setUnlocalizedName( "seeds_pumpkin" ).SetAsBasicChickenFood();
 		
 		
 		//Melon
@@ -185,12 +185,12 @@ public class SCDefs {
 		Item.itemsList[melonVineFlowering.blockID] = new ItemBlock(melonVineFlowering.blockID - 256);
 		
 		//Stem
-		melonStem = new SCBlockGourdStem(id_melonStem, id_melonVine, id_melonVineFlowering, pumpkinStemDead).setCanBePossessed(false);
-		Item.itemsList[melonStem.blockID] = new ItemBlock(melonStem.blockID - 256);
+		SCmelonStem = new SCBlockGourdStem(id_melonStem, id_melonVine, id_melonVineFlowering, pumpkinStemDead).setCanBePossessed(false);
+		Item.itemsList[SCmelonStem.blockID] = new ItemBlock(SCmelonStem.blockID - 256);
 		
 		//Items
 		//melonSeeds = ( new FCItemSeeds(id_melonSeeds , melonStem.blockID).setCreativeTab(CreativeTabs.tabDecorations).SetAsBasicChickenFood().setUnlocalizedName( "SCSeedsMelon" ) );
-		Item.itemsList[Item.melonSeeds.itemID] =  new FCItemSeeds(Item.melonSeeds.itemID - 256 , melonStem.blockID).SetAsBasicChickenFood().setUnlocalizedName( "seeds_melon" );
+		Item.itemsList[Item.melonSeeds.itemID] =  new FCItemSeeds(Item.melonSeeds.itemID - 256 , SCmelonStem.blockID).SetAsBasicChickenFood().setUnlocalizedName( "seeds_melon" );
 		
 		
 		melonWaterSlice = new SCItemMelonSlice( id_melonWaterSlice - 256, "SCItemMelonSlice");

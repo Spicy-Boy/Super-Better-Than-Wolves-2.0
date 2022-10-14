@@ -17,6 +17,28 @@ public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
 		setUnlocalizedName("SCBlockPumpkinGrowingOrange");
 	}
 	
+	@Override
+	public int damageDropped(int meta)
+	{
+		int growthLevel = this.GetGrowthLevel(meta);
+		
+		//return getMetaHarvested(meta);
+		
+		if (growthLevel == 3 )
+		{
+			return 3;
+		}
+		else if (growthLevel == 2)
+		{
+			return 2;
+		}
+		else if (growthLevel == 1)
+		{
+			return 1;
+		}
+		else return 0;
+	}
+	
 
 	@Override
 	protected int getPossessedMetaForGrowthLevel(int growthLevel) {
@@ -45,6 +67,7 @@ public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
 			return 1;
 		}
 		else return 0;
+
 	}
 	
 	@Override

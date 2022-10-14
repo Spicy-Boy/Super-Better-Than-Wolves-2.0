@@ -118,7 +118,7 @@ public class SuperBTWDefinitions {
 		
 		timeCube = new SuperBTWBlockTimeCube(id_timeCube, null);
 		Item.itemsList[timeCube.blockID] = new ItemBlock(timeCube.blockID - 256)
-				.setMaxStackSize( 1 );
+				.setMaxStackSize( 16 );
 		TileEntity.addMapping(SuperBTWBlockTimeCube.class, "timeCube");
 	}
 	
