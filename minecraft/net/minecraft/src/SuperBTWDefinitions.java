@@ -46,7 +46,8 @@ public class SuperBTWDefinitions {
 		id_sunflower = 2001,
 		id_gravestone = 2002,
 		id_meatCube = 2003,
-		id_blockBedroll = 2004;
+		id_blockBedroll = 2004,
+		id_timeCube = 2005;
 		
 	
 	public static Item leatherWorking;
@@ -75,6 +76,7 @@ public class SuperBTWDefinitions {
 	public static Block gravestone;
 	public static Block meatCube;
 	public static Block fcBlockBedroll;
+	public static Block timeCube;
 	
 	public static void addDefinitions() 
 	{
@@ -113,9 +115,11 @@ public class SuperBTWDefinitions {
 		
 		fcBlockBedroll = new FCBlockBedroll(id_blockBedroll).setHardness(0.1F).SetBuoyant().setUnlocalizedName("fcBlockBedroll").disableStats();
 		fcItemBedroll = new FCItemBed(id_bedroll - 256, id_blockBedroll).SetBuoyant().SetIncineratedInCrucible().setMaxStackSize(1).setUnlocalizedName("fcItemBedroll");
-
-
 		
+		timeCube = new SuperBTWBlockTimeCube(id_timeCube, null);
+		Item.itemsList[timeCube.blockID] = new ItemBlock(timeCube.blockID - 256)
+				.setMaxStackSize( 1 );
+		TileEntity.addMapping(SuperBTWBlockTimeCube.class, "timeCube");
 	}
 	
 }
