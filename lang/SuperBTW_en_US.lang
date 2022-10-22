@@ -1,0 +1,27 @@
+#Blocks
+tile.SuperBTWBlockBranch.name=Branch
+tile.SuperBTWBlockMeatCube.name=Meat Cube
+tile.fcBlockBedroll.name=Bedroll
+
+#Items
+item.SuperBTWItemLeatherWorking.name=Leather Cutting
+item.SuperBTWItemFlintKnapping.name=Flint Knapping
+item.SuperBTWItemFlintBlade.name=Flint Knife
+item.SuperBTWItemIronBlade.name=Iron Knife
+item.SuperBTWItemBranch.name=Branch
+item.SuperBTWItemCowRib.name=Raw Beef Rib
+item.SuperBTWItemRib.name=Rib Bone
+item.SuperBTWItemCookedCowRib.name=Seared Beef Rib
+item.SuperBTWItemBonePickaxe.name=Bone Pickaxe
+item.SuperBTWItemLeatherWorkingIron.name=Leather Cutting
+item.SuperBTWItemRibCarving.name=Rib Carving
+item.SuperBTWItemRibCarvingIron.name=Rib Carving
+item.SuperBTWItemCookedCowRibPartial.name=Seared Beef Rib
+item.SuperBTWItemCookedCowRibSpent.name=Seared Beef Rib
+item.SuperBTWItemBowStringing.name=Bow Stringing
+item.SuperBTWItemDeathClub.name=Death Club
+item.SuperBTWItemMortarBucket.name=Bucket of Mortar
+
+item.fcItemBedroll.name=Bedroll
+
+item.SuperBTWItemOrangePumpkinSeeds.name=Giant Pumpkin Seeds
