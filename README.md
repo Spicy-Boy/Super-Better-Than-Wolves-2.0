@@ -2,6 +2,7 @@
 The ultimate survival experience in Minecraft!
 
 Version 2.0 adds...
+>A GOURD OVERHAUL!
 >SLEEPING!
 >RIB SMASHING FUN!
 >NEW WAYS TO MAKE BRICKS!

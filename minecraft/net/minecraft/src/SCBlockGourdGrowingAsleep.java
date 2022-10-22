@@ -2,8 +2,11 @@ package net.minecraft.src;
 
 import java.util.Random;
 
-public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
-	
+//will not convert back into the waking pumpkin until daylight!
+//meanwhile, the waking pumpkin does not grow a stage until night, so all growth must take at least one day to happen
+public abstract class SCBlockGourdGrowingAsleep extends SCBlockGourdFalling
+
+{
 	protected int stemBlock;
 	protected int vineBlock;
 	protected int flowerBlock;
@@ -11,7 +14,7 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 	
 	protected boolean sameTime; //true == day
 	
-	protected SCBlockGourdGrowing(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) {
+	protected SCBlockGourdGrowingAsleep(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) {
 		super(iBlockID);
 		
 		this.stemBlock = stemBlock;
@@ -24,17 +27,6 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 	
 	protected abstract float GetBaseGrowthChance();
 	
-	protected float getPossesionChance()
-	//AARON changed this to be more frequent, matching the value of wheat
-    {
-    	return 0.4F;
-    }
-	
-	protected int GetPortalRange()
-    {
-    	return 16;
-    }
-	
 	@Override
 	public void updateTick(World world, int i, int j, int k, Random random)
 	{	
@@ -45,11 +37,12 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 		}
 		else
 		{
-			if ( this.canBePossessed() && random.nextFloat() <= getPossesionChance() && hasPortalInRange(world, i, j, k) )
-		    {
-				this.becomePossessed(world, i, j, k, random);
-		    }
-			else if ( /*if night*/!checkTimeOfDay(world) && !IsFullyGrown( world, i, j, k) && random.nextFloat() <= this.GetBaseGrowthChance() ) //daytime
+//			if ( this.canBePossessed() && random.nextFloat() <= getPossesionChance() && hasPortalInRange(world, i, j, k) )
+//		    {
+//				this.becomePossessed(world, i, j, k, random);
+//		    }
+			//The main difference between asleep and waking pumpkins is whether it can trigger growth at day or night
+			if ( checkTimeOfDay(world) && random.nextFloat() <= this.GetBaseGrowthChance() ) //daytime
 			{
 				this.grow(world, i, j, k, random);
 				//this.attemptToGrow(world, i, j, k, random);
@@ -57,19 +50,18 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 			}
 		}				
 	}
-
-    
-    //ported from FCBlockCrops
+	
+	@Override
+    public boolean canBlockStay( World world, int i, int j, int k )
+    {
+        return CanGrowOnBlock( world, i, j - 1, k ) && hasVineFacing(world, i, j, k);
+    }
+	
     protected int GetLightLevelForGrowth()
     {
     	return 11;
     }
-
-	protected boolean canBePossessed()
-	{
-		return false;
-	}
-
+    
 	protected void convertBlock(World world, int i, int j, int k)
 	{	
 		int growthLevel = this.GetGrowthLevel(world, i, j, k);
@@ -77,16 +69,17 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 		
 		world.setBlockAndMetadata(i, j, k, convertedBlockID , harvestedMeta);
 	}
-
+	
 	protected abstract int getMetaHarvested(int growthLevel);
 	
-	//THIS NEEDS TO CONVERT TO THE SLEEPING FORM. Switch the block ID and grow the metadata by 4!
+	//NEEDS TO CONVERT BACK TO WAKING FORM! Switch the block ID but maintain the same metadata
+//	public abstract void grow(World world, int i, int j, int k, Random random);
 	protected void grow(World world, int i, int j, int k, Random random)
 	{
 		int meta = world.getBlockMetadata(i, j, k);
-		world.setBlockAndMetadataWithNotify(i, j, k, this.blockID ,meta + 4);
+		world.setBlockAndMetadataWithNotify(i, j, k, this.blockID ,meta);
 	}
-
+	
 	protected int GetGrowthLevel( int meta) {
 		
 		if (meta <= 3) 
@@ -127,30 +120,6 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 	protected boolean IsFullyGrown(World world, int i, int j, int k) {
 		return IsFullyGrown(world.getBlockMetadata(i, j, k));
 	}
-	
-	protected void becomePossessed(World world, int i, int j, int k, Random random)
-	{
-		int growthLevel = this.GetGrowthLevel(world, i, j, k);
-		
-		for (int growthLevelIndex = 0; growthLevelIndex < 4; growthLevelIndex++) {
-			if (growthLevel == growthLevelIndex)
-			{
-				world.setBlockAndMetadata(i, j, k, SCDefs.pumpkinPossessed.blockID, getPossessedMetaForGrowthLevel(growthLevel));
-				
-				world.playAuxSFX( FCBetterThanWolves.m_iGhastMoanSoundAuxFXID, 
-			            MathHelper.floor_double( i ), MathHelper.floor_double( j ), MathHelper.floor_double( k ), 0 );
-			}			
-		}
-
-	}
-
-	protected abstract int getPossessedMetaForGrowthLevel(int growthLevel);
-
-	@Override
-    public boolean canBlockStay( World world, int i, int j, int k )
-    {
-        return CanGrowOnBlock( world, i, j - 1, k ) && hasVineFacing(world, i, j, k);
-    }
 	
 	protected boolean CanGrowOnBlock( World world, int i, int j, int k )
     {
@@ -213,29 +182,6 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 	    }
 	    else return false;
 	}
-	
-    protected boolean hasPortalInRange( World world, int i, int j, int k )
-    {
-    	int portalRange = GetPortalRange();
-    	
-        for ( int iTempI = i - portalRange; iTempI <= i + portalRange; iTempI++ )
-        {
-            for ( int iTempJ = j - portalRange; iTempJ <= j + portalRange; iTempJ++ )
-            {
-                for ( int iTempK = k - portalRange; iTempK <= k + portalRange; iTempK++ )
-                {
-                    if ( world.getBlockId( iTempI, iTempJ, iTempK ) == Block.portal.blockID )
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-	
-
 	
 	public boolean renderVineConnector(RenderBlocks r, int par2, int par3, int par4, Icon icon)
     {
@@ -329,5 +275,7 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
         }
 
     }
-
+	
 }
+
+

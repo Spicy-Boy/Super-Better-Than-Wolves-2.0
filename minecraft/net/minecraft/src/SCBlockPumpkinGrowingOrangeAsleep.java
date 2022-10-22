@@ -2,7 +2,8 @@ package net.minecraft.src;
 
 import java.util.Random;
 
-public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
+public class SCBlockPumpkinGrowingOrangeAsleep extends SCBlockPumpkinGrowingAsleep 
+{
 
 	/**
 	 * 
@@ -12,16 +13,17 @@ public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
 	 * @param flowerBlock
 	 * @param convertedBlockID
 	 */
-	protected SCBlockPumpkinGrowingOrange(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) {
+	protected SCBlockPumpkinGrowingOrangeAsleep(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) 
+	{
 		super(iBlockID, stemBlock, vineBlock, flowerBlock, convertedBlockID);
-		setUnlocalizedName("SCBlockPumpkinGrowingOrange");
+		//setUnlocalizedName("SCBlockPumpkinGrowingOrange");
 	}
 	
 	@Override
 	public void grow(World world, int i, int j, int k, Random random)
 	{
 		int meta = world.getBlockMetadata(i, j, k);
-		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.pumpkinOrangeAsleep.blockID ,meta + 4);
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.pumpkinOrange.blockID ,meta);
 	}
 	
 	@Override
@@ -44,20 +46,6 @@ public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
 			return 1;
 		}
 		else return 0;
-	}
-	
-
-	@Override
-	protected int getPossessedMetaForGrowthLevel(int growthLevel) {
-		
-		for (int i = 0; i < 4; i++) {
-			if (growthLevel == i) 
-			{
-				//shift for if different pumpkin type: eg. i + 4 for green Pumpkins
-				return i;
-			}
-		}
-		return 0;
 	}
 	
 	protected int getMetaHarvested(int growthLevel) {
@@ -160,6 +148,29 @@ public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
         }
 		
 		blockIcon = orangeIcon[3];
+//		
+//		//TEST TEXTURES!
+//		orangeIcon = new Icon[4];
+//		
+//  		for ( int iTempIndex = 0; iTempIndex < orangeIcon.length; iTempIndex++ )
+//		{
+//  			orangeIcon[iTempIndex] = register.registerIcon( "SCBlockMelonSide_" + iTempIndex );
+//		}
+//	
+//  		orangeIconTop = new Icon[4];
+//	
+//		for ( int iTempIndex = 0; iTempIndex < orangeIconTop.length; iTempIndex++ )
+//		{
+//			orangeIconTop[iTempIndex] = register.registerIcon( "SCBlockMelonTop_" + iTempIndex );
+//		}
+//		
+//        connectorIcon = new Icon[4];
+//        for ( int iTempIndex = 0; iTempIndex < connectorIcon.length; iTempIndex++ )
+//        {
+//        	connectorIcon[iTempIndex] = register.registerIcon( "SCBlockMelonWaterConnector_" + iTempIndex );
+//        }
+//		
+//		blockIcon = orangeIcon[3];
 	}
 	
 	@Override

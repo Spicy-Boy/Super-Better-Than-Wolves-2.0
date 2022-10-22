@@ -39,7 +39,21 @@ public class SuperBTWDefinitions {
 		
 		id_mortarBucket = 20021,
 		
-		id_trowel = 20022;
+		id_trowel = 20022,
+	
+		//GOURD MANIA!
+		
+		id_orangePumpkinSeeds = 20023;
+//		id_greenPumpkinSeeds = 31017,
+//		id_yellowPumpkinSeeds = 31018,
+//		id_whitePumpkinSeeds = 31019,
+//				
+//		id_waterMelonSeeds = 31020,
+//		id_canaryMelonSeeds = 31021,
+//		id_HoneydewMelonSeeds = 31022,
+//		id_cantaloupeMelonSeeds = 31023,
+//				
+//		id_foulSeeds = 31024;
 		
 	private static final int
 		id_branchBlock = 2000,
@@ -77,6 +91,10 @@ public class SuperBTWDefinitions {
 	public static Block meatCube;
 	public static Block fcBlockBedroll;
 	public static Block timeCube;
+	
+	//GOURD MANIA!
+	
+	public static Item orangePumpkinSeeds;
 	
 	public static void addDefinitions() 
 	{
@@ -120,6 +138,11 @@ public class SuperBTWDefinitions {
 		Item.itemsList[timeCube.blockID] = new ItemBlock(timeCube.blockID - 256)
 				.setMaxStackSize( 16 );
 		TileEntity.addMapping(SuperBTWBlockTimeCube.class, "timeCube");
+		
+		//GOURD MANIA!
+		
+		orangePumpkinSeeds = new SCItemOrangePumpkinSeeds (id_orangePumpkinSeeds - 256, SCDefs.id_pumpkinStemOrange);
+		
 	}
 	
 }

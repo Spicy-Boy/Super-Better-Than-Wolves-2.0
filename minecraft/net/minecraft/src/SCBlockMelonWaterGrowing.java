@@ -123,7 +123,6 @@ public class SCBlockMelonWaterGrowing extends SCBlockMelonGrowing {
 	@Override
   	public void registerIcons( IconRegister register )
   	{
-		//Orange
 		waterMelonIcon = new Icon[4];
 		
   		for ( int iTempIndex = 0; iTempIndex < waterMelonIcon.length; iTempIndex++ )

@@ -2,6 +2,13 @@ package net.minecraft.src;
 
 public class SCDefs {
 	
+    public static final int m_iFilterable_NoProperties = 0;
+    public static final int m_iFilterable_SolidBlock = 1;
+    public static final int m_iFilterable_Small = 2;
+    public static final int m_iFilterable_Narrow = 4;
+    public static final int m_iFilterable_Fine = 8;
+    public static final int m_iFilterable_Thin = 16;
+	
 	// --- BLOCK ID's --- //
 	// SC FROM 2500 - 2999
 
@@ -19,10 +26,12 @@ public class SCDefs {
         id_pumpkinCarved = 2650,
         id_pumpkinJack = 2651,
         id_pumpkinPossessed = 2652,
-        id_pumpkinStemDead = 2653;
+        id_pumpkinStemDead = 2653,
+        
+    	id_pumpkinOrangeAsleep = 2654;
     
     //Melons
-    private static int    
+    public static int    
         id_melonStem = 2660,
         id_melonVine = 2661,
         id_melonVineDead = 2662,
@@ -33,6 +42,12 @@ public class SCDefs {
         id_melonCantaloupe = 2667,
         id_melonHarvested = 2668,
         id_melonCanaryHarvested = 2669;
+    
+    //AARON'S CUSTOM stems and flowers etc.
+    public static int 
+    	id_pumpkinStemOrange = 2670,
+    	id_pumpkinVineFloweringOrange = 2671,
+    	id_pumpkinVineOrange = 2672;
 	
 	
 	// SC ENDS AT 2999
@@ -42,13 +57,27 @@ public class SCDefs {
 	
 	//Pumpkin & Melon
 	private static int		
-		id_pumpkinSeeds = 31010,
-		id_melonSeeds = 31011,
+		id_pumpkinSeeds = 31010, //unused
+		id_melonSeeds = 31011, //unused
 		id_melonWaterSlice = 31012,
 		id_melonCanarySlice = 31013,
 		id_melonHoneydewSlice = 31014,
 		id_melonCantaloupeSlice = 31015;
 		//AARON ADDED
+//		id_orangePumpkinSeeds = 31016,
+//		id_greenPumpkinSeeds = 31017,
+//		id_yellowPumpkinSeeds = 31018,
+//		id_whitePumpkinSeeds = 31019,
+//		
+//		id_waterMelonSeeds = 31020,
+//		id_canaryMelonSeeds = 31021,
+//		id_HoneydewMelonSeeds = 31022,
+//		id_cantaloupeMelonSeeds = 31023,
+//		
+//		id_foulSeeds = 31024;
+		
+		
+
 	private static int
 		id_pumpkinSlice = 31016,
 		id_pumpkinSliceRoasted = 31017,
@@ -65,9 +94,11 @@ public class SCDefs {
 						pumpkinHarvested,
 						pumpkinCarved,
 						pumpkinJack,
-						SCpumpkinStem,
+						SCpumpkinStem, pumpkinStemOrange, pumpkinVineFloweringOrange, pumpkinVineOrange,
 						pumpkinVineDead, pumpkinVine, 
-						pumpkinVineFlowering, pumpkinStemDead;
+						pumpkinVineFlowering, pumpkinStemDead,
+						
+						pumpkinOrangeAsleep;
 	
 	public static Block melonWater, melonCanary, melonHoneydew, melonCantaloupe,
 						melonHarvested, melonCanaryHarvested,
@@ -76,7 +107,9 @@ public class SCDefs {
 						melonVineFlowering, melonVineFloweringSleeping;
 	
 	public static Item melonWaterSlice, melonCanarySlice, melonHoneydewSlice, melonCantaloupeSlice, pumpkinSlice,
-	pumpkinSliceRoasted, pumpkinSliceBoiled;
+	pumpkinSliceRoasted, pumpkinSliceBoiled, 
+	
+	orangePumpkinSeeds, greenPumpkinSeeds;
 	
 	//Gourd
 	public static Block gourdStem,
@@ -98,6 +131,10 @@ public class SCDefs {
 		//Growing
 		pumpkinOrange = new SCBlockPumpkinGrowingOrange(id_pumpkinOrange, id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFlowering, id_pumpkinHarvested);
 		Item.itemsList[pumpkinOrange.blockID] = new ItemBlock(pumpkinOrange.blockID - 256);
+		
+		pumpkinOrangeAsleep = new SCBlockPumpkinGrowingOrangeAsleep(id_pumpkinOrangeAsleep, id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFlowering, id_pumpkinHarvested);
+		Item.itemsList[pumpkinOrangeAsleep.blockID] = new ItemBlock(pumpkinOrangeAsleep.blockID - 256);
+	
 		
 		pumpkinGreen = new SCBlockPumpkinGrowingGreen(id_pumpkinGreen, id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFlowering, id_pumpkinHarvested);
 		Item.itemsList[pumpkinGreen.blockID] = new ItemBlock(pumpkinGreen.blockID - 256);
@@ -142,10 +179,25 @@ public class SCDefs {
 		SCpumpkinStem = new SCBlockGourdStem(id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFlowering, pumpkinStemDead).setCanBePossessed(false);
 		Item.itemsList[SCpumpkinStem.blockID] = new ItemBlock(SCpumpkinStem.blockID - 256);
 		
+		//AARON'S ATTEMPT at creating pumpkin specific vines!
+		
+		pumpkinVineFloweringOrange = new SCBlockPumpkinVineFloweringOrange(id_pumpkinVineFloweringOrange, id_pumpkinVineOrange, id_pumpkinStemOrange, pumpkinOrange, pumpkinGreen, pumpkinYellow, pumpkinWhite, id_pumpkinVineDead);
+		Item.itemsList[pumpkinVineFloweringOrange.blockID] = new ItemBlock(pumpkinVineFloweringOrange.blockID - 256);
+		
+		pumpkinVineOrange = new SCBlockGourdVine(id_pumpkinVineOrange, id_pumpkinVineFloweringOrange, id_pumpkinStemOrange, id_pumpkinVineDead, "SCBlockPumpkinVine_", "SCBlockPumpkinVineConnector_");
+		Item.itemsList[pumpkinVineOrange.blockID] = new ItemBlock(pumpkinVineOrange.blockID - 256);
+		
+		pumpkinStemOrange = new SCBlockGourdStem(id_pumpkinStemOrange, id_pumpkinVineOrange, id_pumpkinVineFloweringOrange, pumpkinStemDead).setCanBePossessed(false);
+		Item.itemsList[pumpkinStemOrange.blockID] = new ItemBlock(pumpkinStemOrange.blockID - 256);
+		
+		
+		
 		//Items
 		//pumpkinSeeds = new FCItemSeedFood( id_pumpkinSeeds - 256, 1, 0F, pumpkinStem.blockID).setCreativeTab(CreativeTabs.tabDecorations).setUnlocalizedName( "SCSeedsPumpkin" );
-		Item.itemsList[Item.pumpkinSeeds.itemID] = new FCItemSeedFood( Item.pumpkinSeeds.itemID - 256, 1, 0F, SCpumpkinStem.blockID).setUnlocalizedName( "seeds_pumpkin" ).SetAsBasicChickenFood();
-		
+		//The code below makes the vanilla pumpkin seed place a SC gourd.
+		//Item.itemsList[Item.pumpkinSeeds.itemID] = new FCItemSeedFood( Item.pumpkinSeeds.itemID - 256, 1, 0F, SCpumpkinStem.blockID).setUnlocalizedName( "seeds_pumpkin" ).SetAsBasicChickenFood();
+		//orangePumpkinSeeds = new FCItemSeedFood( id_orangePumpkinSeeds - 256, 1, 0F, SCpumpkinStem.blockID).setCreativeTab(CreativeTabs.tabFood).SetAsBasicChickenFood().SetBellowsBlowDistance( 2 ).SetFilterableProperties( m_iFilterable_Fine ).setMaxStackSize(14).setUnlocalizedName( "SCItemSeedsOrangePumpkin" );
+		//orangePumpkinSeeds = new SCItemOrangePumpkinSeeds( id_orangePumpkinSeeds - 256, SCpumpkinStem.blockID);
 		
 		//Melon
 		
@@ -190,7 +242,8 @@ public class SCDefs {
 		
 		//Items
 		//melonSeeds = ( new FCItemSeeds(id_melonSeeds , melonStem.blockID).setCreativeTab(CreativeTabs.tabDecorations).SetAsBasicChickenFood().setUnlocalizedName( "SCSeedsMelon" ) );
-		Item.itemsList[Item.melonSeeds.itemID] =  new FCItemSeeds(Item.melonSeeds.itemID - 256 , SCmelonStem.blockID).SetAsBasicChickenFood().setUnlocalizedName( "seeds_melon" );
+		//Below makes vanilla seeds place SC gourd. I am changing that to allow unique seeds for each variety!
+		//Item.itemsList[Item.melonSeeds.itemID] =  new FCItemSeeds(Item.melonSeeds.itemID - 256 , SCmelonStem.blockID).SetAsBasicChickenFood().setUnlocalizedName( "seeds_melon" );
 		
 		
 		melonWaterSlice = new SCItemMelonSlice( id_melonWaterSlice - 256, "SCItemMelonSlice");
