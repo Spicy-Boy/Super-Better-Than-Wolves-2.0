@@ -66,12 +66,12 @@ TODO BUGFIXES:
 
 -stop hoppers from locking up dispensers
 
--gourds do not drop proper metadata... it is time to:
-    -rework gourds in general, break them up into different block classes with different seeds
--Gourd stems break instantly
--White pumpkin jack hitbox is fucked up
+-Redo final frame for bow stringing, make it bend inward a bit at the last moment (maybe make it easier?)
 
--Redo final frame for bow stringing, make it bend inward a bit at the last moment
+***GOURD TODO***
+-Pumpkin Jack hitboxes do not conform to model... can that be fixed?
+
+
 
 #Base Class Edits 1.0 (* means edited in 2.0):
 FCBlockWeb
