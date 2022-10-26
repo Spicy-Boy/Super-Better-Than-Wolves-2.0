@@ -4,6 +4,9 @@ import java.util.Random;
 
 public class SCBlockPumpkinVineFlowering extends SCBlockGourdVineFloweringBase {
 	
+	//AARON added a variable to track what fruit is produced by specific seed
+	protected Block seedFruit;
+	
 	protected Block fruitBlock;
 	protected Block greenFruit;
 	protected Block yellowFruit;
@@ -11,8 +14,11 @@ public class SCBlockPumpkinVineFlowering extends SCBlockGourdVineFloweringBase {
 	protected int vineBlock;
 	protected int stemBlock;
 
-	protected SCBlockPumpkinVineFlowering(int iBlockID, int vineBlock,int stemBlock, Block fruitBlock, Block greenFruit, Block yellowFruit, Block whiteFruit, int convertedBlockID) {
+	protected SCBlockPumpkinVineFlowering(int iBlockID, Block seedFruit, int vineBlock,int stemBlock, Block fruitBlock, Block greenFruit, Block yellowFruit, Block whiteFruit, int convertedBlockID) {
 		super( iBlockID, vineBlock, stemBlock, convertedBlockID);
+		
+		//tracks what fruit is determined in constructor
+		this.seedFruit = seedFruit;
 		
 		this.fruitBlock = fruitBlock;
 		this.greenFruit = greenFruit;
@@ -80,88 +86,92 @@ public class SCBlockPumpkinVineFlowering extends SCBlockGourdVineFloweringBase {
 	
 
 	private Block getFruitAccordingToBiome(World world, int i, int j, int k, Random random) {
-		Block biomeFruit;
+		Block biomeFruit = this.seedFruit;
 		
 		BiomeGenBase biome = world.getBiomeGenForCoords(i, k);
 		
-		//Honeydew
-		BiomeGenBase greenPumpkin[] = { 
-				BiomeGenBase.swampland,
-				BiomeGenBase.river,
-				BiomeGenBase.extremeHills,
-				BiomeGenBase.extremeHillsEdge };
+		int blockBelow = world.getBlockId(i, j - 1, k);
 		
-		//Canary
-		BiomeGenBase yellowPumpkin[] = {
-				BiomeGenBase.desert,
-				BiomeGenBase.desertHills,
-		 		BiomeGenBase.jungle,
-		 		BiomeGenBase.jungleHills,
-		 		BiomeGenBase.beach };
+		if (blockBelow == Block.mycelium.blockID)
+    	{
+			for (int r = 0; r < 4 ; r++) {
+				
+				int rand = random.nextInt(4);
+				
+				if (rand == 0) {
+					biomeFruit = this.fruitBlock;
+				}
+				else if (rand == 1) {
+					biomeFruit = this.greenFruit;
+				}
+				else if (rand == 2) {
+					biomeFruit = this.yellowFruit;
+				}
+				else if (rand == 3) {
+					biomeFruit = this.whiteFruit;
+				}
+		    }
+    	}
 		
-		//Cantaloupe
-		BiomeGenBase whitePumpkin[] = {
-				BiomeGenBase.icePlains,
-				BiomeGenBase.iceMountains,
-			 	BiomeGenBase.taiga,
-			 	BiomeGenBase.taigaHills,
-			 	BiomeGenBase.frozenOcean,
-			 	BiomeGenBase.frozenRiver };
-		 
-		BiomeGenBase allPumpkins[] = {
-				BiomeGenBase.mushroomIsland, 
-				BiomeGenBase.mushroomIslandShore };
-		
-		//set the biomeFruit
-		biomeFruit = this.fruitBlock;
-		
-		for (int g = 0; g < greenPumpkin.length; g++) {
-    		if (biome == greenPumpkin[g])
-        	{
-        		biomeFruit = this.greenFruit;
-        	}
-		}
+////		//Honeydew
+////		BiomeGenBase greenPumpkin[] = { 
+////				BiomeGenBase.swampland,
+////				BiomeGenBase.river,
+////				BiomeGenBase.extremeHills,
+////				BiomeGenBase.extremeHillsEdge };
+////		
+////		//Canary
+////		BiomeGenBase yellowPumpkin[] = {
+////				BiomeGenBase.desert,
+////				BiomeGenBase.desertHills,
+////		 		BiomeGenBase.jungle,
+////		 		BiomeGenBase.jungleHills,
+////		 		BiomeGenBase.beach };
+////		
+////		//Cantaloupe
+////		BiomeGenBase whitePumpkin[] = {
+////				BiomeGenBase.icePlains,
+////				BiomeGenBase.iceMountains,
+////			 	BiomeGenBase.taiga,
+////			 	BiomeGenBase.taigaHills,
+////			 	BiomeGenBase.frozenOcean,
+////			 	BiomeGenBase.frozenRiver };
+//		 
+//		BiomeGenBase allPumpkins[] = {
+//				BiomeGenBase.mushroomIsland, 
+//				BiomeGenBase.mushroomIslandShore };
+//		
+//    	for (int a = 0; a < allPumpkins.length; a++) {
+//    		int blockBelow = world.getBlockId(i, j - 1, k);
+//    		
+//    		if (biome == allPumpkins[a] || blockBelow == Block.mycelium.blockID)
+//        	{
+//    			for (int r = 0; r < 4 ; r++) {
+//    				
+//    				int rand = random.nextInt(4);
+//    				
+//    				if (rand == 0) {
+//    					biomeFruit = this.fruitBlock;
+//    				}
+//    				else if (rand == 1) {
+//    					biomeFruit = this.greenFruit;
+//    				}
+//    				else if (rand == 2) {
+//    					biomeFruit = this.yellowFruit;
+//    				}
+//    				else if (rand == 3) {
+//    					biomeFruit = this.whiteFruit;
+//    				}
+//    		    }
+//        	}
+//    		else
+//    		{
+//    	   		biomeFruit = this.seedFruit;
+//    		}
+//		}
     	
-    	for (int y = 0; y < yellowPumpkin.length; y++) {
-    		if (biome == yellowPumpkin[y])
-        	{
-        		biomeFruit = this.yellowFruit;
-        	}
-		}
-    	
-    	for (int w = 0; w < whitePumpkin.length; w++) {
-    		if (biome == whitePumpkin[w])
-        	{
-        		biomeFruit = this.whiteFruit;
-        	}
-		}
-    	
-    	for (int a = 0; a < allPumpkins.length; a++) {
-    		int blockBelow = world.getBlockId(i, j - 1, k);
-    		
-    		if (biome == allPumpkins[a] || blockBelow == Block.mycelium.blockID)
-        	{
-    			for (int r = 0; r < 4 ; r++) {
-    				
-    				int rand = random.nextInt(4);
-    				
-    				if (rand == 0) {
-    					biomeFruit = this.fruitBlock;
-    				}
-    				else if (rand == 1) {
-    					biomeFruit = this.greenFruit;
-    				}
-    				else if (rand == 2) {
-    					biomeFruit = this.yellowFruit;
-    				}
-    				else if (rand == 3) {
-    					biomeFruit = this.whiteFruit;
-    				}
-    		    }
-        	}
-		}
-    	
-		return biomeFruit;
+    	return biomeFruit;
+
 	}
 	
 	@Override
@@ -186,3 +196,4 @@ public class SCBlockPumpkinVineFlowering extends SCBlockGourdVineFloweringBase {
     }
 
 }
+

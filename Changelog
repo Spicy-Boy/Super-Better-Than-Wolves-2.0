@@ -1,0 +1,372 @@
+SBTW VERSION 2.0
+Started August 8, 2022
+
+Additions:
+
+-Added 9 new seeds for each unique gourd
+    TODO>ACTUALLY DO THIS!!
+
+-Added new item: Bucket of Mortar
+TODO- BROKEN bucket is not returned PROPERLY!!!
+    >right click to apply mortar to a block, depletes contents of bucket (16 uses)
+
+TODO-Added new tool: the trowel
+TODO- BROKEN with buckets of mortar!!!!
+    >right click to apply mortar to a block from your inventory
+
+-Added sleeping! 
+    >Like Arminias mod/CE 1.4, the world is simulated during sleep. Time is not skipped!
+-Added new block from CE 1.4.1: the bedroll! 
+
+-Added more efficient recipes for tanned leather armor
+    >crafted using cut tanned leather in the 2x2 crafting grid, like untanned leather
+    
+-Added rib cracking: use a sharp axe to quickly get meat off a rib
+    >the rib itself is reduced to bonemeal in the process
+
+-Added the ability to cure ribs with nitre
+
+-Added the Time Cube (officially)
+
+Changes/Fixes:
+
+-Added lava and powered axle to creative menu
+
+-Changed pumpkin seeds to stack to 64 rather than 16 for storage purposes
+
+-Changed wicker baskets to recycle into 3 wicker rather than just 1
+
+-Changed rib bones to be grindable in millstone to produce 6 bonemeal
+
+-Changed FCAddOn to no longer display a V next to version number when loading into a world
+
+-Fixed an issue in which the vase was also a Time Cube 
+
+-Fixed an issue where ribs looked kind of buggy to eat. That was my attempt at making them take longer to chew, but it looked sort of dumb
+
+
+-~-~-
+TODO CONTENT:
+
+-Add Haybales
+
+-Add mortar bucket recipe (check forum post)
+-Add recipe to empty mortar bucket
+
+-REMOVE the chat window unless player presses t while in sleep menu
+-CHANGE wake up button to be smaller
+
+-hardcore wittling
+    >recipes for signs, bowls, pipe
+    
+-Add knife cutting recipes for tanned leather, maybe even scoured leather? 
+
+TODO BUGFIXES:
+-change goggle overlay
+
+-stop hoppers from locking up dispensers
+
+-gourds do not drop proper metadata... it is time to:
+    -rework gourds in general, break them up into different block classes with different seeds
+-Gourd stems break instantly
+-White pumpkin jack hitbox is fucked up
+
+-Redo final frame for bow stringing, make it bend inward a bit at the last moment
+
+#Base Class Edits 1.0 (* means edited in 2.0):
+FCBlockWeb
+FCEntityChicken
+FCEntityCow
+FCEntityPig
+FCEntitySheep
+FCRecipes*
+FCBlockWaterStationary
+EnumToolMaterial
+EntityExpBottle
+FCBlockWorkbench
+EntityMinecartChest
+FCBlockGrass (fix lighting bug)
+EntityPlayer (ported from Hiracho mod, then edited a shit ton to add sleeping, Yany death items, etc)*
+FCBlockHempCrop (knife harvesting)
+BlockVine (knife harvesting)
+BlockLeaves
+FCBlockLeaves
+FCItemChiselWood
+FCItemChiselStone
+FCUtilsHardcoreSpawn
+FCBlockDeadBush
+BiomeDecorator
+ItemBow (for animating flint knapping...)*
+FCItemHoe
+FCBlockCobblestone
+EntityItem
+FCExplosionMining
+FoodStats 
+EntityPlayerMP (change hunger confusion effect)
+Item (changed animal food values)
+FCItemStraw
+FCItemRottenFlesh
+SlotArmor (pumpkin hats fix)
+GuiIngame (NOTE: MUST BE ADDED TO SRC AFTER!!!)
+FCEntityUrn    
+
+#Base Class Edits 2.0:
+FCBlockLavaStationary (added to creative menu)
+FCAddon
+FCBlockCrops (changing weed mechanics)
+
+
+#For sleep integration:
+FCBlockBed
+EntityPlayer
+GuiSleepMP
+MinecraftServer
+WorldServer
+Minecraft
+
+#Added from CE 1.4.1:
+FCBlockBedroll
+FCItemBed
+
+IDEAS:
+-New construction material type with special property: wicker/thatch roofing
+    >Wicker/thatch cannot be used to hold up a player, entity (other than spiders maybe), or block like sand/cobblestone anything that falls
+
+-Eye of ender acts as a palantir, you peer into it to gain insight on where you should go
+
+-lsd dREAM simulator as the HARDCORE NIGHTMARES thing
+
+-New splashes:
+    >"MGMT!"
+
+-New records
+    >MGMT's "Days that Got Away"
+
+-Pipe smoking
+    >whittle pipe with chisel/knife
+    >craft with hemp, new item "Packed pipe" created (alternatively, hold right click to load pipe?)
+    >hold right click to take a hit. Longer hold = different/more debilitating effects
+    >Suck in for too long and take damage, Steve says OOF
+
+-wolves breed to make untamed puppies, so they can be farmed
+
+-an oar item, for propelling on a boat without hemp
+
+-Animal hunger and food value tweak, animal taming and behaviors?
+
+-FIX melon stems break instantly, make them tough! 
+
+-give each gourd type its own seed (or split small and large)
+    -give each gourd type different amounts of slices and seeds dropped (largest = 3, medium = 2, small = 1)
+
+----
+BTW INDIE GAME CONCEPT:
+
+A Minecraft clone survival game without an inventory. Players have both hands at their disposal. First person perspective
+Logs carried on back. A backpack can store useful items 
+Limited world manipulation until good tools are found, like BTW
+Rather than a crafting grid, players combine components by mashing them together with both hands. This is like the "knitting" system in BTW, only everything works like that (with varying crafting times)
+    >For example, sharpening a stick is stick in one hand + sharp stone/flint in the other. The animation will be unique: player sharpens end of stick downward
+        >the stick can be unfinished. Every object the player deals with is unique and can exist in varying states of damage (rather than generic stacks like in MC)
+
+
+
+#############################################################
+VERSION 1.0
+Additions:
+
+-Added new tool type: blades/knives
+    >effective against webs
+    >can harvest hemp & vines
+    >deals extra damage
+-Added new tool: Flint knife
+-Added new tool: Iron knife
+-Added new progress crafting recipe: flint knapping (to produce flint knife)
+    >animated, must land hit at right moment or flint can break
+-Added recipe for crafting vine traps with two vines
+
+-Added new item: Branch 
+    >Harvested from leaves with knife, random chance drop without knife
+    >Harvested from dead bushes
+    >generates as a block on the floor of forests (hardcore fuel gathering)
+
+-Added new progress crafting recipe: leather cutting (to make cut leather)
+-Added new crafting recipes for leather armor using cut leather (for use in 2x2 grid!)
+
+-Added new cow drop: Beef rib
+-Added new food: Seared Beef Rib (by cooking a beef rib)
+-Added new progress crafting recipe: rib cutting
+-Added new item: Rib Bone (made from beef rib)
+
+-Added new tool: Bone Pickaxe (made from rib)
+
+-Added tombstone block (currently no way to craft/find it)
+-Added sunflower block (currently no way to craft it)
+
+-Added the meat cube
+    
+-Added recipe for the original workbench, crafted with 8 planks and an iron ingot
+
+-Added Hiracho's Dynamic Lighting mod, which allows torches to illuminate space even when held in hand!
+
+-Added recipe for stone hoe
+    >can be used to find hemp seeds in grass 
+    
+-Added new progress crafting recipe: bow stringing (to produce a bow without crafting table)
+
+-Added Sockthings's Sock's Crops mod (specifically, his gourds), which changes pumpkin and melon farming
+    >gourds now grow on large vines, like those in a pumpkin patch
+    >added four new pumpkin types and four new melon types
+-Added new item: pumpkin slices
+    >by using a knife on a pumpkin in the crafting grid, the player can get pumpkin slices
+    >this recipe also gives the player 4 pumpkin seeds
+    >not edible
+-Added new items: roasted and boiled pumpkin slices
+
+-Added the Death Club
+
+Changes/Tweaks:
+-Changed cows to drop at least 1 leather every time
+-Changed chickens to drop at least 2 feathers every time
+-Changed pigs to always drop 2-3 pork when killed
+-Changed sheep to always drop 2 mutton
+-Changed grass to also grow at night, fixing an issue where feeding animals with grass did not work beyond spawn chunks
+
+-Changed animal feed values to make it easier to keep animals fed
+    >Testing required!
+
+-Changed leather to render into 2 glue instead of 1 (and 1 cut leather = 1 glue) 
+-Changed pork to render into 3 tallow (instead of 1 tallow)
+-Changed a single beef to render into 1 tallow (instead of 4 beef)
+
+-Changed steel tools to be enchantable in the standard table ;P
+-Changed steel tools to now accept up to five enchantments in the infernal enchanter (go nuts!)
+-Changed diamond tools to now accept up to three enchantments in the infernal enchanter
+-Tweaked diamond tool enchanting to increase the rate of level 3 enchantments
+-Tweaked steel tool enchanting to make level 3 enchantments standard
+    >Efficiency IV is now a possibility... too OP?
+-Changed Bottles O' Enchanting to drop a lot more EXP...
+
+-Changed minecart chests to drop a chest when broken
+
+-Added Hardcore Bible Murder
+-Changed pointy sticks and sharp stone to deal small amount of damage for pretty much no reason
+
+-Changed (reduced) the HC Respawn timer to 1/4th its original value.
+
+-Changed mortared cobblestone to break into a loose cobblestone block when broken with improper tool
+
+-Added a new recipe for powered rails that only costs 2 ingots of gold
+
+-Changed items dropped on death to no longer despawn after 20 minutes
+    >instead, items dropped on death will disappear after 5 deaths 
+    
+-Changed mining charges to drop the proper chunks (and diamonds) when blasting ore
+-Changed mining charges to blast stone blocks into cobblestone
+
+-Changed starvation to take a little longer
+-Removed immediate nausea effect on starvation
+
+---
+
+Base Class Edits:
+FCBlockWeb
+FCEntityChicken
+FCEntityCow
+FCEntityPig
+FCEntitySheep
+FCRecipes*
+FCBlockWaterStationary
+EnumToolMaterial
+EntityExpBottle
+FCBlockWorkbench
+EntityMinecartChest
+FCBlockGrass (fix lighting bug)
+EntityPlayer (ported from Hiracho mod)
+FCBlockHempCrop (knife harvesting)
+BlockVine (knife harvesting)
+BlockLeaves
+FCBlockLeaves
+FCItemChiselWood
+FCItemChiselStone
+FCUtilsHardcoreSpawn
+FCBlockDeadBush
+BiomeDecorator
+ItemBow (for animating flint knapping...)
+FCItemHoe
+FCBlockCobblestone
+EntityItem
+FCExplosionMining
+FoodStats 
+EntityPlayerMP (change hunger confusion effect)
+Item (change animal food values)
+FCItemStraw
+FCItemRottenFlesh
+SlotArmor (pumpkin hats fix)
+GuiIngame (NOTE: MUST BE ADDED TO SRC AFTER!!!)
+FCEntityUrn
+
+
+TRUE FINAL TODO:
+
+-Fix knife remaining in crafting window when making carving recipes
+
+-Add Death Club (rib + wood)
+
+-LANG FILE!!!!! 
+
+-Remove Time Cube
+
+-change pumpkin and goggles overlay to be less shitty
+maybe
+
+-Chunkloaders
+
+-Acorns, with chance to auto-plant in grass like bloodwoods on ash? Burning propogates new growth
+>Change saplings to take a really long time to grow in general, more stages
+
+-evergreen trade for knitting and weaving recipes (the villager can do it for you)
+
+-Mining charges fix-4x3x3 radius
+
+-Branches try to give random rotation
+
+-New 2nd campfire stage using torch fire particles rather than tiny fire block
+
+-Custom death message for being stabbed to death by a knife. Also, clubs if there isn't one already.
+
+-Endermen can pick up SCpumpkins and other cool blocks
+
+-Gourd types have own seeds and spawn in different places
+
+-Right click torches to auto pick them up into inventory slot empty hand
+
+-Smokable pipe!
+---
+
+
+Long term TODO: Wood widdling/carving recipes
+    > bowls, totems, 
+    
+Implement more crops
+    
+Long term TODO: chop logs in half for log slabs and siding
+
+MEGA FEATURES:
+-Chunkloading at new spawns/first campfire (or some nifty way to tell if picked a spot to settle down... maybe wet clay???)
+-Chunkloader "totem" that can change the HC Spawn Chunkloaded spot once
+
+---
+Really Crazy Ideas:
+-Make animals startle just by getting too close?
+Nah, that's lame.
+
+-Animals automatically run from mobs?
+Could be fun, maybe hard to implement.
+
+-rib cooking over campfire has custom animation where it is hanging from each stick like smoking a pig
+
+-smokable pipe!!!!
+
+Mark idea: Twigs snap under foot, making a loud snapping sound that could attract mobs
+

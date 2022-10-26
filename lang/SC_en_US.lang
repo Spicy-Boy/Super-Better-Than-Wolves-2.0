@@ -60,5 +60,9 @@ item.SCItemMelonYellowSlice.name=Canary Slice
 item.SCItemMelonWhiteSlice.name=Honeydew Slice
 item.SCItemMelonGreenSlice.name=Cantaloupe Slice
 
-item.SCItemSeedsOrangePumpkin.name=Giant Pumpkin Seeds
-item.greenPumpkin.name=Grean Mean Pumpkin Machine
+item.SCItemOrangePumpkinSeeds.name=Giant Pumpkin Seeds
+item.SCItemGreenPumpkinSeeds.name=Green Pumpkin Seeds
+item.SCItemYellowPumpkinSeeds.name=Yellow Pumpkin Seeds
+item.SCItemWhitePumpkinSeeds.name=White Pumpkin Seeds
+item.SCItemLittlePumpkinSeeds.name=Little Gourd Seeds
+item.SCItemFoulPumpkinSeeds.name=Foul Seeds

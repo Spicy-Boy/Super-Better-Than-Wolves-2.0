@@ -3,11 +3,11 @@ package net.minecraft.src;
 public class SCItemOrangePumpkinSeeds extends FCItemSeedFood 
 {
 	//AKA Giant Pumpkin Seeds
+
 	public SCItemOrangePumpkinSeeds(int iItemID, int iCropBlockID) 
 	{
-		
-		super(iItemID, 1, 0F, SCDefs.SCpumpkinStem.blockID);
-		setUnlocalizedName( "SuperBTWItemOrangePumpkinSeeds" );
+		super(iItemID, 1, 0F, SCDefs.pumpkinStemOrange.blockID);
+		setUnlocalizedName( "SCItemOrangePumpkinSeeds" );
 		setCreativeTab(CreativeTabs.tabFood);
 		setMaxStackSize(64);
 		SetFilterableProperties( m_iFilterable_Fine );
