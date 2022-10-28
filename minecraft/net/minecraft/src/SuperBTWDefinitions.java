@@ -39,12 +39,12 @@ public class SuperBTWDefinitions {
 		
 		id_mortarBucket = 20021,
 		
-		id_trowel = 20022;
+		id_trowel = 20022,
 	
 		//GOURD MANIA!
 		
-//		id_orangePumpkinSeeds = 20023;
-//		id_greenPumpkinSeeds = 31017,
+		id_orangePumpkinSeeds = 31016,
+		id_greenPumpkinSeeds = 31017;
 //		id_yellowPumpkinSeeds = 31018,
 //		id_whitePumpkinSeeds = 31019,
 //				
@@ -94,7 +94,8 @@ public class SuperBTWDefinitions {
 	
 	//GOURD MANIA!
 	
-	//public static Item orangePumpkinSeeds;
+	public static Item orangePumpkinSeeds;
+	public static Item greenPumpkinSeeds;
 	
 	public static void addDefinitions() 
 	{
@@ -141,7 +142,8 @@ public class SuperBTWDefinitions {
 		
 		//GOURD MANIA!
 		
-//		orangePumpkinSeeds = new SCItemOrangePumpkinSeeds (id_orangePumpkinSeeds - 256, SCDefs.id_pumpkinStemOrange);
+		orangePumpkinSeeds = new SCItemOrangePumpkinSeeds (id_orangePumpkinSeeds - 256, SCDefs.id_pumpkinStem);
+		greenPumpkinSeeds = new SCItemGreenPumpkinSeeds (id_greenPumpkinSeeds - 256, SCDefs.id_pumpkinStemGreen);
 		
 		
 	}

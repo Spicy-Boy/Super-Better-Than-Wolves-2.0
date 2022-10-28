@@ -88,7 +88,7 @@ public class SCBlockPumpkinVineFlowering extends SCBlockGourdVineFloweringBase {
 	private Block getFruitAccordingToBiome(World world, int i, int j, int k, Random random) {
 		Block biomeFruit = this.seedFruit;
 		
-		BiomeGenBase biome = world.getBiomeGenForCoords(i, k);
+//		BiomeGenBase biome = world.getBiomeGenForCoords(i, k);
 		
 		int blockBelow = world.getBlockId(i, j - 1, k);
 		

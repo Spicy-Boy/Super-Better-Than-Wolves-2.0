@@ -55,10 +55,10 @@ public class SCDefs {
     	
     	id_pumpkinStemGreen = 2673,
     	id_pumpkinVineFloweringGreen = 2674,
-    	id_pumpkinVineGreen = 2675,
+    	id_pumpkinVineGreen = 2675;
     	
-    	id_orangePumpkinSeeds = 31016,
-    	id_greenPumpkinSeeds = 31017;
+//    	id_orangePumpkinSeeds = 31016,
+//    	id_greenPumpkinSeeds = 31017;
     //	id_yellowPumpkinSeeds = 31018,
     //	id_whitePumpkinSeeds = 31019,
     //	
@@ -171,23 +171,36 @@ public class SCDefs {
 		Item.itemsList[pumpkinJack.blockID] = new ItemMultiTextureTile(pumpkinJack.blockID - 256, pumpkinJack, new String[] {"orange", "green", "yellow", "white"});
 		
 		//Vine OLD
-		pumpkinVine = new SCBlockGourdVine(id_pumpkinVine, id_pumpkinVineFlowering, id_pumpkinStem, id_pumpkinVineDead, "SCBlockPumpkinVine_", "SCBlockPumpkinVineConnector_");
-		Item.itemsList[pumpkinVine.blockID] = new ItemBlock(pumpkinVine.blockID - 256);
+//		pumpkinVine = new SCBlockGourdVine(id_pumpkinVine, id_pumpkinVineFlowering, id_pumpkinStem, id_pumpkinVineDead, "SCBlockPumpkinVine_", "SCBlockPumpkinVineConnector_");
+//		Item.itemsList[pumpkinVine.blockID] = new ItemBlock(pumpkinVine.blockID - 256);
 		
 		pumpkinVineDead = new SCBlockGourdVineDead(id_pumpkinVineDead, id_pumpkinVineFlowering, id_pumpkinStem);
 		Item.itemsList[pumpkinVineDead.blockID] = new ItemBlock(pumpkinVineDead.blockID - 256);
 		
 		//Flower OLD
-		pumpkinVineFlowering = new SCBlockPumpkinVineFlowering(id_pumpkinVineFlowering, pumpkinOrange, id_pumpkinVine, id_pumpkinStem, pumpkinOrange, pumpkinGreen, pumpkinYellow, pumpkinWhite, id_pumpkinVineDead);
-		Item.itemsList[pumpkinVineFlowering.blockID] = new ItemBlock(pumpkinVineFlowering.blockID - 256);
+//		pumpkinVineFlowering = new SCBlockPumpkinVineFlowering(id_pumpkinVineFlowering, pumpkinOrange, id_pumpkinVine, id_pumpkinStem, pumpkinOrange, pumpkinGreen, pumpkinYellow, pumpkinWhite, id_pumpkinVineDead);
+//		Item.itemsList[pumpkinVineFlowering.blockID] = new ItemBlock(pumpkinVineFlowering.blockID - 256);
 		
 		//Stem OLD
 		pumpkinStemDead = new SCBlockGourdStemDead(id_pumpkinStemDead);
 		Item.itemsList[pumpkinStemDead.blockID] = new ItemBlock(pumpkinStemDead.blockID - 256);
 		
-		SCpumpkinStem = new SCBlockGourdStem(id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFloweringOrange, pumpkinStemDead).setCanBePossessed(false);
-		Item.itemsList[SCpumpkinStem.blockID] = new ItemBlock(SCpumpkinStem.blockID - 256);
+//		SCpumpkinStem = new SCBlockGourdStem(id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFloweringOrange, pumpkinStemDead).setCanBePossessed(false);
+//		Item.itemsList[SCpumpkinStem.blockID] = new ItemBlock(SCpumpkinStem.blockID - 256);
 
+		/*TEST DEFAULT SEED*/
+		
+		pumpkinVineFlowering = new SCBlockPumpkinVineFlowering(id_pumpkinVineFlowering, pumpkinGreen, id_pumpkinVine, id_pumpkinStem, pumpkinOrange, pumpkinGreen, pumpkinYellow, pumpkinWhite, id_pumpkinVineDead);
+		Item.itemsList[pumpkinVineFlowering.blockID] = new ItemBlock(pumpkinVineFlowering.blockID - 256);
+		
+		SCpumpkinStem = new SCBlockGourdStem(id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFlowering, pumpkinStemDead).setCanBePossessed(false);
+		Item.itemsList[SCpumpkinStem.blockID] = new ItemBlock(SCpumpkinStem.blockID - 256);
+		
+		pumpkinVine = new SCBlockGourdVine(id_pumpkinVine, id_pumpkinVineFlowering, id_pumpkinStem, id_pumpkinVineDead, "SCBlockPumpkinVine_", "SCBlockPumpkinVineConnector_");
+		Item.itemsList[pumpkinVine.blockID] = new ItemBlock(pumpkinVine.blockID - 256);
+		
+		
+		
 		/*AARON'S CUSTOM PUMPKIN INITIALIZATION*/
 		//Here, (gestures downward), I create custom plants for each type of pumpkin!
 		
@@ -213,10 +226,7 @@ public class SCDefs {
 		
 		pumpkinVineGreen = new SCBlockGourdVine(id_pumpkinVineGreen, id_pumpkinVineFloweringGreen, id_pumpkinStemGreen, id_pumpkinVineDead, "SCBlockPumpkinVine_", "SCBlockPumpkinVineConnector_");
 		Item.itemsList[pumpkinVineGreen.blockID] = new ItemBlock(pumpkinVineGreen.blockID - 256);
-		
-		orangePumpkinSeeds = new SCItemOrangePumpkinSeeds (id_orangePumpkinSeeds - 256, SCDefs.id_pumpkinStemOrange);
-		greenPumpkinSeeds = new SCItemGreenPumpkinSeeds (id_greenPumpkinSeeds - 256, SCDefs.id_pumpkinStemGreen);
-		
+
 		
 		
 		//Items
