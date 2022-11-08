@@ -26,7 +26,7 @@ TODO- BROKEN with buckets of mortar!!!!
 
 -Added the ability to cure ribs with nitre
 
--Added the Time Cube (officially)
+-Added the Time Cube (WARNING: If you manage to spawn one of these, do not exit the world without destroying it)
 
 Changes/Fixes:
 
@@ -69,6 +69,10 @@ TODO BUGFIXES:
 -Redo final frame for bow stringing, make it bend inward a bit at the last moment (maybe make it easier?)
 
 ***GOURD TODO***
+-Remove weeds from gourd stem plants
+
+-Craft pumpkins/melon varieties into proper ratios of seeds and slices
+
 -Pumpkin Jack hitboxes do not conform to model... can that be fixed?
 
 

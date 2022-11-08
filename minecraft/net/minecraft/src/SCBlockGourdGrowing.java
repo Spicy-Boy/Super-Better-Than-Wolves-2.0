@@ -76,6 +76,7 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 		int harvestedMeta = getMetaHarvested(growthLevel);
 		
 		world.setBlockAndMetadata(i, j, k, convertedBlockID , harvestedMeta);
+		System.out.println("PUMPKIN CONVERTED!!!");
 	}
 
 	protected abstract int getMetaHarvested(int growthLevel);
@@ -177,10 +178,15 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 	    
 	    if ( targetBlockID == this.vineBlock || targetBlockID == this.flowerBlock)
 	    {	
+//	    	System.out.println("PUMPKIN HAS VINE!");
 	    	return true;
 	    	
 	    }
-	    else return false;
+	    else
+	    	{
+//	    	System.out.println("PUMPKIN NO DETECTED VINE!");
+	    	return false;
+	    	}
 	}
 	
 	private boolean hasStemFacing( RenderBlocks r, int i, int j, int k )

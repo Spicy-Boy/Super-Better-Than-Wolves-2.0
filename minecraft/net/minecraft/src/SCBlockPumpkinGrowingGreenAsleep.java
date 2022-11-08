@@ -2,8 +2,8 @@ package net.minecraft.src;
 
 import java.util.Random;
 
-public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
-
+public class SCBlockPumpkinGrowingGreenAsleep extends SCBlockPumpkinGrowingAsleep 
+{
 	/**
 	 * 
 	 * @param iBlockID
@@ -12,16 +12,17 @@ public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
 	 * @param flowerBlock
 	 * @param convertedBlockID
 	 */
-	protected SCBlockPumpkinGrowingOrange(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) {
+	protected SCBlockPumpkinGrowingGreenAsleep(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) 
+	{
 		super(iBlockID, stemBlock, vineBlock, flowerBlock, convertedBlockID);
-		setUnlocalizedName("SCBlockPumpkinGrowingOrange");
+		//setUnlocalizedName("SCBlockPumpkinGrowingOrange");
 	}
 	
 	@Override
 	public void grow(World world, int i, int j, int k, Random random)
 	{
 		int meta = world.getBlockMetadata(i, j, k);
-		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.pumpkinOrangeAsleep.blockID ,meta + 4);
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.pumpkinGreen.blockID ,meta);
 	}
 	
 	@Override
@@ -33,47 +34,33 @@ public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
 		
 		if (growthLevel == 3 )
 		{
-			return 3;
+			return 7; 
 		}
 		else if (growthLevel == 2)
 		{
-			return 2;
+			return 6;
 		}
 		else if (growthLevel == 1)
 		{
-			return 1;
+			return 5;
 		}
-		else return 0;
+		else return 4;
 	}
 	
 	protected int getMetaHarvested(int growthLevel) {
 		if (growthLevel == 3 )
 		{
-			return 3;
+			return 7; 
 		}
 		else if (growthLevel == 2)
 		{
-			return 2;
+			return 6;
 		}
 		else if (growthLevel == 1)
 		{
-			return 1;
+			return 5;
 		}
-		else return 0;
-
-	}
-
-	@Override
-	protected int getPossessedMetaForGrowthLevel(int growthLevel) {
-		
-		for (int i = 0; i < 4; i++) {
-			if (growthLevel == i) 
-			{
-				//shift for if different pumpkin type: eg. i + 4 for green Pumpkins
-				return i;
-			}
-		}
-		return 0;
+		else return 4;
 	}
 	
 	@Override
@@ -92,17 +79,17 @@ public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
 		//Orange
 		if (growthLevel == 0)
 		{
-			return GetGourdBounds(6, 6, 6);
+			return GetGourdBounds(6, 4, 6);
 		}
 		else if (growthLevel == 1)
 		{
-			return GetGourdBounds(8, 8, 8);
+			return GetGourdBounds(8, 5, 8);
 		}
 		else if (growthLevel == 2)
 		{
-			return GetGourdBounds(12, 12, 12);
+			return GetGourdBounds(12, 6, 12);
 		}
-		else return GetGourdBounds(16, 16, 16);
+		else return GetGourdBounds(16, 8, 16);
 	}	
 	
 	//--- Render ---//
@@ -130,35 +117,37 @@ public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
 		renderer.RenderStandardFallingBlock( this, i, j, k, meta);
 	}
 	
-	protected Icon[] orangeIcon;
-	protected Icon[] orangeIconTop;
+	protected Icon[] greenIcon;
+	protected Icon[] greenIconTop;
 	protected Icon[] connectorIcon;
 	
 	@Override
   	public void registerIcons( IconRegister register )
   	{
 		//Orange
-  		orangeIcon = new Icon[4];
+		greenIcon = new Icon[4];
 		
-  		for ( int iTempIndex = 0; iTempIndex < orangeIcon.length; iTempIndex++ )
+  		for ( int iTempIndex = 0; iTempIndex < greenIcon.length; iTempIndex++ )
 		{
-  			orangeIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinSide_" + iTempIndex );
+  			greenIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenSide_" + iTempIndex );
 		}
 	
-		orangeIconTop = new Icon[4];
+  		greenIconTop = new Icon[4];
 	
-		for ( int iTempIndex = 0; iTempIndex < orangeIconTop.length; iTempIndex++ )
+		for ( int iTempIndex = 0; iTempIndex < greenIconTop.length; iTempIndex++ )
 		{
-		orangeIconTop[iTempIndex] = register.registerIcon( "SCBlockPumpkinTop_" + iTempIndex );
+			greenIconTop[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenTop_" + iTempIndex );
 		}
 		
         connectorIcon = new Icon[4];
         for ( int iTempIndex = 0; iTempIndex < connectorIcon.length; iTempIndex++ )
         {
-        	connectorIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinConnector_" + iTempIndex );
+        	connectorIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenConnector_" + iTempIndex );
         }
+    	
+    	blockIcon = greenIcon[3];
+    	
 		
-		blockIcon = orangeIcon[3];
 	}
 	
 	@Override
@@ -168,9 +157,9 @@ public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
     	
     	if ( iSide == 1 || iSide == 0 )
     	{
-    		return orangeIconTop[growthLevel];
+    		return greenIconTop[growthLevel];
     	}
-    	
-    	return orangeIcon[growthLevel];
+
+    	return greenIcon[growthLevel];
     }
 }

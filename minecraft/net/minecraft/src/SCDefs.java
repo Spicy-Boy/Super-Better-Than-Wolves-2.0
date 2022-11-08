@@ -142,10 +142,10 @@ public class SCDefs {
 		
 		//Pumpkins
 		//Growing
-		pumpkinOrange = new SCBlockPumpkinGrowingOrange(id_pumpkinOrange, id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFlowering, id_pumpkinHarvested);
+		pumpkinOrange = new SCBlockPumpkinGrowingOrange(id_pumpkinOrange, id_pumpkinStemOrange, id_pumpkinVineOrange, id_pumpkinVineFloweringOrange, id_pumpkinHarvested);
 		Item.itemsList[pumpkinOrange.blockID] = new ItemBlock(pumpkinOrange.blockID - 256);
 		
-		pumpkinGreen = new SCBlockPumpkinGrowingGreen(id_pumpkinGreen, id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFlowering, id_pumpkinHarvested);
+		pumpkinGreen = new SCBlockPumpkinGrowingGreen(id_pumpkinGreen, id_pumpkinStemGreen, id_pumpkinVineGreen, id_pumpkinVineFloweringGreen, id_pumpkinHarvested);
 		Item.itemsList[pumpkinGreen.blockID] = new ItemBlock(pumpkinGreen.blockID - 256);
 		
 		pumpkinYellow = new SCBlockPumpkinGrowingYellow(id_pumpkinYellow, id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFlowering, id_pumpkinHarvested);
@@ -205,7 +205,7 @@ public class SCDefs {
 		//Here, (gestures downward), I create custom plants for each type of pumpkin!
 		
 		//orange
-		pumpkinOrangeAsleep = new SCBlockPumpkinGrowingOrangeAsleep(id_pumpkinOrangeAsleep, id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFlowering, id_pumpkinHarvested);
+		pumpkinOrangeAsleep = new SCBlockPumpkinGrowingOrangeAsleep(id_pumpkinOrangeAsleep, id_pumpkinStemOrange, id_pumpkinVineOrange, id_pumpkinVineFloweringOrange, id_pumpkinHarvested);
 		Item.itemsList[pumpkinOrangeAsleep.blockID] = new ItemBlock(pumpkinOrangeAsleep.blockID - 256);
 		
 		pumpkinStemOrange = new SCBlockGourdStem(id_pumpkinStemOrange, id_pumpkinVineOrange, id_pumpkinVineFloweringOrange, pumpkinStemDead).setCanBePossessed(false);
@@ -218,6 +218,9 @@ public class SCDefs {
 		Item.itemsList[pumpkinVineOrange.blockID] = new ItemBlock(pumpkinVineOrange.blockID - 256);
 		
 		//green
+		pumpkinGreenAsleep = new SCBlockPumpkinGrowingGreenAsleep(id_pumpkinGreenAsleep, id_pumpkinStemGreen, id_pumpkinVineGreen, id_pumpkinVineFloweringGreen, id_pumpkinHarvested);
+		Item.itemsList[pumpkinGreenAsleep.blockID] = new ItemBlock(pumpkinGreenAsleep.blockID - 256);
+		
 		pumpkinStemGreen = new SCBlockGourdStem(id_pumpkinStemGreen, id_pumpkinVineGreen, id_pumpkinVineFloweringGreen, pumpkinStemDead).setCanBePossessed(false);
 		Item.itemsList[pumpkinStemGreen.blockID] = new ItemBlock(pumpkinStemGreen.blockID - 256);
 		

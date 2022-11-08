@@ -58,6 +58,7 @@ public class SCBlockPumpkinVineFlowering extends SCBlockGourdVineFloweringBase {
 			Block biomeFruit = getFruitAccordingToBiome(world, finalI, j, finalK, random);
 			
 			world.setBlockAndMetadataWithNotify( finalI, j, finalK, biomeFruit.blockID, targetDirection);
+			System.out.println("PUMPKIN HAS BEEN BORN?!");
 			
 			//set this to mature vine to stop it growing a second pumpkin
 		}
