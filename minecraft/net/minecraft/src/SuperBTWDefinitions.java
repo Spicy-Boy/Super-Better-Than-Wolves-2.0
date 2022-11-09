@@ -17,7 +17,7 @@ public class SuperBTWDefinitions {
 		
 		id_leatherWorkingIron = 20008,
 		
-		id_wetMudBrick = 20009,
+		id_wetMudBrickItem = 20009,
 		id_wetAdobe = 20010,
 		id_adobe = 20011,
 		
@@ -61,7 +61,9 @@ public class SuperBTWDefinitions {
 		id_gravestone = 2002,
 		id_meatCube = 2003,
 		id_blockBedroll = 2004,
-		id_timeCube = 2005;
+		id_timeCube = 2005,
+		id_wetMudBrick = 2006;
+	
 		
 	
 	public static Item leatherWorking;
@@ -91,6 +93,9 @@ public class SuperBTWDefinitions {
 	public static Block meatCube;
 	public static Block fcBlockBedroll;
 	public static Block timeCube;
+	
+	public static SuperBTWBlockWetMudBrick wetMudBrick;
+	public static Item wetMudBrickItem;
 	
 	//GOURD MANIA!
 	
@@ -138,7 +143,11 @@ public class SuperBTWDefinitions {
 		timeCube = new SuperBTWBlockTimeCube(id_timeCube, null);
 		Item.itemsList[timeCube.blockID] = new ItemBlock(timeCube.blockID - 256)
 				.setMaxStackSize( 16 );
-		TileEntity.addMapping(SuperBTWBlockTimeCube.class, "timeCube");
+		TileEntity.addMapping(SuperBTWTileEntityTimeCube.class, "timeCube");
+		
+		wetMudBrick = new SuperBTWBlockWetMudBrick(id_wetMudBrick);
+		TileEntity.addMapping(SuperBTWTileEntityWetMudBrick.class, "wetMudbrick");
+		wetMudBrickItem = new SuperBTWItemWetMudBrick(id_wetMudBrickItem - 256);
 		
 		//GOURD MANIA!
 		

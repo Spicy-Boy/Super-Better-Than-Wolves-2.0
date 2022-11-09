@@ -3,7 +3,7 @@ Started August 8, 2022
 
 Additions:
 
--Added 9 new seeds for each unique gourd
+TODO -Added 9 new seeds for each type of gourd
     TODO>ACTUALLY DO THIS!!
 
 -Added new item: Bucket of Mortar
@@ -13,6 +13,9 @@ TODO- BROKEN bucket is not returned PROPERLY!!!
 TODO-Added new tool: the trowel
 TODO- BROKEN with buckets of mortar!!!!
     >right click to apply mortar to a block from your inventory
+
+-Added new block: Wet Mud Bricks
+    >Can be dried in the sun or baked in a kiln to produce bricks more efficiently than with clay balls
 
 -Added sleeping! 
     >Like Arminias mod/CE 1.4, the world is simulated during sleep. Time is not skipped!
@@ -47,32 +50,34 @@ Changes/Fixes:
 
 -~-~-
 TODO CONTENT:
-
--Add Haybales
+-Add new variety of wet mud bricks
+-AUTOFILL water bucket in crafting grid if player is near water source block
 
 -Add mortar bucket recipe (check forum post)
 -Add recipe to empty mortar bucket
 
 -REMOVE the chat window unless player presses t while in sleep menu
--CHANGE wake up button to be smaller
+-CHANGE wake up button to be smaller, off to the side?
+
+-add right click pick up bricks and torches
 
 -hardcore wittling
     >recipes for signs, bowls, pipe
+-add pine box (basket type acquired from wittling)
     
 -Add knife cutting recipes for tanned leather, maybe even scoured leather? 
 
-TODO BUGFIXES:
 -change goggle overlay
 
 -stop hoppers from locking up dispensers
 
 -Redo final frame for bow stringing, make it bend inward a bit at the last moment (maybe make it easier?)
 
+-Add Haybales
+
 ***GOURD TODO***
 -Remove weeds from gourd stem plants
-
 -Craft pumpkins/melon varieties into proper ratios of seeds and slices
-
 -Pumpkin Jack hitboxes do not conform to model... can that be fixed?
 
 
@@ -139,9 +144,6 @@ IDEAS:
 -Eye of ender acts as a palantir, you peer into it to gain insight on where you should go
 
 -lsd dREAM simulator as the HARDCORE NIGHTMARES thing
-
--New splashes:
-    >"MGMT!"
 
 -New records
     >MGMT's "Days that Got Away"

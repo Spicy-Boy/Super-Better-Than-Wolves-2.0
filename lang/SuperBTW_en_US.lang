@@ -2,6 +2,7 @@
 tile.SuperBTWBlockBranch.name=Branch
 tile.SuperBTWBlockMeatCube.name=Meat Cube
 tile.fcBlockBedroll.name=Bedroll
+tile.SuperBTWBlockWetMudBrick.name=Wet Mud Bricks
 
 #Items
 item.SuperBTWItemLeatherWorking.name=Leather Cutting
@@ -21,5 +22,7 @@ item.SuperBTWItemCookedCowRibSpent.name=Seared Beef Rib
 item.SuperBTWItemBowStringing.name=Bow Stringing
 item.SuperBTWItemDeathClub.name=Death Club
 item.SuperBTWItemMortarBucket.name=Bucket of Mortar
+item.SuperBTWItemTrowel.name=Trowel
+item.SuperBTWItemWetMudBrick=Wet Mud Bricks
 
 item.fcItemBedroll.name=Bedroll
