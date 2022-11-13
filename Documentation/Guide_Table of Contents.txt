@@ -1,0 +1,76 @@
+GRAPHICS NEEDED:
+-Left mouse click
+-Right mouse click
+-Keyboard keys
+-Circles with numbers in them (for creating keys)
+-"Step [x]" graphic for guided lists
+-1x, 2x, 3x ETC for representing quantities of items
+
+**How to Play**
+
+*Controls*
+-Numbered graphic: in-game first person GUI with key
+1. Health bar
+2. Hunger bar
+3. EXP bar
+4. EXP level
+5. Hotbar (number the slots)
+
+-Numbered graphics: inventory GUI with key
+1. Inventory slots
+2. Hotbar (number slots)
+3. Armor slots
+4. Crafting grid
+
+*Hunger and Heatlh guide* 
+(show levels of hunger/damage and describe penalties for each level)
+
+*Settings*
+-Graphics, how to optimize the game for older computers and laptops
+-Volume
+
+*Creating a World*
+-Naming it
+-Choosing a gamemode (Survival, never hardcore, creative mode)
+-Difficulty (Normal or Easy)
+
+*Advanced World Settings*
+-Seed
+-DO NOT TOUCH: Generate structures,
+-Cheats (yes or no? Depends on how tempted you are to ruin your own fun)
+-Bonus chest (Well... who doesn't love a little bonus?)
+
+**Introduction to the Minecraft World**
+
+*The Environment*
+-Trees
+-Tall grass
+-Rivers, oceans
+
+*Biomes*
+
+*Animal Life*
+-Picture of a
+
+
+**Surviving your First Night**
+
+*Basic Objectives*
+-Find food
+-Gather fuel for a campfire
+-Find or make shelter
+
+Checklist:
+2x rocks
+12x branches and/or shafts
+5x misc. pieces of fuel
+2x (or more) pieces of food
+
+Optional
+1x piece of flint
+
+*Getting your bearings*
+
+
+
+**Advanced Survival Strategies**

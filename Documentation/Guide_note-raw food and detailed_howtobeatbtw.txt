@@ -1,0 +1,117 @@
+~~~How to play BTW~~~
+(Those already familiar with the Minecraft controls can skip to page XX)
+
+~~Hunger Bar~~
+[mouse icon]
+
+~~Building and destroying~~
+
+~~Crafting~~
+
+~~~
+
+~~~THE FIRST DAY~~~
+
+~~~BIOME GUIDE~~~
+
+~~Plains~~
+
+~
+
+
+~~Types of Trees~~~
+-Oak
+-Birch
+-Pine
+-Jungle
+
+~~~
+While there is a general technological progression to BTW,
+
+Day 1 Checklist:
+-10+ sticks
+-4 stones
+-2 pieces of meat
+
+4 sticks = campfire
+1 stick = spit
+2 sticks = fire plow
+
+any extra sticks can be kept for fuel
+
+~types of fuel~
+-sticks 2x
+-sawdust 1x
+-tree bark 1x
+-wool 1x
+-reeds 1x
+-coal dust/coal ???x
+
+~~~
+QUICKREFERENCE:
+1. Punch tree until you acquire stick.
+2. Craft stick into pointy stick. (see pg XX)
+3. Hit pointy stick against exposed stone until you aquire 
+
+Basic TODO:
+1. punch tree until you get a stick
+2. craft stick into pointy stick
+3. use stick on stone until you get a rock
+4. craft rock into sharp rock
+5. use sharp rock to get even more rocks (I aim for 4, you will have time to get more later)
+6. use sharp rocks to gather more sticks from trees (always save one rock to gather more rocks)
+7. Gather AT LEAST 7 sticks (10-12 reccomended)
+8. Kill some animals.
+- to make this easier, craft a club! Low durability weapon.
+9. Find a place to settle in for the night.
+- caves are best, but sometimes you have to dig
+--THIS NEEDS ITS OWN GUIDE; first day hidey holes
+10. Craft a campfire (4 sticks)
+11. Craft a spit (another pointy stick)
+12. Craft 
+
+~~~CAMPFIRE GUIDE~~~
+
+
+~~~FOOD GUIDE~~~
+Mechanics Guide: How does hunger work?
+
+actions that reduce hunger:
+-
+
+actions that DON'T reduce hunger:
+- knitting
+- basket weaving
+- bone carving
+
+~~~
+
+~Beware Raw Meat!~
+Don't mess around with this one, seriously. Food poisoning lasts sixty seconds. During that period, you can't eat, your hunger bar will drop rapidly, and your virtual avatar is likely undergoing intense agony. It is not a good state to be in, especially beyond the safety of your base. If you are suffering from food poisoning, it is best to sit tight and wait out the sickness. Refraim from performing any rigorous activity, like jumping or mining. If you have the materials on hand, knit or weave instead!
+
+Eating raw meat does not always result in food poisoning, and as a result many rumors have sprung up about some meats being "cleaner" than others. There is no scientific basis to these claims, of course, but many veteran players will stand by their own personal experiences. Don't give in to confirmation bias! For every instance of raw mutton saving my life, I have a had mirror experience of raw meat sending me into a death spiral of sickness and starvation. 
+
+Don't get overconfident. Raw meat should be your last resort!
+
+~Nitre: nature's cure for uncured meat!~
+Nitre is a compound most commonly used in the creation of explosives, but it also shares many properties with salt. All seasoned explorers should have a pinch or two of the stuff on hand, as it can be used to turn raw meat into cured meat.
+
+Cured meat is not as satisfying as cooked meat, but the process of curing is instantaneous and eliminates the chance of food poisoning. When you don't have the energy to build and start a campfire, nitre can save your life!
+
+
+ 
+~Forbidden Snacks~
+-Creeper Oyster
+-Spider Eye
+
+Consuming these questionable items will instantly poison you, causing you to lose two hearts. Despite their toxicity, these items are actually quite nutrition. Each one will heal XX shanks of your hunger bar.
+
+~~~
+Mob Guide
+~~~
+
+~~CREEPER~~
+~To explode, or not to explode?~
+Killing creepers takes time and resources, and it can also be risky. Many players will opt for a controlled detonation, sacrificing a few hearts in order to use the creeper as a tool for gathering dirt and stone. When you are just starting out, creeper explosions can act as a primary source of building material.
+
+Taking the time to kill a creeper can be rewarding, however. Creeper oysters and nitre are valuable and useful items that can only be obtained by slaying a creeper without letting it explode. For information about the benefits of these items, see page XX.

@@ -3,7 +3,7 @@ Started August 8, 2022
 
 Additions:
 
-TODO -Added 9 new seeds for each type of gourd
+TODO -Added 9 new seeds for each type of pumpkin and melon
     TODO>ACTUALLY DO THIS!!
 
 -Added new item: Bucket of Mortar
@@ -29,13 +29,19 @@ TODO- BROKEN with buckets of mortar!!!!
 
 -Added the ability to cure ribs with nitre
 
--Added the Time Cube (WARNING: If you manage to spawn one of these, do not exit the world without destroying it)
-
-Changes/Fixes:
+-Added the Time Cube to the creative menu (WARNING: I am not responsible for any corruption that temporal shenanigans unleash upon your world)
 
 -Added lava and powered axle to creative menu
 
+Changes/Fixes:
+
 -Changed pumpkin seeds to stack to 64 rather than 16 for storage purposes
+
+-Changed pumpkin and melon varieties to grow by seed rather than biome. 
+TODO STILL HAVE TO PROGRAM MELON SIDE OF IT!!! 
+    >EX: a yellow pumpkin requires a yellow pumpkin seed to grow
+    
+-Changed gourd growing to be more take a few days like wheat rather than being random and inconsistent
 
 -Changed wicker baskets to recycle into 3 wicker rather than just 1
 
@@ -76,6 +82,9 @@ TODO CONTENT:
 -Add Haybales
 
 ***GOURD TODO***
+-Make a semi-dead stem, have plants die into this plant
+    >it looks like a live stem but deteriorates into true dead stem
+-Make dead stem able to be overwritten like grass
 -Remove weeds from gourd stem plants
 -Craft pumpkins/melon varieties into proper ratios of seeds and slices
 -Pumpkin Jack hitboxes do not conform to model... can that be fixed?
