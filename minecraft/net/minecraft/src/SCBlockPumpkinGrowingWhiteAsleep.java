@@ -2,32 +2,21 @@ package net.minecraft.src;
 
 import java.util.Random;
 
-public class SCBlockPumpkinGrowingYellow extends SCBlockPumpkinGrowing {
-
-	protected SCBlockPumpkinGrowingYellow(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) {
+public class SCBlockPumpkinGrowingWhiteAsleep extends SCBlockPumpkinGrowingAsleep 
+{
+	protected SCBlockPumpkinGrowingWhiteAsleep(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) 
+	{
 		super(iBlockID, stemBlock, vineBlock, flowerBlock, convertedBlockID);
-		setUnlocalizedName("SCBlockPumpkinGrowingYellow");
+		//setUnlocalizedName("SCBlockPumpkinGrowingWhite");
 	}
 	
 	@Override
 	public void grow(World world, int i, int j, int k, Random random)
 	{
 		int meta = world.getBlockMetadata(i, j, k);
-		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.pumpkinYellowAsleep.blockID ,meta + 4);
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.pumpkinWhite.blockID ,meta);
 	}
-
-	@Override
-	protected int getPossessedMetaForGrowthLevel(int growthLevel) {
-		
-		for (int i = 0; i < 4; i++) {
-			if (growthLevel == i) 
-			{
-				//shift for if different pumpkin type: eg. i + 4 for green Pumpkins
-				return i + 8; 
-			}
-		}
-		return 0;
-	}
+	
 	
 	@Override
 	public int damageDropped(int meta)
@@ -38,36 +27,34 @@ public class SCBlockPumpkinGrowingYellow extends SCBlockPumpkinGrowing {
 		
 		if (growthLevel == 3 )
 		{
-			return 11; 
+			return 15; 
 		}
 		else if (growthLevel == 2)
 		{
-			return 10;
+			return 14;
 		}
 		else if (growthLevel == 1)
 		{
-			return 9;
+			return 13;
 		}
-		else return 8;
+		else return 12;
 	}
-	
 	
 	protected int getMetaHarvested(int growthLevel) {
 		if (growthLevel == 3 )
 		{
-			return 11; 
+			return 15; 
 		}
 		else if (growthLevel == 2)
 		{
-			return 10;
+			return 14;
 		}
 		else if (growthLevel == 1)
 		{
-			return 9;
+			return 13;
 		}
-		else return 8;
+		else return 12;
 	}
-
 	
 	@Override
 	public AxisAlignedBB GetBlockBoundsFromPoolBasedOnState( IBlockAccess blockAccess, int i, int j, int k )
@@ -85,17 +72,17 @@ public class SCBlockPumpkinGrowingYellow extends SCBlockPumpkinGrowing {
 		//Orange
 		if (growthLevel == 0)
 		{
-			return GetGourdBounds(4, 4, 4);
+			return GetGourdBounds(4, 3, 4);
 		}
 		else if (growthLevel == 1)
 		{
-			return GetGourdBounds(6, 6, 6);
+			return GetGourdBounds(6, 4, 6);
 		}
 		else if (growthLevel == 2)
 		{
-			return GetGourdBounds(10, 10, 10);
+			return GetGourdBounds(8, 5, 8);
 		}
-		else return GetGourdBounds(12, 12, 12);
+		else return GetGourdBounds(10, 6, 10);
 	}	
 	
 	//--- Render ---//
@@ -122,7 +109,6 @@ public class SCBlockPumpkinGrowingYellow extends SCBlockPumpkinGrowing {
 		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(meta) );		
 		renderer.RenderStandardFallingBlock( this, i, j, k, meta);
 	}
-	
 
 	protected Icon[] orangeIcon;
 	protected Icon[] orangeIconTop;
@@ -136,20 +122,20 @@ public class SCBlockPumpkinGrowingYellow extends SCBlockPumpkinGrowing {
 		
   		for ( int iTempIndex = 0; iTempIndex < orangeIcon.length; iTempIndex++ )
 		{
-  			orangeIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinYellowSide_" + iTempIndex );
+  			orangeIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinWhiteSide_" + iTempIndex );
 		}
 	
 		orangeIconTop = new Icon[4];
 	
 		for ( int iTempIndex = 0; iTempIndex < orangeIconTop.length; iTempIndex++ )
 		{
-		orangeIconTop[iTempIndex] = register.registerIcon( "SCBlockPumpkinYellowTop_" + iTempIndex );
+		orangeIconTop[iTempIndex] = register.registerIcon( "SCBlockPumpkinWhiteTop_" + iTempIndex );
 		}
 		
         connectorIcon = new Icon[4];
         for ( int iTempIndex = 0; iTempIndex < connectorIcon.length; iTempIndex++ )
         {
-        	connectorIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinYellowConnector_" + iTempIndex );
+        	connectorIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinWhiteConnector_" + iTempIndex );
         }
 		
 		blockIcon = orangeIcon[3];

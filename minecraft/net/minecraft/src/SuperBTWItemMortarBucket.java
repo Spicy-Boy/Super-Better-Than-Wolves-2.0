@@ -31,11 +31,14 @@ public class SuperBTWItemMortarBucket extends FCItemMortar
     		        world.playAuxSFX( FCBetterThanWolves.m_iMortarAppliedAuxFXID, i, j, k, 0 ); 
     			}
     			
-    			stack.damageItem( 1, player);
     	        
-    			if (stack.getItemDamage() > 15)
+    			if ((stack.getItemDamage()) + 1 == 16)
     			{
     				player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack( Item.bucketEmpty, 1);
+    			}
+    			else
+    			{
+        			stack.damageItem( 1, player);
     			}
         		
             	return true;

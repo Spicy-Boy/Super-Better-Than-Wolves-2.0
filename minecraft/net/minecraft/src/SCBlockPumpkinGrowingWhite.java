@@ -4,9 +4,17 @@ import java.util.Random;
 
 public class SCBlockPumpkinGrowingWhite extends SCBlockPumpkinGrowing {
 
-	protected SCBlockPumpkinGrowingWhite(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) {
+	protected SCBlockPumpkinGrowingWhite(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) 
+	{
 		super(iBlockID, stemBlock, vineBlock, flowerBlock, convertedBlockID);
 		setUnlocalizedName("SCBlockPumpkinGrowingWhite");
+	}
+	
+	@Override
+	public void grow(World world, int i, int j, int k, Random random)
+	{
+		int meta = world.getBlockMetadata(i, j, k);
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.pumpkinWhiteAsleep.blockID ,meta + 4);
 	}
 
 	@Override
@@ -20,6 +28,28 @@ public class SCBlockPumpkinGrowingWhite extends SCBlockPumpkinGrowing {
 			}
 		}
 		return 0;
+	}
+	
+	@Override
+	public int damageDropped(int meta)
+	{
+		int growthLevel = this.GetGrowthLevel(meta);
+		
+		//return getMetaHarvested(meta);
+		
+		if (growthLevel == 3 )
+		{
+			return 15; 
+		}
+		else if (growthLevel == 2)
+		{
+			return 14;
+		}
+		else if (growthLevel == 1)
+		{
+			return 13;
+		}
+		else return 12;
 	}
 	
 	protected int getMetaHarvested(int growthLevel) {

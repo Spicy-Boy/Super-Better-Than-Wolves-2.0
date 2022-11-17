@@ -34,12 +34,15 @@ public class SuperBTWItemTrowel extends Item
 	    			if (isMortarBucket(mortarStack.itemID))
 	    			{
 	    				mortarStack.useItemRightClick(world, player);
-	    				mortarStack.damageItem( 1, player);
 	    				
-	        			if (mortarStack.getItemDamage() > 15)
-	        			{
-	        				mortarStack = new ItemStack( Item.bucketEmpty, 1);
-	        			}
+//	        			if ((mortarStack.getItemDamage()) + 1 == 16)
+//	        			{
+//	        				mortarStack = null;
+//	        			}
+//	        			else
+//	        			{
+	        				mortarStack.damageItem( 1, player);
+//	        			}
 	    			}
 	    			else 
 	    			{

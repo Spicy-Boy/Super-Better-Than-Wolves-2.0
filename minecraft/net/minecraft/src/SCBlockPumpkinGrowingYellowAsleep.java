@@ -2,31 +2,18 @@ package net.minecraft.src;
 
 import java.util.Random;
 
-public class SCBlockPumpkinGrowingYellow extends SCBlockPumpkinGrowing {
+public class SCBlockPumpkinGrowingYellowAsleep extends SCBlockPumpkinGrowingAsleep {
 
-	protected SCBlockPumpkinGrowingYellow(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) {
+	protected SCBlockPumpkinGrowingYellowAsleep(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) {
 		super(iBlockID, stemBlock, vineBlock, flowerBlock, convertedBlockID);
-		setUnlocalizedName("SCBlockPumpkinGrowingYellow");
+		//setUnlocalizedName("SCBlockPumpkinGrowingYellow");
 	}
 	
 	@Override
 	public void grow(World world, int i, int j, int k, Random random)
 	{
 		int meta = world.getBlockMetadata(i, j, k);
-		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.pumpkinYellowAsleep.blockID ,meta + 4);
-	}
-
-	@Override
-	protected int getPossessedMetaForGrowthLevel(int growthLevel) {
-		
-		for (int i = 0; i < 4; i++) {
-			if (growthLevel == i) 
-			{
-				//shift for if different pumpkin type: eg. i + 4 for green Pumpkins
-				return i + 8; 
-			}
-		}
-		return 0;
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.pumpkinYellow.blockID ,meta);
 	}
 	
 	@Override
