@@ -7,10 +7,9 @@ TODO -Added 9 new seeds for each type of pumpkin and melon
     TODO>ACTUALLY DO THIS!!
 
 -Added new item: Bucket of Mortar
-TODO- BROKEN bucket is not returned PROPERLY!!!
     >right click to apply mortar to a block, depletes contents of bucket (16 uses)
 
-TODO-Added new tool: the trowel
+TODO- Added new tool: the trowel
 TODO- BROKEN with buckets of mortar!!!!
     >right click to apply mortar to a block from your inventory
 
@@ -35,32 +34,41 @@ TODO- BROKEN with buckets of mortar!!!!
 
 Changes/Fixes:
 
--Changed pumpkin seeds to stack to 64 rather than 16 for storage purposes
+-Changed pumpkin seeds to stack to 64 rather than 16 for storage and automation purposes OH NO MY INVENTORY BALANCE!!!!!!!!
 
--Changed pumpkin and melon varieties to grow by seed rather than biome. 
+TODO -Changed pumpkin and melon varieties to grow by seed rather than biome. 
 TODO STILL HAVE TO PROGRAM MELON SIDE OF IT!!! 
     >EX: a yellow pumpkin requires a yellow pumpkin seed to grow
     
--Changed gourd growing to be more take a few days like wheat rather than being random and inconsistent
+-Changed gourds on the vine to take a few days to mature (like wheat) (rather than being random)
 
 -Changed wicker baskets to recycle into 3 wicker rather than just 1
 
 -Changed rib bones to be grindable in millstone to produce 6 bonemeal
 
--Changed FCAddOn to no longer display a V next to version number when loading into a world
+-Changed dead bushes to be a little tougher and made some more bountiful than others
+
+-Changed FCAddOn to no longer display a V next to version number when loading into a world.. for pretty much no reason
 
 -Fixed an issue in which the vase was also a Time Cube 
 
 -Fixed an issue where ribs looked kind of buggy to eat. That was my attempt at making them take longer to chew, but it looked sort of dumb
 
 
--~-~-
+- ~ - ~ -
 TODO CONTENT:
--Add new variety of wet mud bricks
--AUTOFILL water bucket in crafting grid if player is near water source block
 
--Add mortar bucket recipe (check forum post)
--Add recipe to empty mortar bucket
+-New in-world crafting recipe: Pile of sticks -> Campfire
+        right click branch/stick against top of block to place it down just like pregenerated branch blocks in forest
+        right click again to create "X" of sticks (drops 2 sticks)
+        right click again to add another stick on top (drops 3 sticks)
+        right click again to create a campfire
+
+-FIX sleeping with updated code from 2.0 (will I even be able to read it?? Who knows)
+    BUGS: always seem to face north in bed
+    clips through the ceiling, 3 blocks up? 
+
+-AUTOFILL water bucket in crafting grid if player is near water source block
 
 -REMOVE the chat window unless player presses t while in sleep menu
 -CHANGE wake up button to be smaller, off to the side?
@@ -68,8 +76,9 @@ TODO CONTENT:
 -add right click pick up bricks and torches
 
 -hardcore wittling
-    >recipes for signs, bowls, pipe
+    >recipes for signs, bowls, pipe made of pine logs
 -add pine box (basket type acquired from wittling)
+-uncraft into tool + unfinished carving item that maintains its own progress
     
 -Add knife cutting recipes for tanned leather, maybe even scoured leather? 
 
@@ -77,19 +86,45 @@ TODO CONTENT:
 
 -stop hoppers from locking up dispensers
 
--Redo final frame for bow stringing, make it bend inward a bit at the last moment (maybe make it easier?)
+-SPRITE Redo final frame for bow stringing, make it bend inward a bit at the last moment (maybe make it easier?)
+-SPRITE trowel item
+-SPRITE branch block (two textures, sides and faces)
 
--Add Haybales
+-Add Haybales, packable and piston shovelable
+
+-Custom death message for being stabbed to death by a knife. Also, clubs if there isn't one already.
 
 ***GOURD TODO***
--Make a semi-dead stem, have plants die into this plant
+-Make distinct melon seed and plant types (just like with pumpkins)
+
+-FIX yellow and white melon seeds
+
+-Choose how to find each plant type (seeds, natural spawning gourds, etc)
+
+-Make a semi-dead vine and stem, have plant vines die into this plant
     >it looks like a live stem but deteriorates into true dead stem
--Make dead stem able to be overwritten like grass
+-Make dead stem able to be overwritten by other blocks like grass
 -Remove weeds from gourd stem plants
 -Craft pumpkins/melon varieties into proper ratios of seeds and slices
 -Pumpkin Jack hitboxes do not conform to model... can that be fixed?
 
 
+***CRUSHABLE BLOCK TYPE***
+Properties:
+    -can float (thatch, not branches)
+    -"update" falls if walked on
+    -if a falling block like cobblestone falls on it, the block is crushed into a few sticks with CRACK sound
+
+Blocks:
+    -Bundle of Sticks (halfslab, full block is block of sticks)
+          place by shift right clicking on a spot with branches in hand. If > 8 in stack, use 8 to create a slab. Do it again to add another on top
+    -Tied Block of Sticks (fixed in air, like mortared cobble)
+          right click block of sticks with rope
+        
+    -thatch (using wicker block)
+          created with reeds and branches/sticks and maybe string/fiber?
+          antigravity naturally, but falls/breaks when walked on
+    
 
 #Base Class Edits 1.0 (* means edited in 2.0):
 FCBlockWeb
@@ -125,7 +160,7 @@ Item (changed animal food values)
 FCItemStraw
 FCItemRottenFlesh
 SlotArmor (pumpkin hats fix)
-GuiIngame (NOTE: MUST BE ADDED TO SRC AFTER!!!)
+GuiIngame (NOTE: MUST BE ADDED TO SRC AFTER!!!..?)
 FCEntityUrn    
 
 #Base Class Edits 2.0:
@@ -147,8 +182,18 @@ FCBlockBedroll
 FCItemBed
 
 IDEAS:
--New construction material type with special property: wicker/thatch roofing
-    >Wicker/thatch cannot be used to hold up a player, entity (other than spiders maybe), or block like sand/cobblestone anything that falls
+
+
+***CLAY JAR CONCEPT***
+-Holds water like a bucket and can be used in recipes requiring a bucket
+
+-Can be placed (both water filled and not)
+
+-Can be used to milk cow, 
+
+-Can be filled with shafts (up to 64)
+-Can be filled with branches
+-Can be filled with arrows
 
 -Eye of ender acts as a palantir, you peer into it to gain insight on where you should go
 
@@ -163,16 +208,9 @@ IDEAS:
     >hold right click to take a hit. Longer hold = different/more debilitating effects
     >Suck in for too long and take damage, Steve says OOF
 
--wolves breed to make untamed puppies, so they can be farmed
-
 -an oar item, for propelling on a boat without hemp
 
 -Animal hunger and food value tweak, animal taming and behaviors?
-
--FIX melon stems break instantly, make them tough! 
-
--give each gourd type its own seed (or split small and large)
-    -give each gourd type different amounts of slices and seeds dropped (largest = 3, medium = 2, small = 1)
 
 ----
 BTW INDIE GAME CONCEPT:

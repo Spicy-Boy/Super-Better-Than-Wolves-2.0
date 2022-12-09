@@ -49,6 +49,16 @@ public class SuperBTWRecipes extends FCRecipes {
 	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
 	    		new ItemStack( Item.bucketWater ),
 			} );
+		
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.mortarBucket, 1 ), new Object[] {
+	    		new ItemStack( Item.clay ),
+	    		new ItemStack( Block.sand ),
+	    		new ItemStack( Item.bucketWater ),
+			} );
+		//empty the bucket
+		AddShapelessRecipe( new ItemStack( Item.bucketEmpty, 1), new Object[] {
+	    		new ItemStack( SuperBTWDefinitions.mortarBucket, 1,  m_iIgnoreMetadata  ),
+			} );
 	}
 
 	public static void addToolRecipes() {
