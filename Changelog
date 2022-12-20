@@ -58,43 +58,49 @@ TODO STILL HAVE TO PROGRAM MELON SIDE OF IT!!!
 - ~ - ~ -
 TODO CONTENT:
 
--New in-world crafting recipe: Pile of sticks -> Campfire
+O-New in-world crafting recipe: Pile of sticks -> Campfire
         right click branch/stick against top of block to place it down just like pregenerated branch blocks in forest
         right click again to create "X" of sticks (drops 2 sticks)
         right click again to add another stick on top (drops 3 sticks)
         right click again to create a campfire
 
--FIX sleeping with updated code from 2.0 (will I even be able to read it?? Who knows)
+O-FIX sleeping with updated code from 2.0 (will I even be able to read it?? Who knows)
     BUGS: always seem to face north in bed
     clips through the ceiling, 3 blocks up? 
+O-HARDCORE SOAKED: Can't sleep if being hit by rain (check torch extinguish code perhaps?)
+O-REMOVE the chat window unless player presses t while in sleep menu
+O-CHANGE wake up button to be smaller, off to the side?
 
--AUTOFILL water bucket in crafting grid if player is near water source block
+O-AUTOFILL water bucket in crafting grid if player is near water source block
 
--REMOVE the chat window unless player presses t while in sleep menu
--CHANGE wake up button to be smaller, off to the side?
-
--add right click pick up bricks and torches
+O-add right click pick up bricks and torches
 
 -hardcore wittling
     >recipes for signs, bowls, pipe made of pine logs
--add pine box (basket type acquired from wittling)
--uncraft into tool + unfinished carving item that maintains its own progress
     
--Add knife cutting recipes for tanned leather, maybe even scoured leather? 
+O-add pine box (basket copy with new texture, maybe high pitched sped up creak sound effect from normal chest?)
+    -Takes 7 minutes total?
+    -Wood Carving recipe (iron knife + spruce log)
+    -UNCRAFT into knife with 1 reduced durability and + second item (Unfinished Wooden Box) that maintains the progress/damage value to be resumed
+    
+O-think about buffing iron knife uses by +15
+O-1 SPRITE Tweak iron knife texture to be a little smaller
+    
+O-Add knife cutting recipes for tanned leather, NOT scoured leather? 
 
--change goggle overlay
+O-change goggle overlay
 
--stop hoppers from locking up dispensers
+O-stop hoppers from locking up dispensers
 
--SPRITE Redo final frame for bow stringing, make it bend inward a bit at the last moment (maybe make it easier?)
--SPRITE trowel item
--SPRITE branch block (two textures, sides and faces)
+O- 1 SPRITE Redo final frame for bow stringing, make it bend inward a bit at the last moment (maybe make it easier?)
 
--Add Haybales, packable and piston shovelable
+O- 1 SPRITE trowel item
+
+O- 2 NEW SPRITES branch block (two textures, sides and faces)
 
 -Custom death message for being stabbed to death by a knife. Also, clubs if there isn't one already.
 
-***GOURD TODO***
+O- ***GOURD TODO***
 -Make distinct melon seed and plant types (just like with pumpkins)
 
 -FIX yellow and white melon seeds
@@ -108,16 +114,27 @@ TODO CONTENT:
 -Craft pumpkins/melon varieties into proper ratios of seeds and slices
 -Pumpkin Jack hitboxes do not conform to model... can that be fixed?
 
+-CONSIDER ADDING FOUL SEED?? Creates a vine that never stops growing
+~~~~~~~~~~~~~~~~~~~~~OWO~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+O- add thatch/wicker (described below, cant be walked on or used as support antigravity block)
+3 branches/sticks, sandwiched by 6 reeds
+can be broken with bare hand to retrieve block
+spider does not trigger fall
+
+O-ALTERNATIVE "hay thatch" that looks more yellow hehehehehe
 
 ***CRUSHABLE BLOCK TYPE***
-Properties:
+Thatch Properties:
     -can float (thatch, not branches)
     -"update" falls if walked on
     -if a falling block like cobblestone falls on it, the block is crushed into a few sticks with CRACK sound
 
+O- Add stick itemblock as well as two stages of right clicking to add stick to pile ( 2 sticks when broken and 3 sticks when broken), fourth creates a campfire
+
 Blocks:
     -Bundle of Sticks (halfslab, full block is block of sticks)
-          place by shift right clicking on a spot with branches in hand. If > 8 in stack, use 8 to create a slab. Do it again to add another on top
+          place by shift right clicking on a spot with branches in hand, uses 16 sticks to create a branch slab
     -Tied Block of Sticks (fixed in air, like mortared cobble)
           right click block of sticks with rope
         
@@ -183,6 +200,7 @@ FCItemBed
 
 IDEAS:
 
+-Add Haybales, packable and piston shovelable
 
 ***CLAY JAR CONCEPT***
 -Holds water like a bucket and can be used in recipes requiring a bucket
