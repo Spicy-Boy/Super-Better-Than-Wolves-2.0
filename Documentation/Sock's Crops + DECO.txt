@@ -1,0 +1,11 @@
+~green pumpkins~
+Patagonia
+
+
+~yellow pumpkins~
+Arid Forest
+
+
+~~~NOTES ABOUT ACHIEVEMENTS MOD~~~
+
+CAMPFIRE ACHIEVEMENT: should be triggered by crafting it

@@ -2,7 +2,9 @@
 tile.SuperBTWBlockBranch.name=Branch
 tile.SuperBTWBlockMeatCube.name=Meat Cube
 tile.fcBlockBedroll.name=Bedroll
-tile.SuperBTWBlockWetMudBrick.name=Wet Mud Bricks
+tile.SuperBTWBlockWetMudBrick.name=Wet Mud Brick
+tile.SuperBTWBlockBranchSlab.name=Branch Block
+
 
 #Items
 item.SuperBTWItemLeatherWorking.name=Leather Cutting

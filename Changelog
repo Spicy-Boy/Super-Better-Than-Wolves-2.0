@@ -3,6 +3,10 @@ Started August 8, 2022
 
 Additions:
 
+-Added branch slabs, created by TODOshift+right clicking the ground with 16 branches
+    TODO: change requirement that stick be placed in soft material for block
+    TODO: shift right click to place
+
 TODO -Added 9 new seeds for each type of pumpkin and melon
     TODO>ACTUALLY DO THIS!!
 
@@ -38,7 +42,7 @@ Changes/Fixes:
 
 TODO -Changed pumpkin and melon varieties to grow by seed rather than biome. 
 TODO STILL HAVE TO PROGRAM MELON SIDE OF IT!!! 
-    >EX: a yellow pumpkin requires a yellow pumpkin seed to grow
+    >EX: a yellow pumpkin requires a yellow pumpkin seed to grow. In Sock's Crops, biome determines the fruit.
     
 -Changed gourds on the vine to take a few days to mature (like wheat) (rather than being random)
 
@@ -71,7 +75,8 @@ O-HARDCORE SOAKED: Can't sleep if being hit by rain (check torch extinguish code
 O-REMOVE the chat window unless player presses t while in sleep menu
 O-CHANGE wake up button to be smaller, off to the side?
 
-O-AUTOFILL water bucket in crafting grid if player is near water source block
+O-AUTOFILL water bucket in crafting grid if player is near water source block 
+    //detect a block of source water / full cistern within 3 blocks of you?
 
 O-add right click pick up bricks and torches
 
@@ -98,7 +103,9 @@ O- 1 SPRITE trowel item
 
 O- 2 NEW SPRITES branch block (two textures, sides and faces)
 
--Custom death message for being stabbed to death by a knife. Also, clubs if there isn't one already.
+O- Envelope item
+
+O-Custom death message for being stabbed to death by a knife. Also, clubs if there isn't one already.
 
 O- ***GOURD TODO***
 -Make distinct melon seed and plant types (just like with pumpkins)
@@ -199,6 +206,8 @@ FCBlockBedroll
 FCItemBed
 
 IDEAS:
+
+-Grow potatoes by planting potato in farmland and it expands into adjacent empty farmland (like mushrooms)
 
 -Add Haybales, packable and piston shovelable
 
