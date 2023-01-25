@@ -3,11 +3,13 @@ Started August 8, 2022
 
 Additions:
 
--Added branch slabs, created by TODOshift+right clicking the ground with 16 branches
+TODO-Added branch slabs, created by shift+right clicking the ground with 16 branches
+    TODO: gravity block, if it falls more than 1 block it explodes
+   
     TODO: change requirement that stick be placed in soft material for block
     TODO: shift right click to place
 
-TODO -Added 9 new seeds for each type of pumpkin and melon
+TODO- Added 9 new seeds for each type of pumpkin and melon
     TODO>ACTUALLY DO THIS!!
 
 -Added new item: Bucket of Mortar
@@ -20,9 +22,9 @@ TODO- BROKEN with buckets of mortar!!!!
 -Added new block: Wet Mud Bricks
     >Can be dried in the sun or baked in a kiln to produce bricks more efficiently than with clay balls
 
--Added sleeping! 
-    >Like Arminias mod/CE 1.4, the world is simulated during sleep. Time is not skipped!
--Added new block from CE 1.4.1: the bedroll! 
+-Added SLEEPING! 
+    >Like Arminias mod/CE 1.4, the world is simulated during sleep. Time is not skipped! Monsters still lurk outside...
+-Added the bedroll, from CE 1.4. You can sleep on this! It is crafted with 2 knit wool and an extra piece of wool for stuffing or a string! 
 
 -Added more efficient recipes for tanned leather armor
     >crafted using cut tanned leather in the 2x2 crafting grid, like untanned leather
@@ -62,93 +64,79 @@ TODO STILL HAVE TO PROGRAM MELON SIDE OF IT!!!
 - ~ - ~ -
 TODO CONTENT:
 
+
+O- Added Yany's Hardcore Hell from Yany's Stuff&Things Addon
+        >https://www.sargunster.com/btwforum/viewtopic.php?t=9873&start=25
+        >Big shout out to Yany, creator of amazing addons
+
 O-New in-world crafting recipe: Pile of sticks -> Campfire
         right click branch/stick against top of block to place it down just like pregenerated branch blocks in forest
         right click again to create "X" of sticks (drops 2 sticks)
         right click again to add another stick on top (drops 3 sticks)
         right click again to create a campfire
+        
+***GOURD TODO***
+    O-Make distinct melon seed and plant types (just like with pumpkins)
+        >Watermelon seeds in mineshafts
+        >Watermelon flower can randomly become giant melon
+        >Giant Watermelon flower can randomnly become magic watermelon with single block stem
+        >Honeydew generates on floor of jungle
+        >Canary melon seeds generate in desert temple
+        
 
-O-FIX sleeping with updated code from 2.0 (will I even be able to read it?? Who knows)
-    BUGS: always seem to face north in bed
-    clips through the ceiling, 3 blocks up? 
-O-HARDCORE SOAKED: Can't sleep if being hit by rain (check torch extinguish code perhaps?)
-O-REMOVE the chat window unless player presses t while in sleep menu
-O-CHANGE wake up button to be smaller, off to the side?
+    O-FIX yellow and white melon seeds
+    
+    O-Add new gourd type, Wild Gourd
+    
+    O-Choose how to find each plant type (seeds, natural spawning gourds, etc)
+        > Wild gourds generate in forests
+
+    O-Make a semi-dead vine and stem, have plant vines die into this plant
+    >it looks like a live stem but deteriorates into true dead stem
+    
+    O-Make dead stem able to be overwritten by other blocks like grass
+    
+    O-Remove weeds from gourd stem plants
+    
+    O-Craft pumpkins/melon varieties into proper ratios of seeds and slices
+    
+    O-Pumpkin Jack hitboxes do not conform to model... can that be fixed?
+        
+~~~~~~~~~~~~~~~~~~~~~OWO~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 O-AUTOFILL water bucket in crafting grid if player is near water source block 
     //detect a block of source water / full cistern within 3 blocks of you?
 
 O-add right click pick up bricks and torches
 
--hardcore wittling
-    >recipes for signs, bowls, pipe made of pine logs
+O- think about buffing iron knife uses by +15
+O- 1 SPRITE Tweak iron knife texture to be a little smaller
     
-O-add pine box (basket copy with new texture, maybe high pitched sped up creak sound effect from normal chest?)
-    -Takes 7 minutes total?
-    -Wood Carving recipe (iron knife + spruce log)
-    -UNCRAFT into knife with 1 reduced durability and + second item (Unfinished Wooden Box) that maintains the progress/damage value to be resumed
-    
-O-think about buffing iron knife uses by +15
-O-1 SPRITE Tweak iron knife texture to be a little smaller
-    
-O-Add knife cutting recipes for tanned leather, NOT scoured leather? 
+O- Add knife cutting recipes for tanned leather, NOT scoured leather? 
 
-O-change goggle overlay
+O- change goggle overlay
 
-O-stop hoppers from locking up dispensers
+O- stop hoppers from locking up dispensers
 
 O- 1 SPRITE Redo final frame for bow stringing, make it bend inward a bit at the last moment (maybe make it easier?)
 
+O- Fix the trowel, it's current implementation doesn't work with the bucket of mortar
 O- 1 SPRITE trowel item
 
-O- 2 NEW SPRITES branch block (two textures, sides and faces)
-
 O- Envelope item
+    >stores nbt data of item, right click or uncraft to unwrap present
 
 O-Custom death message for being stabbed to death by a knife. Also, clubs if there isn't one already.
 
-O- ***GOURD TODO***
--Make distinct melon seed and plant types (just like with pumpkins)
+O-FIX sleeping gimics (always face north, 3 blocks high)
+O-HARDCORE SOAKED: Can't sleep if being hit by rain (check torch extinguish code perhaps?)
+O-REMOVE the chat window unless player presses t while in sleep menu
+O-CHANGE wake up button to be smaller, off to the side?
 
--FIX yellow and white melon seeds
+POSSIBLE MAJOR CHANGES
+O- Add back crafting recipe for eyes of ender-> e pearl + blaze powder. Change soulforge recipe to be just SFS so trading not needed
+O- Change tier 2 priest trades to be not shit, efficiency IIIs and such
 
--Choose how to find each plant type (seeds, natural spawning gourds, etc)
-
--Make a semi-dead vine and stem, have plant vines die into this plant
-    >it looks like a live stem but deteriorates into true dead stem
--Make dead stem able to be overwritten by other blocks like grass
--Remove weeds from gourd stem plants
--Craft pumpkins/melon varieties into proper ratios of seeds and slices
--Pumpkin Jack hitboxes do not conform to model... can that be fixed?
-
--CONSIDER ADDING FOUL SEED?? Creates a vine that never stops growing
-~~~~~~~~~~~~~~~~~~~~~OWO~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-O- add thatch/wicker (described below, cant be walked on or used as support antigravity block)
-3 branches/sticks, sandwiched by 6 reeds
-can be broken with bare hand to retrieve block
-spider does not trigger fall
-
-O-ALTERNATIVE "hay thatch" that looks more yellow hehehehehe
-
-***CRUSHABLE BLOCK TYPE***
-Thatch Properties:
-    -can float (thatch, not branches)
-    -"update" falls if walked on
-    -if a falling block like cobblestone falls on it, the block is crushed into a few sticks with CRACK sound
-
-O- Add stick itemblock as well as two stages of right clicking to add stick to pile ( 2 sticks when broken and 3 sticks when broken), fourth creates a campfire
-
-Blocks:
-    -Bundle of Sticks (halfslab, full block is block of sticks)
-          place by shift right clicking on a spot with branches in hand, uses 16 sticks to create a branch slab
-    -Tied Block of Sticks (fixed in air, like mortared cobble)
-          right click block of sticks with rope
-        
-    -thatch (using wicker block)
-          created with reeds and branches/sticks and maybe string/fiber?
-          antigravity naturally, but falls/breaks when walked on
-    
 
 #Base Class Edits 1.0 (* means edited in 2.0):
 FCBlockWeb
@@ -205,11 +193,71 @@ Minecraft
 FCBlockBedroll
 FCItemBed
 
-IDEAS:
+#############################################################
+VERSION 3.0
+Additions:
 
--Grow potatoes by planting potato in farmland and it expands into adjacent empty farmland (like mushrooms)
+O-hardcore wittling
+    >recipes for signs, bowls, pipe made of pine logs
+    
+O-add pine box (basket copy with new texture, maybe high pitched sped up creak sound effect from normal chest?)
+    -Takes 7 minutes total?
+    -Wood Carving recipe (iron knife + spruce log)
+    -UNCRAFT into knife with 1 reduced durability and + second item (Unfinished Wooden Box) that maintains the progress/damage value to be resumed
+    
+
++=+=+ NEW CROPS / FARMING TWEAKS +=+=+
+O - Changed how potatoes grow. 
+   - Planting a potato in farmland buries it (use Sockthing's carrot/onion). Drops potato on first stage. Drops nothing if advances.
+   - It will grow greenery out of top and eventually expand to cover the whole block (usual multi-potato texture). Drops 2-3 potatoes.
+   - When fully grown (before flowering stage), begins to expand into adjacent fallow farmland. Colonist potato plants use a different texture
+
+O- Added new types of rivers for each biome
+
+O- Added wild carrots
+    >Generate on the tops of mountains
+    
+O- CONSIDER ADDING FOUL SEED from corrupted pumpkin?? Creates a vine that never stops growing
+        >grows infinitely
+        >tough stem needs axe to cut through
+        >Thorny, hurts players like modern berry bushes do
+        >corrupted flowers spread corruption up to 10 blocks away
+            >normal pumpkin stems will create corrupted flowers if within range of the nether portal
+            >corrupted flowers create corrupted pumpkins, a black pumpkin with glowing red jack colors
+=+=+=+=+=
+Changes/Tweaks:
+
+O- 
+
+
+MISC IDEAS:
+
+```~~~```NEW EARLYGAME BLOCKS```~~~```
+    O  - add reed thatch AKA new wicker block (described below, cant be walked on or used as support antigravity block)
+        3 branches/sticks, sandwiched by 6 reeds
+        can be broken with bare hand to retrieve block
+        spider does not trigger fall
+
+***CRUSHABLE BLOCK TYPE***
+Thatch Properties:
+    -can float (thatch, not branches)
+    -"update" falls if walked on
+    -if a falling block like cobblestone falls on it, the block is crushed into a few sticks with CRACK sound
+
+    -Bundle of Sticks (halfslab, full block is block of sticks)
+          place by shift right clicking on a spot with branches in hand, uses 16 sticks to create a branch slab
+          2 NEW SPRITES branch block (two textures, sides and faces)
+    -Tied Block of Sticks (fixed in air, like mortared cobble)
+          right click block of sticks with rope
+        
+    -thatch (using wicker block)
+          created with reeds and branches/sticks and maybe string/fiber?
+          antigravity naturally, but falls/breaks when walked on
+          
+    -grass piles that dry into straw piles. Full block can be tied to become "Bale of Straw"
 
 -Add Haybales, packable and piston shovelable
+```~~~```
 
 ***CLAY JAR CONCEPT***
 -Holds water like a bucket and can be used in recipes requiring a bucket
@@ -253,7 +301,7 @@ Rather than a crafting grid, players combine components by mashing them together
 
 #############################################################
 VERSION 1.0
-Additions:
+Additions: 
 
 -Added new tool type: blades/knives
     >effective against webs
