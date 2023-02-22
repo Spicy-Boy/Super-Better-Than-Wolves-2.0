@@ -3,11 +3,7 @@ Started August 8, 2022
 
 Additions:
 
-TODO-Added branch slabs, created by shift+right clicking the ground with 16 branches
-    TODO: gravity block, if it falls more than 1 block it explodes
-   
-    TODO: change requirement that stick be placed in soft material for block
-    TODO: shift right click to place
+- Added the ability to pick up torches and bricks by right clicking them. No more fumbling!
 
 TODO- Added 9 new seeds for each type of pumpkin and melon
     TODO>ACTUALLY DO THIS!!
@@ -17,14 +13,14 @@ TODO- Added 9 new seeds for each type of pumpkin and melon
 
 TODO- Added new tool: the trowel
 TODO- BROKEN with buckets of mortar!!!!
-    >right click to apply mortar to a block from your inventory
+    >right click to apply mortar from your inventory
 
 -Added new block: Wet Mud Bricks
-    >Can be dried in the sun or baked in a kiln to produce bricks more efficiently than with clay balls
+    >Can be dried in the sun or baked in a kiln to produce bricks more efficiently than with clay balls alone
 
 -Added SLEEPING! 
     >Like Arminias mod/CE 1.4, the world is simulated during sleep. Time is not skipped! Monsters still lurk outside...
--Added the bedroll, from CE 1.4. You can sleep on this! It is crafted with 2 knit wool and an extra piece of wool for stuffing or a string! 
+-Added the bedroll from CE 1.4. You can sleep on this! It is crafted with 2 knit wool and either string or an extra piece of wool 
 
 -Added more efficient recipes for tanned leather armor
     >crafted using cut tanned leather in the 2x2 crafting grid, like untanned leather
@@ -52,6 +48,8 @@ TODO STILL HAVE TO PROGRAM MELON SIDE OF IT!!!
 
 -Changed rib bones to be grindable in millstone to produce 6 bonemeal
 
+-Changed the bone club to be grindable in a millstone to produce 2 bonemeal. Hardcore Recycling!
+
 -Changed dead bushes to be a little tougher and made some more bountiful than others
 
 -Changed FCAddOn to no longer display a V next to version number when loading into a world.. for pretty much no reason
@@ -59,7 +57,6 @@ TODO STILL HAVE TO PROGRAM MELON SIDE OF IT!!!
 -Fixed an issue in which the vase was also a Time Cube 
 
 -Fixed an issue where ribs looked kind of buggy to eat. That was my attempt at making them take longer to chew, but it looked sort of dumb
-
 
 - ~ - ~ -
 TODO CONTENT:
@@ -101,15 +98,16 @@ O-New in-world crafting recipe: Pile of sticks -> Campfire
     O-Craft pumpkins/melon varieties into proper ratios of seeds and slices
     
     O-Pumpkin Jack hitboxes do not conform to model... can that be fixed?
-        
 ~~~~~~~~~~~~~~~~~~~~~OWO~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+O-LEARN HOW HYDRATION AND PLANTS WORK IN MC
+O-SNOW SMOTHERS CROPS
 
 O-AUTOFILL water bucket in crafting grid if player is near water source block 
     //detect a block of source water / full cistern within 3 blocks of you?
 
-O-add right click pick up bricks and torches
+O- dogs breed to produce untamed wolf puppies
 
-O- think about buffing iron knife uses by +15
 O- 1 SPRITE Tweak iron knife texture to be a little smaller
     
 O- Add knife cutting recipes for tanned leather, NOT scoured leather? 
@@ -128,15 +126,23 @@ O- Envelope item
 
 O-Custom death message for being stabbed to death by a knife. Also, clubs if there isn't one already.
 
+#SLEEPING#
 O-FIX sleeping gimics (always face north, 3 blocks high)
 O-HARDCORE SOAKED: Can't sleep if being hit by rain (check torch extinguish code perhaps?)
+O-Hardcore Nightmare feature: if you sleep in gloom, the wake up button has a chance to turn invisible
 O-REMOVE the chat window unless player presses t while in sleep menu
 O-CHANGE wake up button to be smaller, off to the side?
+O-Player floats over the bed 
+
+
 
 POSSIBLE MAJOR CHANGES
-O- Add back crafting recipe for eyes of ender-> e pearl + blaze powder. Change soulforge recipe to be just SFS so trading not needed
+O- Add back crafting recipe for eyes of ender-> e pearl + blaze powder. Change soulforge recipe to be SFS so trading not needed
+
 O- Change tier 2 priest trades to be not shit, efficiency IIIs and such
 
+XX-The bone club can't be ground up in a millstone
+XX-add right click pick up bricks and torches
 
 #Base Class Edits 1.0 (* means edited in 2.0):
 FCBlockWeb
@@ -179,6 +185,13 @@ FCEntityUrn
 FCBlockLavaStationary (added to creative menu)
 FCAddon
 FCBlockCrops (changing weed mechanics)
+FCBlockTorchFiniteBurning (right click pick up)
+FCTileEntityTorchFinite
+FCBlockTorchFiniteUnlit
+BlockRedstoneTorch
+FCBlockCookedBrick
+FCBlockTorchNetherUnlit
+FCBlockTorchNetherBurning
 
 
 #For sleep integration:
