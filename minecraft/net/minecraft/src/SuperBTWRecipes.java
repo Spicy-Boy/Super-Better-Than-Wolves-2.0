@@ -209,6 +209,8 @@ public class SuperBTWRecipes extends FCRecipes {
 		
 		//rib recipes
 		AddMillStoneRecipe( new ItemStack( Item.dyePowder, 6, 15 ), new ItemStack( SuperBTWDefinitions.rib, 1) );
+		AddMillStoneRecipe( new ItemStack( Item.dyePowder, 2, 15 ), new ItemStack( FCBetterThanWolves.fcItemClubBone, 1) );
+		
 		AddStokedCrucibleRecipe(new ItemStack(SuperBTWDefinitions.rib, 1),
 				new ItemStack[] { new ItemStack(SuperBTWDefinitions.cowRib) });
 		// this.addRecipe(new ItemStack(Block.railPowered, 6), new Object[] {"X X",

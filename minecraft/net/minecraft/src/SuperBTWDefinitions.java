@@ -40,6 +40,9 @@ public class SuperBTWDefinitions {
 		id_mortarBucket = 20021,
 		
 		id_trowel = 20022,
+		
+		id_envelopeOpen = 20023,
+		id_envelopeClosed = 20024,
 	
 		//GOURD MANIA!
 		
@@ -86,6 +89,8 @@ public class SuperBTWDefinitions {
 	public static Item fcItemBedroll;
 	public static Item mortarBucket;
 	public static Item trowel;
+	public static Item envelopeOpen;
+	public static Item envelopeClosed;
 	
 	public static Block branchBlock;
 	public static Block sunflower;
@@ -127,8 +132,12 @@ public class SuperBTWDefinitions {
 		mortarBucket = new SuperBTWItemMortarBucket(id_mortarBucket - 256);
 		trowel = new SuperBTWItemTrowel(id_trowel - 256);
 		
-		branchBlock = new SuperBTWBlockBranch(id_branchBlock);
-		Item.itemsList[branchBlock.blockID] = new ItemBlock(branchBlock.blockID - 256); 
+		envelopeOpen = new SuperBTWItemEnvelopeOpen(id_envelopeOpen - 256);
+		envelopeClosed = new SuperBTWItemEnvelopeClosed(id_envelopeClosed - 256);
+		
+		//oldie not goodie
+//		branchBlock = new SuperBTWBlockBranch(id_branchBlock);
+//		Item.itemsList[branchBlock.blockID] = new ItemBlock(branchBlock.blockID - 256); 
 	
 		sunflower = new SuperBTWBlockSunflower(id_sunflower);
 		Item.itemsList[sunflower.blockID] = new ItemBlock(sunflower.blockID - 256);
@@ -150,6 +159,11 @@ public class SuperBTWDefinitions {
 		wetMudBrick = new SuperBTWBlockWetMudBrick(id_wetMudBrick);
 		TileEntity.addMapping(SuperBTWTileEntityWetMudBrick.class, "wetMudbrick");
 		wetMudBrickItem = new SuperBTWItemWetMudBrick(id_wetMudBrickItem - 256);
+		
+        branchBlock = new SuperBTWBlockBranchSlab(id_branchBlock);
+        Item.itemsList[branchBlock.blockID] = new ItemMultiTextureTile(id_branchBlock - 256, branchBlock, SuperBTWBlockBranchSlab.types);
+        
+        //Item.stick = new SCItemShaft(Item.stick.itemID);
 		
 		//GOURD MANIA!
 		

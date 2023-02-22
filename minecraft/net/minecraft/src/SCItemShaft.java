@@ -40,17 +40,18 @@ public class SCItemShaft extends FCItemPlacesAsBlock
     {
     	boolean shouldPlaceSlab = false;
     	
-    	if (itemStack.stackSize >= 32)
-		{
-			shouldPlaceSlab = true;
-		}
+    	//AARON changes to allow placing blocks of shafts
+//    	if (itemStack.stackSize >= 32)
+//		{
+//			shouldPlaceSlab = true;
+//		}
     	
     	
         int iNewBlockID = GetBlockIDToPlace( itemStack.getItemDamage(), iFacing, fClickX, fClickY, fClickZ );
         
        	if (shouldPlaceSlab)
        	{
-    		iNewBlockID = SCDefs.branchSlab.blockID;
+    		iNewBlockID = SuperBTWDefinitions.branchBlock.blockID;
        	}
         
         if ( itemStack.stackSize == 0 ||
