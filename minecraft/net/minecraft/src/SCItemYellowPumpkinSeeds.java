@@ -7,7 +7,7 @@ public class SCItemYellowPumpkinSeeds extends FCItemSeedFood
 	public SCItemYellowPumpkinSeeds(int iItemID, int iCropBlockID) 
 	{
 		super(iItemID, 1, 0F, iCropBlockID);
-		setUnlocalizedName( "SCItemYellowPumpkinSeeds" );
+		setUnlocalizedName( "SCItemSeedsYellowPumpkin" );
 		setCreativeTab(CreativeTabs.tabFood);
 		setMaxStackSize(64);
 		SetFilterableProperties( m_iFilterable_Fine );

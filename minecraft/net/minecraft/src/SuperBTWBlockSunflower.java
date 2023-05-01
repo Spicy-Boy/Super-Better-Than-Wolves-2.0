@@ -9,7 +9,7 @@ public class SuperBTWBlockSunflower extends BlockFlower
 	protected SuperBTWBlockSunflower(int par1) {
 		super(par1);
 		setStepSound(soundGrassFootstep);
-		setUnlocalizedName("SuperBTWBlockSunflower");
+		//setUnlocalizedName("SuperBTWBlockSunflower");
 	
 		this.setCreativeTab(CreativeTabs.tabDecorations);
 	}
@@ -72,10 +72,10 @@ public class SuperBTWBlockSunflower extends BlockFlower
 	
 	@Override
 	public void registerIcons(IconRegister register) {
-		sunflowerBottom = register.registerIcon("sunflower_bottom");
-		sunflowerTop = register.registerIcon("sunflower_top");
-		sunflowerFront = register.registerIcon("sunflower_front");
-		sunflowerBack = register.registerIcon("sunflower_back");
+//		sunflowerBottom = register.registerIcon("sunflower_bottom");
+//		sunflowerTop = register.registerIcon("sunflower_top");
+//		sunflowerFront = register.registerIcon("sunflower_front");
+//		sunflowerBack = register.registerIcon("sunflower_back");
 		
 		blockIcon = sunflowerFront;
 	}

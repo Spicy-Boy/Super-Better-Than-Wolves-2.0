@@ -204,14 +204,14 @@ public class SCDefs {
 
 		/*TEST DEFAULT SEED*/
 		
-		pumpkinVineFlowering = new SCBlockPumpkinVineFlowering(id_pumpkinVineFlowering, pumpkinGreen, id_pumpkinVine, id_pumpkinStem, pumpkinOrange, pumpkinGreen, pumpkinYellow, pumpkinWhite, id_pumpkinVineDead);
-		Item.itemsList[pumpkinVineFlowering.blockID] = new ItemBlock(pumpkinVineFlowering.blockID - 256);
-		
-		SCpumpkinStem = new SCBlockGourdStem(id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFlowering, pumpkinStemDead).setCanBePossessed(false);
-		Item.itemsList[SCpumpkinStem.blockID] = new ItemBlock(SCpumpkinStem.blockID - 256);
-		
-		pumpkinVine = new SCBlockGourdVine(id_pumpkinVine, id_pumpkinVineFlowering, id_pumpkinStem, id_pumpkinVineDead, "SCBlockPumpkinVine_", "SCBlockPumpkinVineConnector_");
-		Item.itemsList[pumpkinVine.blockID] = new ItemBlock(pumpkinVine.blockID - 256);
+//		pumpkinVineFlowering = new SCBlockPumpkinVineFlowering(id_pumpkinVineFlowering, pumpkinGreen, id_pumpkinVine, id_pumpkinStem, pumpkinOrange, pumpkinGreen, pumpkinYellow, pumpkinWhite, id_pumpkinVineDead);
+//		Item.itemsList[pumpkinVineFlowering.blockID] = new ItemBlock(pumpkinVineFlowering.blockID - 256);
+//		
+//		SCpumpkinStem = new SCBlockGourdStem(id_pumpkinStem, id_pumpkinVine, id_pumpkinVineFlowering, pumpkinStemDead).setCanBePossessed(false);
+//		Item.itemsList[SCpumpkinStem.blockID] = new ItemBlock(SCpumpkinStem.blockID - 256);
+//		
+//		pumpkinVine = new SCBlockGourdVine(id_pumpkinVine, id_pumpkinVineFlowering, id_pumpkinStem, id_pumpkinVineDead, "SCBlockPumpkinVine_", "SCBlockPumpkinVineConnector_");
+//		Item.itemsList[pumpkinVine.blockID] = new ItemBlock(pumpkinVine.blockID - 256);
 		
 		
 		
@@ -225,7 +225,7 @@ public class SCDefs {
 		pumpkinStemOrange = new SCBlockGourdStem(id_pumpkinStemOrange, id_pumpkinVineOrange, id_pumpkinVineFloweringOrange, pumpkinStemDead).setCanBePossessed(false);
 		Item.itemsList[pumpkinStemOrange.blockID] = new ItemBlock(pumpkinStemOrange.blockID - 256);
 		
-		pumpkinVineFloweringOrange = new SCBlockPumpkinVineFlowering(id_pumpkinVineFloweringOrange, pumpkinOrange, id_pumpkinVineOrange, id_pumpkinStemOrange, pumpkinOrange, pumpkinGreen, pumpkinYellow, pumpkinWhite, id_pumpkinVineDead);
+		pumpkinVineFloweringOrange = new SCBlockPumpkinVineFlowering(id_pumpkinVineFloweringOrange, /*this is where the pumpy attaches*/pumpkinOrange, id_pumpkinVineOrange, id_pumpkinStemOrange, pumpkinOrange, pumpkinGreen, pumpkinYellow, pumpkinWhite, id_pumpkinVineDead);
 		Item.itemsList[pumpkinVineFloweringOrange.blockID] = new ItemBlock(pumpkinVineFloweringOrange.blockID - 256);
 		
 		pumpkinVineOrange = new SCBlockGourdVine(id_pumpkinVineOrange, id_pumpkinVineFloweringOrange, id_pumpkinStemOrange, id_pumpkinVineDead, "SCBlockPumpkinVine_", "SCBlockPumpkinVineConnector_");
@@ -238,7 +238,7 @@ public class SCDefs {
 		pumpkinStemGreen = new SCBlockGourdStem(id_pumpkinStemGreen, id_pumpkinVineGreen, id_pumpkinVineFloweringGreen, pumpkinStemDead).setCanBePossessed(false);
 		Item.itemsList[pumpkinStemGreen.blockID] = new ItemBlock(pumpkinStemGreen.blockID - 256);
 		
-		pumpkinVineFloweringGreen = new SCBlockPumpkinVineFlowering(id_pumpkinVineFloweringGreen, pumpkinGreen, id_pumpkinVineGreen, id_pumpkinStemGreen, pumpkinGreen, pumpkinGreen, pumpkinYellow, pumpkinWhite, id_pumpkinVineDead);
+		pumpkinVineFloweringGreen = new SCBlockPumpkinVineFlowering(id_pumpkinVineFloweringGreen, pumpkinGreen, id_pumpkinVineGreen, id_pumpkinStemGreen, pumpkinOrange, pumpkinGreen, pumpkinYellow, pumpkinWhite, id_pumpkinVineDead);
 		Item.itemsList[pumpkinVineFloweringGreen.blockID] = new ItemBlock(pumpkinVineFloweringGreen.blockID - 256);
 		
 		pumpkinVineGreen = new SCBlockGourdVine(id_pumpkinVineGreen, id_pumpkinVineFloweringGreen, id_pumpkinStemGreen, id_pumpkinVineDead, "SCBlockPumpkinVine_", "SCBlockPumpkinVineConnector_");
@@ -251,11 +251,16 @@ public class SCDefs {
 		pumpkinStemYellow = new SCBlockGourdStem(id_pumpkinStemYellow, id_pumpkinVineYellow, id_pumpkinVineFloweringYellow, pumpkinStemDead).setCanBePossessed(false);
 		Item.itemsList[pumpkinStemYellow.blockID] = new ItemBlock(pumpkinStemYellow.blockID - 256);
 		
-		pumpkinVineFloweringYellow = new SCBlockPumpkinVineFlowering(id_pumpkinVineFloweringYellow, pumpkinYellow, id_pumpkinVineYellow, id_pumpkinStemYellow, pumpkinYellow, pumpkinYellow, pumpkinYellow, pumpkinWhite, id_pumpkinVineDead);
+		pumpkinVineFloweringYellow = new SCBlockPumpkinVineFlowering(id_pumpkinVineFloweringYellow, pumpkinYellow, id_pumpkinVineYellow, id_pumpkinStemYellow, pumpkinOrange, pumpkinGreen, pumpkinYellow, pumpkinWhite, id_pumpkinVineDead);
 		Item.itemsList[pumpkinVineFloweringYellow.blockID] = new ItemBlock(pumpkinVineFloweringYellow.blockID - 256);
 		
 		pumpkinVineYellow = new SCBlockGourdVine(id_pumpkinVineYellow, id_pumpkinVineFloweringYellow, id_pumpkinStemYellow, id_pumpkinVineDead, "SCBlockPumpkinVine_", "SCBlockPumpkinVineConnector_");
 		Item.itemsList[pumpkinVineYellow.blockID] = new ItemBlock(pumpkinVineYellow.blockID - 256);
+		
+		//transitional yellow->orange pumpkin
+		//To be completed some other time
+		
+		
 		
 		//white
 		pumpkinWhiteAsleep = new SCBlockPumpkinGrowingWhiteAsleep(id_pumpkinWhiteAsleep, id_pumpkinStemWhite, id_pumpkinVineWhite, id_pumpkinVineFloweringWhite, id_pumpkinHarvested);

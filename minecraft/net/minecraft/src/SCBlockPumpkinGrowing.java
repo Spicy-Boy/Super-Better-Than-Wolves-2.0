@@ -11,7 +11,8 @@ public abstract class SCBlockPumpkinGrowing extends SCBlockGourdGrowing {
 	
 	protected float GetBaseGrowthChance()
     {
-    	return 0.08F;
+		//Changed this to match the rate of wheat
+		return 0.4F;
     }
 
 	@Override

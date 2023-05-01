@@ -93,6 +93,17 @@ public class SuperBTWRecipes extends FCRecipes {
 				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
 				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
 				new ItemStack(Item.silk)});
+		
+		AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.fcItemBedroll), new Object[] {
+				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
+				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
+				new ItemStack(FCBetterThanWolves.fcItemWool, 1,  m_iIgnoreMetadata)});
+		
+		AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.fcItemBedroll), new Object[] {
+				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
+				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
+				new ItemStack(Item.feather, 1),
+				new ItemStack(Item.feather, 1)});
 	}
 
 	public static void addFoodRecipes() {

@@ -58,7 +58,8 @@ public class SCBlockPumpkinVineFlowering extends SCBlockGourdVineFloweringBase {
 			Block biomeFruit = getFruitAccordingToBiome(world, finalI, j, finalK, random);
 			
 			world.setBlockAndMetadataWithNotify( finalI, j, finalK, biomeFruit.blockID, targetDirection);
-			System.out.println("PUMPKIN HAS BEEN BORN?!");
+			/*TEST MESSAGE*/
+			//System.out.println("PUMPKIN HAS BEEN BORN?!");
 			
 			//set this to mature vine to stop it growing a second pumpkin
 		}
@@ -93,26 +94,27 @@ public class SCBlockPumpkinVineFlowering extends SCBlockGourdVineFloweringBase {
 		
 		int blockBelow = world.getBlockId(i, j - 1, k);
 		
-		if (blockBelow == Block.mycelium.blockID)
-    	{
-			for (int r = 0; r < 4 ; r++) {
-				
-				int rand = random.nextInt(4);
-				
-				if (rand == 0) {
-					biomeFruit = this.fruitBlock;
-				}
-				else if (rand == 1) {
-					biomeFruit = this.greenFruit;
-				}
-				else if (rand == 2) {
-					biomeFruit = this.yellowFruit;
-				}
-				else if (rand == 3) {
-					biomeFruit = this.whiteFruit;
-				}
-		    }
-    	}
+		//THIS isn't working rn...
+//		if (blockBelow == Block.mycelium.blockID)
+//    	{
+//			for (int r = 0; r < 4 ; r++) {
+//				
+//				int rand = random.nextInt(4);
+//				
+//				if (rand == 0) {
+//					biomeFruit = this.fruitBlock;
+//				}
+//				else if (rand == 1) {
+//					biomeFruit = this.greenFruit;
+//				}
+//				else if (rand == 2) {
+//					biomeFruit = this.yellowFruit;
+//				}
+//				else if (rand == 3) {
+//					biomeFruit = this.whiteFruit;
+//				}
+//		    }
+//    	}
 		
 ////		//Honeydew
 ////		BiomeGenBase greenPumpkin[] = { 

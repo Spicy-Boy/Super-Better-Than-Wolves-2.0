@@ -3,9 +3,19 @@ Started August 8, 2022
 
 Additions:
 
+-Added SLEEPING! 
+    >Like in Arminias mod/CE 1.4, the world is simulated during sleep. Time is not skipped! Monsters still lurk outside...
+
+-Added Hardcore Soaked!  
+
+-Added the ability to pick up torches and bricks with an empty handed right click
+    
+-Added the bedroll from CE 1.4. You can sleep on this! Great for camping trips. 
+    >Two recipes: wool knit + wool knit + string OR wool knit + wool knit + wool OR two feathers
+
 - Added the ability to pick up torches and bricks by right clicking them. No more fumbling!
 
-TODO- Added 9 new seeds for each type of pumpkin and melon
+TODO- Added 9 new seeds for each type of pumpkin and melon WOW!
     TODO>ACTUALLY DO THIS!!
 
 -Added new item: Bucket of Mortar
@@ -17,10 +27,6 @@ TODO- BROKEN with buckets of mortar!!!!
 
 -Added new block: Wet Mud Bricks
     >Can be dried in the sun or baked in a kiln to produce bricks more efficiently than with clay balls alone
-
--Added SLEEPING! 
-    >Like Arminias mod/CE 1.4, the world is simulated during sleep. Time is not skipped! Monsters still lurk outside...
--Added the bedroll from CE 1.4. You can sleep on this! It is crafted with 2 knit wool and either string or an extra piece of wool 
 
 -Added more efficient recipes for tanned leather armor
     >crafted using cut tanned leather in the 2x2 crafting grid, like untanned leather
@@ -36,13 +42,17 @@ TODO- BROKEN with buckets of mortar!!!!
 
 Changes/Fixes:
 
+-Changed the ender goggle overlay to be transparent in places so you can see somewhat while wearing them
+
 -Changed pumpkin seeds to stack to 64 rather than 16 for storage and automation purposes OH NO MY INVENTORY BALANCE!!!!!!!!
 
-TODO -Changed pumpkin and melon varieties to grow by seed rather than biome. 
+TODO - Changed pumpkin and melon varieties to grow by seed rather than biome. 
 TODO STILL HAVE TO PROGRAM MELON SIDE OF IT!!! 
     >EX: a yellow pumpkin requires a yellow pumpkin seed to grow. In Sock's Crops, biome determines the fruit.
     
 -Changed gourds on the vine to take a few days to mature (like wheat) (rather than being random)
+
+-Changed the ender spectacle overlay to be easier to see through
 
 -Changed wicker baskets to recycle into 3 wicker rather than just 1
 
@@ -54,17 +64,19 @@ TODO STILL HAVE TO PROGRAM MELON SIDE OF IT!!!
 
 -Changed FCAddOn to no longer display a V next to version number when loading into a world.. for pretty much no reason
 
+-Fixed the lighting bug that caused hampers and such to look completely pitch black (thanks CE team!!!)
+
+-Fixed a game bricking bug that created a ticking tile entity when using a piston shovel to pick up ash.
+
 -Fixed an issue in which the vase was also a Time Cube 
 
--Fixed an issue where ribs looked kind of buggy to eat. That was my attempt at making them take longer to chew, but it looked sort of dumb
+-Fixed a quirk where ribs looked kind of buggy to eat. That was my attempt at making them take longer to chew, but it looked sort of dumb
 
 - ~ - ~ -
 TODO CONTENT:
 
 
-O- Added Yany's Hardcore Hell from Yany's Stuff&Things Addon
-        >https://www.sargunster.com/btwforum/viewtopic.php?t=9873&start=25
-        >Big shout out to Yany, creator of amazing addons
+O- From CE: make trap doors like ladders
 
 O-New in-world crafting recipe: Pile of sticks -> Campfire
         right click branch/stick against top of block to place it down just like pregenerated branch blocks in forest
@@ -74,19 +86,9 @@ O-New in-world crafting recipe: Pile of sticks -> Campfire
         
 ***GOURD TODO***
     O-Make distinct melon seed and plant types (just like with pumpkins)
-        >Watermelon seeds in mineshafts
-        >Watermelon flower can randomly become giant melon
-        >Giant Watermelon flower can randomnly become magic watermelon with single block stem
-        >Honeydew generates on floor of jungle
-        >Canary melon seeds generate in desert temple
-        
-
-    O-FIX yellow and white melon seeds
-    
-    O-Add new gourd type, Wild Gourd
     
     O-Choose how to find each plant type (seeds, natural spawning gourds, etc)
-        > Wild gourds generate in forests
+        -SEE FORUM POST     
 
     O-Make a semi-dead vine and stem, have plant vines die into this plant
     >it looks like a live stem but deteriorates into true dead stem
@@ -96,11 +98,18 @@ O-New in-world crafting recipe: Pile of sticks -> Campfire
     O-Remove weeds from gourd stem plants
     
     O-Craft pumpkins/melon varieties into proper ratios of seeds and slices
+        -SEE FORUM POST
     
     O-Pumpkin Jack hitboxes do not conform to model... can that be fixed?
+    
+    O- Exploding gourds should drop the right seeds!
+    
+    O- Do chickens eat all seed types?
 ~~~~~~~~~~~~~~~~~~~~~OWO~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-O-LEARN HOW HYDRATION AND PLANTS WORK IN MC
+
+
+
 O-SNOW SMOTHERS CROPS
 
 O-AUTOFILL water bucket in crafting grid if player is near water source block 
@@ -112,8 +121,6 @@ O- 1 SPRITE Tweak iron knife texture to be a little smaller
     
 O- Add knife cutting recipes for tanned leather, NOT scoured leather? 
 
-O- change goggle overlay
-
 O- stop hoppers from locking up dispensers
 
 O- 1 SPRITE Redo final frame for bow stringing, make it bend inward a bit at the last moment (maybe make it easier?)
@@ -121,26 +128,31 @@ O- 1 SPRITE Redo final frame for bow stringing, make it bend inward a bit at the
 O- Fix the trowel, it's current implementation doesn't work with the bucket of mortar
 O- 1 SPRITE trowel item
 
-O- Envelope item
-    >stores nbt data of item, right click or uncraft to unwrap present
-
 O-Custom death message for being stabbed to death by a knife. Also, clubs if there isn't one already.
 
 #SLEEPING#
-O-FIX sleeping gimics (always face north, 3 blocks high)
-O-HARDCORE SOAKED: Can't sleep if being hit by rain (check torch extinguish code perhaps?)
+
 O-Hardcore Nightmare feature: if you sleep in gloom, the wake up button has a chance to turn invisible
 O-REMOVE the chat window unless player presses t while in sleep menu
 O-CHANGE wake up button to be smaller, off to the side?
 O-Player floats over the bed 
 
-
-
 POSSIBLE MAJOR CHANGES
-O- Add back crafting recipe for eyes of ender-> e pearl + blaze powder. Change soulforge recipe to be SFS so trading not needed
+O- Add back crafting recipe for eyes of ender-> e pearl + blaze powder. Add soulforge recipe to be SFS so trading not needed
 
 O- Change tier 2 priest trades to be not shit, efficiency IIIs and such
 
+X-FIX yellow and white melon seeds
+
+XX-Fix the lighting bug 
+XX-FIX THE GAME BRICKING BUG of piston shovel on ash block
+
+X-Fixed server acceleration related to sleeping and offline players
+X-FIXED always facing north
+X-HARDCORE SOAKED: Can't sleep if being hit by rain (check torch extinguish code perhaps?)
+X-Fixed waking up around corners and sleeping through walls
+
+XX- change goggle overlay
 XX-The bone club can't be ground up in a millstone
 XX-add right click pick up bricks and torches
 
@@ -192,6 +204,13 @@ BlockRedstoneTorch
 FCBlockCookedBrick
 FCBlockTorchNetherUnlit
 FCBlockTorchNetherBurning
+EntityRenderer (bed fix)
+RenderManager
+FCBlockAshGroundCover (shovel brick bug)
+FCBlockFurnaceBrick (lighting bug)
+FCBlockFurnaceBrickIdle
+PrimitiveGeometric
+RenderBlocksUtils
 
 
 #For sleep integration:
@@ -201,6 +220,9 @@ GuiSleepMP
 MinecraftServer
 WorldServer
 Minecraft
+BlockBed
+FCBlockBedBase
+EnumStatus (hardcore soaked)
 
 #Added from CE 1.4.1:
 FCBlockBedroll
@@ -209,6 +231,29 @@ FCItemBed
 #############################################################
 VERSION 3.0
 Additions:
+
+***GOURD TODO***
+
+O-LEARN HOW HYDRATION AND PLANTS WORK IN MC
+
+-!-Enderman Overhaul-!-
+
+O-Remove purple particles from enderman
+
+O-Make sounds way less frequent
+
+O-Have endermen head look at you most of the time
+
+-!-!-!-!
+
+O- Added Yany's Hardcore Hell from Yany's Stuff&Things Addon
+        >https://www.sargunster.com/btwforum/viewtopic.php?t=9873&start=25
+        >Big shout out to Yany, creator of amazing addons
+
+O- Envelope item
+    >stores nbt data of item, right click or uncraft to unwrap present
+
+O-Add new gourd type, Wild Gourd
 
 O-hardcore wittling
     >recipes for signs, bowls, pipe made of pine logs
@@ -250,6 +295,8 @@ MISC IDEAS:
         3 branches/sticks, sandwiched by 6 reeds
         can be broken with bare hand to retrieve block
         spider does not trigger fall
+        
+       NOTE ON IMPLEMENTATION: YOu can do this pretty easily, look at the snow code!!!!!!! Blocks of snow fall when walked on or when a block is placed on top of them
 
 ***CRUSHABLE BLOCK TYPE***
 Thatch Properties:

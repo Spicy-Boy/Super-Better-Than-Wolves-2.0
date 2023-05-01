@@ -49,7 +49,9 @@ public abstract class FCBlockBedBase extends BlockBed
 
                         if (var21.isPlayerSleeping())
                         {
-                            ChunkCoordinates var14 = var21.playerLocation;
+                       	 	//AARON added the below via backport in order to fix sleeping bug of the wall transparent variety
+                            ChunkCoordinates var14 = var21.playerBedLocation;
+//                        	ChunkCoordinates var14 = var21.playerLocation;
 
                             if (var14.posX == par2 && var14.posY == par3 && var14.posZ == par4)
                             {
@@ -83,6 +85,10 @@ public abstract class FCBlockBedBase extends BlockBed
                     else if (var20 == EnumStatus.NOT_SAFE)
                     {
                         par5EntityPlayer.addChatMessage("tile.bed.notSafe");
+                    }
+                    else if (var20 == EnumStatus.TOO_WET)
+                    {
+                    	par5EntityPlayer.addChatMessage( "You are soaked.");    
                     }
 
                     return true;

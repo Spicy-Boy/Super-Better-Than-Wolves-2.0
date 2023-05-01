@@ -135,9 +135,8 @@ public class SuperBTWDefinitions {
 		envelopeOpen = new SuperBTWItemEnvelopeOpen(id_envelopeOpen - 256);
 		envelopeClosed = new SuperBTWItemEnvelopeClosed(id_envelopeClosed - 256);
 		
-		//oldie not goodie
-//		branchBlock = new SuperBTWBlockBranch(id_branchBlock);
-//		Item.itemsList[branchBlock.blockID] = new ItemBlock(branchBlock.blockID - 256); 
+		branchBlock = new SuperBTWBlockBranch(id_branchBlock);
+		Item.itemsList[branchBlock.blockID] = new ItemBlock(branchBlock.blockID - 256); 
 	
 		sunflower = new SuperBTWBlockSunflower(id_sunflower);
 		Item.itemsList[sunflower.blockID] = new ItemBlock(sunflower.blockID - 256);
@@ -160,8 +159,8 @@ public class SuperBTWDefinitions {
 		TileEntity.addMapping(SuperBTWTileEntityWetMudBrick.class, "wetMudbrick");
 		wetMudBrickItem = new SuperBTWItemWetMudBrick(id_wetMudBrickItem - 256);
 		
-        branchBlock = new SuperBTWBlockBranchSlab(id_branchBlock);
-        Item.itemsList[branchBlock.blockID] = new ItemMultiTextureTile(id_branchBlock - 256, branchBlock, SuperBTWBlockBranchSlab.types);
+//        branchBlock = new SuperBTWBlockBranchSlab(id_branchBlock);
+//        Item.itemsList[branchBlock.blockID] = new ItemMultiTextureTile(id_branchBlock - 256, branchBlock, SuperBTWBlockBranchSlab.types);
         
         //Item.stick = new SCItemShaft(Item.stick.itemID);
 		
