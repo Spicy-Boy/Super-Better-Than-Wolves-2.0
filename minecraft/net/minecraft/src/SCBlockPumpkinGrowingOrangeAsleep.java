@@ -65,6 +65,13 @@ public class SCBlockPumpkinGrowingOrangeAsleep extends SCBlockPumpkinGrowingAsle
 
 	}
 	
+	//CHANGES per pumpkin class
+	@Override
+	protected Item ItemToDropOnExplode()
+	{
+		return SuperBTWDefinitions.orangePumpkinSeeds;
+	}
+	
 	@Override
 	public AxisAlignedBB GetBlockBoundsFromPoolBasedOnState( IBlockAccess blockAccess, int i, int j, int k )
 	{

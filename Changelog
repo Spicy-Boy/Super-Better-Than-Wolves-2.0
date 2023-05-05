@@ -64,9 +64,9 @@ TODO STILL HAVE TO PROGRAM MELON SIDE OF IT!!!
 
 -Changed FCAddOn to no longer display a V next to version number when loading into a world.. for pretty much no reason
 
--Fixed the lighting bug that caused hampers and such to look completely pitch black (thanks CE team!!!)
+-Fixed the lighting bug that caused hampers and such to look completely pitch black (thanks Dawn, Hiracho, and the CE team!!!)
 
--Fixed a game bricking bug that created a ticking tile entity when using a piston shovel to pick up ash.
+-Fixed a game bricking bug that created a ticking tile entity or something when using a piston shovel to pick up ash.
 
 -Fixed an issue in which the vase was also a Time Cube 
 

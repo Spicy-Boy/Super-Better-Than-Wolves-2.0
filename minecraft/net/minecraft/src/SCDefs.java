@@ -63,18 +63,28 @@ public class SCDefs {
    	    
    	    id_pumpkinStemWhite = 2679,
   	    id_pumpkinVineFloweringWhite = 2680,
-  	    id_pumpkinVineWhite = 2681;
+  	    id_pumpkinVineWhite = 2681,
     	
 //    	id_orangePumpkinSeeds = 31016,
 //    	id_greenPumpkinSeeds = 31017;
     //	id_yellowPumpkinSeeds = 31018,
     //	id_whitePumpkinSeeds = 31019,
     //	
-    //	id_waterMelonSeeds = 31020,
-    //	id_canaryMelonSeeds = 31021,
-    //	id_HoneydewMelonSeeds = 31022,
-    //	id_cantaloupeMelonSeeds = 31023,	
-    //	id_foulSeeds = 31024,
+    	id_waterMelonSeeds = 31020,
+    	id_canaryMelonSeeds = 31021,
+    	id_HoneydewMelonSeeds = 31022,
+    	id_cantaloupeMelonSeeds = 31023,	
+    	id_foulSeeds = 31024,
+    	
+    	id_melonWaterAsleep = 31025,
+    	id_melonCanaryAsleep = 31026,
+    	id_melonHoneydewAsleep = 31027,
+    	id_melonCantaloupeAsleep = 31028,
+    	
+    	id_melonStemWater = 31029,
+    	id_melonVineFloweringWater = 31030,
+    	id_melonVineWater = 31031;
+    	
 	//id_littlePumpkinSeeds = 31025;
 	
 	
@@ -131,7 +141,19 @@ public class SCDefs {
 						melonHarvested, melonCanaryHarvested,
 						SCmelonStem,
 						melonVine, melonVineSleeping,
-						melonVineFlowering, melonVineFloweringSleeping;
+						melonVineFlowering, melonVineFloweringSleeping,
+						
+						melonStemWater, melonVineFloweringWater, melonVineWater,
+						melonWaterAsleep,
+						
+						melonStemCanary, melonVineFloweringCanary, melonVineCanary,
+						melonCanaryAsleep,
+						
+						melonStemHoneydew, melonVineFloweringHoneydew, melonVineHoneydew,
+						melonHoneydewAsleep,
+						
+						melonStemCantaloupe, melonVineFloweringCantaloupe, melonVineCantaloupe,
+						melonCantaloupeAsleep;
 	
 	public static Item melonWaterSlice, melonCanarySlice, melonHoneydewSlice, melonCantaloupeSlice, pumpkinSlice,
 	pumpkinSliceRoasted, pumpkinSliceBoiled, 
@@ -329,6 +351,22 @@ public class SCDefs {
 		//melonSeeds = ( new FCItemSeeds(id_melonSeeds , melonStem.blockID).setCreativeTab(CreativeTabs.tabDecorations).SetAsBasicChickenFood().setUnlocalizedName( "SCSeedsMelon" ) );
 		//Below makes vanilla seeds place SC gourd. I am changing that to allow unique seeds for each variety!
 		//Item.itemsList[Item.melonSeeds.itemID] =  new FCItemSeeds(Item.melonSeeds.itemID - 256 , SCmelonStem.blockID).SetAsBasicChickenFood().setUnlocalizedName( "seeds_melon" );
+		
+		//AARON'S CUSTOM Melon Initialization! 
+		
+		//water melon plant
+		
+//		melonWaterAsleep = new SCBlockMelonGrowingWaterAsleep(id_melonWaterAsleep, id_melonStemWater, id_melonVineWater, id_melonVineFloweringWater, id_melonHarvested);
+//		Item.itemsList[melonWaterAsleep.blockID] = new ItemBlock(melonWaterAsleep.blockID - 256);
+//		
+//		melonStemWater = new SCBlockGourdStem(id_melonStemWater, id_melonVineWater, id_melonVineFloweringWater, pumpkinStemDead).setCanBePossessed(false);
+//		Item.itemsList[melonStemWater.blockID] = new ItemBlock(melonStemWater.blockID - 256);
+//		
+//		melonVineFloweringWater = new SCBlockMelonVineFlowering(id_melonVineFloweringWater, /*//this is where the pumpy attaches// melonWater,*/ id_melonVineWater, id_melonStemWater, melonWater, melonCanary, melonHoneydew, melonCantaloupe, id_melonVineDead);
+//		Item.itemsList[melonVineFloweringWater.blockID] = new ItemBlock(melonVineFloweringWater.blockID - 256);
+//		
+//		melonVineWater = new SCBlockGourdVine(id_melonVineWater, id_melonVineFloweringWater, id_melonStemWater, id_melonVineDead, "SCBlockmelonVine_", "SCBlockmelonVineConnector_");
+//		Item.itemsList[melonVineWater.blockID] = new ItemBlock(melonVineWater.blockID - 256);
 		
 		
 		melonWaterSlice = new SCItemMelonSlice( id_melonWaterSlice - 256, "SCItemMelonSlice");

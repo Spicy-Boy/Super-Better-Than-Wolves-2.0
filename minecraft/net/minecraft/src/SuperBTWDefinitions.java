@@ -49,14 +49,14 @@ public class SuperBTWDefinitions {
 		id_orangePumpkinSeeds = 31016,
 		id_greenPumpkinSeeds = 31017,
 		id_yellowPumpkinSeeds = 31018,
-		id_whitePumpkinSeeds = 31019;
-//				
-//		id_waterMelonSeeds = 31020,
-//		id_canaryMelonSeeds = 31021,
-//		id_HoneydewMelonSeeds = 31022,
-//		id_cantaloupeMelonSeeds = 31023,
-//				
-//		id_foulSeeds = 31024;
+		id_whitePumpkinSeeds = 31019,
+				
+		id_waterMelonSeeds = 31020,
+		id_canaryMelonSeeds = 31021,
+		id_HoneydewMelonSeeds = 31022,
+		id_cantaloupeMelonSeeds = 31023,
+				
+		id_foulSeeds = 31024;
 		
 	private static final int
 		id_branchBlock = 2000,
@@ -108,6 +108,8 @@ public class SuperBTWDefinitions {
 	public static Item greenPumpkinSeeds;
 	public static Item yellowPumpkinSeeds;
 	public static Item whitePumpkinSeeds;
+	
+	public static Item waterMelonSeeds;
 	
 	public static void addDefinitions() 
 	{
@@ -170,6 +172,8 @@ public class SuperBTWDefinitions {
 		greenPumpkinSeeds = new SCItemGreenPumpkinSeeds (id_greenPumpkinSeeds - 256, SCDefs.id_pumpkinStemGreen);
 		yellowPumpkinSeeds = new SCItemYellowPumpkinSeeds (id_yellowPumpkinSeeds - 256, SCDefs.id_pumpkinStemYellow);
 		whitePumpkinSeeds = new SCItemWhitePumpkinSeeds (id_whitePumpkinSeeds - 256, SCDefs.id_pumpkinStemWhite);
+		
+		waterMelonSeeds = new SCItemWaterMelonSeeds (id_waterMelonSeeds - 256, SCDefs.id_melonStemWater);
 	
 		
 	}
