@@ -6,7 +6,7 @@ public class SCBlockMelonCanaryGrowing extends SCBlockMelonGrowing {
 
 	protected SCBlockMelonCanaryGrowing(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) {
 		super(iBlockID, stemBlock, vineBlock, flowerBlock, convertedBlockID);
-		setUnlocalizedName("SCBlockMelonCanaryGrowing");
+//		setUnlocalizedName("SCBlockMelonCanaryGrowing");
 	}
 	
 
@@ -21,7 +21,7 @@ public class SCBlockMelonCanaryGrowing extends SCBlockMelonGrowing {
 	{	
 		int meta = world.getBlockMetadata(i, j, k);
 		
-		world.setBlockAndMetadata(i, j, k, convertedBlockID , meta);
+		world.setBlockAndMetadata(i, j, k, SCDefs.melonCanaryAsleep.blockID, meta + 4);
 	}
 
 	@Override

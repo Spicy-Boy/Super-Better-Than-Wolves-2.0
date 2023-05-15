@@ -86,6 +86,7 @@ O-New in-world crafting recipe: Pile of sticks -> Campfire
         
 ***GOURD TODO***
     O-Make distinct melon seed and plant types (just like with pumpkins)
+        X WATER MELONS DONE!
     
     O-Choose how to find each plant type (seeds, natural spawning gourds, etc)
         -SEE FORUM POST     
@@ -123,14 +124,10 @@ O- Add knife cutting recipes for tanned leather, NOT scoured leather?
 
 O- stop hoppers from locking up dispensers
 
-O- 1 SPRITE Redo final frame for bow stringing, make it bend inward a bit at the last moment (maybe make it easier?)
-
 O- Fix the trowel, it's current implementation doesn't work with the bucket of mortar
 O- 1 SPRITE trowel item
 
 O-Custom death message for being stabbed to death by a knife. Also, clubs if there isn't one already.
-
-#SLEEPING#
 
 O-Hardcore Nightmare feature: if you sleep in gloom, the wake up button has a chance to turn invisible
 O-REMOVE the chat window unless player presses t while in sleep menu
@@ -141,8 +138,11 @@ POSSIBLE MAJOR CHANGES
 O- Add back crafting recipe for eyes of ender-> e pearl + blaze powder. Add soulforge recipe to be SFS so trading not needed
 
 O- Change tier 2 priest trades to be not shit, efficiency IIIs and such
+---
 
 X-FIX yellow and white melon seeds
+
+X- 1 SPRITE Redo final frame for bow stringing, make it bend inward a bit at the last moment (maybe make it easier?)
 
 XX-Fix the lighting bug 
 XX-FIX THE GAME BRICKING BUG of piston shovel on ash block
@@ -189,8 +189,6 @@ EntityPlayerMP (change hunger confusion effect)
 Item (changed animal food values)
 FCItemStraw
 FCItemRottenFlesh
-SlotArmor (pumpkin hats fix)
-GuiIngame (NOTE: MUST BE ADDED TO SRC AFTER!!!..?)
 FCEntityUrn    
 
 #Base Class Edits 2.0:
@@ -211,6 +209,10 @@ FCBlockFurnaceBrick (lighting bug)
 FCBlockFurnaceBrickIdle
 PrimitiveGeometric
 RenderBlocksUtils
+GuiInGame (pumpkin overlay for wearing pumpkins)
+SlotArmor
+Block.java (SAU overlay junk)
+DamageSource (custom death messages)
 
 
 #For sleep integration:

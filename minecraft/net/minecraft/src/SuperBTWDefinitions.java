@@ -53,7 +53,7 @@ public class SuperBTWDefinitions {
 				
 		id_waterMelonSeeds = 31020,
 		id_canaryMelonSeeds = 31021,
-		id_HoneydewMelonSeeds = 31022,
+		id_honeydewMelonSeeds = 31022,
 		id_cantaloupeMelonSeeds = 31023,
 				
 		id_foulSeeds = 31024;
@@ -110,6 +110,9 @@ public class SuperBTWDefinitions {
 	public static Item whitePumpkinSeeds;
 	
 	public static Item waterMelonSeeds;
+	public static Item canaryMelonSeeds;
+	public static Item honeydewMelonSeeds;
+	public static Item cantaloupeMelonSeeds;
 	
 	public static void addDefinitions() 
 	{
@@ -174,6 +177,9 @@ public class SuperBTWDefinitions {
 		whitePumpkinSeeds = new SCItemWhitePumpkinSeeds (id_whitePumpkinSeeds - 256, SCDefs.id_pumpkinStemWhite);
 		
 		waterMelonSeeds = new SCItemWaterMelonSeeds (id_waterMelonSeeds - 256, SCDefs.id_melonStemWater);
+		canaryMelonSeeds = new SCItemCanaryMelonSeeds (id_canaryMelonSeeds - 256, SCDefs.id_melonStemCanary);
+		honeydewMelonSeeds = new SCItemHoneydewMelonSeeds (id_honeydewMelonSeeds - 256, SCDefs.id_melonStemHoneydew);
+		cantaloupeMelonSeeds = new SCItemCantaloupeMelonSeeds (id_cantaloupeMelonSeeds - 256, SCDefs.id_melonStemCantaloupe);
 	
 		
 	}

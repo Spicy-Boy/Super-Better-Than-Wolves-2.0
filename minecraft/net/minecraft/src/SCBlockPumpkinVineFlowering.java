@@ -92,7 +92,7 @@ public class SCBlockPumpkinVineFlowering extends SCBlockGourdVineFloweringBase {
 		
 //		BiomeGenBase biome = world.getBiomeGenForCoords(i, k);
 		
-		int blockBelow = world.getBlockId(i, j - 1, k);
+//		int blockBelow = world.getBlockId(i, j - 1, k);
 		
 		//THIS isn't working rn...
 //		if (blockBelow == Block.mycelium.blockID)

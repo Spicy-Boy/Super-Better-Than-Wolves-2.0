@@ -193,7 +193,7 @@ public abstract class SCBlockGourdFalling extends FCBlockFalling
     //------------- Class Specific Methods ------------//
     
     
-	abstract protected Item ItemToDropOnExplode();
+	abstract protected Item ItemToDropOnExplode(int meta);
 	
 	abstract protected int ItemCountToDropOnExplode(World world, int i, int k, int j, int meta);
 	
@@ -203,7 +203,7 @@ public abstract class SCBlockGourdFalling extends FCBlockFalling
 	
     private void Explode( World world, double posX, double posY, double posZ, int entityMeta )
     {
-    	Item itemToDrop = ItemToDropOnExplode();
+    	Item itemToDrop = ItemToDropOnExplode(entityMeta);
     	
     	if ( itemToDrop != null )
     	{

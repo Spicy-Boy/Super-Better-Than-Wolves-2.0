@@ -176,6 +176,7 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 	    
 	    int targetBlockID = world.getBlockId(targetPos.i, targetPos.j, targetPos.k);
 	    
+	    //This is a solution to making gourds connect to multiple types of vines, overwrite this! /*|| Block.blocksList[targetBlockID] instanceof SCBlockGourdVineFloweringBase*/
 	    if ( targetBlockID == this.vineBlock || targetBlockID == this.flowerBlock)
 	    {	
 //	    	System.out.println("PUMPKIN HAS VINE!");
@@ -187,6 +188,18 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 //	    	System.out.println("PUMPKIN NO DETECTED VINE!");
 	    	return false;
 	    	}
+	}
+	
+	@Override
+	protected Item ItemToDropOnExplode(int meta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected int ItemCountToDropOnExplode(World world, int i, int k, int j, int meta) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	private boolean hasStemFacing( RenderBlocks r, int i, int j, int k )

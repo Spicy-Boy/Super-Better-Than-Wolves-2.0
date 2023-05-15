@@ -47,5 +47,10 @@ public class SuperBTWItemMortarBucket extends FCItemMortar
         
         return false;
     }
+    
+    public void consumeUse(ItemStack stack, EntityPlayer player)
+    {
+		stack.damageItem( 1, player);
+    }
 	
 }

@@ -1,11 +1,12 @@
 package net.minecraft.src;
 
-public class SCItemWaterMelonSeeds extends FCItemSeedFood
+public class SCItemWaterMelonSeeds extends FCItemSeeds
 {
 	
 	public SCItemWaterMelonSeeds(int iItemID, int iCropBlockID) 
 	{
-		super(iItemID, 1, 0F, iCropBlockID);
+		
+		super(iItemID, iCropBlockID);
 		setUnlocalizedName( "SCItemSeedsWaterMelon" );
 		setCreativeTab(CreativeTabs.tabFood);
 		setMaxStackSize(64);

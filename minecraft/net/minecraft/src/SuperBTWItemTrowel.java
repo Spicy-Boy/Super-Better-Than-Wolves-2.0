@@ -35,14 +35,15 @@ public class SuperBTWItemTrowel extends Item
 	    			{
 	    				mortarStack.useItemRightClick(world, player);
 	    				
-//	        			if ((mortarStack.getItemDamage()) + 1 == 16)
-//	        			{
-//	        				mortarStack = null;
-//	        			}
-//	        			else
-//	        			{
+	        			if ((mortarStack.getItemDamage()) + 1 == 16)
+	        			{
+	        				mortarStack = null;
+	        			}
+	        			else
+	        			{
 	        				mortarStack.damageItem( 1, player);
-//	        			}
+	        			}
+	        			
 	    			}
 	    			else 
 	    			{

@@ -7,7 +7,36 @@ public class SCBlockMelonWaterGrowing extends SCBlockMelonGrowing {
 	protected SCBlockMelonWaterGrowing(int iBlockID, int stemBlock, int vineBlock, int flowerBlock,
 			int convertedBlockID) {
 		super(iBlockID, stemBlock, vineBlock, flowerBlock, convertedBlockID);
-		setUnlocalizedName("SCBlockMelonWaterGrowing");
+//		setUnlocalizedName("SCBlockMelonWaterGrowing");
+	}
+	
+	@Override
+	public void grow(World world, int i, int j, int k, Random random)
+	{
+		int meta = world.getBlockMetadata(i, j, k);
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.melonWaterAsleep.blockID, meta + 4);
+	}
+	
+	@Override
+	public int damageDropped(int meta)
+	{
+		int growthLevel = this.GetGrowthLevel(meta);
+		
+		//return getMetaHarvested(meta);
+		
+		if (growthLevel == 3 )
+		{
+			return 3;
+		}
+		else if (growthLevel == 2)
+		{
+			return 2;
+		}
+		else if (growthLevel == 1)
+		{
+			return 1;
+		}
+		else return 0;
 	}
 	
 	protected int getMetaHarvested(int growthLevel) {
@@ -30,23 +59,6 @@ public class SCBlockMelonWaterGrowing extends SCBlockMelonGrowing {
 	public int idDropped(int par1, Random par2Random, int par3) {
 		
 		return SCDefs.melonHarvested.blockID;
-	}
-
-	@Override
-	public int damageDropped(int meta) {
-		if (this.GetGrowthLevel(meta) == 3)
-		{
-			return 3;
-		}
-		else if (this.GetGrowthLevel(meta) == 2)
-		{
-			return 2;
-		}
-		else if (this.GetGrowthLevel(meta) == 1)
-		{
-			return 1;
-		}
-		else return 0;
 	}
 	
 	@Override

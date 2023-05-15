@@ -1,8 +1,8 @@
 # Pumpkins
 tile.SCBlockPumpkinHarvested.orange_0.name=Unripe Pumpkin
 tile.SCBlockPumpkinHarvested.orange_1.name=Unripe Pumpkin
-tile.SCBlockPumpkinHarvested.orange_2.name=Unripe Pumpkin
-tile.SCBlockPumpkinHarvested.orange_3.name=Orange Pumpkin
+tile.SCBlockPumpkinHarvested.orange_2.name=Orange Pumpkin
+tile.SCBlockPumpkinHarvested.orange_3.name=Giant Orange Pumpkin
 
 tile.SCBlockPumpkinHarvested.green_0.name=Unripe Pumpkin
 tile.SCBlockPumpkinHarvested.green_1.name=Unripe Pumpkin
@@ -66,3 +66,8 @@ item.SCItemSeedsYellowPumpkin.name=Yellow Pumpkin Seeds
 item.SCItemSeedsWhitePumpkin.name=White Pumpkin Seeds
 item.SCItemSeedsLittlePumpkin.name=Little Gourd Seeds
 item.SCItemFoulPumpkinSeeds.name=Foul Seeds
+
+item.SCItemSeedsWaterMelon.name=Watermelon Seeds
+item.SCItemSeedsCanaryMelon.name=Canary Melon Seeds
+item.SCItemSeedsHoneydewMelon.name=Honeydew Seeds
+item.SCItemSeedsCantaloupeMelon.name=Cantaloupe Seeds

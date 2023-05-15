@@ -8,7 +8,6 @@ public abstract class SCBlockPumpkinGrowing extends SCBlockGourdGrowing {
 		super(iBlockID, stemBlock, vineBlock, flowerBlock, convertedBlockID);
 	}
 	
-	
 	protected float GetBaseGrowthChance()
     {
 		//Changed this to match the rate of wheat
@@ -21,13 +20,6 @@ public abstract class SCBlockPumpkinGrowing extends SCBlockGourdGrowing {
 	}
 	
 	@Override
-	public int idPicked(World world, int par2, int par3, int par4)
-	{
-		return SCDefs.pumpkinHarvested.blockID;
-	}
-	
-	
-	@Override
 	public int idDropped( int iMetadata, Random random, int iFortuneModifier )
 	{		
 		return SCDefs.pumpkinHarvested.blockID;
@@ -37,23 +29,6 @@ public abstract class SCBlockPumpkinGrowing extends SCBlockGourdGrowing {
 	public int damageDropped(int meta)
 	{
 		return getMetaHarvested(meta);
-	}
-
-	@Override
-	protected Item ItemToDropOnExplode()
-	{
-		return Item.pumpkinSeeds;
-	}
-	
-	@Override
-	protected int ItemCountToDropOnExplode(World world, int i, int j, int k , int meta)
-	{
-		int growthLevel = this.GetGrowthLevel(world, i, j, k);
-		if (growthLevel == 3)
-		{
-			return 1;
-		}
-		else return 0;
 	}
 
 	@Override

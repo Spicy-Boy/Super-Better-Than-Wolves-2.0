@@ -38,20 +38,38 @@ public class SCBlockMelonHarvested extends SCBlockGourdHarvested {
 		else return super.IsNormalCube(blockAccess, i, j, k);
 	}
 	
+	//CHANGED to be per type seeds
 	@Override
-	protected Item ItemToDropOnExplode()
+	protected Item ItemToDropOnExplode(int meta)
 	{
+		if (meta == 3)
+		{
+			return SuperBTWDefinitions.waterMelonSeeds;
+		}
+		else if (meta == 7)
+		{
+			return SuperBTWDefinitions.honeydewMelonSeeds;
+		}
+		else if (meta == 11)
+		{
+			return SuperBTWDefinitions.cantaloupeMelonSeeds;
+		}
+		
 		return Item.melonSeeds;
 	}
-	
 	
 	@Override
 	protected int ItemCountToDropOnExplode(World world, int i, int j, int k, int meta)
 	{
-		if (this.GetGrowthLevel(meta) == 3)
+		if (meta == 3)
 		{
-			return 1;
+			return 4;
 		}
+		else if (meta == 7 || meta == 11)
+		{
+			return 3;
+		}
+
 		else return 0;
 	}
 	

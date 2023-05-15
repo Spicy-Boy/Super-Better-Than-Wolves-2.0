@@ -62,13 +62,6 @@ public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
 		else return 0;
 
 	}
-	
-	//CHANGES per pumpkin class
-	@Override
-	protected Item ItemToDropOnExplode()
-	{
-		return SuperBTWDefinitions.orangePumpkinSeeds;
-	}
 
 	@Override
 	protected int getPossessedMetaForGrowthLevel(int growthLevel) {
