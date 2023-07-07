@@ -8,21 +8,21 @@ Additions:
 
 -Added Hardcore Soaked!  
 
--Added the ability to pick up torches and bricks with an empty handed right click
-    
 -Added the bedroll from CE 1.4. You can sleep on this! Great for camping trips. 
-    >Two recipes: wool knit + wool knit + string OR wool knit + wool knit + wool OR two feathers
+    >Three recipes: wool knit + wool knit + string OR unknit wool OR two feathers
+
+-Added the ability to pick up torches and bricks with an empty handed right click
 
 - Added the ability to pick up torches and bricks by right clicking them. No more fumbling!
 
-TODO- Added 9 new seeds for each type of pumpkin and melon WOW!
-    TODO>ACTUALLY DO THIS!!
+-Added 9 new seeds for each type of pumpkin and melon WOW!
 
 -Added new item: Bucket of Mortar
+TODO-add recipe to get
     >right click to apply mortar to a block, depletes contents of bucket (16 uses)
 
-TODO- Added new tool: the trowel
-TODO- BROKEN with buckets of mortar!!!!
+- Added new tool: the trowel
+TODO- Add recipe to get
     >right click to apply mortar from your inventory
 
 -Added new block: Wet Mud Bricks
@@ -41,6 +41,8 @@ TODO- BROKEN with buckets of mortar!!!!
 -Added lava and powered axle to creative menu
 
 Changes/Fixes:
+
+-Changed wolves to breed to produce untamed puppies. This opens up some options :)
 
 -Changed the ender goggle overlay to be transparent in places so you can see somewhat while wearing them
 
@@ -75,18 +77,9 @@ TODO STILL HAVE TO PROGRAM MELON SIDE OF IT!!!
 - ~ - ~ -
 TODO CONTENT:
 
-
 O- From CE: make trap doors like ladders
-
-O-New in-world crafting recipe: Pile of sticks -> Campfire
-        right click branch/stick against top of block to place it down just like pregenerated branch blocks in forest
-        right click again to create "X" of sticks (drops 2 sticks)
-        right click again to add another stick on top (drops 3 sticks)
-        right click again to create a campfire
         
 ***GOURD TODO***
-    O-Make distinct melon seed and plant types (just like with pumpkins)
-        X WATER MELONS DONE!
     
     O-Choose how to find each plant type (seeds, natural spawning gourds, etc)
         -SEE FORUM POST     
@@ -100,34 +93,24 @@ O-New in-world crafting recipe: Pile of sticks -> Campfire
     
     O-Craft pumpkins/melon varieties into proper ratios of seeds and slices
         -SEE FORUM POST
+        !!!!!!! FIX THE pumpkin cutting class, it is currently broken, also maybe slices are broken?!
     
     O-Pumpkin Jack hitboxes do not conform to model... can that be fixed?
     
     O- Exploding gourds should drop the right seeds!
     
     O- Do chickens eat all seed types?
+   
 ~~~~~~~~~~~~~~~~~~~~~OWO~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-
-O-SNOW SMOTHERS CROPS
 
 O-AUTOFILL water bucket in crafting grid if player is near water source block 
     //detect a block of source water / full cistern within 3 blocks of you?
-
-O- dogs breed to produce untamed wolf puppies
 
 O- 1 SPRITE Tweak iron knife texture to be a little smaller
     
 O- Add knife cutting recipes for tanned leather, NOT scoured leather? 
 
 O- stop hoppers from locking up dispensers
-
-O- Fix the trowel, it's current implementation doesn't work with the bucket of mortar
-O- 1 SPRITE trowel item
-
-O-Custom death message for being stabbed to death by a knife. Also, clubs if there isn't one already.
 
 O-Hardcore Nightmare feature: if you sleep in gloom, the wake up button has a chance to turn invisible
 O-REMOVE the chat window unless player presses t while in sleep menu
@@ -139,6 +122,14 @@ O- Add back crafting recipe for eyes of ender-> e pearl + blaze powder. Add soul
 
 O- Change tier 2 priest trades to be not shit, efficiency IIIs and such
 ---
+
+X- Change the exploding pumpkin texture to not be carrots. Change it to slice maybe?
+X-Make distinct melon seed and plant types (just like with pumpkins)
+
+X- Fix the trowel, it's current implementation doesn't work with the bucket of mortar
+X- 1 SPRITE trowel item
+
+X- dogs breed to produce untamed wolf puppies
 
 X-FIX yellow and white melon seeds
 
@@ -213,6 +204,8 @@ GuiInGame (pumpkin overlay for wearing pumpkins)
 SlotArmor
 Block.java (SAU overlay junk)
 DamageSource (custom death messages)
+FCEntityWolf
+FCBetterThanWolves
 
 
 #For sleep integration:
@@ -234,9 +227,24 @@ FCItemBed
 VERSION 3.0
 Additions:
 
+
+O- FIX The sword seam issue in the rendering caused by mc patcher
+
+O-Custom death message for being stabbed to death by a knife. Also, clubs if there isn't one already.
+
+O-New in-world crafting recipe: Pile of sticks -> Campfire
+        right click branch/stick against top of block to place it down just like pregenerated branch blocks in forest
+        right click again to create "X" of sticks (drops 2 sticks)
+        right click again to add another stick on top (drops 3 sticks)
+        right click again to create a campfire
+
 ***GOURD TODO***
 
 O-LEARN HOW HYDRATION AND PLANTS WORK IN MC
+
+O-SNOW SMOTHERS CROPS
+
+****
 
 -!-Enderman Overhaul-!-
 
@@ -272,6 +280,7 @@ O - Changed how potatoes grow.
    - It will grow greenery out of top and eventually expand to cover the whole block (usual multi-potato texture). Drops 2-3 potatoes.
    - When fully grown (before flowering stage), begins to expand into adjacent fallow farmland. Colonist potato plants use a different texture
 
+
 O- Added new types of rivers for each biome
 
 O- Added wild carrots
@@ -280,6 +289,7 @@ O- Added wild carrots
 O- CONSIDER ADDING FOUL SEED from corrupted pumpkin?? Creates a vine that never stops growing
         >grows infinitely
         >tough stem needs axe to cut through
+        
         >Thorny, hurts players like modern berry bushes do
         >corrupted flowers spread corruption up to 10 blocks away
             >normal pumpkin stems will create corrupted flowers if within range of the nether portal

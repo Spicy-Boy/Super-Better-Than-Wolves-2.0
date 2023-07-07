@@ -63,9 +63,13 @@ public class SCBlockMelonHarvested extends SCBlockGourdHarvested {
 	{
 		if (meta == 3)
 		{
+			return 5;
+		}
+		else if (meta == 7)
+		{
 			return 4;
 		}
-		else if (meta == 7 || meta == 11)
+		else if (meta == 11)
 		{
 			return 3;
 		}

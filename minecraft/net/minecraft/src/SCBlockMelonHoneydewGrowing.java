@@ -10,6 +10,13 @@ public class SCBlockMelonHoneydewGrowing extends SCBlockMelonGrowing {
 		setUnlocalizedName("SCBlockMelonHoneydewGrowing");
 	}
 	
+	@Override
+	public void grow(World world, int i, int j, int k, Random random)
+	{
+		int meta = world.getBlockMetadata(i, j, k);
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.melonHoneydewAsleep.blockID, meta + 4);
+	}
+	
 	protected int getMetaHarvested(int growthLevel) {
 		if (growthLevel == 3 )
 		{

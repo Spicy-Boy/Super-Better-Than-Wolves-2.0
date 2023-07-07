@@ -17,11 +17,18 @@ public class SCBlockMelonCanaryGrowing extends SCBlockMelonGrowing {
 	}
 	
 	@Override
+	public void grow(World world, int i, int j, int k, Random random)
+	{
+		int meta = world.getBlockMetadata(i, j, k);
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.melonCanaryAsleep.blockID, meta + 4);
+	}
+	
+	@Override
 	protected void convertBlock(World world, int i, int j, int k)
 	{	
 		int meta = world.getBlockMetadata(i, j, k);
 		
-		world.setBlockAndMetadata(i, j, k, SCDefs.melonCanaryAsleep.blockID, meta + 4);
+		world.setBlockAndMetadata(i, j, k, convertedBlockID , meta);
 	}
 
 	@Override

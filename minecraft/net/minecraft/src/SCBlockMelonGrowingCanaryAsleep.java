@@ -20,6 +20,14 @@ public class SCBlockMelonGrowingCanaryAsleep extends SCBlockMelonGrowingAsleep
 	}
 	
 	@Override
+	protected void convertBlock(World world, int i, int j, int k)
+	{	
+		int meta = world.getBlockMetadata(i, j, k);
+		
+		world.setBlockAndMetadata(i, j, k, convertedBlockID , meta);
+	}
+	
+	@Override
 	public int damageDropped(int meta) {
 		if (this.GetGrowthLevel(meta) == 3)
 		{

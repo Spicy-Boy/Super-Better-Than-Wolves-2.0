@@ -39,21 +39,50 @@ public class SuperBTWItemBlade extends Item
     }
     
     private boolean isDamaged;
+    private boolean isConsumed;
     
     @Override
     public void OnUsedInCrafting(int iItemDamage, EntityPlayer player, ItemStack outputStack)
     {
-    	if (outputStack.itemID == SCDefs.pumpkinSlice.itemID)
+    	if (outputStack.itemID == SuperBTWDefinitions.orangePumpkinSeeds.itemID ||
+    			outputStack.itemID == SuperBTWDefinitions.greenPumpkinSeeds.itemID ||
+    			outputStack.itemID == SuperBTWDefinitions.yellowPumpkinSeeds.itemID ||
+    			outputStack.itemID == SuperBTWDefinitions.whitePumpkinSeeds.itemID
+    	   )
     	{
+    		isConsumed = false;
     		isDamaged = true;
     	}
-    	else isDamaged = false;
+    	else
+    	{
+    		isConsumed = true;
+    		isDamaged = false;
+    	}
+    }
+    
+    @Override
+    public boolean IsConsumedInCrafting() //AARON solved this :)
+    {
+    	return isConsumed;
     }
     
     @Override
     public boolean IsDamagedInCrafting() {
     	
     	return isDamaged;
+    }
+    
+    @Override
+    public void OnBrokenInCrafting( EntityPlayer player )
+    {
+    	PlayBreakSoundOnPlayer( player );
+    }
+    
+    static public void PlayBreakSoundOnPlayer( EntityPlayer player )
+    {
+		// note: the playSound function for player both plays the sound locally on the client, and plays it remotely on the server without it being sent again to the same player
+    	
+		player.playSound( "random.break", 0.8F, 0.8F + player.worldObj.rand.nextFloat() * 0.4F );
     }
     
     

@@ -122,6 +122,64 @@ public class SuperBTWRecipes extends FCRecipes {
 
 		AddCauldronRecipe(new ItemStack(SuperBTWDefinitions.cookedCowRib, 1),
 				new ItemStack[] { new ItemStack(SuperBTWDefinitions.cowRib, 1), });
+		
+		//gourd recipes
+		
+		//Pumpkins
+		FCRecipes.AddShapelessRecipeWithSecondaryOutputIndicator( new ItemStack( SCDefs.pumpkinCarved, 1, 3 ), new Object[] {
+				new ItemStack( SCDefs.pumpkinHarvested, 1, 3 ),
+//				new ItemStack( SuperBTWDefinitions.orangePumpkinSeeds, 4),
+			} );
+		
+		FCRecipes.AddShapelessRecipeWithSecondaryOutputIndicator( new ItemStack( SCDefs.pumpkinCarved, 1, 7 ), new Object[] {
+				new ItemStack( SCDefs.pumpkinHarvested, 1, 7),
+//				new ItemStack( SuperBTWDefinitions.greenPumpkinSeeds, 5),
+			} );
+		
+		FCRecipes.AddShapelessRecipeWithSecondaryOutputIndicator( new ItemStack( SCDefs.pumpkinCarved, 1, 11 ), new Object[] {
+				new ItemStack( SCDefs.pumpkinHarvested, 1, 11 ),
+//				new ItemStack( SuperBTWDefinitions.yellowPumpkinSeeds, 3),
+			} );
+		
+		FCRecipes.AddShapelessRecipeWithSecondaryOutputIndicator( new ItemStack( SCDefs.pumpkinCarved, 1, 15 ), new Object[] {
+				new ItemStack( SCDefs.pumpkinHarvested, 1, 15 ),
+//				new ItemStack( SuperBTWDefinitions.whitePumpkinSeeds, 2),
+			} );
+		
+		
+		//Melons
+		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonHoneydewSlice, 3 ), new Object[] { 
+	            new ItemStack( SCDefs.melonHarvested, 1, 7)
+	        } );
+		
+		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonWaterSlice, 5 ), new Object[] { 
+				new ItemStack( SCDefs.melonHarvested, 1, 3)
+			} );
+		
+		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonCantaloupeSlice, 3 ), new Object[] { 
+	            new ItemStack( SCDefs.melonHarvested, 1, 11 )
+	        } );
+		
+		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonCanarySlice, 4 ), new Object[] { 
+	            new ItemStack( SCDefs.melonCanaryHarvested, 1, 12 )
+	        } );
+		
+		//Slice to seeds
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.honeydewMelonSeeds, 1 ), new Object[] { 
+	            new ItemStack( SCDefs.melonHoneydewSlice, 1 )
+	        } );
+		
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.cantaloupeMelonSeeds, 1 ), new Object[] { 
+	            new ItemStack( SCDefs.melonCantaloupeSlice, 1 )
+	        } );
+		
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.canaryMelonSeeds, 1 ), new Object[] { 
+	            new ItemStack( SCDefs.melonCanarySlice, 1 )
+	        } );
+		
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.waterMelonSeeds, 1 ), new Object[] { 
+	            new ItemStack( SCDefs.melonWaterSlice, 1 )
+	        } );
 	}
 
 	private static void addProgressRecipes() {

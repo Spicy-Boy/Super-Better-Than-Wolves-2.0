@@ -64,13 +64,25 @@ public class SCBlockPumpkinHarvested extends SCBlockGourdHarvested {
 	@Override
 	protected int ItemCountToDropOnExplode(World world, int i, int j, int k, int meta)
 	{
-		if (meta == 3 || meta == 7)
+		if (meta == 3)
+		{
+			return 4;
+		}
+		else if (meta == 2)
 		{
 			return 3;
 		}
+		else if (meta == 7)
+		{
+			return 5;
+		}
+		else if (meta == 6)
+		{
+			return 4;
+		}
 		else if (this.GetGrowthLevel(meta) == 3)
 		{
-			return 2;
+			return 3;
 		}
 		else return 0;
 	}

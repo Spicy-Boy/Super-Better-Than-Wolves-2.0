@@ -6,6 +6,7 @@ public class SuperBTWItemTrowel extends Item
 	public SuperBTWItemTrowel(int par1)
 	{
         super(par1);
+        setFull3D();
         this.maxStackSize = 1;
         this.setCreativeTab(CreativeTabs.tabTools);
         setUnlocalizedName( "SuperBTWItemTrowel" );
@@ -35,9 +36,13 @@ public class SuperBTWItemTrowel extends Item
 	    			{
 	    				mortarStack.useItemRightClick(world, player);
 	    				
-	        			if ((mortarStack.getItemDamage()) + 1 == 16)
+	        			if ((mortarStack.getItemDamage()) + 1 >= 16)
 	        			{
-	        				mortarStack = null;
+//	        				System.out.println("BUCKET SHOULD BE DELETED");
+	        				
+	        				player.inventory.consumeInventoryItem(mortarStack.itemID);
+	        				FCUtilsItem.GivePlayerStackOrEject(player, new ItemStack(Item.bucketEmpty));
+//	        				player.inventory.addItemStackToInventory(new ItemStack(Item.bucketEmpty));
 	        			}
 	        			else
 	        			{
@@ -76,6 +81,7 @@ public class SuperBTWItemTrowel extends Item
     
     public boolean IsItemMortar( int iItemID )
     {    	
+//    	augsburger puppenkiste urmel
     	return iItemID == Item.clay.itemID 
     			|| iItemID == FCBetterThanWolves.fcItemNetherSludge.itemID
     			|| iItemID == Item.slimeBall.itemID

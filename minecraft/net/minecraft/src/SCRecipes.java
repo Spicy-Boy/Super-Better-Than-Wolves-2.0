@@ -98,45 +98,45 @@ public class SCRecipes {
 				new ItemStack( FCBetterThanWolves.fcItemCandle, 1, m_iIgnoreMetadata ) 
 			} );
 		
-		//Melon to Slice
+		//OLD Melon to Slice
 
 		
-		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonHoneydewSlice, 5 ), new Object[] { 
-	            new ItemStack( SCDefs.melonHarvested, 1, 7)
-	        } );
-		//I DONT KNOW WHY THIS DOESNT WORK....
-//		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonWaterSlice, 5 ), new Object[] { 
-//	            new ItemStack( SCDefs.melonHarvested, 1, 3)
+//		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonHoneydewSlice, 5 ), new Object[] { 
+//	            new ItemStack( SCDefs.melonHarvested, 1, 7)
 //	        } );
-		
-		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonWaterSlice, 5 ), new Object[] { 
-				new ItemStack( SCDefs.melonHarvested, 1, 3)
-			} );
-		
-		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonCantaloupeSlice, 5 ), new Object[] { 
-	            new ItemStack( SCDefs.melonHarvested, 1, 11 )
-	        } );
-		
-		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonCanarySlice, 5 ), new Object[] { 
-	            new ItemStack( SCDefs.melonCanaryHarvested, 1, 12 )
-	        } );
-		
-		//Slice to seeds
-		FCRecipes.AddShapelessRecipe( new ItemStack( Item.melonSeeds, 1 ), new Object[] { 
-	            new ItemStack( SCDefs.melonHoneydewSlice, 1 )
-	        } );
-		
-		FCRecipes.AddShapelessRecipe( new ItemStack( Item.melonSeeds, 1 ), new Object[] { 
-	            new ItemStack( SCDefs.melonCantaloupeSlice, 1 )
-	        } );
-		
-		FCRecipes.AddShapelessRecipe( new ItemStack( Item.melonSeeds, 1 ), new Object[] { 
-	            new ItemStack( SCDefs.melonCanarySlice, 1 )
-	        } );
-		
-		FCRecipes.AddShapelessRecipe( new ItemStack( Item.melonSeeds, 1 ), new Object[] { 
-	            new ItemStack( SCDefs.melonWaterSlice, 1 )
-	        } );
+//		//I DONT KNOW WHY THIS DOESNT WORK....
+////		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonWaterSlice, 5 ), new Object[] { 
+////	            new ItemStack( SCDefs.melonHarvested, 1, 3)
+////	        } );
+//		
+//		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonWaterSlice, 5 ), new Object[] { 
+//				new ItemStack( SCDefs.melonHarvested, 1, 3)
+//			} );
+//		
+//		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonCantaloupeSlice, 5 ), new Object[] { 
+//	            new ItemStack( SCDefs.melonHarvested, 1, 11 )
+//	        } );
+//		
+//		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonCanarySlice, 5 ), new Object[] { 
+//	            new ItemStack( SCDefs.melonCanaryHarvested, 1, 12 )
+//	        } );
+//		
+//		//Slice to seeds
+//		FCRecipes.AddShapelessRecipe( new ItemStack( Item.melonSeeds, 1 ), new Object[] { 
+//	            new ItemStack( SCDefs.melonHoneydewSlice, 1 )
+//	        } );
+//		
+//		FCRecipes.AddShapelessRecipe( new ItemStack( Item.melonSeeds, 1 ), new Object[] { 
+//	            new ItemStack( SCDefs.melonCantaloupeSlice, 1 )
+//	        } );
+//		
+//		FCRecipes.AddShapelessRecipe( new ItemStack( Item.melonSeeds, 1 ), new Object[] { 
+//	            new ItemStack( SCDefs.melonCanarySlice, 1 )
+//	        } );
+//		
+//		FCRecipes.AddShapelessRecipe( new ItemStack( Item.melonSeeds, 1 ), new Object[] { 
+//	            new ItemStack( SCDefs.melonWaterSlice, 1 )
+//	        } );
 		
 		//Moved from SuperBTWRecipes
 		FurnaceRecipes.smelting().addSmelting( SCDefs.pumpkinSlice.itemID, new ItemStack( SCDefs.pumpkinSliceRoasted ), 0 );

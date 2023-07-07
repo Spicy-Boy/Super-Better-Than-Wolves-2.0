@@ -45,18 +45,19 @@ public class SuperBTWDefinitions {
 		id_envelopeClosed = 20024,
 	
 		//GOURD MANIA!
-		
-		id_orangePumpkinSeeds = 31016,
-		id_greenPumpkinSeeds = 31017,
-		id_yellowPumpkinSeeds = 31018,
-		id_whitePumpkinSeeds = 31019,
 				
 		id_waterMelonSeeds = 31020,
 		id_canaryMelonSeeds = 31021,
 		id_honeydewMelonSeeds = 31022,
 		id_cantaloupeMelonSeeds = 31023,
 				
-		id_foulSeeds = 31024;
+		id_foulSeeds = 31024,
+	
+	
+		id_orangePumpkinSeeds = 31029,
+		id_greenPumpkinSeeds = 31030,
+		id_yellowPumpkinSeeds = 31031,
+		id_whitePumpkinSeeds = 31032;
 		
 	private static final int
 		id_branchBlock = 2000,

@@ -13,7 +13,7 @@ public class SuperBTWItemMortarBucket extends FCItemMortar
     	
     	maxStackSize = 1;
     	
-    	this.setMaxDamage(17); //number of uses
+    	this.setMaxDamage(16); //number of uses
     }
     
     @Override
@@ -32,7 +32,7 @@ public class SuperBTWItemMortarBucket extends FCItemMortar
     			}
     			
     	        
-    			if ((stack.getItemDamage()) + 1 == 16)
+    			if ((stack.getItemDamage()) + 1 >= 16)
     			{
     				player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack( Item.bucketEmpty, 1);
     			}

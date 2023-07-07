@@ -2,41 +2,36 @@ package net.minecraft.src;
 
 import java.util.Random;
 
-public class SCBlockMelonCantaloupeGrowing extends SCBlockMelonGrowing {
-
-	protected SCBlockMelonCantaloupeGrowing(int iBlockID, int stemBlock, int vineBlock, int flowerBlock,
-			int convertedBlockID) {
+public class SCBlockMelonGrowingHoneydewAsleep extends SCBlockMelonGrowingAsleep 
+{
+	
+	protected SCBlockMelonGrowingHoneydewAsleep(int iBlockID, int stemBlock, int vineBlock, int flowerBlock,
+			int convertedBlockID) 
+	{
 		super(iBlockID, stemBlock, vineBlock, flowerBlock, convertedBlockID);
-//		setUnlocalizedName("SCBlockMelonHoneydewGrowing");
 	}
 	
 	@Override
 	public void grow(World world, int i, int j, int k, Random random)
 	{
 		int meta = world.getBlockMetadata(i, j, k);
-		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.melonCantaloupeAsleep.blockID, meta + 4);
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.melonHoneydew.blockID ,meta);
 	}
 	
 	protected int getMetaHarvested(int growthLevel) {
 		if (growthLevel == 3 )
 		{
-			return 11; 
+			return 7; 
 		}
 		else if (growthLevel == 2)
 		{
-			return 10;
+			return 6;
 		}
 		else if (growthLevel == 1)
 		{
-			return 9;
+			return 5;
 		}
-		else return 8;
-	}
-
-	@Override
-	protected int getPossessedMetaForGrowthLevel(int growthLevel)
-	{
-		return 0; //Can't be possessed. see canBePossessed() in super
+		else return 4;
 	}
 	
 	@Override
@@ -44,24 +39,23 @@ public class SCBlockMelonCantaloupeGrowing extends SCBlockMelonGrowing {
 		
 		return SCDefs.melonHarvested.blockID;
 	}
-
+	
 	@Override
 	public int damageDropped(int meta) {
 		if (this.GetGrowthLevel(meta) == 3)
 		{
-			return 11;
+			return 7;
 		}
 		else if (this.GetGrowthLevel(meta) == 2)
 		{
-			return 10;
+			return 6;
 		}
 		else if (this.GetGrowthLevel(meta) == 1)
 		{
-			return 9;
+			return 5;
 		}
-		else return 8;
+		else return 4;
 	}
-
 	
 	//--- Render ---//
 	
@@ -129,14 +123,14 @@ public class SCBlockMelonCantaloupeGrowing extends SCBlockMelonGrowing {
 		
   		for ( int iTempIndex = 0; iTempIndex < waterMelonIcon.length; iTempIndex++ )
 		{
-  			waterMelonIcon[iTempIndex] = register.registerIcon( "SCBlockMelonWhiteSide_" + iTempIndex );
+  			waterMelonIcon[iTempIndex] = register.registerIcon( "SCBlockMelonGreenSide_" + iTempIndex );
 		}
 	
   		waterMelonIconTop = new Icon[4];
 	
 		for ( int iTempIndex = 0; iTempIndex < waterMelonIconTop.length; iTempIndex++ )
 		{
-			waterMelonIconTop[iTempIndex] = register.registerIcon( "SCBlockMelonWhiteTop_" + iTempIndex );
+			waterMelonIconTop[iTempIndex] = register.registerIcon( "SCBlockMelonGreenTop_" + iTempIndex );
 		}
 		
         connectorIcon = new Icon[4];
@@ -161,5 +155,6 @@ public class SCBlockMelonCantaloupeGrowing extends SCBlockMelonGrowing {
     	return waterMelonIcon[growthLevel];
     }
 	
+
 
 }

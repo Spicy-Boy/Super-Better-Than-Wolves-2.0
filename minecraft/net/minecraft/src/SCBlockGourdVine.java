@@ -38,7 +38,8 @@ public class SCBlockGourdVine extends BlockDirectional {
 	
 	protected float GetVineGrowthChance()
     {
-    	return 0.1F;
+		//originally 0.1F
+    	return 0.2F;
     }
 	
 	@Override
@@ -160,11 +161,11 @@ public class SCBlockGourdVine extends BlockDirectional {
           int sideFinal;
           float randomFloat = random.nextFloat();
           
-          if (randomFloat < 0.50)
+          if (randomFloat < 0.80)
           {
               sideFinal=sideA;
           }
-          else if (randomFloat < 0.50 + 0.25)
+          else if (randomFloat < 0.80 + 0.1)
           {
               sideFinal = sideB;
           }

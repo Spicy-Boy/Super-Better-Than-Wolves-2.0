@@ -2,21 +2,21 @@ package net.minecraft.src;
 
 import java.util.Random;
 
-public class SCBlockMelonCantaloupeGrowing extends SCBlockMelonGrowing {
-
-	protected SCBlockMelonCantaloupeGrowing(int iBlockID, int stemBlock, int vineBlock, int flowerBlock,
-			int convertedBlockID) {
+public class SCBlockMelonGrowingCantaloupeAsleep extends SCBlockMelonGrowingAsleep
+{
+	
+	protected SCBlockMelonGrowingCantaloupeAsleep(int iBlockID, int stemBlock, int vineBlock, int flowerBlock,
+			int convertedBlockID) 
+	{
 		super(iBlockID, stemBlock, vineBlock, flowerBlock, convertedBlockID);
-//		setUnlocalizedName("SCBlockMelonHoneydewGrowing");
 	}
 	
-	@Override
 	public void grow(World world, int i, int j, int k, Random random)
 	{
 		int meta = world.getBlockMetadata(i, j, k);
-		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.melonCantaloupeAsleep.blockID, meta + 4);
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.melonCantaloupe.blockID, meta);
 	}
-	
+
 	protected int getMetaHarvested(int growthLevel) {
 		if (growthLevel == 3 )
 		{
@@ -31,12 +31,6 @@ public class SCBlockMelonCantaloupeGrowing extends SCBlockMelonGrowing {
 			return 9;
 		}
 		else return 8;
-	}
-
-	@Override
-	protected int getPossessedMetaForGrowthLevel(int growthLevel)
-	{
-		return 0; //Can't be possessed. see canBePossessed() in super
 	}
 	
 	@Override
@@ -61,7 +55,6 @@ public class SCBlockMelonCantaloupeGrowing extends SCBlockMelonGrowing {
 		}
 		else return 8;
 	}
-
 	
 	//--- Render ---//
 	
@@ -161,5 +154,4 @@ public class SCBlockMelonCantaloupeGrowing extends SCBlockMelonGrowing {
     	return waterMelonIcon[growthLevel];
     }
 	
-
 }

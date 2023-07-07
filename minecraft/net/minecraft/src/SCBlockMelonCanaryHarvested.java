@@ -38,7 +38,7 @@ public class SCBlockMelonCanaryHarvested extends SCBlockGourdHarvested {
 	{
 		if (this.GetGrowthLevel(meta) == 3)
 		{
-			return 3;
+			return 4;
 		}
 		else return 0;
 	}
