@@ -3,6 +3,7 @@ package net.minecraft.src;
 public class SuperBTWItemTrowel extends Item
 {
 	
+	private final int m_iWeaponDamage;
 	public SuperBTWItemTrowel(int par1)
 	{
         super(par1);
@@ -10,6 +11,8 @@ public class SuperBTWItemTrowel extends Item
         this.maxStackSize = 1;
         this.setCreativeTab(CreativeTabs.tabTools);
         setUnlocalizedName( "SuperBTWItemTrowel" );
+        
+        m_iWeaponDamage = 1;
 	}
 	
     @Override
@@ -91,6 +94,11 @@ public class SuperBTWItemTrowel extends Item
     public boolean isMortarBucket (int iItemID)
     {
     	return iItemID == SuperBTWDefinitions.mortarBucket.itemID;
+    }
+    
+    public int getDamageVsEntity( Entity entity )
+    {
+        return m_iWeaponDamage;
     }
 
 }

@@ -14,7 +14,25 @@ public class SCItemMelonSlice extends FCItemFoodHighRes {
     	//drop melon seed
         if (!world.isRemote && world.rand.nextFloat() < 0.33F)
         {
-        	ItemStack itemStack = new ItemStack( Item.melonSeeds, 1, 0 );
+        	
+        	ItemStack itemStack = new ItemStack (SuperBTWDefinitions.waterMelonSeeds.itemID, 1, 0);
+        	
+        	if (stack.itemID == SCDefs.melonWaterSlice.itemID)
+        	{
+        	itemStack = new ItemStack( SuperBTWDefinitions.waterMelonSeeds, 1, 0 );
+        	}
+        	else if (stack.itemID == SCDefs.melonCanarySlice.itemID)
+        	{
+        	itemStack = new ItemStack( SuperBTWDefinitions.canaryMelonSeeds, 1, 0 );
+        	}
+        	else if (stack.itemID == SCDefs.melonHoneydewSlice.itemID)
+        	{
+        	itemStack = new ItemStack( SuperBTWDefinitions.honeydewMelonSeeds, 1, 0 );
+        	}
+        	else if (stack.itemID == SCDefs.melonCantaloupeSlice.itemID)
+        	{
+        	itemStack = new ItemStack( SuperBTWDefinitions.cantaloupeMelonSeeds, 1, 0 );
+        	}
         	           
         	double dItemX = player.posX;
         	double dItemY = player.posY + 1.2D;

@@ -34,6 +34,11 @@ public class SuperBTWRecipes extends FCRecipes {
 		AddRecipe(new ItemStack(FCBetterThanWolves.fcBlockWorkbench, 1), new Object[] // ITS BACK BABY
 		{ "###", "#X#", "###", '#', Block.planks, 'X', Item.ingotIron });
 		
+		AddRecipe(new ItemStack(FCBetterThanWolves.fcBlockWorkbench, 1), new Object[]
+		{ "###", "#X#", "###",
+				Character.valueOf('#'), new ItemStack (FCBetterThanWolves.fcBlockWoodSidingItemStubID, 1, m_iIgnoreMetadata),
+				Character.valueOf('X'), Item.ingotIron });
+		
 		
 		AddRecipe(new ItemStack( SuperBTWDefinitions.meatCube, 1 ),
 				new Object[] { "XXX", "XXX", "XXX", Character.valueOf('X'), FCBetterThanWolves.fcItemRawMysteryMeat});
@@ -62,6 +67,12 @@ public class SuperBTWRecipes extends FCRecipes {
 	}
 
 	public static void addToolRecipes() {
+//		FCRecipes.AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.trowel, 1), new ItemStack[] {
+//				new ItemStack(FCBetterThanWolves.fcItemNuggetIron), new ItemStack(FCBetterThanWolves.fcItemNuggetIron), new ItemStack(FCBetterThanWolves.fcItemNuggetIron)});
+		AddRecipe(new ItemStack(SuperBTWDefinitions.trowel, 1), new Object[]
+		{ "##", "#X", '#', FCBetterThanWolves.fcItemNuggetIron, 'X', Item.stick });
+		
+		
 		FCRecipes.AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.bonePickaxe, 1), new ItemStack[] {
 				new ItemStack(SuperBTWDefinitions.rib), new ItemStack(Item.silk), new ItemStack(Item.stick) });
 		
@@ -180,6 +191,23 @@ public class SuperBTWRecipes extends FCRecipes {
 		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.waterMelonSeeds, 1 ), new Object[] { 
 	            new ItemStack( SCDefs.melonWaterSlice, 1 )
 	        } );
+		
+		//Melon slices to seeds
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.honeydewMelonSeeds, 1 ), new Object[] { 
+        new ItemStack( SCDefs.melonHoneydewSlice, 1 )
+		} );
+
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.cantaloupeMelonSeeds, 1 ), new Object[] { 
+        new ItemStack( SCDefs.melonCantaloupeSlice, 1 )
+		} );
+
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.canaryMelonSeeds, 1 ), new Object[] { 
+        new ItemStack( SCDefs.melonCanarySlice, 1 )
+		} );
+
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.waterMelonSeeds, 1 ), new Object[] { 
+        new ItemStack( SCDefs.melonWaterSlice, 1 )
+		} );
 	}
 
 	private static void addProgressRecipes() {

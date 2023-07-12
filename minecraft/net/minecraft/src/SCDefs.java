@@ -90,7 +90,9 @@ public class SCDefs {
     	
     	id_melonStemCantaloupe = 3138,
     	id_melonVineFloweringCantaloupe = 3139,
-    	id_melonVineCantaloupe = 3140;
+    	id_melonVineCantaloupe = 3140,
+    	
+    	id_pumpkinVineDying = 3141;
 
 
 

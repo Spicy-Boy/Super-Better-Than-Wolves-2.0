@@ -48,9 +48,8 @@ Changes/Fixes:
 
 -Changed pumpkin seeds to stack to 64 rather than 16 for storage and automation purposes OH NO MY INVENTORY BALANCE!!!!!!!!
 
-TODO - Changed pumpkin and melon varieties to grow by seed rather than biome. 
-TODO STILL HAVE TO PROGRAM MELON SIDE OF IT!!! 
-    >EX: a yellow pumpkin requires a yellow pumpkin seed to grow. In Sock's Crops, biome determines the fruit.
+- Changed pumpkin and melon varieties to grow by seed rather than biome. 
+    >EX: a yellow pumpkin requires a yellow pumpkin seed to grow.
     
 -Changed gourds on the vine to take a few days to mature (like wheat) (rather than being random)
 
@@ -90,14 +89,7 @@ O- From CE: make trap doors like ladders
     O-Make dead stem able to be overwritten by other blocks like grass
     
     O-Remove weeds from gourd stem plants
-    
-    O-Craft pumpkins/melon varieties into proper ratios of seeds and slices
-        -SEE FORUM POST
-        !!!!!!! FIX THE pumpkin cutting class, it is currently broken, also maybe slices are broken?!
-    
-    O-Pumpkin Jack hitboxes do not conform to model... can that be fixed?
-    
-    O- Exploding gourds should drop the right seeds!
+   
     
     O- Do chickens eat all seed types?
    
@@ -105,8 +97,6 @@ O- From CE: make trap doors like ladders
 
 O-AUTOFILL water bucket in crafting grid if player is near water source block 
     //detect a block of source water / full cistern within 3 blocks of you?
-
-O- 1 SPRITE Tweak iron knife texture to be a little smaller
     
 O- Add knife cutting recipes for tanned leather, NOT scoured leather? 
 
@@ -123,6 +113,12 @@ O- Add back crafting recipe for eyes of ender-> e pearl + blaze powder. Add soul
 O- Change tier 2 priest trades to be not shit, efficiency IIIs and such
 ---
 
+X- 1 SPRITE Tweak iron knife texture to be a little smaller
+
+X-Craft pumpkins/melon varieties into proper ratios of seeds and slices
+X-!!!!!!! FIX THE pumpkin cutting class, it is currently broken, also maybe slices are broken?!
+X-Melons spit out the right seed
+X- Exploding gourds should drop the right seeds!
 X- Change the exploding pumpkin texture to not be carrots. Change it to slice maybe?
 X-Make distinct melon seed and plant types (just like with pumpkins)
 
@@ -239,6 +235,7 @@ O-New in-world crafting recipe: Pile of sticks -> Campfire
         right click again to create a campfire
 
 ***GOURD TODO***
+O-Pumpkin Jack hitboxes do not conform to model... can that be fixed?
 
 O-LEARN HOW HYDRATION AND PLANTS WORK IN MC
 
