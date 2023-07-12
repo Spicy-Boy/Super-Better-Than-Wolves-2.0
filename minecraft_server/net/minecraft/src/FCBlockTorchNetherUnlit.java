@@ -11,8 +11,6 @@ public class FCBlockTorchNetherUnlit extends FCBlockTorchBaseUnlit
     	super( iBlockID );    	
     	
     	setUnlocalizedName( "fcBlockTorchIdle" );
-    	
-        this.setCreativeTab(CreativeTabs.tabDecorations);
     }
     
 	//AARON added this to allow right click pick up torch

@@ -4,9 +4,9 @@ package net.minecraft.src;
 
 import java.util.Random;
 
-//import com.prupe.mcpatcher.mal.block.RenderBlocksUtils;
+import com.prupe.mcpatcher.mal.block.RenderBlocksUtils;
 
-//import net.minecraft.client.Minecraft; // client only
+import net.minecraft.client.Minecraft; // client only
 
 public class FCBlockGrass extends BlockGrass
 {
@@ -214,84 +214,84 @@ public class FCBlockGrass extends BlockGrass
     private Icon iconSnowSide;
     private Icon iconGrassSideOverlay;
     
-//    public void registerIcons(IconRegister par1IconRegister)
-//    {
-//    	super.registerIcons( par1IconRegister );
-//    	
-//        this.iconGrassTop = par1IconRegister.registerIcon("grass_top");
-//        this.iconSnowSide = par1IconRegister.registerIcon("snow_side");
-//        this.iconGrassSideOverlay = par1IconRegister.registerIcon("grass_side_overlay");
-//    }
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+    	super.registerIcons( par1IconRegister );
+    	
+        this.iconGrassTop = par1IconRegister.registerIcon("grass_top");
+        this.iconSnowSide = par1IconRegister.registerIcon("snow_side");
+        this.iconGrassSideOverlay = par1IconRegister.registerIcon("grass_side_overlay");
+    }
     
-//    @Override
-//    public int colorMultiplier( IBlockAccess blockAccess, int i, int j, int k)
-//    {
-//    	if ( m_bTempHasSnowOnTop )
-//    	{
-//            return 16777215;
-//    	}
-//    	else
-//    	{
-//    		return super.colorMultiplier( blockAccess, i, j, k );
-//    	}
-//    }
+    @Override
+    public int colorMultiplier( IBlockAccess blockAccess, int i, int j, int k)
+    {
+    	if ( m_bTempHasSnowOnTop )
+    	{
+            return 16777215;
+    	}
+    	else
+    	{
+    		return super.colorMultiplier( blockAccess, i, j, k );
+    	}
+    }
     
-//    @Override
-//    public Icon getBlockTexture( IBlockAccess blockAccess, int i, int j, int k, int iSide )
-//    {
-//    	Icon betterGrassIcon = RenderBlocksUtils.getGrassTexture(this, blockAccess, i, j, k, iSide, this.iconGrassTop);
-//
-//        if (betterGrassIcon != null)
-//        {
-//            return betterGrassIcon;
-//        }
-//        else if ( iSide == 1 )
-//        {
-//            return iconGrassTop;
-//        }
-//        else if ( iSide == 0 )
-//        {
-//            return Block.dirt.getBlockTextureFromSide( iSide );
-//        }
-//        else if ( m_bTempHasSnowOnTop )
-//    	{
-//    		return iconSnowSide;
-//    	}
-//        
-//		return blockIcon;
-//    }
+    @Override
+    public Icon getBlockTexture( IBlockAccess blockAccess, int i, int j, int k, int iSide )
+    {
+    	Icon betterGrassIcon = RenderBlocksUtils.getGrassTexture(this, blockAccess, i, j, k, iSide, this.iconGrassTop);
+
+        if (betterGrassIcon != null)
+        {
+            return betterGrassIcon;
+        }
+        else if ( iSide == 1 )
+        {
+            return iconGrassTop;
+        }
+        else if ( iSide == 0 )
+        {
+            return Block.dirt.getBlockTextureFromSide( iSide );
+        }
+        else if ( m_bTempHasSnowOnTop )
+    	{
+    		return iconSnowSide;
+    	}
+        
+		return blockIcon;
+    }
     
-//    @Override
-//    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
-//    {
-//    	IBlockAccess blockAccess = renderer.blockAccess;
-//    	
-//        renderer.setRenderBounds( 0D, 0D, 0D, 1D, 1D, 1D );
-//        
-//        m_bTempHasSnowOnTop = IsSnowCoveringTopSurface( blockAccess, i, j, k ); 
-//        
-//        if ( m_bTempHasSnowOnTop )
-//        {
-//        	return renderer.renderStandardBlock( this, i, j, k );
-//        }
-//        else
-//        {
-//	        int var5 = colorMultiplier( blockAccess, i, j, k );
-//	        
-//	        float var6 = (float)(var5 >> 16 & 255) / 255.0F;
-//	        float var7 = (float)(var5 >> 8 & 255) / 255.0F;
-//	        float var8 = (float)(var5 & 255) / 255.0F;
-//	
-//	        if ( Minecraft.isAmbientOcclusionEnabled() )
-//	        {
-//	        	//AARON switched these to fix smooth lighting.
-//	        	return renderer.renderGrassBlockWithAmbientOcclusion( this, i, j, k, var6, var7, var8, BlockGrass.getIconSideOverlay() );
-//	        	//return renderer.renderGrassBlockWithColorMultiplier( this, i, j, k, var6, var7, var8, BlockGrass.getIconSideOverlay() );
-//	        }
-//	        else
-//	        {
-//	        	return renderer.renderGrassBlockWithColorMultiplier( this, i, j, k, var6, var7, var8, BlockGrass.getIconSideOverlay() );
-//	        }
-//        }
-//    }    
+    @Override
+    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
+    {
+    	IBlockAccess blockAccess = renderer.blockAccess;
+    	
+        renderer.setRenderBounds( 0D, 0D, 0D, 1D, 1D, 1D );
+        
+        m_bTempHasSnowOnTop = IsSnowCoveringTopSurface( blockAccess, i, j, k ); 
+        
+        if ( m_bTempHasSnowOnTop )
+        {
+        	return renderer.renderStandardBlock( this, i, j, k );
+        }
+        else
+        {
+	        int var5 = colorMultiplier( blockAccess, i, j, k );
+	        
+	        float var6 = (float)(var5 >> 16 & 255) / 255.0F;
+	        float var7 = (float)(var5 >> 8 & 255) / 255.0F;
+	        float var8 = (float)(var5 & 255) / 255.0F;
+	
+	        if ( Minecraft.isAmbientOcclusionEnabled() )
+	        {
+	        	//AARON switched these to fix smooth lighting.
+	        	return renderer.renderGrassBlockWithAmbientOcclusion( this, i, j, k, var6, var7, var8, BlockGrass.getIconSideOverlay() );
+	        	//return renderer.renderGrassBlockWithColorMultiplier( this, i, j, k, var6, var7, var8, BlockGrass.getIconSideOverlay() );
+	        }
+	        else
+	        {
+	        	return renderer.renderGrassBlockWithColorMultiplier( this, i, j, k, var6, var7, var8, BlockGrass.getIconSideOverlay() );
+	        }
+        }
+    }    
 }

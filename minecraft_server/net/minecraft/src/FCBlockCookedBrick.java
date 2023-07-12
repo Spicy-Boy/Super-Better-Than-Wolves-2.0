@@ -48,6 +48,40 @@ public class FCBlockCookedBrick extends Block
         }
     }
     
+//	//AARON added this to allow right click pick up torch I MEAN brick
+//	@Override
+//    public boolean onBlockActivated( World world, int i, int j, int k, EntityPlayer player, int iFacing, float fXClick, float fYClick, float fZClick )
+//    {  
+////		System.out.println("HI RIGHT CLICK BRICK!!");
+//		if (!world.isRemote)
+//		{
+//	        if (player.getCurrentEquippedItem() == null)
+//	        {
+//	        	player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack( Item.brick, 1);
+//	        	world.setBlock(i, j, k, 0);
+//	        	return true;
+//	        }
+//	        else if (player.getCurrentEquippedItem().itemID == Item.brick.itemID)
+//	        {
+//	        	int currentStackSize = player.inventory.mainInventory[player.inventory.currentItem].stackSize;
+//	        	if (currentStackSize < 64)
+//	        	{
+//	            	player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack( Item.brick, currentStackSize+1);
+//	        	}
+//	        	world.setBlock(i, j, k, 0);
+//	        	return true;
+//	        }
+//		}
+//
+////			System.out.println("EMPTY HAND DETECT!");
+//
+////        	player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack( Item.brick, 1);
+////        	FCUtilsItem.GivePlayerStackOrEject( player, new ItemStack( Item.brick, 1));
+//        	
+//		return false;
+//    }
+//	//:>
+    
 	@Override
     public int onBlockPlaced( World world, int i, int j, int k, int iFacing, float fClickX, float fClickY, float fClickZ, int iMetadata )
     {
@@ -198,4 +232,16 @@ public class FCBlockCookedBrick extends Block
 	}
 	
 	//----------- Client Side Functionality -----------//
+	
+	@Override
+    public boolean shouldSideBeRendered( IBlockAccess blockAccess, int iNeighborI, int iNeighborJ, int iNeighborK, int iSide )
+    {
+		if ( iSide == 0 )
+		{
+			return FCClientUtilsRender.ShouldRenderNeighborFullFaceSide( blockAccess,
+				iNeighborI, iNeighborJ, iNeighborK, iSide );
+		}
+		
+		return true;
+    }
 }

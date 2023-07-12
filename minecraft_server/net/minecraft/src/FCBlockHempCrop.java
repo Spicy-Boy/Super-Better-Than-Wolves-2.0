@@ -227,44 +227,44 @@ public class FCBlockHempCrop extends BlockCrops
     private Icon[] m_IconBottomByGrowthArray = new Icon[8];
     private Icon m_IconTop;
     
-//	@Override
-//    public void registerIcons( IconRegister register )
-//    {
-//		m_IconTop = register.registerIcon( "fcBlockHemp_top" );
-//		
-//		blockIcon = m_IconTop; // for hit effects
-//		
-//		m_IconBottomByGrowthArray[0] = register.registerIcon( "fcBlockHemp_bottom_00" );
-//		m_IconBottomByGrowthArray[1] = register.registerIcon( "fcBlockHemp_bottom_01" );
-//		m_IconBottomByGrowthArray[2] = register.registerIcon( "fcBlockHemp_bottom_02" );
-//		m_IconBottomByGrowthArray[3] = register.registerIcon( "fcBlockHemp_bottom_03" );
-//		m_IconBottomByGrowthArray[4] = register.registerIcon( "fcBlockHemp_bottom_04" );
-//		m_IconBottomByGrowthArray[5] = register.registerIcon( "fcBlockHemp_bottom_05" );
-//		m_IconBottomByGrowthArray[6] = register.registerIcon( "fcBlockHemp_bottom_06" );
-//		m_IconBottomByGrowthArray[7] = register.registerIcon( "fcBlockHemp_bottom_07" );
-//    }
+	@Override
+    public void registerIcons( IconRegister register )
+    {
+		m_IconTop = register.registerIcon( "fcBlockHemp_top" );
+		
+		blockIcon = m_IconTop; // for hit effects
+		
+		m_IconBottomByGrowthArray[0] = register.registerIcon( "fcBlockHemp_bottom_00" );
+		m_IconBottomByGrowthArray[1] = register.registerIcon( "fcBlockHemp_bottom_01" );
+		m_IconBottomByGrowthArray[2] = register.registerIcon( "fcBlockHemp_bottom_02" );
+		m_IconBottomByGrowthArray[3] = register.registerIcon( "fcBlockHemp_bottom_03" );
+		m_IconBottomByGrowthArray[4] = register.registerIcon( "fcBlockHemp_bottom_04" );
+		m_IconBottomByGrowthArray[5] = register.registerIcon( "fcBlockHemp_bottom_05" );
+		m_IconBottomByGrowthArray[6] = register.registerIcon( "fcBlockHemp_bottom_06" );
+		m_IconBottomByGrowthArray[7] = register.registerIcon( "fcBlockHemp_bottom_07" );
+    }
 	
-//	@Override
-//    public Icon getIcon( int iSide, int iMetadata )
-//    {
-//        if ( GetIsTopBlock( iMetadata ) )
-//        {
-//        	return m_IconTop;
-//        }
-//        
-//    	return m_IconBottomByGrowthArray[iMetadata];
-//    }
+	@Override
+    public Icon getIcon( int iSide, int iMetadata )
+    {
+        if ( GetIsTopBlock( iMetadata ) )
+        {
+        	return m_IconTop;
+        }
+        
+    	return m_IconBottomByGrowthArray[iMetadata];
+    }
 	
-//    @Override
-//    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
-//    {
-//    	renderer.renderCrossedSquares( this, i, j, k );
-// 
-//    	if ( !GetIsTopBlock( renderer.blockAccess, i, j, k ) )
-//		{
-//    		FCBetterThanWolves.fcBlockWeeds.RenderWeeds( this, renderer, i, j, k );
-//		}
-//		
-//    	return true;
-//    }    
+    @Override
+    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
+    {
+    	renderer.renderCrossedSquares( this, i, j, k );
+ 
+    	if ( !GetIsTopBlock( renderer.blockAccess, i, j, k ) )
+		{
+    		FCBetterThanWolves.fcBlockWeeds.RenderWeeds( this, renderer, i, j, k );
+		}
+		
+    	return true;
+    }    
 }

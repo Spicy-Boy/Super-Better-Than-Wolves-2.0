@@ -863,53 +863,53 @@ public class FCEntitySheep extends EntitySheep
     
 	//----------- Client Side Functionality -----------//
     
-//    @Override
-//    public void handleHealthUpdate( byte bUpdateType )
-//    {
-//    	// must override super or else EntitySheep will intercept update type 10 and
-//    	// set the wrong variable
-//    	
-//        if ( bUpdateType == 10 )
-//        {
-//        	m_iGrazeProgressCounter = GetGrazeDuration();
-//        }
-//        else
-//        {
-//            super.handleHealthUpdate( bUpdateType );
-//        }
-//    }
+    @Override
+    public void handleHealthUpdate( byte bUpdateType )
+    {
+    	// must override super or else EntitySheep will intercept update type 10 and
+    	// set the wrong variable
+    	
+        if ( bUpdateType == 10 )
+        {
+        	m_iGrazeProgressCounter = GetGrazeDuration();
+        }
+        else
+        {
+            super.handleHealthUpdate( bUpdateType );
+        }
+    }
     
-//	@Override	
-//    public String getTexture()
-//    {
-//    	if ( getWearingBreedingHarness() )
-//    	{
-//			return "/btwmodtex/fc_mr_sheep.png";
-//    	}
-//    	
-//    	int iHungerLevel = GetHungerLevel();
-//    	
-//    	if ( iHungerLevel == 1 )
-//    	{
-//			return "/btwmodtex/fcSheepFamished.png";
-//    	}
-//    	else if ( iHungerLevel == 2 )
-//    	{
-//			return "/btwmodtex/fcSheepStarving.png";
-//    	}
-//
-//        return super.getTexture();
-//    }    
+	@Override	
+    public String getTexture()
+    {
+    	if ( getWearingBreedingHarness() )
+    	{
+			return "/btwmodtex/fc_mr_sheep.png";
+    	}
+    	
+    	int iHungerLevel = GetHungerLevel();
+    	
+    	if ( iHungerLevel == 1 )
+    	{
+			return "/btwmodtex/fcSheepFamished.png";
+    	}
+    	else if ( iHungerLevel == 2 )
+    	{
+			return "/btwmodtex/fcSheepStarving.png";
+    	}
+
+        return super.getTexture();
+    }    
 	
-//	@Override	
-//    public float func_70894_j( float fPartialTick )
-//    {
-//		return GetGrazeHeadVerticalOffset( fPartialTick );
-//    }
-//    
-//	@Override	
-//    public float func_70890_k( float fPartialTick )
-//    {
-//		return GetGrazeHeadRotation( fPartialTick );
-//    }
+	@Override	
+    public float func_70894_j( float fPartialTick )
+    {
+		return GetGrazeHeadVerticalOffset( fPartialTick );
+    }
+    
+	@Override	
+    public float func_70890_k( float fPartialTick )
+    {
+		return GetGrazeHeadRotation( fPartialTick );
+    }
 }

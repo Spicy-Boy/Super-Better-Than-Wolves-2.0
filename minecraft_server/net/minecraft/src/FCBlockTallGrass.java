@@ -31,7 +31,7 @@ public class FCBlockTallGrass extends BlockTallGrass
     {
         return -1;
     }
-    
+
     @Override
     public void updateTick( World world, int i, int j, int k, Random rand )
     {
@@ -92,14 +92,14 @@ public class FCBlockTallGrass extends BlockTallGrass
     {
     	return createStackedBlock( world.getBlockMetadata( i, j, k ) );
     }
-	
+
     @Override
     public boolean CanBeGrazedOn( IBlockAccess blockAccess, int i, int j, int k, 
     	EntityAnimal animal )
     {
 		return blockAccess.getBlockMetadata( i, j, k ) == 1 || animal.CanGrazeOnRoughVegetation();
     }
-    
+
     @Override
     public int GetHerbivoreItemFoodValue( int iItemDamage )
     {

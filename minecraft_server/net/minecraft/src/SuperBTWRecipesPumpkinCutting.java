@@ -94,7 +94,32 @@ public class SuperBTWRecipesPumpkinCutting implements IRecipe
 
         if ( pumpkinStack != null && bladeStack != null )
         {
-            ItemStack resultStack = null;
+            ItemStack resultStack = new ItemStack( SuperBTWDefinitions.orangePumpkinSeeds, 4 );
+            
+            int pumpkinType = getPumpkinType(pumpkinStack);
+            
+            if (pumpkinType == 1)
+            {
+            	return resultStack;
+            }
+            else if (pumpkinType == 3)
+            {
+            	return new ItemStack( SuperBTWDefinitions.greenPumpkinSeeds, 5 );
+            }
+            else if (pumpkinType == 5)
+            {
+            	return new ItemStack( SuperBTWDefinitions.yellowPumpkinSeeds, 3 );
+            }
+            else if (pumpkinType == 6)
+            {
+            	return new ItemStack( SuperBTWDefinitions.whitePumpkinSeeds, 3 );
+            }
+            else if (pumpkinType == 0)
+            {
+            	return null;
+            }
+            
+            
             //be careful! The code below will cause a crash if you don't find a way to make axes work too (see method: isKnife)
             //SuperBTWItemBlade knifeItem = (SuperBTWItemBlade)bladeStack.getItem();
 
@@ -110,8 +135,7 @@ public class SuperBTWRecipesPumpkinCutting implements IRecipe
 //	        }
             
             //SOCK: comment the below if the above is uncommented
-            
-            resultStack = new ItemStack( SCDefs.pumpkinSlice, 2 );
+           
                         
         	return resultStack;
         }
@@ -151,7 +175,14 @@ public class SuperBTWRecipesPumpkinCutting implements IRecipe
     		
     	if ( stack.getItem() instanceof SuperBTWItemBlade || 
     			stack.getItem().itemID == Item.axeIron.itemID ||
-    			stack.getItem().itemID == Item.axeDiamond.itemID)
+    			stack.getItem().itemID == Item.swordIron.itemID ||
+    			stack.getItem().itemID == Item.axeDiamond.itemID ||
+    			stack.getItem().itemID == Item.swordDiamond.itemID ||
+    			stack.getItem().itemID == FCBetterThanWolves.fcItemRefinedAxe.itemID ||
+    			stack.getItem().itemID == FCBetterThanWolves.fcItemBattleAxe.itemID ||
+    			stack.getItem().itemID == FCBetterThanWolves.fcItemRefinedSword.itemID
+    		)
+    			
     	{
     		return true;
     	}
@@ -169,5 +200,40 @@ public class SuperBTWRecipesPumpkinCutting implements IRecipe
     	}
     	
     	return false;
-    }    
+    }
+    
+    private int getPumpkinType(ItemStack stack)
+    {
+    	//1 = orange, 2 = penultimate stage orange pumpkin, 3 = green, 4 = penultimate stage green
+    	//5 = yellow, 6 = white
+    	int iItemMetadata = stack.getItemDamage();
+    	
+    	if (iItemMetadata == 3)
+    	{
+    		return 1;
+    	}
+    	else if (iItemMetadata == 7)
+    	{
+    		return 3;
+    	}
+    	else if (iItemMetadata == 2)
+    	{
+    		return 2;
+    	}
+    	else if (iItemMetadata == 6)
+    	{
+    		return 4;
+    	}
+    	else if (iItemMetadata == 11)
+    	{
+    		return 5;
+    	}
+    	else if (iItemMetadata == 15)
+    	{
+    		return 6;
+    	}
+    	
+    	return 0;
+    	
+    }
 }

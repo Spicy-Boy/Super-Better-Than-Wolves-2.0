@@ -618,25 +618,25 @@ public class FCEntityCow extends EntityCow
     
 	//----------- Client Side Functionality -----------//
     
-//	@Override
-//    public String getTexture()
-//    {
-//    	if ( getWearingBreedingHarness() )
-//    	{
-//			return "/btwmodtex/fc_mr_cow.png";
-//    	}
-//    	
-//    	int iHungerLevel = GetHungerLevel();
-//    	
-//    	if ( iHungerLevel == 1 )
-//    	{
-//			return "/btwmodtex/fcCowFamished.png";
-//    	}
-//    	else if ( iHungerLevel == 2 )
-//    	{
-//			return "/btwmodtex/fcCowStarving.png";
-//    	}
-//    	
-//        return super.getTexture();
-//    }
+	@Override
+    public String getTexture()
+    {
+    	if ( getWearingBreedingHarness() )
+    	{
+			return "/btwmodtex/fc_mr_cow.png";
+    	}
+    	
+    	int iHungerLevel = GetHungerLevel();
+    	
+    	if ( iHungerLevel == 1 )
+    	{
+			return "/btwmodtex/fcCowFamished.png";
+    	}
+    	else if ( iHungerLevel == 2 )
+    	{
+			return "/btwmodtex/fcCowStarving.png";
+    	}
+    	
+        return super.getTexture();
+    }
 }

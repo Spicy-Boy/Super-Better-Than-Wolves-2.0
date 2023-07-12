@@ -13,27 +13,24 @@ public class SuperBTW extends FCAddOn
 	
     private SuperBTW() 
     {
-        super("SUPER BETTER THAN WOLVES", "1.0", "");
+        super("SUPER BETTER THAN WOLVES", "inDev 2.0", "");
     }
 
 	@Override
 	public void Initialize() 
 	{
-		FCAddOnHandler.LogMessage(this.getName() + " Version " + this.getVersionString() + " Initializing...");
+		FCAddOnHandler.LogMessage(this.getName() + " Version " + this.getVersionString() + " Preparing...");
 		
     	SuperBTWDefinitions.addDefinitions();
     	SuperBTWRecipes.addRecipes();
 		
-    	FCAddOnHandler.LogMessage(this.getName() + " Initialized Super Better Than Wolves");
+    	FCAddOnHandler.LogMessage(this.getName() + " Super Better Than Wolves initialized!");
 
 	}
-	
-	
+
 	public String GetLanguageFilePrefix()
 	{
 		return "SuperBTW";
 	}
-	
+
 }
-
-

@@ -1,16 +1,27 @@
 package net.minecraft.src;
 
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import argo.jdom.JdomParser;
+import argo.jdom.JsonRootNode;
+import net.minecraft.src.EntityPlayer.BeaconRespawnValidationResult.BeaconStatus;
 
 public abstract class EntityPlayer extends EntityLiving implements ICommandSender
 {
 	//AARON ADDED
 	public int deathCounter = 0;
+	
+	//AARON ADDED for sleep
 	
     /** Inventory of the player */
     public InventoryPlayer inventory = new InventoryPlayer(this);
@@ -24,7 +35,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     /** The Container the player has open. */
     public Container openContainer;
 
-    /** The food object of the player, the general hunger logic. */
+    /** The player's food stats. (See class FoodStats) */
     protected FoodStats foodStats = new FoodStats();
 
     /**
@@ -51,13 +62,22 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     /** Boolean value indicating weather a player is sleeping or not */
     protected boolean sleeping;
 
-    /** the current location of the player */
+    /**
+     * The chunk coordinates of the bed the player is in (null if player isn't in a bed).
+     */
     public ChunkCoordinates playerLocation;
+    //AARON ADDED in order to stop the player from slipping through walls. Follow these variables to see how I backported that shit
+    public ChunkCoordinates playerBedLocation;
+    public ChunkCoordinates playerBeforeAsleep;
+    
     private int sleepTimer;
     public float field_71079_bU;
+    public float field_71082_cx;
     public float field_71089_bV;
-
-    /** holds the spawn chunk of the player */
+    
+    /**
+     * Holds the last coordinate to spawn based on last bed that the player sleep.
+     */
     private ChunkCoordinates spawnChunk;
 
     /**
@@ -151,12 +171,21 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         // END FCMOD
     }
 
-    // FCMOD: Added (server only to match client)
+    /**
+     * returns the ItemStack containing the itemInUse
+     */
+    public ItemStack getItemInUse()
+    {
+        return this.itemInUse;
+    }
+
+    /**
+     * Returns the item in use count
+     */
     public int getItemInUseCount()
     {
         return this.itemInUseCount;
     }
-    // END FCMOD
 
     /**
      * Checks if the entity is currently using an item (e.g., bow, food, sword) by holding down the useItemButton
@@ -165,7 +194,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     {
         return this.itemInUse != null;
     }
-    
+
     /**
      * gets the duration for how long the current itemInUse has been in use
      */
@@ -173,7 +202,6 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     {
         return this.isUsingItem() ? this.itemInUse.getMaxItemUseDuration() - this.itemInUseCount : 0;
     }
-
 
     public void stopUsingItem()
     {
@@ -230,7 +258,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                 {
                     this.updateItemUse(var1, 5);
                 }
-
+                
                 // FCMOD: Added
         		var1.getItem().UpdateUsingItem( var1, this.worldObj, this );
                 // END FCMOD 
@@ -269,6 +297,11 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                 else if (this.worldObj.isDaytime())
                 {
                     this.wakeUpPlayer(false, true, true);
+                }
+                //AARON added this to wake the player if it starts raining
+                else if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( (int)this.posX, (int)this.posY + 1, (int)this.posZ ))
+                {
+                	this.wakeUpPlayer(true, true, false);
                 }
             }
         }
@@ -345,13 +378,12 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
         if (!this.worldObj.isRemote)
         {
-            this.foodStats.onUpdate(this);
+            this.foodStats.onUpdate(this);            
         }
         
         // FCMOD: Added
         UpdateModStatusVariables();
         // END FCMOD
-        
         //Dynamic Lights TODO
         if (!worldObj.isRemote)
         {
@@ -382,6 +414,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                 }
         	}
         }
+
     }
     
     public boolean isDynamicLightSource(int itemID)
@@ -393,6 +426,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     	}
     	return false;
     }
+    
 
     /**
      * Return the amount of time this entity should stay in a portal before being transported.
@@ -472,6 +506,18 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         }
     }
 
+    public void handleHealthUpdate(byte par1)
+    {
+        if (par1 == 9)
+        {
+            this.onItemUseFinish();
+        }
+        else
+        {
+            super.handleHealthUpdate(par1);
+        }
+    }
+
     /**
      * Dead and sleeping entities cannot move
      */
@@ -481,7 +527,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     }
 
     /**
-     * set current crafting inventory back to the 2x2 square
+     * sets current screen to null (used on escape buttons of GUIs)
      */
     protected void closeScreen()
     {
@@ -533,12 +579,23 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         }
     }
 
+    /**
+     * Keeps moving the entity up so it isn't colliding with blocks and other requirements for this entity to be spawned
+     * (only actually used on players though its also on Entity)
+     */
+    public void preparePlayerToSpawn()
+    {
+        this.yOffset = 1.62F;
+        this.setSize(0.6F, 1.8F);
+        super.preparePlayerToSpawn();
+        this.setEntityHealth(this.getMaxHealth());
+        this.deathTime = 0;
+    }
+
     protected void updateEntityActionState()
     {
         this.updateArmSwingProgress();
     }
-    
-    
 
     /**
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
@@ -608,7 +665,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                     }
                 }
             }
-        }
+        }        
     }
 
     private void collideWithPlayer(Entity par1Entity)
@@ -648,7 +705,8 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         this.setSize(0.2F, 0.2F);
         this.setPosition(this.posX, this.posY, this.posZ);
         this.motionY = 0.10000000149011612D;
-
+        
+        //AARON CHANGED for unique drops per player
         if (this.username.equals("Notch"))
         {
             this.dropPlayerItemWithRandomChoice(new ItemStack(Item.appleRed, 1), true);
@@ -678,6 +736,8 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         {
         	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.book, 1), true);
         }
+        
+
 
         if (!this.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory"))
         {
@@ -696,6 +756,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
         this.yOffset = 0.1F;
         this.addStat(StatList.deathsStat, 1);
+        
     }
 
     /**
@@ -860,7 +921,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         {
             var3 /= 5.0F;
         }
-
+        
         // FCMOD: Added
         var3 *= GetMiningSpeedModifier();
         // END FCMOD        
@@ -898,8 +959,11 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
         if (this.sleeping)
         {
-            this.playerLocation = new ChunkCoordinates(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
-            this.wakeUpPlayer(true, true, false);
+        	//AARON CHANGED for slip through walls sleep bug
+//            this.playerLocation = new ChunkCoordinates(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
+        	this.playerBedLocation = new ChunkCoordinates(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
+        	
+        	this.wakeUpPlayer(true, true, false);
         }
 
         if (par1NBTTagCompound.hasKey("SpawnX") && par1NBTTagCompound.hasKey("SpawnY") && par1NBTTagCompound.hasKey("SpawnZ"))
@@ -1162,6 +1226,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         		// END FCMOD
         		
                 par2 = 1 + par2 >> 1;
+        
             }
 
             par2 = this.applyArmorCalculations(par1DamageSource, par2);
@@ -1409,10 +1474,10 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                 else // else from "if (var2 > 0 || var4 > 0)" above, indicating zero damage attack
                 {
             		OnZeroDamageAttack();
-            }
+                }
                 // END FCMOD
+            }
         }
-    }
     }
 
     /**
@@ -1421,6 +1486,8 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     public void onCriticalHit(Entity par1Entity) {}
 
     public void onEnchantmentCritical(Entity par1Entity) {}
+
+    public void respawnPlayer() {}
 
     /**
      * Will get destroyed next tick.
@@ -1450,17 +1517,20 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     }
 
     /**
-     * puts player to sleep on specified bed if possible
+     * Attempts to have the player sleep in a bed at the specified location.
      */
     public EnumStatus sleepInBedAt(int par1, int par2, int par3)
     {
+    	//AARON CHANGED this method to match the code in CE 1.4 for sleep
+    	
     	// FCMOD: Code added
-        return EnumStatus.OTHER_PROBLEM;
+        //return EnumStatus.OTHER_PROBLEM;
         // END FCMOD
     	// FCMOD: Code removed
-        /*
+
+    	//AARON uncommented this portion!
         if (!this.worldObj.isRemote)
-        {
+        {	
             if (this.isPlayerSleeping() || !this.isEntityAlive())
             {
                 return EnumStatus.OTHER_PROBLEM;
@@ -1473,7 +1543,16 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
             if (this.worldObj.isDaytime())
             {
+            	//AARON test msg
+//            	System.out.println("detecting DAYTIoooooME DAYTIME DAYTIME");
                 return EnumStatus.NOT_POSSIBLE_NOW;
+            }
+            
+            //AARON added this sleeping status to detect if rain is soaking the player
+            if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( par1, par2 + 1, par3 ))
+            {
+//            	System.out.println("detecting SOAKED");
+            	return EnumStatus.TOO_WET;
             }
 
             if (Math.abs(this.posX - (double)par1) > 3.0D || Math.abs(this.posY - (double)par2) > 2.0D || Math.abs(this.posZ - (double)par3) > 3.0D)
@@ -1487,10 +1566,14 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
             if (!var8.isEmpty())
             {
-                return EnumStatus.NOT_SAFE;
+            	//AARON disabled this particular status because why not let players sleep even if a zombie is at the door?
+                //return EnumStatus.NOT_SAFE;
             }
         }
-
+        
+        //AARON ADDED THIS so that you can't flippy dip through walls after a sleep backported
+        this.playerBeforeAsleep = new ChunkCoordinates((int)posX, (int)posY, (int)posZ);
+        
         this.setSize(0.2F, 0.2F);
         this.yOffset = 0.2F;
 
@@ -1529,7 +1612,9 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
         this.sleeping = true;
         this.sleepTimer = 0;
-        this.playerLocation = new ChunkCoordinates(par1, par2, par3);
+        //AARON slipping through walls sleep backported
+        this.playerBedLocation = new ChunkCoordinates(par1, par2, par3);
+        
         this.motionX = this.motionZ = this.motionY = 0.0D;
 
         if (!this.worldObj.isRemote)
@@ -1538,7 +1623,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         }
 
         return EnumStatus.OK;
-        */
+        
         // END FCMOD
     }
 
@@ -1573,12 +1658,18 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     {
         this.setSize(0.6F, 1.8F);
         this.resetHeight();
-        ChunkCoordinates var4 = this.playerLocation;
-        ChunkCoordinates var5 = this.playerLocation;
+//        ChunkCoordinates var4 = this.playerLocation;
+//        ChunkCoordinates var5 = this.playerLocation;
+        ChunkCoordinates var4 = this.playerBedLocation;
+        ChunkCoordinates var5 = this.playerBeforeAsleep;
 
-        if (var4 != null && this.worldObj.getBlockId(var4.posX, var4.posY, var4.posZ) == Block.bed.blockID)
+        //AARON MODIFIED this if statement to prevent getting kicked out of bedrolls
+//        if (var4 != null && this.worldObj.getBlockId(var4.posX, var4.posY, var4.posZ) == Block.bed.blockID)
+        if (var4 != null && Block.blocksList[this.worldObj.getBlockId(var4.posX, var4.posY, var4.posZ)] instanceof FCBlockBedBase)
         {
             BlockBed.setBedOccupied(this.worldObj, var4.posX, var4.posY, var4.posZ, false);
+            
+            //AARON commented this out to fix slipping through walls
             var5 = BlockBed.getNearestEmptyChunkCoordinates(this.worldObj, var4.posX, var4.posY, var4.posZ, 0);
 
             if (var5 == null)
@@ -1604,11 +1695,12 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         {
             this.sleepTimer = 100;
         }
-
-        if (par3)
-        {
-            this.setSpawnChunk(this.playerLocation, false);
-        }
+        
+        //AARON commented this out in order to implement sleep properly
+//        if (par3)
+//        {
+//            this.setSpawnChunk(this.playerLocation, false);
+//        }
     }
 
     /**
@@ -1616,7 +1708,10 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
      */
     private boolean isInBed()
     {
-        return this.worldObj.getBlockId(this.playerLocation.posX, this.playerLocation.posY, this.playerLocation.posZ) == Block.bed.blockID;
+    	//AARON MODIFIED this return to prevent being kicked out of bedroll
+//        return this.worldObj.getBlockId(this.playerLocation.posX, this.playerLocation.posY, this.playerLocation.posZ) == Block.bed.blockID;
+        return Block.blocksList[this.worldObj.getBlockId(this.playerBedLocation.posX, this.playerBedLocation.posY, this.playerBedLocation.posZ)] instanceof FCBlockBedBase;
+
     }
 
     /**
@@ -1647,6 +1742,37 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     }
 
     /**
+     * Returns the orientation of the bed in degrees.
+     */
+    public float getBedOrientationInDegrees()
+    {
+    	//AARON changed to stop slipping through walls while sleepy
+        if (this.playerBedLocation != null)
+        {
+        	//AARON here to... pretty much every instance of playerLocation is changed to playerBedLocation
+            int var1 = this.worldObj.getBlockMetadata(this.playerBedLocation.posX, this.playerBedLocation.posY, this.playerBedLocation.posZ);
+            int var2 = BlockBed.getDirection(var1);
+
+            switch (var2)
+            {
+                case 0:
+                    return 90.0F;
+
+                case 1:
+                    return 0.0F;
+
+                case 2:
+                    return 270.0F;
+
+                case 3:
+                    return 180.0F;
+            }
+        }
+
+        return 0.0F;
+    }
+
+    /**
      * Returns whether player is sleeping or not
      */
     public boolean isPlayerSleeping()
@@ -1660,6 +1786,16 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     public boolean isPlayerFullyAsleep()
     {
         return this.sleeping && this.sleepTimer >= 100;
+    }
+
+    public int getSleepTimer()
+    {
+        return this.sleepTimer;
+    }
+
+    protected boolean getHideCape(int par1)
+    {
+        return (this.dataWatcher.getWatchableObjectByte(16) & 1 << par1) != 0;
     }
 
     protected void setHideCape(int par1, boolean par2)
@@ -1785,14 +1921,14 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         if (this.ridingEntity == null)
         {
             int var7;
-
+            
             // FCMOD: Added
             if ( isInWater() && par3 > 0D && CanSwim() )
             {
                 addExhaustion( 0.025F );
             }
             // END FCMOD
-            
+
             if (this.isInsideOfMaterial(Material.water))
             {
                 var7 = Math.round(MathHelper.sqrt_double(par1 * par1 + par3 * par3 + par5 * par5) * 100.0F);
@@ -1806,7 +1942,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                     */
                     this.AddExhaustionWithoutVisualFeedback(0.015F * (float)var7 * 0.01F);
                     // END FCMOD
-                }
+                }                
             }
             else if (this.isInWater())
             {
@@ -1939,6 +2075,105 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         }
     }
 
+    /**
+     * Gets the Icon Index of the item currently held
+     */
+    public Icon getItemIcon(ItemStack par1ItemStack, int par2)
+    {
+        Icon var3 = super.getItemIcon(par1ItemStack, par2);
+
+        if (par1ItemStack.itemID == Item.fishingRod.itemID && this.fishEntity != null)
+        {
+            var3 = Item.fishingRod.func_94597_g();
+        }
+        else
+        {
+            if (par1ItemStack.getItem().requiresMultipleRenderPasses())
+            {
+                return par1ItemStack.getItem().getIconFromDamageForRenderPass(par1ItemStack.getItemDamage(), par2);
+            }
+
+            if (this.itemInUse != null && par1ItemStack.itemID == Item.bow.itemID)
+            {
+                int var4 = par1ItemStack.getMaxItemUseDuration() - this.itemInUseCount;
+
+                if (var4 >= 18)
+                {
+                    return Item.bow.getItemIconForUseDuration(2);
+                }
+
+                if (var4 > 13)
+                {
+                    return Item.bow.getItemIconForUseDuration(1);
+                }
+
+                if (var4 > 0)
+                {
+                    return Item.bow.getItemIconForUseDuration(0);
+                }
+            }
+            //AARON CHANGED this shit.... wow..... I extend the bow 
+            //iconArray to get this to work, because for some reason I cannot call getItemIconForUseDuration in flintKnapping
+            else if (this.itemInUse != null && par1ItemStack.itemID == SuperBTWDefinitions.flintKnapping.itemID)
+            {
+                int var4 = par1ItemStack.getMaxItemUseDuration() - this.itemInUseCount;
+
+                if (var4 >= 20)
+                {
+                	return Item.bow.getItemIconForUseDuration(5);
+                }
+
+                if (var4 > 13)
+                {
+                    return Item.bow.getItemIconForUseDuration(4);
+                }
+
+                if (var4 > 2)
+                {
+                    return Item.bow.getItemIconForUseDuration(3);
+                }
+                
+                if (var4 > 0)
+                {
+                    return Item.bow.getItemIconForUseDuration(6);
+                }
+            }
+            //AARON CHANGED: The bow stringing animations are below!
+            else if (this.itemInUse != null && par1ItemStack.itemID == SuperBTWDefinitions.bowStringing.itemID)
+            {
+                int var4 = par1ItemStack.getMaxItemUseDuration() - this.itemInUseCount;
+
+                if (var4 >= 21)
+                {
+                	return Item.bow.getItemIconForUseDuration(9);
+                }
+
+                if (var4 > 10)
+                {
+                    return Item.bow.getItemIconForUseDuration(8);
+                }
+
+                if (var4 >= 0)
+                {
+                    return Item.bow.getItemIconForUseDuration(7);
+                }
+            }
+        }
+
+        // FCMOD: Code added (client only)
+        if ( par1ItemStack.itemID == FCBetterThanWolves.fcItemFishingRodBaited.itemID && fishEntity != null )
+        {
+        	var3 = ((FCItemFishingRodBaited)FCBetterThanWolves.fcItemFishingRodBaited).GetCastIcon();
+        }
+        else if ( isUsingItem() && getItemInUse().itemID == FCBetterThanWolves.fcItemCompositeBow.itemID )
+        {
+        	var3 = ((FCItemCompositeBow)FCBetterThanWolves.fcItemCompositeBow).getDrawIcon( getItemInUseDuration() );
+        }
+        // END FCMOD
+
+        return var3;
+    }
+
     public ItemStack getCurrentArmor(int par1)
     {
         return this.inventory.armorItemInSlot(par1);
@@ -1952,7 +2187,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     protected void func_82162_bC() {}
 
     /**
-     * Add experience points to player.
+     * This method increases the player's current amount of experience.
      */
     public void addExperience(int par1)
     {
@@ -2109,27 +2344,26 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
     public boolean canPlayerEdit(int par1, int par2, int par3, int par4, ItemStack par5ItemStack)
     {
-    	// FCMOD: Code added to prevent the player from placing blocks while in mid air
-//    	if ( !capabilities.isCreativeMode && !onGround && !inWater && !isOnLadder() && ridingEntity == null && !handleLavaMovement() )
-//    	{
-//    		return false;
-//    	}
-    	// END FCMOD
-    	
+        // FCMOD: Code added to prevent the player from placing blocks while in mid air
         boolean disableHardcoreBouncing = false;
+
         try {
             Class decoManagerClass;
+
             if (FCUtilsReflection.isObfuscated()) {
                 decoManagerClass = Class.forName("net.minecraft.src.DecoManager");
             }
             else {
                 decoManagerClass = Class.forName("DecoManager");
             }
+
             Method decoInstanceGetter = decoManagerClass.getDeclaredMethod("getInstance");
             FCAddOn decoInstance = (FCAddOn) decoInstanceGetter.invoke(null);
+
             Field disableHarcoreBouncingField = decoManagerClass.getDeclaredField("disableHardcoreBouncing");
             disableHardcoreBouncing = (Boolean) disableHarcoreBouncingField.get(decoInstance);
         } catch (ClassNotFoundException e) {
+
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (SecurityException e) {
@@ -2151,10 +2385,10 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
             }
         }
         // END FCMOD
-    	
-        return this.capabilities.allowEdit ? true : (par5ItemStack != null ? par5ItemStack.func_82835_x() : false);
-    }
 
+        return this.capabilities.allowEdit ? true : (par5ItemStack != null ? par5ItemStack.func_82835_x() : false);
+   
+    }
     /**
      * Get the experience points the entity currently has.
      */
@@ -2191,7 +2425,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     {
         return super.func_94062_bN();
     }
-        
+
     public boolean func_94059_bO()
     {
         return true;
@@ -2280,9 +2514,9 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     }
 
     /**
-     * 0: Tool in Hand; 1-4: Armor
+     * 0 = item, 1-n is armor
      */
-    public ItemStack getEquipmentInSlot(int par1)
+    public ItemStack getCurrentItemOrArmor(int par1)
     {
         return par1 == 0 ? this.inventory.getCurrentItem() : this.inventory.armorInventory[par1 - 1];
     }
@@ -2303,12 +2537,27 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         this.inventory.armorInventory[par1] = par2ItemStack;
     }
 
-    /**
-     * returns the inventory of this entity (only used in EntityPlayerMP it seems)
-     */
-    public ItemStack[] getInventory()
+    public boolean func_98034_c(EntityPlayer par1EntityPlayer)
+    {
+        if (!this.isInvisible())
+        {
+            return false;
+        }
+        else
+        {
+            ScorePlayerTeam var2 = this.getTeam();
+            return var2 == null || par1EntityPlayer == null || par1EntityPlayer.getTeam() != var2 || !var2.func_98297_h();
+        }
+    }
+
+    public ItemStack[] getLastActiveItems()
     {
         return this.inventory.armorInventory;
+    }
+
+    public boolean getHideCape()
+    {
+        return this.getHideCape(1);
     }
 
     public boolean func_96092_aw()
@@ -2336,14 +2585,14 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     
     private boolean usingSpecialKey = false;
     
-//  @Override
-//  public boolean isUsingSpecialKey() {
-//  	return this.usingSpecialKey;
-//  }
-  
-  public void setUsingSpecialKey(boolean usingSpecialKey) {
-  	this.usingSpecialKey = usingSpecialKey;
-  }
+//    @Override
+//    public boolean isUsingSpecialKey() {
+//    	return this.usingSpecialKey;
+//    }
+    
+    public void setUsingSpecialKey(boolean usingSpecialKey) {
+    	this.usingSpecialKey = usingSpecialKey;
+    }
 
     // FCMOD: Added New
     public ChunkCoordinates m_HardcoreSpawnChunk;
@@ -2355,10 +2604,10 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     public int m_iSpawnDimension = 0;
     public int m_iTimesCraftedThisTick = 0;
     public int m_iInGloomCounter = 0;
-    public int m_iAirRecoveryCountdown = 0;    
+    public int m_iAirRecoveryCountdown = 0;
     public int m_iTicksSinceEmoteSound = 0;
     
-	protected float m_fCurrentMiningSpeedModifier = 1F;
+	protected float m_fCurrentMiningSpeedModifier = 1F;	
     
     public static final int m_iGloomCounterBetweenStateChanges = 1200; // 1 minute
     
@@ -2369,22 +2618,23 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 	private static final int m_iFatPenaltyLevelDataWatcherID = 26;
 	private static final int m_iHungerPenaltyLevelDataWatcherID = 27;
 	private static final int m_iHealthPenaltyLevelDataWatcherID = 28;
-    
+	
 	private static final int m_iSpawnChunksVisualizationLocationIDataWatcherID = 29;
 	private static final int m_iSpawnChunksVisualizationLocationJDataWatcherID = 30;
 	private static final int m_iSpawnChunksVisualizationLocationKDataWatcherID = 31;
-	
+    
 	private static final int m_iTicksBetweenEmoteSounds = 10;
 	
 	public static final float m_fExhaustionJumping = 0.2F;
 	public static final float m_fExhaustionJumpingSprinting = 1.0F;
+	
 	
     protected void ReadModDataFromNBT( NBTTagCompound tag )
     {
 	    if ( tag.hasKey( "fcTimeOfLastSpawnAssignment" ) )
 	    {
 	    	m_lTimeOfLastSpawnAssignment = tag.getLong( "fcTimeOfLastSpawnAssignment" );
-}
+	    }
 	    
 	    if ( tag.hasKey( "fcTimeOfLastDimensionSwitch" ) )
 	    {
@@ -2410,12 +2660,11 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 	    {
 	    	m_iInGloomCounter = tag.getInteger( "fcGloomCounter" );
 	    }
-	    
 	    //AARON ADDED to keep track of deaths
 	    if(tag.hasKey("yyNumberOfDeaths"))
-	    {
-	    	deathCounter = tag.getInteger("yyNumberOfDeaths");
-	    }
+	    	{
+	    		deathCounter = tag.getInteger("yyNumberOfDeaths");
+	    	}
     }
     
     protected void WriteModDataToNBT( NBTTagCompound tag )
@@ -2943,10 +3192,10 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
      */
     public int GetValidatedRespawnCoordinates( World newWorld, ChunkCoordinates respawnLocation )
     {
-    	int iReturnValue = 0;
+    	int returnValue = 0;
     	
-    	int iOldDimension = dimension;
-    	int iNewDimension = m_iSpawnDimension;
+    	int oldDimension = dimension;
+    	int newDimension = m_iSpawnDimension;
     	
         IChunkProvider chunkProvider = newWorld.getChunkProvider();
         
@@ -2971,88 +3220,90 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
             }
             else
             {
-            	iReturnValue = 1;
+            	returnValue = 1;
             }
         }
         else
-        {        
-    		iReturnValue = 2;
-    		
-	        if ( newWorld.getBlockId( spawnChunk.posX, spawnChunk.posY, spawnChunk.posZ ) == Block.beacon.blockID )
-	        {
-	        	FCTileEntityBeacon beaconEnt = (FCTileEntityBeacon)newWorld.getBlockTileEntity( spawnChunk.posX, spawnChunk.posY, spawnChunk.posZ );
-	        	
-	        	if ( beaconEnt != null )
-	        	{
-	        		int iBeaconEffect = beaconEnt.getPrimaryEffect();
-	        		
-	        		if ( iBeaconEffect == FCTileEntityBeacon.m_iEffectIDSpawnPoint )
-	        		{
-	        			int iBeaconPowerLevel = beaconEnt.getLevels();
-	        		
-	        			if ( iBeaconPowerLevel > 0 )
-	        			{
-	        				iReturnValue = 3;
-	        				
-		        			if ( iBeaconPowerLevel >= 4 || iOldDimension == iNewDimension )
-		        			{
-		        				boolean bInRange = true;
-		        				
-		        				if ( iBeaconPowerLevel < 3 )
-		        				{
-		        					int iMaxRange = 160;
-		        					
-		        					if ( iBeaconPowerLevel == 2 )
-		        					{
-		        						iMaxRange = 2000;
-		        					}
-		        					
-		        					int iDeltaX = Math.abs( (int)posX - spawnChunk.posX );
-		        					
-		        					if ( iDeltaX > iMaxRange )
-		        					{
-		        						bInRange = false;
-		        					}
-		        					else
-		        					{
-			        					int iDeltaZ = Math.abs( (int)posZ - spawnChunk.posZ );
-			        					
-			        					if ( iDeltaZ > iMaxRange )
-			        					{
-			        						bInRange = false;
-			        					}
-		        					}
-		        				}
-		        				
-		        				if ( bInRange )
-		        				{	        				
-		        					validatedCoords = GetRandomValidSpawnAroundBeaconLocation( newWorld, spawnChunk.posX, spawnChunk.posY, spawnChunk.posZ, iBeaconPowerLevel );
-		        					
-		        					if ( validatedCoords != null )
-		        					{
-		        						iReturnValue = 0;
-		        						beaconEnt.m_bPlayerRespawnedAtBeacon = true;
-		        					}
-		        					else
-		        					{
-		        						iReturnValue = 4;
-		        					}
-		        				}
-		        			}
-	        			}
-	        		}
-	        	}
-	        }
-	        
-	        if ( validatedCoords != null )
-	        {
-	        	respawnLocation.posX = validatedCoords.posX;
-	        	respawnLocation.posY = validatedCoords.posY;
-	        	respawnLocation.posZ = validatedCoords.posZ;
-	        }
+        {
+        	BeaconRespawnValidationResult validatedResult = validateBoundRespawnBeacon(newWorld, oldDimension, newDimension);
+        	returnValue = validatedResult.beaconStatus.id;
+        	
+            if( returnValue == 0)
+            {
+            	respawnLocation.posX = validatedResult.coords.posX;
+            	respawnLocation.posY = validatedResult.coords.posY;
+            	respawnLocation.posZ = validatedResult.coords.posZ;
+            }
         }
         
-        return iReturnValue;
+        return returnValue;
+    }
+    
+    // TODO: lots of hardcoded stuff in here
+    public BeaconRespawnValidationResult validateBoundRespawnBeacon(World world, int oldDimension, int newDimension) {
+    	BeaconRespawnValidationResult result = new BeaconRespawnValidationResult();
+    	result.beaconStatus = BeaconStatus.MISSING;
+		
+    	// Does the beacon exist
+        if ( spawnChunk != null && world.getBlockId(spawnChunk.posX, spawnChunk.posY, spawnChunk.posZ ) == Block.beacon.blockID) {
+        	FCTileEntityBeacon beaconEnt = (FCTileEntityBeacon) world.getBlockTileEntity(spawnChunk.posX, spawnChunk.posY, spawnChunk.posZ);
+        	
+        	if (beaconEnt != null) {
+        		int beaconEffect = beaconEnt.getPrimaryEffect();
+        		
+        		// Is the beacon a steel beacon
+        		if (beaconEffect == FCTileEntityBeacon.m_iEffectIDSpawnPoint) {
+        			int beaconPowerLevel = beaconEnt.getLevels();
+        			
+        			// Validate that the beacon is in fact powered
+        			if (beaconPowerLevel > 0) {
+        				result.beaconStatus = BeaconStatus.OUT_OF_RANGE;
+        				
+        				// Level 4 is across dimensions, otherwise must be the same dimension
+	        			if (beaconPowerLevel >= 4 || oldDimension == newDimension) {
+	        				boolean inRange = true;
+	        				
+	        				// Check range for level 1 and 2
+	        				// Level 3 and 4 have no range limit
+	        				if (beaconPowerLevel < 3) {
+	        					int maxRange = 160;
+	        					
+	        					if (beaconPowerLevel == 2) {
+	        						maxRange = 2000;
+	        					}
+	        					
+	        					int deltaX = Math.abs( (int)posX - spawnChunk.posX );
+	        					
+	        					if (deltaX > maxRange) {
+	        						inRange = false;
+	        					}
+	        					else {
+		        					int deltaZ = Math.abs( (int)posZ - spawnChunk.posZ );
+		        					
+		        					if (deltaZ > maxRange) {
+		        						inRange = false;
+		        					}
+	        					}
+	        				}
+	        				
+	        				if (inRange) {
+	        					result.coords = GetRandomValidSpawnAroundBeaconLocation( world, spawnChunk.posX, spawnChunk.posY, spawnChunk.posZ, beaconPowerLevel );
+	        					
+	        					if (result.coords != null) {
+	        						result.beaconStatus = BeaconStatus.VALID;
+	        						beaconEnt.m_bPlayerRespawnedAtBeacon = true;
+	        					}
+	        					else {
+	        						result.beaconStatus = BeaconStatus.OBSTRUCTED;
+	        					}
+	        				}
+	        			}
+        			}
+        		}
+        	}
+        }
+        
+        return result;
     }
     
     private boolean IsValidRespawnLocation( World world, int i, int j, int k )
@@ -3156,8 +3407,8 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     	}
     	
     	return false;
-    }    
-    	
+    }
+    
     protected void UpdateModStatusVariables()
     {
     	UpdateGloomState();
@@ -3361,12 +3612,12 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     {
         itemInUseCount = iCount;
     }
-    
+
     @Override
     public boolean GetCanBeHeadCrabbed( boolean bSquidInWater )
     {
     	return isEntityAlive() && !capabilities.disableDamage && 
-			riddenByEntity == null && ridingEntity == null;
+    		riddenByEntity == null && ridingEntity == null;
     }
     
     @Override
@@ -3398,7 +3649,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     		super.mountEntity( entityToMount );
     	}
     }
-    
+
     public boolean CanDrink()
     {
         return !isPotionActive( Potion.hunger );
@@ -3420,6 +3671,71 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     static public boolean InstallationIntegrityTestPlayer()
     {
     	return true;
+    }
+    
+    private static final Map<String, String> uuids = new HashMap<String, String>();
+    
+    public static String fetchUuid(String userName) {
+        if (uuids.containsKey(userName))
+            return uuids.get(userName);
+
+        HttpURLConnection profileConn = null;
+        String id = null;
+
+        try {
+            URL profileUrl = new URL("https://api.mojang.com/users/profiles/minecraft/" + userName);
+            profileConn = (HttpURLConnection) profileUrl.openConnection();
+            profileConn.setDoInput(true);
+            profileConn.setDoOutput(false);
+            profileConn.connect();
+
+            if (profileConn.getResponseCode() / 100 == 4) {
+                return null;
+            }
+
+            JsonRootNode json = (new JdomParser())
+                    .parse(new InputStreamReader(profileConn.getInputStream()));
+
+            String name = json.getStringValue("name");
+            id = json.getStringValue("id");
+
+            if (userName.equals(name)) {
+                uuids.put(userName, id);
+            } else {
+                id = null;
+            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (profileConn != null)
+                profileConn.disconnect();
+        }
+        return id;
+    }
+    
+    public static class BeaconRespawnValidationResult {
+    	public BeaconStatus beaconStatus;
+    	
+    	public ChunkCoordinates coords;
+    	
+    	public void setCoords(ChunkCoordinates coords) {
+    		this.coords = coords;
+    	}
+    	
+    	public enum BeaconStatus {
+    		VALID(0),
+    		MISSING(2),
+    		OUT_OF_RANGE(3),
+    		OBSTRUCTED(4);
+    		
+    		public final int id;
+    		
+    		private BeaconStatus(int id) {
+    			this.id = id;
+    		}
+    	}
     }
     // END FCMOD
 }

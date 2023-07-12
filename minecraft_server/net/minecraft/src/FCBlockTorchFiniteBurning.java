@@ -164,7 +164,7 @@ public class FCBlockTorchFiniteBurning extends FCBlockTorchBaseBurning
             }
         }
 	}
-	
+
 	@Override
     public boolean CanBeCrushedByFallingEntity( World world, int i, int j, int k, EntityFallingSand entity )
     {
@@ -180,11 +180,11 @@ public class FCBlockTorchFiniteBurning extends FCBlockTorchBaseBurning
     @Override
 	public void OnFluidFlowIntoBlock( World world, int i, int j, int k, BlockFluid newBlock )
 	{
-        world.playAuxSFX( FCBetterThanWolves.m_iFireFizzSoundAuxFXID, i, j, k, 0 );            
+        world.playAuxSFX( FCBetterThanWolves.m_iFireFizzSoundAuxFXID, i, j, k, 0 );
         
 		m_bIsBeingCrushed = true;        
 	}
-
+    
 	@Override
     public boolean OnRotatedAroundBlockOnTurntableToFacing( World world, int i, int j, int k, int iFacing  )
     {
@@ -227,5 +227,26 @@ public class FCBlockTorchFiniteBurning extends FCBlockTorchBaseBurning
 	}
 	
 	//----------- Client Side Functionality -----------//
+	
+    private Icon m_iconSputtering;
+    
+	@Override
+    public void registerIcons( IconRegister register )
+    {
+		super.registerIcons( register );
+		
+		m_iconSputtering = register.registerIcon( "fcBlockTorchFiniteSputtering" );		
+    }
+	
+	@Override
+    public Icon getIcon( int iSide, int iMetadata )
+    {
+		if ( GetIsSputtering( iMetadata ) )
+		{
+			return m_iconSputtering;
+		}
+		
+		return super.getIcon( iSide, iMetadata );
+    }
 }
     

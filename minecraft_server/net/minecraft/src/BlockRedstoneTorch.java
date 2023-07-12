@@ -1,3 +1,5 @@
+//AARON MODIFIES to make it right click-able 
+
 package net.minecraft.src;
 
 import java.util.ArrayList;
@@ -251,12 +253,73 @@ public class BlockRedstoneTorch extends FCBlockTorchBase
     }
 
     /**
+     * A randomly called display update to be able to add particles or other items for display
+     */
+    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    {
+        if (this.torchActive)
+        {
+            int var6 = par1World.getBlockMetadata(par2, par3, par4);
+            double var7 = (double)((float)par2 + 0.5F) + (double)(par5Random.nextFloat() - 0.5F) * 0.2D;
+            double var9 = (double)((float)par3 + 0.7F) + (double)(par5Random.nextFloat() - 0.5F) * 0.2D;
+            double var11 = (double)((float)par4 + 0.5F) + (double)(par5Random.nextFloat() - 0.5F) * 0.2D;
+            double var13 = 0.2199999988079071D;
+            double var15 = 0.27000001072883606D;
+
+            if (var6 == 1)
+            {
+                par1World.spawnParticle("reddust", var7 - var15, var9 + var13, var11, 0.0D, 0.0D, 0.0D);
+            }
+            else if (var6 == 2)
+            {
+                par1World.spawnParticle("reddust", var7 + var15, var9 + var13, var11, 0.0D, 0.0D, 0.0D);
+            }
+            else if (var6 == 3)
+            {
+                par1World.spawnParticle("reddust", var7, var9 + var13, var11 - var15, 0.0D, 0.0D, 0.0D);
+            }
+            else if (var6 == 4)
+            {
+                par1World.spawnParticle("reddust", var7, var9 + var13, var11 + var15, 0.0D, 0.0D, 0.0D);
+            }
+            else
+            {
+                par1World.spawnParticle("reddust", var7, var9, var11, 0.0D, 0.0D, 0.0D);
+            }
+        }
+    }
+
+    /**
+     * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
+     */
+    public int idPicked(World par1World, int par2, int par3, int par4)
+    {
+        return Block.torchRedstoneActive.blockID;
+    }
+
+    /**
      * Returns true if the given block ID is equivalent to this one. Example: redstoneTorchOn matches itself and
      * redstoneTorchOff, and vice versa. Most blocks only match themselves.
      */
     public boolean isAssociatedBlockID(int par1)
     {
         return par1 == Block.torchRedstoneIdle.blockID || par1 == Block.torchRedstoneActive.blockID;
+    }
+
+    /**
+     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
+     * is the only chance you get to register icons.
+     */
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+        if (this.torchActive)
+        {
+            this.blockIcon = par1IconRegister.registerIcon("redtorch_lit");
+        }
+        else
+        {
+            this.blockIcon = par1IconRegister.registerIcon("redtorch");
+        }
     }
     
     // FCMOD: Added new
@@ -274,7 +337,7 @@ public class BlockRedstoneTorch extends FCBlockTorchBase
             }
         }
     }
-    
+	
 	@Override
 	public boolean TriggersBuddy()
 	{

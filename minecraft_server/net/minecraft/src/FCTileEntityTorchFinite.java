@@ -9,7 +9,7 @@ public class FCTileEntityTorchFinite extends TileEntity
     
     static public final int m_iMaxBurnTime = 24000; // full day
 	static public final int m_iSputterTime = 30 * 20; // 30 seconds
-		
+	
 	//AARON ADDED
 	public boolean dropTorch = true;
 	public boolean canDropTorch() 
@@ -20,7 +20,7 @@ public class FCTileEntityTorchFinite extends TileEntity
 	{
 		this.dropTorch = dropTorch;
 	}
-	
+
 	public int m_iBurnTimeCountdown = 0;
 	
     public FCTileEntityTorchFinite()
@@ -63,8 +63,8 @@ public class FCTileEntityTorchFinite extends TileEntity
     {
     	super.updateEntity();   
 
-        if ( !worldObj.isRemote )
-        {
+    	if ( !worldObj.isRemote )
+    	{
 			m_iBurnTimeCountdown--;
 			
 			if ( m_iBurnTimeCountdown <= 0 || ( worldObj.rand.nextFloat() <= m_fChanceOfGoingOutFromRain && IsRainingOnTorch() ) )

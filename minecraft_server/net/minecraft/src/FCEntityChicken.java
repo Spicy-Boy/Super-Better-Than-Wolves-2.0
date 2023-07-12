@@ -348,20 +348,20 @@ public class FCEntityChicken extends EntityChicken
     
 	//----------- Client Side Functionality -----------//    
 	
-//	@Override
-//    public String getTexture()
-//    {
-//    	int iHungerLevel = GetHungerLevel();
-//    	
-//    	if ( iHungerLevel == 1 )
-//    	{
-//			return "/btwmodtex/fcChickenFamished.png";
-//    	}
-//    	else if ( iHungerLevel == 2 )
-//    	{
-//			return "/btwmodtex/fcChickenStarving.png";
-//    	}
-//    	
-//        return super.getTexture();
-//    }
+	@Override
+    public String getTexture()
+    {
+    	int iHungerLevel = GetHungerLevel();
+    	
+    	if ( iHungerLevel == 1 )
+    	{
+			return "/btwmodtex/fcChickenFamished.png";
+    	}
+    	else if ( iHungerLevel == 2 )
+    	{
+			return "/btwmodtex/fcChickenStarving.png";
+    	}
+    	
+        return super.getTexture();
+    }
 }

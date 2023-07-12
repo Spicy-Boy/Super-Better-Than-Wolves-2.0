@@ -42,7 +42,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     /** entities added to this list will  be packet29'd to the player */
     public final List destroyedItemsNetCache = new LinkedList();
 
-    /** amount of health the client was last set to */
+    /** set to getHealth */
     private int lastHealth = -99999999;
 
     /** set to foodStats.GetFoodLevel */
@@ -54,8 +54,8 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     /** Amount of experience the client was last set to */
     private int lastExperience = -99999999;
 
-    /** how many ticks of invulnerability(spawn protection) this player has */
-    private int ticksOfInvuln = 60;
+    /** de-increments onUpdate, attackEntityFrom is ignored if this >0 */
+    private int initialInvulnerability = 60;
 
     /** must be between 3>x>15 (strictly between) */
     private int renderDistance = 0;
@@ -68,10 +68,10 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     private int currentWindowId = 0;
 
     /**
-     * set to true when player is moving quantity of items from one inventory to another(crafting) but item in either
-     * slot is not changed
+     * poor mans concurency flag, lets hope the jvm doesn't re-order the setting of this flag wrt the inventory change
+     * on the next line
      */
-    public boolean isChangingQuantityOnly;
+    public boolean playerInventoryBeingManipulated;
     public int ping;
 
     /**
@@ -151,7 +151,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
     public void addSelfToInternalCraftingInventory()
     {
-        this.openContainer.onCraftGuiOpened(this);
+        this.openContainer.addCraftingToCrafters(this);
     }
 
     /**
@@ -173,7 +173,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     public void onUpdate()
     {
         this.theItemInWorldManager.updateBlockRemoving();
-        --this.ticksOfInvuln;
+        --this.initialInvulnerability;
         this.openContainer.detectAndSendChanges();
 
         while (!this.destroyedItemsNetCache.isEmpty())
@@ -189,7 +189,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
                 var3.remove();
             }
 
-            this.playerNetServerHandler.sendPacket(new Packet29DestroyEntity(var2));
+            this.playerNetServerHandler.sendPacketToPlayer(new Packet29DestroyEntity(var2));
         }
 
         // FCMOD: Changed
@@ -208,19 +208,19 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
                 if (var9 != null && this.worldObj.blockExists(var9.chunkXPos << 4, 0, var9.chunkZPos << 4))
                 {
                     var6.add(this.worldObj.getChunkFromChunkCoords(var9.chunkXPos, var9.chunkZPos));
-                    var8.addAll(((WorldServer)this.worldObj).getTileEntityList(var9.chunkXPos * 16, 0, var9.chunkZPos * 16, var9.chunkXPos * 16 + 16, 256, var9.chunkZPos * 16 + 16));
+                    var8.addAll(((WorldServer)this.worldObj).getAllTileEntityInBox(var9.chunkXPos * 16, 0, var9.chunkZPos * 16, var9.chunkXPos * 16 + 16, 256, var9.chunkZPos * 16 + 16));
                 }
             }
 
             if (!var6.isEmpty())
             {
-                this.playerNetServerHandler.sendPacket(new Packet56MapChunks(var6));
+                this.playerNetServerHandler.sendPacketToPlayer(new Packet56MapChunks(var6));
                 Iterator var11 = var8.iterator();
 
                 while (var11.hasNext())
                 {
                     TileEntity var5 = (TileEntity)var11.next();
-                    this.getTileEntityInfo(var5);
+                    this.sendTileEntityToPlayer(var5);
                 }
 
                 var11 = var6.iterator();
@@ -264,38 +264,38 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
             {
                 ItemStack var5 = this.inventory.getStackInSlot(var1);
 
-                if (var5 != null && Item.itemsList[var5.itemID].isMap() && this.playerNetServerHandler.getNumChunkDataPackets() <= 5)
+                if (var5 != null && Item.itemsList[var5.itemID].isMap() && this.playerNetServerHandler.packetSize() <= 5)
                 {
-                    Packet var6 = ((ItemMapBase)Item.itemsList[var5.itemID]).getUpdatePacket(var5, this.worldObj, this);
+                    Packet var6 = ((ItemMapBase)Item.itemsList[var5.itemID]).createMapDataPacket(var5, this.worldObj, this);
 
                     if (var6 != null)
                     {
-                        this.playerNetServerHandler.sendPacket(var6);
+                        this.playerNetServerHandler.sendPacketToPlayer(var6);
                     }
                 }
             }
 
-            // FCMOD: Code changed to relay changes in food saturation
-            /*
+        	// FCMOD: Code changed to relay changes in food saturation
+        	/*
             if (this.getHealth() != this.lastHealth || this.lastFoodLevel != this.foodStats.getFoodLevel() || this.foodStats.getSaturationLevel() == 0.0F != this.wasHungry)
-            */
-            if (this.getHealth() != this.lastHealth || this.lastFoodLevel != this.foodStats.getFoodLevel() || this.foodStats.getSaturationLevel() == 0.0F != this.wasHungry ||
-                m_iLastFoodSaturation != (int)( foodStats.getSaturationLevel() * 8F ) )
-            // END FCMOD
+        	*/
+        	if (this.getHealth() != this.lastHealth || this.lastFoodLevel != this.foodStats.getFoodLevel() || this.foodStats.getSaturationLevel() == 0.0F != this.wasHungry ||
+        		m_iLastFoodSaturation != (int)( foodStats.getSaturationLevel() * 8F ) )
+    		// END FCMOD
             {
-                this.playerNetServerHandler.sendPacket(new Packet8UpdateHealth(this.getHealth(), this.foodStats.getFoodLevel(), this.foodStats.getSaturationLevel()));
+                this.playerNetServerHandler.sendPacketToPlayer(new Packet8UpdateHealth(this.getHealth(), this.foodStats.getFoodLevel(), this.foodStats.getSaturationLevel()));
                 this.lastHealth = this.getHealth();
                 this.lastFoodLevel = this.foodStats.getFoodLevel();
                 this.wasHungry = this.foodStats.getSaturationLevel() == 0.0F;
-                // FCMOD: Code added
-                m_iLastFoodSaturation = (int)( foodStats.getSaturationLevel() * 8F );
-                // END FCMOD
+            	// FCMOD: Code added
+            	m_iLastFoodSaturation = (int)( foodStats.getSaturationLevel() * 8F );
+            	// END FCMOD
             }
 
             if (this.experienceTotal != this.lastExperience)
             {
                 this.lastExperience = this.experienceTotal;
-                this.playerNetServerHandler.sendPacket(new Packet43Experience(this.experience, this.experienceTotal, this.experienceLevel));
+                this.playerNetServerHandler.sendPacketToPlayer(new Packet43Experience(this.experience, this.experienceTotal, this.experienceLevel));
             }
         }
         catch (Throwable var4)
@@ -354,7 +354,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         {
             boolean var3 = this.mcServer.isDedicatedServer() && this.mcServer.isPVPEnabled() && "fall".equals(par1DamageSource.damageType);
 
-            if (!var3 && this.ticksOfInvuln > 0 && par1DamageSource != DamageSource.outOfWorld)
+            if (!var3 && this.initialInvulnerability > 0 && par1DamageSource != DamageSource.outOfWorld)
             {
                 return false;
             }
@@ -390,14 +390,17 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         return !this.mcServer.isPVPEnabled() ? false : super.func_96122_a(par1EntityPlayer);
     }
 
-    public void travelToTheEnd(int par1)
+    /**
+     * Teleports the entity to another dimension. Params: Dimension number to teleport to
+     */
+    public void travelToDimension(int par1)
     {
         if (this.dimension == 1 && par1 == 1)
         {
             this.triggerAchievement(AchievementList.theEnd2);
             this.worldObj.removeEntity(this);
             this.playerConqueredTheEnd = true;
-            this.playerNetServerHandler.sendPacket(new Packet70GameEvent(4, 0));
+            this.playerNetServerHandler.sendPacketToPlayer(new Packet70GameEvent(4, 0));
         }
         else
         {
@@ -426,7 +429,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     }
 
     /**
-     * gets description packets from all TileEntity's that override func_20070
+     * called from onUpdate for all tileEntity in specific chunks
      */
     // FCMOD: Changed (server only) to match name on client
     //private void getTileEntityInfo(TileEntity par1TileEntity)
@@ -439,7 +442,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
             if (var2 != null)
             {
-                this.playerNetServerHandler.sendPacket(var2);
+                this.playerNetServerHandler.sendPacketToPlayer(var2);
             }
         }
     }
@@ -454,7 +457,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     }
 
     /**
-     * puts player to sleep on specified bed if possible
+     * Attempts to have the player sleep in a bed at the specified location.
      */
     public EnumStatus sleepInBedAt(int par1, int par2, int par3)
     {
@@ -463,9 +466,9 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         if (var4 == EnumStatus.OK)
         {
             Packet17Sleep var5 = new Packet17Sleep(this, 0, par1, par2, par3);
-            this.getServerForPlayer().getEntityTracker().sendPacketToTrackedPlayers(this, var5);
+            this.getServerForPlayer().getEntityTracker().sendPacketToAllPlayersTrackingEntity(this, var5);
             this.playerNetServerHandler.setPlayerLocation(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
-            this.playerNetServerHandler.sendPacket(var5);
+            this.playerNetServerHandler.sendPacketToPlayer(var5);
         }
 
         return var4;
@@ -478,7 +481,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         if (this.isPlayerSleeping())
         {
-            this.getServerForPlayer().getEntityTracker().sendPacketToTrackedPlayersAndTrackedEntity(this, new Packet18Animation(this, 3));
+            this.getServerForPlayer().getEntityTracker().sendPacketToAllAssociatedPlayers(this, new Packet18Animation(this, 3));
         }
 
         super.wakeUpPlayer(par1, par2, par3);
@@ -495,7 +498,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     public void mountEntity(Entity par1Entity)
     {
         super.mountEntity(par1Entity);
-        this.playerNetServerHandler.sendPacket(new Packet39AttachEntity(this, this.ridingEntity));
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet39AttachEntity(this, this.ridingEntity));
         this.playerNetServerHandler.setPlayerLocation(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
     }
 
@@ -506,43 +509,40 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     protected void updateFallState(double par1, boolean par3) {}
 
     /**
-     * process player falling based on movement packet
+     * likeUpdateFallState, but called from updateFlyingState, rather than moveEntity
      */
-    public void handleFalling(double par1, boolean par3)
+    public void updateFlyingState(double par1, boolean par3)
     {
         super.updateFallState(par1, par3);
     }
 
-    /**
-     * get the next window id to use
-     */
-    private void getNextWindowId()
+    private void incrementWindowID()
     {
         this.currentWindowId = this.currentWindowId % 100 + 1;
     }
-
+    
     /**
      * Displays the crafting GUI for a workbench.
      */
     public void displayGUIWorkbench(int par1, int par2, int par3)
     {
-        this.getNextWindowId();
-        this.playerNetServerHandler.sendPacket(new Packet100OpenWindow(this.currentWindowId, 1, "Crafting", 9, true));
+        this.incrementWindowID();
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet100OpenWindow(this.currentWindowId, 1, "Crafting", 9, true));
         // FCMOD: Changed
         //this.openContainer = new ContainerWorkbench(this.inventory, this.worldObj, par1, par2, par3);
         openContainer = new FCContainerWorkbench( inventory, worldObj, par1, par2, par3 );
         // END FCMOD
         this.openContainer.windowId = this.currentWindowId;
-        this.openContainer.onCraftGuiOpened(this);
+        this.openContainer.addCraftingToCrafters(this);
     }
 
     public void displayGUIEnchantment(int par1, int par2, int par3, String par4Str)
     {
-        this.getNextWindowId();
-        this.playerNetServerHandler.sendPacket(new Packet100OpenWindow(this.currentWindowId, 4, par4Str == null ? "" : par4Str, 9, par4Str != null));
+        this.incrementWindowID();
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet100OpenWindow(this.currentWindowId, 4, par4Str == null ? "" : par4Str, 9, par4Str != null));
         this.openContainer = new ContainerEnchantment(this.inventory, this.worldObj, par1, par2, par3);
         this.openContainer.windowId = this.currentWindowId;
-        this.openContainer.onCraftGuiOpened(this);
+        this.openContainer.addCraftingToCrafters(this);
     }
 
     /**
@@ -550,11 +550,11 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      */
     public void displayGUIAnvil(int par1, int par2, int par3)
     {
-        this.getNextWindowId();
-        this.playerNetServerHandler.sendPacket(new Packet100OpenWindow(this.currentWindowId, 8, "Repairing", 9, true));
+        this.incrementWindowID();
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet100OpenWindow(this.currentWindowId, 8, "Repairing", 9, true));
         this.openContainer = new ContainerRepair(this.inventory, this.worldObj, par1, par2, par3, this);
         this.openContainer.windowId = this.currentWindowId;
-        this.openContainer.onCraftGuiOpened(this);
+        this.openContainer.addCraftingToCrafters(this);
     }
 
     /**
@@ -567,29 +567,29 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
             this.closeScreen();
         }
 
-        this.getNextWindowId();
-        this.playerNetServerHandler.sendPacket(new Packet100OpenWindow(this.currentWindowId, 0, par1IInventory.getInvName(), par1IInventory.getSizeInventory(), par1IInventory.isInvNameLocalized()));
+        this.incrementWindowID();
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet100OpenWindow(this.currentWindowId, 0, par1IInventory.getInvName(), par1IInventory.getSizeInventory(), par1IInventory.isInvNameLocalized()));
         this.openContainer = new ContainerChest(this.inventory, par1IInventory);
         this.openContainer.windowId = this.currentWindowId;
-        this.openContainer.onCraftGuiOpened(this);
+        this.openContainer.addCraftingToCrafters(this);
     }
 
     public void displayGUIHopper(TileEntityHopper par1TileEntityHopper)
     {
-        this.getNextWindowId();
-        this.playerNetServerHandler.sendPacket(new Packet100OpenWindow(this.currentWindowId, 9, par1TileEntityHopper.getInvName(), par1TileEntityHopper.getSizeInventory(), par1TileEntityHopper.isInvNameLocalized()));
+        this.incrementWindowID();
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet100OpenWindow(this.currentWindowId, 9, par1TileEntityHopper.getInvName(), par1TileEntityHopper.getSizeInventory(), par1TileEntityHopper.isInvNameLocalized()));
         this.openContainer = new ContainerHopper(this.inventory, par1TileEntityHopper);
         this.openContainer.windowId = this.currentWindowId;
-        this.openContainer.onCraftGuiOpened(this);
+        this.openContainer.addCraftingToCrafters(this);
     }
 
     public void displayGUIHopperMinecart(EntityMinecartHopper par1EntityMinecartHopper)
     {
-        this.getNextWindowId();
-        this.playerNetServerHandler.sendPacket(new Packet100OpenWindow(this.currentWindowId, 9, par1EntityMinecartHopper.getInvName(), par1EntityMinecartHopper.getSizeInventory(), par1EntityMinecartHopper.isInvNameLocalized()));
+        this.incrementWindowID();
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet100OpenWindow(this.currentWindowId, 9, par1EntityMinecartHopper.getInvName(), par1EntityMinecartHopper.getSizeInventory(), par1EntityMinecartHopper.isInvNameLocalized()));
         this.openContainer = new ContainerHopper(this.inventory, par1EntityMinecartHopper);
         this.openContainer.windowId = this.currentWindowId;
-        this.openContainer.onCraftGuiOpened(this);
+        this.openContainer.addCraftingToCrafters(this);
     }
 
     /**
@@ -597,11 +597,11 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      */
     public void displayGUIFurnace(TileEntityFurnace par1TileEntityFurnace)
     {
-        this.getNextWindowId();
-        this.playerNetServerHandler.sendPacket(new Packet100OpenWindow(this.currentWindowId, 2, par1TileEntityFurnace.getInvName(), par1TileEntityFurnace.getSizeInventory(), par1TileEntityFurnace.isInvNameLocalized()));
+        this.incrementWindowID();
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet100OpenWindow(this.currentWindowId, 2, par1TileEntityFurnace.getInvName(), par1TileEntityFurnace.getSizeInventory(), par1TileEntityFurnace.isInvNameLocalized()));
         this.openContainer = new ContainerFurnace(this.inventory, par1TileEntityFurnace);
         this.openContainer.windowId = this.currentWindowId;
-        this.openContainer.onCraftGuiOpened(this);
+        this.openContainer.addCraftingToCrafters(this);
     }
 
     /**
@@ -609,11 +609,11 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      */
     public void displayGUIDispenser(TileEntityDispenser par1TileEntityDispenser)
     {
-        this.getNextWindowId();
-        this.playerNetServerHandler.sendPacket(new Packet100OpenWindow(this.currentWindowId, par1TileEntityDispenser instanceof TileEntityDropper ? 10 : 3, par1TileEntityDispenser.getInvName(), par1TileEntityDispenser.getSizeInventory(), par1TileEntityDispenser.isInvNameLocalized()));
+        this.incrementWindowID();
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet100OpenWindow(this.currentWindowId, par1TileEntityDispenser instanceof TileEntityDropper ? 10 : 3, par1TileEntityDispenser.getInvName(), par1TileEntityDispenser.getSizeInventory(), par1TileEntityDispenser.isInvNameLocalized()));
         this.openContainer = new ContainerDispenser(this.inventory, par1TileEntityDispenser);
         this.openContainer.windowId = this.currentWindowId;
-        this.openContainer.onCraftGuiOpened(this);
+        this.openContainer.addCraftingToCrafters(this);
     }
 
     /**
@@ -621,11 +621,11 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      */
     public void displayGUIBrewingStand(TileEntityBrewingStand par1TileEntityBrewingStand)
     {
-        this.getNextWindowId();
-        this.playerNetServerHandler.sendPacket(new Packet100OpenWindow(this.currentWindowId, 5, par1TileEntityBrewingStand.getInvName(), par1TileEntityBrewingStand.getSizeInventory(), par1TileEntityBrewingStand.isInvNameLocalized()));
+        this.incrementWindowID();
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet100OpenWindow(this.currentWindowId, 5, par1TileEntityBrewingStand.getInvName(), par1TileEntityBrewingStand.getSizeInventory(), par1TileEntityBrewingStand.isInvNameLocalized()));
         this.openContainer = new ContainerBrewingStand(this.inventory, par1TileEntityBrewingStand);
         this.openContainer.windowId = this.currentWindowId;
-        this.openContainer.onCraftGuiOpened(this);
+        this.openContainer.addCraftingToCrafters(this);
     }
 
     /**
@@ -633,27 +633,27 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      */
     public void displayGUIBeacon(TileEntityBeacon par1TileEntityBeacon)
     {
-        this.getNextWindowId();
-        this.playerNetServerHandler.sendPacket(new Packet100OpenWindow(this.currentWindowId, 7, par1TileEntityBeacon.getInvName(), par1TileEntityBeacon.getSizeInventory(), par1TileEntityBeacon.isInvNameLocalized()));
+        this.incrementWindowID();
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet100OpenWindow(this.currentWindowId, 7, par1TileEntityBeacon.getInvName(), par1TileEntityBeacon.getSizeInventory(), par1TileEntityBeacon.isInvNameLocalized()));
         this.openContainer = new ContainerBeacon(this.inventory, par1TileEntityBeacon);
         this.openContainer.windowId = this.currentWindowId;
-        this.openContainer.onCraftGuiOpened(this);
+        this.openContainer.addCraftingToCrafters(this);
     }
 
     public void displayGUIMerchant(IMerchant par1IMerchant, String par2Str)
     {
-        this.getNextWindowId();
+        this.incrementWindowID();
         this.openContainer = new ContainerMerchant(this.inventory, par1IMerchant, this.worldObj);
         this.openContainer.windowId = this.currentWindowId;
         // FCMOD: Code moved slightly later to avoid init order problems
         /*
-        this.openContainer.onCraftGuiOpened(this);
+        this.openContainer.addCraftingToCrafters(this);
         */
         // END FCMOD
         InventoryMerchant var3 = ((ContainerMerchant)this.openContainer).getMerchantInventory();
-        this.playerNetServerHandler.sendPacket(new Packet100OpenWindow(this.currentWindowId, 6, par2Str == null ? "" : par2Str, var3.getSizeInventory(), par2Str != null));
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet100OpenWindow(this.currentWindowId, 6, par2Str == null ? "" : par2Str, var3.getSizeInventory(), par2Str != null));
         // FCMOD: Code moved from above to avoid init order problems
-        this.openContainer.onCraftGuiOpened(this);
+        this.openContainer.addCraftingToCrafters(this);
         // END FCMOD
         MerchantRecipeList var4 = par1IMerchant.getRecipes(this);
 
@@ -665,7 +665,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
                 DataOutputStream var6 = new DataOutputStream(var5);
                 var6.writeInt(this.currentWindowId);
                 var4.writeRecipiesToStream(var6);
-                this.playerNetServerHandler.sendPacket(new Packet250CustomPayload("MC|TrList", var5.toByteArray()));
+                this.playerNetServerHandler.sendPacketToPlayer(new Packet250CustomPayload("MC|TrList", var5.toByteArray()));
             }
             catch (IOException var7)
             {
@@ -682,25 +682,22 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         if (!(par1Container.getSlot(par2) instanceof SlotCrafting))
         {
-            if (!this.isChangingQuantityOnly)
+            if (!this.playerInventoryBeingManipulated)
             {
-                this.playerNetServerHandler.sendPacket(new Packet103SetSlot(par1Container.windowId, par2, par3ItemStack));
+                this.playerNetServerHandler.sendPacketToPlayer(new Packet103SetSlot(par1Container.windowId, par2, par3ItemStack));
             }
         }
     }
 
     public void sendContainerToPlayer(Container par1Container)
     {
-        this.updateCraftingInventory(par1Container, par1Container.getInventory());
+        this.sendContainerAndContentsToPlayer(par1Container, par1Container.getInventory());
     }
 
-    /**
-     * update the crafting window inventory with the items in the list
-     */
-    public void updateCraftingInventory(Container par1Container, List par2List)
+    public void sendContainerAndContentsToPlayer(Container par1Container, List par2List)
     {
-        this.playerNetServerHandler.sendPacket(new Packet104WindowItems(par1Container.windowId, par2List));
-        this.playerNetServerHandler.sendPacket(new Packet103SetSlot(-1, -1, this.inventory.getItemStack()));
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet104WindowItems(par1Container.windowId, par2List));
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet103SetSlot(-1, -1, this.inventory.getItemStack()));
     }
 
     /**
@@ -710,16 +707,16 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      */
     public void sendProgressBarUpdate(Container par1Container, int par2, int par3)
     {
-        this.playerNetServerHandler.sendPacket(new Packet105UpdateProgressbar(par1Container.windowId, par2, par3));
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet105UpdateProgressbar(par1Container.windowId, par2, par3));
     }
 
     /**
-     * set current crafting inventory back to the 2x2 square
+     * sets current screen to null (used on escape buttons of GUIs)
      */
     public void closeScreen()
     {
-        this.playerNetServerHandler.sendPacket(new Packet101CloseWindow(this.openContainer.windowId));
-        this.closeCraftingGui();
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet101CloseWindow(this.openContainer.windowId));
+        this.closeInventory();
     }
 
     /**
@@ -727,16 +724,13 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      */
     public void updateHeldItem()
     {
-        if (!this.isChangingQuantityOnly)
+        if (!this.playerInventoryBeingManipulated)
         {
-            this.playerNetServerHandler.sendPacket(new Packet103SetSlot(-1, -1, this.inventory.getItemStack()));
+            this.playerNetServerHandler.sendPacketToPlayer(new Packet103SetSlot(-1, -1, this.inventory.getItemStack()));
         }
     }
 
-    /**
-     * close the current crafting gui
-     */
-    public void closeCraftingGui()
+    public void closeInventory()
     {
         this.openContainer.onCraftGuiClosed(this);
         this.openContainer = this.inventoryContainer;
@@ -753,11 +747,11 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
             {
                 while (par2 > 100)
                 {
-                    this.playerNetServerHandler.sendPacket(new Packet200Statistic(par1StatBase.statId, 100));
+                    this.playerNetServerHandler.sendPacketToPlayer(new Packet200Statistic(par1StatBase.statId, 100));
                     par2 -= 100;
                 }
 
-                this.playerNetServerHandler.sendPacket(new Packet200Statistic(par1StatBase.statId, par2));
+                this.playerNetServerHandler.sendPacketToPlayer(new Packet200Statistic(par1StatBase.statId, par2));
             }
         }
     }
@@ -791,7 +785,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         StringTranslate var2 = StringTranslate.getInstance();
         String var3 = var2.translateKey(par1Str);
-        this.playerNetServerHandler.sendPacket(new Packet3Chat(var3));
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet3Chat(var3));
     }
 
     /**
@@ -799,7 +793,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      */
     protected void onItemUseFinish()
     {
-        this.playerNetServerHandler.sendPacket(new Packet38EntityStatus(this.entityId, (byte)9));
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet38EntityStatus(this.entityId, (byte)9));
         super.onItemUseFinish();
     }
 
@@ -812,7 +806,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
         if (par1ItemStack != null && par1ItemStack.getItem() != null && par1ItemStack.getItem().getItemUseAction(par1ItemStack) == EnumAction.eat)
         {
-            this.getServerForPlayer().getEntityTracker().sendPacketToTrackedPlayersAndTrackedEntity(this, new Packet18Animation(this, 5));
+            this.getServerForPlayer().getEntityTracker().sendPacketToAllAssociatedPlayers(this, new Packet18Animation(this, 5));
         }
     }
 
@@ -832,23 +826,23 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     protected void onNewPotionEffect(PotionEffect par1PotionEffect)
     {
         super.onNewPotionEffect(par1PotionEffect);
-        this.playerNetServerHandler.sendPacket(new Packet41EntityEffect(this.entityId, par1PotionEffect));
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet41EntityEffect(this.entityId, par1PotionEffect));
     }
 
     protected void onChangedPotionEffect(PotionEffect par1PotionEffect)
     {
         super.onChangedPotionEffect(par1PotionEffect);
-        this.playerNetServerHandler.sendPacket(new Packet41EntityEffect(this.entityId, par1PotionEffect));
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet41EntityEffect(this.entityId, par1PotionEffect));
     }
 
     protected void onFinishedPotionEffect(PotionEffect par1PotionEffect)
     {
         super.onFinishedPotionEffect(par1PotionEffect);
-        this.playerNetServerHandler.sendPacket(new Packet42RemoveEntityEffect(this.entityId, par1PotionEffect));
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet42RemoveEntityEffect(this.entityId, par1PotionEffect));
     }
 
     /**
-     * Sets the position of the entity and updates the 'last' variables
+     * Move the entity to the coordinates informed, but keep yaw/pitch values.
      */
     public void setPositionAndUpdate(double par1, double par3, double par5)
     {
@@ -860,12 +854,12 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      */
     public void onCriticalHit(Entity par1Entity)
     {
-        this.getServerForPlayer().getEntityTracker().sendPacketToTrackedPlayersAndTrackedEntity(this, new Packet18Animation(par1Entity, 6));
+        this.getServerForPlayer().getEntityTracker().sendPacketToAllAssociatedPlayers(this, new Packet18Animation(par1Entity, 6));
     }
 
     public void onEnchantmentCritical(Entity par1Entity)
     {
-        this.getServerForPlayer().getEntityTracker().sendPacketToTrackedPlayersAndTrackedEntity(this, new Packet18Animation(par1Entity, 7));
+        this.getServerForPlayer().getEntityTracker().sendPacketToAllAssociatedPlayers(this, new Packet18Animation(par1Entity, 7));
     }
 
     /**
@@ -875,7 +869,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         if (this.playerNetServerHandler != null)
         {
-            this.playerNetServerHandler.sendPacket(new Packet202PlayerAbilities(this.capabilities));
+            this.playerNetServerHandler.sendPacketToPlayer(new Packet202PlayerAbilities(this.capabilities));
         }
     }
 
@@ -890,12 +884,12 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     public void setGameType(EnumGameType par1EnumGameType)
     {
         this.theItemInWorldManager.setGameType(par1EnumGameType);
-        this.playerNetServerHandler.sendPacket(new Packet70GameEvent(3, par1EnumGameType.getID()));
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet70GameEvent(3, par1EnumGameType.getID()));
     }
 
     public void sendChatToPlayer(String par1Str)
     {
-        this.playerNetServerHandler.sendPacket(new Packet3Chat(par1Str));
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet3Chat(par1Str));
     }
 
     /**
@@ -911,7 +905,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      */
     public String getPlayerIP()
     {
-        String var1 = this.playerNetServerHandler.netManager.getRemoteAddress().toString();
+        String var1 = this.playerNetServerHandler.netManager.getSocketAddress().toString();
         var1 = var1.substring(var1.indexOf("/") + 1);
         var1 = var1.substring(0, var1.indexOf(":"));
         return var1;
@@ -958,65 +952,65 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     public void requestTexturePackLoad(String par1Str, int par2)
     {
         String var3 = par1Str + "\u0000" + par2;
-        this.playerNetServerHandler.sendPacket(new Packet250CustomPayload("MC|TPack", var3.getBytes()));
+        this.playerNetServerHandler.sendPacketToPlayer(new Packet250CustomPayload("MC|TPack", var3.getBytes()));
     }
 
     /**
      * Return the position for this command sender.
      */
-    public ChunkCoordinates getCommandSenderPosition()
+    public ChunkCoordinates getPlayerCoordinates()
     {
         return new ChunkCoordinates(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY + 0.5D), MathHelper.floor_double(this.posZ));
     }
 
     // FCMOD: Added
     public LinkedList<ChunkCoordIntPair> m_chunksToBeSentToClient = 
-        new LinkedList<ChunkCoordIntPair>();
+    	new LinkedList<ChunkCoordIntPair>();
     
     private int m_iLastFoodSaturation = -99999999;
-    private int m_iExhaustionWithTimeCounter = 0;
-    
-    private static final int m_iExhaustionWithTimePeriod = 600; // once per 30 seconds
-    private static final float m_fExhaustionWithTimeAmount = 0.5F; // set with above to begin starving to death after 160 minutes if you're fully obese, losing 1 hunger every 4 minutes    
+	private int m_iExhaustionWithTimeCounter = 0;
+	
+	private static final int m_iExhaustionWithTimePeriod = 600; // once per 30 seconds
+	private static final float m_fExhaustionWithTimeAmount = 0.5F; // set with above to begin starving to death after 160 minutes if you're fully obese, losing 1 hunger every 4 minutes	
     
     private static final float m_fMinimumGloomBiteChance = 0.01F; 
     private static final float m_fMaximumGloomBiteChance = 0.05F; // 1/second
     
-    private static final int m_iDelayBetweenZeroDamageAttackSounds = 20; 
-    private long m_lTimeOfLastZeroDamageAttackSound = 0;
-    
+	private static final int m_iDelayBetweenZeroDamageAttackSounds = 20; 
+	private long m_lTimeOfLastZeroDamageAttackSound = 0;
+	
     @Override
     protected void CheckForHeadDrop( DamageSource source, int iLootingModifier )
     {
-        Entity sourceEntity = source.getEntity();        
-        int iHeadChance = this.rand.nextInt(200);        
-        
+	    Entity sourceEntity = source.getEntity();        
+	    int iHeadChance = this.rand.nextInt(200);        
+	    
         iHeadChance -= iLootingModifier;
-        
-        if ( sourceEntity instanceof EntityPlayer)
-        {
-            if ( ((EntityPlayer)sourceEntity).getHeldItem() != null && 
-                ((EntityPlayer)sourceEntity).getHeldItem().getItem().itemID == FCBetterThanWolves.fcItemBattleAxe.itemID )
-            {
-                // 100% chance of decapitation with Battle Axe in PvP
-                
-                iHeadChance = 0;
-}
-        }
-        else if ( source == FCDamageSourceCustom.m_DamageSourceChoppingBlock )
-        {
-            iHeadChance = 0;
-        }
-        
-        if ( iHeadChance < 5 )
-        {
-            dropHead();
-        }
+    	
+	    if ( sourceEntity instanceof EntityPlayer)
+	    {
+	    	if ( ((EntityPlayer)sourceEntity).getHeldItem() != null && 
+	    		((EntityPlayer)sourceEntity).getHeldItem().getItem().itemID == FCBetterThanWolves.fcItemBattleAxe.itemID )
+	    	{
+	    		// 100% chance of decapitation with Battle Axe in PvP
+	    		
+	    		iHeadChance = 0;
+	    	}
+	    }
+	    else if ( source == FCDamageSourceCustom.m_DamageSourceChoppingBlock )
+	    {
+			iHeadChance = 0;
+	    }
+	    
+	    if ( iHeadChance < 5 )
+	    {
+	        dropHead();
+	    }
     }
     
     private void CustomModDrops( DamageSource source )
     {
-        Entity sourceEntity = source.getEntity();        
+	    Entity sourceEntity = source.getEntity();        
         int iLootingModifier = GetAmbientLootingModifier();
 
         if ( sourceEntity instanceof EntityPlayer )
@@ -1025,7 +1019,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
             
             if ( iPlayerLootingModifier > iLootingModifier )
             {
-                iLootingModifier = iPlayerLootingModifier;
+            	iLootingModifier = iPlayerLootingModifier;
             }
         }
         
@@ -1038,30 +1032,30 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         if ( !HasHeadCrabbedSquid() )
         {
-            // only drop mystery meat periodically to prevent people killing themselves repeatedly for food.
-            // With HC Spawn enabled, it only happens when the player will be moved to a new spawn location.
-            
-            long lOverworldTime = MinecraftServer.getServer().worldServers[0].getWorldTime();
-            
-            if ( m_lTimeOfLastSpawnAssignment == 0 || m_lTimeOfLastSpawnAssignment > lOverworldTime || 
-                lOverworldTime - m_lTimeOfLastSpawnAssignment >= FCUtilsHardcoreSpawn.m_iHardcoreSpawnTimeBetweenReassignments )
-            {
-                int iDropItemID = FCBetterThanWolves.fcItemRawMysteryMeat.itemID;
-                
-                if ( isBurning() )
-                {
-                    iDropItemID = FCBetterThanWolves.fcItemMeatBurned.itemID;
-                }
-                
-                int iFat = ( (int)foodStats.getSaturationLevel() ) / 2;
-                
-                int iNumDropped = 1 + iFat;
-        
-                for ( int iTempCount = 0; iTempCount < iNumDropped; ++iTempCount )
-                {           
-                    dropItem( iDropItemID, 1 );
-                }
-            }
+	    	// only drop mystery meat periodically to prevent people killing themselves repeatedly for food.
+	    	// With HC Spawn enabled, it only happens when the player will be moved to a new spawn location.
+	    	
+			long lOverworldTime = MinecraftServer.getServer().worldServers[0].getWorldTime();
+			
+			if ( m_lTimeOfLastSpawnAssignment == 0 || m_lTimeOfLastSpawnAssignment > lOverworldTime || 
+				lOverworldTime - m_lTimeOfLastSpawnAssignment >= FCUtilsHardcoreSpawn.m_iHardcoreSpawnTimeBetweenReassignments )
+			{
+				int iDropItemID = FCBetterThanWolves.fcItemRawMysteryMeat.itemID;
+				
+				if ( isBurning() )
+				{
+					iDropItemID = FCBetterThanWolves.fcItemMeatBurned.itemID;
+				}
+		    	
+		        int iFat = ( (int)foodStats.getSaturationLevel() ) / 2;
+		        
+		        int iNumDropped = 1 + iFat;
+		
+		        for ( int iTempCount = 0; iTempCount < iNumDropped; ++iTempCount )
+		        {        	
+		            dropItem( iDropItemID, 1 );
+		        }
+			}
         }
     }
     
@@ -1075,326 +1069,326 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         
         UpdateSpawnChunksVisualization();
         
-        NotifyBlockWalkedOn();
+    	NotifyBlockWalkedOn();
     }
     
-    private void UpdateMagneticInfluences()
-    {
-        if ( ( worldObj.getTotalWorldTime() + entityId ) % 40 != 0 )
-        {
-            // stagger these updates as they can be performance intensive
-             
-            return;
-        }
-         
-        FCMagneticPoint strongestPoint = null;
-        double dStrongestFieldStrength = 0.0D;
-         
-        if ( worldObj.provider.isSurfaceWorld() )
-        {
-            ChunkCoordinates spawnPos = worldObj.getSpawnPoint();
-             
-            strongestPoint = new FCMagneticPoint( spawnPos.posX, 0, spawnPos.posZ, 2 );
-             
-            dStrongestFieldStrength = strongestPoint.GetFieldStrengthRelativeToPosition( posX, posZ );
-             
-            Iterator pointIterator = worldObj.GetMagneticPointList().m_MagneticPoints.iterator();
-             
-            while ( pointIterator.hasNext() )
-            {
-                FCMagneticPoint tempPoint = (FCMagneticPoint)pointIterator.next();
-                 
-                double dTempFieldStrength = tempPoint.GetFieldStrengthRelativeToPosition( posX, posZ );
-                 
-                if ( dTempFieldStrength > dStrongestFieldStrength )
-                {
-                    strongestPoint = tempPoint;
-                    dStrongestFieldStrength = dTempFieldStrength;
-                }
-            }
-        }
-        else
-        {
-            Iterator pointIterator = worldObj.GetMagneticPointList().m_MagneticPoints.iterator();
-             
-            while ( pointIterator.hasNext() )
-            {
-                FCMagneticPoint tempPoint = (FCMagneticPoint)pointIterator.next();
-                 
-                double dTempFieldStrength = tempPoint.GetFieldStrengthRelativeToPositionWithBackgroundNoise( posX, posZ );
-                 
-                if ( dTempFieldStrength > dStrongestFieldStrength )
-                {
-                    strongestPoint = tempPoint;
-                    dStrongestFieldStrength = dTempFieldStrength;
-                }
-            }
-        }         
-         
-        if ( strongestPoint != null )
-        {
-            SetHasValidMagneticPointForLocation( true );
-            SetStongestMagneticPointForLocationI( strongestPoint.m_iIPos );
-            SetStongestMagneticPointForLocationK( strongestPoint.m_iKPos );
-        }
-        else
-        {
-            SetHasValidMagneticPointForLocation( false );
-        }
-    }
-    
-    private void UpdateSpawnChunksVisualization()
-    {
-        if ( worldObj.provider.dimensionId == 0 && ( IsWearingEnderSpectacles() || 
-            isPotionActive( FCBetterThanWolves.potionTrueSight ) ) )
-        {
-            SetSpawnChunksVisualization( worldObj.worldInfo.getSpawnX(),
-                worldObj.worldInfo.getSpawnY(), worldObj.worldInfo.getSpawnZ() );
-        }
-        else
-        {
-            SetSpawnChunksVisualization( 0, 0, 0 );
-        }
-    }
-    
+	private void UpdateMagneticInfluences()
+	{
+		if ( ( worldObj.getTotalWorldTime() + entityId ) % 40 != 0 )
+		{
+			// stagger these updates as they can be performance intensive
+			 
+			return;
+		}
+		 
+		FCMagneticPoint strongestPoint = null;
+		double dStrongestFieldStrength = 0.0D;
+		 
+	    if ( worldObj.provider.isSurfaceWorld() )
+	    {
+	    	ChunkCoordinates spawnPos = worldObj.getSpawnPoint();
+	    	 
+	    	strongestPoint = new FCMagneticPoint( spawnPos.posX, 0, spawnPos.posZ, 2 );
+	    	 
+	    	dStrongestFieldStrength = strongestPoint.GetFieldStrengthRelativeToPosition( posX, posZ );
+	    	 
+	        Iterator pointIterator = worldObj.GetMagneticPointList().m_MagneticPoints.iterator();
+	         
+	        while ( pointIterator.hasNext() )
+	        {
+	        	FCMagneticPoint tempPoint = (FCMagneticPoint)pointIterator.next();
+	        	 
+	        	double dTempFieldStrength = tempPoint.GetFieldStrengthRelativeToPosition( posX, posZ );
+	        	 
+	        	if ( dTempFieldStrength > dStrongestFieldStrength )
+	        	{
+	        		strongestPoint = tempPoint;
+	        		dStrongestFieldStrength = dTempFieldStrength;
+	        	}
+	        }
+	    }
+	    else
+	    {
+	        Iterator pointIterator = worldObj.GetMagneticPointList().m_MagneticPoints.iterator();
+	         
+	        while ( pointIterator.hasNext() )
+	        {
+	        	FCMagneticPoint tempPoint = (FCMagneticPoint)pointIterator.next();
+	        	 
+	        	double dTempFieldStrength = tempPoint.GetFieldStrengthRelativeToPositionWithBackgroundNoise( posX, posZ );
+	        	 
+	        	if ( dTempFieldStrength > dStrongestFieldStrength )
+	        	{
+	        		strongestPoint = tempPoint;
+	        		dStrongestFieldStrength = dTempFieldStrength;
+	        	}
+	        }
+	    }         
+	     
+	    if ( strongestPoint != null )
+	    {
+	    	SetHasValidMagneticPointForLocation( true );
+	    	SetStongestMagneticPointForLocationI( strongestPoint.m_iIPos );
+	    	SetStongestMagneticPointForLocationK( strongestPoint.m_iKPos );
+	    }
+	    else
+	    {
+	    	SetHasValidMagneticPointForLocation( false );
+	    }
+	}
+	
+	private void UpdateSpawnChunksVisualization()
+	{
+		if ( worldObj.provider.dimensionId == 0 && ( IsWearingEnderSpectacles() || 
+			isPotionActive( FCBetterThanWolves.potionTrueSight ) ) )
+		{
+			SetSpawnChunksVisualization( worldObj.worldInfo.getSpawnX(),
+				worldObj.worldInfo.getSpawnY(), worldObj.worldInfo.getSpawnZ() );
+		}
+		else
+		{
+			SetSpawnChunksVisualization( 0, 0, 0 );
+		}
+	}
+	
     private void UpdateExhaustionWithTime()
     {
-        m_iExhaustionWithTimeCounter++;
-        
-        if ( m_iExhaustionWithTimeCounter >= m_iExhaustionWithTimePeriod )
-        {
+    	m_iExhaustionWithTimeCounter++;
+    	
+    	if ( m_iExhaustionWithTimeCounter >= m_iExhaustionWithTimePeriod )
+    	{
             if ( !capabilities.disableDamage ) // disable hunger drain in creative
             {
-                foodStats.addExhaustion( m_fExhaustionWithTimeAmount );
+            	foodStats.addExhaustion( m_fExhaustionWithTimeAmount );
             }
             
-            m_iExhaustionWithTimeCounter = 0;
-        }
+    		m_iExhaustionWithTimeCounter = 0;
+    	}
     }
     
     private void UpdateHealthAndHungerEffects()
     {
-    	//AARON CHANGED to make starvation nausea less immediate
-        if ( !isDead && ( worldObj.getTotalWorldTime() + (long)entityId ) % 80L == 0L && health <= 6)
-        {
-            if ( foodStats.getFoodLevel() <= 0 && foodStats.getSaturationLevel() <= 0F )
-            {
+    	if ( !isDead && ( worldObj.getTotalWorldTime() + (long)entityId ) % 80L == 0L )
+    	{
+    		//AARON CHANGED to make starvation nausea less immediate
+    		if ( foodStats.getFoodLevel() <= 0 && foodStats.getSaturationLevel() <= 0F && health <= 6 )
+    		{
                 addPotionEffect( new PotionEffect( Potion.confusion.getId(), 180, 0, true ) );                            
-            }
-            
-            if ( health <= 2 )
-            {
+    		}
+    		
+    		if ( health <= 2 )
+    		{
                 addPotionEffect( new PotionEffect( Potion.blindness.getId(), 180, 0, true ) );                            
-            }
-        }
+    		}
+    	}
     }
     
     @Override
     protected void UpdateGloomState()
     {
-        if ( !isDead )
-        {
-            if ( IsInGloom() )
-            {
-                m_iInGloomCounter++;
-                
-                if ( GetGloomLevel() == 0 || ( m_iInGloomCounter > m_iGloomCounterBetweenStateChanges && GetGloomLevel() < 3 ) )
-                {
-                    SetGloomLevel( GetGloomLevel() + 1 );
-                    
-                    m_iInGloomCounter = 0;
-                }
-                
-                if ( GetGloomLevel() >= 3 )
-                {
-                    if ( ( worldObj.getTotalWorldTime() + (long)entityId ) % 80L == 0L )
-                    {
-                        addPotionEffect( new PotionEffect( Potion.confusion.getId(), 180, 0, true ) );                            
-                    }
-                    
-                    // gloom bites
-                    
-                    float fCounterProgress = (float)m_iInGloomCounter / (float)m_iGloomCounterBetweenStateChanges;
-                    
-                    if ( fCounterProgress > 1.0F )
-                    {
-                        fCounterProgress = 1.0F;
-                    }
+    	if ( !isDead )
+    	{
+    		if ( IsInGloom() )
+    		{
+    			m_iInGloomCounter++;
+    			
+    			if ( GetGloomLevel() == 0 || ( m_iInGloomCounter > m_iGloomCounterBetweenStateChanges && GetGloomLevel() < 3 ) )
+    			{
+    				SetGloomLevel( GetGloomLevel() + 1 );
+    				
+    				m_iInGloomCounter = 0;
+    			}
+    			
+    			if ( GetGloomLevel() >= 3 )
+    			{
+    		    	if ( ( worldObj.getTotalWorldTime() + (long)entityId ) % 80L == 0L )
+    		    	{
+		                addPotionEffect( new PotionEffect( Potion.confusion.getId(), 180, 0, true ) );                            
+    		    	}
+    		    	
+    		    	// gloom bites
+    		    	
+    	    		float fCounterProgress = (float)m_iInGloomCounter / (float)m_iGloomCounterBetweenStateChanges;
+    	    		
+    	    		if ( fCounterProgress > 1.0F )
+    	    		{
+    	    			fCounterProgress = 1.0F;
+    	    		}
 
-                    float fGloomBiteChance = m_fMinimumGloomBiteChance + ( m_fMaximumGloomBiteChance - m_fMinimumGloomBiteChance ) * fCounterProgress;              
-                    
-                    if ( rand.nextFloat() < fGloomBiteChance )
-                    {
-                        if ( attackEntityFrom( FCDamageSourceCustom.m_DamageSourceGloom, 1 ) )
-                        {                       
-                            if ( health <= 0 )
-                            {
-                                worldObj.playAuxSFX( FCBetterThanWolves.m_iBurpSoundAuxFXID, 
-                                    MathHelper.floor_double( posX ), MathHelper.floor_double( posY ), MathHelper.floor_double( posZ ), 0 );
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                SetGloomLevel( 0 );
-                
-                m_iInGloomCounter = 0;
-            }                       
-        }
+            		float fGloomBiteChance = m_fMinimumGloomBiteChance + ( m_fMaximumGloomBiteChance - m_fMinimumGloomBiteChance ) * fCounterProgress;        		
+    	    		
+            		if ( rand.nextFloat() < fGloomBiteChance )
+            		{
+            			if ( attackEntityFrom( FCDamageSourceCustom.m_DamageSourceGloom, 1 ) )
+            			{            			
+	            			if ( health <= 0 )
+	            			{
+	            	        	worldObj.playAuxSFX( FCBetterThanWolves.m_iBurpSoundAuxFXID, 
+	            	        		MathHelper.floor_double( posX ), MathHelper.floor_double( posY ), MathHelper.floor_double( posZ ), 0 );
+	            			}
+            			}
+            		}
+		    	}
+    		}
+    		else
+    		{
+        		SetGloomLevel( 0 );
+        		
+        		m_iInGloomCounter = 0;
+    		}   		    		
+    	}
     }
 
     @Override
     protected void UpdateFatPenaltyLevel()
     {
         int iFat = (int)foodStats.getSaturationLevel();
-        int iFatLevel = 4;
+    	int iFatLevel = 4;
         
         if ( iFat < 12 )
         {
-            iFatLevel = 0;
+        	iFatLevel = 0;
         }
         else if ( iFat < 14 )
         {
-            iFatLevel = 1;
+        	iFatLevel = 1;
         }
         else if ( iFat < 16 )
         {
-            iFatLevel = 2;
+        	iFatLevel = 2;
         }
         else if ( iFat < 18 )
         {
-            iFatLevel = 3;
+        	iFatLevel = 3;
         }
-        
-        SetFatPenaltyLevel( iFatLevel );
+    	
+    	SetFatPenaltyLevel( iFatLevel );
     }
-    
+	
     @Override
-    protected void UpdateHungerPenaltyLevel()
-    {
+	protected void UpdateHungerPenaltyLevel()
+	{
         int iHunger = foodStats.getFoodLevel();
         int iPenaltyLevel = 5;
         
         if ( iHunger > 24 )
         {
-            iPenaltyLevel = 0;
+        	iPenaltyLevel = 0;
         }
         else if ( iHunger > 18 )
         {
-            iPenaltyLevel = 1;
+        	iPenaltyLevel = 1;
         }
         else if ( iHunger > 12 )
         {
-            iPenaltyLevel = 2;
+        	iPenaltyLevel = 2;
         }
         else if ( iHunger > 6 )
         {
-            iPenaltyLevel = 3;
+        	iPenaltyLevel = 3;
         }
         else if ( iHunger > 0 || foodStats.getSaturationLevel() > 0F )
         {
-            iPenaltyLevel = 4;
+        	iPenaltyLevel = 4;
         }
         
         SetHungerPenaltyLevel( iPenaltyLevel );
-    }
-    
+	}
+	
     @Override
-    protected void UpdateHealthPenaltyLevel()
-    {
-        int iHealth = getHealth();
+	protected void UpdateHealthPenaltyLevel()
+	{
+		int iHealth = getHealth();
         int iPenaltyLevel = 5;
         
         if ( iHealth > 10 )
         {
-            iPenaltyLevel = 0;
+        	iPenaltyLevel = 0;
         }
         else if ( iHealth > 8 )
         {
-            iPenaltyLevel = 1;
+        	iPenaltyLevel = 1;
         }
         else if ( iHealth > 6 )
         {
-            iPenaltyLevel = 2;
+        	iPenaltyLevel = 2;
         }
         else if ( iHealth > 4 )
         {
-            iPenaltyLevel = 3;
+        	iPenaltyLevel = 3;
         }
         else if ( iHealth > 2 )
         {
-            iPenaltyLevel = 4;
+        	iPenaltyLevel = 4;
         }
         
         SetHealthPenaltyLevel( iPenaltyLevel );
-    }
-    
+	}
+	
     private boolean IsInGloom()
     {
         if ( !capabilities.disableDamage ) // disable darkness effects in creative
         {
-            if ( !isPotionActive( Potion.nightVision ) && worldObj.provider.dimensionId == 0 )
-            {
-                int i = MathHelper.floor_double( posX );
-                int j = MathHelper.floor_double( posY - yOffset );
-                int k = MathHelper.floor_double( posZ );
-                
-                int iOldSkylightSubtracted = worldObj.skylightSubtracted;
-                
-                float fSunBrightness = worldObj.ComputeOverworldSunBrightnessWithMoonPhases();
-                
-                if ( fSunBrightness < 0.02D )
-                {
-                    // world is in gloom, no skylight at all
-                    worldObj.skylightSubtracted = 15;
-                }
-                else
-                {
-                    worldObj.skylightSubtracted = (int)( ( 1F - fSunBrightness ) * 11.9F );
-                }
+	        if ( !isPotionActive( Potion.nightVision ) && worldObj.provider.dimensionId == 0 )
+	        {
+		        int i = MathHelper.floor_double( posX );
+		        int j = MathHelper.floor_double( posY - yOffset );
+		        int k = MathHelper.floor_double( posZ );
+		        
+		        int iOldSkylightSubtracted = worldObj.skylightSubtracted;
+		        
+		        float fSunBrightness = worldObj.ComputeOverworldSunBrightnessWithMoonPhases();
+		        
+		        if ( fSunBrightness < 0.02D )
+		        {
+		        	// world is in gloom, no skylight at all
+		        	worldObj.skylightSubtracted = 15;
+		        }
+		        else
+		        {
+		        	worldObj.skylightSubtracted = (int)( ( 1F - fSunBrightness ) * 11.9F );
+		        }
 
-                float fBlockInLightValue = worldObj.getLightBrightness( i, j, k );
-                
-                float fBlockAboveLightValue = worldObj.getLightBrightness( i, j + 1, k );
-                
-                if ( fBlockAboveLightValue > fBlockInLightValue )
-                {
-                    fBlockInLightValue = fBlockAboveLightValue;
-                }
-                
-                worldObj.skylightSubtracted = iOldSkylightSubtracted;
-                
-                return fBlockInLightValue < 0.001F;
-            }
+		        float fBlockInLightValue = worldObj.getLightBrightness( i, j, k );
+		        
+		        float fBlockAboveLightValue = worldObj.getLightBrightness( i, j + 1, k );
+		        
+		        if ( fBlockAboveLightValue > fBlockInLightValue )
+		        {
+		        	fBlockInLightValue = fBlockAboveLightValue;
+		        }
+		        
+		        worldObj.skylightSubtracted = iOldSkylightSubtracted;
+		        
+		    	return fBlockInLightValue < 0.001F;
+	        }
         }
         
         return false;
     }
     
-    @Override    
-    public void AddRawChatMessage( String message )
-    {
-        playerNetServerHandler.sendPacket( new Packet3Chat( message ) );
-    }
+	@Override    
+	public void AddRawChatMessage( String message )
+	{
+		playerNetServerHandler.sendPacket( new Packet3Chat( message ) );
+	}
 
-    @Override
+	@Override
     protected void OnZeroDamageAttack()
     {
-        long lCurrentTime = worldObj.getWorldTime();
-        
-        if ( lCurrentTime > m_lTimeOfLastZeroDamageAttackSound + m_iDelayBetweenZeroDamageAttackSounds )
-        {
-            worldObj.playSoundAtEntity( this, 
-                "random.classic_hurt", 1.0F +  rand.nextFloat() * 0.25F, 
-                getSoundPitch() * 1.20F + rand.nextFloat() * 0.1F);
-            
-            m_lTimeOfLastZeroDamageAttackSound = lCurrentTime;
-        }
+		long lCurrentTime = worldObj.getWorldTime();
+		
+		if ( lCurrentTime > m_lTimeOfLastZeroDamageAttackSound + m_iDelayBetweenZeroDamageAttackSounds )
+		{
+			worldObj.playSoundAtEntity( this, 
+	    		"random.classic_hurt", 1.0F +  rand.nextFloat() * 0.25F, 
+	    		getSoundPitch() * 1.20F + rand.nextFloat() * 0.1F);
+			
+			m_lTimeOfLastZeroDamageAttackSound = lCurrentTime;
+		}
     }
-
-    @Override
+	
+	@Override
     public void OnStruckByLightning( FCEntityLightningBolt boltEntity )
     {
         if ( !capabilities.disableDamage )
@@ -1403,18 +1397,18 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
             
             setFire( 8 );
 
-            FlingAwayFromEntity( boltEntity, 2D );
-            
-            worldObj.playSoundAtEntity( this, 
-                "random.classic_hurt", 1.0F +  rand.nextFloat() * 0.25F, 
-                getSoundPitch() * 1.20F + rand.nextFloat() * 0.1F);
-            
+        	FlingAwayFromEntity( boltEntity, 2D );
+    		
+    		worldObj.playSoundAtEntity( this, 
+        		"random.classic_hurt", 1.0F +  rand.nextFloat() * 0.25F, 
+        		getSoundPitch() * 1.20F + rand.nextFloat() * 0.1F);
+    		
             addPotionEffect( new PotionEffect( Potion.blindness.getId(), 90, 0, true ) );
             
             addPotionEffect( new PotionEffect( Potion.confusion.getId(), 180, 0, true ) );                            
         }
     }
-    
+	
     public int IncrementAndGetWindowID()
     {
         this.currentWindowId = this.currentWindowId % 100 + 1;
@@ -1426,48 +1420,48 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         if ( onGround )
         {
-            int iGroundI = MathHelper.floor_double( posX );
-            int iGroundJ = MathHelper.floor_double( posY - 0.03D - (double)yOffset ); // same calc used for step sound
-            int iGroundK = MathHelper.floor_double( posZ );
-            
-            Block blockOn = Block.blocksList[worldObj.getBlockId( iGroundI, iGroundJ, iGroundK )];
+        	int iGroundI = MathHelper.floor_double( posX );
+        	int iGroundJ = MathHelper.floor_double( posY - 0.03D - (double)yOffset ); // same calc used for step sound
+        	int iGroundK = MathHelper.floor_double( posZ );
+        	
+        	Block blockOn = Block.blocksList[worldObj.getBlockId( iGroundI, iGroundJ, iGroundK )];
 
-            if ( blockOn == null || blockOn.getCollisionBoundingBoxFromPool( worldObj, iGroundI, iGroundJ, iGroundK ) == null )
-            {
-                float fHalfWidth = width / 2F;
-                
-                // block we are standing on directly is air or has no collision box.  Check the horizontal extents of our box for a movement modifier
+        	if ( blockOn == null || blockOn.getCollisionBoundingBoxFromPool( worldObj, iGroundI, iGroundJ, iGroundK ) == null )
+        	{
+        		float fHalfWidth = width / 2F;
+        		
+        		// block we are standing on directly is air or has no collision box.  Check the horizontal extents of our box for a movement modifier
 
-                int iCenterGroundI = iGroundI;
-                
-                iGroundI = MathHelper.floor_double( posX + fHalfWidth );                    
-                blockOn = Block.blocksList[worldObj.getBlockId( iGroundI, iGroundJ, iGroundK )];
-                
-                if ( blockOn == null || blockOn.getCollisionBoundingBoxFromPool( worldObj, iGroundI, iGroundJ, iGroundK ) == null )
-                {
-                    iGroundI = MathHelper.floor_double( posX - fHalfWidth );
-                    blockOn = Block.blocksList[worldObj.getBlockId( iGroundI, iGroundJ, iGroundK )];
-                    
-                    if ( blockOn == null || blockOn.getCollisionBoundingBoxFromPool( worldObj, iGroundI, iGroundJ, iGroundK ) == null )
-                    {
-                        iGroundI = iCenterGroundI;
-                        
-                        iGroundK = MathHelper.floor_double( posZ + fHalfWidth );
-                        blockOn = Block.blocksList[worldObj.getBlockId( iGroundI, iGroundJ, iGroundK )];
-                        
-                        if ( blockOn == null || blockOn.getCollisionBoundingBoxFromPool( worldObj, iGroundI, iGroundJ, iGroundK ) == null )
-                        {
-                            iGroundK = MathHelper.floor_double( posZ - fHalfWidth );
-                            blockOn = Block.blocksList[worldObj.getBlockId( iGroundI, iGroundJ, iGroundK )];                                
-                        }
-                    }
-                }               
-            }
-            
-            if ( blockOn != null )
-            {
-                blockOn.OnPlayerWalksOnBlock( worldObj, iGroundI, iGroundJ, iGroundK, this );               
-            }
+        		int iCenterGroundI = iGroundI;
+        		
+        		iGroundI = MathHelper.floor_double( posX + fHalfWidth );	        		
+	        	blockOn = Block.blocksList[worldObj.getBlockId( iGroundI, iGroundJ, iGroundK )];
+	        	
+	        	if ( blockOn == null || blockOn.getCollisionBoundingBoxFromPool( worldObj, iGroundI, iGroundJ, iGroundK ) == null )
+	        	{
+	        		iGroundI = MathHelper.floor_double( posX - fHalfWidth );
+		        	blockOn = Block.blocksList[worldObj.getBlockId( iGroundI, iGroundJ, iGroundK )];
+		        	
+		        	if ( blockOn == null || blockOn.getCollisionBoundingBoxFromPool( worldObj, iGroundI, iGroundJ, iGroundK ) == null )
+		        	{
+		        		iGroundI = iCenterGroundI;
+		        		
+		        		iGroundK = MathHelper.floor_double( posZ + fHalfWidth );
+			        	blockOn = Block.blocksList[worldObj.getBlockId( iGroundI, iGroundJ, iGroundK )];
+			        	
+			        	if ( blockOn == null || blockOn.getCollisionBoundingBoxFromPool( worldObj, iGroundI, iGroundJ, iGroundK ) == null )
+			        	{
+			        		iGroundK = MathHelper.floor_double( posZ - fHalfWidth );
+				        	blockOn = Block.blocksList[worldObj.getBlockId( iGroundI, iGroundJ, iGroundK )];					        	
+			        	}
+		        	}
+	        	}	        	
+        	}
+        	
+        	if ( blockOn != null )
+        	{
+        		blockOn.OnPlayerWalksOnBlock( worldObj, iGroundI, iGroundJ, iGroundK, this );        		
+        	}
         }        
     }
     
@@ -1486,22 +1480,22 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
                 coordIterator.remove();
 
                 if ( tempCoord != null && worldObj.chunkExists( 
-                    tempCoord.chunkXPos, tempCoord.chunkZPos ) )
+                	tempCoord.chunkXPos, tempCoord.chunkZPos ) )
                 {
                     chunksToSend.add( worldObj.getChunkFromChunkCoords(
-                        tempCoord.chunkXPos, tempCoord.chunkZPos ) );
+                    	tempCoord.chunkXPos, tempCoord.chunkZPos ) );
                     
                     tileEntitiesToSend.addAll( getServerForPlayer().getAllTileEntityInBox(
-                        tempCoord.chunkXPos * 16, 0, tempCoord.chunkZPos * 16, 
-                        tempCoord.chunkXPos * 16 + 16, 256, tempCoord.chunkZPos * 16 + 16));
+                    	tempCoord.chunkXPos * 16, 0, tempCoord.chunkZPos * 16, 
+                    	tempCoord.chunkXPos * 16 + 16, 256, tempCoord.chunkZPos * 16 + 16));
                 }
             }
 
             if ( !chunksToSend.isEmpty() )
             {
-                FCUtilsWorld.SendPacketToPlayer( playerNetServerHandler, 
-                    new Packet56MapChunks( chunksToSend ) );
-                
+	        	FCUtilsWorld.SendPacketToPlayer( playerNetServerHandler, 
+	        		new Packet56MapChunks( chunksToSend ) );
+	        	
                 Iterator<TileEntity> tileIterator = tileEntitiesToSend.iterator();
 
                 while ( tileIterator.hasNext() )
@@ -1524,5 +1518,5 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
             }
         }
     }
-    // END FCMOD
+	// END FCMOD
 }

@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import java.util.Random;
+
 public abstract class SCBlockMelonGrowing extends SCBlockGourdGrowing {
 
 	protected SCBlockMelonGrowing(int iBlockID, int stemBlock, int vineBlock, int flowerBlock, int convertedBlockID) {
@@ -9,30 +11,19 @@ public abstract class SCBlockMelonGrowing extends SCBlockGourdGrowing {
 	@Override
 	protected float GetBaseGrowthChance()
 	{
-		return 0.08F;
+		//changed to match the rate of wheat
+		return 0.4F;
 	}
 	
 	@Override
 	protected boolean canBePossessed() {
 		return false;
 	}
-
 	
 	@Override
-	protected Item ItemToDropOnExplode()
-	{
-		return Item.melonSeeds;
-	}
-
-	@Override
-	protected int ItemCountToDropOnExplode(World world, int i, int j, int k, int meta)
-	{
-		int growthLevel = this.GetGrowthLevel(world, i, j, k);
-		if (growthLevel == 3)
-		{
-			return 1;
-		}
-		else return 0;
+	public int idDropped( int iMetadata, Random random, int iFortuneModifier )
+	{		
+		return SCDefs.melonHarvested.blockID;
 	}
 
     @Override

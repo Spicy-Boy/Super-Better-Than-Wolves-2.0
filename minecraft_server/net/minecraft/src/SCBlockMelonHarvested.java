@@ -38,20 +38,42 @@ public class SCBlockMelonHarvested extends SCBlockGourdHarvested {
 		else return super.IsNormalCube(blockAccess, i, j, k);
 	}
 	
+	//CHANGED to be per type seeds
 	@Override
-	protected Item ItemToDropOnExplode()
+	protected Item ItemToDropOnExplode(int meta)
 	{
+		if (meta == 3)
+		{
+			return SuperBTWDefinitions.waterMelonSeeds;
+		}
+		else if (meta == 7)
+		{
+			return SuperBTWDefinitions.honeydewMelonSeeds;
+		}
+		else if (meta == 11)
+		{
+			return SuperBTWDefinitions.cantaloupeMelonSeeds;
+		}
+		
 		return Item.melonSeeds;
 	}
-	
 	
 	@Override
 	protected int ItemCountToDropOnExplode(World world, int i, int j, int k, int meta)
 	{
-		if (this.GetGrowthLevel(meta) == 3)
+		if (meta == 3)
 		{
-			return 1;
+			return 5;
 		}
+		else if (meta == 7)
+		{
+			return 4;
+		}
+		else if (meta == 11)
+		{
+			return 3;
+		}
+
 		else return 0;
 	}
 	
@@ -110,92 +132,92 @@ public class SCBlockMelonHarvested extends SCBlockGourdHarvested {
 	private Icon[] cantaloupeIcon;
 	private Icon[] cantaloupeIconTop;
 	
-//	@Override
-//  	public void registerIcons( IconRegister register )
-//  	{
-//		//Water
-//  		waterIcon = new Icon[4];
-//		
-//  		for ( int iTempIndex = 0; iTempIndex < waterIcon.length; iTempIndex++ )
-//		{
-//  			waterIcon[iTempIndex] = register.registerIcon( "SCBlockMelonSide_" + iTempIndex );
-//		}
-//	
-//		waterIconTop = new Icon[4];
-//	
-//		for ( int iTempIndex = 0; iTempIndex < waterIconTop.length; iTempIndex++ )
-//		{
-//		waterIconTop[iTempIndex] = register.registerIcon( "SCBlockMelonTop_" + iTempIndex );
-//		}
-//		
-//		//Honeydew
-//		honeydewIcon = new Icon[4];
-//		
-//  		for ( int iTempIndex = 0; iTempIndex < honeydewIcon.length; iTempIndex++ )
-//		{
-//  			honeydewIcon[iTempIndex] = register.registerIcon( "SCBlockMelonGreenSide_" + iTempIndex );
-//		}
-//	
-//  		honeydewIconTop = new Icon[4];
-//	
-//		for ( int iTempIndex = 0; iTempIndex < honeydewIconTop.length; iTempIndex++ )
-//		{
-//			honeydewIconTop[iTempIndex] = register.registerIcon( "SCBlockMelonGreenTop_" + iTempIndex );
-//		}
-//		
-//		//Cantaloupe
-//		cantaloupeIcon = new Icon[4];
-//		
-//  		for ( int iTempIndex = 0; iTempIndex < cantaloupeIcon.length; iTempIndex++ )
-//		{
-//  			cantaloupeIcon[iTempIndex] = register.registerIcon( "SCBlockMelonWhiteSide_" + iTempIndex );
-//		}
-//	
-//  		cantaloupeIconTop = new Icon[4];
-//	
-//		for ( int iTempIndex = 0; iTempIndex < cantaloupeIconTop.length; iTempIndex++ )
-//		{
-//			cantaloupeIconTop[iTempIndex] = register.registerIcon( "SCBlockMelonWhiteTop_" + iTempIndex );
-//		}
-//	}
-//	
-//	@Override
-//	public Icon getIcon( int side, int meta )
-//	{
-//		int growthLevel = this.GetGrowthLevel(meta);
-//		int type = this.getType(meta);
-//		
-//		if (type == 0) 
-//		{
-//			if ( side == 1 || side == 0 )
-//	    	{
-//	    		return blockIcon = waterIconTop[growthLevel];
-//	    	}
-//	    	
-//			else return blockIcon = waterIcon[growthLevel];
-//		}
-//		else if (type == 1) 
-//		{
-//			if ( side == 1 || side == 0 )
-//	    	{
-//	    		return blockIcon = honeydewIconTop[growthLevel];
-//	    	}
-//	    	
-//			else return blockIcon = honeydewIcon[growthLevel];
-//		}
-//		else if (type == 2) 
-//		{
-//			if ( side == 1 || side == 0 )
-//	    	{
-//	    		return blockIcon = cantaloupeIconTop[growthLevel];
-//	    	}
-//	    	
-//			else return blockIcon = cantaloupeIcon[growthLevel];
-//		}
-//		
-//		else return blockIcon;
-//
-//	}
+	@Override
+  	public void registerIcons( IconRegister register )
+  	{
+		//Water
+  		waterIcon = new Icon[4];
+		
+  		for ( int iTempIndex = 0; iTempIndex < waterIcon.length; iTempIndex++ )
+		{
+  			waterIcon[iTempIndex] = register.registerIcon( "SCBlockMelonSide_" + iTempIndex );
+		}
+	
+		waterIconTop = new Icon[4];
+	
+		for ( int iTempIndex = 0; iTempIndex < waterIconTop.length; iTempIndex++ )
+		{
+		waterIconTop[iTempIndex] = register.registerIcon( "SCBlockMelonTop_" + iTempIndex );
+		}
+		
+		//Honeydew
+		honeydewIcon = new Icon[4];
+		
+  		for ( int iTempIndex = 0; iTempIndex < honeydewIcon.length; iTempIndex++ )
+		{
+  			honeydewIcon[iTempIndex] = register.registerIcon( "SCBlockMelonGreenSide_" + iTempIndex );
+		}
+	
+  		honeydewIconTop = new Icon[4];
+	
+		for ( int iTempIndex = 0; iTempIndex < honeydewIconTop.length; iTempIndex++ )
+		{
+			honeydewIconTop[iTempIndex] = register.registerIcon( "SCBlockMelonGreenTop_" + iTempIndex );
+		}
+		
+		//Cantaloupe
+		cantaloupeIcon = new Icon[4];
+		
+  		for ( int iTempIndex = 0; iTempIndex < cantaloupeIcon.length; iTempIndex++ )
+		{
+  			cantaloupeIcon[iTempIndex] = register.registerIcon( "SCBlockMelonWhiteSide_" + iTempIndex );
+		}
+	
+  		cantaloupeIconTop = new Icon[4];
+	
+		for ( int iTempIndex = 0; iTempIndex < cantaloupeIconTop.length; iTempIndex++ )
+		{
+			cantaloupeIconTop[iTempIndex] = register.registerIcon( "SCBlockMelonWhiteTop_" + iTempIndex );
+		}
+	}
+	
+	@Override
+	public Icon getIcon( int side, int meta )
+	{
+		int growthLevel = this.GetGrowthLevel(meta);
+		int type = this.getType(meta);
+		
+		if (type == 0) 
+		{
+			if ( side == 1 || side == 0 )
+	    	{
+	    		return blockIcon = waterIconTop[growthLevel];
+	    	}
+	    	
+			else return blockIcon = waterIcon[growthLevel];
+		}
+		else if (type == 1) 
+		{
+			if ( side == 1 || side == 0 )
+	    	{
+	    		return blockIcon = honeydewIconTop[growthLevel];
+	    	}
+	    	
+			else return blockIcon = honeydewIcon[growthLevel];
+		}
+		else if (type == 2) 
+		{
+			if ( side == 1 || side == 0 )
+	    	{
+	    		return blockIcon = cantaloupeIconTop[growthLevel];
+	    	}
+	    	
+			else return blockIcon = cantaloupeIcon[growthLevel];
+		}
+		
+		else return blockIcon;
+
+	}
 	
 	public AxisAlignedBB GetBlockBoundsFromPoolBasedOnState(int meta)
 	{	
@@ -249,33 +271,33 @@ public class SCBlockMelonHarvested extends SCBlockGourdHarvested {
 	}
 	
 	
-//	@Override
-//	public boolean RenderBlock(RenderBlocks renderer, int i, int j, int k)
-//	{
-//		IBlockAccess blockAccess = renderer.blockAccess;
-//		
-//		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(blockAccess, i, j, k) );
-//		renderer.renderStandardBlock( this, i, j, k );
-//
-//		return true;
-//	}
+	@Override
+	public boolean RenderBlock(RenderBlocks renderer, int i, int j, int k)
+	{
+		IBlockAccess blockAccess = renderer.blockAccess;
+		
+		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(blockAccess, i, j, k) );
+		renderer.renderStandardBlock( this, i, j, k );
 
-//	@Override
-//	public void RenderFallingBlock(RenderBlocks renderer, int i, int j, int k, int meta)
-//	{
-//		IBlockAccess blockAccess = renderer.blockAccess;
-//		
-//		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(meta) );		
-//		renderer.RenderStandardFallingBlock( this, i, j, k, meta);
-//	}
+		return true;
+	}
+
+	@Override
+	public void RenderFallingBlock(RenderBlocks renderer, int i, int j, int k, int meta)
+	{
+		IBlockAccess blockAccess = renderer.blockAccess;
+		
+		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(meta) );		
+		renderer.RenderStandardFallingBlock( this, i, j, k, meta);
+	}
 	
-//	@Override
-//	public void RenderBlockAsItem(RenderBlocks renderer, int iItemDamage, float fBrightness)
-//	{
-//		IBlockAccess blockAccess = renderer.blockAccess;
-//		
-//		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(iItemDamage) );
-//		FCClientUtilsRender.RenderInvBlockWithMetadata( renderer, this, -0.5F, -0.5F, -0.5F, iItemDamage);
-//	}
+	@Override
+	public void RenderBlockAsItem(RenderBlocks renderer, int iItemDamage, float fBrightness)
+	{
+		IBlockAccess blockAccess = renderer.blockAccess;
+		
+		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(iItemDamage) );
+		FCClientUtilsRender.RenderInvBlockWithMetadata( renderer, this, -0.5F, -0.5F, -0.5F, iItemDamage);
+	}
 
 }

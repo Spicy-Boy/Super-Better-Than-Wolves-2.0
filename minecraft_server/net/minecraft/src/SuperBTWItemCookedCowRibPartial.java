@@ -14,11 +14,6 @@ public class SuperBTWItemCookedCowRibPartial extends ItemFood {
 		
 	}
 	
-    public int getMaxItemUseDuration(ItemStack par1ItemStack)
-    {
-        return 64;
-    }
-	
     public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         --par1ItemStack.stackSize;

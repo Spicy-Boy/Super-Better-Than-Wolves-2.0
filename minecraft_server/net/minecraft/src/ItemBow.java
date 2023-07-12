@@ -130,16 +130,16 @@ public class ItemBow extends Item
         return 1;
     }
 
-//    public void registerIcons(IconRegister par1IconRegister)
-//    {
-//        super.registerIcons(par1IconRegister);
-//        this.iconArray = new Icon[bowPullIconNameArray.length];
-//
-//        for (int var2 = 0; var2 < this.iconArray.length; ++var2)
-//        {
-//            this.iconArray[var2] = par1IconRegister.registerIcon(bowPullIconNameArray[var2]);
-//        }
-//    }
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+        super.registerIcons(par1IconRegister);
+        this.iconArray = new Icon[bowPullIconNameArray.length];
+
+        for (int var2 = 0; var2 < this.iconArray.length; ++var2)
+        {
+            this.iconArray[var2] = par1IconRegister.registerIcon(bowPullIconNameArray[var2]);
+        }
+    }
 
     /**
      * used to cycle through icons based on their used duration, i.e. for the bow

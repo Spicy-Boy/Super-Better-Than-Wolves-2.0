@@ -1,11 +1,14 @@
 package net.minecraft.src;
 
+import com.prupe.mcpatcher.cc.ColorizeBlock;
+import java.util.List;
 import java.util.Random;
 
 public class BlockLeaves extends BlockLeavesBase
 {
     public static final String[] LEAF_TYPES = new String[] {"oak", "spruce", "birch", "jungle"};
     public static final String[][] field_94396_b = new String[][] {{"leaves", "leaves_spruce", "leaves", "leaves_jungle"}, {"leaves_opaque", "leaves_spruce_opaque", "leaves_opaque", "leaves_jungle_opaque"}};
+    private int field_94394_cP;
     private Icon[][] iconArray = new Icon[2][];
     int[] adjacentTreeBlocks;
 
@@ -14,6 +17,72 @@ public class BlockLeaves extends BlockLeavesBase
         super(par1, Material.leaves, false);
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabDecorations);
+    }
+
+    public int getBlockColor()
+    {
+    	if (ColorizeBlock.colorizeBlock(this))
+        {
+            return ColorizeBlock.blockColor;
+        }
+        else
+        {
+        double var1 = 0.5D;
+        double var3 = 1.0D;
+        return ColorizerFoliage.getFoliageColor(var1, var3);
+    }
+    }
+
+    /**
+     * Returns the color this block should be rendered. Used by leaves.
+     */
+    public int getRenderColor(int par1)
+    {
+    	return ColorizeBlock.colorizeBlock(this, par1) ? ColorizeBlock.blockColor : ((par1 & 3) == 1 ? ColorizerFoliage.getFoliageColorPine() : ((par1 & 3) == 2 ? ColorizerFoliage.getFoliageColorBirch() : ColorizerFoliage.getFoliageColorBasic()));
+    }
+
+    /**
+     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+     * when first determining what to render.
+     */
+    public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    {
+    	if (ColorizeBlock.colorizeBlock(this, par1IBlockAccess, par2, par3, par4))
+        {
+    		return ColorizeBlock.blockColor;
+        }
+        else
+        {
+        int var5 = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+
+        if ((var5 & 3) == 1)
+        {
+            return ColorizerFoliage.getFoliageColorPine();
+        }
+        else if ((var5 & 3) == 2)
+        {
+            return ColorizerFoliage.getFoliageColorBirch();
+        }
+        else
+        {
+            int var6 = 0;
+            int var7 = 0;
+            int var8 = 0;
+
+            for (int var9 = -1; var9 <= 1; ++var9)
+            {
+                for (int var10 = -1; var10 <= 1; ++var10)
+                {
+                    int var11 = par1IBlockAccess.getBiomeGenForCoords(par2 + var10, par4 + var9).getBiomeFoliageColor();
+                    var6 += (var11 & 16711680) >> 16;
+                    var7 += (var11 & 65280) >> 8;
+                    var8 += var11 & 255;
+                }
+            }
+
+            return (var6 / 9 & 255) << 16 | (var7 / 9 & 255) << 8 | var8 / 9 & 255;
+        }
+    }
     }
 
     /**
@@ -37,7 +106,7 @@ public class BlockLeaves extends BlockLeavesBase
                         if (var12 == Block.leaves.blockID)
                         {
                             int var13 = par1World.getBlockMetadata(par2 + var9, par3 + var10, par4 + var11);
-                            par1World.setBlockMetadata(par2 + var9, par3 + var10, par4 + var11, var13 | 8, 4);
+                            par1World.setBlockMetadataWithNotify(par2 + var9, par3 + var10, par4 + var11, var13 | 8, 4);
                         }
                     }
                 }
@@ -149,13 +218,27 @@ public class BlockLeaves extends BlockLeavesBase
 
                 if (var12 >= 0)
                 {
-                    par1World.setBlockMetadata(par2, par3, par4, var6 & -9, 4);
+                    par1World.setBlockMetadataWithNotify(par2, par3, par4, var6 & -9, 4);
                 }
                 else
                 {
                     this.removeLeaves(par1World, par2, par3, par4);
                 }
             }
+        }
+    }
+
+    /**
+     * A randomly called display update to be able to add particles or other items for display
+     */
+    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    {
+        if (par1World.canLightningStrikeAt(par2, par3 + 1, par4) && !par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4) && par5Random.nextInt(15) == 1)
+        {
+            double var6 = (double)((float)par2 + par5Random.nextFloat());
+            double var8 = (double)par3 - 0.05D;
+            double var10 = (double)((float)par4 + par5Random.nextFloat());
+            par1World.spawnParticle("dripWater", var6, var8, var10, 0.0D, 0.0D, 0.0D);
         }
     }
 
@@ -179,6 +262,11 @@ public class BlockLeaves extends BlockLeavesBase
     public int idDropped(int par1, Random par2Random, int par3)
     {
         return Block.sapling.blockID;
+    }
+    
+    public int idDroppedExceptThisTimeItIsAStick(int par1, Random par2Random, int par3)
+    {
+    	return SuperBTWDefinitions.branch.itemID;
     }
 
     /**
@@ -288,6 +376,34 @@ public class BlockLeaves extends BlockLeavesBase
     }
 
     /**
+     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
+     */
+    public Icon getIcon(int par1, int par2)
+    {
+        return (par2 & 3) == 1 ? this.iconArray[this.field_94394_cP][1] : ((par2 & 3) == 3 ? this.iconArray[this.field_94394_cP][3] : this.iconArray[this.field_94394_cP][0]);
+    }
+
+    /**
+     * Pass true to draw this block using fancy graphics, or false for fast graphics.
+     */
+    public void setGraphicsLevel(boolean par1)
+    {
+        this.graphicsLevel = par1;
+        this.field_94394_cP = par1 ? 0 : 1;
+    }
+
+    /**
+     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
+     */
+    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+        par3List.add(new ItemStack(par1, 1, 0));
+        par3List.add(new ItemStack(par1, 1, 1));
+        par3List.add(new ItemStack(par1, 1, 2));
+        par3List.add(new ItemStack(par1, 1, 3));
+    }
+
+    /**
      * Returns an item stack containing a single instance of the current block type. 'i' is the block's subtype/damage
      * and is ignored for blocks which do not support subtypes. Blocks which cannot be harvested should return null.
      */
@@ -295,10 +411,21 @@ public class BlockLeaves extends BlockLeavesBase
     {
         return new ItemStack(this.blockID, 1, par1 & 3);
     }
-    
-    //AARON
-    public int idDroppedExceptThisTimeItIsAStick(int par1, Random par2Random, int par3)
+
+    /**
+     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
+     * is the only chance you get to register icons.
+     */
+    public void registerIcons(IconRegister par1IconRegister)
     {
-    	return SuperBTWDefinitions.branch.itemID;
+        for (int var2 = 0; var2 < field_94396_b.length; ++var2)
+        {
+            this.iconArray[var2] = new Icon[field_94396_b[var2].length];
+
+            for (int var3 = 0; var3 < field_94396_b[var2].length; ++var3)
+            {
+                this.iconArray[var2][var3] = par1IconRegister.registerIcon(field_94396_b[var2][var3]);
+            }
+        }
     }
 }

@@ -13,7 +13,8 @@ public class FCBlockDeadBush extends BlockDeadBush
     {
     	super( iBlockID );
     	
-    	setHardness( 0F );
+    	//Aaron changed hardness
+    	setHardness( 0.1F );
     	
     	SetBuoyant();
     	
@@ -54,9 +55,21 @@ public class FCBlockDeadBush extends BlockDeadBush
     //Aaron added a branch drop!
     public int idDropped(int par1, Random par2Random, int par3)
     {
-
-		
         return SuperBTWDefinitions.branch.itemID;
+    }
+    
+    //AARON added chance to drop
+    public void dropBlockAsItemWithChance( World world, int i, int j, int k, int iMetadata, float fChance, int iFortuneModifier )
+    {
+        if ( !world.isRemote )
+        {
+        	if ( world.rand.nextDouble() > .20 )
+            {
+                int iIdDropped = idDropped( iMetadata, world.rand, iFortuneModifier );
+                
+                dropBlockAsItem_do( world, i, j, k, new ItemStack( iIdDropped, 1, 0) );
+            }
+        }
     }
     
     //------------- Class Specific Methods ------------//

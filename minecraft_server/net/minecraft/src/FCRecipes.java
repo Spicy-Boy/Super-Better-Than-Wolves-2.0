@@ -371,15 +371,13 @@ public abstract class FCRecipes
 		} );
 		
 		// arrows
-		//AARON CHANGED!!! From single arrow to 3
-		
+		//AARON CHANGED arrow recipe from single arrow to 3, both string and hemp
 		AddShapelessRecipe( new ItemStack( Item.arrow, 3 ), new Object[] {
     		new ItemStack( Item.feather ),
     		new ItemStack( Item.stick ),
     		new ItemStack( Item.silk ),
     		new ItemStack( Item.flint )
 		} );
-		
 		AddShapelessRecipe( new ItemStack( Item.arrow, 3 ), new Object[] {
     		new ItemStack( Item.feather ),
     		new ItemStack( Item.stick ),
@@ -801,7 +799,8 @@ public abstract class FCRecipes
     		Character.valueOf( '#' ), FCBetterThanWolves.fcItemWickerPiece 
 		} );
 		
-		AddShapelessRecipe( new ItemStack( FCBetterThanWolves.fcItemWickerPiece, 1 ), new Object[] {	    		
+		//AARON changed to make wicker basckets break down into more material (better recycling)
+		AddShapelessRecipe( new ItemStack( FCBetterThanWolves.fcItemWickerPiece, 3 ), new Object[] {	    		
 			new ItemStack( FCBetterThanWolves.fcBlockBasketWicker )
 		} );
 		
@@ -3770,7 +3769,7 @@ public abstract class FCRecipes
 				new ItemStack( Item.saddle, 1 ) 
 		} );
         */
-        
+        //AARON CHANGED glue rendering of certain leather items to match new values of cut leather
         AddStokedCauldronRecipe(
 			new ItemStack( FCBetterThanWolves.fcItemGlue, 2 ), 
 			new ItemStack[] {
@@ -3821,7 +3820,7 @@ public abstract class FCRecipes
 		
 		
         AddStokedCauldronRecipe(
-			new ItemStack( FCBetterThanWolves.fcItemGlue, 2 ), 
+			new ItemStack( FCBetterThanWolves.fcItemGlue, 1 ), 
 			new ItemStack[] {
 				new ItemStack( Item.helmetLeather, 1, m_iIgnoreMetadata ) 
 		} );
@@ -3839,7 +3838,7 @@ public abstract class FCRecipes
 		} );
         
         AddStokedCauldronRecipe(
-			new ItemStack( FCBetterThanWolves.fcItemGlue, 1 ), 
+			new ItemStack( FCBetterThanWolves.fcItemGlue, 2 ), 
 			new ItemStack[] {
 				new ItemStack( Item.bootsLeather, 1, m_iIgnoreMetadata ) 
 		} );
@@ -3849,7 +3848,7 @@ public abstract class FCRecipes
 			new ItemStack[] {
 				new ItemStack( Item.saddle, 1 ) 
 		} );
-        //END NEW GLUE
+        //AARON END NEW GLUE
         
         AddStokedCauldronRecipe(
 			new ItemStack( FCBetterThanWolves.fcItemGlue, 2 ), 
@@ -3904,30 +3903,58 @@ public abstract class FCRecipes
 			new ItemStack[] {
 				new ItemStack( Item.enchantedBook, 2, m_iIgnoreMetadata ) 
 		} );
-    
-        AddStokedCauldronRecipe(
-			new ItemStack( FCBetterThanWolves.fcItemGlue, 2 ), 
+        
+        //AARON CHANGED tanned leather rendering to match new values
+        
+//        AddStokedCauldronRecipe(
+//			new ItemStack( FCBetterThanWolves.fcItemGlue, 2 ), 
+//			new ItemStack[] {
+//				new ItemStack( FCBetterThanWolves.fcItemArmorTannedHelm, 1, m_iIgnoreMetadata ) 
+//		} );
+//        
+//        AddStokedCauldronRecipe(
+//			new ItemStack( FCBetterThanWolves.fcItemGlue, 4 ), 
+//			new ItemStack[] {
+//				new ItemStack( FCBetterThanWolves.fcItemArmorTannedChest, 1, m_iIgnoreMetadata ) 
+//		} );
+//        
+//        AddStokedCauldronRecipe(
+//			new ItemStack( FCBetterThanWolves.fcItemGlue, 3 ), 
+//			new ItemStack[] {
+//				new ItemStack( FCBetterThanWolves.fcItemArmorTannedLeggings, 1, m_iIgnoreMetadata ) 
+//		} );
+//        
+//        AddStokedCauldronRecipe(
+//			new ItemStack( FCBetterThanWolves.fcItemGlue, 2 ), 
+//			new ItemStack[] {
+//				new ItemStack( FCBetterThanWolves.fcItemArmorTannedBoots, 1, m_iIgnoreMetadata ) 
+//		} );
+        
+        
+      AddStokedCauldronRecipe(
+			new ItemStack( FCBetterThanWolves.fcItemGlue, 1 ), 
 			new ItemStack[] {
 				new ItemStack( FCBetterThanWolves.fcItemArmorTannedHelm, 1, m_iIgnoreMetadata ) 
 		} );
-        
-        AddStokedCauldronRecipe(
+      
+      AddStokedCauldronRecipe(
 			new ItemStack( FCBetterThanWolves.fcItemGlue, 4 ), 
 			new ItemStack[] {
 				new ItemStack( FCBetterThanWolves.fcItemArmorTannedChest, 1, m_iIgnoreMetadata ) 
 		} );
-        
-        AddStokedCauldronRecipe(
+      
+      AddStokedCauldronRecipe(
 			new ItemStack( FCBetterThanWolves.fcItemGlue, 3 ), 
 			new ItemStack[] {
 				new ItemStack( FCBetterThanWolves.fcItemArmorTannedLeggings, 1, m_iIgnoreMetadata ) 
 		} );
-        
-        AddStokedCauldronRecipe(
+      
+      AddStokedCauldronRecipe(
 			new ItemStack( FCBetterThanWolves.fcItemGlue, 2 ), 
 			new ItemStack[] {
 				new ItemStack( FCBetterThanWolves.fcItemArmorTannedBoots, 1, m_iIgnoreMetadata ) 
 		} );
+      //AARON END NEW TANNED LEATHER
         
         // tallow recipes
         //AARON CHANGE!!! From 1 tallow per pork to 3
@@ -3935,8 +3962,7 @@ public abstract class FCRecipes
 				new ItemStack( FCBetterThanWolves.fcItemTallow, 3 ), 
 				new ItemStack[] {
 					new ItemStack( Item.porkCooked, 1 ) 
-			} );
-                
+			} ); 
         AddStokedCauldronRecipe(
 				new ItemStack( FCBetterThanWolves.fcItemTallow, 3 ), 
 				new ItemStack[] {

@@ -72,7 +72,7 @@ public class FCBlockLeaves extends BlockLeaves
         if ( !world.isRemote )
         {
             
-            int iChanceOfSaplingDrop = 12;
+            int iChanceOfSaplingDrop = 15;
 
             if ( world.rand.nextInt( iChanceOfSaplingDrop ) == 0 )
             {
@@ -243,16 +243,16 @@ public class FCBlockLeaves extends BlockLeaves
     
 	//----------- Client Side Functionality -----------//
 
-//    @Override
-//    public void randomDisplayTick( World world, int i, int j, int k, Random rand )
-//    {
-//        if ( world.IsRainingAtPos( i, j + 1, k ) && 
-//        	!world.doesBlockHaveSolidTopSurface( i, j - 1, k ) && 
-//        	rand.nextInt(15) == 1 )
-//        {
-//            world.spawnParticle( "dripWater",  
-//            	i + rand.nextDouble(), j - 0.05D, k + rand.nextDouble(), 
-//            	0D, 0D, 0D );
-//        }
-//    }
+    @Override
+    public void randomDisplayTick( World world, int i, int j, int k, Random rand )
+    {
+        if ( world.IsRainingAtPos( i, j + 1, k ) && 
+        	!world.doesBlockHaveSolidTopSurface( i, j - 1, k ) && 
+        	rand.nextInt(15) == 1 )
+        {
+            world.spawnParticle( "dripWater",  
+            	i + rand.nextDouble(), j - 0.05D, k + rand.nextDouble(), 
+            	0D, 0D, 0D );
+        }
+    }
 }

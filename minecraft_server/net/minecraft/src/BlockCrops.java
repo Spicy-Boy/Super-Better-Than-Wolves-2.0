@@ -10,7 +10,9 @@ public class BlockCrops extends BlockFlower
     	SocksCropsAddon.instance.getVersionString();
     }
     //SC END
-    
+	
+    private Icon[] iconArray;
+
     protected BlockCrops(int par1)
     {
         super(par1);
@@ -59,7 +61,7 @@ public class BlockCrops extends BlockFlower
                 if (par5Random.nextInt((int)(25.0F / var7) + 1) == 0)
                 {
                     ++var6;
-                    par1World.setBlockMetadata(par2, par3, par4, var6, 2);
+                    par1World.setBlockMetadataWithNotify(par2, par3, par4, var6, 2);
                 }
             }
         }
@@ -79,7 +81,7 @@ public class BlockCrops extends BlockFlower
             var5 = 7;
         }
 
-        par1World.setBlockMetadata(par2, par3, par4, var5, 2);
+        par1World.setBlockMetadataWithNotify(par2, par3, par4, var5, 2);
     }
 
     /**
@@ -139,6 +141,19 @@ public class BlockCrops extends BlockFlower
     }
     */
     // END FCMOD
+
+    /**
+     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
+     */
+    public Icon getIcon(int par1, int par2)
+    {
+        if (par2 < 0 || par2 > 7)
+        {
+            par2 = 7;
+        }
+
+        return this.iconArray[par2];
+    }
 
     /**
      * The type of render function that is called for this block
@@ -212,15 +227,37 @@ public class BlockCrops extends BlockFlower
     {
         return 1;
     }
-    
-    // FCMOD: Added New
+
+    /**
+     * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
+     */
+    public int idPicked(World par1World, int par2, int par3, int par4)
+    {
+        return this.getSeedItem();
+    }
+
+    /**
+     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
+     * is the only chance you get to register icons.
+     */
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+        this.iconArray = new Icon[8];
+
+        for (int var2 = 0; var2 < this.iconArray.length; ++var2)
+        {
+            this.iconArray[var2] = par1IconRegister.registerIcon("crops_" + var2);
+        }
+    }
+
+    // FCMOD: Added New    
     @Override
     public int idDropped( int iMetadata, Random random, int iFortuneModifier )
     {
     	if ( iMetadata == 7 )
     	{
     		return getCropItem();
-}
+    	}
     	
         return 0;
     }
@@ -354,5 +391,18 @@ public class BlockCrops extends BlockFlower
     }
     
 	//----------- Client Side Functionality -----------//
+    
+    @Override
+    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
+    {
+    	renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
+    		renderer.blockAccess, i, j, k ) );
+        
+    	renderer.renderBlockCrops( this, i, j, k );
+    	
+    	FCBetterThanWolves.fcBlockWeeds.RenderWeeds( this, renderer, i, j, k );
+
+		return true;
+    }    
     // END FCMOD
 }

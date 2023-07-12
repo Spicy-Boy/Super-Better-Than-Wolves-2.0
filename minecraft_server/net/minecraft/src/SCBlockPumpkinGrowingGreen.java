@@ -8,6 +8,13 @@ public class SCBlockPumpkinGrowingGreen extends SCBlockPumpkinGrowing {
 		super(iBlockID, stemBlock, vineBlock, flowerBlock, convertedBlockID);
 		setUnlocalizedName("SCBlockPumpkinGrowingGreen");
 	}
+	
+	@Override
+	public void grow(World world, int i, int j, int k, Random random)
+	{
+		int meta = world.getBlockMetadata(i, j, k);
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.pumpkinGreenAsleep.blockID ,meta + 4);
+	}
 
 	@Override
 	protected int getPossessedMetaForGrowthLevel(int growthLevel) {
@@ -20,6 +27,28 @@ public class SCBlockPumpkinGrowingGreen extends SCBlockPumpkinGrowing {
 			}
 		}
 		return 0;
+	}
+	
+	@Override
+	public int damageDropped(int meta)
+	{
+		int growthLevel = this.GetGrowthLevel(meta);
+		
+		//return getMetaHarvested(meta);
+		
+		if (growthLevel == 3 )
+		{
+			return 7; 
+		}
+		else if (growthLevel == 2)
+		{
+			return 6;
+		}
+		else if (growthLevel == 1)
+		{
+			return 5;
+		}
+		else return 4;
 	}
 	
 	protected int getMetaHarvested(int growthLevel) {
@@ -69,72 +98,72 @@ public class SCBlockPumpkinGrowingGreen extends SCBlockPumpkinGrowing {
 	
 	//--- Render ---//
 	
-//	@Override
-//	public boolean RenderBlock(RenderBlocks renderer, int i, int j, int k)
-//	{
-//		IBlockAccess blockAccess = renderer.blockAccess;
-//		int growthLevel = this.GetGrowthLevel(blockAccess, i, j, k);
-//		
-//		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(blockAccess, i, j, k) );
-//		renderer.renderStandardBlock(this, i, j, k);
-//		
-//		this.renderVineConnector(renderer, i, j, k, connectorIcon[growthLevel]);
-//		
-//		return true;
-//	}
+	@Override
+	public boolean RenderBlock(RenderBlocks renderer, int i, int j, int k)
+	{
+		IBlockAccess blockAccess = renderer.blockAccess;
+		int growthLevel = this.GetGrowthLevel(blockAccess, i, j, k);
+		
+		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(blockAccess, i, j, k) );
+		renderer.renderStandardBlock(this, i, j, k);
+		
+		this.renderVineConnector(renderer, i, j, k, connectorIcon[growthLevel]);
+		
+		return true;
+	}
 	
-//	@Override
-//	public void RenderFallingBlock(RenderBlocks renderer, int i, int j, int k, int meta)
-//	{
-//		IBlockAccess blockAccess = renderer.blockAccess;
-//		
-//		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(meta) );		
-//		renderer.RenderStandardFallingBlock( this, i, j, k, meta);
-//	}
+	@Override
+	public void RenderFallingBlock(RenderBlocks renderer, int i, int j, int k, int meta)
+	{
+		IBlockAccess blockAccess = renderer.blockAccess;
+		
+		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(meta) );		
+		renderer.RenderStandardFallingBlock( this, i, j, k, meta);
+	}
 
 	protected Icon[] greenIcon;
 	protected Icon[] greenIconTop;
 	protected Icon[] connectorIcon;
 	
-//	@Override
-//  	public void registerIcons( IconRegister register )
-//  	{
-//		//Orange
-//		greenIcon = new Icon[4];
-//		
-//  		for ( int iTempIndex = 0; iTempIndex < greenIcon.length; iTempIndex++ )
-//		{
-//  			greenIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenSide_" + iTempIndex );
-//		}
-//	
-//  		greenIconTop = new Icon[4];
-//	
-//		for ( int iTempIndex = 0; iTempIndex < greenIconTop.length; iTempIndex++ )
-//		{
-//			greenIconTop[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenTop_" + iTempIndex );
-//		}
-//		
-//        connectorIcon = new Icon[4];
-//        for ( int iTempIndex = 0; iTempIndex < connectorIcon.length; iTempIndex++ )
-//        {
-//        	connectorIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenConnector_" + iTempIndex );
-//        }
-//    	
-//    	blockIcon = greenIcon[3];
-//    	
-//		
-//	}
+	@Override
+  	public void registerIcons( IconRegister register )
+  	{
+		//Orange
+		greenIcon = new Icon[4];
+		
+  		for ( int iTempIndex = 0; iTempIndex < greenIcon.length; iTempIndex++ )
+		{
+  			greenIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenSide_" + iTempIndex );
+		}
 	
-//	@Override
-//    public Icon getIcon( int iSide, int iMetadata )
-//    {
-//    	int growthLevel = GetGrowthLevel(iMetadata);
-//    	
-//    	if ( iSide == 1 || iSide == 0 )
-//    	{
-//    		return greenIconTop[growthLevel];
-//    	}
-//
-//    	return greenIcon[growthLevel];
-//    }
+  		greenIconTop = new Icon[4];
+	
+		for ( int iTempIndex = 0; iTempIndex < greenIconTop.length; iTempIndex++ )
+		{
+			greenIconTop[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenTop_" + iTempIndex );
+		}
+		
+        connectorIcon = new Icon[4];
+        for ( int iTempIndex = 0; iTempIndex < connectorIcon.length; iTempIndex++ )
+        {
+        	connectorIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenConnector_" + iTempIndex );
+        }
+    	
+    	blockIcon = greenIcon[3];
+    	
+		
+	}
+	
+	@Override
+    public Icon getIcon( int iSide, int iMetadata )
+    {
+    	int growthLevel = GetGrowthLevel(iMetadata);
+    	
+    	if ( iSide == 1 || iSide == 0 )
+    	{
+    		return greenIconTop[growthLevel];
+    	}
+
+    	return greenIcon[growthLevel];
+    }
 }

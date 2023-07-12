@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 
-//import net.minecraft.client.Minecraft;
+import net.minecraft.client.Minecraft;
 
 public class DLMain extends FCAddOn{
 

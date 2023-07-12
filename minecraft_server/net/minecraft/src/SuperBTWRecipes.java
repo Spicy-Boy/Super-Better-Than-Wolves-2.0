@@ -26,16 +26,56 @@ public class SuperBTWRecipes extends FCRecipes {
 		CraftingManager.getInstance().getRecipeList().add(new SuperBTWRecipesBladeReturn());
 
 		CraftingManager.getInstance().getRecipeList().add( new SuperBTWRecipesPumpkinCutting() );
+		
+		CraftingManager.getInstance().getRecipeList().add(new SuperBTWRecipesRibCracking());
 	}
 
 	public static void addBlockRecipes() {
 		AddRecipe(new ItemStack(FCBetterThanWolves.fcBlockWorkbench, 1), new Object[] // ITS BACK BABY
 		{ "###", "#X#", "###", '#', Block.planks, 'X', Item.ingotIron });
+		
+		AddRecipe(new ItemStack(FCBetterThanWolves.fcBlockWorkbench, 1), new Object[]
+		{ "###", "#X#", "###",
+				Character.valueOf('#'), new ItemStack (FCBetterThanWolves.fcBlockWoodSidingItemStubID, 1, m_iIgnoreMetadata),
+				Character.valueOf('X'), Item.ingotIron });
+		
+		
+		AddRecipe(new ItemStack( SuperBTWDefinitions.meatCube, 1 ),
+				new Object[] { "XXX", "XXX", "XXX", Character.valueOf('X'), FCBetterThanWolves.fcItemRawMysteryMeat});
+
+		
+		AddShapelessRecipe( new ItemStack( FCBetterThanWolves.fcItemRawMysteryMeat, 9 ), new Object[] {	    		
+	    		new ItemStack( SuperBTWDefinitions.meatCube),
+			} );
+		
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.wetMudBrickItem, 4 ), new Object[] {
+	    		new ItemStack( Item.clay ),
+	    		new ItemStack( FCBetterThanWolves.fcBlockDirtLoose ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( Item.bucketWater ),
+			} );
+		
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.mortarBucket, 1 ), new Object[] {
+	    		new ItemStack( Item.clay ),
+	    		new ItemStack( Block.sand ),
+	    		new ItemStack( Item.bucketWater ),
+			} );
+		//empty the bucket
+		AddShapelessRecipe( new ItemStack( Item.bucketEmpty, 1), new Object[] {
+	    		new ItemStack( SuperBTWDefinitions.mortarBucket, 1,  m_iIgnoreMetadata  ),
+			} );
 	}
 
 	public static void addToolRecipes() {
+//		FCRecipes.AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.trowel, 1), new ItemStack[] {
+//				new ItemStack(FCBetterThanWolves.fcItemNuggetIron), new ItemStack(FCBetterThanWolves.fcItemNuggetIron), new ItemStack(FCBetterThanWolves.fcItemNuggetIron)});
+		AddRecipe(new ItemStack(SuperBTWDefinitions.trowel, 1), new Object[]
+		{ "##", "#X", '#', FCBetterThanWolves.fcItemNuggetIron, 'X', Item.stick });
+		
+		
 		FCRecipes.AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.bonePickaxe, 1), new ItemStack[] {
 				new ItemStack(SuperBTWDefinitions.rib), new ItemStack(Item.silk), new ItemStack(Item.stick) });
+		
 		FCRecipes.AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.bonePickaxe, 1),
 				new ItemStack[] { new ItemStack(SuperBTWDefinitions.rib),
 						new ItemStack(FCBetterThanWolves.fcItemHempFibers), new ItemStack(Item.stick) });
@@ -57,6 +97,24 @@ public class SuperBTWRecipes extends FCRecipes {
 				new Object[] { "XIS", " I ", " I ", Character.valueOf('X'), FCBetterThanWolves.fcItemStone,
 						Character.valueOf('I'), Item.stick, Character.valueOf('S'), Item.silk, });
 
+		FCRecipes.AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.deathClub, 1), new ItemStack[] {
+				new ItemStack(SuperBTWDefinitions.rib), new ItemStack(SuperBTWDefinitions.rib), new ItemStack(Item.stick), new ItemStack(Item.stick) });
+	
+		AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.fcItemBedroll), new Object[] {
+				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
+				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
+				new ItemStack(Item.silk)});
+		
+		AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.fcItemBedroll), new Object[] {
+				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
+				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
+				new ItemStack(FCBetterThanWolves.fcItemWool, 1,  m_iIgnoreMetadata)});
+		
+		AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.fcItemBedroll), new Object[] {
+				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
+				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
+				new ItemStack(Item.feather, 1),
+				new ItemStack(Item.feather, 1)});
 	}
 
 	public static void addFoodRecipes() {
@@ -73,8 +131,83 @@ public class SuperBTWRecipes extends FCRecipes {
 //				new ItemStack( SCDefs.pumpkinSlice, 1 ),
 //		} );
 
-		AddCauldronRecipe(new ItemStack(Item.beefCooked, 1),
+		AddCauldronRecipe(new ItemStack(SuperBTWDefinitions.cookedCowRib, 1),
 				new ItemStack[] { new ItemStack(SuperBTWDefinitions.cowRib, 1), });
+		
+		//gourd recipes
+		
+		//Pumpkins
+		FCRecipes.AddShapelessRecipeWithSecondaryOutputIndicator( new ItemStack( SCDefs.pumpkinCarved, 1, 3 ), new Object[] {
+				new ItemStack( SCDefs.pumpkinHarvested, 1, 3 ),
+//				new ItemStack( SuperBTWDefinitions.orangePumpkinSeeds, 4),
+			} );
+		
+		FCRecipes.AddShapelessRecipeWithSecondaryOutputIndicator( new ItemStack( SCDefs.pumpkinCarved, 1, 7 ), new Object[] {
+				new ItemStack( SCDefs.pumpkinHarvested, 1, 7),
+//				new ItemStack( SuperBTWDefinitions.greenPumpkinSeeds, 5),
+			} );
+		
+		FCRecipes.AddShapelessRecipeWithSecondaryOutputIndicator( new ItemStack( SCDefs.pumpkinCarved, 1, 11 ), new Object[] {
+				new ItemStack( SCDefs.pumpkinHarvested, 1, 11 ),
+//				new ItemStack( SuperBTWDefinitions.yellowPumpkinSeeds, 3),
+			} );
+		
+		FCRecipes.AddShapelessRecipeWithSecondaryOutputIndicator( new ItemStack( SCDefs.pumpkinCarved, 1, 15 ), new Object[] {
+				new ItemStack( SCDefs.pumpkinHarvested, 1, 15 ),
+//				new ItemStack( SuperBTWDefinitions.whitePumpkinSeeds, 2),
+			} );
+		
+		
+		//Melons
+		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonHoneydewSlice, 3 ), new Object[] { 
+	            new ItemStack( SCDefs.melonHarvested, 1, 7)
+	        } );
+		
+		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonWaterSlice, 5 ), new Object[] { 
+				new ItemStack( SCDefs.melonHarvested, 1, 3)
+			} );
+		
+		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonCantaloupeSlice, 3 ), new Object[] { 
+	            new ItemStack( SCDefs.melonHarvested, 1, 11 )
+	        } );
+		
+		FCRecipes.AddShapelessRecipe( new ItemStack( SCDefs.melonCanarySlice, 4 ), new Object[] { 
+	            new ItemStack( SCDefs.melonCanaryHarvested, 1, 12 )
+	        } );
+		
+		//Slice to seeds
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.honeydewMelonSeeds, 1 ), new Object[] { 
+	            new ItemStack( SCDefs.melonHoneydewSlice, 1 )
+	        } );
+		
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.cantaloupeMelonSeeds, 1 ), new Object[] { 
+	            new ItemStack( SCDefs.melonCantaloupeSlice, 1 )
+	        } );
+		
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.canaryMelonSeeds, 1 ), new Object[] { 
+	            new ItemStack( SCDefs.melonCanarySlice, 1 )
+	        } );
+		
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.waterMelonSeeds, 1 ), new Object[] { 
+	            new ItemStack( SCDefs.melonWaterSlice, 1 )
+	        } );
+		
+		//Melon slices to seeds
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.honeydewMelonSeeds, 1 ), new Object[] { 
+        new ItemStack( SCDefs.melonHoneydewSlice, 1 )
+		} );
+
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.cantaloupeMelonSeeds, 1 ), new Object[] { 
+        new ItemStack( SCDefs.melonCantaloupeSlice, 1 )
+		} );
+
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.canaryMelonSeeds, 1 ), new Object[] { 
+        new ItemStack( SCDefs.melonCanarySlice, 1 )
+		} );
+
+		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.waterMelonSeeds, 1 ), new Object[] { 
+        new ItemStack( SCDefs.melonWaterSlice, 1 )
+		} );
 	}
 
 	private static void addProgressRecipes() {
@@ -108,7 +241,8 @@ public class SuperBTWRecipes extends FCRecipes {
 
 	}
 
-	private static void addMiscRecipes() {
+	private static void addMiscRecipes() 
+	{
 		FCRecipes.AddShapelessRecipe(new ItemStack(Item.plateLeather, 1),
 				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
 						new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
@@ -123,6 +257,21 @@ public class SuperBTWRecipes extends FCRecipes {
 						new ItemStack(FCBetterThanWolves.fcItemLeatherCut) });
 		FCRecipes.AddShapelessRecipe(new ItemStack(Item.helmetLeather, 1),
 				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemLeatherCut) });
+		
+		FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcItemArmorTannedChest, 1),
+				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
+						new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
+						new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
+						new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut) });	
+		FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcItemArmorTannedLeggings, 1),
+				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
+						new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
+						new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut) });
+		FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcItemArmorTannedBoots, 1),
+				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
+						new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut) });
+		FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcItemArmorTannedHelm, 1),
+				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut) });
 
 		// branch recipes!
 		FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcBlockTorchFiniteUnlit, 1),
@@ -154,7 +303,11 @@ public class SuperBTWRecipes extends FCRecipes {
 		FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcBlockCampfireUnlit, 1),
 				new ItemStack[] { new ItemStack(SuperBTWDefinitions.branch), new ItemStack(SuperBTWDefinitions.branch),
 						new ItemStack(SuperBTWDefinitions.branch), new ItemStack(SuperBTWDefinitions.branch) });
-
+		
+		//rib recipes
+		AddMillStoneRecipe( new ItemStack( Item.dyePowder, 6, 15 ), new ItemStack( SuperBTWDefinitions.rib, 1) );
+		AddMillStoneRecipe( new ItemStack( Item.dyePowder, 2, 15 ), new ItemStack( FCBetterThanWolves.fcItemClubBone, 1) );
+		
 		AddStokedCrucibleRecipe(new ItemStack(SuperBTWDefinitions.rib, 1),
 				new ItemStack[] { new ItemStack(SuperBTWDefinitions.cowRib) });
 		// this.addRecipe(new ItemStack(Block.railPowered, 6), new Object[] {"X X",
@@ -164,6 +317,7 @@ public class SuperBTWRecipes extends FCRecipes {
 				new Object[] { "IRI", "XYX", "IRI", Character.valueOf('X'), Item.ingotGold, Character.valueOf('I'),
 						Item.ingotIron, Character.valueOf('R'), Item.redstone, Character.valueOf('Y'), Item.stick, });
 
+		
 		// debug
 		// FCRecipes.AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.branchBlock,
 		// 1), new ItemStack [] {new ItemStack(Item.diamond)} );

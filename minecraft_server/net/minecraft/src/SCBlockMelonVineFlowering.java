@@ -4,6 +4,9 @@ import java.util.Random;
 
 public class SCBlockMelonVineFlowering extends SCBlockGourdVineFloweringBase {
 	
+	//AARON added a variable to track what fruit is produced by specific seed
+	protected Block seedFruit;
+	
 	protected Block waterFruit;
 	protected Block canaryFruit;
 	protected Block honeydewFruit;
@@ -11,8 +14,11 @@ public class SCBlockMelonVineFlowering extends SCBlockGourdVineFloweringBase {
 	protected int vineBlock;
 	protected int stemBlock;
 
-	protected SCBlockMelonVineFlowering(int iBlockID, int vineBlock,int stemBlock, Block waterFruit, Block honeydewFruit, Block cantaloupeFruit, Block canaryFruit, int convertedBlockID) {
+	protected SCBlockMelonVineFlowering(int iBlockID, Block seedFruit, int vineBlock,int stemBlock, Block waterFruit, Block honeydewFruit, Block cantaloupeFruit, Block canaryFruit, int convertedBlockID) {
 		super( iBlockID, vineBlock, stemBlock, convertedBlockID);
+		
+		//tracks what fruit is determined in constructor
+		this.seedFruit = seedFruit;
 		
 		this.waterFruit = waterFruit;
 		this.canaryFruit = canaryFruit;
@@ -80,93 +86,94 @@ public class SCBlockMelonVineFlowering extends SCBlockGourdVineFloweringBase {
 	
 
 	private Block getFruitAccordingToBiome(World world, int i, int j, int k, Random random) {
-		Block biomeFruit;
+		Block biomeFruit = this.seedFruit;
+//		Block biomeFruit;
 		
-		BiomeGenBase biome = world.getBiomeGenForCoords(i, k);
-		
-		//Yellow
-		BiomeGenBase canaryMelonBiomes[] = { 
-
-				BiomeGenBase.desert,
-				BiomeGenBase.desertHills,
-				BiomeGenBase.extremeHills,
-				BiomeGenBase.extremeHillsEdge
-		};
-
-		//Green
-		BiomeGenBase honeydewMelonBiomes[] = {
-
-				BiomeGenBase.swampland,
-				BiomeGenBase.river,
-		 		BiomeGenBase.beach,
-
-		};
-		
-		//White
-		BiomeGenBase cantaloupeMelonBiomes[] = {
-			 	BiomeGenBase.taiga,
-			 	BiomeGenBase.taigaHills,
-				BiomeGenBase.icePlains,
-				BiomeGenBase.iceMountains,
-		 		BiomeGenBase.frozenOcean,
-			 	BiomeGenBase.frozenRiver
-
-		};
-		
-		//Mushroom
-		BiomeGenBase mushroomBiome[] = {
-				BiomeGenBase.mushroomIsland, 
-				BiomeGenBase.mushroomIslandShore
-		};
-		
-		//set the biomeFruit
-		biomeFruit = this.waterFruit;
-		
-		for (int c = 0; c < canaryMelonBiomes.length; c++) {
-    		if (biome == canaryMelonBiomes[c])
-        	{
-        		biomeFruit = this.canaryFruit;
-        	}
-		}
-    	
-    	for (int h = 0; h < honeydewMelonBiomes.length; h++) {
-    		if (biome == honeydewMelonBiomes[h])
-        	{
-        		biomeFruit = this.honeydewFruit;
-        	}
-		}
-    	
-    	for (int c = 0; c < cantaloupeMelonBiomes.length; c++) {
-    		if (biome == cantaloupeMelonBiomes[c])
-        	{
-        		biomeFruit = this.cantaloupeFruit;
-        	}
-		}
-    	
-    	for (int m = 0; m < mushroomBiome.length; m++) {
-    		int blockBelow = world.getBlockId(i, j - 1, k);
-    		
-    		if (biome == mushroomBiome[m] || blockBelow == Block.mycelium.blockID)
-        	{
-    			for (int r = 0; r < 4 ; r++) {
-    				
-    				int rand = random.nextInt(4);
-    				
-    				if (rand == 0) {
-    					biomeFruit = this.waterFruit;
-    				}
-    				else if (rand == 1) {
-    					biomeFruit = this.canaryFruit;
-    				}
-    				else if (rand == 2) {
-    					biomeFruit = this.honeydewFruit;
-    				}
-    				else if (rand == 3) {
-    					biomeFruit = this.cantaloupeFruit;
-    				}
-    		    }
-        	}
-		}
+//		BiomeGenBase biome = world.getBiomeGenForCoords(i, k);
+//		
+//		//Yellow
+//		BiomeGenBase canaryMelonBiomes[] = { 
+//
+//				BiomeGenBase.desert,
+//				BiomeGenBase.desertHills,
+//				BiomeGenBase.extremeHills,
+//				BiomeGenBase.extremeHillsEdge
+//		};
+//
+//		//Green
+//		BiomeGenBase honeydewMelonBiomes[] = {
+//
+//				BiomeGenBase.swampland,
+//				BiomeGenBase.river,
+//		 		BiomeGenBase.beach,
+//
+//		};
+//		
+//		//White
+//		BiomeGenBase cantaloupeMelonBiomes[] = {
+//			 	BiomeGenBase.taiga,
+//			 	BiomeGenBase.taigaHills,
+//				BiomeGenBase.icePlains,
+//				BiomeGenBase.iceMountains,
+//		 		BiomeGenBase.frozenOcean,
+//			 	BiomeGenBase.frozenRiver
+//
+//		};
+//		
+//		//Mushroom
+//		BiomeGenBase mushroomBiome[] = {
+//				BiomeGenBase.mushroomIsland, 
+//				BiomeGenBase.mushroomIslandShore
+//		};
+//		
+//		//set the biomeFruit
+//		biomeFruit = this.waterFruit;
+//		
+//		for (int c = 0; c < canaryMelonBiomes.length; c++) {
+//    		if (biome == canaryMelonBiomes[c])
+//        	{
+//        		biomeFruit = this.canaryFruit;
+//        	}
+//		}
+//    	
+//    	for (int h = 0; h < honeydewMelonBiomes.length; h++) {
+//    		if (biome == honeydewMelonBiomes[h])
+//        	{
+//        		biomeFruit = this.honeydewFruit;
+//        	}
+//		}
+//    	
+//    	for (int c = 0; c < cantaloupeMelonBiomes.length; c++) {
+//    		if (biome == cantaloupeMelonBiomes[c])
+//        	{
+//        		biomeFruit = this.cantaloupeFruit;
+//        	}
+//		}
+//    	
+//    	for (int m = 0; m < mushroomBiome.length; m++) {
+//    		int blockBelow = world.getBlockId(i, j - 1, k);
+//    		
+//    		if (biome == mushroomBiome[m] || blockBelow == Block.mycelium.blockID)
+//        	{
+//    			for (int r = 0; r < 4 ; r++) {
+//    				
+//    				int rand = random.nextInt(4);
+//    				
+//    				if (rand == 0) {
+//    					biomeFruit = this.waterFruit;
+//    				}
+//    				else if (rand == 1) {
+//    					biomeFruit = this.canaryFruit;
+//    				}
+//    				else if (rand == 2) {
+//    					biomeFruit = this.honeydewFruit;
+//    				}
+//    				else if (rand == 3) {
+//    					biomeFruit = this.cantaloupeFruit;
+//    				}
+//    		    }
+//        	}
+//		}
     	
 		return biomeFruit;
 	}
@@ -197,35 +204,35 @@ public class SCBlockMelonVineFlowering extends SCBlockGourdVineFloweringBase {
 	public Icon[] flowerIcons;
 	
 
-//    @Override
-//    public void registerIcons( IconRegister register )
-//    {
-//        flowerIcons = new Icon[2];
-//
-//        for ( int iTempIndex = 0; iTempIndex < flowerIcons.length; iTempIndex++ )
-//        {
-//        	flowerIcons[iTempIndex] = register.registerIcon( "SCBlockMelonVineFlowering_" + iTempIndex );
-//        }
-//        
-//        blockIcon = flowerIcons[1]; // for block hit effects and item render
-//        
-//        connectorIcons = new Icon[4];
-//        for ( int iTempIndex = 0; iTempIndex < connectorIcons.length; iTempIndex++ )
-//        {
-//        	connectorIcons[iTempIndex] = register.registerIcon( "SCBlockMelonVineConnector_" + iTempIndex );
-//        }
-//   
-//    }
+    @Override
+    public void registerIcons( IconRegister register )
+    {
+        flowerIcons = new Icon[2];
 
-//	@Override
-//    public Icon getBlockTexture( IBlockAccess blockAccess, int i, int j, int k, int iSide )
-//    {
-//		if (!IsFullyGrown(blockAccess.getBlockMetadata(i, j, k)))
-//		{
-//			return flowerIcons[1];
-//		}
-//		else return flowerIcons[0];
-//        
-//    }
+        for ( int iTempIndex = 0; iTempIndex < flowerIcons.length; iTempIndex++ )
+        {
+        	flowerIcons[iTempIndex] = register.registerIcon( "SCBlockMelonVineFlowering_" + iTempIndex );
+        }
+        
+        blockIcon = flowerIcons[1]; // for block hit effects and item render
+        
+        connectorIcons = new Icon[4];
+        for ( int iTempIndex = 0; iTempIndex < connectorIcons.length; iTempIndex++ )
+        {
+        	connectorIcons[iTempIndex] = register.registerIcon( "SCBlockMelonVineConnector_" + iTempIndex );
+        }
+   
+    }
+
+	@Override
+    public Icon getBlockTexture( IBlockAccess blockAccess, int i, int j, int k, int iSide )
+    {
+		if (!IsFullyGrown(blockAccess.getBlockMetadata(i, j, k)))
+		{
+			return flowerIcons[1];
+		}
+		else return flowerIcons[0];
+        
+    }
 
 }

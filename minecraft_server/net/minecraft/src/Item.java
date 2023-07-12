@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-//import com.prupe.mcpatcher.cit.CITUtils;
+import com.prupe.mcpatcher.cit.CITUtils;
 import java.util.List;
 import java.util.Random;
 
@@ -263,10 +263,10 @@ public class Item
     /**
      * Returns the icon index of the stack given as argument.
      */
-//    public final Icon getIconIndex(ItemStack par1ItemStack)
-//    {
-//    	return CITUtils.getIcon(this.getIconFromDamage(par1ItemStack.getItemDamage()), par1ItemStack, 0);
-//    }
+    public final Icon getIconIndex(ItemStack par1ItemStack)
+    {
+    	return CITUtils.getIcon(this.getIconFromDamage(par1ItemStack.getItemDamage()), par1ItemStack, 0);
+    }
 
     /**
      * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
@@ -592,10 +592,10 @@ public class Item
     /**
      * Return an item rarity from EnumRarity
      */
-//    public EnumRarity getRarity(ItemStack par1ItemStack)
-//    {
-//        return par1ItemStack.isItemEnchanted() ? EnumRarity.rare : EnumRarity.common;
-//    }
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return par1ItemStack.isItemEnchanted() ? EnumRarity.rare : EnumRarity.common;
+    }
 
     /**
      * Checks isDamagable and if it cannot be stacked
@@ -684,10 +684,10 @@ public class Item
         return false;
     }
 
-//    public void registerIcons(IconRegister par1IconRegister)
-//    {
-//        this.itemIcon = par1IconRegister.registerIcon(this.unlocalizedName);
-//    }
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+        this.itemIcon = par1IconRegister.registerIcon(this.unlocalizedName);
+    }
 
     static
     {
@@ -1186,14 +1186,6 @@ public class Item
         
 		return true;
 	}
-	
-    /**
-     * Called when a player right clicks an entity with an item.
-     */
-    public boolean useItemOnEntity(ItemStack par1ItemStack, EntityLiving par2EntityLiving)
-    {
-        return false;
-    }
     
     //------- Item Entity Related Functionality -------//
     
@@ -1219,5 +1211,34 @@ public class Item
     {
     	return null;
     }
-    // END FCMOD    
+    // END FCMOD  
+    
+    //AARON imported some Socky Wocky Locky Code
+	//------- Sock'sAddonsUtils Functionality -------//
+
+    /**
+     * Used to allow Items to be placed in a specific armor slot 
+     * @param armorType 0: Helmet, 1: Chest, 2: Legs, 3: boots
+     * @param itemStack 
+     */
+	public boolean isValidForArmorSlot(int armorType, ItemStack itemStack) {
+		return false;
+	}
+
+	/**
+	 * Example Pumpkin: "%blur%/misc/pumpkinblur.png"
+	 * @return Returns the directory string of the blur overlay texture that should be used when this is worn in the helmet slot
+	 */
+	public String getBlurOverlay(ItemStack itemStack) {
+		return null;
+	}
+	
+	/**
+	 * Returns true or false depending if the blur overlay should be shown when the player disabled the GUI 
+	 */
+	public boolean showBlurOverlayWithGuiDisabled(ItemStack itemStack) {
+		return false;
+	}
+	
+	// END SAU
 }

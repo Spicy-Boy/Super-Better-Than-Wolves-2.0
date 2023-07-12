@@ -63,7 +63,7 @@ public class SuperBTWItemFlintKnapping extends Item
 //        float var7 = (float)var6 / 20.0F;
 //        var7 = (var7 * var7 + var7 * 2.0F) / 3.0F;
         
-    	if (var6 < 4)
+    	if (var6 < 5)
     	{
     		return;
     	}
@@ -85,7 +85,7 @@ public class SuperBTWItemFlintKnapping extends Item
         		player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack( FCBetterThanWolves.fcItemStone, 1);
             }
         }
-        else if (var6 > 20)
+        else if (var6 >= 21)
         {
         	itemStack.damageItem( -1, player);
         	//System.out.println("Item damage = " + itemStack.getItemDamage());
@@ -96,9 +96,9 @@ public class SuperBTWItemFlintKnapping extends Item
         	{
         		
         		FCUtilsItem.GivePlayerStackOrEject( player, new ItemStack(FCBetterThanWolves.fcItemStone, 1));
-        		itemStack.damageItem( 11, player );
+        		//itemStack.damageItem( 11, player );
         		//to remove item from inv VVV
-        		//player.inventory.mainInventory[player.inventory.currentItem] = null;
+        		player.inventory.mainInventory[player.inventory.currentItem] = null;
         		player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack( SuperBTWDefinitions.flintBlade, 1);
         	}
         }

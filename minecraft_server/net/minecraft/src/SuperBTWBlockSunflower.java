@@ -9,7 +9,7 @@ public class SuperBTWBlockSunflower extends BlockFlower
 	protected SuperBTWBlockSunflower(int par1) {
 		super(par1);
 		setStepSound(soundGrassFootstep);
-		setUnlocalizedName("SuperBTWBlockSunflower");
+		//setUnlocalizedName("SuperBTWBlockSunflower");
 	
 		this.setCreativeTab(CreativeTabs.tabDecorations);
 	}
@@ -41,12 +41,12 @@ public class SuperBTWBlockSunflower extends BlockFlower
 		else return super.canBlockStay(world, i, j, k);
 	}
 	
-//	private boolean isTopBlock(RenderBlocks renderer, int i, int j, int k) {
-//		if (renderer.blockAccess.getBlockMetadata(i, j, k) == 1) {
-//			return true;
-//		}
-//		else return false;
-//	}
+	private boolean isTopBlock(RenderBlocks renderer, int i, int j, int k) {
+		if (renderer.blockAccess.getBlockMetadata(i, j, k) == 1) {
+			return true;
+		}
+		else return false;
+	}
 	
 	@Override
 	public int idDropped(int meta, Random par2Random, int par3) {
@@ -70,135 +70,135 @@ public class SuperBTWBlockSunflower extends BlockFlower
 	Icon sunflowerFront;
 	Icon sunflowerBack;
 	
-//	@Override
-//	public void registerIcons(IconRegister register) {
+	@Override
+	public void registerIcons(IconRegister register) {
 //		sunflowerBottom = register.registerIcon("sunflower_bottom");
 //		sunflowerTop = register.registerIcon("sunflower_top");
 //		sunflowerFront = register.registerIcon("sunflower_front");
 //		sunflowerBack = register.registerIcon("sunflower_back");
-//		
-//		blockIcon = sunflowerFront;
-//	}
+		
+		blockIcon = sunflowerFront;
+	}
 	
 	
-//	@Override
-//	public boolean RenderBlock(RenderBlocks renderer, int i, int j, int k) {
-//		if (isTopBlock(renderer, i, j, k))
-//		{
-//			this.RenderCrossedSquaresWithTexture(renderer, this, i, j, k, sunflowerTop);
-//			this.renderSunflowerPlaneWithTextures(renderer, this, i, j, k, sunflowerFront);
-//			this.renderBackSunflowerPlaneWithTextures(renderer, this, i, j, k, sunflowerBack);
-//		}
-//		else this.RenderCrossedSquaresWithTexture(renderer, this, i, j, k, sunflowerBottom);
-//	
-//		
-//		return true;
-//	}
+	@Override
+	public boolean RenderBlock(RenderBlocks renderer, int i, int j, int k) {
+		if (isTopBlock(renderer, i, j, k))
+		{
+			this.RenderCrossedSquaresWithTexture(renderer, this, i, j, k, sunflowerTop);
+			this.renderSunflowerPlaneWithTextures(renderer, this, i, j, k, sunflowerFront);
+			this.renderBackSunflowerPlaneWithTextures(renderer, this, i, j, k, sunflowerBack);
+		}
+		else this.RenderCrossedSquaresWithTexture(renderer, this, i, j, k, sunflowerBottom);
 	
-//	public static void RenderCrossedSquaresWithTexture( RenderBlocks renderBlocks, Block block, int i, int j, int k, Icon texture )
-//    {
-//        boolean bHasOverride = renderBlocks.hasOverrideBlockTexture();
-//        
-//        if ( !bHasOverride )
-//        {
-//        	renderBlocks.setOverrideBlockTexture( texture );
-//        }
-//        
-//        renderBlocks.renderCrossedSquares( block, i, j, k );
-//        
-//        if ( !bHasOverride )
-//        {
-//        	renderBlocks.clearOverrideBlockTexture();
-//        }
-//    }
+		
+		return true;
+	}
+	
+	public static void RenderCrossedSquaresWithTexture( RenderBlocks renderBlocks, Block block, int i, int j, int k, Icon texture )
+    {
+        boolean bHasOverride = renderBlocks.hasOverrideBlockTexture();
+        
+        if ( !bHasOverride )
+        {
+        	renderBlocks.setOverrideBlockTexture( texture );
+        }
+        
+        renderBlocks.renderCrossedSquares( block, i, j, k );
+        
+        if ( !bHasOverride )
+        {
+        	renderBlocks.clearOverrideBlockTexture();
+        }
+    }
     
-//    public static void renderSunflowerPlaneWithTextures( RenderBlocks renderBlocks, Block block, int i, int j, int k, Icon texture )
-//    {
-//    	 boolean bHasOverride = renderBlocks.hasOverrideBlockTexture();
-//         
-//         if ( !bHasOverride )
-//         {
-//         	renderBlocks.setOverrideBlockTexture( texture );
-//         }
-//         
-//         renderFrontSideFlower(renderBlocks, i, j, k, texture);
-//         
-//         if ( !bHasOverride )
-//         {
-//         	renderBlocks.clearOverrideBlockTexture();
-//         }
-//	}
+    public static void renderSunflowerPlaneWithTextures( RenderBlocks renderBlocks, Block block, int i, int j, int k, Icon texture )
+    {
+    	 boolean bHasOverride = renderBlocks.hasOverrideBlockTexture();
+         
+         if ( !bHasOverride )
+         {
+         	renderBlocks.setOverrideBlockTexture( texture );
+         }
+         
+         renderFrontSideFlower(renderBlocks, i, j, k, texture);
+         
+         if ( !bHasOverride )
+         {
+         	renderBlocks.clearOverrideBlockTexture();
+         }
+	}
     
-//    public static void renderBackSunflowerPlaneWithTextures( RenderBlocks renderBlocks, Block block, int i, int j, int k, Icon texture )
-//    {
-//    	 boolean bHasOverride = renderBlocks.hasOverrideBlockTexture();
-//         
-//         if ( !bHasOverride )
-//         {
-//         	renderBlocks.setOverrideBlockTexture( texture );
-//         }
-//         
-//         renderBackSideFlower(renderBlocks, i, j, k, texture);
-//         
-//         if ( !bHasOverride )
-//         {
-//         	renderBlocks.clearOverrideBlockTexture();
-//         }
-//	}
+    public static void renderBackSunflowerPlaneWithTextures( RenderBlocks renderBlocks, Block block, int i, int j, int k, Icon texture )
+    {
+    	 boolean bHasOverride = renderBlocks.hasOverrideBlockTexture();
+         
+         if ( !bHasOverride )
+         {
+         	renderBlocks.setOverrideBlockTexture( texture );
+         }
+         
+         renderBackSideFlower(renderBlocks, i, j, k, texture);
+         
+         if ( !bHasOverride )
+         {
+         	renderBlocks.clearOverrideBlockTexture();
+         }
+	}
     
-//    public static void renderFrontSideFlower(RenderBlocks renderer, int x, int y, int z, Icon texture)
-//    {
-//    	Tessellator tess = Tessellator.instance;
-//        
-//        Icon icon = texture;
-//        
-//        double minU = (double)icon.getMinU();
-//        double minV = (double)icon.getMinV();
-//        double maxU = (double)icon.getMaxU();
-//        double maxV = (double)icon.getMaxV();
-//        
-//        double minX = x + 0.5D + (0.125/2);
-//        double maxX = x + 0.5D + (0.125/2);
-//        double minZ = z + 0D;
-//        double maxZ = z + 1D;
-//        
-//        double yUp = 0.125D;
-//
-//        tess.addVertexWithUV(maxX  - 0.25, y + 1D + yUp, maxZ, maxU, minV);
-//        
-//        tess.addVertexWithUV(maxX + 0.25, y + 0D + yUp, maxZ, maxU, maxV);
-//        tess.addVertexWithUV(minX + 0.25, y + 0D + yUp, minZ, minU, maxV);
-//        
-//        tess.addVertexWithUV(minX - 0.25 , y + 1D + yUp, minZ, minU, minV);
-//		
-//    }
+    public static void renderFrontSideFlower(RenderBlocks renderer, int x, int y, int z, Icon texture)
+    {
+    	Tessellator tess = Tessellator.instance;
+        
+        Icon icon = texture;
+        
+        double minU = (double)icon.getMinU();
+        double minV = (double)icon.getMinV();
+        double maxU = (double)icon.getMaxU();
+        double maxV = (double)icon.getMaxV();
+        
+        double minX = x + 0.5D + (0.125/2);
+        double maxX = x + 0.5D + (0.125/2);
+        double minZ = z + 0D;
+        double maxZ = z + 1D;
+        
+        double yUp = 0.125D;
 
-//    public static void renderBackSideFlower(RenderBlocks renderer, int x, int y, int z, Icon texture)
-//    {
-//        Tessellator tess = Tessellator.instance;
-//        
-//        Icon icon = texture;
-//        
-//        double minU = (double)icon.getMinU();
-//        double minV = (double)icon.getMinV();
-//        double maxU = (double)icon.getMaxU();
-//        double maxV = (double)icon.getMaxV();
-//        
-//        double minX = x + 0.5D + (0.125/2);
-//        double maxX = x + 0.5D + (0.125/2);
-//        double minZ = z + 0D;
-//        double maxZ = z + 1D;
-//        
-//        double yUp = 0.125D;
-//
-//        tess.addVertexWithUV(minX  - 0.25, y + 1D + yUp, minZ, minU, minV);
-//        
-//        tess.addVertexWithUV(minX + 0.25, y + 0D + yUp, minZ , minU, maxV);
-//        tess.addVertexWithUV(maxX + 0.25, y + 0D + yUp, maxZ , maxU, maxV);
-//        
-//        tess.addVertexWithUV(maxX - 0.25, y + 1D + yUp, maxZ , maxU, minV);
-//		
-//    }
+        tess.addVertexWithUV(maxX  - 0.25, y + 1D + yUp, maxZ, maxU, minV);
+        
+        tess.addVertexWithUV(maxX + 0.25, y + 0D + yUp, maxZ, maxU, maxV);
+        tess.addVertexWithUV(minX + 0.25, y + 0D + yUp, minZ, minU, maxV);
+        
+        tess.addVertexWithUV(minX - 0.25 , y + 1D + yUp, minZ, minU, minV);
+		
+    }
+
+    public static void renderBackSideFlower(RenderBlocks renderer, int x, int y, int z, Icon texture)
+    {
+        Tessellator tess = Tessellator.instance;
+        
+        Icon icon = texture;
+        
+        double minU = (double)icon.getMinU();
+        double minV = (double)icon.getMinV();
+        double maxU = (double)icon.getMaxU();
+        double maxV = (double)icon.getMaxV();
+        
+        double minX = x + 0.5D + (0.125/2);
+        double maxX = x + 0.5D + (0.125/2);
+        double minZ = z + 0D;
+        double maxZ = z + 1D;
+        
+        double yUp = 0.125D;
+
+        tess.addVertexWithUV(minX  - 0.25, y + 1D + yUp, minZ, minU, minV);
+        
+        tess.addVertexWithUV(minX + 0.25, y + 0D + yUp, minZ , minU, maxV);
+        tess.addVertexWithUV(maxX + 0.25, y + 0D + yUp, maxZ , maxU, maxV);
+        
+        tess.addVertexWithUV(maxX - 0.25, y + 1D + yUp, maxZ , maxU, minV);
+		
+    }
 
 	
 }

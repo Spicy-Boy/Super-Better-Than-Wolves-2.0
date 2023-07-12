@@ -14,11 +14,6 @@ public class SuperBTWItemCookedCowRib extends ItemFood
     	this.setCreativeTab(CreativeTabs.tabFood);
 		
 	}
-	
-    public int getMaxItemUseDuration(ItemStack par1ItemStack)
-    {
-        return 64;
-    }
     
     public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {

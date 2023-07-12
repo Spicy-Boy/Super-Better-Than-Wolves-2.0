@@ -242,25 +242,25 @@ public class FCEntityPig extends EntityPig
     
 	//----------- Client Side Functionality -----------//
 	
-//	@Override
-//    public String getTexture()
-//    {
-//    	if ( getWearingBreedingHarness() )
-//    	{
-//			return "/btwmodtex/fc_mr_pig.png";
-//    	}
-//    	
-//    	int iHungerLevel = GetHungerLevel();
-//    	
-//    	if ( iHungerLevel == 1 )
-//    	{
-//			return "/btwmodtex/fcPigFamished.png";
-//    	}
-//    	else if ( iHungerLevel == 2 )
-//    	{
-//			return "/btwmodtex/fcPigStarving.png";
-//    	}
-//    	
-//        return super.getTexture();
-//    }
+	@Override
+    public String getTexture()
+    {
+    	if ( getWearingBreedingHarness() )
+    	{
+			return "/btwmodtex/fc_mr_pig.png";
+    	}
+    	
+    	int iHungerLevel = GetHungerLevel();
+    	
+    	if ( iHungerLevel == 1 )
+    	{
+			return "/btwmodtex/fcPigFamished.png";
+    	}
+    	else if ( iHungerLevel == 2 )
+    	{
+			return "/btwmodtex/fcPigStarving.png";
+    	}
+    	
+        return super.getTexture();
+    }
 }

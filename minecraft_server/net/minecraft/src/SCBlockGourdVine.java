@@ -38,7 +38,8 @@ public class SCBlockGourdVine extends BlockDirectional {
 	
 	protected float GetVineGrowthChance()
     {
-    	return 0.1F;
+		//originally 0.1F
+    	return 0.2F;
     }
 	
 	@Override
@@ -155,16 +156,16 @@ public class SCBlockGourdVine extends BlockDirectional {
 
           int sideA = dir;
           int sideB = Direction.rotateLeft[sideA];
-          int sideC = Direction.footInvisibleFaceRemap[sideB];
+          int sideC = Direction.rotateOpposite[sideB];
 
           int sideFinal;
           float randomFloat = random.nextFloat();
           
-          if (randomFloat < 0.50)
+          if (randomFloat < 0.80)
           {
               sideFinal=sideA;
           }
-          else if (randomFloat < 0.50 + 0.25)
+          else if (randomFloat < 0.80 + 0.1)
           {
               sideFinal = sideB;
           }
@@ -236,7 +237,7 @@ public class SCBlockGourdVine extends BlockDirectional {
 	    int dir = this.getDirection(world.getBlockMetadata(i, j, k));
 	    
 	    
-	    int oppositeFacing = Direction.footInvisibleFaceRemap[dir];
+	    int oppositeFacing = Direction.rotateOpposite[dir];
 	    int iTargetFacing = Direction.directionToFacing[oppositeFacing];
 	    
 	    
@@ -253,30 +254,30 @@ public class SCBlockGourdVine extends BlockDirectional {
 	    else return false;
 	}
 	
-//	protected boolean hasStemFacing( RenderBlocks r, int i, int j, int k )
-//    {
-//    	FCUtilsBlockPos targetPos = new FCUtilsBlockPos( i, j, k );
-//
-//	    int dir = this.getDirection(r.blockAccess.getBlockMetadata(i, j, k));
-//	    
-//	    
-//	    int oppositeFacing = Direction.footInvisibleFaceRemap[dir];
-//	    int iTargetFacing = Direction.directionToFacing[oppositeFacing];
-//	    
-//	    
-//	    
-//	    targetPos.AddFacingAsOffset( iTargetFacing );
-//	    
-//	    int targetBlockID = r.blockAccess.getBlockId(targetPos.i, targetPos.j, targetPos.k);
-//	    
-//	    if ( targetBlockID == this.stemBlock || targetBlockID == SCDefs.pumpkinStemDead.blockID || targetBlockID == this.blockID || targetBlockID == this.floweringBlock )
-//	    {	
-//	    	return true;
-//	    	
-//	    }
-//	    else return false;
-//		
-//    }
+	protected boolean hasStemFacing( RenderBlocks r, int i, int j, int k )
+    {
+    	FCUtilsBlockPos targetPos = new FCUtilsBlockPos( i, j, k );
+
+	    int dir = this.getDirection(r.blockAccess.getBlockMetadata(i, j, k));
+	    
+	    
+	    int oppositeFacing = Direction.rotateOpposite[dir];
+	    int iTargetFacing = Direction.directionToFacing[oppositeFacing];
+	    
+	    
+	    
+	    targetPos.AddFacingAsOffset( iTargetFacing );
+	    
+	    int targetBlockID = r.blockAccess.getBlockId(targetPos.i, targetPos.j, targetPos.k);
+	    
+	    if ( targetBlockID == this.stemBlock || targetBlockID == SCDefs.pumpkinStemDead.blockID || targetBlockID == this.blockID || targetBlockID == this.floweringBlock )
+	    {	
+	    	return true;
+	    	
+	    }
+	    else return false;
+		
+    }
 	
 	protected boolean CanGrowVineAt( World world, int i, int j, int k )
     {
@@ -354,25 +355,25 @@ public class SCBlockGourdVine extends BlockDirectional {
 	public String texVine;
 	public String texConnector;
 
-//    @Override
-//    public void registerIcons( IconRegister register )
-//    {
-//    	vineIcons = new Icon[4];
-//
-//        for ( int iTempIndex = 0; iTempIndex < vineIcons.length; iTempIndex++ )
-//        {
-//        	vineIcons[iTempIndex] = register.registerIcon( this.texVine + iTempIndex );
-//        }
-//        
-//        blockIcon = vineIcons[3]; // for block hit effects and item render
-//        
-//        connectorIcons = new Icon[4];
-//        for ( int iTempIndex = 0; iTempIndex < connectorIcons.length; iTempIndex++ )
-//        {
-//        	connectorIcons[iTempIndex] = register.registerIcon( this.texConnector + iTempIndex );
-//        }
-//   
-//    }
+    @Override
+    public void registerIcons( IconRegister register )
+    {
+    	vineIcons = new Icon[4];
+
+        for ( int iTempIndex = 0; iTempIndex < vineIcons.length; iTempIndex++ )
+        {
+        	vineIcons[iTempIndex] = register.registerIcon( this.texVine + iTempIndex );
+        }
+        
+        blockIcon = vineIcons[3]; // for block hit effects and item render
+        
+        connectorIcons = new Icon[4];
+        for ( int iTempIndex = 0; iTempIndex < connectorIcons.length; iTempIndex++ )
+        {
+        	connectorIcons[iTempIndex] = register.registerIcon( this.texConnector + iTempIndex );
+        }
+   
+    }
     
     /**
      * 
@@ -448,113 +449,113 @@ public class SCBlockGourdVine extends BlockDirectional {
     		
     }
 
-//	@Override
-//    public Icon getBlockTexture( IBlockAccess blockAccess, int i, int j, int k, int iSide )
-//    {
-//		int growthLevel = this.GetGrowthLevel(blockAccess, i, j, k);
-//        return vineIcons[growthLevel];
-//    }
+	@Override
+    public Icon getBlockTexture( IBlockAccess blockAccess, int i, int j, int k, int iSide )
+    {
+		int growthLevel = this.GetGrowthLevel(blockAccess, i, j, k);
+        return vineIcons[growthLevel];
+    }
 	
-//    @Override
-//    public boolean RenderBlock(RenderBlocks r, int i, int j, int k) {
-//    	r.renderCrossedSquares(this, i, j, k);
-//    	
-//    	int iMetadata = r.blockAccess.getBlockMetadata( i, j, k );
-//    	
-//    	if (this.hasStemFacing(r, i, j, k))
-//    	{
-//    		this.renderVineConnector( r, i, j, k);        
-//    	}
-//    	return true;
-//    }
+    @Override
+    public boolean RenderBlock(RenderBlocks r, int i, int j, int k) {
+    	r.renderCrossedSquares(this, i, j, k);
+    	
+    	int iMetadata = r.blockAccess.getBlockMetadata( i, j, k );
+    	
+    	if (this.hasStemFacing(r, i, j, k))
+    	{
+    		this.renderVineConnector( r, i, j, k);        
+    	}
+    	return true;
+    }
 
 
-//	public boolean renderVineConnector(RenderBlocks r, int par2, int par3, int par4)
-//    {
-//    	IBlockAccess blockAccess = r.blockAccess;
-//    	
-//    	Tessellator tess = Tessellator.instance;
-//        tess.setBrightness(this.getMixedBrightnessForBlock(blockAccess, par2, par3, par4));
-//        float var6 = 1.0F;
-//        int var7 = this.colorMultiplier(blockAccess, par2, par3, par4);
-//        float var8 = (float)(var7 >> 16 & 255) / 255.0F;
-//        float var9 = (float)(var7 >> 8 & 255) / 255.0F;
-//        float var10 = (float)(var7 & 255) / 255.0F;
-//        
-//        int growthLevel = this.GetGrowthLevel(blockAccess.getBlockMetadata(par2, par3, par4));
-//        this.drawConnector(this, blockAccess.getBlockMetadata(par2, par3, par4), par2, par3, par4, 1.0F, connectorIcons[growthLevel]);
-//        
-//		return true;
-//    }
+	public boolean renderVineConnector(RenderBlocks r, int par2, int par3, int par4)
+    {
+    	IBlockAccess blockAccess = r.blockAccess;
+    	
+    	Tessellator tess = Tessellator.instance;
+        tess.setBrightness(this.getMixedBrightnessForBlock(blockAccess, par2, par3, par4));
+        float var6 = 1.0F;
+        int var7 = this.colorMultiplier(blockAccess, par2, par3, par4);
+        float var8 = (float)(var7 >> 16 & 255) / 255.0F;
+        float var9 = (float)(var7 >> 8 & 255) / 255.0F;
+        float var10 = (float)(var7 & 255) / 255.0F;
+        
+        int growthLevel = this.GetGrowthLevel(blockAccess.getBlockMetadata(par2, par3, par4));
+        this.drawConnector(this, blockAccess.getBlockMetadata(par2, par3, par4), par2, par3, par4, 1.0F, connectorIcons[growthLevel]);
+        
+		return true;
+    }
     
     /**
      * Utility function to draw crossed swuares
      */
-//    public void drawConnector(Block block, int meta, double x, double y, double z, float scale, Icon icon)
-//    {
-//        Tessellator tess = Tessellator.instance;
-//        int growthLevel = this.GetGrowthLevel(meta);
-//        
-//        //Icon icon = connectorIcons[growthLevel];
-//        
-//        int dir = meta & 3;
-//        
-//        double minU = (double)icon.getMinU();
-//        double minV = (double)icon.getMinV();
-//        double maxU = (double)icon.getMaxU();
-//        double maxV = (double)icon.getMaxV();
-//        double var20 = 0.45D * (double)scale;
-//        
-//        //dir 0: North
-//        double minX = x + 0.5D;// - var20;
-//        double maxX = x + 0.5D;// + var20;
-//        double minZ = z - 0.5D;// - var20;
-//        double maxZ = z + 0.5D;// + var20;
-//        
-//        
-//        if (dir == 3) { //west
-//            minX = x - 0.5D;// - var20;
-//            maxX = x + 0.5D;// + var20;
-//            minZ = z + 0.5D;// - var20;
-//            maxZ = z + 0.5D;// + var20;
-//            
-//        } else if (dir == 2) {  //South 	
-//            minX = x + 0.5D;// - var20;
-//            maxX = x + 0.5D;// + var20;
-//            minZ = z + 0.5D;// - var20;
-//            maxZ = z + 1.5D;// + var20;
-//            
-//        } else if (dir == 1) { //east  	
-//            minX = x + 0.5D;// - var20;
-//            maxX = x + 1.5D;// + var20;
-//            minZ = z + 0.5D;// - var20;
-//            maxZ = z + 0.5D;// + var20;
-//        }
-//        
-//        
-//        if (dir == 3 || dir == 0) {
-//            tess.addVertexWithUV(minX, y + (double)scale, minZ, minU, minV);
-//            tess.addVertexWithUV(minX, y + 0.0D, 		  minZ, minU, maxV);
-//            tess.addVertexWithUV(maxX, y + 0.0D, 		  maxZ, maxU, maxV);
-//            tess.addVertexWithUV(maxX, y + (double)scale, maxZ, maxU, minV);
-//            
-//            tess.addVertexWithUV(maxX, y + (double)scale, maxZ, maxU, minV);
-//            tess.addVertexWithUV(maxX, y + 0.0D,		  maxZ, maxU, maxV);
-//            tess.addVertexWithUV(minX, y + 0.0D, 		  minZ, minU, maxV);
-//            tess.addVertexWithUV(minX, y + (double)scale, minZ, minU, minV);
-//        } else {
-//            tess.addVertexWithUV(minX, y + (double)scale, minZ, maxU, minV);
-//            tess.addVertexWithUV(minX, y + 0.0D, 		  minZ, maxU, maxV);
-//            tess.addVertexWithUV(maxX, y + 0.0D, 		  maxZ, minU, maxV);
-//            tess.addVertexWithUV(maxX, y + (double)scale, maxZ, minU, minV);
-//            
-//            tess.addVertexWithUV(maxX, y + (double)scale, maxZ, minU, minV);
-//            tess.addVertexWithUV(maxX, y + 0.0D,		  maxZ, minU, maxV);
-//            tess.addVertexWithUV(minX, y + 0.0D, 		  minZ, maxU, maxV);
-//            tess.addVertexWithUV(minX, y + (double)scale, minZ, maxU, minV);
-//        }
-//
-//    }
+    public void drawConnector(Block block, int meta, double x, double y, double z, float scale, Icon icon)
+    {
+        Tessellator tess = Tessellator.instance;
+        int growthLevel = this.GetGrowthLevel(meta);
+        
+        //Icon icon = connectorIcons[growthLevel];
+        
+        int dir = meta & 3;
+        
+        double minU = (double)icon.getMinU();
+        double minV = (double)icon.getMinV();
+        double maxU = (double)icon.getMaxU();
+        double maxV = (double)icon.getMaxV();
+        double var20 = 0.45D * (double)scale;
+        
+        //dir 0: North
+        double minX = x + 0.5D;// - var20;
+        double maxX = x + 0.5D;// + var20;
+        double minZ = z - 0.5D;// - var20;
+        double maxZ = z + 0.5D;// + var20;
+        
+        
+        if (dir == 3) { //west
+            minX = x - 0.5D;// - var20;
+            maxX = x + 0.5D;// + var20;
+            minZ = z + 0.5D;// - var20;
+            maxZ = z + 0.5D;// + var20;
+            
+        } else if (dir == 2) {  //South 	
+            minX = x + 0.5D;// - var20;
+            maxX = x + 0.5D;// + var20;
+            minZ = z + 0.5D;// - var20;
+            maxZ = z + 1.5D;// + var20;
+            
+        } else if (dir == 1) { //east  	
+            minX = x + 0.5D;// - var20;
+            maxX = x + 1.5D;// + var20;
+            minZ = z + 0.5D;// - var20;
+            maxZ = z + 0.5D;// + var20;
+        }
+        
+        
+        if (dir == 3 || dir == 0) {
+            tess.addVertexWithUV(minX, y + (double)scale, minZ, minU, minV);
+            tess.addVertexWithUV(minX, y + 0.0D, 		  minZ, minU, maxV);
+            tess.addVertexWithUV(maxX, y + 0.0D, 		  maxZ, maxU, maxV);
+            tess.addVertexWithUV(maxX, y + (double)scale, maxZ, maxU, minV);
+            
+            tess.addVertexWithUV(maxX, y + (double)scale, maxZ, maxU, minV);
+            tess.addVertexWithUV(maxX, y + 0.0D,		  maxZ, maxU, maxV);
+            tess.addVertexWithUV(minX, y + 0.0D, 		  minZ, minU, maxV);
+            tess.addVertexWithUV(minX, y + (double)scale, minZ, minU, minV);
+        } else {
+            tess.addVertexWithUV(minX, y + (double)scale, minZ, maxU, minV);
+            tess.addVertexWithUV(minX, y + 0.0D, 		  minZ, maxU, maxV);
+            tess.addVertexWithUV(maxX, y + 0.0D, 		  maxZ, minU, maxV);
+            tess.addVertexWithUV(maxX, y + (double)scale, maxZ, minU, minV);
+            
+            tess.addVertexWithUV(maxX, y + (double)scale, maxZ, minU, minV);
+            tess.addVertexWithUV(maxX, y + 0.0D,		  maxZ, minU, maxV);
+            tess.addVertexWithUV(minX, y + 0.0D, 		  minZ, maxU, maxV);
+            tess.addVertexWithUV(minX, y + (double)scale, minZ, maxU, minV);
+        }
+
+    }
 
 	
 	

@@ -17,8 +17,16 @@ public class SuperBTWItemCowRib extends FCItemFood
 		
 	}
 	
-    public int getMaxItemUseDuration(ItemStack par1ItemStack)
+    @Override
+    public void OnUsedInCrafting( int iItemDamage, EntityPlayer player, ItemStack outputStack )
     {
-        return 128;
+    	if ( !player.worldObj.isRemote )
+    	{
+    		if ( outputStack.itemID == Item.beefRaw.itemID )
+    		{
+    			FCUtilsItem.EjectStackWithRandomVelocity( player.worldObj, player.posX, player.posY, player.posZ, 
+    				new ItemStack(  Item.dyePowder, 1, 15) );
+    		}
+    	}
     }
 }

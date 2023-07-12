@@ -41,28 +41,52 @@ class SlotArmor extends Slot
 //
 //    }
     
-    public boolean isItemValid(ItemStack par1ItemStack)
-    {
-        return par1ItemStack == null ? false : (par1ItemStack.getItem() instanceof ItemArmor ? ((ItemArmor)par1ItemStack.getItem()).armorType == this.armorType : (par1ItemStack.getItem().itemID != Block.pumpkin.blockID && getPumpkin(par1ItemStack) && par1ItemStack.getItem().itemID != Item.skull.itemID ? false : this.armorType == 0));
-    }
+    //AARON edits this for SAU compat
+//  public boolean isItemValid(ItemStack par1ItemStack)
+//  {
+//      return par1ItemStack == null ? false : (par1ItemStack.getItem() instanceof ItemArmor ? ((ItemArmor)par1ItemStack.getItem()).armorType == this.armorType : (par1ItemStack.getItem().itemID != Block.pumpkin.blockID && par1ItemStack.getItem().itemID != Item.skull.itemID ? false : this.armorType == 0));
+//  }
+  // SAU: Replaced above with below
+  public boolean isItemValid(ItemStack itemStack)
+  {
+  	if (itemStack == null)
+  	{
+  		return false;
+  	}
+  	else {
+  		if (itemStack.getItem() instanceof ItemArmor)
+  		{
+  			return ((ItemArmor)itemStack.getItem()).armorType == this.armorType;
+  		}
+  		else {
+  			int itemID = itemStack.getItem().itemID;
+  			
+  			if (itemID == Block.pumpkin.blockID || itemID == Item.skull.itemID)
+  			{
+  				return this.armorType == 0;
+  			}
+  			else {
+  				
+  				if ( Item.itemsList[itemID].isValidForArmorSlot(this.armorType, itemStack) )
+  				{
+  					return Item.itemsList[itemID].isValidForArmorSlot(this.armorType, itemStack);
+  				}
+  				else if ( Block.blocksList[itemID].isValidForArmorSlot(this.armorType, itemStack) )
+  				{
+  					return Block.blocksList[itemID].isValidForArmorSlot(this.armorType, itemStack);
+  				}
+  				
+  				return false;
+  			}
+  		}
+  	}
+  }	
 
-
-    //AARON ADDED
-    private boolean getPumpkin(ItemStack itemStack) {
-        boolean pumpkin = false;
-        
-        if (itemStack.getItem().itemID != SCDefs.pumpkinCarved.blockID) pumpkin = true;
-        
-        else if (itemStack.getItemDamage() != 3 ) pumpkin = true;
-        
-        return pumpkin;
-    }
-
-	/**
-     * Returns the icon index on items.png that is used as background image of the slot.
-     */
-//    public Icon getBackgroundIconIndex()
-//    {
-//        return ItemArmor.func_94602_b(this.armorType);
-//    }
+  /**
+   * Returns the icon index on items.png that is used as background image of the slot.
+   */
+  public Icon getBackgroundIconIndex()
+  {
+      return ItemArmor.func_94602_b(this.armorType);
+  }
 }

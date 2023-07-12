@@ -11,8 +11,6 @@ public class FCBlockTorchFiniteUnlit extends FCBlockTorchBaseUnlit
     	super( iBlockID );    	
     	
     	setUnlocalizedName( "fcBlockTorchFiniteIdle" );
-    	
-        this.setCreativeTab(CreativeTabs.tabDecorations);
     }
     
 	//AARON added this to allow right click pick up torch
@@ -122,5 +120,26 @@ public class FCBlockTorchFiniteUnlit extends FCBlockTorchBaseUnlit
 	}
 	
 	//----------- Client Side Functionality -----------//
+	
+    private Icon m_burnedIcon;
+    
+	@Override
+    public void registerIcons( IconRegister register )
+    {
+		super.registerIcons( register );
+		
+		m_burnedIcon = register.registerIcon( "fcBlockTorchFiniteIdle_burned" );		
+    }
+	
+	@Override
+    public Icon getIcon( int iSide, int iMetadata )
+    {
+		if ( GetIsBurnedOut( iMetadata ) )
+		{
+			return m_burnedIcon;
+		}
+		
+		return super.getIcon( iSide, iMetadata );
+    }
 }
     
