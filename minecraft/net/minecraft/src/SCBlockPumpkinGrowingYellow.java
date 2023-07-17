@@ -8,6 +8,13 @@ public class SCBlockPumpkinGrowingYellow extends SCBlockPumpkinGrowing {
 		super(iBlockID, stemBlock, vineBlock, flowerBlock, convertedBlockID);
 		setUnlocalizedName("SCBlockPumpkinGrowingYellow");
 	}
+	
+	@Override
+	public void grow(World world, int i, int j, int k, Random random)
+	{
+		int meta = world.getBlockMetadata(i, j, k);
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.pumpkinYellowAsleep.blockID ,meta + 4);
+	}
 
 	@Override
 	protected int getPossessedMetaForGrowthLevel(int growthLevel) {
@@ -21,6 +28,29 @@ public class SCBlockPumpkinGrowingYellow extends SCBlockPumpkinGrowing {
 		}
 		return 0;
 	}
+	
+	@Override
+	public int damageDropped(int meta)
+	{
+		int growthLevel = this.GetGrowthLevel(meta);
+		
+		//return getMetaHarvested(meta);
+		
+		if (growthLevel == 3 )
+		{
+			return 11; 
+		}
+		else if (growthLevel == 2)
+		{
+			return 10;
+		}
+		else if (growthLevel == 1)
+		{
+			return 9;
+		}
+		else return 8;
+	}
+	
 	
 	protected int getMetaHarvested(int growthLevel) {
 		if (growthLevel == 3 )

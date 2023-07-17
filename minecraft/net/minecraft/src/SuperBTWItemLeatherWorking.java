@@ -61,7 +61,7 @@ public class SuperBTWItemLeatherWorking extends SuperBTWItemBladeProgressive
 	 {
 		 super.registerIcons( register );
 	    	
-	     m_iconLeatherWorking = register.registerIcon( "SuperBTWItemLeatherCutting" );	     
+	     m_iconLeatherWorking = register.registerIcon( "SuperBTWItemLeatherWorking" );	     
 	 }
 	    
 	 public void onCreated( ItemStack stack, World world, EntityPlayer player ) 

@@ -25,8 +25,9 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 	protected abstract float GetBaseGrowthChance();
 	
 	protected float getPossesionChance()
+	//AARON changed this to be more frequent, matching the value of wheat
     {
-    	return 1.0F;
+    	return 0.4F;
     }
 	
 	protected int GetPortalRange()
@@ -48,12 +49,21 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 		    {
 				this.becomePossessed(world, i, j, k, random);
 		    }
-			else if ( checkTimeOfDay(world) && !IsFullyGrown( world, i, j, k) && random.nextFloat() <= this.GetBaseGrowthChance() ) //daytime
+			else if ( /*if night*/!checkTimeOfDay(world) && !IsFullyGrown( world, i, j, k) && random.nextFloat() <= this.GetBaseGrowthChance() ) //daytime
 			{
 				this.grow(world, i, j, k, random);
+				//this.attemptToGrow(world, i, j, k, random);
+				
 			}
 		}				
 	}
+
+    
+    //ported from FCBlockCrops
+    protected int GetLightLevelForGrowth()
+    {
+    	return 11;
+    }
 
 	protected boolean canBePossessed()
 	{
@@ -66,13 +76,15 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 		int harvestedMeta = getMetaHarvested(growthLevel);
 		
 		world.setBlockAndMetadata(i, j, k, convertedBlockID , harvestedMeta);
+		System.out.println("PUMPKIN CONVERTED!!!");
 	}
 
 	protected abstract int getMetaHarvested(int growthLevel);
-
-	private void grow(World world, int i, int j, int k, Random random)
+	
+	//THIS NEEDS TO CONVERT TO THE SLEEPING FORM. Switch the block ID and grow the metadata by 4!
+	protected void grow(World world, int i, int j, int k, Random random)
 	{
-		int meta = world.getBlockMetadata(i, j, k);        
+		int meta = world.getBlockMetadata(i, j, k);
 		world.setBlockAndMetadataWithNotify(i, j, k, this.blockID ,meta + 4);
 	}
 
@@ -164,12 +176,30 @@ public abstract class SCBlockGourdGrowing extends SCBlockGourdFalling {
 	    
 	    int targetBlockID = world.getBlockId(targetPos.i, targetPos.j, targetPos.k);
 	    
+	    //This is a solution to making gourds connect to multiple types of vines, overwrite this! /*|| Block.blocksList[targetBlockID] instanceof SCBlockGourdVineFloweringBase*/
 	    if ( targetBlockID == this.vineBlock || targetBlockID == this.flowerBlock)
 	    {	
+//	    	System.out.println("PUMPKIN HAS VINE!");
 	    	return true;
 	    	
 	    }
-	    else return false;
+	    else
+	    	{
+//	    	System.out.println("PUMPKIN NO DETECTED VINE!");
+	    	return false;
+	    	}
+	}
+	
+	@Override
+	protected Item ItemToDropOnExplode(int meta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected int ItemCountToDropOnExplode(World world, int i, int k, int j, int meta) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	private boolean hasStemFacing( RenderBlocks r, int i, int j, int k )

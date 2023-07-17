@@ -1,0 +1,73 @@
+# Pumpkins
+tile.SCBlockPumpkinHarvested.orange_0.name=Unripe Pumpkin
+tile.SCBlockPumpkinHarvested.orange_1.name=Unripe Pumpkin
+tile.SCBlockPumpkinHarvested.orange_2.name=Small Orange Pumpkin
+tile.SCBlockPumpkinHarvested.orange_3.name=Orange Pumpkin
+
+tile.SCBlockPumpkinHarvested.green_0.name=Unripe Pumpkin
+tile.SCBlockPumpkinHarvested.green_1.name=Unripe Pumpkin
+tile.SCBlockPumpkinHarvested.green_2.name=Small Green Pumpkin
+tile.SCBlockPumpkinHarvested.green_3.name=Green Pumpkin
+
+tile.SCBlockPumpkinHarvested.yellow_0.name=Unripe Pumpkin
+tile.SCBlockPumpkinHarvested.yellow_1.name=Unripe Pumpkin
+tile.SCBlockPumpkinHarvested.yellow_2.name=Unripe Yellow Pumpkin
+tile.SCBlockPumpkinHarvested.yellow_3.name=Yellow Pumpkin
+
+tile.SCBlockPumpkinHarvested.white_0.name=Unripe Pumpkin
+tile.SCBlockPumpkinHarvested.white_1.name=Unripe Pumpkin
+tile.SCBlockPumpkinHarvested.white_2.name=Unripe White Pumpkin
+tile.SCBlockPumpkinHarvested.white_3.name=White Pumpkin
+
+tile.SCBlockPumpkinCarved.orange.name=Carved Pumpkin
+tile.SCBlockPumpkinCarved.green.name=Carved Pumpkin
+tile.SCBlockPumpkinCarved.yellow.name=Carved Pumpkin
+tile.SCBlockPumpkinCarved.white.name=Carved Pumpkin
+
+tile.SCBlockPumpkinJack.orange.name=Jack 'o' Lantern
+tile.SCBlockPumpkinJack.green.name=Jack 'o' Lantern
+tile.SCBlockPumpkinJack.yellow.name=Jack 'o' Lantern
+tile.SCBlockPumpkinJack.white.name=Jack 'o' Lantern
+
+item.SCItemPumpkinSlice.name=Raw Pumpkin Slice
+item.SCItemPumpkinSlice_cooked.name=Roasted Pumpkin Slice
+item.SCItemPumpkinSlice_boiled.name=Boiled Pumpkin Slice
+
+
+# Melons
+tile.SCBlockMelonHarvested.water_0.name=Unripe Watermelon
+tile.SCBlockMelonHarvested.water_1.name=Unripe Watermelon
+tile.SCBlockMelonHarvested.water_2.name=Unripe Watermelon
+tile.SCBlockMelonHarvested.water_3.name=Watermelon
+
+tile.SCBlockMelonHarvested.honeydew_0.name=Unripe Honeydew Melon
+tile.SCBlockMelonHarvested.honeydew_1.name=Unripe Honeydew Melon
+tile.SCBlockMelonHarvested.honeydew_2.name=Unripe Honeydew Melon
+tile.SCBlockMelonHarvested.honeydew_3.name=Honeydew Melon
+
+tile.SCBlockMelonHarvested.cantaloupe_0.name=Unripe Cantaloupe Melon
+tile.SCBlockMelonHarvested.cantaloupe_1.name=Unripe Cantaloupe Melon
+tile.SCBlockMelonHarvested.cantaloupe_2.name=Unripe Cantaloupe Melon
+tile.SCBlockMelonHarvested.cantaloupe_3.name=Cantaloupe Melon
+
+tile.SCBlockMelonCanaryHarvested.canary_0.name=Unripe Canary Melon
+tile.SCBlockMelonCanaryHarvested.canary_1.name=Unripe Canary Melon
+tile.SCBlockMelonCanaryHarvested.canary_2.name=Unripe Canary Melon
+tile.SCBlockMelonCanaryHarvested.canary_3.name=Canary Melon
+
+item.SCItemMelonSlice.name=Watermelon Slice
+item.SCItemMelonYellowSlice.name=Canary Slice
+item.SCItemMelonWhiteSlice.name=Honeydew Slice
+item.SCItemMelonGreenSlice.name=Cantaloupe Slice
+
+item.SCItemSeedsOrangePumpkin.name=Giant Pumpkin Seeds
+item.SCItemSeedsGreenPumpkin.name=Green Pumpkin Seeds
+item.SCItemSeedsYellowPumpkin.name=Yellow Pumpkin Seeds
+item.SCItemSeedsWhitePumpkin.name=White Pumpkin Seeds
+item.SCItemSeedsLittlePumpkin.name=Little Gourd Seeds
+item.SCItemFoulPumpkinSeeds.name=Foul Seeds
+
+item.SCItemSeedsWaterMelon.name=Watermelon Seeds
+item.SCItemSeedsCanaryMelon.name=Canary Melon Seeds
+item.SCItemSeedsHoneydewMelon.name=Honeydew Seeds
+item.SCItemSeedsCantaloupeMelon.name=Cantaloupe Seeds

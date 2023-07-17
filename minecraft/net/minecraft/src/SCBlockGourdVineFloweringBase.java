@@ -14,6 +14,8 @@ public abstract class SCBlockGourdVineFloweringBase extends SCBlockGourdVine {
 
 		this.vineBlock = vineBlock;
 		this.convertedBlockID = convertedBlockID;
+		
+		setHardness( 0.5F );
 	}
 	
 	protected float GetBaseGrowthChance()

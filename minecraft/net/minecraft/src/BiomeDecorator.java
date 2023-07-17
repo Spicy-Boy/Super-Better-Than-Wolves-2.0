@@ -357,9 +357,14 @@ public class BiomeDecorator
             var2 = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             var3 = this.randomGenerator.nextInt(128);
             var4 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            //AARON CHANGED to integrate SOCK GOURDS!!!
-            //(new WorldGenPumpkin()).generate(this.currentWorld, this.randomGenerator, var2, var3, var4);
-            (new SCWorldGenPumpkin()).generate(this.currentWorld, this.randomGenerator, var2, var3, var4);
+//            //AARON CHANGED to integrate SOCK GOURDS!!!
+//            //(new WorldGenPumpkin()).generate(this.currentWorld, this.randomGenerator, var2, var3, var4);
+//            (new SCWorldGenPumpkin()).generate(this.currentWorld, this.randomGenerator, var2, var3, var4);
+//            
+            //OLD behavior
+            (new WorldGenPumpkin()).generate(this.currentWorld, this.randomGenerator, var2, var3, var4);
+            
+        
         }
 
         for (var2 = 0; var2 < this.cactiPerChunk; ++var2)

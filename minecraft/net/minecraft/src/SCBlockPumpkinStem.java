@@ -347,7 +347,7 @@ public class SCBlockPumpkinStem extends FCBlockCrops {
         if ( FCUtilsWorld.IsReplaceableBlock( world, i, j, k ) ||
         	block == null &&
     		iBlockID != Block.cocoaPlant.blockID && 
-    		iBlockID != SCDefs.pumpkinStem.blockID && 
+    		iBlockID != SCDefs.SCpumpkinStem.blockID && 
     		iBlockID != SCDefs.pumpkinVine.blockID && 
     		iBlockID != SCDefs.pumpkinVineFlowering.blockID )
         {

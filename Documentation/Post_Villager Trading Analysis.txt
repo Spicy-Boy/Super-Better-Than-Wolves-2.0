@@ -1,0 +1,151 @@
+TITLE: How to get a SOULFORGE, a tech tree discussion
+
+Better Than Wolves is a massive game with an absolutely massive tech tree. The huge visual tech trees created by Mason/Epsilon (http://sargunster.com/btwforum/viewtopic.php?f=3&t=9692&sid=e2c5006e7daa5da50bd51b3634505579#p157591) and Sockthing (http://sargunster.com/btwforum/viewtopic.php?t=10200) highlight the massive amount of knowledge and effort required to progress technologically in BTW. The game is long and rich enough that the player's situations and strategies will look wildly different depending on what kind of technologies they currently have access to, with the game's coolest automation contraptions (block dispensers, detector blocks, buddy blocks, and all the machines that go with them) are gated behind a convoluted patchwork of projects and objectives. BTW is difficult, BTW is time consuming, and BTW is arcane; I have experienced nothing like it in any other video game. It has been long enough now, in fact, that I have met new BTW players that don't even know about the automation aspects of the mod--to them, Better Than Wolves is a hardcore survival overhaul first, with the deep redstone mechanics locked behind a seemingly insurmountable survival experience. In this post I want to provide a bird's eye view of BTW's progression system because 1) I want to help players that may be stuck to find a path forward, and 2) I want to make it easier to think about BTW in a design sense while possibly illuminating some ways that we could tweak the system to create gameplay better suited to different kinds of gameplay. (Whew!) This post contains spoilers, so if you are trying to play blind, avoid at all costs!
+
+[PICTURE OF UPPER MAN'S QUOTE]
+*upper man, commenting on his villager trading experience*
+
+For years now, players have bemoaned "the midgame slump," a sometimes difficult to define point in BTW's progression during which many players lose motivation to play the game. There are plenty of theories for why this slump happens, but here is mine: 
+
+The slump can come on sometime after the player acquires both a diamond pickaxe and mechanical power. The player has achieved the two major technological goals of the primitive era, mass hemp farming and a nether portal. BUT, these awesome technologies do not bring immediate relief to the player's survival situation. And that shiny blue pick isn't going to last forever, as indestructible as it may seem at first. Still facing inevitable starvation, the prospect of diving into the nether in search of blaze rods is risky. Even after locating a nether fortress and collecting a blaze rod or two to get a small crucible/kiln setup going, the thought of making return trips for more seems too daunting and too costly to some players. Indeed, a death now will set you right back to the stone age! Add finding renewable food, starting trading, and exploring for artifacts into the mix, and the player finds themselves staring down a laundry list of tasks that do not have clear solutions, all while the hunger clock is ticking. 
+
+Players that want access to BTW's cool redstone blocks find that there is still just as long a course ahead of them as there was behind them, and players that don't know the tech tree as intimately simply have no clue what they should do next amid an onslought of potential ways forward laden with death. Renewable food in this case doesn't always help, because the safety net at home (and all of the manual labor associated with operating it) gives even less of an incentive to take the risks necessary to truly progress. SLUMP, STAGNATION.
+
+Developing and executing my own roadmap through the midgame slump was really rewarding for me. It taught me a ton about my own executive capabilities and has made me more confident in my ability to think in the long term in other aspects of my life. Working through this stage of the game could very well benefit you! If you are experiencing your own midgame slump, I encourage you to take a step back and try to untie the knot. Get out a pad of paper and a pencil and start sketching base layouts and chore lists! 
+
+For starters, it helps to define what you are working towards. If you just want some breathing room, definitely focus on establishing renewable food first and foremost. Forget progression: food on the table will make everything going forward one hundred times easier. Any combination of melons, pumpkins, any kind of village bound vegetable (carrots, wheat, or potatoes), chicken eggs, cow's milk, and a consistent fishing routine can be mixed and matched to achieve a stable flow of nutrients without having to go out and hunt all the time. Once you feel comfortable feeding yourself at home, you can set your eyes on the next great leap in technology: *THE SOULFORGE.*
+
+[PICTURE OF SOULFORGE IN MY MAIN BASE)
+
+The soulforge (previously just called the anvil before Mojang went ahead and added their own anvil to vanilla MC) is the bottle neck to BTW's true automation capabilities. It is a crafting table with a 4x4 grid that allows the player to craft new kinds of blocks and eventually steel tools. This special crafting table can only be acquired by trading with a priest. This is easier said than done, since the priest demands large volumes of mushrooms, iron and diamond gear, hemp, mob drops, and rare artifacts in order to satisfy its needs. In the sections below, I am going to detail exactly how you can go from just barely feeling confident in your own food supply to finally placing down your very own soulforge. It takes logistics, daring, and a shit ton of RNG-based exploration time to accomplish.
+
+These do not necesarilly need to be accomplished in the order I present them in, but I think the very first step *Blaze Farming* should be tackled first, as it provides the foundation to every project after it.
+
+~ Blaze Farming ~
+
+[PICTURE OF UPPER MAN QUOTE]
+*upper man, upon entering a nether portal for the first time*
+
+Nothing puts you in a slump harder and faster than nether fortresses. On the outset, even finding a nether fortress can be very difficult. Some people are lucky enough to land right on top of one after going through their first portal. Others are equally unlucky. If a nether fortress is not to be found within immediate walking distance of the portal, you may need to ascend or descend to new shelves, cross lakes of molten lava, or crawl through swiss cheese caverns of netherrack in order to find one. When even these strategies do not bear fruit, it may be necessary to place down new nether portals in far flung corners of the explored world in order to potentially generate new fortress-holding terrain. 
+
+Soulsand dust is your friend here. Right clicking with a pile of soulsand dust "throws" the dust into the air. If a fortress is nearby, the dust will move toward it.
+
+A personal strategy of mine is to use my diamond pick to tunnel directly upward into the nether ceiling and create a "highway" of tunnels running in every cardinal direction. I then sprinkle soulsand dust around until some of it reacts, revealing the location of a nether fortress below me. Then, I use cobblestone, gravel, sand, and ladders to create a safe chute from which I can descend down to the fortress. BEWARE LAVA HIDDEN IN THE WALLS! NEVER TUNNEL DIRECTLY ABOVE OR BELOW YOUSELF IN THE NETHER OR RISK A SEARING DEATH.
+
+So, this is where I see a lot of player fuck up, especially when the nether fort is inconvenient to access from home base. Some people will only kill just enough blazes to create at most four hibachis. Then, they will try to coast through the tech tree by relying upon a single tiny kiln and just one crucible. You are laming yourself. I get why people do this--the nether fortress is deadly, what with ghasts and giant skeletons and blazes all trying to murder you, but not taking the time/risk to secure a fort properly will bite you in the ass in the long run. The number of hibachis you make is directly proportional to your industrial productivity. More hibachis means larger kilns that can produce more planters and soul urns to propel various projects related to self sustainability and trading.
+
+If you enjoy manually hunting blazes and can do it effectively without dying, then power to you. I recommend, however, that you Do It Right: construct an enclosed tunnel leading directly from your nether portal to a blaze spawner. This ensures you don't even have to worry about encountering any horrible monsters on the way to and through the fortress, and the direct path saves on the energy cost to walk there. Enclose the blaze spawning chamber in blocks (this is easier when the spawner is already encased underground) and build a little slit underneath the spawner for blazes to gather in, like a funnel. If you are clever, you can build this contraption such that there is very little danger of the blazes ever being able to retaliate as you farm them for limitless blaze rods. 
+
+[PICTURE OF MY OWN BLAZE KILLING ROOM AND PATH TO IT]
+
+I cannot stress this enough: hibachis are central to so many processes in Better Than Wolves. Creating machines that produce soul urns, steel, charcoal, pottery, kibble, glue, etc all require stoked fire. The quicker you secure yourself a stable supply of blaze rods, the quicker you can focus on large building projects without having to constantly scrounge for materials.
+
+
+~ Finding, Curing, and Moving Villagers ~
+
+Working with villagers is not straightforward in Better Than Wolves. The whole process can be broken down into three different steps.
+
+Step 1: Locating an active village
+
+As you may have already observed in your adventures, villagers close to the central spawn point of the world are desiccated, abandoned. Villagers cannot be found in any village within 2000 blocks from the central spawn point of the world. The villagers important to progression (priests, librarians, and butchers) aren't found until over 3000 blocks out from spawn. This is a considerable distance that may take the player across vast tracts of mountainous terrain, frozen tundra, deserts, and oceans. Any villages within this range will be abandoned or semi-abandoned. Villages only appear in desert and plains biomes, so that cuts down on the potential places to find one considerably. The task becomes even greater when you consider that not all villages contain the same assortment of villagers. Not every town contains a temple or a blacksmith, for example, and these structures need to be present for a priest/blacksmith villager to be available in the village.
+
+The process of finding villages with everything you need in them is entirely RNG based. Some people find them quickly. Others spend in-game weeks searching and searching and searching, scouring the landscape for villages that don't seem to exist. Having an organized and easily expandable nether network (like, say, one in the ceiling) will go a long way toward organizing and streamlining your exploration efforts.
+
+The most important thing to remember is that villages only appear in deserts and plains. Even if you think a particular plains/desert is too small to possibly have anything, explore the whole thing!
+
+
+Step 2: Curing the villagers from their vicious state
+
+The villagers are not immediately useful to the player upon discover. In fact, they will try to devour your face when they see you. All populated villages in Better Than Wolves contain zombie villagers. They sprint very quickly and pack a deadly punch. In order to transfrom these zombies into docile, manipulatable traders, it is necesarry to quarantine them and then splash them with a soul urn. There are all kinds of strategies for doing this that I will leave to curious players to discover, but the main thing is to prepare for the long haul.
+
+Bring at least 16 soul urns with you (these will take a lot of time to produce UNLESS you decided to take the time to secure a supply of blaze rods). Bring some ovens/prepare to make some on-site because you will likely need to camp outside of the village for days as you gather the zombies, sort them into their own chambers, and cure them. 
+
+MAKE SURE YOUR VILLAGERS ARE IN A SAFE PLACE while curing. I have known people to lose a priest because they accidentally left their villagers open to attack during the curing process. Zombie villagers will attempt to eat cured villagers, and normal zombies will do the same. Seriously, it isn't worth the risk. Protect your shit! Walling up and digging trenches are fine ways to keep everything under control while you work.
+
+
+3: The logistics of trading
+
+Once the dust settles and you have yourself a priest (and maybe a butcher too, for reasons to be described later), a new issue quickly emerges... how are you going to trade with this thing? Presumably, this villager is thousands of blocks away from your main base. If you have access to the items being requested at all, they are likely a long way off. Players have attempted to tackle this issue of space with a few different approaches. 
+
+First, you could carry any desired trade items to the villagers. You can make this process easier by looking at the requested items at each villager level on the wiki and then carrying the items in bulk (https://sargunster.com/btw/index.php?title=Villager#Priest). This sucks, honestly. It can take five minutes at a time or more just to stroll through the nether to reach your villagers.
+
+Another option is to build a new, self sustaining base at your village. This can be really fun, especially if you already have the blaze rods at your disposal to build fancy new kiln setups at your new base. This option is not optimal, however, because a mob trap is eventually required to finish the priest trades. Building a mob trap anywhere besides spawn is a waste of time, because the spawn chunks are always loaded and therefor always producing even when the player is off fucking around and adventuring. So if you build a mob trap near your villagers instead, you are cutting down your productivity by A TON. This means you will have to AFK to get anything substantial out of your mob trap, and that sucks. 
+
+Finally, you can move the villagers closer to you. While annoying and dangerous, this option seems like the best one. Villagers will follow you like puppies if you hold a diamond, so you can lead them all the way back to spawn over the course of a few days. DO NOT TAKE THEM THROUGH THE NETHER. This will destroy them, they can't handle all that soul. If you want to transport villagers as safely as possible, plan out the route before you start moving them. Account for oceans and jungles. Either prepare paths around these obstacles, or use wood or any other floating block to build sky bridges across them (make sure villagers can't jump to their deaths, fence railings help). 
+
+[PICTURE OF MY OCEAN BRIDGE]
+
+I also recommend setting up shelters for the night. Even a moment of inattention can result in the loss of your villagers on the road, so save yourself as much anxiety as possible by going over the route and building safehouses before you start.
+
+~ Building a Mob Trap ~
+
+Looking over the priest trades on the wiki, we see that they ask for a lot of mob heads and blocks of bone. I suppose you could go out every night and hunt down mobs until you gather enough heads and bones to complete the trades, but that would take you a long time indeed. I don't know of anybody that has opted to do it this way. The most useful course of action is to construct a machine to gather these materials for you--a mob trap! Given that mob traps also deliver a constant stream of iron tools to be melted down into ingots, getting a mob trap running is one of the best investments you can make in your Minecraft world.
+
+Building a mob trap isn't easy, but by breaking the process into chunks the project can be tackled very easily. A mob trap is composed of three components: a spawning chamber to create the monsters, a killing chamber to dispose of them, and a sorting system to organize the various drops that the dead mobs produce. Players often neglect that latter step, but sorting is arguably the most important phase of the process. 
+
+1: The spawning chamber
+
+A mob trap is like a big hollow drum with a tap. Inside the drum are platforms where the mobs spawn. Vine traps are placed around the platforms
+
+
+
+
+
+~ Observations on Design ~
+
+
+4. Thoughts on RNG
+
+For some people, the process of getting villagers ready for trading is straightforward and painless. For others, in-game months spent traveling across vast oceans and exploring every continent are spent with no luck. On the most recent community server, one of our players dug out a tunnel stretching miles. It took many minutes to cross on foot. It lead to the only priest village we could find, but there was no priest because the priest got eaten during a work-related accident. We never found another priest village. We had a lot of fun on that server, but we never progressed toward the Soulforge and the server eventually puttered out. You may start to notice a trend in the midgame: major sites of progress (forts, villages) are randomly positioned in the world. Luck and hard work governs it all.
+
+Is this really what we want the game to be like? On
+
+
+
+- - - - -
+DRAFT
+Look at villager trading and see if adding automation would really fix all that much. Doesn’t the priest not actually need anything besides a mob trap, mushroom farm, and access to diamond tools for enchanting?
+
+I've decided to try and lay out the entire process of getting a soulforge so we can better think about what tweaks can be made to make the process more fun.
+
+Taking a look at the priest, the requirements include mushrooms, mob heads, bone blocks, and candles. 
+Basically, a mob trap is the tech bottleneck requirement to get to the soulforge trade. On top of that is the *potentially* large amount of exploring (varies widly of course) that needs to be done to locate a village with a priest. Then you need to heal a lot of villagers, which might take near a stack of soul urns. Then, there is infrastructure considerations. Infrastructure can be as simple as a marked trail leading from your main base to the villagers in question, or as complex as bridges to cross gaps, ocean bridges, boat routes, paved roads and pathways. So, perhaps it can be said that getting the soulforge is a two pronged process. 
+
+1. You need to build a mob trap, which is a layered, complex process involving the physical spawning area, killing mechanism, and item collection/sorting.
+
+2. Exploration, and the infrastructure, nether networking, and general preparation that goes into that.
+
+These are massive portions of the game. Any small piece of this may not resonate with a player and result in a slowed pace. For example, I've witnessed (and used to experience myself) players skipping out on mob trap sorting in favor of a string of hoppers. The decision to ignore sorting and large scale mob drop storage ultimately kills progression, because the player will eventually die a logistical death of not knowing where desired items are OR/AND simply realize that their chests are loaded with 16x stacks of useless bones when they need iron or something else.
+
+
+The candles are really fucking annoying because you need to find the dyes for them (and scrounge the tallow if you don't have a store of pork on hand).
+
+NOW, the trade for the soulforge itself is very taxing. Getting nether skulls is an expensive process. 
+
+Players can either hunt for them in the nether, or trade up for them with a butcher. I traded for them in my SSP world, and that basically introduces an entire new trade progression that is heavily based on exploration. The butcher's requirements include:
+
+-Feathers, which until recent changes across CE and addons were dropped at a piecemeal rate from chickens. 
+
+-dung, which requires a wolf likely hooked into a feeding mechanism. The kibble for that needs a mob trap.
+
+-wolf meat. When wolf breeding was bugged, this meant going out and hunting down wolves. With wolf breeding being tied to kibble, you can probably farm wolfchops pretty easy. With wolf breeding being tied to mystery meat, this is off the table.
+
+At level 3, the demands become heavily exploration dependent:
+
+-carrots and potatos, which require exploration. Totally random when you will find these.
+
+-Beast liver... like wolf meat but there is a whole conversion process involved.
+
+You can avoid two of the level three trades by continuously filling other trades until favorable ones pop up. This puts even more weight on needing feathers, wolf chops, and dung. 
+
+There are other methods for getting wither skulls, like hunting wither skeletons until you get a lucky head drop. You may even be able to rig up chopping block mechanism and lure skeletons into it, but past experience doing this on survival servers did not seem too effective. It is a lot of work either way! Building a fortress trap pre-soulforge is another option that I have not explored, but it seems extremely difficult. I consulted my local nether trap expert, Hiracho for input there. Generally speaking, though, the work required to manually or automatically gather skulls is astronomically higher than grinding out the butcher, even if grinding the butcher is a lot of unfun exploration and hunting.
+
+OK AND ONCE YOU HAVE THE SKULLS, either by painstakingly trading for them or hunting for them, you still have to fight the wither. This is hard. It can be made easier with some investment, but you might still die. Fuck, I've had the nether star burn to a crisp in lava before. If you fail the wither fight, you need to trade up for even more emeralds to infuse the skulls, let alone buy more. 
+
+` ` ` ` `` 
+
+Reimagining villager trading:
+
+Why doesn't the butcher accept meat and sell you tools to make it easier to hunt? He could give you arrows
+
+

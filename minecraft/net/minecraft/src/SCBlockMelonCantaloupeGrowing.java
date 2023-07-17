@@ -7,7 +7,14 @@ public class SCBlockMelonCantaloupeGrowing extends SCBlockMelonGrowing {
 	protected SCBlockMelonCantaloupeGrowing(int iBlockID, int stemBlock, int vineBlock, int flowerBlock,
 			int convertedBlockID) {
 		super(iBlockID, stemBlock, vineBlock, flowerBlock, convertedBlockID);
-		setUnlocalizedName("SCBlockMelonHoneydewGrowing");
+//		setUnlocalizedName("SCBlockMelonHoneydewGrowing");
+	}
+	
+	@Override
+	public void grow(World world, int i, int j, int k, Random random)
+	{
+		int meta = world.getBlockMetadata(i, j, k);
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.melonCantaloupeAsleep.blockID, meta + 4);
 	}
 	
 	protected int getMetaHarvested(int growthLevel) {

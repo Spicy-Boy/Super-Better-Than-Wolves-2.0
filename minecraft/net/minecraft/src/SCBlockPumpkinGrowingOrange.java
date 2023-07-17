@@ -17,18 +17,33 @@ public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
 		setUnlocalizedName("SCBlockPumpkinGrowingOrange");
 	}
 	
-
 	@Override
-	protected int getPossessedMetaForGrowthLevel(int growthLevel) {
+	public void grow(World world, int i, int j, int k, Random random)
+	{
+		int meta = world.getBlockMetadata(i, j, k);
+		world.setBlockAndMetadataWithNotify(i, j, k, SCDefs.pumpkinOrangeAsleep.blockID ,meta + 4);
+	}
+	
+	@Override
+	public int damageDropped(int meta)
+	{
+		int growthLevel = this.GetGrowthLevel(meta);
 		
-		for (int i = 0; i < 4; i++) {
-			if (growthLevel == i) 
-			{
-				//shift for if different pumpkin type: eg. i + 4 for green Pumpkins
-				return i;
-			}
+		//return getMetaHarvested(meta);
+		
+		if (growthLevel == 3 )
+		{
+			return 3;
 		}
-		return 0;
+		else if (growthLevel == 2)
+		{
+			return 2;
+		}
+		else if (growthLevel == 1)
+		{
+			return 1;
+		}
+		else return 0;
 	}
 	
 	protected int getMetaHarvested(int growthLevel) {
@@ -45,6 +60,20 @@ public class SCBlockPumpkinGrowingOrange extends SCBlockPumpkinGrowing {
 			return 1;
 		}
 		else return 0;
+
+	}
+
+	@Override
+	protected int getPossessedMetaForGrowthLevel(int growthLevel) {
+		
+		for (int i = 0; i < 4; i++) {
+			if (growthLevel == i) 
+			{
+				//shift for if different pumpkin type: eg. i + 4 for green Pumpkins
+				return i;
+			}
+		}
+		return 0;
 	}
 	
 	@Override

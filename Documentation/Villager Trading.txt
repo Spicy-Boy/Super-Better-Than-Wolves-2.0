@@ -1,0 +1,39 @@
+Look at villager trading and see if adding automation would really fix all that much. DoesnÅft the priest not actually need anything besides a mob trap, mushroom farm, and access to diamond tools for enchanting?
+
+I've decided to try and lay out the entire process of getting a soulforge so we can better think about what tweaks can be made to make the process more fun.
+
+Taking a look at the priest, the requirements include mushrooms, mob heads, bone blocks, and candles. 
+Basically, a mob trap is the tech bottleneck requirement to get to the soulforge trade. On top of that is the *potentially* large amount of exploring (varies widly of course) that needs to be done to locate a village with a priest. Then you need to heal a lot of villagers, which might take near a stack of soul urns. Then, there is infrastructure considerations. Infrastructure can be as simple as a marked trail leading from your main base to the villagers in question, or as complex as bridges to cross gaps, ocean bridges, boat routes, paved roads and pathways. So, perhaps it can be said that getting the soulforge is a two pronged process. 
+
+1. You need to build a mob trap, which is a layered, complex process involving the physical spawning area, killing mechanism, and item collection/sorting.
+
+2. Exploration, and the infrastructure, nether networking, and general preparation that goes into that.
+
+These are massive portions of the game. Any small piece of this may not resonate with a player and result in a slowed pace. For example, I've witnessed (and used to experience myself) players skipping out on mob trap sorting in favor of a string of hoppers. The decision to ignore sorting and large scale mob drop storage ultimately kills progression, because the player will eventually die a logistical death of not knowing where desired items are OR/AND simply realize that their chests are loaded with 16x stacks of useless bones when they need iron or something else.
+
+
+The candles are really fucking annoying because you need to find the dyes for them (and scrounge the tallow if you don't have a store of pork on hand).
+
+NOW, the trade for the soulforge itself is very taxing. Getting nether skulls is an expensive process. 
+
+Players can either hunt for them in the nether, or trade up for them with a butcher. I traded for them in my SSP world, and that basically introduces an entire new trade progression that is heavily based on exploration. The butcher's requirements include:
+
+-Feathers, which until recent changes across CE and addons were dropped at a piecemeal rate from chickens. 
+
+-dung, which requires a wolf likely hooked into a feeding mechanism. The kibble for that needs a mob trap.
+
+-wolf meat. When wolf breeding was bugged, this meant going out and hunting down wolves. With wolf breeding being tied to kibble, you can probably farm wolfchops pretty easy. With wolf breeding being tied to mystery meat, this is off the table.
+
+At level 3, the demands become heavily exploration dependent:
+
+-carrots and potatos, which require exploration. Totally random when you will find these.
+
+-Beast liver... like wolf meat but there is a whole conversion process involved.
+
+You can avoid two of the level three trades by continuously filling other trades until favorable ones pop up. This puts even more weight on needing feathers, wolf chops, and dung. 
+
+There are other methods for getting wither skulls, like hunting wither skeletons until you get a lucky head drop. You may even be able to rig up chopping block mechanism and lure skeletons into it, but past experience doing this on survival servers did not seem too effective. It is a lot of work either way! Building a fortress trap pre-soulforge is another option that I have not explored, but it seems extremely difficult. I consulted my local nether trap expert, Hiracho for input there. Generally speaking, though, the work required to manually or automatically gather skulls is astronomically higher than grinding out the butcher, even if grinding the butcher is a lot of unfun exploration and hunting.
+
+OK AND ONCE YOU HAVE THE SKULLS, either by painstakingly trading for them or hunting for them, you still have to fight the wither. This is hard. It can be made easier with some investment, but you might still die. Fuck, I've had the nether star burn to a crisp in lava before. If you fail the wither fight, you need to trade up for even more emeralds to infuse the skulls, let alone buy more. 
+
+

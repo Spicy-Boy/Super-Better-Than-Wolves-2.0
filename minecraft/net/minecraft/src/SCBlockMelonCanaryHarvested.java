@@ -28,9 +28,9 @@ public class SCBlockMelonCanaryHarvested extends SCBlockGourdHarvested {
     }
 		
 	@Override
-	protected Item ItemToDropOnExplode()
+	protected Item ItemToDropOnExplode(int meta)
 	{
-		return Item.melonSeeds;
+		return SuperBTWDefinitions.canaryMelonSeeds;
 	}
 	
 	@Override
@@ -38,7 +38,7 @@ public class SCBlockMelonCanaryHarvested extends SCBlockGourdHarvested {
 	{
 		if (this.GetGrowthLevel(meta) == 3)
 		{
-			return 1;
+			return 4;
 		}
 		else return 0;
 	}

@@ -8,11 +8,14 @@ import java.util.Random;
 public class FCBlockBedroll extends FCBlockBedBase {
 	private static final double BEDROLL_HEIGHT = 0.125D;
 	
-    public FCBlockBedroll(int blockID) {
+    public FCBlockBedroll(int blockID) 
+    {
 		super(blockID);
 
 		this.setStepSound(Block.soundClothFootstep);
     	
+		setCreativeTab(CreativeTabs.tabDecorations);
+		
     	InitBlockBounds(0D, 0D, 0D, 1D, BEDROLL_HEIGHT, 1D);
 	}
 	
@@ -94,7 +97,8 @@ public class FCBlockBedroll extends FCBlockBedBase {
     }
 	
 	@Override
-    public int idPicked(World world, int x, int y, int z) {
+    public int idPicked(World world, int x, int y, int z) 
+	{
         return SuperBTWDefinitions.fcItemBedroll.itemID;
     }
 }

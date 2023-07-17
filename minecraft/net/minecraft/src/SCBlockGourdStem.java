@@ -19,7 +19,7 @@ public class SCBlockGourdStem extends FCBlockCrops {
         this.flowerBlock = flowerBlock;
         this.convertedBlock = convertedBlock;
         
-    	setHardness( 0F );
+        setHardness( 0.5F );
     	
     	SetBuoyant();
     	
