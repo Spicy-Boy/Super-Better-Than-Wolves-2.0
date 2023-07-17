@@ -1,7 +1,11 @@
 SBTW VERSION 2.0
 Started August 8, 2022
+Switched to BETA 2.0 on July 12, 2023
 
 Additions:
+
+-TEMPORARY OMISSION for BETA 2.0: Biome decorator places standard gourds with vanilla seeds/plants
+    >@ the request of Wario-Luigi Hybrid
 
 -Added SLEEPING! 
     >Like in Arminias mod/CE 1.4, the world is simulated during sleep. Time is not skipped! Monsters still lurk outside...
@@ -79,7 +83,6 @@ TODO CONTENT:
 O- From CE: make trap doors like ladders
         
 ***GOURD TODO***
-    
     O-Choose how to find each plant type (seeds, natural spawning gourds, etc)
         -SEE FORUM POST     
 
@@ -90,9 +93,7 @@ O- From CE: make trap doors like ladders
     
     O-Remove weeds from gourd stem plants
    
-    
     O- Do chickens eat all seed types?
-   
 ~~~~~~~~~~~~~~~~~~~~~OWO~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 O-AUTOFILL water bucket in crafting grid if player is near water source block 
@@ -104,7 +105,7 @@ O- stop hoppers from locking up dispensers
 
 O-Hardcore Nightmare feature: if you sleep in gloom, the wake up button has a chance to turn invisible
 O-REMOVE the chat window unless player presses t while in sleep menu
-O-CHANGE wake up button to be smaller, off to the side?
+O-CHANGE wake up button to be smaller, off to the side
 O-Player floats over the bed 
 
 POSSIBLE MAJOR CHANGES
@@ -112,36 +113,6 @@ O- Add back crafting recipe for eyes of ender-> e pearl + blaze powder. Add soul
 
 O- Change tier 2 priest trades to be not shit, efficiency IIIs and such
 ---
-
-X- 1 SPRITE Tweak iron knife texture to be a little smaller
-
-X-Craft pumpkins/melon varieties into proper ratios of seeds and slices
-X-!!!!!!! FIX THE pumpkin cutting class, it is currently broken, also maybe slices are broken?!
-X-Melons spit out the right seed
-X- Exploding gourds should drop the right seeds!
-X- Change the exploding pumpkin texture to not be carrots. Change it to slice maybe?
-X-Make distinct melon seed and plant types (just like with pumpkins)
-
-X- Fix the trowel, it's current implementation doesn't work with the bucket of mortar
-X- 1 SPRITE trowel item
-
-X- dogs breed to produce untamed wolf puppies
-
-X-FIX yellow and white melon seeds
-
-X- 1 SPRITE Redo final frame for bow stringing, make it bend inward a bit at the last moment (maybe make it easier?)
-
-XX-Fix the lighting bug 
-XX-FIX THE GAME BRICKING BUG of piston shovel on ash block
-
-X-Fixed server acceleration related to sleeping and offline players
-X-FIXED always facing north
-X-HARDCORE SOAKED: Can't sleep if being hit by rain (check torch extinguish code perhaps?)
-X-Fixed waking up around corners and sleeping through walls
-
-XX- change goggle overlay
-XX-The bone club can't be ground up in a millstone
-XX-add right click pick up bricks and torches
 
 #Base Class Edits 1.0 (* means edited in 2.0):
 FCBlockWeb
@@ -220,9 +191,8 @@ FCBlockBedroll
 FCItemBed
 
 #############################################################
-VERSION 3.0
+VERSION 3.0 Speculative TODO
 Additions:
-
 
 O- FIX The sword seam issue in the rendering caused by mc patcher
 
@@ -291,11 +261,6 @@ O- CONSIDER ADDING FOUL SEED from corrupted pumpkin?? Creates a vine that never 
         >corrupted flowers spread corruption up to 10 blocks away
             >normal pumpkin stems will create corrupted flowers if within range of the nether portal
             >corrupted flowers create corrupted pumpkins, a black pumpkin with glowing red jack colors
-=+=+=+=+=
-Changes/Tweaks:
-
-O- 
-
 
 MISC IDEAS:
 
