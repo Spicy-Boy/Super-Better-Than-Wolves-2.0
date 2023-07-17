@@ -290,72 +290,72 @@ public class FCBlockFurnaceBrick extends FCBlockFurnace
     protected boolean m_bIsRenderingInterior = false;
     private int m_iInteriorBrightness = 0;
 	
-	@Override
-    public void registerIcons( IconRegister register )
-    {
-        blockIcon = register.registerIcon( "fcBlockFurnaceBrick_side" );
-        furnaceIconTop = register.registerIcon( "fcBlockFurnaceBrick_top" );
-        
-        if ( isActive )
-        {
-        	furnaceIconFront = register.registerIcon( "fcBlockFurnaceBrick_front_lit" );
-        }
-        else
-        {
-        	furnaceIconFront = register.registerIcon( "fcBlockFurnaceBrick_front" );
-        }               
-        
-        m_fuelOverlays = new Icon[9];
-
-        for ( int iTempIndex = 0; iTempIndex < 9; ++iTempIndex )
-        {
-        	m_fuelOverlays[iTempIndex] = register.registerIcon( "fcOverlayFurnaceFuel_" + ( iTempIndex ) );
-        }
-        
-        m_blankOverlay = register.registerIcon( "fcOverlayBlank" );
-    }
+//	@Override
+//    public void registerIcons( IconRegister register )
+//    {
+//        blockIcon = register.registerIcon( "fcBlockFurnaceBrick_side" );
+//        furnaceIconTop = register.registerIcon( "fcBlockFurnaceBrick_top" );
+//        
+//        if ( isActive )
+//        {
+//        	furnaceIconFront = register.registerIcon( "fcBlockFurnaceBrick_front_lit" );
+//        }
+//        else
+//        {
+//        	furnaceIconFront = register.registerIcon( "fcBlockFurnaceBrick_front" );
+//        }               
+//        
+//        m_fuelOverlays = new Icon[9];
+//
+//        for ( int iTempIndex = 0; iTempIndex < 9; ++iTempIndex )
+//        {
+//        	m_fuelOverlays[iTempIndex] = register.registerIcon( "fcOverlayFurnaceFuel_" + ( iTempIndex ) );
+//        }
+//        
+//        m_blankOverlay = register.registerIcon( "fcOverlayBlank" );
+//    }
 	
-	@Override
-    public int idPicked( World world, int i, int j, int k )
-    {
-        return FCBetterThanWolves.fcBlockFurnaceBrickIdle.blockID;
-    }
+//	@Override
+//    public int idPicked( World world, int i, int j, int k )
+//    {
+//        return FCBetterThanWolves.fcBlockFurnaceBrickIdle.blockID;
+//    }
 	
-	@Override
-    public Icon getIcon( int iSide, int iMetadata )
-    {
-		int iFacing = iMetadata & 7; 
-		
-		if ( iFacing < 2 || iFacing > 5 )
-		{
-			// have to assign default value due to item render having metadata of 0
-			
-			iFacing = 3;
-		}
-		
-		if ( m_currentFuelOverlay == null )
-		{
-			if ( iFacing == iSide )
-			{
-				return furnaceIconFront;
-			}
-			else if ( iSide < 2 )
-			{
-				return furnaceIconTop;
-			}
-			
-			return blockIcon;
-		}
-		else
-		{
-			if ( iFacing == iSide )
-			{
-				return m_currentFuelOverlay;
-			}
-			
-			return m_blankOverlay;
-		}
-    }
+//	@Override
+//    public Icon getIcon( int iSide, int iMetadata )
+//    {
+//		int iFacing = iMetadata & 7; 
+//		
+//		if ( iFacing < 2 || iFacing > 5 )
+//		{
+//			// have to assign default value due to item render having metadata of 0
+//			
+//			iFacing = 3;
+//		}
+//		
+//		if ( m_currentFuelOverlay == null )
+//		{
+//			if ( iFacing == iSide )
+//			{
+//				return furnaceIconFront;
+//			}
+//			else if ( iSide < 2 )
+//			{
+//				return furnaceIconTop;
+//			}
+//			
+//			return blockIcon;
+//		}
+//		else
+//		{
+//			if ( iFacing == iSide )
+//			{
+//				return m_currentFuelOverlay;
+//			}
+//			
+//			return m_blankOverlay;
+//		}
+//    }
 	
     @Override
     public boolean shouldSideBeRendered( IBlockAccess blockAccess, int iNeighborI, int iNeighborJ, int iNeighborK, int iSide )
@@ -372,98 +372,98 @@ public class FCBlockFurnaceBrick extends FCBlockFurnace
 		return super.shouldSideBeRendered( blockAccess, iNeighborI, iNeighborJ, iNeighborK, iSide );
     }
 	
-    @Override
-    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
-    {
-        renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
-        	renderer.blockAccess, i, j, k ) );
-        
-    	renderer.renderStandardBlock( this, i, j, k );
-    	
-    	int iFacing = renderer.blockAccess.getBlockMetadata( i, j, k ) & 7;
-    	
-    	FCModelBlock transformedModel = m_modelBlockInterior.MakeTemporaryCopy();
-    	
-    	transformedModel.RotateAroundJToFacing( iFacing );
-
-    	FCUtilsBlockPos interiorFacesPos = new FCUtilsBlockPos( i, j, k, iFacing );
-    	
-    	m_iInteriorBrightness = getMixedBrightnessForBlock( renderer.blockAccess, 
-    		interiorFacesPos.i, interiorFacesPos.j, interiorFacesPos.k );
-    	
-    	renderer.setOverrideBlockTexture( blockIcon );
-    	m_bIsRenderingInterior = true;
-    	
-        boolean bReturnValue = transformedModel.RenderAsBlockWithColorMultiplier( renderer, this, i, j, k );
-        
-    	m_bIsRenderingInterior = false;
-        renderer.clearOverrideBlockTexture();
-        
-    	return bReturnValue;     	
-    }
+//    @Override
+//    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
+//    {
+//        renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
+//        	renderer.blockAccess, i, j, k ) );
+//        
+//    	renderer.renderStandardBlock( this, i, j, k );
+//    	
+//    	int iFacing = renderer.blockAccess.getBlockMetadata( i, j, k ) & 7;
+//    	
+//    	FCModelBlock transformedModel = m_modelBlockInterior.MakeTemporaryCopy();
+//    	
+//    	transformedModel.RotateAroundJToFacing( iFacing );
+//
+//    	FCUtilsBlockPos interiorFacesPos = new FCUtilsBlockPos( i, j, k, iFacing );
+//    	
+//    	m_iInteriorBrightness = getMixedBrightnessForBlock( renderer.blockAccess, 
+//    		interiorFacesPos.i, interiorFacesPos.j, interiorFacesPos.k );
+//    	
+//    	renderer.setOverrideBlockTexture( blockIcon );
+//    	m_bIsRenderingInterior = true;
+//    	
+//        boolean bReturnValue = transformedModel.RenderAsBlockWithColorMultiplier( renderer, this, i, j, k );
+//        
+//    	m_bIsRenderingInterior = false;
+//        renderer.clearOverrideBlockTexture();
+//        
+//    	return bReturnValue;     	
+//    }
+//    
+//    @Override
+//    public void RenderBlockSecondPass( RenderBlocks renderer, int i, int j, int k, boolean bFirstPassResult )
+//    {
+//    	if ( bFirstPassResult )
+//    	{
+//            FCTileEntityFurnaceBrick tileEntity = (FCTileEntityFurnaceBrick)renderer.blockAccess.getBlockTileEntity( i, j, k );
+//            int iFuelLevel = tileEntity.GetVisualFuelLevel();
+//
+//            if ( iFuelLevel > 0 )
+//            {
+//            	iFuelLevel = MathHelper.clamp_int( iFuelLevel - 2, 0, 8 );
+//		    	m_currentFuelOverlay = m_fuelOverlays[iFuelLevel];
+//		    	
+//		        renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
+//		        	renderer.blockAccess, i, j, k ) );
+//		        
+//		    	renderer.renderStandardBlock( this, i, j, k );	    	
+//	
+//		    	m_currentFuelOverlay = null;
+//            }
+//    	}
+//    }
+//    
+//    @Override
+//    public int getMixedBrightnessForBlock(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+//    {
+//    	if ( m_bIsRenderingInterior )
+//    	{
+//    		return m_iInteriorBrightness;
+//    	}
+//    	
+//    	return super.getMixedBrightnessForBlock( par1IBlockAccess, par2, par3, par4 );
+//    }
     
-    @Override
-    public void RenderBlockSecondPass( RenderBlocks renderer, int i, int j, int k, boolean bFirstPassResult )
-    {
-    	if ( bFirstPassResult )
-    	{
-            FCTileEntityFurnaceBrick tileEntity = (FCTileEntityFurnaceBrick)renderer.blockAccess.getBlockTileEntity( i, j, k );
-            int iFuelLevel = tileEntity.GetVisualFuelLevel();
-
-            if ( iFuelLevel > 0 )
-            {
-            	iFuelLevel = MathHelper.clamp_int( iFuelLevel - 2, 0, 8 );
-		    	m_currentFuelOverlay = m_fuelOverlays[iFuelLevel];
-		    	
-		        renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
-		        	renderer.blockAccess, i, j, k ) );
-		        
-		    	renderer.renderStandardBlock( this, i, j, k );	    	
-	
-		    	m_currentFuelOverlay = null;
-            }
-    	}
-    }
-    
-    @Override
-    public int getMixedBrightnessForBlock(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
-    {
-    	if ( m_bIsRenderingInterior )
-    	{
-    		return m_iInteriorBrightness;
-    	}
-    	
-    	return super.getMixedBrightnessForBlock( par1IBlockAccess, par2, par3, par4 );
-    }
-    
-    @Override
-    public boolean RenderBlockWithTexture( RenderBlocks renderer, int i, int j, int k, Icon texture )
-    {
-    	// necessary to render harvest cracks as if this is a regular block due to non-standard render above
-    	
-        renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
-        	renderer.blockAccess, i, j, k ) );
-        
-    	renderer.setOverrideBlockTexture( texture );
-    	
-        boolean bReturnValue = renderer.renderStandardBlock( this, i, j, k );
-        
-        renderer.clearOverrideBlockTexture();
-        
-        return bReturnValue;
-    }
-    
-    @Override
-    public void RenderBlockAsItem( RenderBlocks renderBlocks, int iItemDamage, float fBrightness )
-    {
-    	renderBlocks.renderBlockAsItemVanilla( this, iItemDamage, fBrightness );
-    	
-    	FCModelBlock transformedModel = m_modelBlockInterior.MakeTemporaryCopy();
-    	
-    	transformedModel.RotateAroundJToFacing( 3 );
-    	
-    	transformedModel.RenderAsItemBlock( renderBlocks, this, iItemDamage );    	
-    }
+//    @Override
+//    public boolean RenderBlockWithTexture( RenderBlocks renderer, int i, int j, int k, Icon texture )
+//    {
+//    	// necessary to render harvest cracks as if this is a regular block due to non-standard render above
+//    	
+//        renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
+//        	renderer.blockAccess, i, j, k ) );
+//        
+//    	renderer.setOverrideBlockTexture( texture );
+//    	
+//        boolean bReturnValue = renderer.renderStandardBlock( this, i, j, k );
+//        
+//        renderer.clearOverrideBlockTexture();
+//        
+//        return bReturnValue;
+//    }
+//    
+//    @Override
+//    public void RenderBlockAsItem( RenderBlocks renderBlocks, int iItemDamage, float fBrightness )
+//    {
+//    	renderBlocks.renderBlockAsItemVanilla( this, iItemDamage, fBrightness );
+//    	
+//    	FCModelBlock transformedModel = m_modelBlockInterior.MakeTemporaryCopy();
+//    	
+//    	transformedModel.RotateAroundJToFacing( 3 );
+//    	
+//    	transformedModel.RenderAsItemBlock( renderBlocks, this, iItemDamage );    	
+//    }
    
     
     @Override

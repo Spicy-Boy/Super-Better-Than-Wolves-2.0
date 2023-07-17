@@ -19,20 +19,20 @@ public class WorldServer extends World
 {
     private final MinecraftServer mcServer;
     private final EntityTracker theEntityTracker;
-	// FCMOD: Changed
-	//private final PlayerManager thePlayerManager;
-	private final FCChunkTracker m_chunkTracker;
-	// END FCMOD
-
-	// FCNOTE: Contains NextTickListEntry objects with updates scheduled for blocks
+    // FCMOD: Changed
+    //private final PlayerManager thePlayerManager;
+    private final FCChunkTracker m_chunkTracker;
+    // END FCMOD
+    
+    // FCNOTE: Contains NextTickListEntry objects with updates scheduled for blocks
     private Set field_73064_N;
 
     /** All work to do in future ticks. */
     private TreeSet pendingTickListEntries;
     public ChunkProviderServer theChunkProviderServer;
 
-    /** set by CommandServerSave{all,Off,On} */
-    public boolean canNotSave;
+    /** Whether or not level saving is enabled */
+    public boolean levelSaving;
 
     /** is false if there are no players */
     private boolean allPlayersSleeping;
@@ -59,18 +59,18 @@ public class WorldServer extends World
     {
         super(par2ISaveHandler, par3Str, par5WorldSettings, WorldProvider.getProviderForDimension(par4), par6Profiler, par7ILogAgent);
         this.mcServer = par1MinecraftServer;
-
-		// FCMOD: Added
-		saveHandler.LoadModSpecificData( this );
-		// END FCMOD
-
+        
+        // FCMOD: Added
+        saveHandler.LoadModSpecificData( this );
+        // END FCMOD
+        
         this.theEntityTracker = new EntityTracker(this);
-
-		// FCMOD: Changed
-		//this.thePlayerManager = new PlayerManager(this, par1MinecraftServer.getConfigurationManager().getViewDistance());
-		m_chunkTracker = new FCChunkTracker( this, 
-				par1MinecraftServer.getConfigurationManager().getViewDistance());
-		// END FCMOD
+        
+        // FCMOD: Changed
+        //this.thePlayerManager = new PlayerManager(this, par1MinecraftServer.getConfigurationManager().getViewDistance());
+        m_chunkTracker = new FCChunkTracker( this, 
+        	par1MinecraftServer.getConfigurationManager().getViewDistance());
+        // END FCMOD
 
         if (this.entityIdMap == null)
         {
@@ -112,43 +112,43 @@ public class WorldServer extends World
         {
             this.difficultySetting = 3;
         }
-		// FCMOD: Added to eliminate peaceful and easy difficulties
-		else if ( difficultySetting < 2 )
-		{
-			difficultySetting = 2;
-		}
-		// END FCMOD
+        // FCMOD: Added to eliminate peaceful and easy difficulties
+        else if ( difficultySetting < 2 )
+        {
+        	difficultySetting = 2;
+        }
+        // END FCMOD
 
         this.provider.worldChunkMgr.cleanupCache();
 
         //AARON commented this out in order to stop the time skip for sleeping
-//        if (this.areAllPlayersAsleep())
-//        {
-//            boolean var1 = false;
+//      if (this.areAllPlayersAsleep())
+//      {
+//          boolean var1 = false;
 //
-//            if (this.spawnHostileMobs && this.difficultySetting >= 1)
-//            {
-//                ;
-//            }
+//          if (this.spawnHostileMobs && this.difficultySetting >= 1)
+//          {
+//              ;
+//          }
 //
-//            if (!var1)
-//            {
-//                long var2 = this.worldInfo.getWorldTime() + 24000L;
-//                this.worldInfo.setWorldTime(var2 - var2 % 24000L);
-//                this.wakeAllPlayers();
-//            }
-//        }
+//          if (!var1)
+//          {
+//              long var2 = this.worldInfo.getWorldTime() + 24000L;
+//              this.worldInfo.setWorldTime(var2 - var2 % 24000L);
+//              this.wakeAllPlayers();
+//          }
+//      }
 
         this.theProfiler.startSection("mobSpawner");
 
         if (this.getGameRules().getGameRuleBooleanValue("doMobSpawning"))
         {
-			// FCMOD: Code change to prevent animal spawning after chunk generation
-			/*
+        	// FCMOD: Code change to prevent animal spawning after chunk generation
+        	/*
             SpawnerAnimals.findChunksForSpawning(this, this.spawnHostileMobs, this.spawnPeacefulMobs, this.worldInfo.getWorldTotalTime() % 400L == 0L);
-			 */
-			SpawnerAnimals.findChunksForSpawning(this, this.spawnHostileMobs, this.spawnPeacefulMobs, false);
-			// END FCMOD
+            */
+            SpawnerAnimals.findChunksForSpawning(this, this.spawnHostileMobs, this.spawnPeacefulMobs, false);
+            // END FCMOD
         }
 
         this.theProfiler.endStartSection("chunkSource");
@@ -167,15 +167,15 @@ public class WorldServer extends World
         this.theProfiler.endStartSection("tickTiles");
         this.tickBlocksAndAmbiance();
         this.theProfiler.endStartSection("chunkMap");
-		// FCMOD: Changed
-		//this.thePlayerManager.updatePlayerInstances();
-		m_chunkTracker.Update();
-		// END FCMOD
+        // FCMOD: Changed
+        //this.thePlayerManager.updatePlayerInstances();
+        m_chunkTracker.Update();
+        // END FCMOD
         this.theProfiler.endStartSection("village");
         this.villageCollectionObj.tick();
-		// FCMOD: Removed
-		//this.villageSiegeObj.tick();
-		// END FCMOD
+        // FCMOD: Removed
+        //this.villageSiegeObj.tick();
+        // END FCMOD
         this.theProfiler.endStartSection("portalForcer");
         this.field_85177_Q.removeStalePortalLocations(this.getTotalWorldTime());
         this.theProfiler.endSection();
@@ -264,36 +264,6 @@ public class WorldServer extends World
     }
 
     /**
-     * Sets a new spawn location by finding an uncovered block at a random (x,z) location in the chunk.
-     */
-    public void setSpawnLocation()
-    {
-        if (this.worldInfo.getSpawnY() <= 0)
-        {
-            this.worldInfo.setSpawnY(64);
-        }
-
-        int var1 = this.worldInfo.getSpawnX();
-        int var2 = this.worldInfo.getSpawnZ();
-        int var3 = 0;
-
-        while (this.getFirstUncoveredBlock(var1, var2) == 0)
-        {
-            var1 += this.rand.nextInt(8) - this.rand.nextInt(8);
-            var2 += this.rand.nextInt(8) - this.rand.nextInt(8);
-            ++var3;
-
-            if (var3 == 10000)
-            {
-                break;
-            }
-        }
-
-        this.worldInfo.setSpawnX(var1);
-        this.worldInfo.setSpawnZ(var2);
-    }
-
-    /**
      * plays random cave ambient sounds and runs updateTick on random blocks within each chunk in the vacinity of a
      * player
      */
@@ -302,10 +272,10 @@ public class WorldServer extends World
         super.tickBlocksAndAmbiance();
         int var1 = 0;
         int var2 = 0;
-		// FCMOD: Changed
-		//Iterator var3 = this.activeChunkSet.iterator();
-		Iterator<ChunkCoordIntPair> var3 = m_activeChunksCoordsList.iterator();
-		// END FCMOD
+        // FCMOD: Changed
+        //Iterator var3 = this.activeChunkSet.iterator();
+        Iterator<ChunkCoordIntPair> var3 = m_activeChunksCoordsList.iterator();
+        // END FCMOD
 
         while (var3.hasNext())
         {
@@ -323,10 +293,10 @@ public class WorldServer extends World
             int var10;
             int var11;
 
-			// FCMOD: Changed
-			//if (this.rand.nextInt(100000) == 0 && this.isRaining() && this.isThundering())
-			if ( rand.nextInt( 50000 ) == 0 && isRaining() && isThundering() )
-				// END FCMOD 
+            // FCMOD: Changed
+            //if (this.rand.nextInt(100000) == 0 && this.isRaining() && this.isThundering())
+            if ( rand.nextInt( 50000 ) == 0 && isRaining() && isThundering() )
+        	// END FCMOD 
             {
                 this.updateLCG = this.updateLCG * 3 + 1013904223;
                 var8 = this.updateLCG >> 2;
@@ -334,25 +304,25 @@ public class WorldServer extends World
                 var10 = var6 + (var8 >> 8 & 15);
                 var11 = this.getPrecipitationHeight(var9, var10);
 
-		// FCMOD: Changed
-		//if (this.canLightningStrikeAt(var9, var11, var10))
-		if ( CanLightningStrikeAtPos( var9, var11, var10 ) )
-			// END FCMOD
+                // FCMOD: Changed
+                //if (this.canLightningStrikeAt(var9, var11, var10))
+                if ( CanLightningStrikeAtPos( var9, var11, var10 ) )
+            	// END FCMOD
                 {
-			// FCMOD: Changed
-			//this.addWeatherEffect(new EntityLightningBolt(this, (double)var9, (double)var11, (double)var10));
-			FCUtilsBlockPos strikePos = new FCUtilsBlockPos( var9, var11, var10 );
-
-			AdjustLightningPosForSurroundings( strikePos );
-
-			if ( IsBlockPosActive( strikePos.i, strikePos.j, strikePos.k ) )
-			{
-				addWeatherEffect( new FCEntityLightningBolt( this, (double)strikePos.i + 0.5D, 
-						(double)strikePos.j, (double)strikePos.k + 0.5D ) );
+                	// FCMOD: Changed
+                    //this.addWeatherEffect(new EntityLightningBolt(this, (double)var9, (double)var11, (double)var10));
+                	FCUtilsBlockPos strikePos = new FCUtilsBlockPos( var9, var11, var10 );
+            		
+            		AdjustLightningPosForSurroundings( strikePos );
+            		
+                    if ( IsBlockPosActive( strikePos.i, strikePos.j, strikePos.k ) )
+                    {
+                        addWeatherEffect( new FCEntityLightningBolt( this, (double)strikePos.i + 0.5D, 
+                        	(double)strikePos.j, (double)strikePos.k + 0.5D ) );
+                    }
+                	// END FCMOD
                 }
-			// END FCMOD
             }
-			}
 
             this.theProfiler.endStartSection("iceandsnow");
             int var13;
@@ -374,21 +344,21 @@ public class WorldServer extends World
                 {
                     this.setBlock(var9 + var5, var11, var10 + var6, Block.snow.blockID);
                 }
-				// FCMOD: Added
-				else if (this.isRaining() && this.canSnowAt(var9 + var5, var11 + 1, var10 + var6))
-				{
-					setBlock(var9 + var5, var11 + 1, var10 + var6, Block.snow.blockID);
-				}
-				// END FCMOD
+                // FCMOD: Added
+                else if (this.isRaining() && this.canSnowAt(var9 + var5, var11 + 1, var10 + var6))
+                {
+                    setBlock(var9 + var5, var11 + 1, var10 + var6, Block.snow.blockID);
+                }
+                // END FCMOD
 
                 if (this.isRaining())
                 {
                     BiomeGenBase var12 = this.getBiomeGenForCoords(var9 + var5, var10 + var6);
 
-					// FCMOD: Changed for clarity
-					//if (var12.canSpawnLightningBolt())
-					if ( var12.CanRainInBiome() )
-						// END FCMOD
+                    // FCMOD: Changed for clarity
+                    //if (var12.canSpawnLightningBolt())
+                    if ( var12.CanRainInBiome() )
+                	// END FCMOD
                     {
                         var13 = this.getBlockId(var9 + var5, var11 - 1, var10 + var6);
 
@@ -406,30 +376,30 @@ public class WorldServer extends World
 
             for (var10 = 0; var10 < var9; ++var10)
             {
-				ExtendedBlockStorage var21 = var19[var10];
+                ExtendedBlockStorage var21 = var19[var10];
 
-				if (var21 != null && var21.getNeedsRandomTick())
+                if (var21 != null && var21.getNeedsRandomTick())
                 {
-					for (int var20 = 0; var20 < 3; ++var20)
+                    for (int var20 = 0; var20 < 3; ++var20)
                     {
                         this.updateLCG = this.updateLCG * 3 + 1013904223;
                         var13 = this.updateLCG >> 2;
                         int var14 = var13 & 15;
                         int var15 = var13 >> 8 & 15;
                         int var16 = var13 >> 16 & 15;
-					int var17 = var21.getExtBlockID(var14, var16, var15);
+                        int var17 = var21.getExtBlockID(var14, var16, var15);
                         ++var2;
                         Block var18 = Block.blocksList[var17];
 
                         if (var18 != null && var18.getTickRandomly())
                         {
                             ++var1;
-						// FCMOD: Code changed
-						/*
+                            // FCMOD: Code changed
+                            /*
                             var18.updateTick(this, var14 + var5, var16 + var21.getYLocation(), var15 + var6, this.rand);
-						 */
-						var18.RandomUpdateTick(this, var14 + var5, var16 + var21.getYLocation(), var15 + var6, rand);
-						// END FCMOD
+                            */
+                            var18.RandomUpdateTick(this, var14 + var5, var16 + var21.getYLocation(), var15 + var6, rand);
+                            // END FCMOD
                         }
                     }
                 }
@@ -438,14 +408,13 @@ public class WorldServer extends World
             this.theProfiler.endSection();
         }
 
-		// FCMOD: Added
-		ModUpdateTick();
-		// END FCMOD
+        // FCMOD: Added
+        ModUpdateTick();
+        // END FCMOD
     }
 
     /**
      * Returns true if the given block will receive a scheduled tick in the future. Args: X, Y, Z, blockID
-	 * FCNOTE: This is actually whether the block is about to be ticked THIS UPDATE.
      */
     public boolean isBlockTickScheduled(int par1, int par2, int par3, int par4)
     {
@@ -454,7 +423,7 @@ public class WorldServer extends World
     }
 
     /**
-     * Schedules a tick to a block with a delay (Most commonly the tick rate)
+     * Used to schedule a call to the updateTick method on the specified block.
      */
     public void scheduleBlockUpdate(int par1, int par2, int par3, int par4, int par5)
     {
@@ -464,21 +433,21 @@ public class WorldServer extends World
     public void func_82740_a(int par1, int par2, int par3, int par4, int par5, int par6)
     {
         NextTickListEntry var7 = new NextTickListEntry(par1, par2, par3, par4);
-		// FCMOD: Removed
-		//byte var8 = 0;
-		// END FCMOD
+        // FCMOD: Removed
+        //byte var8 = 0;
+        // END FCMOD
 
         if (this.scheduledUpdatesAreImmediate && par4 > 0)
         {
             if (Block.blocksList[par4].func_82506_l())
             {
-				// FCCHUNK: Decide on updates around original spawn
-				// FCMOD: Changed
-				/*
+            	// FCCHUNK: Decide on updates around original spawn
+            	// FCMOD: Changed
+            	/*
                 if (this.checkChunksExist(var7.xCoord - var8, var7.yCoord - var8, var7.zCoord - var8, var7.xCoord + var8, var7.yCoord + var8, var7.zCoord + var8))
-				 */
-				if ( IsBlockPosActive( var7.xCoord, var7.yCoord, var7.zCoord ) )
-					// END FCMOD
+                */
+                if ( IsBlockPosActive( var7.xCoord, var7.yCoord, var7.zCoord ) )
+            	// END FCMOD
                 {
                     int var9 = this.getBlockId(var7.xCoord, var7.yCoord, var7.zCoord);
 
@@ -494,13 +463,13 @@ public class WorldServer extends World
             par5 = 1;
         }
 
-		// FCCHUNK: Decide on updates around original spawn
-		// FCMOD: Changed
-		/*
+    	// FCCHUNK: Decide on updates around original spawn
+    	// FCMOD: Changed
+    	/*
         if (this.checkChunksExist(par1 - var8, par2 - var8, par3 - var8, par1 + var8, par2 + var8, par3 + var8))
-		 */
-		if ( IsBlockPosActive( par1, par2, par3 ) )
-			// END FCMOD
+        */
+        if ( IsBlockPosActive( par1, par2, par3 ) )
+        // END FCMOD
         {
             if (par4 > 0)
             {
@@ -541,8 +510,8 @@ public class WorldServer extends World
      */
     public void updateEntities()
     {
-		// FCMOD: Removed pausing of updates when no players in world.  Replaced elsewhere
-		/*
+    	// FCMOD: Removed pausing of updates when no players in world.  Replaced elsewhere
+    	/*
         if (this.playerEntities.isEmpty())
         {
             if (this.updateEntityTick++ >= 1200)
@@ -554,8 +523,8 @@ public class WorldServer extends World
         {
             this.resetUpdateEntityTick();
         }
-		 */
-		// END FCMOD
+        */
+    	// END FCMOD
 
         super.updateEntities();
     }
@@ -611,16 +580,16 @@ public class WorldServer extends World
             {
                 var4 = (NextTickListEntry)var14.next();
                 var14.remove();
-				// FCCHUNK: Decide on updates around original spawn
-				// FCMOD: Changed to prevent neighboring chunks inadvertantly being loaded during
-				// updates.  This was causing stuff like fire loading a ton of chunks in the nether.
-				/*
+            	// FCCHUNK: Decide on updates around original spawn
+                // FCMOD: Changed to prevent neighboring chunks inadvertantly being loaded during
+                // updates.  This was causing stuff like fire loading a ton of chunks in the nether.
+                /*
                 byte var5 = 0;
-
+                
                 if (this.checkChunksExist(var4.xCoord - var5, var4.yCoord - var5, var4.zCoord - var5, var4.xCoord + var5, var4.yCoord + var5, var4.zCoord + var5))
-				 */
-				if ( IsBlockPosActive( var4.xCoord, var4.yCoord, var4.zCoord ) )
-					// END FCMOD
+                */
+                if ( IsBlockPosActive( var4.xCoord, var4.yCoord, var4.zCoord ) )
+            	// END FCMOD
                 {
                     int var6 = this.getBlockId(var4.xCoord, var4.yCoord, var4.zCoord);
 
@@ -650,9 +619,9 @@ public class WorldServer extends World
                         }
                     }
                 }
-				// FCCHUNK: Decide on updates around original spawn
-				// FCMOD: Removed to reduce unnecessary overhead of recheduling ticks in inactive chunks
-				/*
+            	// FCCHUNK: Decide on updates around original spawn
+                // FCMOD: Removed to reduce unnecessary overhead of recheduling ticks in inactive chunks
+                /*
                 else
                 {
                 	// FCMOD: Changed to not immediately retick on next update to ease on performance
@@ -661,8 +630,8 @@ public class WorldServer extends World
                     	Block.blocksList[var4.blockID].tickRate( this ) );
                     // END FCMOD
                 }
-				 */
-				// END FCMOD
+                */
+                // END FCMOD
             }
 
             this.theProfiler.endSection();
@@ -741,23 +710,22 @@ public class WorldServer extends World
 
         if (!(par1Entity.riddenByEntity instanceof EntityPlayer))
         {
-			// Added so that creatures in periphery chunks can still despawn
-			int iEntityI = MathHelper.floor_double( par1Entity.posX );
-			int iEntityK = MathHelper.floor_double( par1Entity.posZ );
-
-			if ( par2 && !IsBlockPosActive( iEntityI, 0, iEntityK ) && par1Entity.addedToChunk  )
-			{
-				if ( par1Entity.ridingEntity == null )
-				{
-					par1Entity.OutOfUpdateRangeUpdate();
-				}
-
-				return; // intentionally skip super call
-			}
-			// END FCMOD
-
+            // Added so that creatures in periphery chunks can still despawn
+            int iEntityI = MathHelper.floor_double( par1Entity.posX );
+            int iEntityK = MathHelper.floor_double( par1Entity.posZ );
+            
+            if ( par2 && !IsBlockPosActive( iEntityI, 0, iEntityK ) && par1Entity.addedToChunk  )
+            {
+                if ( par1Entity.ridingEntity == null )
+                {
+                	par1Entity.OutOfUpdateRangeUpdate();
+                }
+                
+                return; // intentionally skip super call
+            }
+            // END FCMOD
+            
             super.updateEntityWithOptionalForce(par1Entity, par2);
-
         }
     }
 
@@ -779,18 +747,16 @@ public class WorldServer extends World
         return this.theChunkProviderServer;
     }
 
-	// FCMOD: Added (server only) alias to match client
-	/*
+    // FCMOD: Added (server only) alias to match client
     public List getAllTileEntityInBox( int par1, int par2, int par3, int par4, int par5, int par6 )
     {
     	return getTileEntityList( par1, par2, par3, par4, par5, par6 );
     }
-	 */
-	// END FCMOD
+    // END FCMOD
     /**
-     * pars: min x,y,z , max x,y,z
+     * get a list of tileEntity's
      */
-    public List getAllTileEntityInBox(int par1, int par2, int par3, int par4, int par5, int par6)
+    public List getTileEntityList(int par1, int par2, int par3, int par4, int par5, int par6)
     {
         ArrayList var7 = new ArrayList();
 
@@ -863,7 +829,7 @@ public class WorldServer extends World
             }
             else
             {
-                this.getWorldLogAgent().logWarning("Unable to find spawn biome");
+                this.getWorldLogAgent().func_98236_b("Unable to find spawn biome");
             }
 
             int var9 = 0;
@@ -895,10 +861,10 @@ public class WorldServer extends World
      */
     protected void createBonusChest()
     {
-		// FCMOD: Changed
-		//WorldGeneratorBonusChest var1 = new WorldGeneratorBonusChest(bonusChestContent, 10);
-		FCWorldGeneratorBonusBasket var1 = new FCWorldGeneratorBonusBasket();
-		// END FCMOD
+    	// FCMOD: Changed
+        //WorldGeneratorBonusChest var1 = new WorldGeneratorBonusChest(bonusChestContent, 10);
+        FCWorldGeneratorBonusBasket var1 = new FCWorldGeneratorBonusBasket();
+    	// END FCMOD
 
         for (int var2 = 0; var2 < 10; ++var2)
         {
@@ -930,21 +896,21 @@ public class WorldServer extends World
         {
             if (par2IProgressUpdate != null)
             {
-                par2IProgressUpdate.displayProgressMessage("Saving level");
+                par2IProgressUpdate.displaySavingString("Saving level");
             }
 
             this.saveLevel();
 
             if (par2IProgressUpdate != null)
             {
-                par2IProgressUpdate.resetProgresAndWorkingMessage("Saving chunks");
+                par2IProgressUpdate.displayLoadingString("Saving chunks");
             }
 
             this.chunkProvider.saveChunks(par1, par2IProgressUpdate);
 
-			// FCMOD: Added
-			saveHandler.SaveModSpecificData( this );
-			// END FCMOD
+            // FCMOD: Added
+            saveHandler.SaveModSpecificData( this );
+            // END FCMOD
         }
     }
 
@@ -1017,19 +983,19 @@ public class WorldServer extends World
     {
         if (super.addWeatherEffect(par1Entity))
         {
-			// FCMOD: Changed to avoid modding Packet71Weather        	
-			//this.mcServer.getConfigurationManager().sendToAllNear(par1Entity.posX, par1Entity.posY, par1Entity.posZ, 512.0D, this.provider.dimensionId, new Packet71Weather(par1Entity));
-			Packet71Weather packet = new Packet71Weather( par1Entity );
-
-			if ( par1Entity instanceof FCEntityLightningBolt )
-			{
-				packet.isLightningBolt = 1;
-			}
-
-			this.mcServer.getConfigurationManager().sendToAllNear(
-					par1Entity.posX, par1Entity.posY, par1Entity.posZ, 512.0D, provider.dimensionId, 
-					packet );
-			// END FCMOD
+        	// FCMOD: Changed to avoid modding Packet71Weather        	
+            //this.mcServer.getConfigurationManager().sendPacketToPlayersAroundPoint(par1Entity.posX, par1Entity.posY, par1Entity.posZ, 512.0D, this.provider.dimensionId, new Packet71Weather(par1Entity));
+        	Packet71Weather packet = new Packet71Weather( par1Entity );
+        	
+        	if ( par1Entity instanceof FCEntityLightningBolt )
+        	{
+        		packet.isLightningBolt = 1;
+        	}
+        	
+            this.mcServer.getConfigurationManager().sendPacketToPlayersAroundPoint(
+            	par1Entity.posX, par1Entity.posY, par1Entity.posZ, 512.0D, provider.dimensionId, 
+            	packet );
+            // END FCMOD
             return true;
         }
         else
@@ -1044,7 +1010,7 @@ public class WorldServer extends World
     public void setEntityState(Entity par1Entity, byte par2)
     {
         Packet38EntityStatus var3 = new Packet38EntityStatus(par1Entity.entityId, par2);
-        this.getEntityTracker().sendPacketToAllAssociatedPlayers(par1Entity, var3);
+        this.getEntityTracker().sendPacketToTrackedPlayersAndTrackedEntity(par1Entity, var3);
     }
 
     /**
@@ -1071,7 +1037,7 @@ public class WorldServer extends World
 
             if (var13.getDistanceSq(par2, par4, par6) < 4096.0D)
             {
-                ((EntityPlayerMP)var13).playerNetServerHandler.sendPacketToPlayer(new Packet60Explosion(par2, par4, par6, par8, var11.affectedBlockPositions, (Vec3)var11.func_77277_b().get(var13)));
+                ((EntityPlayerMP)var13).playerNetServerHandler.sendPacket(new Packet60Explosion(par2, par4, par6, par8, var11.affectedBlockPositions, (Vec3)var11.func_77277_b().get(var13)));
             }
         }
 
@@ -1118,7 +1084,7 @@ public class WorldServer extends World
 
                 if (this.onBlockEventReceived(var3))
                 {
-                    this.mcServer.getConfigurationManager().sendToAllNear((double)var3.getX(), (double)var3.getY(), (double)var3.getZ(), 64.0D, this.provider.dimensionId, new Packet54PlayNoteBlock(var3.getX(), var3.getY(), var3.getZ(), var3.getBlockID(), var3.getEventID(), var3.getEventParameter()));
+                    this.mcServer.getConfigurationManager().sendPacketToPlayersAroundPoint((double)var3.getX(), (double)var3.getY(), (double)var3.getZ(), 64.0D, this.provider.dimensionId, new Packet54PlayNoteBlock(var3.getX(), var3.getY(), var3.getZ(), var3.getBlockID(), var3.getEventID(), var3.getEventParameter()));
                 }
             }
 
@@ -1146,8 +1112,8 @@ public class WorldServer extends World
     /**
      * Updates all weather states.
      */
-	// FCMOD: Removed and replaced later
-	/*
+    // FCMOD: Removed and replaced later
+    /*
     protected void updateWeather()
     {
         boolean var1 = this.isRaining();
@@ -1165,8 +1131,8 @@ public class WorldServer extends World
             }
         }
     }
-	 */
-	// END FCMOD
+    */
+    // END FCMOD
 
     /**
      * Gets the MinecraftServer.
@@ -1184,394 +1150,394 @@ public class WorldServer extends World
         return this.theEntityTracker;
     }
 
-	// FCMOD: Removed
-	/*
+    // FCMOD: Removed
+    /*
     public PlayerManager getPlayerManager()
     {
         return this.thePlayerManager;
     }
-	 */
-	// END FCMOD
+    */
+    // END FCMOD
 
     public Teleporter getDefaultTeleporter()
     {
         return this.field_85177_Q;
     }
 
-	// FCMOD: Added
-	private boolean m_bHasTicked = false;
+    // FCMOD: Added
+    private boolean m_bHasTicked = false;
+    
+    protected LinkedList<ChunkCoordIntPair> m_chunksToCheckForUnloadList = 
+    	new LinkedList<ChunkCoordIntPair>();
+    
+    private long m_lNoPlayersOnServerTickCount = 0;
+    
+    // MinecraftServer loads out to 192 blocks, or 12 chunks. One more for wiggle.
+    
+    private final int m_iChunksAroundSpawnToCheckForUnload = 13;  
+    
+    @Override
+    public void ModSpecificTick()
+    {
+    	if ( !m_bHasTicked )
+    	{
+    		m_bHasTicked = true;
 
-	protected LinkedList<ChunkCoordIntPair> m_chunksToCheckForUnloadList = 
-			new LinkedList<ChunkCoordIntPair>();
-
-	private long m_lNoPlayersOnServerTickCount = 0;
-
-	// MinecraftServer loads out to 192 blocks, or 12 chunks. One more for wiggle.
-
-	private final int m_iChunksAroundSpawnToCheckForUnload = 13;  
-
-	@Override
-	public void ModSpecificTick()
-	{
-		if ( !m_bHasTicked )
-		{
-			m_bHasTicked = true;
-
-			MarkChunksAroundSpawnToCheckForUnload();
-}
-
+    		MarkChunksAroundSpawnToCheckForUnload();
+    	}    	    	
+    	
 		CheckChunksToUnloadList();
-	}    
-
-	public void AddChunkToCheckForUnloadList( int iChunkX, int iChunkZ )
-	{
-		m_chunksToCheckForUnloadList.add( new ChunkCoordIntPair( iChunkX, iChunkZ ) );
-	}
-
-	public void AddChunkRangeToCheckForUnloadList( int iMinChunkX, int iMinChunkZ, 
-			int iMaxChunkX, int iMaxChunkZ )
-	{
-		for ( int iTempChunkX = iMinChunkX; iTempChunkX <= iMaxChunkX; iTempChunkX++ )
-		{
-			for ( int iTempChunkZ = iMinChunkZ; iTempChunkZ <= iMaxChunkZ; iTempChunkZ++ )
-			{
-				AddChunkToCheckForUnloadList( iTempChunkX, iTempChunkZ );
-			}
-		}
-	}
-
-	private void CheckChunksToUnloadList()
-	{
-		if ( !m_chunksToCheckForUnloadList.isEmpty() )
-		{
-			Iterator<ChunkCoordIntPair> tempIterator = m_chunksToCheckForUnloadList.iterator();
-
-			while ( tempIterator.hasNext() )
-			{
-				ChunkCoordIntPair tempCoord = tempIterator.next();
-
-				if ( CheckChunkShouldBeUnloaded( tempCoord.chunkXPos, tempCoord.chunkZPos ) )
-				{
-					theChunkProviderServer.ForceAddToChunksToUnload( 
-							tempCoord.chunkXPos, tempCoord.chunkZPos );
-				}
-			}
-
-			m_chunksToCheckForUnloadList.clear();
-		}
-	}
-
-	private boolean CheckChunkShouldBeUnloaded( int iChunkX, int iChunkZ )
-	{
-		return chunkExists( iChunkX, iChunkZ ) && 
-				!m_chunkTracker.IsChunkBeingWatched( iChunkX, iChunkZ  )&&
-				!theChunkProviderServer.IsSpawnChunk( iChunkX, iChunkZ );
-	}
-
-	private void MarkChunksAroundSpawnToCheckForUnload()
-	{
-		// this function cleans up extra useless overworld chunks loaded by 
-		// MinecraftServer.initialWorldChunkLoad()
-
+    }    
+    
+    public void AddChunkToCheckForUnloadList( int iChunkX, int iChunkZ )
+    {
+    	m_chunksToCheckForUnloadList.add( new ChunkCoordIntPair( iChunkX, iChunkZ ) );
+    }
+    
+    public void AddChunkRangeToCheckForUnloadList( int iMinChunkX, int iMinChunkZ, 
+    	int iMaxChunkX, int iMaxChunkZ )
+    {
+    	for ( int iTempChunkX = iMinChunkX; iTempChunkX <= iMaxChunkX; iTempChunkX++ )
+    	{
+        	for ( int iTempChunkZ = iMinChunkZ; iTempChunkZ <= iMaxChunkZ; iTempChunkZ++ )
+        	{
+        		AddChunkToCheckForUnloadList( iTempChunkX, iTempChunkZ );
+        	}
+    	}
+    }
+    
+    private void CheckChunksToUnloadList()
+    {
+    	if ( !m_chunksToCheckForUnloadList.isEmpty() )
+    	{
+        	Iterator<ChunkCoordIntPair> tempIterator = m_chunksToCheckForUnloadList.iterator();
+        	
+        	while ( tempIterator.hasNext() )
+        	{
+        		ChunkCoordIntPair tempCoord = tempIterator.next();
+        		
+        		if ( CheckChunkShouldBeUnloaded( tempCoord.chunkXPos, tempCoord.chunkZPos ) )
+        		{
+        			theChunkProviderServer.ForceAddToChunksToUnload( 
+        				tempCoord.chunkXPos, tempCoord.chunkZPos );
+        		}
+        	}
+    		
+    		m_chunksToCheckForUnloadList.clear();
+    	}
+    }
+    
+    private boolean CheckChunkShouldBeUnloaded( int iChunkX, int iChunkZ )
+    {
+    	return chunkExists( iChunkX, iChunkZ ) && 
+    		!m_chunkTracker.IsChunkBeingWatched( iChunkX, iChunkZ  )&&
+    		!theChunkProviderServer.IsSpawnChunk( iChunkX, iChunkZ );
+    }
+    
+    private void MarkChunksAroundSpawnToCheckForUnload()
+    {
+    	// this function cleans up extra useless overworld chunks loaded by 
+    	// MinecraftServer.initialWorldChunkLoad()
+    	
 		if ( provider.canRespawnHere() )
 		{
 			int iSpawnChunkX = worldInfo.getSpawnX() >> 4;
 			int iSpawnChunkZ = worldInfo.getSpawnZ() >> 4;
-
-			AddChunkRangeToCheckForUnloadList( 
-					iSpawnChunkX - m_iChunksAroundSpawnToCheckForUnload, 
-					iSpawnChunkZ - m_iChunksAroundSpawnToCheckForUnload,
-					iSpawnChunkX + m_iChunksAroundSpawnToCheckForUnload, 
-					iSpawnChunkZ + m_iChunksAroundSpawnToCheckForUnload );        
+            
+            AddChunkRangeToCheckForUnloadList( 
+            	iSpawnChunkX - m_iChunksAroundSpawnToCheckForUnload, 
+            	iSpawnChunkZ - m_iChunksAroundSpawnToCheckForUnload,
+            	iSpawnChunkX + m_iChunksAroundSpawnToCheckForUnload, 
+            	iSpawnChunkZ + m_iChunksAroundSpawnToCheckForUnload );        
 		}
-	}
-
-	@Override
-	public boolean IsUpdateScheduledForBlock( int i, int j, int k, int iBlockID )
-	{
-		NextTickListEntry tempEntry = new NextTickListEntry( i, j, k, iBlockID );
-
-		return field_73064_N.contains( tempEntry );
-	}
-
-	@Override
-	protected void updateWeather()
-	{
-		// Vanilla code replaced to fix storms not relaying state to clients and a couple of other little oddities like the state
-		// changes for weather not being communicated immeditately
-
-		super.updateWeather();
-
-		if ( worldInfo.m_bPreviouslyRaining != worldInfo.isRaining() )
-		{
-			if ( worldInfo.isRaining() )
-			{
-				mcServer.getConfigurationManager().sendPacketToAllPlayers( new Packet70GameEvent( 1, 0 ) );
-			}
-			else
-			{
-				mcServer.getConfigurationManager().sendPacketToAllPlayers( new Packet70GameEvent( 2, 0 ) );
-			}
-
-			worldInfo.m_bPreviouslyRaining = worldInfo.isRaining();
-		}
-
-		if ( worldInfo.m_bPreviouslyThundering != worldInfo.isThundering() )
-		{
-			if ( worldInfo.isThundering() )
-			{
-				mcServer.getConfigurationManager().sendPacketToAllPlayers( new Packet70GameEvent( 7, 0 ) );
-			}
-			else
-			{
-				mcServer.getConfigurationManager().sendPacketToAllPlayers( new Packet70GameEvent( 8, 0 ) );
-			}
-
-			worldInfo.m_bPreviouslyThundering = worldInfo.isThundering();
-		}
-	}
-
-	private void ModUpdateTick()
-	{
-		ValidateMagneticPointList();
-
-		ValidateLootingBeaconList();
-
-		ValidateSpawnLocationList();
-	}
-
-	private void ValidateMagneticPointList()
-	{
-		// periodically check the magnetic point list for dead points
-
-		int iTimeFactor = (int)getWorldTime();
-
-		if ( ( iTimeFactor & 15 ) == 0 )
-		{
-			int iListLength = m_MagneticPointList.m_MagneticPoints.size();
-
-			if ( iListLength > 0 )
-			{
-				iTimeFactor = iTimeFactor >> 4;
-
-		int iTempIndex = (int)( iTimeFactor % iListLength );
-
-		FCMagneticPoint tempPoint = (FCMagneticPoint)m_MagneticPointList.m_MagneticPoints.get( iTempIndex );
-
-		if ( checkChunksExist( tempPoint.m_iIPos, 0, tempPoint.m_iKPos, tempPoint.m_iIPos, 0, tempPoint.m_iKPos ) )
-		{
-			// just check if the point has an associated beacon.  If it does, the beacon itself can validate its precise state
-
-			if ( getBlockId( tempPoint.m_iIPos, tempPoint.m_iJPos, tempPoint.m_iKPos ) != Block.beacon.blockID )
-			{
-				m_MagneticPointList.m_MagneticPoints.remove( iTempIndex );
-
-			}
-		}    			
-			}
-		}
-	}
-
-	private void ValidateLootingBeaconList()
-	{
-		// periodically check the looting beacon list for dead points
-
-		int iTimeFactor = (int)getWorldTime();
-
-		if ( ( iTimeFactor & 15 ) == 0 )
-		{
-			int iListLength = m_LootingBeaconLocationList.m_EffectLocations.size();
-
-			if ( iListLength > 0 )
-			{
-				iTimeFactor = iTimeFactor >> 4;
-
-			int iTempIndex = (int)( iTimeFactor % iListLength );
-
-			FCBeaconEffectLocation tempPoint = (FCBeaconEffectLocation)m_LootingBeaconLocationList.m_EffectLocations.get( iTempIndex );
-
-			if ( checkChunksExist( tempPoint.m_iIPos, 0, tempPoint.m_iKPos, tempPoint.m_iIPos, 0, tempPoint.m_iKPos ) )
-			{
-				// just check if the point has an associated beacon.  If it does, the beacon itself can validate its precise state
-
-				if ( getBlockId( tempPoint.m_iIPos, tempPoint.m_iJPos, tempPoint.m_iKPos ) != Block.beacon.blockID )
-				{
-					m_LootingBeaconLocationList.m_EffectLocations.remove( iTempIndex );
-
-				}
-			}    			
-			}
-		}
-	}
-
-	private void ValidateSpawnLocationList()
-	{
-		// periodically check the list for dead points
-
-		long lWorldTime = getWorldTime();
-
-		if ( ( lWorldTime & 15 ) == 0 )
-		{
-			Iterator tempIterator = m_SpawnLocationList.m_SpawnLocations.iterator();
-
-			while ( tempIterator.hasNext() )
-			{
-				FCSpawnLocation tempPoint = (FCSpawnLocation)tempIterator.next();
-
-				if ( lWorldTime < tempPoint.m_lSpawnTime || lWorldTime - tempPoint.m_lSpawnTime > FCUtilsHardcoreSpawn.m_iHardcoreSpawnTimeBetweenReassignments )
-				{        			
-					tempIterator.remove();
-				}        		
-			}
-		}
-	}
-
-	protected void AdjustLightningPosForSurroundings( FCUtilsBlockPos strikePos )
-	{
-		int iHighJ = strikePos.j;
-
-		// store bounds variables since strikePos changes during search
-
-		int iMinI = strikePos.i - 16;
-		int iMinK = strikePos.k - 16;
-
-		int iMaxI = strikePos.i + 16;
-		int iMaxK = strikePos.k + 16;
-
-		for ( int iTempI = iMinI; iTempI <= iMaxI; iTempI++ )
-		{
-			for ( int iTempK = iMinK; iTempK <= iMaxK; iTempK++ )
-			{
-				int iTempJ = getPrecipitationHeight( iTempI, iTempK );
-
-				if ( iTempJ > iHighJ )
-				{
-					if ( CanLightningStrikeAtPos( iTempI, iTempJ, iTempK ) )
-					{
-						strikePos.i = iTempI;
-						iHighJ = strikePos.j = iTempJ;
-						strikePos.k = iTempK;
-					}
-				}
-			}
-		}    	
-
-		// check entities
-
-		List<Entity> entityList = getEntitiesWithinAABB( Entity.class, AxisAlignedBB.getAABBPool().getAABB( 
-				iMinI, iHighJ, iMinK, iMaxI + 1D, 256D, iMaxK + 1D ) );
-
-		Iterator<Entity> entityIterator = entityList.iterator();
-
-		while ( entityIterator.hasNext() )
-		{
-			Entity tempEntity = entityIterator.next();
-
-			if ( tempEntity.isEntityAlive() && tempEntity.AttractsLightning() )
-			{
-				int iEntityMaxJ = (int)tempEntity.boundingBox.maxY + 1;
-
-				if ( iEntityMaxJ > iHighJ )
-				{            	
-					int iEntityI = MathHelper.floor_double( tempEntity.posX );
-					int iEntityK = MathHelper.floor_double( tempEntity.posZ );
-
-					int iPrecipitationJ = getPrecipitationHeight( iEntityI, iEntityK );
-
-					if ( iPrecipitationJ <= iEntityMaxJ &&
-							CanLightningStrikeAtPos( iEntityI, iPrecipitationJ, iEntityK ) )
-					{
-						strikePos.i = iEntityI;
-						iHighJ = strikePos.j = iPrecipitationJ;
-						strikePos.k = iEntityK;
-					}	                
-				}                
-			}
-		}
-
-		// secondary search for lightning rods in a larger area around new strike pos
-
-		if ( IsBlockPosActive( strikePos.i, strikePos.j, strikePos.k ) )
-		{
-			iMinI = strikePos.i - 16;
-			iMinK = strikePos.k - 16;
-
-			iMaxI = strikePos.i + 16;
-			iMaxK = strikePos.k + 16;
-
-			for ( int iTempI = iMinI; iTempI <= iMaxI; iTempI++ )
-			{
-				for ( int iTempK = iMinK; iTempK <= iMaxK; iTempK++ )
-				{
-					int iTempJ = getPrecipitationHeight( iTempI, iTempK );
-
-					if ( iTempJ > iHighJ && getBlockId( iTempI, iTempJ - 1, iTempK ) == 
-							FCBetterThanWolves.fcBlockLightningRod.blockID )
-					{
-						// intentionally don't test CanLightningStrikeAtPos() so that
-						// rods in non-lightning biomes can still attract lightning to them
-
-						strikePos.i = iTempI;
-						iHighJ = strikePos.j = iTempJ;
-						strikePos.k = iTempK;
-					}
-				}
-			}        	
-		}
-	}
-
-	@Override
-	public int GetClampedViewDistanceInChunks()
-	{
-		int iRange = getMinecraftServer().getConfigurationManager().getViewDistance();
-
-		return MathHelper.clamp_int( iRange, 3, 15 );
-	}
-
-	@Override
-	protected void UpdateActiveChunkMap()
-	{
-		super.UpdateActiveChunkMap();
-
-		UpdateServerIdleState();    	
-
-		// FCCHUNK: Decide on updates around original spawn
-
-		if ( provider.dimensionId == 0 && !IsServerIdle() )
-		{
-			ChunkCoordinates originalSpawn = getSpawnPoint();
-
-			AddAreaAroundChunkToActiveChunkMap( originalSpawn.posX >> 4, 
-					originalSpawn.posZ >> 4 );
-		}
-	}
-
-	public FCChunkTracker GetChunkTracker()
-	{
-		return m_chunkTracker;
-	}    
-
-	protected void UpdateServerIdleState()
-	{
-		if ( !AreAnyPlayersOnServer() )
-		{
-			m_lNoPlayersOnServerTickCount++;
-		}
-		else
-		{
-			m_lNoPlayersOnServerTickCount = 0;
-		}
-	}
-
-	protected boolean IsServerIdle()
-	{
-		return m_lNoPlayersOnServerTickCount >= 1200L;
-	}
-
-	protected boolean AreAnyPlayersOnServer()
-	{
-		return mcServer.getCurrentPlayerCount() > 0;
-	}
+    }
+
+    @Override
+    public boolean IsUpdateScheduledForBlock( int i, int j, int k, int iBlockID )
+    {
+        NextTickListEntry tempEntry = new NextTickListEntry( i, j, k, iBlockID );
+        
+        return field_73064_N.contains( tempEntry );
+    }
+
+    @Override
+    protected void updateWeather()
+    {
+    	// Vanilla code replaced to fix storms not relaying state to clients and a couple of other little oddities like the state
+    	// changes for weather not being communicated immeditately
+    	
+        super.updateWeather();
+
+        if ( worldInfo.m_bPreviouslyRaining != worldInfo.isRaining() )
+        {
+            if ( worldInfo.isRaining() )
+            {
+                mcServer.getConfigurationManager().sendPacketToAllPlayers( new Packet70GameEvent( 1, 0 ) );
+            }
+            else
+            {
+                mcServer.getConfigurationManager().sendPacketToAllPlayers( new Packet70GameEvent( 2, 0 ) );
+            }
+            
+            worldInfo.m_bPreviouslyRaining = worldInfo.isRaining();
+        }
+        
+        if ( worldInfo.m_bPreviouslyThundering != worldInfo.isThundering() )
+        {
+            if ( worldInfo.isThundering() )
+            {
+                mcServer.getConfigurationManager().sendPacketToAllPlayers( new Packet70GameEvent( 7, 0 ) );
+            }
+            else
+            {
+                mcServer.getConfigurationManager().sendPacketToAllPlayers( new Packet70GameEvent( 8, 0 ) );
+            }
+            
+            worldInfo.m_bPreviouslyThundering = worldInfo.isThundering();
+        }
+    }
+    
+    private void ModUpdateTick()
+    {
+    	ValidateMagneticPointList();
+    	
+    	ValidateLootingBeaconList();
+    	
+    	ValidateSpawnLocationList();
+    }
+    
+    private void ValidateMagneticPointList()
+    {
+    	// periodically check the magnetic point list for dead points
+    	
+    	int iTimeFactor = (int)getWorldTime();
+    	
+    	if ( ( iTimeFactor & 15 ) == 0 )
+    	{
+    		int iListLength = m_MagneticPointList.m_MagneticPoints.size();
+    		
+    		if ( iListLength > 0 )
+    		{
+        		iTimeFactor = iTimeFactor >> 4;
+                
+    			int iTempIndex = (int)( iTimeFactor % iListLength );
+    			
+    			FCMagneticPoint tempPoint = (FCMagneticPoint)m_MagneticPointList.m_MagneticPoints.get( iTempIndex );
+    			
+    	        if ( checkChunksExist( tempPoint.m_iIPos, 0, tempPoint.m_iKPos, tempPoint.m_iIPos, 0, tempPoint.m_iKPos ) )
+    	        {
+    	        	// just check if the point has an associated beacon.  If it does, the beacon itself can validate its precise state
+    	        	
+    	        	if ( getBlockId( tempPoint.m_iIPos, tempPoint.m_iJPos, tempPoint.m_iKPos ) != Block.beacon.blockID )
+    	        	{
+    	        		m_MagneticPointList.m_MagneticPoints.remove( iTempIndex );
+    	        		
+    	        	}
+    	        }    			
+    		}
+    	}
+    }
+    
+    private void ValidateLootingBeaconList()
+    {
+    	// periodically check the looting beacon list for dead points
+    	
+    	int iTimeFactor = (int)getWorldTime();
+    	
+    	if ( ( iTimeFactor & 15 ) == 0 )
+    	{
+    		int iListLength = m_LootingBeaconLocationList.m_EffectLocations.size();
+    		
+    		if ( iListLength > 0 )
+    		{
+        		iTimeFactor = iTimeFactor >> 4;
+                
+    			int iTempIndex = (int)( iTimeFactor % iListLength );
+    			
+    			FCBeaconEffectLocation tempPoint = (FCBeaconEffectLocation)m_LootingBeaconLocationList.m_EffectLocations.get( iTempIndex );
+    			
+    	        if ( checkChunksExist( tempPoint.m_iIPos, 0, tempPoint.m_iKPos, tempPoint.m_iIPos, 0, tempPoint.m_iKPos ) )
+    	        {
+    	        	// just check if the point has an associated beacon.  If it does, the beacon itself can validate its precise state
+    	        	
+    	        	if ( getBlockId( tempPoint.m_iIPos, tempPoint.m_iJPos, tempPoint.m_iKPos ) != Block.beacon.blockID )
+    	        	{
+    	        		m_LootingBeaconLocationList.m_EffectLocations.remove( iTempIndex );
+    	        		
+    	        	}
+    	        }    			
+    		}
+    	}
+    }
+    
+    private void ValidateSpawnLocationList()
+    {
+    	// periodically check the list for dead points
+    	
+    	long lWorldTime = getWorldTime();
+    	
+    	if ( ( lWorldTime & 15 ) == 0 )
+    	{
+        	Iterator tempIterator = m_SpawnLocationList.m_SpawnLocations.iterator();
+        	
+        	while ( tempIterator.hasNext() )
+        	{
+        		FCSpawnLocation tempPoint = (FCSpawnLocation)tempIterator.next();
+        		
+        		if ( lWorldTime < tempPoint.m_lSpawnTime || lWorldTime - tempPoint.m_lSpawnTime > FCUtilsHardcoreSpawn.m_iHardcoreSpawnTimeBetweenReassignments )
+        		{        			
+        			tempIterator.remove();
+        		}        		
+        	}
+    	}
+    }
+    
+    protected void AdjustLightningPosForSurroundings( FCUtilsBlockPos strikePos )
+    {
+    	int iHighJ = strikePos.j;
+    	
+    	// store bounds variables since strikePos changes during search
+    	
+    	int iMinI = strikePos.i - 16;
+    	int iMinK = strikePos.k - 16;
+    	
+    	int iMaxI = strikePos.i + 16;
+    	int iMaxK = strikePos.k + 16;
+    	
+    	for ( int iTempI = iMinI; iTempI <= iMaxI; iTempI++ )
+    	{
+        	for ( int iTempK = iMinK; iTempK <= iMaxK; iTempK++ )
+        	{
+                int iTempJ = getPrecipitationHeight( iTempI, iTempK );
+                
+                if ( iTempJ > iHighJ )
+                {
+                    if ( CanLightningStrikeAtPos( iTempI, iTempJ, iTempK ) )
+                    {
+	                	strikePos.i = iTempI;
+	                	iHighJ = strikePos.j = iTempJ;
+	                	strikePos.k = iTempK;
+                    }
+                }
+        	}
+    	}    	
+    	
+    	// check entities
+    	
+        List<Entity> entityList = getEntitiesWithinAABB( Entity.class, AxisAlignedBB.getAABBPool().getAABB( 
+        	iMinI, iHighJ, iMinK, iMaxI + 1D, 256D, iMaxK + 1D ) );
+    	
+        Iterator<Entity> entityIterator = entityList.iterator();
+
+        while ( entityIterator.hasNext() )
+        {
+            Entity tempEntity = entityIterator.next();
+            
+            if ( tempEntity.isEntityAlive() && tempEntity.AttractsLightning() )
+            {
+            	int iEntityMaxJ = (int)tempEntity.boundingBox.maxY + 1;
+            	
+            	if ( iEntityMaxJ > iHighJ )
+            	{            	
+	            	int iEntityI = MathHelper.floor_double( tempEntity.posX );
+	            	int iEntityK = MathHelper.floor_double( tempEntity.posZ );
+	            	
+	                int iPrecipitationJ = getPrecipitationHeight( iEntityI, iEntityK );
+	                
+	                if ( iPrecipitationJ <= iEntityMaxJ &&
+	                	CanLightningStrikeAtPos( iEntityI, iPrecipitationJ, iEntityK ) )
+	                {
+	                	strikePos.i = iEntityI;
+	                	iHighJ = strikePos.j = iPrecipitationJ;
+	                	strikePos.k = iEntityK;
+	                }	                
+            	}                
+            }
+        }
+
+        // secondary search for lightning rods in a larger area around new strike pos
+        
+        if ( IsBlockPosActive( strikePos.i, strikePos.j, strikePos.k ) )
+        {
+        	iMinI = strikePos.i - 16;
+        	iMinK = strikePos.k - 16;
+        	
+        	iMaxI = strikePos.i + 16;
+        	iMaxK = strikePos.k + 16;
+        	
+        	for ( int iTempI = iMinI; iTempI <= iMaxI; iTempI++ )
+        	{
+            	for ( int iTempK = iMinK; iTempK <= iMaxK; iTempK++ )
+            	{
+                    int iTempJ = getPrecipitationHeight( iTempI, iTempK );
+                    
+                    if ( iTempJ > iHighJ && getBlockId( iTempI, iTempJ - 1, iTempK ) == 
+                    	FCBetterThanWolves.fcBlockLightningRod.blockID )
+                    {
+                    	// intentionally don't test CanLightningStrikeAtPos() so that
+                    	// rods in non-lightning biomes can still attract lightning to them
+                    	
+	                	strikePos.i = iTempI;
+	                	iHighJ = strikePos.j = iTempJ;
+	                	strikePos.k = iTempK;
+                    }
+            	}
+        	}        	
+        }
+    }
+    
+    @Override
+    public int GetClampedViewDistanceInChunks()
+    {
+    	int iRange = getMinecraftServer().getConfigurationManager().getViewDistance();
+    	
+    	return MathHelper.clamp_int( iRange, 3, 15 );
+    }
+    
+    @Override
+    protected void UpdateActiveChunkMap()
+    {
+    	super.UpdateActiveChunkMap();
+    	
+    	UpdateServerIdleState();    	
+    	
+    	// FCCHUNK: Decide on updates around original spawn
+    	
+    	if ( provider.dimensionId == 0 && !IsServerIdle() )
+    	{
+	        ChunkCoordinates originalSpawn = getSpawnPoint();
+	        
+	        AddAreaAroundChunkToActiveChunkMap( originalSpawn.posX >> 4, 
+	        	originalSpawn.posZ >> 4 );
+    	}
+    }
+    
+    public FCChunkTracker GetChunkTracker()
+    {
+        return m_chunkTracker;
+    }    
+
+    protected void UpdateServerIdleState()
+    {
+        if ( !AreAnyPlayersOnServer() )
+        {
+        	m_lNoPlayersOnServerTickCount++;
+        }
+        else
+        {
+        	m_lNoPlayersOnServerTickCount = 0;
+        }
+    }
+    
+    protected boolean IsServerIdle()
+    {
+        return m_lNoPlayersOnServerTickCount >= 1200L;
+    }
+    
+    protected boolean AreAnyPlayersOnServer()
+    {
+    	return mcServer.getCurrentPlayerCount() > 0;
+    }
 
 	//------------ Addon Data Handling -----------//
 
@@ -1639,5 +1605,5 @@ public class WorldServer extends World
 	public void setWorldDataForMod(Class<? extends FCAddOn> mod, FCAddOnUtilsWorldData data) {
 		addonWorldDataMap.put(mod, data);
 	}
-	// END FCMOD
+    // END FCMOD
 }

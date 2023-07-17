@@ -228,25 +228,25 @@ public class FCBlockTorchFiniteBurning extends FCBlockTorchBaseBurning
 	
 	//----------- Client Side Functionality -----------//
 	
-    private Icon m_iconSputtering;
-    
-	@Override
-    public void registerIcons( IconRegister register )
-    {
-		super.registerIcons( register );
-		
-		m_iconSputtering = register.registerIcon( "fcBlockTorchFiniteSputtering" );		
-    }
-	
-	@Override
-    public Icon getIcon( int iSide, int iMetadata )
-    {
-		if ( GetIsSputtering( iMetadata ) )
-		{
-			return m_iconSputtering;
-		}
-		
-		return super.getIcon( iSide, iMetadata );
-    }
+//    private Icon m_iconSputtering;
+//    
+//	@Override
+//    public void registerIcons( IconRegister register )
+//    {
+//		super.registerIcons( register );
+//		
+//		m_iconSputtering = register.registerIcon( "fcBlockTorchFiniteSputtering" );		
+//    }
+//	
+//	@Override
+//    public Icon getIcon( int iSide, int iMetadata )
+//    {
+//		if ( GetIsSputtering( iMetadata ) )
+//		{
+//			return m_iconSputtering;
+//		}
+//		
+//		return super.getIcon( iSide, iMetadata );
+//    }
 }
     

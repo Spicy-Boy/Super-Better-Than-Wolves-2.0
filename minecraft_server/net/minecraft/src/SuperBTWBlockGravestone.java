@@ -53,7 +53,7 @@ public class SuperBTWBlockGravestone extends Block
   public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entity, ItemStack stack)
   {
     int side = MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
-    world.setBlockMetadataWithNotify(x, y, z, side, 2);
+    world.setBlockMetadata(x, y, z, side, 2);
   }
 
   public int onBlockPlaced(World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata)
@@ -61,27 +61,27 @@ public class SuperBTWBlockGravestone extends Block
     return side < 2 ? 2 : Direction.facingToDirection[side];
   }
 
-  //ClientOnly
-  public void registerIcons(IconRegister r)
-  {
-    iconFront = r.registerIcon("gpeBlockGravestone_front");
-    iconFrontBlank = r.registerIcon("gpeBlockGravestone_front_blank");
-    iconSide = r.registerIcon("gpeBlockGravestone_side");
-  }
-
-  //ClientOnly
-  public Icon getIcon(int side, int meta)
-  {
-    // Bottom (0), Top (1), North (2), South (3), West (4), East (5)
-    int orientation = meta & 3;
-    boolean blank = meta > 3;
-    Icon tmpFrontIcon = blank ? iconFrontBlank : iconFront;
-    if (side == 3 && orientation == 0) return tmpFrontIcon;
-    if (side == 4 && orientation == 1) return tmpFrontIcon;
-    if (side == 2 && orientation == 2) return tmpFrontIcon;
-    if (side == 5 && orientation == 3) return tmpFrontIcon;
-    return iconSide;
-  }
+//  //ClientOnly
+//  public void registerIcons(IconRegister r)
+//  {
+//    iconFront = r.registerIcon("gpeBlockGravestone_front");
+//    iconFrontBlank = r.registerIcon("gpeBlockGravestone_front_blank");
+//    iconSide = r.registerIcon("gpeBlockGravestone_side");
+//  }
+//
+//  //ClientOnly
+//  public Icon getIcon(int side, int meta)
+//  {
+//    // Bottom (0), Top (1), North (2), South (3), West (4), East (5)
+//    int orientation = meta & 3;
+//    boolean blank = meta > 3;
+//    Icon tmpFrontIcon = blank ? iconFrontBlank : iconFront;
+//    if (side == 3 && orientation == 0) return tmpFrontIcon;
+//    if (side == 4 && orientation == 1) return tmpFrontIcon;
+//    if (side == 2 && orientation == 2) return tmpFrontIcon;
+//    if (side == 5 && orientation == 3) return tmpFrontIcon;
+//    return iconSide;
+//  }
 
   public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
   {
@@ -117,54 +117,54 @@ public class SuperBTWBlockGravestone extends Block
     setBlockBounds(0/16F, 0/16F, 0/16F, 16/16F, 14/16F, 5/16F);
   }
 
-  //ClientOnly
-  public boolean RenderBlock(RenderBlocks r, int x, int y, int z)
-  {
-    int meta = r.blockAccess.getBlockMetadata(x, y, z) & 3;
-    if ((meta & 1) != 0) r.SetUvRotateTop(2);
-    switch (meta)
-    {
-      case 0:
-        r.setRenderBounds(0/16F,  0/16F, 0/16F, 16/16F, 12/16F,  5/16F);
-        r.renderStandardBlock(this, x, y, z);
-        r.setRenderBounds(1/16F, 12/16F, 0/16F, 15/16F, 13/16F,  5/16F);
-        r.renderStandardBlock(this, x, y, z);
-        r.setRenderBounds(3/16F, 13/16F, 1/16F, 13/16F, 14/16F,  5/16F);
-        r.renderStandardBlock(this, x, y, z);
-        break;
-      case 1:
-        r.setRenderBounds(11/16F,  0/16F, 0/16F, 16/16F, 12/16F, 16/16F);
-        r.renderStandardBlock(this, x, y, z);
-        r.setRenderBounds(11/16F, 12/16F, 1/16F, 16/16F, 13/16F, 15/16F);
-        r.renderStandardBlock(this, x, y, z);
-        r.setRenderBounds(11/16F, 13/16F, 3/16F, 15/16F, 14/16F, 13/16F);
-        r.renderStandardBlock(this, x, y, z);
-        break;
-      case 2:
-        r.setRenderBounds(0/16F,  0/16F, 11/16F, 16/16F, 12/16F, 16/16F);
-        r.renderStandardBlock(this, x, y, z);
-        r.setRenderBounds(1/16F, 12/16F, 11/16F, 15/16F, 13/16F, 16/16F);
-        r.renderStandardBlock(this, x, y, z);
-        r.setRenderBounds(3/16F, 13/16F, 11/16F, 13/16F, 14/16F, 15/16F);
-        r.renderStandardBlock(this, x, y, z);
-        break;
-      default:
-        r.setRenderBounds(0/16F,  0/16F,  0/16F, 5/16F, 12/16F, 16/16F);
-        r.renderStandardBlock(this, x, y, z);
-        r.setRenderBounds(0/16F, 12/16F,  1/16F, 5/16F, 13/16F, 15/16F);
-        r.renderStandardBlock(this, x, y, z);
-        r.setRenderBounds(1/16F, 13/16F,  3/16F, 5/16F, 14/16F, 13/16F);
-        r.renderStandardBlock(this, x, y, z);
-    }
-    r.ClearUvRotation();
-    return true;
-  }
-
-  //ClientOnly
-  public void RenderBlockAsItem(RenderBlocks r, int meta, float unk)
-  {
-    setBlockBoundsForItemRender();
-    r.setRenderBoundsFromBlock(this);
-    FCClientUtilsRender.RenderInvBlockWithMetadata(r, this, -0.5F, -0.5F, -0.15625F, 0);
-  }
+//  //ClientOnly
+//  public boolean RenderBlock(RenderBlocks r, int x, int y, int z)
+//  {
+//    int meta = r.blockAccess.getBlockMetadata(x, y, z) & 3;
+//    if ((meta & 1) != 0) r.SetUvRotateTop(2);
+//    switch (meta)
+//    {
+//      case 0:
+//        r.setRenderBounds(0/16F,  0/16F, 0/16F, 16/16F, 12/16F,  5/16F);
+//        r.renderStandardBlock(this, x, y, z);
+//        r.setRenderBounds(1/16F, 12/16F, 0/16F, 15/16F, 13/16F,  5/16F);
+//        r.renderStandardBlock(this, x, y, z);
+//        r.setRenderBounds(3/16F, 13/16F, 1/16F, 13/16F, 14/16F,  5/16F);
+//        r.renderStandardBlock(this, x, y, z);
+//        break;
+//      case 1:
+//        r.setRenderBounds(11/16F,  0/16F, 0/16F, 16/16F, 12/16F, 16/16F);
+//        r.renderStandardBlock(this, x, y, z);
+//        r.setRenderBounds(11/16F, 12/16F, 1/16F, 16/16F, 13/16F, 15/16F);
+//        r.renderStandardBlock(this, x, y, z);
+//        r.setRenderBounds(11/16F, 13/16F, 3/16F, 15/16F, 14/16F, 13/16F);
+//        r.renderStandardBlock(this, x, y, z);
+//        break;
+//      case 2:
+//        r.setRenderBounds(0/16F,  0/16F, 11/16F, 16/16F, 12/16F, 16/16F);
+//        r.renderStandardBlock(this, x, y, z);
+//        r.setRenderBounds(1/16F, 12/16F, 11/16F, 15/16F, 13/16F, 16/16F);
+//        r.renderStandardBlock(this, x, y, z);
+//        r.setRenderBounds(3/16F, 13/16F, 11/16F, 13/16F, 14/16F, 15/16F);
+//        r.renderStandardBlock(this, x, y, z);
+//        break;
+//      default:
+//        r.setRenderBounds(0/16F,  0/16F,  0/16F, 5/16F, 12/16F, 16/16F);
+//        r.renderStandardBlock(this, x, y, z);
+//        r.setRenderBounds(0/16F, 12/16F,  1/16F, 5/16F, 13/16F, 15/16F);
+//        r.renderStandardBlock(this, x, y, z);
+//        r.setRenderBounds(1/16F, 13/16F,  3/16F, 5/16F, 14/16F, 13/16F);
+//        r.renderStandardBlock(this, x, y, z);
+//    }
+//    r.ClearUvRotation();
+//    return true;
+//  }
+//
+//  //ClientOnly
+//  public void RenderBlockAsItem(RenderBlocks r, int meta, float unk)
+//  {
+//    setBlockBoundsForItemRender();
+//    r.setRenderBoundsFromBlock(this);
+//    FCClientUtilsRender.RenderInvBlockWithMetadata(r, this, -0.5F, -0.5F, -0.15625F, 0);
+//  }
 }

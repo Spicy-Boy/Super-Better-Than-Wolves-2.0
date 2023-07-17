@@ -131,32 +131,32 @@ public class FCBlockWeb extends BlockWeb
     
 	//----------- Client Side Functionality -----------//
     
-    private Icon m_IconByDamageArray[] = new Icon[4];
-    
-	@Override
-    public void registerIcons( IconRegister register )
-    {
-		blockIcon = register.registerIcon( "web" );
-		
-		m_IconByDamageArray[0] = blockIcon;
-		m_IconByDamageArray[1] = register.registerIcon( "fcBlockWeb_1" );
-		m_IconByDamageArray[2] = register.registerIcon( "fcBlockWeb_2" );
-		m_IconByDamageArray[3] = register.registerIcon( "fcBlockWeb_3" );		
-    }
-	
-	@Override
-    public Icon getIcon( int iSide, int iMetadata )
-    {
-        return m_IconByDamageArray[GetDamageLevel( iMetadata )];    	
-    }
-	
-    @Override
-    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
-    {
-        renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
-        	renderer.blockAccess, i, j, k ) );
-        
-    	return renderer.renderCrossedSquares( this, i, j, k );
-    }    
+//    private Icon m_IconByDamageArray[] = new Icon[4];
+//    
+//	@Override
+//    public void registerIcons( IconRegister register )
+//    {
+//		blockIcon = register.registerIcon( "web" );
+//		
+//		m_IconByDamageArray[0] = blockIcon;
+//		m_IconByDamageArray[1] = register.registerIcon( "fcBlockWeb_1" );
+//		m_IconByDamageArray[2] = register.registerIcon( "fcBlockWeb_2" );
+//		m_IconByDamageArray[3] = register.registerIcon( "fcBlockWeb_3" );		
+//    }
+//	
+//	@Override
+//    public Icon getIcon( int iSide, int iMetadata )
+//    {
+//        return m_IconByDamageArray[GetDamageLevel( iMetadata )];    	
+//    }
+//	
+//    @Override
+//    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
+//    {
+//        renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
+//        	renderer.blockAccess, i, j, k ) );
+//        
+//    	return renderer.renderCrossedSquares( this, i, j, k );
+//    }    
 }
     

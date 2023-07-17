@@ -94,72 +94,72 @@ public class SCBlockPumpkinGrowingGreenAsleep extends SCBlockPumpkinGrowingAslee
 	
 	//--- Render ---//
 	
-	@Override
-	public boolean RenderBlock(RenderBlocks renderer, int i, int j, int k)
-	{
-		IBlockAccess blockAccess = renderer.blockAccess;
-		int growthLevel = this.GetGrowthLevel(blockAccess, i, j, k);
-		
-		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(blockAccess, i, j, k) );
-		renderer.renderStandardBlock(this, i, j, k);
-		
-		this.renderVineConnector(renderer, i, j, k, connectorIcon[growthLevel]);
-		
-		return true;
-	}
+//	@Override
+//	public boolean RenderBlock(RenderBlocks renderer, int i, int j, int k)
+//	{
+//		IBlockAccess blockAccess = renderer.blockAccess;
+//		int growthLevel = this.GetGrowthLevel(blockAccess, i, j, k);
+//		
+//		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(blockAccess, i, j, k) );
+//		renderer.renderStandardBlock(this, i, j, k);
+//		
+//		this.renderVineConnector(renderer, i, j, k, connectorIcon[growthLevel]);
+//		
+//		return true;
+//	}
 	
-	@Override
-	public void RenderFallingBlock(RenderBlocks renderer, int i, int j, int k, int meta)
-	{
-		IBlockAccess blockAccess = renderer.blockAccess;
-		
-		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(meta) );		
-		renderer.RenderStandardFallingBlock( this, i, j, k, meta);
-	}
+//	@Override
+//	public void RenderFallingBlock(RenderBlocks renderer, int i, int j, int k, int meta)
+//	{
+//		IBlockAccess blockAccess = renderer.blockAccess;
+//		
+//		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(meta) );		
+//		renderer.RenderStandardFallingBlock( this, i, j, k, meta);
+//	}
+//	
+//	protected Icon[] greenIcon;
+//	protected Icon[] greenIconTop;
+//	protected Icon[] connectorIcon;
 	
-	protected Icon[] greenIcon;
-	protected Icon[] greenIconTop;
-	protected Icon[] connectorIcon;
-	
-	@Override
-  	public void registerIcons( IconRegister register )
-  	{
-		//Orange
-		greenIcon = new Icon[4];
-		
-  		for ( int iTempIndex = 0; iTempIndex < greenIcon.length; iTempIndex++ )
-		{
-  			greenIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenSide_" + iTempIndex );
-		}
-	
-  		greenIconTop = new Icon[4];
-	
-		for ( int iTempIndex = 0; iTempIndex < greenIconTop.length; iTempIndex++ )
-		{
-			greenIconTop[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenTop_" + iTempIndex );
-		}
-		
-        connectorIcon = new Icon[4];
-        for ( int iTempIndex = 0; iTempIndex < connectorIcon.length; iTempIndex++ )
-        {
-        	connectorIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenConnector_" + iTempIndex );
-        }
-    	
-    	blockIcon = greenIcon[3];
-    	
-		
-	}
-	
-	@Override
-    public Icon getIcon( int iSide, int iMetadata )
-    {
-    	int growthLevel = GetGrowthLevel(iMetadata);
-    	
-    	if ( iSide == 1 || iSide == 0 )
-    	{
-    		return greenIconTop[growthLevel];
-    	}
-
-    	return greenIcon[growthLevel];
-    }
+//	@Override
+//  	public void registerIcons( IconRegister register )
+//  	{
+//		//Orange
+//		greenIcon = new Icon[4];
+//		
+//  		for ( int iTempIndex = 0; iTempIndex < greenIcon.length; iTempIndex++ )
+//		{
+//  			greenIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenSide_" + iTempIndex );
+//		}
+//	
+//  		greenIconTop = new Icon[4];
+//	
+//		for ( int iTempIndex = 0; iTempIndex < greenIconTop.length; iTempIndex++ )
+//		{
+//			greenIconTop[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenTop_" + iTempIndex );
+//		}
+//		
+//        connectorIcon = new Icon[4];
+//        for ( int iTempIndex = 0; iTempIndex < connectorIcon.length; iTempIndex++ )
+//        {
+//        	connectorIcon[iTempIndex] = register.registerIcon( "SCBlockPumpkinGreenConnector_" + iTempIndex );
+//        }
+//    	
+//    	blockIcon = greenIcon[3];
+//    	
+//		
+//	}
+//	
+//	@Override
+//    public Icon getIcon( int iSide, int iMetadata )
+//    {
+//    	int growthLevel = GetGrowthLevel(iMetadata);
+//    	
+//    	if ( iSide == 1 || iSide == 0 )
+//    	{
+//    		return greenIconTop[growthLevel];
+//    	}
+//
+//    	return greenIcon[growthLevel];
+//    }
 }

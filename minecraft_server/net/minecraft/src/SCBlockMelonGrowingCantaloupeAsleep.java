@@ -87,71 +87,71 @@ public class SCBlockMelonGrowingCantaloupeAsleep extends SCBlockMelonGrowingAsle
 		else return GetGourdBounds(10, 10, 10);
 	}	
 	
-	@Override
-	public boolean RenderBlock(RenderBlocks renderer, int i, int j, int k)
-	{
-		IBlockAccess blockAccess = renderer.blockAccess;
-		int growthLevel = this.GetGrowthLevel(blockAccess, i, j, k);
-		
-		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(blockAccess, i, j, k) );
-		renderer.renderStandardBlock(this, i, j, k);
-		
-		this.renderVineConnector(renderer, i, j, k, connectorIcon[growthLevel]);
-		
-		return true;
-	}
-	
-	@Override
-	public void RenderFallingBlock(RenderBlocks renderer, int i, int j, int k, int meta)
-	{
-		IBlockAccess blockAccess = renderer.blockAccess;
-		
-		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(meta) );		
-		renderer.RenderStandardFallingBlock( this, i, j, k, meta);
-	}
-	
-	protected Icon[] waterMelonIcon;
-	protected Icon[] waterMelonIconTop;
-	protected Icon[] connectorIcon;
-	
-	@Override
-  	public void registerIcons( IconRegister register )
-  	{
-		//Orange
-		waterMelonIcon = new Icon[4];
-		
-  		for ( int iTempIndex = 0; iTempIndex < waterMelonIcon.length; iTempIndex++ )
-		{
-  			waterMelonIcon[iTempIndex] = register.registerIcon( "SCBlockMelonWhiteSide_" + iTempIndex );
-		}
-	
-  		waterMelonIconTop = new Icon[4];
-	
-		for ( int iTempIndex = 0; iTempIndex < waterMelonIconTop.length; iTempIndex++ )
-		{
-			waterMelonIconTop[iTempIndex] = register.registerIcon( "SCBlockMelonWhiteTop_" + iTempIndex );
-		}
-		
-        connectorIcon = new Icon[4];
-        for ( int iTempIndex = 0; iTempIndex < connectorIcon.length; iTempIndex++ )
-        {
-        	connectorIcon[iTempIndex] = register.registerIcon( "SCBlockMelonSmallConnector_" + iTempIndex );
-        }
-		
-		blockIcon = waterMelonIcon[3];
-	}
-	
-	@Override
-    public Icon getIcon( int iSide, int iMetadata )
-    {
-    	int growthLevel = GetGrowthLevel(iMetadata);
-    	
-    	if ( iSide == 1 || iSide == 0 )
-    	{
-    		return waterMelonIconTop[growthLevel];
-    	}
-    	
-    	return waterMelonIcon[growthLevel];
-    }
+//	@Override
+//	public boolean RenderBlock(RenderBlocks renderer, int i, int j, int k)
+//	{
+//		IBlockAccess blockAccess = renderer.blockAccess;
+//		int growthLevel = this.GetGrowthLevel(blockAccess, i, j, k);
+//		
+//		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(blockAccess, i, j, k) );
+//		renderer.renderStandardBlock(this, i, j, k);
+//		
+//		this.renderVineConnector(renderer, i, j, k, connectorIcon[growthLevel]);
+//		
+//		return true;
+//	}
+//	
+//	@Override
+//	public void RenderFallingBlock(RenderBlocks renderer, int i, int j, int k, int meta)
+//	{
+//		IBlockAccess blockAccess = renderer.blockAccess;
+//		
+//		renderer.setRenderBounds( this.GetBlockBoundsFromPoolBasedOnState(meta) );		
+//		renderer.RenderStandardFallingBlock( this, i, j, k, meta);
+//	}
+//	
+//	protected Icon[] waterMelonIcon;
+//	protected Icon[] waterMelonIconTop;
+//	protected Icon[] connectorIcon;
+//	
+//	@Override
+//  	public void registerIcons( IconRegister register )
+//  	{
+//		//Orange
+//		waterMelonIcon = new Icon[4];
+//		
+//  		for ( int iTempIndex = 0; iTempIndex < waterMelonIcon.length; iTempIndex++ )
+//		{
+//  			waterMelonIcon[iTempIndex] = register.registerIcon( "SCBlockMelonWhiteSide_" + iTempIndex );
+//		}
+//	
+//  		waterMelonIconTop = new Icon[4];
+//	
+//		for ( int iTempIndex = 0; iTempIndex < waterMelonIconTop.length; iTempIndex++ )
+//		{
+//			waterMelonIconTop[iTempIndex] = register.registerIcon( "SCBlockMelonWhiteTop_" + iTempIndex );
+//		}
+//		
+//        connectorIcon = new Icon[4];
+//        for ( int iTempIndex = 0; iTempIndex < connectorIcon.length; iTempIndex++ )
+//        {
+//        	connectorIcon[iTempIndex] = register.registerIcon( "SCBlockMelonSmallConnector_" + iTempIndex );
+//        }
+//		
+//		blockIcon = waterMelonIcon[3];
+//	}
+//	
+//	@Override
+//    public Icon getIcon( int iSide, int iMetadata )
+//    {
+//    	int growthLevel = GetGrowthLevel(iMetadata);
+//    	
+//    	if ( iSide == 1 || iSide == 0 )
+//    	{
+//    		return waterMelonIconTop[growthLevel];
+//    	}
+//    	
+//    	return waterMelonIcon[growthLevel];
+//    }
 	
 }

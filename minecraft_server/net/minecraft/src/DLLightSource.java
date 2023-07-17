@@ -88,18 +88,18 @@ public class DLLightSource extends Block
 			world.scheduleBlockUpdate( i, j, k, world.getBlockId( i, j, k ), lightSourceTickRate );
 		}
 	}
+//	
+//	@Override
+//	public boolean RenderBlock(RenderBlocks var1, int var2, int var3, int var4) {
+//		return false;
+//	}
 	
-	@Override
-	public boolean RenderBlock(RenderBlocks var1, int var2, int var3, int var4) {
-		return false;
-	}
-	
-	//I think leaving this empty works out fine
-	@Override
-    public void registerIcons( IconRegister register )
-    {
-//        blockIcon = register.registerIcon( "fcBlockLens_spotlight" );
-    }	
+//	//I think leaving this empty works out fine
+//	@Override
+//    public void registerIcons( IconRegister register )
+//    {
+////        blockIcon = register.registerIcon( "fcBlockLens_spotlight" );
+//    }	
 
 
 	@Override

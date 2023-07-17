@@ -2,12 +2,12 @@
 
 package net.minecraft.src;
 
-import com.prupe.mcpatcher.cc.ColorizeBlock;
-import com.prupe.mcpatcher.mal.block.RenderBlocksUtils;
+//import com.prupe.mcpatcher.cc.ColorizeBlock;
+//import com.prupe.mcpatcher.mal.block.RenderBlocksUtils;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.client.Minecraft; // client only
+//import net.minecraft.client.Minecraft; // client only
 
 public class FCBlockDirtSlab extends FCBlockSlabAttached
 {
@@ -371,37 +371,37 @@ public class FCBlockDirtSlab extends FCBlockSlabAttached
 	private Icon m_IconGrassWithSnowSide;
 	private Icon m_IconGrassWithSnowSideHalf;
 
-	@Override
-	public void registerIcons( IconRegister register )
-	{
-		blockIcon = register.registerIcon( "dirt" );
-
-		m_IconGrassSide = register.registerIcon( "grass_side" );
-		m_IconGrassSideOverlay = register.registerIcon( "grass_side_overlay" );
-		m_IconGrassTop = register.registerIcon( "grass_top" );
-		m_IconGrassTopItem = register.registerIcon( "fcBlockSlabDirt_grass_top_item" );
-
-		m_IconGrassSideHalf = register.registerIcon( "FCBlockSlabDirt_grass_side" );
-		m_IconGrassSideOverlayHalf = register.registerIcon( "FCBlockSlabDirt_grass_side_overlay" );
-
-		m_IconPackedEarth = register.registerIcon( "FCBlockPackedEarth" );
-
-		m_IconGrassWithSnowSide = register.registerIcon( "snow_side" );
-		m_IconGrassWithSnowSideHalf = register.registerIcon( "FCBlockSlabDirt_grass_snow_side" );
-	}
-
-	@Override
-	public Icon getIcon( int iSide, int iMetadata )
-	{
-		if ( iSide == 1 && GetSubtype( iMetadata ) == m_iSubtypeGrass )
-		{
-			// precolored grass texture for item block top side
-
-			return m_IconGrassTopItem;
-		}
-
-		return GetIconFromMetadata( iSide, iMetadata );
-	}
+//	@Override
+//	public void registerIcons( IconRegister register )
+//	{
+//		blockIcon = register.registerIcon( "dirt" );
+//
+//		m_IconGrassSide = register.registerIcon( "grass_side" );
+//		m_IconGrassSideOverlay = register.registerIcon( "grass_side_overlay" );
+//		m_IconGrassTop = register.registerIcon( "grass_top" );
+//		m_IconGrassTopItem = register.registerIcon( "fcBlockSlabDirt_grass_top_item" );
+//
+//		m_IconGrassSideHalf = register.registerIcon( "FCBlockSlabDirt_grass_side" );
+//		m_IconGrassSideOverlayHalf = register.registerIcon( "FCBlockSlabDirt_grass_side_overlay" );
+//
+//		m_IconPackedEarth = register.registerIcon( "FCBlockPackedEarth" );
+//
+//		m_IconGrassWithSnowSide = register.registerIcon( "snow_side" );
+//		m_IconGrassWithSnowSideHalf = register.registerIcon( "FCBlockSlabDirt_grass_snow_side" );
+//	}
+//
+//	@Override
+//	public Icon getIcon( int iSide, int iMetadata )
+//	{
+//		if ( iSide == 1 && GetSubtype( iMetadata ) == m_iSubtypeGrass )
+//		{
+//			// precolored grass texture for item block top side
+//
+//			return m_IconGrassTopItem;
+//		}
+//
+//		return GetIconFromMetadata( iSide, iMetadata );
+//	}
 
 	private Icon GetIconFromMetadata( int iSide, int iMetadata )
 	{
@@ -435,34 +435,34 @@ public class FCBlockDirtSlab extends FCBlockSlabAttached
 		return blockIcon;
 	}
 
-	@Override
-	public Icon getBlockTexture( IBlockAccess blockAccess, int i, int j, int k, int iSide )
-	{
-		int iMetadata = blockAccess.getBlockMetadata( i, j, k );
-		int iSubtype = GetSubtype( iMetadata );
-
-		if ( iSubtype == m_iSubtypeGrass && iSide > 1 &&
-				IsSnowCoveringTopSurface( blockAccess, i, j, k ) )
-		{
-			if ( GetIsUpsideDown( iMetadata ) )
-			{
-				return m_IconGrassWithSnowSide;
-			}
-			else
-			{				
-				return m_IconGrassWithSnowSideHalf;
-			}
-		}
-
-		Icon icon = RenderBlocksUtils.getGrassTexture(this, blockAccess, i, j, k, iSide, m_IconGrassTop);
-
-		if (icon != null && iSubtype == m_iSubtypeGrass && iSide == 1)
-		{
-			return icon;
-		}
-
-		return GetIconFromMetadata( iSide, iMetadata );
-	}
+//	@Override
+//	public Icon getBlockTexture( IBlockAccess blockAccess, int i, int j, int k, int iSide )
+//	{
+//		int iMetadata = blockAccess.getBlockMetadata( i, j, k );
+//		int iSubtype = GetSubtype( iMetadata );
+//
+//		if ( iSubtype == m_iSubtypeGrass && iSide > 1 &&
+//				IsSnowCoveringTopSurface( blockAccess, i, j, k ) )
+//		{
+//			if ( GetIsUpsideDown( iMetadata ) )
+//			{
+//				return m_IconGrassWithSnowSide;
+//			}
+//			else
+//			{				
+//				return m_IconGrassWithSnowSideHalf;
+//			}
+//		}
+//
+//		Icon icon = RenderBlocksUtils.getGrassTexture(this, blockAccess, i, j, k, iSide, m_IconGrassTop);
+//
+//		if (icon != null && iSubtype == m_iSubtypeGrass && iSide == 1)
+//		{
+//			return icon;
+//		}
+//
+//		return GetIconFromMetadata( iSide, iMetadata );
+//	}
 
 	public Icon GetSideOverlayTexture( IBlockAccess blockAccess, int i, int j, int k )
 	{
@@ -482,80 +482,80 @@ public class FCBlockDirtSlab extends FCBlockSlabAttached
 		list.add( new ItemStack( iBlockID, 1, m_iSubtypePackedEarth ) );
 	}
 
-	@Override
-	public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
-	{
-		IBlockAccess blockAccess = renderer.blockAccess;
-
-		renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
-				renderer.blockAccess, i, j, k ) );
-
-		int iSubtype = ((FCBlockDirtSlab)(FCBetterThanWolves.fcBlockDirtSlab)).GetSubtype(blockAccess, i, j, k);
-
-		if (iSubtype == FCBlockDirtSlab.m_iSubtypeGrass && !IsSnowCoveringTopSurface(blockAccess, i, j, k))
-		{
-			int iColorMultiplier = colorMultiplier(blockAccess, i, j, k);
-
-			float fRed = (float)(iColorMultiplier >> 16 & 0xff) / 255F;
-			float fGreen = (float)(iColorMultiplier >> 8 & 0xff) / 255F;
-			float fBlue = (float)(iColorMultiplier & 0xff) / 255F;
-
-			if ( Minecraft.isAmbientOcclusionEnabled() )
-			{
-				return renderer.renderGrassBlockWithAmbientOcclusion( this, i, j, k, fRed, fGreen, fBlue, GetSideOverlayTexture( blockAccess, i, j, k ) );
-			}
-			else
-			{
-				return renderer.renderGrassBlockWithColorMultiplier( this, i, j, k, fRed, fGreen, fBlue, GetSideOverlayTexture( blockAccess, i, j, k ) );
-			}        	
-		}
-		else
-		{
-			return renderer.renderStandardBlock( this, i, j, k );
-		}
-	}
-
-	@Override
-	public void RenderBlockAsItem( RenderBlocks renderBlocks, int iItemDamage, float fBrightness )
-	{
-		renderBlocks.setRenderBounds( 0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F );
-
-		FCClientUtilsRender.RenderInvBlockWithMetadata( renderBlocks, this, -0.5F, -0.5F, -0.5F, iItemDamage << 1 );        
-	}
-
-	@Override
-	public int colorMultiplier( IBlockAccess blockAccess, int i, int j, int k )
-	{
-		int iSubtype = GetSubtype( blockAccess, i, j, k );
-
-		if (iSubtype == m_iSubtypeGrass && !IsSnowCoveringTopSurface(blockAccess, i, j, k)) {
-			if (ColorizeBlock.colorizeBlock(this, blockAccess, i, j, k)) {
-				return ColorizeBlock.blockColor;
-			}
-			else
-			{
-				int iRed = 0;
-				int iGreen = 0;
-				int iBlue = 0;
-
-				for (int iKOffset = -1; iKOffset <= 1; iKOffset++)
-				{
-					for (int iIOffset = -1; iIOffset <= 1; iIOffset++)
-					{
-						int iBiomeGrassColor = blockAccess.getBiomeGenForCoords( i + iIOffset, k + iKOffset ).getBiomeGrassColor();
-
-						iRed += (iBiomeGrassColor & 0xff0000) >> 16;
-						iGreen += (iBiomeGrassColor & 0xff00) >> 8;
-						iBlue += iBiomeGrassColor & 0xff;
-					}
-				}
-
-				return (iRed / 9 & 0xff) << 16 | (iGreen / 9 & 0xff) << 8 | iBlue / 9 & 0xff;
-			}
-		}
-		else
-		{
-			return super.colorMultiplier( blockAccess, i, j, k );
-		}
-	}    
+//	@Override
+//	public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
+//	{
+//		IBlockAccess blockAccess = renderer.blockAccess;
+//
+//		renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
+//				renderer.blockAccess, i, j, k ) );
+//
+//		int iSubtype = ((FCBlockDirtSlab)(FCBetterThanWolves.fcBlockDirtSlab)).GetSubtype(blockAccess, i, j, k);
+//
+//		if (iSubtype == FCBlockDirtSlab.m_iSubtypeGrass && !IsSnowCoveringTopSurface(blockAccess, i, j, k))
+//		{
+//			int iColorMultiplier = colorMultiplier(blockAccess, i, j, k);
+//
+//			float fRed = (float)(iColorMultiplier >> 16 & 0xff) / 255F;
+//			float fGreen = (float)(iColorMultiplier >> 8 & 0xff) / 255F;
+//			float fBlue = (float)(iColorMultiplier & 0xff) / 255F;
+//
+//			if ( Minecraft.isAmbientOcclusionEnabled() )
+//			{
+//				return renderer.renderGrassBlockWithAmbientOcclusion( this, i, j, k, fRed, fGreen, fBlue, GetSideOverlayTexture( blockAccess, i, j, k ) );
+//			}
+//			else
+//			{
+//				return renderer.renderGrassBlockWithColorMultiplier( this, i, j, k, fRed, fGreen, fBlue, GetSideOverlayTexture( blockAccess, i, j, k ) );
+//			}        	
+//		}
+//		else
+//		{
+//			return renderer.renderStandardBlock( this, i, j, k );
+//		}
+//	}
+//
+//	@Override
+//	public void RenderBlockAsItem( RenderBlocks renderBlocks, int iItemDamage, float fBrightness )
+//	{
+//		renderBlocks.setRenderBounds( 0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F );
+//
+//		FCClientUtilsRender.RenderInvBlockWithMetadata( renderBlocks, this, -0.5F, -0.5F, -0.5F, iItemDamage << 1 );        
+//	}
+//
+//	@Override
+//	public int colorMultiplier( IBlockAccess blockAccess, int i, int j, int k )
+//	{
+//		int iSubtype = GetSubtype( blockAccess, i, j, k );
+//
+//		if (iSubtype == m_iSubtypeGrass && !IsSnowCoveringTopSurface(blockAccess, i, j, k)) {
+//			if (ColorizeBlock.colorizeBlock(this, blockAccess, i, j, k)) {
+//				return ColorizeBlock.blockColor;
+//			}
+//			else
+//			{
+//				int iRed = 0;
+//				int iGreen = 0;
+//				int iBlue = 0;
+//
+//				for (int iKOffset = -1; iKOffset <= 1; iKOffset++)
+//				{
+//					for (int iIOffset = -1; iIOffset <= 1; iIOffset++)
+//					{
+//						int iBiomeGrassColor = blockAccess.getBiomeGenForCoords( i + iIOffset, k + iKOffset ).getBiomeGrassColor();
+//
+//						iRed += (iBiomeGrassColor & 0xff0000) >> 16;
+//						iGreen += (iBiomeGrassColor & 0xff00) >> 8;
+//						iBlue += iBiomeGrassColor & 0xff;
+//					}
+//				}
+//
+//				return (iRed / 9 & 0xff) << 16 | (iGreen / 9 & 0xff) << 8 | iBlue / 9 & 0xff;
+//			}
+//		}
+//		else
+//		{
+//			return super.colorMultiplier( blockAccess, i, j, k );
+//		}
+//	}    
 }

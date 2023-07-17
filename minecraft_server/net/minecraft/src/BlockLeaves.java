@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import com.prupe.mcpatcher.cc.ColorizeBlock;
+//import com.prupe.mcpatcher.cc.ColorizeBlock;
 import java.util.List;
 import java.util.Random;
 
@@ -19,71 +19,71 @@ public class BlockLeaves extends BlockLeavesBase
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
-    public int getBlockColor()
-    {
-    	if (ColorizeBlock.colorizeBlock(this))
-        {
-            return ColorizeBlock.blockColor;
-        }
-        else
-        {
-        double var1 = 0.5D;
-        double var3 = 1.0D;
-        return ColorizerFoliage.getFoliageColor(var1, var3);
-    }
-    }
-
-    /**
-     * Returns the color this block should be rendered. Used by leaves.
-     */
-    public int getRenderColor(int par1)
-    {
-    	return ColorizeBlock.colorizeBlock(this, par1) ? ColorizeBlock.blockColor : ((par1 & 3) == 1 ? ColorizerFoliage.getFoliageColorPine() : ((par1 & 3) == 2 ? ColorizerFoliage.getFoliageColorBirch() : ColorizerFoliage.getFoliageColorBasic()));
-    }
-
-    /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
-     * when first determining what to render.
-     */
-    public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
-    {
-    	if (ColorizeBlock.colorizeBlock(this, par1IBlockAccess, par2, par3, par4))
-        {
-    		return ColorizeBlock.blockColor;
-        }
-        else
-        {
-        int var5 = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
-
-        if ((var5 & 3) == 1)
-        {
-            return ColorizerFoliage.getFoliageColorPine();
-        }
-        else if ((var5 & 3) == 2)
-        {
-            return ColorizerFoliage.getFoliageColorBirch();
-        }
-        else
-        {
-            int var6 = 0;
-            int var7 = 0;
-            int var8 = 0;
-
-            for (int var9 = -1; var9 <= 1; ++var9)
-            {
-                for (int var10 = -1; var10 <= 1; ++var10)
-                {
-                    int var11 = par1IBlockAccess.getBiomeGenForCoords(par2 + var10, par4 + var9).getBiomeFoliageColor();
-                    var6 += (var11 & 16711680) >> 16;
-                    var7 += (var11 & 65280) >> 8;
-                    var8 += var11 & 255;
-                }
-            }
-
-            return (var6 / 9 & 255) << 16 | (var7 / 9 & 255) << 8 | var8 / 9 & 255;
-        }
-    }
-    }
+//    public int getBlockColor()
+//    {
+//    	if (ColorizeBlock.colorizeBlock(this))
+//        {
+//            return ColorizeBlock.blockColor;
+//        }
+//        else
+//        {
+//        double var1 = 0.5D;
+//        double var3 = 1.0D;
+//        return ColorizerFoliage.getFoliageColor(var1, var3);
+//    }
+//    }
+//
+//    /**
+//     * Returns the color this block should be rendered. Used by leaves.
+//     */
+//    public int getRenderColor(int par1)
+//    {
+//    	return ColorizeBlock.colorizeBlock(this, par1) ? ColorizeBlock.blockColor : ((par1 & 3) == 1 ? ColorizerFoliage.getFoliageColorPine() : ((par1 & 3) == 2 ? ColorizerFoliage.getFoliageColorBirch() : ColorizerFoliage.getFoliageColorBasic()));
+//    }
+//
+//    /**
+//     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+//     * when first determining what to render.
+//     */
+//    public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+//    {
+//    	if (ColorizeBlock.colorizeBlock(this, par1IBlockAccess, par2, par3, par4))
+//        {
+//    		return ColorizeBlock.blockColor;
+//        }
+//        else
+//        {
+//        int var5 = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+//
+//        if ((var5 & 3) == 1)
+//        {
+//            return ColorizerFoliage.getFoliageColorPine();
+//        }
+//        else if ((var5 & 3) == 2)
+//        {
+//            return ColorizerFoliage.getFoliageColorBirch();
+//        }
+//        else
+//        {
+//            int var6 = 0;
+//            int var7 = 0;
+//            int var8 = 0;
+//
+//            for (int var9 = -1; var9 <= 1; ++var9)
+//            {
+//                for (int var10 = -1; var10 <= 1; ++var10)
+//                {
+//                    int var11 = par1IBlockAccess.getBiomeGenForCoords(par2 + var10, par4 + var9).getBiomeFoliageColor();
+//                    var6 += (var11 & 16711680) >> 16;
+//                    var7 += (var11 & 65280) >> 8;
+//                    var8 += var11 & 255;
+//                }
+//            }
+//
+//            return (var6 / 9 & 255) << 16 | (var7 / 9 & 255) << 8 | var8 / 9 & 255;
+//        }
+//    }
+//    }
 
     /**
      * ejects contained items into the world, and notifies neighbours of an update, as appropriate
@@ -106,7 +106,7 @@ public class BlockLeaves extends BlockLeavesBase
                         if (var12 == Block.leaves.blockID)
                         {
                             int var13 = par1World.getBlockMetadata(par2 + var9, par3 + var10, par4 + var11);
-                            par1World.setBlockMetadataWithNotify(par2 + var9, par3 + var10, par4 + var11, var13 | 8, 4);
+                            par1World.setBlockMetadata(par2 + var9, par3 + var10, par4 + var11, var13 | 8, 4);
                         }
                     }
                 }
@@ -218,7 +218,7 @@ public class BlockLeaves extends BlockLeavesBase
 
                 if (var12 >= 0)
                 {
-                    par1World.setBlockMetadataWithNotify(par2, par3, par4, var6 & -9, 4);
+                    par1World.setBlockMetadata(par2, par3, par4, var6 & -9, 4);
                 }
                 else
                 {
@@ -416,16 +416,16 @@ public class BlockLeaves extends BlockLeavesBase
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
-    public void registerIcons(IconRegister par1IconRegister)
-    {
-        for (int var2 = 0; var2 < field_94396_b.length; ++var2)
-        {
-            this.iconArray[var2] = new Icon[field_94396_b[var2].length];
-
-            for (int var3 = 0; var3 < field_94396_b[var2].length; ++var3)
-            {
-                this.iconArray[var2][var3] = par1IconRegister.registerIcon(field_94396_b[var2][var3]);
-            }
-        }
-    }
+//    public void registerIcons(IconRegister par1IconRegister)
+//    {
+//        for (int var2 = 0; var2 < field_94396_b.length; ++var2)
+//        {
+//            this.iconArray[var2] = new Icon[field_94396_b[var2].length];
+//
+//            for (int var3 = 0; var3 < field_94396_b[var2].length; ++var3)
+//            {
+//                this.iconArray[var2][var3] = par1IconRegister.registerIcon(field_94396_b[var2][var3]);
+//            }
+//        }
+//    }
 }

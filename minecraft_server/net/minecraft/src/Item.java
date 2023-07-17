@@ -1,7 +1,5 @@
 package net.minecraft.src;
 
-import com.prupe.mcpatcher.cit.CITUtils;
-import java.util.List;
 import java.util.Random;
 
 public class Item
@@ -216,9 +214,6 @@ public class Item
 
     /** The unlocalized name of this item. */
     private String unlocalizedName;
-
-    /** Icon index in the icons table. */
-    protected Icon itemIcon;
     
     public static final boolean[] itemReplaced = new boolean[32000];
     private Class entityClass = EntityItem.class;
@@ -242,30 +237,6 @@ public class Item
     {
         this.maxStackSize = par1;
         return this;
-    }
-
-    /**
-     * Returns 0 for /terrain.png, 1 for /gui/items.png
-     */
-    public int getSpriteNumber()
-    {
-        return 1;
-    }
-
-    /**
-     * Gets an icon index based on an item's damage value
-     */
-    public Icon getIconFromDamage(int par1)
-    {
-        return this.itemIcon;
-    }
-
-    /**
-     * Returns the icon index of the stack given as argument.
-     */
-    public final Icon getIconIndex(ItemStack par1ItemStack)
-    {
-    	return CITUtils.getIcon(this.getIconFromDamage(par1ItemStack.getItemDamage()), par1ItemStack, 0);
     }
 
     /**
@@ -384,12 +355,12 @@ public class Item
         return false;
     }
     */
-    // END FCMOD    
+    // END FCMOD
 
     /**
      * Called when a player right clicks an entity with an item.
      */
-    public boolean itemInteractionForEntity(ItemStack par1ItemStack, EntityLiving par2EntityLiving)
+    public boolean useItemOnEntity(ItemStack par1ItemStack, EntityLiving par2EntityLiving)
     {
         return false;
     }
@@ -401,23 +372,6 @@ public class Item
     {
         this.bFull3D = true;
         return this;
-    }
-
-    /**
-     * Returns True is the item is renderer in full 3D when hold.
-     */
-    public boolean isFull3D()
-    {
-        return this.bFull3D;
-    }
-
-    /**
-     * Returns true if this item should be rotated by 180 degrees around the Y axis when being held in an entities
-     * hands.
-     */
-    public boolean shouldRotateAroundWhenRendering()
-    {
-        return false;
     }
 
     /**
@@ -501,11 +455,6 @@ public class Item
         return StatCollector.translateToLocal(this.getUnlocalizedName(par1ItemStack) + ".name");
     }
 
-    public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
-    {
-        return 16777215;
-    }
-
     /**
      * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and
      * update it's contents.
@@ -574,27 +523,9 @@ public class Item
         return this.potionEffect != null;
     }
 
-    /**
-     * allows items to add custom lines of information to the mouseover description
-     */
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {}
-
     public String getItemDisplayName(ItemStack par1ItemStack)
     {
         return ("" + StringTranslate.getInstance().translateNamedKey(this.getLocalizedName(par1ItemStack))).trim();
-    }
-
-    public boolean hasEffect(ItemStack par1ItemStack)
-    {
-        return par1ItemStack.isItemEnchanted();
-    }
-
-    /**
-     * Return an item rarity from EnumRarity
-     */
-    public EnumRarity getRarity(ItemStack par1ItemStack)
-    {
-        return par1ItemStack.isItemEnchanted() ? EnumRarity.rare : EnumRarity.common;
     }
 
     /**
@@ -633,35 +564,6 @@ public class Item
         return 0;
     }
 
-    public boolean requiresMultipleRenderPasses()
-    {
-        return false;
-    }
-
-    /**
-     * Gets an icon index based on an item's damage value and the given render pass
-     */
-    public Icon getIconFromDamageForRenderPass(int par1, int par2)
-    {
-        return this.getIconFromDamage(par1);
-    }
-
-    /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-     */
-    public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-        par3List.add(new ItemStack(par1, 1, 0));
-    }
-
-    /**
-     * gets the CreativeTab this item is displayed on
-     */
-    public CreativeTabs getCreativeTab()
-    {
-        return this.tabToDisplayOn;
-    }
-
     /**
      * returns this;
      */
@@ -682,11 +584,6 @@ public class Item
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
     {
         return false;
-    }
-
-    public void registerIcons(IconRegister par1IconRegister)
-    {
-        this.itemIcon = par1IconRegister.registerIcon(this.unlocalizedName);
     }
 
     static
@@ -819,7 +716,7 @@ public class Item
     		Item original = itemsList[id];
     		itemsList[id] = null;
     		
-    		newItem.SetFilterableProperties(original.m_iFilterablePropertiesBitfield).SetBuoyancy(original.GetBuoyancy(0)).setCreativeTab(original.getCreativeTab());
+    		newItem.SetFilterableProperties(original.m_iFilterablePropertiesBitfield).SetBuoyancy(original.GetBuoyancy(0));
     		
     		if (original.IsIncineratedInCrucible())
     			newItem.SetIncineratedInCrucible();
@@ -833,7 +730,7 @@ public class Item
     		return newItem;
     	}
     }
-
+    
     //----------- Animal Food related functionality -----------//
     //AARON CHANGED to make animal foods worth way more!
 //    public static final int m_iBaseHerbivoreItemFoodValue = ( EntityAnimal.m_iBaseGrazeFoodValue * 4 );
@@ -990,14 +887,14 @@ public class Item
     public int GetInfernalMaxEnchantmentCost()
     {
     	return m_iInfernalMaxEnchantmentCost;
-    }
+    }    
     
     public boolean IsEnchantmentApplicable( Enchantment enchantment )
     {
     	return enchantment.type == EnumEnchantmentType.all;
     }
     
-    //------------- Crafting related functionality ------------//    
+    //------------- Crafting related functionality ------------//
     
     protected int m_iDefaultFurnaceBurnTime = 0;
     protected boolean m_bIsInceratedInCrucible = false;
@@ -1206,39 +1103,5 @@ public class Item
     }
 	
 	//----------- Client Side Functionality -----------//
-    
-    public Icon GetHopperFilterIcon()
-    {
-    	return null;
-    }
-    // END FCMOD  
-    
-    //AARON imported some Socky Wocky Locky Code
-	//------- Sock'sAddonsUtils Functionality -------//
-
-    /**
-     * Used to allow Items to be placed in a specific armor slot 
-     * @param armorType 0: Helmet, 1: Chest, 2: Legs, 3: boots
-     * @param itemStack 
-     */
-	public boolean isValidForArmorSlot(int armorType, ItemStack itemStack) {
-		return false;
-	}
-
-	/**
-	 * Example Pumpkin: "%blur%/misc/pumpkinblur.png"
-	 * @return Returns the directory string of the blur overlay texture that should be used when this is worn in the helmet slot
-	 */
-	public String getBlurOverlay(ItemStack itemStack) {
-		return null;
-	}
-	
-	/**
-	 * Returns true or false depending if the blur overlay should be shown when the player disabled the GUI 
-	 */
-	public boolean showBlurOverlayWithGuiDisabled(ItemStack itemStack) {
-		return false;
-	}
-	
-	// END SAU
+    // END FCMOD    
 }

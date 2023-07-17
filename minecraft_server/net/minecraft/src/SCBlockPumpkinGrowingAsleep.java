@@ -17,11 +17,11 @@ public abstract class SCBlockPumpkinGrowingAsleep extends SCBlockGourdGrowingAsl
     }
 
 	
-	@Override
-	public int idPicked(World world, int par2, int par3, int par4)
-	{
-		return SCDefs.pumpkinHarvested.blockID;
-	}
+//	@Override
+//	public int idPicked(World world, int par2, int par3, int par4)
+//	{
+//		return SCDefs.pumpkinHarvested.blockID;
+//	}
 	
 	
 	@Override

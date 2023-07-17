@@ -28,23 +28,23 @@ public class FCBlockBed extends FCBlockBedBase
 	
 	//----------- Client Side Functionality -----------//
     
-    @Override
-    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
-    {
-        renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
-        	renderer.blockAccess, i, j, k ) );
-        
-    	return renderer.RenderBlockBed( this, i, j, k );
-    }
+//    @Override
+//    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
+//    {
+//        renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
+//        	renderer.blockAccess, i, j, k ) );
+//        
+//    	return renderer.RenderBlockBed( this, i, j, k );
+//    }
     
-    @Override
-    public boolean shouldSideBeRendered( IBlockAccess blockAccess, 
-    	int iNeighborI, int iNeighborJ, int iNeighborK, int iSide )
-    {
-		return m_currentBlockRenderer.ShouldSideBeRenderedBasedOnCurrentBounds( 
-			iNeighborI, iNeighborJ, iNeighborK, iSide );
-    }
-	
+//    @Override
+//    public boolean shouldSideBeRendered( IBlockAccess blockAccess, 
+//    	int iNeighborI, int iNeighborJ, int iNeighborK, int iSide )
+//    {
+//		return m_currentBlockRenderer.ShouldSideBeRenderedBasedOnCurrentBounds( 
+//			iNeighborI, iNeighborJ, iNeighborK, iSide );
+//    }
+//	
 	@Override
     public int idPicked(World world, int x, int y, int z) {
         return Item.bed.itemID;

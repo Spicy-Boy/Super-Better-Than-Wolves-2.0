@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import com.prupe.mcpatcher.cc.ColorizeBlock;
+//import com.prupe.mcpatcher.cc.ColorizeBlock;
 import java.util.Random;
 
 public class BlockVine extends Block
@@ -197,34 +197,34 @@ public class BlockVine extends Block
         {
             if (var6 != var5)
             {
-                par1World.setBlockMetadataWithNotify(par2, par3, par4, var6, 2);
+                par1World.setBlockMetadata(par2, par3, par4, var6, 2);
             }
 
             return true;
         }
     }
 
-    public int getBlockColor()
-    {
-    	return ColorizeBlock.colorizeBlock(this) ? ColorizeBlock.blockColor : ColorizerFoliage.getFoliageColorBasic();
-    }
-
-    /**
-     * Returns the color this block should be rendered. Used by leaves.
-     */
-    public int getRenderColor(int par1)
-    {
-    	return ColorizeBlock.colorizeBlock(this, par1) ? ColorizeBlock.blockColor : ColorizerFoliage.getFoliageColorBasic();
-    }
-
-    /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
-     * when first determining what to render.
-     */
-    public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
-    {
-    	return ColorizeBlock.colorizeBlock(this, par1IBlockAccess, par2, par3, par4) ? ColorizeBlock.blockColor : par1IBlockAccess.getBiomeGenForCoords(par2, par4).getBiomeFoliageColor();
-    }
+//    public int getBlockColor()
+//    {
+//    	return ColorizeBlock.colorizeBlock(this) ? ColorizeBlock.blockColor : ColorizerFoliage.getFoliageColorBasic();
+//    }
+//
+//    /**
+//     * Returns the color this block should be rendered. Used by leaves.
+//     */
+//    public int getRenderColor(int par1)
+//    {
+//    	return ColorizeBlock.colorizeBlock(this, par1) ? ColorizeBlock.blockColor : ColorizerFoliage.getFoliageColorBasic();
+//    }
+//
+//    /**
+//     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+//     * when first determining what to render.
+//     */
+//    public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+//    {
+//    	return ColorizeBlock.colorizeBlock(this, par1IBlockAccess, par2, par3, par4) ? ColorizeBlock.blockColor : par1IBlockAccess.getBiomeGenForCoords(par2, par4).getBiomeFoliageColor();
+//    }
 
     /**
      * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
@@ -322,7 +322,7 @@ public class BlockVine extends Block
                     {
                         if (Block.blocksList[var12].blockMaterial.isOpaque() && Block.blocksList[var12].renderAsNormalBlock())
                         {
-                            par1World.setBlockMetadataWithNotify(par2, par3, par4, var9 | 1 << var11, 2);
+                            par1World.setBlockMetadata(par2, par3, par4, var9 | 1 << var11, 2);
                         }
                     }
                     else
@@ -372,7 +372,7 @@ public class BlockVine extends Block
 
                         if (var14 != (var14 | var13))
                         {
-                            par1World.setBlockMetadataWithNotify(par2, par3 - 1, par4, var14 | var13, 2);
+                            par1World.setBlockMetadata(par2, par3 - 1, par4, var14 | var13, 2);
                         }
                     }
                 }

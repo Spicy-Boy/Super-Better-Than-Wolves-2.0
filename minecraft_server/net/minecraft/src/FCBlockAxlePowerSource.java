@@ -82,9 +82,9 @@ public class FCBlockAxlePowerSource extends FCBlockAxle
     
 	//----------- Client Side Functionality -----------//
 	
-	@Override
-	public boolean ClientCheckIfPowered( IBlockAccess blockAccess, int i, int j, int k )
-	{
-		return true;
-	}
+//	@Override
+//	public boolean ClientCheckIfPowered( IBlockAccess blockAccess, int i, int j, int k )
+//	{
+//		return true;
+//	}
 }

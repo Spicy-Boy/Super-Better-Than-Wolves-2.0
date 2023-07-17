@@ -81,7 +81,7 @@ public class BlockCrops extends BlockFlower
             var5 = 7;
         }
 
-        par1World.setBlockMetadataWithNotify(par2, par3, par4, var5, 2);
+        par1World.setBlockMetadata(par2, par3, par4, var5, 2);
     }
 
     /**
@@ -240,15 +240,15 @@ public class BlockCrops extends BlockFlower
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
-    public void registerIcons(IconRegister par1IconRegister)
-    {
-        this.iconArray = new Icon[8];
-
-        for (int var2 = 0; var2 < this.iconArray.length; ++var2)
-        {
-            this.iconArray[var2] = par1IconRegister.registerIcon("crops_" + var2);
-        }
-    }
+//    public void registerIcons(IconRegister par1IconRegister)
+//    {
+//        this.iconArray = new Icon[8];
+//
+//        for (int var2 = 0; var2 < this.iconArray.length; ++var2)
+//        {
+//            this.iconArray[var2] = par1IconRegister.registerIcon("crops_" + var2);
+//        }
+//    }
 
     // FCMOD: Added New    
     @Override
@@ -392,17 +392,17 @@ public class BlockCrops extends BlockFlower
     
 	//----------- Client Side Functionality -----------//
     
-    @Override
-    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
-    {
-    	renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
-    		renderer.blockAccess, i, j, k ) );
-        
-    	renderer.renderBlockCrops( this, i, j, k );
-    	
-    	FCBetterThanWolves.fcBlockWeeds.RenderWeeds( this, renderer, i, j, k );
-
-		return true;
-    }    
+//    @Override
+//    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
+//    {
+//    	renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
+//    		renderer.blockAccess, i, j, k ) );
+//        
+//    	renderer.renderBlockCrops( this, i, j, k );
+//    	
+//    	FCBetterThanWolves.fcBlockWeeds.RenderWeeds( this, renderer, i, j, k );
+//
+//		return true;
+//    }    
     // END FCMOD
 }

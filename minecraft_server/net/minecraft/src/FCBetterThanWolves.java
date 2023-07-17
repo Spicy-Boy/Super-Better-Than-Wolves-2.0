@@ -3,7 +3,7 @@
 package net.minecraft.src;
 
 // client only
-import net.minecraft.client.Minecraft;
+//import net.minecraft.client.Minecraft;
 
 import net.minecraft.server.MinecraftServer;
 
@@ -775,8 +775,8 @@ public class FCBetterThanWolves extends FCAddOn
     	FCAddOnHandler.LogMessage("Better Than Wolves Community Edition Version " + getVersion() + " Initializing...");        	
 		ModInstallationIntegrityTest();
     	
-		// client only
-		PreInitClient();
+//		// client only
+//		PreInitClient();
 		
 		InstantiateModBlocks();
 		InstantiateModItems();
@@ -793,8 +793,8 @@ public class FCBetterThanWolves extends FCAddOn
 		
 		InitCustomPackets();
 		
-		// client only
-		PostInitClient();
+//		// client only
+//		PostInitClient();
 		
 		FCAddOnHandler.LogMessage("Better Than Wolves Initialization Complete.");
     }
@@ -821,10 +821,10 @@ public class FCBetterThanWolves extends FCAddOn
 	    	EntityLiving.InstallationIntegrityTest();
 	    	EntityPlayer.InstallationIntegrityTestPlayer();
 	    	EntityItem.InstallationIntegrityTestEntityItem();
-	    	// Client only
-	    	GuiIngame.InstallationIntegrityTest();
-	    	GuiContainer.InstallationIntegrityTest();
-	    	EntityRenderer.InstallationIntegrityTest();
+//	    	// Client only
+//	    	GuiIngame.InstallationIntegrityTest();
+//	    	GuiContainer.InstallationIntegrityTest();
+//	    	EntityRenderer.InstallationIntegrityTest();
 	    }
 	    catch (Exception e)
 	    {
@@ -2466,7 +2466,7 @@ public class FCBetterThanWolves extends FCAddOn
 		
 		fcLocalHardcorePlayerNamesLevel = Integer.parseInt(this.propertyValues.get("EnableHardcorePlayerNames"));
 		
-		com.prupe.mcpatcher.mal.block.RenderBlocksUtils.enableBetterGrass = Boolean.parseBoolean(this.propertyValues.get("UseBetterGrass"));
+//		com.prupe.mcpatcher.mal.block.RenderBlocksUtils.enableBetterGrass = Boolean.parseBoolean(this.propertyValues.get("UseBetterGrass"));
 	}
     
     private int parseID(String name) {
@@ -2593,9 +2593,9 @@ public class FCBetterThanWolves extends FCAddOn
             player.openContainer.windowId = iWindowID;
             
         	// client
-            player.openContainer.addCraftingToCrafters(player);
+//            player.openContainer.addCraftingToCrafters(player);
             // server
-            //player.openContainer.onCraftGuiOpened(player);
+            player.openContainer.onCraftGuiOpened(player);
         }
         catch (Exception exception)
         {
@@ -2606,9 +2606,9 @@ public class FCBetterThanWolves extends FCAddOn
 	public static boolean IsSinglePlayerNonLan()
 	{
 		// client
-		return Minecraft.getMinecraft().isSingleplayer() && !Minecraft.getMinecraft().getIntegratedServer().getPublic();
+//		return Minecraft.getMinecraft().isSingleplayer() && !Minecraft.getMinecraft().getIntegratedServer().getPublic();
 		// server
-		//return false;
+		return false;
 	}
 	
 	private void InitCustomPackets()
@@ -2645,1612 +2645,1612 @@ public class FCBetterThanWolves extends FCAddOn
 	}
 	
 	//----------- Client Side Functionality -----------//
-
-	private void PreInitClient()
-	{
-	}
-	
-	private void PostInitClient()
-	{		
-		ClientAddEntityRenderers();
-	}
-
-    public void ClientAddEntityRenderers()
-    {
-		RenderManager.AddEntityRenderer(FCEntityWaterWheel.class, new FCClientRenderWaterWheel());
-		RenderManager.AddEntityRenderer(FCEntityWindMill.class, new FCClientRenderWindMill());        
-		RenderManager.AddEntityRenderer(FCEntityMovingAnchor.class, new FCClientRenderMovingAnchor());
-		RenderManager.AddEntityRenderer(FCEntityMovingPlatform.class, new FCClientRenderMovingPlatform());
-		RenderManager.AddEntityRenderer(FCEntityBlockLiftedByPlatform.class, new FCClientRenderBlockLiftedByPlatform());
-		RenderManager.AddEntityRenderer(FCEntityBroadheadArrow.class, new FCClientRenderBroadheadArrow());
-		RenderManager.AddEntityRenderer(FCEntityInfiniteArrow.class, new FCClientRenderInfiniteArrow());
-		RenderManager.AddEntityRenderer(FCEntityUrn.class, new FCClientRenderUrn());
-		RenderManager.AddEntityRenderer(FCEntityDynamite.class, new FCClientRenderDynamite());
-		RenderManager.AddEntityRenderer(FCEntityMiningCharge.class, new FCClientRenderMiningCharge());
-		RenderManager.AddEntityRenderer(FCEntityCanvas.class, new FCClientRenderCanvas());
-		RenderManager.AddEntityRenderer(FCEntityWindMillVertical.class, new FCClientRenderEntityWindMillVertical());
-		RenderManager.AddEntityRenderer(FCEntitySpiderWeb.class, new FCClientRenderEntitySpiderWeb());
-		RenderManager.AddEntityRenderer(FCEntityWolfDire.class, new FCClientRenderEntityWolfDire(new FCClientModelWolfDire(), null));
-		RenderManager.AddEntityRenderer(FCEntitySoulSand.class, new FCClientRenderEntitySoulSand());
-		RenderManager.AddEntityRenderer(FCEntityJungleSpider.class, new FCClientRenderSpider());
-		RenderManager.AddEntityRenderer(FCEntityWitherPersistent.class, new RenderWither());
-
-		// remapped vanilla entities
-		
-		RenderManager.AddEntityRenderer(FCEntitySpider.class, new FCClientRenderSpider());
-		RenderManager.AddEntityRenderer(FCEntityCaveSpider.class, new FCClientRenderSpider());
-		RenderManager.AddEntityRenderer(FCEntityPig.class, new RenderPig(new FCClientModelPig(), new FCClientModelPig(0.5F), 0.7F));
-		RenderManager.AddEntityRenderer(FCEntitySheep.class, new RenderSheep(new ModelSheep2(), new ModelSheep1(), 0.7F));
-		RenderManager.AddEntityRenderer(FCEntityCow.class, new RenderCow(new ModelCow(), 0.7F));
-		RenderManager.AddEntityRenderer(FCEntityWolf.class, new FCClientRenderWolf(new ModelWolf(), new ModelWolf(), 0.5F));
-		RenderManager.AddEntityRenderer(FCEntityChicken.class, new RenderChicken(new FCClientModelChicken(), 0.3F));
-		RenderManager.AddEntityRenderer(FCEntityOcelot.class, new RenderOcelot(new ModelOcelot(), 0.4F));
-		RenderManager.AddEntityRenderer(FCEntityCreeper.class, new RenderCreeper());
-		RenderManager.AddEntityRenderer(FCEntityEnderman.class, new RenderEnderman());
-		RenderManager.AddEntityRenderer(FCEntitySnowman.class, new RenderSnowMan());
-		RenderManager.AddEntityRenderer(FCEntitySkeleton.class, new RenderSkeleton());
-		RenderManager.AddEntityRenderer(FCEntityWitch.class, new RenderWitch());
-		RenderManager.AddEntityRenderer(FCEntityBlaze.class, new RenderBlaze());
-		RenderManager.AddEntityRenderer(FCEntityZombie.class, new RenderZombie());
-		RenderManager.AddEntityRenderer(FCEntitySlime.class, new RenderSlime(new ModelSlime(16), new ModelSlime(0), 0.25F));
-		RenderManager.AddEntityRenderer(FCEntityMagmaCube.class, new RenderMagmaCube());
-		RenderManager.AddEntityRenderer(FCEntityGhast.class, new RenderGhast());
-		RenderManager.AddEntityRenderer(FCEntitySquid.class, new FCClientRenderSquid());
-		RenderManager.AddEntityRenderer(FCEntityVillager.class, new RenderVillager());
-		RenderManager.AddEntityRenderer(FCEntityBat.class, new RenderBat());
-		RenderManager.AddEntityRenderer(FCEntityWither.class, new RenderWither());
-		RenderManager.AddEntityRenderer(FCEntityWitherSkull.class, new RenderWitherSkull());
-		RenderManager.AddEntityRenderer(FCEntityFallingBlock.class, new RenderFallingSand());
-		RenderManager.AddEntityRenderer(FCEntityLightningBolt.class, new FCClientRenderLightningBolt());
-
-		// additional vanilla remaps to cut down overhead of looking up super classes
-		
-		RenderManager.AddEntityRenderer(FCEntityPigZombie.class, new RenderZombie());
-    }
-
-	@Override
-    public boolean ClientCustomPacketReceived(Minecraft mcInstance, Packet250CustomPayload packet)
-    {		
-        try
-        {
-    		WorldClient world = mcInstance.theWorld;
-            DataInputStream dataStream = new DataInputStream(new ByteArrayInputStream(packet.data));
-    		
-	        if (packet.channel.equals(fcCustomPacketChannelSpawnCustomEntity))
-	        {
-        		Entity entityToSpawn = null;
-        		
-	            int iEntityType = dataStream.readInt();
-	            int iEntityId  = dataStream.readInt();
-	            
-	            if (iEntityType == fcCustomSpawnEntityPacketTypeCanvas)
-	            {
-		            int iXPos = dataStream.readInt();
-		            int iYPos = dataStream.readInt();
-		            int iZPos = dataStream.readInt();
-		            int iDirection = dataStream.readInt();
-		            int iArtOrdinal = dataStream.readInt();
-			        
-		            entityToSpawn = new FCEntityCanvas(world, iXPos, iYPos, iZPos, iDirection, iArtOrdinal);
-	            }
-	            else if (iEntityType == fcCustomSpawnEntityPacketTypeWindMill)
-	            {
-	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;
-	    	        
-	    	        boolean bIAligned =  (dataStream.readByte()) > 0;
-	    	        
-	    	        FCEntityWindMill entityWindMill = new FCEntityWindMill(world, dXPos, dYPos, dZPos, bIAligned);
-	    	        
-	    	        entityToSpawn = entityWindMill;
-	    	        
-	    	        entityWindMill.setRotationSpeedScaled(dataStream.readInt());
-	    	        
-	    	        entityWindMill.setBladeColor(0, dataStream.readByte());
-	    	        entityWindMill.setBladeColor(1, dataStream.readByte());
-	    	        entityWindMill.setBladeColor(2, dataStream.readByte());
-	    	        entityWindMill.setBladeColor(3, dataStream.readByte());		    	        
-	            }
-	            else if (iEntityType == fcCustomSpawnEntityPacketTypeWaterWheel)
-	            {
-	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;
-	    	        
-	    	        boolean bIAligned =  (dataStream.readByte()) > 0;
-	    	        
-	    	        FCEntityWaterWheel entityWaterWheel = new FCEntityWaterWheel(world, dXPos, dYPos, dZPos, bIAligned);
-	    	        
-	    	        entityToSpawn = entityWaterWheel;
-	    	        
-	    	        entityWaterWheel.setRotationSpeedScaled(dataStream.readInt());		    	        
-	            }
-	            else if (iEntityType == fcCustomSpawnEntityPacketTypeMiningCharge)
-	            {
-	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;
-	    	        
-	    	        int iFacing = dataStream.readByte();
-	    	        int iFuse = dataStream.readByte();
-	    	        
-	    	        boolean bAttachedToBlock = (dataStream.readByte()) > 0;
-	    	        
-		            entityToSpawn = new FCEntityMiningCharge(world, dXPos, dYPos, dZPos, iFacing, iFuse, bAttachedToBlock);
-	            }
-	            else if (iEntityType == fcCustomSpawnEntityPacketTypeItemBloodWoodSapling ||
-            		iEntityType == fcCustomSpawnEntityPacketTypeItemFloating)
-	            {
-	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;		    	        
-	    	        
-	    	        int iItemID = dataStream.readInt();
-	    	        int iStackSize = dataStream.readInt();
-	    	        int iItemDamage = dataStream.readInt();
-	    	        
-	    	        double dMotionX = ((double)(dataStream.readByte())) * 128D;
-	    	        double dMotionY = ((double)(dataStream.readByte())) * 128D;
-	    	        double dMotionZ = ((double)(dataStream.readByte())) * 128D;
-
-	    	        if (iEntityType == fcCustomSpawnEntityPacketTypeItemBloodWoodSapling)
-	    	        {
-	    	        	entityToSpawn = new FCEntityItemBloodWoodSapling(world, dXPos, dYPos, dZPos, new ItemStack(iItemID, iStackSize, iItemDamage));
-	    	        }
-	    	        else
-	    	        {
-	    	        	entityToSpawn = new FCEntityItemFloating(world, dXPos, dYPos, dZPos, new ItemStack(iItemID, iStackSize, iItemDamage));
-	    	        }
-		            
-		            entityToSpawn.motionX = dMotionX;
-		            entityToSpawn.motionY = dMotionX;
-		            entityToSpawn.motionZ = dMotionX;
-		            
-		            entityToSpawn.serverPosX = (int)(dXPos * 32D);
-		            entityToSpawn.serverPosY = (int)(dYPos * 32D);
-		            entityToSpawn.serverPosZ = (int)(dZPos * 32D);
-		            
-	            }
-	            else if (iEntityType == fcCustomSpawnEntityPacketTypeDynamite)
-	            {
-	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;		    	        
-	    	        
-	    	        int iItemID = dataStream.readInt();
-	    	        int iFuse = dataStream.readInt();
-	    	        
-	    	        double dMotionX = ((double)(dataStream.readByte())) * 128D;
-	    	        double dMotionY = ((double)(dataStream.readByte())) * 128D;
-	    	        double dMotionZ = ((double)(dataStream.readByte())) * 128D;
-
-	    	        FCEntityDynamite dynamite = new FCEntityDynamite(world, dXPos, dYPos, dZPos, iItemID);
-	    	        
-    	        	entityToSpawn = dynamite;
-
-		            dynamite.m_iFuse = iFuse;			            
-
-		            entityToSpawn.motionX = dMotionX;
-		            entityToSpawn.motionY = dMotionX;
-		            entityToSpawn.motionZ = dMotionX;
-		            
-		            entityToSpawn.serverPosX = (int)(dXPos * 32D);
-		            entityToSpawn.serverPosY = (int)(dYPos * 32D);
-		            entityToSpawn.serverPosZ = (int)(dZPos * 32D);			            
-	            }
-	            else if (iEntityType == fcCustomSpawnEntityPacketTypeUrn)
-	            {	        
-	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;		    	        
-	    	        
-	    	        int iItemID = dataStream.readInt();
-	    	        
-	    	        double dMotionX = ((double)(dataStream.readByte())) * 128D;
-	    	        double dMotionY = ((double)(dataStream.readByte())) * 128D;
-	    	        double dMotionZ = ((double)(dataStream.readByte())) * 128D;
-
-    	        	entityToSpawn = new FCEntityUrn(world, dXPos, dYPos, dZPos, iItemID);
-
-		            entityToSpawn.motionX = dMotionX;
-		            entityToSpawn.motionY = dMotionX;
-		            entityToSpawn.motionZ = dMotionX;
-		            
-		            entityToSpawn.serverPosX = (int)(dXPos * 32D);
-		            entityToSpawn.serverPosY = (int)(dYPos * 32D);
-		            entityToSpawn.serverPosZ = (int)(dZPos * 32D);			            
-	            }
-	            else if (iEntityType == fcCustomSpawnEntityPacketTypeBlockLiftedByPlatform)
-	            {
-	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;		    	        
-	    	        
-	    	        int iBlockID = dataStream.readInt();
-	    	        int iMetadata = dataStream.readInt();
-	    	        
-    	        	entityToSpawn = new FCEntityBlockLiftedByPlatform(world, dXPos, dYPos, dZPos, iBlockID, iMetadata);
-	            }
-	            else if (iEntityType == fcCustomSpawnEntityPacketTypeWindMillVertical)
-	            {
-	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;
-	    	        
-	    	        FCEntityWindMillVertical entityWindMill = new FCEntityWindMillVertical(world, dXPos, dYPos, dZPos);
-	    	        
-	    	        entityToSpawn = entityWindMill;
-	    	        
-	    	        entityWindMill.setRotationSpeedScaled(dataStream.readInt());
-	    	        
-	    	        entityWindMill.setBladeColor(0, dataStream.readByte());
-	    	        entityWindMill.setBladeColor(1, dataStream.readByte());
-	    	        entityWindMill.setBladeColor(2, dataStream.readByte());
-	    	        entityWindMill.setBladeColor(3, dataStream.readByte());
-	    	        entityWindMill.setBladeColor(4, dataStream.readByte());
-	    	        entityWindMill.setBladeColor(5, dataStream.readByte());
-	    	        entityWindMill.setBladeColor(6, dataStream.readByte());
-	    	        entityWindMill.setBladeColor(7, dataStream.readByte());
-	            }
-	            else if (iEntityType == fcCustomSpawnEntityPacketTypeSpiderWeb)
-	            {	        
-	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;		    	        
-	    	        
-	    	        double dMotionX = ((double)(dataStream.readByte())) * 128D;
-	    	        double dMotionY = ((double)(dataStream.readByte())) * 128D;
-	    	        double dMotionZ = ((double)(dataStream.readByte())) * 128D;
-
-    	        	entityToSpawn = new FCEntitySpiderWeb(world, dXPos, dYPos, dZPos);
-
-		            entityToSpawn.motionX = dMotionX;
-		            entityToSpawn.motionY = dMotionX;
-		            entityToSpawn.motionZ = dMotionX;
-		            
-		            entityToSpawn.serverPosX = (int)(dXPos * 32D);
-		            entityToSpawn.serverPosY = (int)(dYPos * 32D);
-		            entityToSpawn.serverPosZ = (int)(dZPos * 32D);
-		            
-	                world.playSound(dXPos, dYPos, dZPos, "mob.slime.attack", 1.0F, (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F + 0.6F);
-	            }
-	            else if (iEntityType == fcCustomSpawnEntityPacketTypeSoulSand)
-	            {	        
-	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
-	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;		    	        
-	    	        
-	    	        double dMotionX = ((double)(dataStream.readByte())) * 128D;
-	    	        double dMotionY = ((double)(dataStream.readByte())) * 128D;
-	    	        double dMotionZ = ((double)(dataStream.readByte())) * 128D;
-
-    	        	entityToSpawn = new FCEntitySoulSand(world, dXPos, dYPos, dZPos);
-
-		            entityToSpawn.motionX = dMotionX;
-		            entityToSpawn.motionY = dMotionX;
-		            entityToSpawn.motionZ = dMotionX;
-		            
-		            entityToSpawn.serverPosX = (int)(dXPos * 32D);
-		            entityToSpawn.serverPosY = (int)(dYPos * 32D);
-		            entityToSpawn.serverPosZ = (int)(dZPos * 32D);
-		            
-	    	    	world.playSound(dXPos, dYPos, dZPos, "dig.sand", 
-		    			1.0F, 1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F);
-	            }
-	            
-	            if (entityToSpawn != null)
-	            {
-	            	world.addEntityToWorld(iEntityId, entityToSpawn);
-	            	
-		        	return true;
-	            }
-	        }
-	        else if (packet.channel.equals(fcCustomPacketChannelCustomEntityEvent))
-	        {
-	            int iEntityID  = dataStream.readInt();
-	            
-	            Entity entity = world.getEntityByID(iEntityID);
-	            
-	            if (entity != null)
-	            {
-	            	int iEventType = dataStream.readByte();
-	            	
-	            	if (iEventType == fcCustomEntityEventPacketTypeSetAttackTarget)
-	            	{
-	            		if (entity instanceof EntityCreature)
-	            		{
-	            			EntityCreature attackingCreature = (EntityCreature)entity;
-	            			
-		            		int iTargetEntityID = dataStream.readInt();
-		            		
-		            		if (iTargetEntityID >= 0)
-		            		{
-		        	            Entity targetEntity = world.getEntityByID(iTargetEntityID);
-		        	            
-		        	            if (targetEntity != null)
-		        	            {
-		        	            	attackingCreature.setTarget(targetEntity);
-		        	            }
-		        	            else
-		        	            {
-		        	            	attackingCreature.setTarget(null);
-		        	            }
-		            		}
-		            		else
-		            		{
-	        	            	attackingCreature.setTarget(null);
-		            		}
-	            		}
-	            	}
-	            	else if (iEventType == fcCustomEntityEventPacketTypeSquidTentacleAttack)
-	            	{
-	            		if (entity instanceof FCEntitySquid)
-	            		{
-	        	        	FCEntitySquid attackingSquid = (FCEntitySquid)entity;
-	        	        	
-		        	        double dTargetXPos = ((double)(dataStream.readInt())) / 32D;
-		        	        double dTargetYPos = ((double)(dataStream.readInt())) / 32D;
-		        	        double dTargetZPos = ((double)(dataStream.readInt())) / 32D;
-		        	        
-	        	        	attackingSquid.OnClientNotifiedOfTentacleAttack(dTargetXPos, dTargetYPos, dTargetZPos);
-	            		}	        	        
-	            	}
-	            	else if (iEventType == fcCustomEntityEventPacketTypeCowKickAttack)
-	            	{
-	            		if (entity instanceof FCEntityCow)
-	            		{
-	        	        	FCEntityCow attackingCow = (FCEntityCow)entity;
-	        	        	
-	        	        	attackingCow.OnClientNotifiedOfKickAttack();
-	            		}	        	        
-	            	}
-	            }	            
-	        }
-	        else if (packet.channel.equals(fcCustomPacketChannelVersionCheck))
-	        {
-	        	String version = dataStream.readUTF();
-
-	        	if (version.equals(getVersion()))
-	        	{
-	        		mcInstance.thePlayer.addChatMessage("\247f" // white
-			    		+ "BTW version check successful.");
-	        	}
-	        	else
-	        	{
-	        		mcInstance.thePlayer.addChatMessage("\2474" // red text
-	    	    		+ "WARNING: BTW version mismatch detected! Local Version: " + getVersion() + " Server Version: " + version);
-	        	}
-	        	
-	        	return true;
-	        }
-	        else if (packet.channel.equals(fcCustomPacketChannelBTWOptions))
-	        {
-	        	Byte bHardcoreBuoy = dataStream.readByte();
-	        	
-	        	if (bHardcoreBuoy == 0)
-	        	{
-	        		fcServerEnableHardcoreBuoy = false;
-	        	}
-	        	else
-	        	{
-	        		fcServerEnableHardcoreBuoy = true;
-	        	}
-	        	
-	        	Byte bHardcorePlayerNames = dataStream.readByte();
-	        	
-	        	fcServerHardcorePlayerNamesLevel = bHardcorePlayerNames;
-	        	
-	        	if (fcServerHardcorePlayerNamesLevel < 0 || fcServerHardcorePlayerNamesLevel > 2)
-	        	{
-	        		fcServerHardcorePlayerNamesLevel = 0;
-	        	}
-	        	
-	        	return true;
-	        }
-	        else if (packet.channel.equals(fcCustomPacketChannelOpenCustomInterface))
-	        {
-	            int iWindowID = dataStream.readInt();
-	            int iContainerID  = dataStream.readInt();
-	            
-                EntityClientPlayerMP player = mcInstance.thePlayer;
-                
-            	GuiContainer gui = ClientGetAssociatedGUI(player, iContainerID);
-            	
-            	if (gui != null)
-            	{
-                    mcInstance.displayGuiScreen(gui);
-                    
-                    player.openContainer.windowId = iWindowID;
-                    
-                    return true;
-            	}                
-	        }	        
-        }
-        catch (IOException ioexception)
-        {
-            ioexception.printStackTrace();
-        }
-        
-        return false;
-    }
-	
-    public GuiContainer ClientGetAssociatedGUI(EntityClientPlayerMP entityclientplayermp, int iContainerID)
-    {
-		if (iContainerID == fcMillStoneContainerID)
-		{
-			// the millstone no longer has a gui
-		}
-		else if (iContainerID == fcCauldronContainerID)
-		{
-			FCTileEntityCauldron cauldronEntity = new FCTileEntityCauldron();
-			
-			return new FCClientGuiCookingVessel(entityclientplayermp.inventory, cauldronEntity, iContainerID);
-		}		
-		else if (iContainerID == fcHopperContainerID)
-		{
-			FCTileEntityHopper hopperEntity = new FCTileEntityHopper();
-			
-			return new FCClientGuiHopper(entityclientplayermp.inventory, hopperEntity);
-		}
-		else if (iContainerID == fcCrucibleContainerID)
-		{
-			FCTileEntityCrucible crucibleEntity = new FCTileEntityCrucible();
-			
-			return new FCClientGuiCookingVessel(entityclientplayermp.inventory, crucibleEntity, iContainerID);
-		}
-		else if (iContainerID == fcAnvilContainerID)
-		{
-			return new FCClientGuiCraftingSoulforge(entityclientplayermp.inventory, entityclientplayermp.worldObj, 0, 0, 0);
-		}
-		else if (iContainerID == fcBlockDispenserContainerID)
-		{
-			FCTileEntityBlockDispenser dispenserEntity = new FCTileEntityBlockDispenser();
-			
-			return new FCClientGuiBlockDispenser(entityclientplayermp.inventory, dispenserEntity);
-		}
-		else if (iContainerID == fcPulleyContainerID)
-		{
-			FCTileEntityPulley pulleyEntity = new FCTileEntityPulley();
-			
-			return new FCClientGuiPulley(entityclientplayermp.inventory, pulleyEntity);
-		}
-		else if (iContainerID == fcInfernalEnchanterContainerID)
-		{
-			return new FCClientGuiInfernalEnchanter(entityclientplayermp.inventory, entityclientplayermp.worldObj, 0, 0, 0);
-		}		
-		else if (iContainerID == fcFurnaceBrickContainerID)
-		{
-			FCTileEntityFurnaceBrick brickFurnaceEntity = new FCTileEntityFurnaceBrick();
-			
-			return new GuiFurnace(entityclientplayermp.inventory, brickFurnaceEntity);
-		}
-		else if (iContainerID == fcHamperContainerID)
-		{
-			// Hamper uses a dummy inventory for the client to avoid calls on openChest() and closetChest()
-			// which would crash if not initialized.  This is the same way the vanilla chest handles it.
-			
-			InventoryBasic hamperInventory = new InventoryBasic (FCTileEntityHamper.m_sUnlocalizedName, false, 
-				FCTileEntityHamper.m_iInventorySize);
-			
-			return new FCClientGuiHamper(entityclientplayermp.inventory, hamperInventory);
-		}
-		else if (iContainerID == fcVanillaAnvilContainerID)
-		{
-			return new FCClientGuiCraftingAnvil(entityclientplayermp.inventory, entityclientplayermp.worldObj, 0, 0, 0);
-		}
-		
-        return null;
-    }
-
-	@Override
-    public boolean ClientPlayCustomAuxFX(Minecraft mcInstance, World world, EntityPlayer player, int iFXID, int i, int j, int k, int iFXSpecificData)
-    {
-    	Random rand = world.rand;
-    	
-        double posX = (double)i + 0.5F;
-        double posY = (double)j + 0.5F;
-        double posZ = (double)k + 0.5F;
-        
-        int iParticleSetting = mcInstance.gameSettings.particleSetting;
-        
-    	switch (iFXID)
-    	{
-    		case m_iAnimalBirthingAuxFXID:
-    			
-                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
-                
-                for (int counter = 0; counter < 10; counter++)
-                {
-                    double bloodX = posX + rand.nextDouble();
-                    double bloodY = posY + 1.0D + rand.nextDouble();
-                    double bloodZ = posZ + rand.nextDouble();
-                    
-                    world.spawnParticle("reddust", bloodX, bloodY, bloodZ, 0.0D, 0.0D, 0.0D);
-                }
-                
-                for (int counter = 0; counter < 10; counter++)
-                {
-    	            double bloodX = posX -0.5D + rand.nextDouble();
-    	            double bloodY = posY + rand.nextDouble();
-    	            double bloodZ = posZ - 0.5D + rand.nextDouble();
-                
-                    world.spawnParticle("dripLava", bloodX, bloodY, bloodZ, 0.0D, 0.0D, 0.0D);
-                }
-                
-    			break;
-    			
-    		case m_iSawDamageEntityAuxFXID:
-    			
-		        world.playSound((double)i + 0.5D, (double)j + 0.5D, (double)k + 0.5D, 
-		    		"minecart.base", 
-		    		1.00F + (rand.nextFloat() * 0.1F),		// volume 
-		    		2.0F + (rand.nextFloat() * 0.1F));	// pitch		        
-    	        
-    	        int iFacing = iFXSpecificData;
-
-    	        // emit blood particles
-    	        
-	        	FCUtilsBlockPos iTargetPos = new FCUtilsBlockPos(i, j, k);
-	        	
-	        	iTargetPos.AddFacingAsOffset(iFacing);
-	        		
-	            for (int counter = 0; counter < 10; counter++)
-	            {
-	                float smokeX = (float)iTargetPos.i + rand.nextFloat();
-	                float smokeY = (float)iTargetPos.j + rand.nextFloat();
-	                float smokeZ = (float)iTargetPos.k + rand.nextFloat();
-	                
-	                world.spawnParticle("reddust", smokeX, smokeY, smokeZ, 0.0D, 0.0D, 0.0D);
-	            }
-    	        
-    			break;
-    			
-    		case m_iNetherGrothSporesAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "random.fuse", 2.0F, rand.nextFloat() * 0.4F + 1.5F);
-    	            
-	            for (int iTempCount = 0; iTempCount < 10; iTempCount++)
-	            {
-	            	world.spawnParticle("hugeexplosion", 
-	        			posX + rand.nextDouble() * 10.0D - 5D, 
-	        			posY + rand.nextDouble() * 10.0D - 5D, 
-	        			posZ + rand.nextDouble() * 10.0D - 5D, 
-	        			0.0D, 0.0D, 0.0D);
-	            }
-	            
-    			break;
-    			
-    		case m_iGhastScreamSoundAuxFXID:
-    			
-    			float fScreamPitch = rand.nextFloat() * 0.4F + 0.8F;
-    			
-    			if (iFXSpecificData == 1)
-    			{
-    				// low pitch used by Soulforged Steel
-    				
-    				fScreamPitch = rand.nextFloat() * 0.4F + 0.25F;
-    			}
-    			
-	            world.playSound(posX, posY, posZ, "mob.ghast.scream", 1.0F, fScreamPitch);
-	            
-    			break;
-    			
-    		case m_iBurpSoundAuxFXID:
-    			
-	            world.playSound(posX, posY, posZ, "random.burp", 
-            		1.0F, rand.nextFloat() * 0.4F + 0.7F);
-	            
-    			break;
-    			
-    		case m_iFireFizzSoundAuxFXID:
-    			
-    			float fFizzVolume = 0.5F;
-    			float fFizzPitch = 2.6F + (rand.nextFloat() - rand.nextFloat()) * 0.8F;
-    	        
-    			if (iFXSpecificData == 1)
-    			{
-    				fFizzVolume = 0.1F;
-    				fFizzPitch = 1F +  + (rand.nextFloat() - rand.nextFloat()) * 0.2F;
-    			}
-    			
-    	        world.playSound(posX, posY, posZ, "random.fizz", 
-    	        	fFizzVolume, fFizzPitch);
-    	        
-    			break;
-    			
-    		case m_iGhastMoanSoundAuxFXID:
-    			
-    	    	world.playSound(posX, posY, posZ, "mob.ghast.moan", 
-	    			0.5F, 2.6F + (rand.nextFloat() - rand.nextFloat()) * 0.8F);
-    	    	
-    			break;
-    			
-    		case m_iMiningChargeExplosionAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "random.explode", 
-	        		4F, (1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F) * 0.7F);
-    	        
-    	        world.spawnParticle("hugeexplosion", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-    	        
-    			break;    			
-    			
-    		case m_iHopperXPEjectAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "liquid.lavapop", 
-	        		0.5F + rand.nextFloat() * 0.25F, 0.5F + rand.nextFloat() * 0.25F );
-    	        
-    	        posY -= 0.6;
-    	        
-    	        for (int iTempCount = 0; iTempCount < 4; iTempCount++)
-    	        {
-    		        world.spawnParticle("slime", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-    	        }
-    	        
-    			break;
-    			
-    		case m_iItemCollectionPopSoundAuxFXID:	
-    			
-	            world.playSound(posX, posY, posZ, "random.pop", 
-            		0.25F, ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
-	            
-    			break;
-    			
-    		case m_iXPEjectPopSoundAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "liquid.lavapop", 
-	        		0.5F + rand.nextFloat() * 0.25F, 0.5F + rand.nextFloat() * 0.25F );
-		        
-    			break;
-    			
-    		case m_iHopperCloseSoundAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "mob.irongolem.walk", 1.0F, 1.25F);
-    	        
-    			break;
-    			
-    		case m_iRedstonePowerClickSoundAuxFXID:
-    			
-	            world.playSound(posX, posY, posZ, "random.click", 0.75F, 2.0F);
-	            
-    			break;
-    			
-    		case m_iMechanicalDeviceExplodeAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "mob.zombie.woodbreak", 0.5F, 0.60F + (rand.nextFloat() * 0.25F));
-    	        
-    	        world.spawnParticle("explode", posX, posY, posZ, 0D, 0D, 0D);
-    	        
-    	        for (int iTempCount = 0; iTempCount < 20; iTempCount ++)
-    	        {
-    	        	double dSmokeX = posX + world.rand.nextDouble() - 0.5D;
-    	        	double dSmokeY = posY + world.rand.nextDouble() - 0.5D;
-    	        	double dSmokeZ = posZ + world.rand.nextDouble() - 0.5D;
-    	        	
-    	        	double dSmokeVelX = (dSmokeX - posX) * 0.33D;
-    	        	double dSmokeVelY = (dSmokeY - posY) * 0.33D;
-    	        	double dSmokeVelZ = (dSmokeZ - posZ) * 0.33D;
-    	        	
-    	            world.spawnParticle("smoke", dSmokeX, dSmokeY, dSmokeZ, 
-	            		dSmokeVelX, dSmokeVelY, dSmokeVelZ);
-    	        }
-    	        
-    			break;
-    			
-    		case m_iBlockPlaceAuxFXID:
-	    		{
-	    			int iBlockID = iFXSpecificData;
-	    			Block block = Block.blocksList[iBlockID];
-	    			
-	    			if (block != null)
-	    			{    			
-		                world.playSound(posX, posY, posZ, 
-	                		block.stepSound.getStepSound(), 
-	                		(block.stepSound.getVolume() + 1.0F) / 2.0F, 
-	                		block.stepSound.getPitch() * 0.8F);
-	    			}
-	    		}
-    			
-    			break;
-    			
-    		case m_iDynamiteFuseSoundAuxFXID:	
-    			
-            	world.playSound(posX, posY, posZ, "random.fuse", 1.0F, 1.0F);
-            	
-    			break;
-    			
-    		case m_iClickLowPitchSoundAuxFXID:	
-    			
-            	world.playSound(posX, posY, posZ, "random.click", 0.10F, 0.5F);
-            	
-    			break;
-    			
-    		case m_iWolfHurtSoundAuxFXID:	
-    			
-                world.playSound(posX, posY, posZ, "mob.wolf.hurt", 
-            		0.4F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
-                
-    			break;
-    			
-    		case m_iChickenHurtSoundAuxFXID:	
-    			
-                world.playSound(posX, posY, posZ, "mob.chicken.hurt", 
-                	1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
-                
-    			break;
-    			
-    		case m_iBlockDispenserSmokeEffectAuxFXID:
-    			
-	            // spawn smoke particles
-	        	
-    	        int iBDFacing = iFXSpecificData;
-    	        
-    	        FCUtilsBlockPos targetDeltaPos = new FCUtilsBlockPos(0, 0, 0);
-    	        
-    	        targetDeltaPos.AddFacingAsOffset(iBDFacing);
-    	        
-    	        double dEjectXPos = (double)i + (double)targetDeltaPos.i * 0.6D + 0.5D;
-    	        double dEjectYPos = (double)j + (double)targetDeltaPos.j * 0.6D + 0.5D;
-    	        double dEjectZPos = (double)k + (double)targetDeltaPos.k * 0.6D + 0.5D;
-    	        
-	            for (int iTempCount = 0; iTempCount < 10; iTempCount++)
-	            {
-	                double d4 = rand.nextDouble() * 0.20000000000000001D + 0.01D;
-	                
-	                double dSmokeXPos = dEjectXPos + (double)targetDeltaPos.i * 0.01D + (rand.nextDouble() - 0.5D) * (double)targetDeltaPos.i * 0.5D;
-	                double dSmokeYPos = dEjectYPos + (double)targetDeltaPos.j * 0.01D + (rand.nextDouble() - 0.5D) * 0.5D;
-	                double dSmokeZPos = dEjectZPos + (double)targetDeltaPos.k * 0.01D + (rand.nextDouble() - 0.5D) * (double)targetDeltaPos.k * 0.5D;
-	                
-	                double dSmokeXVel = (double)targetDeltaPos.i * d4 + rand.nextGaussian() * 0.01D;
-	                double dSmokeYVel = (double)targetDeltaPos.j * d4 + -0.029999999999999999D + world.rand.nextGaussian() * 0.01D;
-	                double dSmokeZVel = (double)targetDeltaPos.k * d4 + rand.nextGaussian() * 0.01D;
-	                
-	                world.spawnParticle("smoke", dSmokeXPos, dSmokeYPos, dSmokeZPos, dSmokeXVel, dSmokeYVel, dSmokeZVel);
-	            }
-	            
-    			break;
-    			
-    		case m_iCompanionCubeDeathAuxFXID:
-    			
-    			FCBlockCompanionCube.SpawnHearts(world, i, j, k);
-    			
-                world.playSound((float)i + 0.5F, (float)j + 0.5F, (float)k + 0.5F, 
-            		"mob.wolf.whine", 
-            		0.5F, 2.6F + (rand.nextFloat() - rand.nextFloat()) * 0.8F);
-                
-    			break;
-    			
-    		case m_iPossessedChickenExplosionAuxFXID:
-    			
-                world.playSound(posX, posY, posZ, "random.explode", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
-                
-	            world.playSound(posX, posY, posZ, "mob.chicken.hurt", 2.0F, rand.nextFloat() * 0.4F + 1.2F);
-	            
-                for (int counter = 0; counter < 10; counter++)
-                {
-                    double bloodX = posX + rand.nextDouble();
-                    double bloodY = posY + 1.0D + rand.nextDouble();
-                    double bloodZ = posZ + rand.nextDouble();
-                    
-                    world.spawnParticle("reddust", bloodX, bloodY, bloodZ, 0.0D, 0.0D, 0.0D);
-                }
-                
-                for (int counter = 0; counter < 10; counter++)
-                {
-    	            double bloodX = posX -0.5D + rand.nextDouble();
-    	            double bloodY = posY + rand.nextDouble() * 0.5F;
-    	            double bloodZ = posZ - 0.5D + rand.nextDouble();
-                
-                    world.spawnParticle("dripLava", bloodX, bloodY, bloodZ, 0.0D, 0.0D, 0.0D);
-                }
-                
-    	        for (int iTempCount = 0; iTempCount < 300; iTempCount ++)
-    	        {
-    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
-    	        	double dChunkY = posY - 1.0D;// + world.rand.nextDouble() * 0.25D;
-    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
-    	        	
-    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	double dChunkVelY = 0.2D + world.rand.nextDouble() * 0.6D;
-    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	
-    	        	// 331 = redstone dust based particles
-    	        	
-    	            world.spawnParticle("iconcrack_331", dChunkX, dChunkY, dChunkZ, 
-    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
-    	        }    	        
-                
-    	        for (int iTempCount = 0; iTempCount < 25; iTempCount ++)
-    	        {
-    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
-    	        	double dChunkY = posY - 1.0D;// + world.rand.nextDouble() * 0.25D;
-    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
-    	        	
-    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	double dChunkVelY = 0.2D + world.rand.nextDouble() * 0.6D;
-    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	
-    	        	// 352 = bone based particles
-    	        	
-    	            world.spawnParticle("iconcrack_352", dChunkX, dChunkY, dChunkZ, 
-    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
-    	        }    	        
-                
-    			break;
-    			
-    		case m_iEnderBlockCollectAuxFXID:                
-    			{
-	                int iBlockID = iFXSpecificData & 0xfff;
-	                int iMetadata = iFXSpecificData >> 12 & 0xff;
-	
-	                if (iBlockID > 0)
-	                {
-	                    Block block = Block.blocksList[iBlockID];
-	                    
-	                    world.playSound(posX, posY, posZ, block.stepSound.getBreakSound(), 
-	                    	(block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
-	                    
-		                mcInstance.effectRenderer.addBlockDestroyEffects(i, j, k, iBlockID, iMetadata);
-	                }	
-    			}
-                
-    			break;
-    			
-    		case m_iEnderBlockConvertAuxFXID:
-				{
-	                int iBlockID = iFXSpecificData & 0xfff;
-	                int iMetadata = iFXSpecificData >> 12 & 0xff;
-	
-	                if (iBlockID > 0)
-	                {
-	                    Block block = Block.blocksList[iBlockID];
-	                    
-	                    world.playSound(posX, posY, posZ, block.stepSound.getBreakSound(), 
-	                    	(block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
-	                    
-		                mcInstance.effectRenderer.addBlockDestroyEffects(i, j, k, iBlockID, iMetadata);
-	                }
-	                
-	    	        for (int iTempCount = 0; iTempCount < 25; iTempCount ++)
-	    	        {
-						double particleX = posX + (rand.nextDouble() - 0.5D) * 1.5D;
-						double particleY = posY + (rand.nextDouble() - 0.5D);
-						double particleZ = posZ + (rand.nextDouble() - 0.5D) * 1.5D;
-						
-			            world.spawnParticle("mobSpell", particleX, particleY, particleZ, 0D, 0D, 0D);
-	    	        }
-				}
-				
-                world.playSound(posX, posY, posZ, "mob.endermen.portal", 1.0F, 1.0F);
-                
-    			break;
-    			
-    		case m_iEnderBlockPlaceAuxFXID:                
-	    		{
-	                int iBlockID = iFXSpecificData & 0xfff;
-	                
-	    			Block block = Block.blocksList[iBlockID];
-	    			
-	    			if (block != null)
-	    			{    			
-		                world.playSound(posX, posY, posZ, 
-	                		block.stepSound.getStepSound(), 
-	                		(block.stepSound.getVolume() + 1.0F) / 2.0F, 
-	                		block.stepSound.getPitch() * 0.8F);
-	    			}
-	    			
-	                world.playSound(posX, posY, posZ, "mob.endermen.hit", 1.0F, 1.0F);	    			
-	    		}
-	    		
-    			break;
-    			
-    		case m_iEnderChangeDimensionAuxFXID:	
-    			
-    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-    	        
-                world.playSound(posX, posY, posZ, "ambient.weather.thunder", 3.0F, rand.nextFloat() * 0.4F + 0.8F);
-                
-    			break;    			
-    			
-    		case m_iSoulUrnShatterAuxFXID:
-    			
-    	        for(int iTempCount = 0; iTempCount < 8; iTempCount++)
-    	        {
-    	            world.spawnParticle("snowballpoof", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-    	        }
-
-                world.playSound(posX, posY, posZ, "random.glass", 
-            		1.0F, 1.2F / (rand.nextFloat() * 0.2F + 0.9F));
-                
-	            world.playSound(posX, posY, posZ, "mob.ghast.scream", 0.2F, rand.nextFloat() * 0.2F + 0.5F);
-	            
-                for (int iTempCount = 0; iTempCount < 100; iTempCount++)
-                {
-					double particleX = (double)posX + rand.nextDouble() * 3D - 1.5D;
-					double particleY = (double)posY + rand.nextDouble() * 3D - 1.5D;
-					double particleZ = (double)posZ + rand.nextDouble() * 3D - 1.5D;
-					
-		            world.spawnParticle("mobSpell", particleX, particleY, particleZ, 0, 0, 0);
-                }
-
-    			break;
-    			
-    		case m_iMelonExplodeAuxFXID:
-    		case m_iPumpkinExplodeAuxFXID:
-    			
-	        	// 360 = melon slice based particles
-	        	
-    			String particle = "iconcrack_360";
-    			
-    			if (iFXID == m_iPumpkinExplodeAuxFXID)
-    			{
-    				particle = "iconcrack_" + 31016; //HARD CODED from SCDefs pumpkin slice id!!
-    			}
-    			
-    	        for (int iTempCount = 0; iTempCount < 150; iTempCount ++)
-    	        {
-    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
-    	        	double dChunkY = posY - 0.45D;;
-    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
-    	        	
-    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	double dChunkVelY = world.rand.nextDouble() * 0.7D;
-    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	
-    	            world.spawnParticle(particle, dChunkX, dChunkY, dChunkZ, 
-    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
-    	        }    	        
-                
-    	        world.playSound(posX, posY, posZ, "mob.zombie.wood", 0.2F, 0.60F + (rand.nextFloat() * 0.25F));
-    	        
-                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
-                
-    			break;
-    			
-    		case m_iMelonImpactSoundAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "mob.zombie.wood", 0.1F, 0.40F + (rand.nextFloat() * 0.25F));
-    	        
-    			break;
-    			
-    		case m_iBlockDestroyRespectParticleSettingsAuxFXID:
-    		{
-    			
-    			// regular block destroy does not respect particle setting options.  This effect produces the same results but won't
-    			// overload on particles in automated systems if particles are turned down
-    			
-                int iBlockID = iFXSpecificData & 0xfff;
-                int iMetadata = iFXSpecificData >> 12 & 0xff;
-
-                if (iBlockID > 0)
-                {
-                    Block block = Block.blocksList[iBlockID];
-                    
-        	        world.playSound(posX, posY, posZ, block.stepSound.getBreakSound(), 
-        	        	(block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
-        	        
-                    if (iParticleSetting <= 1)
-                    {                	
-	                    for (int iIOffset = 0; iIOffset < 4; ++iIOffset)
-	                    {
-	                        for (int iJOffset = 0; iJOffset < 4; ++iJOffset)
-	                        {
-	                            for (int iKOffset = 0; iKOffset < 4; ++iKOffset)
-	                            {
-	                            	if (iParticleSetting == 0 || rand.nextInt(3) == 0)
-	                            	{
-		                                double var11 = (double)i + ((double)iIOffset + 0.5D) / 4D;
-		                                double var13 = (double)j + ((double)iJOffset + 0.5D) / 4D;
-		                                double var15 = (double)k + ((double)iKOffset + 0.5D) / 4D;
-		                                
-		                                EntityDiggingFX digEffect = new EntityDiggingFX(world, var11, var13, var15, 
-		                                	var11 - (double)i - 0.5D, var13 - (double)j - 0.5D, var15 - (double)k - 0.5D, 
-		                                	block, 0, iMetadata, mcInstance.renderEngine);
-		                                
-		                                digEffect.applyRenderColor(iMetadata);
-		                                
-		                                mcInstance.effectRenderer.addEffect(digEffect);
-	                            	}
-	                            }
-	                        }
-	                    }
-	                }
-                }
-
-    			break;
-    		}
-    			
-    		case m_iCowMilkFillAuxFXID:
-    			
-                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
-                
-    			break;
-    			
-    		case m_iCowMilkedAuxFXID:
-    			
-                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
-                
-    			String milkParticle = "iconcrack_332"; // snowball
-    			
-    	        for (int iTempCount = 0; iTempCount < 50; iTempCount ++)
-    	        {
-    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
-    	        	double dChunkY = posY - 0.45D;;
-    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
-    	        	
-    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	double dChunkVelY = world.rand.nextDouble() * 0.25D;
-    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	
-    	            world.spawnParticle(milkParticle, dChunkX, dChunkY, dChunkZ, 
-    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
-    	        }
-    	        
-    			break;    			
-    			
-    		case m_iCowConvertToMooshroomAuxFXID:
-    			
-    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-    	        
-    	        world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
-    	        
-    	        float fHurtPitch = (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F;
-    	        
-    	        if (iFXSpecificData > 0)
-    	        {
-    	        	// child pitch
-    	        	
-    	        	fHurtPitch += 0.5F;    	        	
-    	        }    	        
-    	        
-    	        world.playSound(posX, posY, posZ, "mob.cow.hurt", 1.0F, fHurtPitch);
-    	        
-    			break;
-    			
-    		case m_iWolfHowlAuxFXID:
-    		{    	        
-    			float fSoundVolume = 0F;
-    			float fSoundPitch = 0F;
-    			
-    	        if (iFXSpecificData > 0)
-    	        {
-    	        	// dire howl
-    	        	
-    	        	fSoundVolume = 10F;
-    	        	fSoundPitch = (rand.nextFloat() - rand.nextFloat()) * 0.05F + 0.55F;    	        	
-    	        }
-    	        else
-    	        {
-    	        	// regular wolf howl
-    	        	
-    	        	fSoundVolume = 8.5F;
-    	        	fSoundPitch = (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1F;    	        	
-    	        }
-    	        
-    	        EntityPlayer localPlayer = mcInstance.thePlayer;
-    	        
-    	        if (localPlayer != null)
-    	        {
-    	        	if (localPlayer.posY < 64)
-    	        	{
-    	        		float fVolumeMultiplier = (float)(localPlayer.posY / 64D);
-    	        		
-    	        		fSoundVolume *= fVolumeMultiplier;
-    	        		
-    	        		if (fSoundVolume < 1F)
-    	        		{
-    	        			fSoundVolume = 1F;
-    	        		}
-    	        	}
-    	        }
-    	        
-    	        world.playSound(posX, posY, posZ, "mob.wolf.howl", fSoundVolume, fSoundPitch);
-    	        
-    	        break;
-    		}
-    	        
-    		case m_iWolfConvertToDireAuxFXID:
-    			
-    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-    	        
-    	        world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
-    	        
-    	        world.playSound(posX, posY, posZ, "mob.wolf.growl", 8.5F, (rand.nextFloat() - rand.nextFloat()) * 0.05F + 0.55F);
-    	        
-    			break;
-    			
-    		case m_iCreeperNeuteredAuxFXID:
-    			
-    			world.playSound(posX, posY, posZ, "mob.sheep.shear", 1.0F, 1.0F);
-                
-                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.1F + 0.7F);
-                
-    			String creeperJizzParticle = "iconcrack_332"; // snowball
-    			
-    	        for (int iTempCount = 0; iTempCount < 50; iTempCount ++)
-    	        {
-    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
-    	        	double dChunkY = posY - 0.45D;;
-    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
-    	        	
-    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	double dChunkVelY = world.rand.nextDouble() * 0.25D;
-    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	
-    	        	// 360 = melon slice based particles
-    	        	
-    	            world.spawnParticle(creeperJizzParticle, dChunkX, dChunkY, dChunkZ, 
-    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
-    	        }
-    	        
-    			break;    			
-    			
-    		case m_iPossessedPigTransformToPigmanAuxFXID:
-    			
-	            world.playSound(posX, posY, posZ, "mob.pig.death", 2.0F, rand.nextFloat() * 0.4F + 1.2F);
-	            
-	            world.playSound(posX, posY, posZ, "mob.zombiepig.zpigangry", 2.0F, ((rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);
-	            
-    	        world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
-    	        
-    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-    	        
-    	        for (int iTempCount = 0; iTempCount < 50; iTempCount ++)
-    	        {
-    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
-    	        	double dChunkY = posY - 1.0D;// + world.rand.nextDouble() * 0.25D;
-    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
-    	        	
-    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	double dChunkVelY = 0.2D + world.rand.nextDouble() * 0.6D;
-    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	
-    	        	// 319 = raw pork based particles
-    	        	
-    	            world.spawnParticle("iconcrack_319", dChunkX, dChunkY, dChunkZ, 
-    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
-    	        }    	        
-                
-    			break;
-    			
-    		case m_iPossessedVillagerTransformToWitchAuxFXID:
-    			
-                world.playSound(posX, posY, posZ, "ambient.weather.thunder", 3.0F, rand.nextFloat() * 0.4F + 0.8F);
-                
-    			world.playSound(posX, posY, posZ, "mob.ghast.affectionate scream", 2.0F, 0.5F + rand.nextFloat() * 0.25F);
-
-    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-    	        
-    	        // basically a duplicate of the witch particle effect
-    	        
-                for (int iTempCount = 0; iTempCount < rand.nextInt(35) + 10; ++iTempCount)
-                {
-                    world.spawnParticle("witchMagic", posX + rand.nextGaussian() * 0.12999999523162842D, 
-                    	posY + 2.0D + rand.nextGaussian() * 0.12999999523162842D, 
-                    	posZ + rand.nextGaussian() * 0.12999999523162842D, 
-                    	0.0D, 0.0D, 0.0D);
-                }
-                
-    			break;
-    			
-    		case m_iSheepWoolRegrowAuxFXID:
-    			
-                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
-                
-    			break;
-    			
-    		case m_iSquidTentacleFlingAuxFXID:
-    			
-                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
-                
-                if (iParticleSetting <= 1)
-                {                	
-	                int iBlockID = Block.waterStill.blockID;
-	                int iMetadata = 0;
-	
-                    Block block = Block.blocksList[iBlockID];
-                    
-                    for (int iIOffset = 0; iIOffset < 2; ++iIOffset)
-                    {
-                        for (int iJOffset = 0; iJOffset < 2; ++iJOffset)
-                        {
-                            for (int iKOffset = 0; iKOffset < 2; ++iKOffset)
-                            {
-                            	if (iParticleSetting == 0 || rand.nextInt(3) == 0)
-                            	{
-	                                double var11 = (double)i + ((double)iIOffset + 0.5D) / 2D;
-	                                double var13 = (double)j + ((double)iJOffset + 0.5D) / 2D;
-	                                double var15 = (double)k + ((double)iKOffset + 0.5D) / 2D;
-	                                
-	                                EntityDiggingFX digEffect = new EntityDiggingFX(world, var11, var13, var15, 
-	                                	var11 - (double)i - 0.5D, var13 - (double)j - 0.5D, var15 - (double)k - 0.5D, 
-	                                	block, 0, iMetadata, mcInstance.renderEngine);
-	                                
-	                                digEffect.applyRenderColor(iMetadata);
-	                                
-	                                mcInstance.effectRenderer.addEffect(digEffect);
-                            	}
-                            }
-                        }
-                    }
-                }
-                    
-    			break;    			
-    			
-    		case m_iSnowGolemCreatedAuxFXID:
-                
-                for (int iTempCount = 0; iTempCount < 120; ++iTempCount)
-                {
-                    world.spawnParticle("snowshovel", (double)i + world.rand.nextDouble(), (double)(j - 2) + world.rand.nextDouble() * 2.5D, (double)k + world.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
-                }
-                
-    	        for(int iTempCount = 0; iTempCount < 8; iTempCount++)
-    	        {
-    	            world.spawnParticle("snowballpoof", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-    	        }
-
-                world.playSound(posX, posY, posZ, "random.glass", 
-            		1.0F, 1.2F / (rand.nextFloat() * 0.2F + 0.9F));
-                
-	            world.playSound(posX, posY, posZ, "mob.enderdragon.growl", 0.25F, rand.nextFloat() * 0.2F + 1.8F);
-	            
-                for (int iTempCount = 0; iTempCount < 100; iTempCount++)
-                {
-					double particleX = (double)posX + rand.nextDouble() * 3D - 1.5D;
-					double particleY = (double)posY + rand.nextDouble() * 3D - 1.5D;
-					double particleZ = (double)posZ + rand.nextDouble() * 3D - 1.5D;
-					
-		            world.spawnParticle("mobSpell", particleX, particleY, particleZ, 0, 0, 0);
-                }
-                
-    			break;
-    			
-    		case m_iIronGolemCreatedAuxFXID:
-                
-                for (int iTempCount = 0; iTempCount < 120; ++iTempCount)
-                {
-                    world.spawnParticle("snowballpoof", (double)i + world.rand.nextDouble(), (double)(j - 2) + world.rand.nextDouble() * 3.9D, (double)k + world.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
-                }
-                
-    	        for(int iTempCount = 0; iTempCount < 8; iTempCount++)
-    	        {
-    	            world.spawnParticle("snowballpoof", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-    	        }
-
-                world.playSound(posX, posY, posZ, "random.glass", 
-            		1.0F, 1.2F / (rand.nextFloat() * 0.2F + 0.9F));
-                
-	            world.playSound(posX, posY, posZ, "mob.irongolem.death", 1.0F, rand.nextFloat() * 0.2F + 0.5F);
-	            
-	            world.playSound(posX, posY, posZ, "mob.enderdragon.growl", 0.5F, rand.nextFloat() * 0.2F + 1.5F);
-	            
-                for (int iTempCount = 0; iTempCount < 100; iTempCount++)
-                {
-					double particleX = (double)posX + rand.nextDouble() * 3D - 1.5D;
-					double particleY = (double)posY + rand.nextDouble() * 3D - 1.5D;
-					double particleZ = (double)posZ + rand.nextDouble() * 3D - 1.5D;
-					
-		            world.spawnParticle("mobSpell", particleX, particleY, particleZ, 0, 0, 0);
-                }
-                
-    			break;
-    			
-    		case m_iTossTheMilkAuxFXID:
-                
-                for (int iTempCount = 0; iTempCount < 30; ++iTempCount)
-                {
-                    world.spawnParticle("snowballpoof", (double)i + world.rand.nextDouble(), (double)(j - 2) + world.rand.nextDouble() * 3.9D, (double)k + world.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
-                }
-                
-                float fSoundPitch = 2.0F;
-                
-                if (iFXSpecificData > 0)
-                {
-                	fSoundPitch = 1.2F;
-                }
-                world.playSound(posX, posY, posZ,
-                	"mob.slime.attack", 0.5F, (world.rand.nextFloat() - world.rand.nextFloat()) * 0.1F + 0.6F);
-                
-                world.playSound(posX, posY, posZ, 
-                	"random.classic_hurt", 0.25F, fSoundPitch);
-                
-    			break;
-    			
-    		case m_iDungAppliedToWolfAuxFXID:
-    			
-                world.playSound((float)i + 0.5F, (float)j + 0.5F, (float)k + 0.5F, 
-            		"mob.wolf.whine", 
-            		0.5F, 1.5F + (rand.nextFloat() - rand.nextFloat()) * 0.4F);
-                
-    	        for (int iTempCount = 0; iTempCount < 15; iTempCount ++)
-    	        {
-    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
-    	        	double dChunkY = posY - 0.5D + world.rand.nextDouble() * 0.25D;
-    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
-    	        	
-    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.25D;
-    	        	double dChunkVelY = 0.1D + world.rand.nextDouble() * 0.1D;
-    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.25D;
-    	        	
-    	        	// 319 = raw pork based particles
-    	        	
-    	            world.spawnParticle("iconcrack_491", dChunkX, dChunkY, dChunkZ, 
-    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
-    	        }    	        
-                
-                world.playSound(posX, posY, posZ, "mob.slime.attack", 0.5F, (rand.nextFloat() - rand.nextFloat()) * 0.1F + 0.8F);
-                
-                break;
-                
-    		case m_iStumpRemovedAuxFXID:
-    			
-                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
-                
-    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-    	        
-    	        for (int iTempCount = 0; iTempCount < 20; iTempCount ++)
-    	        {
-    	        	double dSmokeX = posX + world.rand.nextDouble() - 0.5D;
-    	        	double dSmokeY = posY + world.rand.nextDouble() - 0.5D;
-    	        	double dSmokeZ = posZ + world.rand.nextDouble() - 0.5D;
-    	        	
-    	        	double dSmokeVelX = (dSmokeX - posX) * 0.33D;
-    	        	double dSmokeVelY = (dSmokeY - posY) * 0.33D;
-    	        	double dSmokeVelZ = (dSmokeZ - posZ) * 0.33D;
-    	        	
-    	            world.spawnParticle("smoke", dSmokeX, dSmokeY, dSmokeZ, 
-	            		dSmokeVelX, dSmokeVelY, dSmokeVelZ);
-    	        }
-    	        
-    			break;
-                
-    		case m_iShaftRippedOffLogAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "mob.zombie.woodbreak", 0.25F, 1.0F + (rand.nextFloat() * 0.25F));
-    	        
-    			break;
-    			
-    		case m_iStoneRippedOffAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "random.anvil_land", 0.5F, world.rand.nextFloat() * 0.25F + 1.75F);
-    	        
-    			break;
-    			
-    		case m_iGravelRippedOffStoneAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "random.anvil_land", 0.25F, world.rand.nextFloat() * 0.25F + 1.5F);
-    	        world.playSound(posX, posY, posZ, "step.gravel", 1F, world.rand.nextFloat() * 0.25F + 1F);
-    	        
-    			break;
-    			
-    		case m_iWoodBlockDestroyedAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "mob.zombie.woodbreak", 0.25F, 1.0F + (rand.nextFloat() * 0.25F));
-    	        
-    			break;
-    			
-    		case m_iBlockDestroyedWithImproperToolAuxFXID:
-    			
-                int iBlockID = iFXSpecificData & 0xfff;
-    	        Block block = Block.blocksList[iBlockID];
-    			
-    			if (block != null)
-    			{
-                    int iMetadata = iFXSpecificData >> 12 & 0xff;
-
-    	        	// FCTODO: Would be cool to put this stuff in the material, or stepsound, or the block itself 
-    	        	if (block.blockMaterial == FCBetterThanWolves.fcMaterialPlanks ||
-    	        		block.blockMaterial == FCBetterThanWolves.fcMaterialLog)
-    	        	{
-    	    	        world.playSound(posX, posY, posZ, "mob.zombie.woodbreak", 0.25F, 1.0F + (rand.nextFloat() * 0.25F));
-    	        	}
-    	        	else if (block.blockMaterial == Material.anvil)
-    	        	{
-    	    	        world.playSound(posX, posY, posZ, "random.anvil_land", 1F, world.rand.nextFloat() * 0.25F + 0.75F);
-    	        	}
-    			}
-    			
-    			break;
-    			
-    		case m_iPossessedSquidTransformToGhastAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "mob.slime.attack", 1F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
-    	        
-	            world.playSound(posX, posY, posZ, "mob.ghast.scream", 10F, (rand.nextFloat() - rand.nextFloat()) * 0.2F  + 1F);
-    	        
-    	        for (int iTempCount = 0; iTempCount < 10; iTempCount ++)
-    	        {
-    	        	double dExplodeX = posX + (world.rand.nextDouble() - 0.5D) * 4D;
-    	        	double dExplodeY = posY + (world.rand.nextDouble() - 0.5D) * 4D;
-    	        	double dExplodeZ = posZ + (world.rand.nextDouble() - 0.5D) * 4D;
-    	        	
-        	        world.spawnParticle("largeexplode", dExplodeX, dExplodeY, dExplodeZ, 0.0D, 0.0D, 0.0D);        	        
-    	        }    	        
-                
-    			break;
-    			
-    		case m_iMortarAppliedAuxFXID:
-    			
-    			world.playSound(posX, posY, posZ, "mob.slime.attack", 0.70F + rand.nextFloat() * 0.1F, 0.85F + rand.nextFloat() * 0.1F);
-    	        
-    			break;    			
-    			
-    		case m_iLooseBlockOnMortarAuxFXID:
-    			
-    			world.playSound(posX, posY, posZ, "mob.slime.attack", 0.15F + rand.nextFloat() * 0.1F, 0.6F + rand.nextFloat() * 0.1F);
-    	        
-    			break;
-    			
-    		case m_iLogSmoulderingFallAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "mob.zombie.woodbreak", 1.25F, 0.5F + rand.nextFloat() * 0.1F);
-    	        
-	            world.playSound(posX, posY, posZ, "mob.ghast.fireball", 1F, 0.5F + rand.nextFloat() * 0.1F);
-    	        
-    			break;
-    			
-    		case m_iLogSmoulderingExplosionAuxFXID:
-
-    			/*
-    	        world.playSound(posX, posY, posZ, "random.explode", 
-	        		1.25F, 0.7F + ((rand.nextFloat() - rand.nextFloat()) * 0.2F));
-	        		*/
-    	        world.playSound(posX, posY, posZ, "mob.zombie.wood", 1.25F, 0.5F + rand.nextFloat() * 0.1F);
-    	        
-    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0D, 0D, 0D);
-    	        
-    	        for (int iTempCount = 0; iTempCount < 10; iTempCount ++)
-    	        {
-    	        	world.spawnParticle("fccinders", posX, posY, posZ, 0D, 0D, 0D);
-    	        }    	        
-    	        
-    			break;    			
-    			
-    		case m_iWaterEvaporateAuxFXID:
-    			
-    	        world.playSound(posX, posY, posZ, "random.fizz", 0.5F, 
-    	    		2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
-    	        
-	            for(int iTempCount = 0; iTempCount < 8; iTempCount++)
-	            {
-	                world.spawnParticle("largesmoke", posX + rand.nextDouble() - 0.5D, 
-	                	posY + rand.nextDouble() - 0.5D, posZ + rand.nextDouble() - 0.5D, 
-	                	0D, 0D, 0D);
-	            }
-    	    	
-    			break;
-    			
-    		case m_iWitherCreatedAuxFXID:
-                
-                for (int iTempCount = 0; iTempCount < 120; ++iTempCount)
-                {
-                    world.spawnParticle("snowballpoof", (double)i + world.rand.nextDouble(), 
-                    	(double)(j - 2) + world.rand.nextDouble() * 3.9D, 
-                    	(double)k + world.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
-                }
-                
-    	        for(int iTempCount = 0; iTempCount < 8; iTempCount++)
-    	        {
-    	            world.spawnParticle("snowballpoof", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-    	        }
-
-                world.playSound(posX, posY, posZ, "random.glass", 
-            		1.0F, 1.2F / (rand.nextFloat() * 0.2F + 0.9F));
-                
-	            world.playSound(posX, posY, posZ, "mob.wither.death", 1.0F, 
-	            	rand.nextFloat() * 0.2F + 0.5F);
-	            
-	            world.playSound(posX, posY, posZ, "mob.enderdragon.growl", 0.5F, 
-	            	rand.nextFloat() * 0.2F + 1.5F);
-	            
-                for (int iTempCount = 0; iTempCount < 100; iTempCount++)
-                {
-					double particleX = (double)posX + rand.nextDouble() * 3D - 1.5D;
-					double particleY = (double)posY + rand.nextDouble() * 3D - 1.5D;
-					double particleZ = (double)posZ + rand.nextDouble() * 3D - 1.5D;
-					
-		            world.spawnParticle("mobSpell", particleX, particleY, particleZ, 0, 0, 0);
-                }
-                
-    			break;
-    			
-    		case m_iLightningStrikeAuxFXID:
- 
-    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0D, 0D, 0D);
-    			
-	            world.playSound(posX, posY, posZ, "random.explode", 
-	            	4F, 0.5F + rand.nextFloat() * 0.2F);
-	            
-	            world.playSound(posX, posY, posZ, "ambient.weather.thunder", 
-	            	10000F, 0.8F + rand.nextFloat() * 0.2F);	            
-	            
-    			break;
-    			
-    		case m_iFlamingNetherrackFallAuxFXID:
-    			
-	            world.playSound(posX, posY, posZ, "mob.ghast.fireball", 0.1F, 
-	            	0.75F + rand.nextFloat() * 0.1F);
-	            
-	            break;
-	            
-    		case m_iCactusExplodeAuxFXID:
-    			
-    	        for (int iTempCount = 0; iTempCount < 150; iTempCount ++)
-    	        {
-    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
-    	        	double dChunkY = posY - 0.45D;;
-    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
-    	        	
-    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	double dChunkVelY = world.rand.nextDouble() * 0.7D;
-    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
-    	        	
-    	        	// 338 = reed based particles
-    	        	
-    	            world.spawnParticle("iconcrack_338", dChunkX, dChunkY, dChunkZ, 
-    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
-    	        }
-    	        
-    			break;
-    			
-    		case m_iAnimalEatAuxFXID:
-    			
-    			world.playSound(posX, posY, posZ, "random.eat", 0.75F, 
-    		    	(rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
-    		    
-    	        for (int iTempCount = 0; iTempCount < 25; iTempCount ++)
-    	        {
-    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
-    	        	double dChunkY = posY;
-    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
-    	        	
-    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.25D;
-    	        	double dChunkVelY = world.rand.nextDouble() * 0.35D;
-    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.25D;
-    	        	
-    	        	// 361 = pumpkin seeds
-    	        	
-    	            world.spawnParticle("iconcrack_361", dChunkX, dChunkY, dChunkZ, 
-    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
-    	        }
-    	        
-    		    break;
-    		    
-    		case m_iWolfEatAuxFXID:
-    			
-	            world.playSound(posX, posY, posZ, "random.burp", 
-            		1.0F, rand.nextFloat() * 0.4F + 0.7F);
-    		    
-    	        for (int iTempCount = 0; iTempCount < 25; iTempCount ++)
-    	        {
-    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
-    	        	double dChunkY = posY;
-    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
-    	        	
-    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.25D;
-    	        	double dChunkVelY = world.rand.nextDouble() * 0.35D;
-    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.25D;
-    	        	
-    	        	// 281 = bowl based particles
-    	        	
-    	            world.spawnParticle("iconcrack_281", dChunkX, dChunkY, dChunkZ, 
-    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
-    	        }
-    	        
-    		    break;
-    		    
-    		case m_iEatFailAuxFXID:
-    			
-	            world.playSound(posX, posY, posZ, "random.burp", 
-            		0.25F, rand.nextFloat() * 0.3F + 1F);
-	            
-    			break;
-    			
-			default:
-				
-				return false;
-    	}
-    	
-    	return true;
-    }
+//
+//	private void PreInitClient()
+//	{
+//	}
+//	
+//	private void PostInitClient()
+//	{		
+//		ClientAddEntityRenderers();
+//	}
+//
+//    public void ClientAddEntityRenderers()
+//    {
+//		RenderManager.AddEntityRenderer(FCEntityWaterWheel.class, new FCClientRenderWaterWheel());
+//		RenderManager.AddEntityRenderer(FCEntityWindMill.class, new FCClientRenderWindMill());        
+//		RenderManager.AddEntityRenderer(FCEntityMovingAnchor.class, new FCClientRenderMovingAnchor());
+//		RenderManager.AddEntityRenderer(FCEntityMovingPlatform.class, new FCClientRenderMovingPlatform());
+//		RenderManager.AddEntityRenderer(FCEntityBlockLiftedByPlatform.class, new FCClientRenderBlockLiftedByPlatform());
+//		RenderManager.AddEntityRenderer(FCEntityBroadheadArrow.class, new FCClientRenderBroadheadArrow());
+//		RenderManager.AddEntityRenderer(FCEntityInfiniteArrow.class, new FCClientRenderInfiniteArrow());
+//		RenderManager.AddEntityRenderer(FCEntityUrn.class, new FCClientRenderUrn());
+//		RenderManager.AddEntityRenderer(FCEntityDynamite.class, new FCClientRenderDynamite());
+//		RenderManager.AddEntityRenderer(FCEntityMiningCharge.class, new FCClientRenderMiningCharge());
+//		RenderManager.AddEntityRenderer(FCEntityCanvas.class, new FCClientRenderCanvas());
+//		RenderManager.AddEntityRenderer(FCEntityWindMillVertical.class, new FCClientRenderEntityWindMillVertical());
+//		RenderManager.AddEntityRenderer(FCEntitySpiderWeb.class, new FCClientRenderEntitySpiderWeb());
+//		RenderManager.AddEntityRenderer(FCEntityWolfDire.class, new FCClientRenderEntityWolfDire(new FCClientModelWolfDire(), null));
+//		RenderManager.AddEntityRenderer(FCEntitySoulSand.class, new FCClientRenderEntitySoulSand());
+//		RenderManager.AddEntityRenderer(FCEntityJungleSpider.class, new FCClientRenderSpider());
+//		RenderManager.AddEntityRenderer(FCEntityWitherPersistent.class, new RenderWither());
+//
+//		// remapped vanilla entities
+//		
+//		RenderManager.AddEntityRenderer(FCEntitySpider.class, new FCClientRenderSpider());
+//		RenderManager.AddEntityRenderer(FCEntityCaveSpider.class, new FCClientRenderSpider());
+//		RenderManager.AddEntityRenderer(FCEntityPig.class, new RenderPig(new FCClientModelPig(), new FCClientModelPig(0.5F), 0.7F));
+//		RenderManager.AddEntityRenderer(FCEntitySheep.class, new RenderSheep(new ModelSheep2(), new ModelSheep1(), 0.7F));
+//		RenderManager.AddEntityRenderer(FCEntityCow.class, new RenderCow(new ModelCow(), 0.7F));
+//		RenderManager.AddEntityRenderer(FCEntityWolf.class, new FCClientRenderWolf(new ModelWolf(), new ModelWolf(), 0.5F));
+//		RenderManager.AddEntityRenderer(FCEntityChicken.class, new RenderChicken(new FCClientModelChicken(), 0.3F));
+//		RenderManager.AddEntityRenderer(FCEntityOcelot.class, new RenderOcelot(new ModelOcelot(), 0.4F));
+//		RenderManager.AddEntityRenderer(FCEntityCreeper.class, new RenderCreeper());
+//		RenderManager.AddEntityRenderer(FCEntityEnderman.class, new RenderEnderman());
+//		RenderManager.AddEntityRenderer(FCEntitySnowman.class, new RenderSnowMan());
+//		RenderManager.AddEntityRenderer(FCEntitySkeleton.class, new RenderSkeleton());
+//		RenderManager.AddEntityRenderer(FCEntityWitch.class, new RenderWitch());
+//		RenderManager.AddEntityRenderer(FCEntityBlaze.class, new RenderBlaze());
+//		RenderManager.AddEntityRenderer(FCEntityZombie.class, new RenderZombie());
+//		RenderManager.AddEntityRenderer(FCEntitySlime.class, new RenderSlime(new ModelSlime(16), new ModelSlime(0), 0.25F));
+//		RenderManager.AddEntityRenderer(FCEntityMagmaCube.class, new RenderMagmaCube());
+//		RenderManager.AddEntityRenderer(FCEntityGhast.class, new RenderGhast());
+//		RenderManager.AddEntityRenderer(FCEntitySquid.class, new FCClientRenderSquid());
+//		RenderManager.AddEntityRenderer(FCEntityVillager.class, new RenderVillager());
+//		RenderManager.AddEntityRenderer(FCEntityBat.class, new RenderBat());
+//		RenderManager.AddEntityRenderer(FCEntityWither.class, new RenderWither());
+//		RenderManager.AddEntityRenderer(FCEntityWitherSkull.class, new RenderWitherSkull());
+//		RenderManager.AddEntityRenderer(FCEntityFallingBlock.class, new RenderFallingSand());
+//		RenderManager.AddEntityRenderer(FCEntityLightningBolt.class, new FCClientRenderLightningBolt());
+//
+//		// additional vanilla remaps to cut down overhead of looking up super classes
+//		
+//		RenderManager.AddEntityRenderer(FCEntityPigZombie.class, new RenderZombie());
+//    }
+//
+//	@Override
+//    public boolean ClientCustomPacketReceived(Minecraft mcInstance, Packet250CustomPayload packet)
+//    {		
+//        try
+//        {
+//    		WorldClient world = mcInstance.theWorld;
+//            DataInputStream dataStream = new DataInputStream(new ByteArrayInputStream(packet.data));
+//    		
+//	        if (packet.channel.equals(fcCustomPacketChannelSpawnCustomEntity))
+//	        {
+//        		Entity entityToSpawn = null;
+//        		
+//	            int iEntityType = dataStream.readInt();
+//	            int iEntityId  = dataStream.readInt();
+//	            
+//	            if (iEntityType == fcCustomSpawnEntityPacketTypeCanvas)
+//	            {
+//		            int iXPos = dataStream.readInt();
+//		            int iYPos = dataStream.readInt();
+//		            int iZPos = dataStream.readInt();
+//		            int iDirection = dataStream.readInt();
+//		            int iArtOrdinal = dataStream.readInt();
+//			        
+//		            entityToSpawn = new FCEntityCanvas(world, iXPos, iYPos, iZPos, iDirection, iArtOrdinal);
+//	            }
+//	            else if (iEntityType == fcCustomSpawnEntityPacketTypeWindMill)
+//	            {
+//	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        
+//	    	        boolean bIAligned =  (dataStream.readByte()) > 0;
+//	    	        
+//	    	        FCEntityWindMill entityWindMill = new FCEntityWindMill(world, dXPos, dYPos, dZPos, bIAligned);
+//	    	        
+//	    	        entityToSpawn = entityWindMill;
+//	    	        
+//	    	        entityWindMill.setRotationSpeedScaled(dataStream.readInt());
+//	    	        
+//	    	        entityWindMill.setBladeColor(0, dataStream.readByte());
+//	    	        entityWindMill.setBladeColor(1, dataStream.readByte());
+//	    	        entityWindMill.setBladeColor(2, dataStream.readByte());
+//	    	        entityWindMill.setBladeColor(3, dataStream.readByte());		    	        
+//	            }
+//	            else if (iEntityType == fcCustomSpawnEntityPacketTypeWaterWheel)
+//	            {
+//	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        
+//	    	        boolean bIAligned =  (dataStream.readByte()) > 0;
+//	    	        
+//	    	        FCEntityWaterWheel entityWaterWheel = new FCEntityWaterWheel(world, dXPos, dYPos, dZPos, bIAligned);
+//	    	        
+//	    	        entityToSpawn = entityWaterWheel;
+//	    	        
+//	    	        entityWaterWheel.setRotationSpeedScaled(dataStream.readInt());		    	        
+//	            }
+//	            else if (iEntityType == fcCustomSpawnEntityPacketTypeMiningCharge)
+//	            {
+//	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        
+//	    	        int iFacing = dataStream.readByte();
+//	    	        int iFuse = dataStream.readByte();
+//	    	        
+//	    	        boolean bAttachedToBlock = (dataStream.readByte()) > 0;
+//	    	        
+//		            entityToSpawn = new FCEntityMiningCharge(world, dXPos, dYPos, dZPos, iFacing, iFuse, bAttachedToBlock);
+//	            }
+//	            else if (iEntityType == fcCustomSpawnEntityPacketTypeItemBloodWoodSapling ||
+//            		iEntityType == fcCustomSpawnEntityPacketTypeItemFloating)
+//	            {
+//	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;		    	        
+//	    	        
+//	    	        int iItemID = dataStream.readInt();
+//	    	        int iStackSize = dataStream.readInt();
+//	    	        int iItemDamage = dataStream.readInt();
+//	    	        
+//	    	        double dMotionX = ((double)(dataStream.readByte())) * 128D;
+//	    	        double dMotionY = ((double)(dataStream.readByte())) * 128D;
+//	    	        double dMotionZ = ((double)(dataStream.readByte())) * 128D;
+//
+//	    	        if (iEntityType == fcCustomSpawnEntityPacketTypeItemBloodWoodSapling)
+//	    	        {
+//	    	        	entityToSpawn = new FCEntityItemBloodWoodSapling(world, dXPos, dYPos, dZPos, new ItemStack(iItemID, iStackSize, iItemDamage));
+//	    	        }
+//	    	        else
+//	    	        {
+//	    	        	entityToSpawn = new FCEntityItemFloating(world, dXPos, dYPos, dZPos, new ItemStack(iItemID, iStackSize, iItemDamage));
+//	    	        }
+//		            
+//		            entityToSpawn.motionX = dMotionX;
+//		            entityToSpawn.motionY = dMotionX;
+//		            entityToSpawn.motionZ = dMotionX;
+//		            
+//		            entityToSpawn.serverPosX = (int)(dXPos * 32D);
+//		            entityToSpawn.serverPosY = (int)(dYPos * 32D);
+//		            entityToSpawn.serverPosZ = (int)(dZPos * 32D);
+//		            
+//	            }
+//	            else if (iEntityType == fcCustomSpawnEntityPacketTypeDynamite)
+//	            {
+//	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;		    	        
+//	    	        
+//	    	        int iItemID = dataStream.readInt();
+//	    	        int iFuse = dataStream.readInt();
+//	    	        
+//	    	        double dMotionX = ((double)(dataStream.readByte())) * 128D;
+//	    	        double dMotionY = ((double)(dataStream.readByte())) * 128D;
+//	    	        double dMotionZ = ((double)(dataStream.readByte())) * 128D;
+//
+//	    	        FCEntityDynamite dynamite = new FCEntityDynamite(world, dXPos, dYPos, dZPos, iItemID);
+//	    	        
+//    	        	entityToSpawn = dynamite;
+//
+//		            dynamite.m_iFuse = iFuse;			            
+//
+//		            entityToSpawn.motionX = dMotionX;
+//		            entityToSpawn.motionY = dMotionX;
+//		            entityToSpawn.motionZ = dMotionX;
+//		            
+//		            entityToSpawn.serverPosX = (int)(dXPos * 32D);
+//		            entityToSpawn.serverPosY = (int)(dYPos * 32D);
+//		            entityToSpawn.serverPosZ = (int)(dZPos * 32D);			            
+//	            }
+//	            else if (iEntityType == fcCustomSpawnEntityPacketTypeUrn)
+//	            {	        
+//	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;		    	        
+//	    	        
+//	    	        int iItemID = dataStream.readInt();
+//	    	        
+//	    	        double dMotionX = ((double)(dataStream.readByte())) * 128D;
+//	    	        double dMotionY = ((double)(dataStream.readByte())) * 128D;
+//	    	        double dMotionZ = ((double)(dataStream.readByte())) * 128D;
+//
+//    	        	entityToSpawn = new FCEntityUrn(world, dXPos, dYPos, dZPos, iItemID);
+//
+//		            entityToSpawn.motionX = dMotionX;
+//		            entityToSpawn.motionY = dMotionX;
+//		            entityToSpawn.motionZ = dMotionX;
+//		            
+//		            entityToSpawn.serverPosX = (int)(dXPos * 32D);
+//		            entityToSpawn.serverPosY = (int)(dYPos * 32D);
+//		            entityToSpawn.serverPosZ = (int)(dZPos * 32D);			            
+//	            }
+//	            else if (iEntityType == fcCustomSpawnEntityPacketTypeBlockLiftedByPlatform)
+//	            {
+//	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;		    	        
+//	    	        
+//	    	        int iBlockID = dataStream.readInt();
+//	    	        int iMetadata = dataStream.readInt();
+//	    	        
+//    	        	entityToSpawn = new FCEntityBlockLiftedByPlatform(world, dXPos, dYPos, dZPos, iBlockID, iMetadata);
+//	            }
+//	            else if (iEntityType == fcCustomSpawnEntityPacketTypeWindMillVertical)
+//	            {
+//	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        
+//	    	        FCEntityWindMillVertical entityWindMill = new FCEntityWindMillVertical(world, dXPos, dYPos, dZPos);
+//	    	        
+//	    	        entityToSpawn = entityWindMill;
+//	    	        
+//	    	        entityWindMill.setRotationSpeedScaled(dataStream.readInt());
+//	    	        
+//	    	        entityWindMill.setBladeColor(0, dataStream.readByte());
+//	    	        entityWindMill.setBladeColor(1, dataStream.readByte());
+//	    	        entityWindMill.setBladeColor(2, dataStream.readByte());
+//	    	        entityWindMill.setBladeColor(3, dataStream.readByte());
+//	    	        entityWindMill.setBladeColor(4, dataStream.readByte());
+//	    	        entityWindMill.setBladeColor(5, dataStream.readByte());
+//	    	        entityWindMill.setBladeColor(6, dataStream.readByte());
+//	    	        entityWindMill.setBladeColor(7, dataStream.readByte());
+//	            }
+//	            else if (iEntityType == fcCustomSpawnEntityPacketTypeSpiderWeb)
+//	            {	        
+//	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;		    	        
+//	    	        
+//	    	        double dMotionX = ((double)(dataStream.readByte())) * 128D;
+//	    	        double dMotionY = ((double)(dataStream.readByte())) * 128D;
+//	    	        double dMotionZ = ((double)(dataStream.readByte())) * 128D;
+//
+//    	        	entityToSpawn = new FCEntitySpiderWeb(world, dXPos, dYPos, dZPos);
+//
+//		            entityToSpawn.motionX = dMotionX;
+//		            entityToSpawn.motionY = dMotionX;
+//		            entityToSpawn.motionZ = dMotionX;
+//		            
+//		            entityToSpawn.serverPosX = (int)(dXPos * 32D);
+//		            entityToSpawn.serverPosY = (int)(dYPos * 32D);
+//		            entityToSpawn.serverPosZ = (int)(dZPos * 32D);
+//		            
+//	                world.playSound(dXPos, dYPos, dZPos, "mob.slime.attack", 1.0F, (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F + 0.6F);
+//	            }
+//	            else if (iEntityType == fcCustomSpawnEntityPacketTypeSoulSand)
+//	            {	        
+//	    	        double dXPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dYPos = ((double)(dataStream.readInt())) / 32D;
+//	    	        double dZPos = ((double)(dataStream.readInt())) / 32D;		    	        
+//	    	        
+//	    	        double dMotionX = ((double)(dataStream.readByte())) * 128D;
+//	    	        double dMotionY = ((double)(dataStream.readByte())) * 128D;
+//	    	        double dMotionZ = ((double)(dataStream.readByte())) * 128D;
+//
+//    	        	entityToSpawn = new FCEntitySoulSand(world, dXPos, dYPos, dZPos);
+//
+//		            entityToSpawn.motionX = dMotionX;
+//		            entityToSpawn.motionY = dMotionX;
+//		            entityToSpawn.motionZ = dMotionX;
+//		            
+//		            entityToSpawn.serverPosX = (int)(dXPos * 32D);
+//		            entityToSpawn.serverPosY = (int)(dYPos * 32D);
+//		            entityToSpawn.serverPosZ = (int)(dZPos * 32D);
+//		            
+//	    	    	world.playSound(dXPos, dYPos, dZPos, "dig.sand", 
+//		    			1.0F, 1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F);
+//	            }
+//	            
+//	            if (entityToSpawn != null)
+//	            {
+//	            	world.addEntityToWorld(iEntityId, entityToSpawn);
+//	            	
+//		        	return true;
+//	            }
+//	        }
+//	        else if (packet.channel.equals(fcCustomPacketChannelCustomEntityEvent))
+//	        {
+//	            int iEntityID  = dataStream.readInt();
+//	            
+//	            Entity entity = world.getEntityByID(iEntityID);
+//	            
+//	            if (entity != null)
+//	            {
+//	            	int iEventType = dataStream.readByte();
+//	            	
+//	            	if (iEventType == fcCustomEntityEventPacketTypeSetAttackTarget)
+//	            	{
+//	            		if (entity instanceof EntityCreature)
+//	            		{
+//	            			EntityCreature attackingCreature = (EntityCreature)entity;
+//	            			
+//		            		int iTargetEntityID = dataStream.readInt();
+//		            		
+//		            		if (iTargetEntityID >= 0)
+//		            		{
+//		        	            Entity targetEntity = world.getEntityByID(iTargetEntityID);
+//		        	            
+//		        	            if (targetEntity != null)
+//		        	            {
+//		        	            	attackingCreature.setTarget(targetEntity);
+//		        	            }
+//		        	            else
+//		        	            {
+//		        	            	attackingCreature.setTarget(null);
+//		        	            }
+//		            		}
+//		            		else
+//		            		{
+//	        	            	attackingCreature.setTarget(null);
+//		            		}
+//	            		}
+//	            	}
+//	            	else if (iEventType == fcCustomEntityEventPacketTypeSquidTentacleAttack)
+//	            	{
+//	            		if (entity instanceof FCEntitySquid)
+//	            		{
+//	        	        	FCEntitySquid attackingSquid = (FCEntitySquid)entity;
+//	        	        	
+//		        	        double dTargetXPos = ((double)(dataStream.readInt())) / 32D;
+//		        	        double dTargetYPos = ((double)(dataStream.readInt())) / 32D;
+//		        	        double dTargetZPos = ((double)(dataStream.readInt())) / 32D;
+//		        	        
+//	        	        	attackingSquid.OnClientNotifiedOfTentacleAttack(dTargetXPos, dTargetYPos, dTargetZPos);
+//	            		}	        	        
+//	            	}
+//	            	else if (iEventType == fcCustomEntityEventPacketTypeCowKickAttack)
+//	            	{
+//	            		if (entity instanceof FCEntityCow)
+//	            		{
+//	        	        	FCEntityCow attackingCow = (FCEntityCow)entity;
+//	        	        	
+//	        	        	attackingCow.OnClientNotifiedOfKickAttack();
+//	            		}	        	        
+//	            	}
+//	            }	            
+//	        }
+//	        else if (packet.channel.equals(fcCustomPacketChannelVersionCheck))
+//	        {
+//	        	String version = dataStream.readUTF();
+//
+//	        	if (version.equals(getVersion()))
+//	        	{
+//	        		mcInstance.thePlayer.addChatMessage("\247f" // white
+//			    		+ "BTW version check successful.");
+//	        	}
+//	        	else
+//	        	{
+//	        		mcInstance.thePlayer.addChatMessage("\2474" // red text
+//	    	    		+ "WARNING: BTW version mismatch detected! Local Version: " + getVersion() + " Server Version: " + version);
+//	        	}
+//	        	
+//	        	return true;
+//	        }
+//	        else if (packet.channel.equals(fcCustomPacketChannelBTWOptions))
+//	        {
+//	        	Byte bHardcoreBuoy = dataStream.readByte();
+//	        	
+//	        	if (bHardcoreBuoy == 0)
+//	        	{
+//	        		fcServerEnableHardcoreBuoy = false;
+//	        	}
+//	        	else
+//	        	{
+//	        		fcServerEnableHardcoreBuoy = true;
+//	        	}
+//	        	
+//	        	Byte bHardcorePlayerNames = dataStream.readByte();
+//	        	
+//	        	fcServerHardcorePlayerNamesLevel = bHardcorePlayerNames;
+//	        	
+//	        	if (fcServerHardcorePlayerNamesLevel < 0 || fcServerHardcorePlayerNamesLevel > 2)
+//	        	{
+//	        		fcServerHardcorePlayerNamesLevel = 0;
+//	        	}
+//	        	
+//	        	return true;
+//	        }
+//	        else if (packet.channel.equals(fcCustomPacketChannelOpenCustomInterface))
+//	        {
+//	            int iWindowID = dataStream.readInt();
+//	            int iContainerID  = dataStream.readInt();
+//	            
+//                EntityClientPlayerMP player = mcInstance.thePlayer;
+//                
+//            	GuiContainer gui = ClientGetAssociatedGUI(player, iContainerID);
+//            	
+//            	if (gui != null)
+//            	{
+//                    mcInstance.displayGuiScreen(gui);
+//                    
+//                    player.openContainer.windowId = iWindowID;
+//                    
+//                    return true;
+//            	}                
+//	        }	        
+//        }
+//        catch (IOException ioexception)
+//        {
+//            ioexception.printStackTrace();
+//        }
+//        
+//        return false;
+//    }
+//	
+//    public GuiContainer ClientGetAssociatedGUI(EntityClientPlayerMP entityclientplayermp, int iContainerID)
+//    {
+//		if (iContainerID == fcMillStoneContainerID)
+//		{
+//			// the millstone no longer has a gui
+//		}
+//		else if (iContainerID == fcCauldronContainerID)
+//		{
+//			FCTileEntityCauldron cauldronEntity = new FCTileEntityCauldron();
+//			
+//			return new FCClientGuiCookingVessel(entityclientplayermp.inventory, cauldronEntity, iContainerID);
+//		}		
+//		else if (iContainerID == fcHopperContainerID)
+//		{
+//			FCTileEntityHopper hopperEntity = new FCTileEntityHopper();
+//			
+//			return new FCClientGuiHopper(entityclientplayermp.inventory, hopperEntity);
+//		}
+//		else if (iContainerID == fcCrucibleContainerID)
+//		{
+//			FCTileEntityCrucible crucibleEntity = new FCTileEntityCrucible();
+//			
+//			return new FCClientGuiCookingVessel(entityclientplayermp.inventory, crucibleEntity, iContainerID);
+//		}
+//		else if (iContainerID == fcAnvilContainerID)
+//		{
+//			return new FCClientGuiCraftingSoulforge(entityclientplayermp.inventory, entityclientplayermp.worldObj, 0, 0, 0);
+//		}
+//		else if (iContainerID == fcBlockDispenserContainerID)
+//		{
+//			FCTileEntityBlockDispenser dispenserEntity = new FCTileEntityBlockDispenser();
+//			
+//			return new FCClientGuiBlockDispenser(entityclientplayermp.inventory, dispenserEntity);
+//		}
+//		else if (iContainerID == fcPulleyContainerID)
+//		{
+//			FCTileEntityPulley pulleyEntity = new FCTileEntityPulley();
+//			
+//			return new FCClientGuiPulley(entityclientplayermp.inventory, pulleyEntity);
+//		}
+//		else if (iContainerID == fcInfernalEnchanterContainerID)
+//		{
+//			return new FCClientGuiInfernalEnchanter(entityclientplayermp.inventory, entityclientplayermp.worldObj, 0, 0, 0);
+//		}		
+//		else if (iContainerID == fcFurnaceBrickContainerID)
+//		{
+//			FCTileEntityFurnaceBrick brickFurnaceEntity = new FCTileEntityFurnaceBrick();
+//			
+//			return new GuiFurnace(entityclientplayermp.inventory, brickFurnaceEntity);
+//		}
+//		else if (iContainerID == fcHamperContainerID)
+//		{
+//			// Hamper uses a dummy inventory for the client to avoid calls on openChest() and closetChest()
+//			// which would crash if not initialized.  This is the same way the vanilla chest handles it.
+//			
+//			InventoryBasic hamperInventory = new InventoryBasic (FCTileEntityHamper.m_sUnlocalizedName, false, 
+//				FCTileEntityHamper.m_iInventorySize);
+//			
+//			return new FCClientGuiHamper(entityclientplayermp.inventory, hamperInventory);
+//		}
+//		else if (iContainerID == fcVanillaAnvilContainerID)
+//		{
+//			return new FCClientGuiCraftingAnvil(entityclientplayermp.inventory, entityclientplayermp.worldObj, 0, 0, 0);
+//		}
+//		
+//        return null;
+//    }
+//
+//	@Override
+//    public boolean ClientPlayCustomAuxFX(Minecraft mcInstance, World world, EntityPlayer player, int iFXID, int i, int j, int k, int iFXSpecificData)
+//    {
+//    	Random rand = world.rand;
+//    	
+//        double posX = (double)i + 0.5F;
+//        double posY = (double)j + 0.5F;
+//        double posZ = (double)k + 0.5F;
+//        
+//        int iParticleSetting = mcInstance.gameSettings.particleSetting;
+//        
+//    	switch (iFXID)
+//    	{
+//    		case m_iAnimalBirthingAuxFXID:
+//    			
+//                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+//                
+//                for (int counter = 0; counter < 10; counter++)
+//                {
+//                    double bloodX = posX + rand.nextDouble();
+//                    double bloodY = posY + 1.0D + rand.nextDouble();
+//                    double bloodZ = posZ + rand.nextDouble();
+//                    
+//                    world.spawnParticle("reddust", bloodX, bloodY, bloodZ, 0.0D, 0.0D, 0.0D);
+//                }
+//                
+//                for (int counter = 0; counter < 10; counter++)
+//                {
+//    	            double bloodX = posX -0.5D + rand.nextDouble();
+//    	            double bloodY = posY + rand.nextDouble();
+//    	            double bloodZ = posZ - 0.5D + rand.nextDouble();
+//                
+//                    world.spawnParticle("dripLava", bloodX, bloodY, bloodZ, 0.0D, 0.0D, 0.0D);
+//                }
+//                
+//    			break;
+//    			
+//    		case m_iSawDamageEntityAuxFXID:
+//    			
+//		        world.playSound((double)i + 0.5D, (double)j + 0.5D, (double)k + 0.5D, 
+//		    		"minecart.base", 
+//		    		1.00F + (rand.nextFloat() * 0.1F),		// volume 
+//		    		2.0F + (rand.nextFloat() * 0.1F));	// pitch		        
+//    	        
+//    	        int iFacing = iFXSpecificData;
+//
+//    	        // emit blood particles
+//    	        
+//	        	FCUtilsBlockPos iTargetPos = new FCUtilsBlockPos(i, j, k);
+//	        	
+//	        	iTargetPos.AddFacingAsOffset(iFacing);
+//	        		
+//	            for (int counter = 0; counter < 10; counter++)
+//	            {
+//	                float smokeX = (float)iTargetPos.i + rand.nextFloat();
+//	                float smokeY = (float)iTargetPos.j + rand.nextFloat();
+//	                float smokeZ = (float)iTargetPos.k + rand.nextFloat();
+//	                
+//	                world.spawnParticle("reddust", smokeX, smokeY, smokeZ, 0.0D, 0.0D, 0.0D);
+//	            }
+//    	        
+//    			break;
+//    			
+//    		case m_iNetherGrothSporesAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "random.fuse", 2.0F, rand.nextFloat() * 0.4F + 1.5F);
+//    	            
+//	            for (int iTempCount = 0; iTempCount < 10; iTempCount++)
+//	            {
+//	            	world.spawnParticle("hugeexplosion", 
+//	        			posX + rand.nextDouble() * 10.0D - 5D, 
+//	        			posY + rand.nextDouble() * 10.0D - 5D, 
+//	        			posZ + rand.nextDouble() * 10.0D - 5D, 
+//	        			0.0D, 0.0D, 0.0D);
+//	            }
+//	            
+//    			break;
+//    			
+//    		case m_iGhastScreamSoundAuxFXID:
+//    			
+//    			float fScreamPitch = rand.nextFloat() * 0.4F + 0.8F;
+//    			
+//    			if (iFXSpecificData == 1)
+//    			{
+//    				// low pitch used by Soulforged Steel
+//    				
+//    				fScreamPitch = rand.nextFloat() * 0.4F + 0.25F;
+//    			}
+//    			
+//	            world.playSound(posX, posY, posZ, "mob.ghast.scream", 1.0F, fScreamPitch);
+//	            
+//    			break;
+//    			
+//    		case m_iBurpSoundAuxFXID:
+//    			
+//	            world.playSound(posX, posY, posZ, "random.burp", 
+//            		1.0F, rand.nextFloat() * 0.4F + 0.7F);
+//	            
+//    			break;
+//    			
+//    		case m_iFireFizzSoundAuxFXID:
+//    			
+//    			float fFizzVolume = 0.5F;
+//    			float fFizzPitch = 2.6F + (rand.nextFloat() - rand.nextFloat()) * 0.8F;
+//    	        
+//    			if (iFXSpecificData == 1)
+//    			{
+//    				fFizzVolume = 0.1F;
+//    				fFizzPitch = 1F +  + (rand.nextFloat() - rand.nextFloat()) * 0.2F;
+//    			}
+//    			
+//    	        world.playSound(posX, posY, posZ, "random.fizz", 
+//    	        	fFizzVolume, fFizzPitch);
+//    	        
+//    			break;
+//    			
+//    		case m_iGhastMoanSoundAuxFXID:
+//    			
+//    	    	world.playSound(posX, posY, posZ, "mob.ghast.moan", 
+//	    			0.5F, 2.6F + (rand.nextFloat() - rand.nextFloat()) * 0.8F);
+//    	    	
+//    			break;
+//    			
+//    		case m_iMiningChargeExplosionAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "random.explode", 
+//	        		4F, (1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F) * 0.7F);
+//    	        
+//    	        world.spawnParticle("hugeexplosion", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+//    	        
+//    			break;    			
+//    			
+//    		case m_iHopperXPEjectAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "liquid.lavapop", 
+//	        		0.5F + rand.nextFloat() * 0.25F, 0.5F + rand.nextFloat() * 0.25F );
+//    	        
+//    	        posY -= 0.6;
+//    	        
+//    	        for (int iTempCount = 0; iTempCount < 4; iTempCount++)
+//    	        {
+//    		        world.spawnParticle("slime", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+//    	        }
+//    	        
+//    			break;
+//    			
+//    		case m_iItemCollectionPopSoundAuxFXID:	
+//    			
+//	            world.playSound(posX, posY, posZ, "random.pop", 
+//            		0.25F, ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+//	            
+//    			break;
+//    			
+//    		case m_iXPEjectPopSoundAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "liquid.lavapop", 
+//	        		0.5F + rand.nextFloat() * 0.25F, 0.5F + rand.nextFloat() * 0.25F );
+//		        
+//    			break;
+//    			
+//    		case m_iHopperCloseSoundAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "mob.irongolem.walk", 1.0F, 1.25F);
+//    	        
+//    			break;
+//    			
+//    		case m_iRedstonePowerClickSoundAuxFXID:
+//    			
+//	            world.playSound(posX, posY, posZ, "random.click", 0.75F, 2.0F);
+//	            
+//    			break;
+//    			
+//    		case m_iMechanicalDeviceExplodeAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "mob.zombie.woodbreak", 0.5F, 0.60F + (rand.nextFloat() * 0.25F));
+//    	        
+//    	        world.spawnParticle("explode", posX, posY, posZ, 0D, 0D, 0D);
+//    	        
+//    	        for (int iTempCount = 0; iTempCount < 20; iTempCount ++)
+//    	        {
+//    	        	double dSmokeX = posX + world.rand.nextDouble() - 0.5D;
+//    	        	double dSmokeY = posY + world.rand.nextDouble() - 0.5D;
+//    	        	double dSmokeZ = posZ + world.rand.nextDouble() - 0.5D;
+//    	        	
+//    	        	double dSmokeVelX = (dSmokeX - posX) * 0.33D;
+//    	        	double dSmokeVelY = (dSmokeY - posY) * 0.33D;
+//    	        	double dSmokeVelZ = (dSmokeZ - posZ) * 0.33D;
+//    	        	
+//    	            world.spawnParticle("smoke", dSmokeX, dSmokeY, dSmokeZ, 
+//	            		dSmokeVelX, dSmokeVelY, dSmokeVelZ);
+//    	        }
+//    	        
+//    			break;
+//    			
+//    		case m_iBlockPlaceAuxFXID:
+//	    		{
+//	    			int iBlockID = iFXSpecificData;
+//	    			Block block = Block.blocksList[iBlockID];
+//	    			
+//	    			if (block != null)
+//	    			{    			
+//		                world.playSound(posX, posY, posZ, 
+//	                		block.stepSound.getStepSound(), 
+//	                		(block.stepSound.getVolume() + 1.0F) / 2.0F, 
+//	                		block.stepSound.getPitch() * 0.8F);
+//	    			}
+//	    		}
+//    			
+//    			break;
+//    			
+//    		case m_iDynamiteFuseSoundAuxFXID:	
+//    			
+//            	world.playSound(posX, posY, posZ, "random.fuse", 1.0F, 1.0F);
+//            	
+//    			break;
+//    			
+//    		case m_iClickLowPitchSoundAuxFXID:	
+//    			
+//            	world.playSound(posX, posY, posZ, "random.click", 0.10F, 0.5F);
+//            	
+//    			break;
+//    			
+//    		case m_iWolfHurtSoundAuxFXID:	
+//    			
+//                world.playSound(posX, posY, posZ, "mob.wolf.hurt", 
+//            		0.4F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+//                
+//    			break;
+//    			
+//    		case m_iChickenHurtSoundAuxFXID:	
+//    			
+//                world.playSound(posX, posY, posZ, "mob.chicken.hurt", 
+//                	1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+//                
+//    			break;
+//    			
+//    		case m_iBlockDispenserSmokeEffectAuxFXID:
+//    			
+//	            // spawn smoke particles
+//	        	
+//    	        int iBDFacing = iFXSpecificData;
+//    	        
+//    	        FCUtilsBlockPos targetDeltaPos = new FCUtilsBlockPos(0, 0, 0);
+//    	        
+//    	        targetDeltaPos.AddFacingAsOffset(iBDFacing);
+//    	        
+//    	        double dEjectXPos = (double)i + (double)targetDeltaPos.i * 0.6D + 0.5D;
+//    	        double dEjectYPos = (double)j + (double)targetDeltaPos.j * 0.6D + 0.5D;
+//    	        double dEjectZPos = (double)k + (double)targetDeltaPos.k * 0.6D + 0.5D;
+//    	        
+//	            for (int iTempCount = 0; iTempCount < 10; iTempCount++)
+//	            {
+//	                double d4 = rand.nextDouble() * 0.20000000000000001D + 0.01D;
+//	                
+//	                double dSmokeXPos = dEjectXPos + (double)targetDeltaPos.i * 0.01D + (rand.nextDouble() - 0.5D) * (double)targetDeltaPos.i * 0.5D;
+//	                double dSmokeYPos = dEjectYPos + (double)targetDeltaPos.j * 0.01D + (rand.nextDouble() - 0.5D) * 0.5D;
+//	                double dSmokeZPos = dEjectZPos + (double)targetDeltaPos.k * 0.01D + (rand.nextDouble() - 0.5D) * (double)targetDeltaPos.k * 0.5D;
+//	                
+//	                double dSmokeXVel = (double)targetDeltaPos.i * d4 + rand.nextGaussian() * 0.01D;
+//	                double dSmokeYVel = (double)targetDeltaPos.j * d4 + -0.029999999999999999D + world.rand.nextGaussian() * 0.01D;
+//	                double dSmokeZVel = (double)targetDeltaPos.k * d4 + rand.nextGaussian() * 0.01D;
+//	                
+//	                world.spawnParticle("smoke", dSmokeXPos, dSmokeYPos, dSmokeZPos, dSmokeXVel, dSmokeYVel, dSmokeZVel);
+//	            }
+//	            
+//    			break;
+//    			
+//    		case m_iCompanionCubeDeathAuxFXID:
+//    			
+//    			FCBlockCompanionCube.SpawnHearts(world, i, j, k);
+//    			
+//                world.playSound((float)i + 0.5F, (float)j + 0.5F, (float)k + 0.5F, 
+//            		"mob.wolf.whine", 
+//            		0.5F, 2.6F + (rand.nextFloat() - rand.nextFloat()) * 0.8F);
+//                
+//    			break;
+//    			
+//    		case m_iPossessedChickenExplosionAuxFXID:
+//    			
+//                world.playSound(posX, posY, posZ, "random.explode", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+//                
+//	            world.playSound(posX, posY, posZ, "mob.chicken.hurt", 2.0F, rand.nextFloat() * 0.4F + 1.2F);
+//	            
+//                for (int counter = 0; counter < 10; counter++)
+//                {
+//                    double bloodX = posX + rand.nextDouble();
+//                    double bloodY = posY + 1.0D + rand.nextDouble();
+//                    double bloodZ = posZ + rand.nextDouble();
+//                    
+//                    world.spawnParticle("reddust", bloodX, bloodY, bloodZ, 0.0D, 0.0D, 0.0D);
+//                }
+//                
+//                for (int counter = 0; counter < 10; counter++)
+//                {
+//    	            double bloodX = posX -0.5D + rand.nextDouble();
+//    	            double bloodY = posY + rand.nextDouble() * 0.5F;
+//    	            double bloodZ = posZ - 0.5D + rand.nextDouble();
+//                
+//                    world.spawnParticle("dripLava", bloodX, bloodY, bloodZ, 0.0D, 0.0D, 0.0D);
+//                }
+//                
+//    	        for (int iTempCount = 0; iTempCount < 300; iTempCount ++)
+//    	        {
+//    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
+//    	        	double dChunkY = posY - 1.0D;// + world.rand.nextDouble() * 0.25D;
+//    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
+//    	        	
+//    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	double dChunkVelY = 0.2D + world.rand.nextDouble() * 0.6D;
+//    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	
+//    	        	// 331 = redstone dust based particles
+//    	        	
+//    	            world.spawnParticle("iconcrack_331", dChunkX, dChunkY, dChunkZ, 
+//    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
+//    	        }    	        
+//                
+//    	        for (int iTempCount = 0; iTempCount < 25; iTempCount ++)
+//    	        {
+//    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
+//    	        	double dChunkY = posY - 1.0D;// + world.rand.nextDouble() * 0.25D;
+//    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
+//    	        	
+//    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	double dChunkVelY = 0.2D + world.rand.nextDouble() * 0.6D;
+//    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	
+//    	        	// 352 = bone based particles
+//    	        	
+//    	            world.spawnParticle("iconcrack_352", dChunkX, dChunkY, dChunkZ, 
+//    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
+//    	        }    	        
+//                
+//    			break;
+//    			
+//    		case m_iEnderBlockCollectAuxFXID:                
+//    			{
+//	                int iBlockID = iFXSpecificData & 0xfff;
+//	                int iMetadata = iFXSpecificData >> 12 & 0xff;
+//	
+//	                if (iBlockID > 0)
+//	                {
+//	                    Block block = Block.blocksList[iBlockID];
+//	                    
+//	                    world.playSound(posX, posY, posZ, block.stepSound.getBreakSound(), 
+//	                    	(block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
+//	                    
+//		                mcInstance.effectRenderer.addBlockDestroyEffects(i, j, k, iBlockID, iMetadata);
+//	                }	
+//    			}
+//                
+//    			break;
+//    			
+//    		case m_iEnderBlockConvertAuxFXID:
+//				{
+//	                int iBlockID = iFXSpecificData & 0xfff;
+//	                int iMetadata = iFXSpecificData >> 12 & 0xff;
+//	
+//	                if (iBlockID > 0)
+//	                {
+//	                    Block block = Block.blocksList[iBlockID];
+//	                    
+//	                    world.playSound(posX, posY, posZ, block.stepSound.getBreakSound(), 
+//	                    	(block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
+//	                    
+//		                mcInstance.effectRenderer.addBlockDestroyEffects(i, j, k, iBlockID, iMetadata);
+//	                }
+//	                
+//	    	        for (int iTempCount = 0; iTempCount < 25; iTempCount ++)
+//	    	        {
+//						double particleX = posX + (rand.nextDouble() - 0.5D) * 1.5D;
+//						double particleY = posY + (rand.nextDouble() - 0.5D);
+//						double particleZ = posZ + (rand.nextDouble() - 0.5D) * 1.5D;
+//						
+//			            world.spawnParticle("mobSpell", particleX, particleY, particleZ, 0D, 0D, 0D);
+//	    	        }
+//				}
+//				
+//                world.playSound(posX, posY, posZ, "mob.endermen.portal", 1.0F, 1.0F);
+//                
+//    			break;
+//    			
+//    		case m_iEnderBlockPlaceAuxFXID:                
+//	    		{
+//	                int iBlockID = iFXSpecificData & 0xfff;
+//	                
+//	    			Block block = Block.blocksList[iBlockID];
+//	    			
+//	    			if (block != null)
+//	    			{    			
+//		                world.playSound(posX, posY, posZ, 
+//	                		block.stepSound.getStepSound(), 
+//	                		(block.stepSound.getVolume() + 1.0F) / 2.0F, 
+//	                		block.stepSound.getPitch() * 0.8F);
+//	    			}
+//	    			
+//	                world.playSound(posX, posY, posZ, "mob.endermen.hit", 1.0F, 1.0F);	    			
+//	    		}
+//	    		
+//    			break;
+//    			
+//    		case m_iEnderChangeDimensionAuxFXID:	
+//    			
+//    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+//    	        
+//                world.playSound(posX, posY, posZ, "ambient.weather.thunder", 3.0F, rand.nextFloat() * 0.4F + 0.8F);
+//                
+//    			break;    			
+//    			
+//    		case m_iSoulUrnShatterAuxFXID:
+//    			
+//    	        for(int iTempCount = 0; iTempCount < 8; iTempCount++)
+//    	        {
+//    	            world.spawnParticle("snowballpoof", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+//    	        }
+//
+//                world.playSound(posX, posY, posZ, "random.glass", 
+//            		1.0F, 1.2F / (rand.nextFloat() * 0.2F + 0.9F));
+//                
+//	            world.playSound(posX, posY, posZ, "mob.ghast.scream", 0.2F, rand.nextFloat() * 0.2F + 0.5F);
+//	            
+//                for (int iTempCount = 0; iTempCount < 100; iTempCount++)
+//                {
+//					double particleX = (double)posX + rand.nextDouble() * 3D - 1.5D;
+//					double particleY = (double)posY + rand.nextDouble() * 3D - 1.5D;
+//					double particleZ = (double)posZ + rand.nextDouble() * 3D - 1.5D;
+//					
+//		            world.spawnParticle("mobSpell", particleX, particleY, particleZ, 0, 0, 0);
+//                }
+//
+//    			break;
+//    			
+//    		case m_iMelonExplodeAuxFXID:
+//    		case m_iPumpkinExplodeAuxFXID:
+//    			
+//	        	// 360 = melon slice based particles
+//	        	
+//    			String particle = "iconcrack_360";
+//    			
+//    			if (iFXID == m_iPumpkinExplodeAuxFXID)
+//    			{
+//    				particle = "iconcrack_" + 31016; //HARD CODED from SCDefs pumpkin slice id!!
+//    			}
+//    			
+//    	        for (int iTempCount = 0; iTempCount < 150; iTempCount ++)
+//    	        {
+//    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
+//    	        	double dChunkY = posY - 0.45D;;
+//    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
+//    	        	
+//    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	double dChunkVelY = world.rand.nextDouble() * 0.7D;
+//    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	
+//    	            world.spawnParticle(particle, dChunkX, dChunkY, dChunkZ, 
+//    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
+//    	        }    	        
+//                
+//    	        world.playSound(posX, posY, posZ, "mob.zombie.wood", 0.2F, 0.60F + (rand.nextFloat() * 0.25F));
+//    	        
+//                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
+//                
+//    			break;
+//    			
+//    		case m_iMelonImpactSoundAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "mob.zombie.wood", 0.1F, 0.40F + (rand.nextFloat() * 0.25F));
+//    	        
+//    			break;
+//    			
+//    		case m_iBlockDestroyRespectParticleSettingsAuxFXID:
+//    		{
+//    			
+//    			// regular block destroy does not respect particle setting options.  This effect produces the same results but won't
+//    			// overload on particles in automated systems if particles are turned down
+//    			
+//                int iBlockID = iFXSpecificData & 0xfff;
+//                int iMetadata = iFXSpecificData >> 12 & 0xff;
+//
+//                if (iBlockID > 0)
+//                {
+//                    Block block = Block.blocksList[iBlockID];
+//                    
+//        	        world.playSound(posX, posY, posZ, block.stepSound.getBreakSound(), 
+//        	        	(block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
+//        	        
+//                    if (iParticleSetting <= 1)
+//                    {                	
+//	                    for (int iIOffset = 0; iIOffset < 4; ++iIOffset)
+//	                    {
+//	                        for (int iJOffset = 0; iJOffset < 4; ++iJOffset)
+//	                        {
+//	                            for (int iKOffset = 0; iKOffset < 4; ++iKOffset)
+//	                            {
+//	                            	if (iParticleSetting == 0 || rand.nextInt(3) == 0)
+//	                            	{
+//		                                double var11 = (double)i + ((double)iIOffset + 0.5D) / 4D;
+//		                                double var13 = (double)j + ((double)iJOffset + 0.5D) / 4D;
+//		                                double var15 = (double)k + ((double)iKOffset + 0.5D) / 4D;
+//		                                
+//		                                EntityDiggingFX digEffect = new EntityDiggingFX(world, var11, var13, var15, 
+//		                                	var11 - (double)i - 0.5D, var13 - (double)j - 0.5D, var15 - (double)k - 0.5D, 
+//		                                	block, 0, iMetadata, mcInstance.renderEngine);
+//		                                
+//		                                digEffect.applyRenderColor(iMetadata);
+//		                                
+//		                                mcInstance.effectRenderer.addEffect(digEffect);
+//	                            	}
+//	                            }
+//	                        }
+//	                    }
+//	                }
+//                }
+//
+//    			break;
+//    		}
+//    			
+//    		case m_iCowMilkFillAuxFXID:
+//    			
+//                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
+//                
+//    			break;
+//    			
+//    		case m_iCowMilkedAuxFXID:
+//    			
+//                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
+//                
+//    			String milkParticle = "iconcrack_332"; // snowball
+//    			
+//    	        for (int iTempCount = 0; iTempCount < 50; iTempCount ++)
+//    	        {
+//    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
+//    	        	double dChunkY = posY - 0.45D;;
+//    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
+//    	        	
+//    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	double dChunkVelY = world.rand.nextDouble() * 0.25D;
+//    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	
+//    	            world.spawnParticle(milkParticle, dChunkX, dChunkY, dChunkZ, 
+//    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
+//    	        }
+//    	        
+//    			break;    			
+//    			
+//    		case m_iCowConvertToMooshroomAuxFXID:
+//    			
+//    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+//    	        
+//    	        world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+//    	        
+//    	        float fHurtPitch = (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F;
+//    	        
+//    	        if (iFXSpecificData > 0)
+//    	        {
+//    	        	// child pitch
+//    	        	
+//    	        	fHurtPitch += 0.5F;    	        	
+//    	        }    	        
+//    	        
+//    	        world.playSound(posX, posY, posZ, "mob.cow.hurt", 1.0F, fHurtPitch);
+//    	        
+//    			break;
+//    			
+//    		case m_iWolfHowlAuxFXID:
+//    		{    	        
+//    			float fSoundVolume = 0F;
+//    			float fSoundPitch = 0F;
+//    			
+//    	        if (iFXSpecificData > 0)
+//    	        {
+//    	        	// dire howl
+//    	        	
+//    	        	fSoundVolume = 10F;
+//    	        	fSoundPitch = (rand.nextFloat() - rand.nextFloat()) * 0.05F + 0.55F;    	        	
+//    	        }
+//    	        else
+//    	        {
+//    	        	// regular wolf howl
+//    	        	
+//    	        	fSoundVolume = 8.5F;
+//    	        	fSoundPitch = (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1F;    	        	
+//    	        }
+//    	        
+//    	        EntityPlayer localPlayer = mcInstance.thePlayer;
+//    	        
+//    	        if (localPlayer != null)
+//    	        {
+//    	        	if (localPlayer.posY < 64)
+//    	        	{
+//    	        		float fVolumeMultiplier = (float)(localPlayer.posY / 64D);
+//    	        		
+//    	        		fSoundVolume *= fVolumeMultiplier;
+//    	        		
+//    	        		if (fSoundVolume < 1F)
+//    	        		{
+//    	        			fSoundVolume = 1F;
+//    	        		}
+//    	        	}
+//    	        }
+//    	        
+//    	        world.playSound(posX, posY, posZ, "mob.wolf.howl", fSoundVolume, fSoundPitch);
+//    	        
+//    	        break;
+//    		}
+//    	        
+//    		case m_iWolfConvertToDireAuxFXID:
+//    			
+//    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+//    	        
+//    	        world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+//    	        
+//    	        world.playSound(posX, posY, posZ, "mob.wolf.growl", 8.5F, (rand.nextFloat() - rand.nextFloat()) * 0.05F + 0.55F);
+//    	        
+//    			break;
+//    			
+//    		case m_iCreeperNeuteredAuxFXID:
+//    			
+//    			world.playSound(posX, posY, posZ, "mob.sheep.shear", 1.0F, 1.0F);
+//                
+//                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.1F + 0.7F);
+//                
+//    			String creeperJizzParticle = "iconcrack_332"; // snowball
+//    			
+//    	        for (int iTempCount = 0; iTempCount < 50; iTempCount ++)
+//    	        {
+//    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
+//    	        	double dChunkY = posY - 0.45D;;
+//    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
+//    	        	
+//    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	double dChunkVelY = world.rand.nextDouble() * 0.25D;
+//    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	
+//    	        	// 360 = melon slice based particles
+//    	        	
+//    	            world.spawnParticle(creeperJizzParticle, dChunkX, dChunkY, dChunkZ, 
+//    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
+//    	        }
+//    	        
+//    			break;    			
+//    			
+//    		case m_iPossessedPigTransformToPigmanAuxFXID:
+//    			
+//	            world.playSound(posX, posY, posZ, "mob.pig.death", 2.0F, rand.nextFloat() * 0.4F + 1.2F);
+//	            
+//	            world.playSound(posX, posY, posZ, "mob.zombiepig.zpigangry", 2.0F, ((rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+//	            
+//    	        world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+//    	        
+//    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+//    	        
+//    	        for (int iTempCount = 0; iTempCount < 50; iTempCount ++)
+//    	        {
+//    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
+//    	        	double dChunkY = posY - 1.0D;// + world.rand.nextDouble() * 0.25D;
+//    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
+//    	        	
+//    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	double dChunkVelY = 0.2D + world.rand.nextDouble() * 0.6D;
+//    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	
+//    	        	// 319 = raw pork based particles
+//    	        	
+//    	            world.spawnParticle("iconcrack_319", dChunkX, dChunkY, dChunkZ, 
+//    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
+//    	        }    	        
+//                
+//    			break;
+//    			
+//    		case m_iPossessedVillagerTransformToWitchAuxFXID:
+//    			
+//                world.playSound(posX, posY, posZ, "ambient.weather.thunder", 3.0F, rand.nextFloat() * 0.4F + 0.8F);
+//                
+//    			world.playSound(posX, posY, posZ, "mob.ghast.affectionate scream", 2.0F, 0.5F + rand.nextFloat() * 0.25F);
+//
+//    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+//    	        
+//    	        // basically a duplicate of the witch particle effect
+//    	        
+//                for (int iTempCount = 0; iTempCount < rand.nextInt(35) + 10; ++iTempCount)
+//                {
+//                    world.spawnParticle("witchMagic", posX + rand.nextGaussian() * 0.12999999523162842D, 
+//                    	posY + 2.0D + rand.nextGaussian() * 0.12999999523162842D, 
+//                    	posZ + rand.nextGaussian() * 0.12999999523162842D, 
+//                    	0.0D, 0.0D, 0.0D);
+//                }
+//                
+//    			break;
+//    			
+//    		case m_iSheepWoolRegrowAuxFXID:
+//    			
+//                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
+//                
+//    			break;
+//    			
+//    		case m_iSquidTentacleFlingAuxFXID:
+//    			
+//                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
+//                
+//                if (iParticleSetting <= 1)
+//                {                	
+//	                int iBlockID = Block.waterStill.blockID;
+//	                int iMetadata = 0;
+//	
+//                    Block block = Block.blocksList[iBlockID];
+//                    
+//                    for (int iIOffset = 0; iIOffset < 2; ++iIOffset)
+//                    {
+//                        for (int iJOffset = 0; iJOffset < 2; ++iJOffset)
+//                        {
+//                            for (int iKOffset = 0; iKOffset < 2; ++iKOffset)
+//                            {
+//                            	if (iParticleSetting == 0 || rand.nextInt(3) == 0)
+//                            	{
+//	                                double var11 = (double)i + ((double)iIOffset + 0.5D) / 2D;
+//	                                double var13 = (double)j + ((double)iJOffset + 0.5D) / 2D;
+//	                                double var15 = (double)k + ((double)iKOffset + 0.5D) / 2D;
+//	                                
+//	                                EntityDiggingFX digEffect = new EntityDiggingFX(world, var11, var13, var15, 
+//	                                	var11 - (double)i - 0.5D, var13 - (double)j - 0.5D, var15 - (double)k - 0.5D, 
+//	                                	block, 0, iMetadata, mcInstance.renderEngine);
+//	                                
+//	                                digEffect.applyRenderColor(iMetadata);
+//	                                
+//	                                mcInstance.effectRenderer.addEffect(digEffect);
+//                            	}
+//                            }
+//                        }
+//                    }
+//                }
+//                    
+//    			break;    			
+//    			
+//    		case m_iSnowGolemCreatedAuxFXID:
+//                
+//                for (int iTempCount = 0; iTempCount < 120; ++iTempCount)
+//                {
+//                    world.spawnParticle("snowshovel", (double)i + world.rand.nextDouble(), (double)(j - 2) + world.rand.nextDouble() * 2.5D, (double)k + world.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
+//                }
+//                
+//    	        for(int iTempCount = 0; iTempCount < 8; iTempCount++)
+//    	        {
+//    	            world.spawnParticle("snowballpoof", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+//    	        }
+//
+//                world.playSound(posX, posY, posZ, "random.glass", 
+//            		1.0F, 1.2F / (rand.nextFloat() * 0.2F + 0.9F));
+//                
+//	            world.playSound(posX, posY, posZ, "mob.enderdragon.growl", 0.25F, rand.nextFloat() * 0.2F + 1.8F);
+//	            
+//                for (int iTempCount = 0; iTempCount < 100; iTempCount++)
+//                {
+//					double particleX = (double)posX + rand.nextDouble() * 3D - 1.5D;
+//					double particleY = (double)posY + rand.nextDouble() * 3D - 1.5D;
+//					double particleZ = (double)posZ + rand.nextDouble() * 3D - 1.5D;
+//					
+//		            world.spawnParticle("mobSpell", particleX, particleY, particleZ, 0, 0, 0);
+//                }
+//                
+//    			break;
+//    			
+//    		case m_iIronGolemCreatedAuxFXID:
+//                
+//                for (int iTempCount = 0; iTempCount < 120; ++iTempCount)
+//                {
+//                    world.spawnParticle("snowballpoof", (double)i + world.rand.nextDouble(), (double)(j - 2) + world.rand.nextDouble() * 3.9D, (double)k + world.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
+//                }
+//                
+//    	        for(int iTempCount = 0; iTempCount < 8; iTempCount++)
+//    	        {
+//    	            world.spawnParticle("snowballpoof", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+//    	        }
+//
+//                world.playSound(posX, posY, posZ, "random.glass", 
+//            		1.0F, 1.2F / (rand.nextFloat() * 0.2F + 0.9F));
+//                
+//	            world.playSound(posX, posY, posZ, "mob.irongolem.death", 1.0F, rand.nextFloat() * 0.2F + 0.5F);
+//	            
+//	            world.playSound(posX, posY, posZ, "mob.enderdragon.growl", 0.5F, rand.nextFloat() * 0.2F + 1.5F);
+//	            
+//                for (int iTempCount = 0; iTempCount < 100; iTempCount++)
+//                {
+//					double particleX = (double)posX + rand.nextDouble() * 3D - 1.5D;
+//					double particleY = (double)posY + rand.nextDouble() * 3D - 1.5D;
+//					double particleZ = (double)posZ + rand.nextDouble() * 3D - 1.5D;
+//					
+//		            world.spawnParticle("mobSpell", particleX, particleY, particleZ, 0, 0, 0);
+//                }
+//                
+//    			break;
+//    			
+//    		case m_iTossTheMilkAuxFXID:
+//                
+//                for (int iTempCount = 0; iTempCount < 30; ++iTempCount)
+//                {
+//                    world.spawnParticle("snowballpoof", (double)i + world.rand.nextDouble(), (double)(j - 2) + world.rand.nextDouble() * 3.9D, (double)k + world.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
+//                }
+//                
+//                float fSoundPitch = 2.0F;
+//                
+//                if (iFXSpecificData > 0)
+//                {
+//                	fSoundPitch = 1.2F;
+//                }
+//                world.playSound(posX, posY, posZ,
+//                	"mob.slime.attack", 0.5F, (world.rand.nextFloat() - world.rand.nextFloat()) * 0.1F + 0.6F);
+//                
+//                world.playSound(posX, posY, posZ, 
+//                	"random.classic_hurt", 0.25F, fSoundPitch);
+//                
+//    			break;
+//    			
+//    		case m_iDungAppliedToWolfAuxFXID:
+//    			
+//                world.playSound((float)i + 0.5F, (float)j + 0.5F, (float)k + 0.5F, 
+//            		"mob.wolf.whine", 
+//            		0.5F, 1.5F + (rand.nextFloat() - rand.nextFloat()) * 0.4F);
+//                
+//    	        for (int iTempCount = 0; iTempCount < 15; iTempCount ++)
+//    	        {
+//    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
+//    	        	double dChunkY = posY - 0.5D + world.rand.nextDouble() * 0.25D;
+//    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
+//    	        	
+//    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.25D;
+//    	        	double dChunkVelY = 0.1D + world.rand.nextDouble() * 0.1D;
+//    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.25D;
+//    	        	
+//    	        	// 319 = raw pork based particles
+//    	        	
+//    	            world.spawnParticle("iconcrack_491", dChunkX, dChunkY, dChunkZ, 
+//    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
+//    	        }    	        
+//                
+//                world.playSound(posX, posY, posZ, "mob.slime.attack", 0.5F, (rand.nextFloat() - rand.nextFloat()) * 0.1F + 0.8F);
+//                
+//                break;
+//                
+//    		case m_iStumpRemovedAuxFXID:
+//    			
+//                world.playSound(posX, posY, posZ, "mob.slime.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
+//                
+//    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+//    	        
+//    	        for (int iTempCount = 0; iTempCount < 20; iTempCount ++)
+//    	        {
+//    	        	double dSmokeX = posX + world.rand.nextDouble() - 0.5D;
+//    	        	double dSmokeY = posY + world.rand.nextDouble() - 0.5D;
+//    	        	double dSmokeZ = posZ + world.rand.nextDouble() - 0.5D;
+//    	        	
+//    	        	double dSmokeVelX = (dSmokeX - posX) * 0.33D;
+//    	        	double dSmokeVelY = (dSmokeY - posY) * 0.33D;
+//    	        	double dSmokeVelZ = (dSmokeZ - posZ) * 0.33D;
+//    	        	
+//    	            world.spawnParticle("smoke", dSmokeX, dSmokeY, dSmokeZ, 
+//	            		dSmokeVelX, dSmokeVelY, dSmokeVelZ);
+//    	        }
+//    	        
+//    			break;
+//                
+//    		case m_iShaftRippedOffLogAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "mob.zombie.woodbreak", 0.25F, 1.0F + (rand.nextFloat() * 0.25F));
+//    	        
+//    			break;
+//    			
+//    		case m_iStoneRippedOffAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "random.anvil_land", 0.5F, world.rand.nextFloat() * 0.25F + 1.75F);
+//    	        
+//    			break;
+//    			
+//    		case m_iGravelRippedOffStoneAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "random.anvil_land", 0.25F, world.rand.nextFloat() * 0.25F + 1.5F);
+//    	        world.playSound(posX, posY, posZ, "step.gravel", 1F, world.rand.nextFloat() * 0.25F + 1F);
+//    	        
+//    			break;
+//    			
+//    		case m_iWoodBlockDestroyedAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "mob.zombie.woodbreak", 0.25F, 1.0F + (rand.nextFloat() * 0.25F));
+//    	        
+//    			break;
+//    			
+//    		case m_iBlockDestroyedWithImproperToolAuxFXID:
+//    			
+//                int iBlockID = iFXSpecificData & 0xfff;
+//    	        Block block = Block.blocksList[iBlockID];
+//    			
+//    			if (block != null)
+//    			{
+//                    int iMetadata = iFXSpecificData >> 12 & 0xff;
+//
+//    	        	// FCTODO: Would be cool to put this stuff in the material, or stepsound, or the block itself 
+//    	        	if (block.blockMaterial == FCBetterThanWolves.fcMaterialPlanks ||
+//    	        		block.blockMaterial == FCBetterThanWolves.fcMaterialLog)
+//    	        	{
+//    	    	        world.playSound(posX, posY, posZ, "mob.zombie.woodbreak", 0.25F, 1.0F + (rand.nextFloat() * 0.25F));
+//    	        	}
+//    	        	else if (block.blockMaterial == Material.anvil)
+//    	        	{
+//    	    	        world.playSound(posX, posY, posZ, "random.anvil_land", 1F, world.rand.nextFloat() * 0.25F + 0.75F);
+//    	        	}
+//    			}
+//    			
+//    			break;
+//    			
+//    		case m_iPossessedSquidTransformToGhastAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "mob.slime.attack", 1F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+//    	        
+//	            world.playSound(posX, posY, posZ, "mob.ghast.scream", 10F, (rand.nextFloat() - rand.nextFloat()) * 0.2F  + 1F);
+//    	        
+//    	        for (int iTempCount = 0; iTempCount < 10; iTempCount ++)
+//    	        {
+//    	        	double dExplodeX = posX + (world.rand.nextDouble() - 0.5D) * 4D;
+//    	        	double dExplodeY = posY + (world.rand.nextDouble() - 0.5D) * 4D;
+//    	        	double dExplodeZ = posZ + (world.rand.nextDouble() - 0.5D) * 4D;
+//    	        	
+//        	        world.spawnParticle("largeexplode", dExplodeX, dExplodeY, dExplodeZ, 0.0D, 0.0D, 0.0D);        	        
+//    	        }    	        
+//                
+//    			break;
+//    			
+//    		case m_iMortarAppliedAuxFXID:
+//    			
+//    			world.playSound(posX, posY, posZ, "mob.slime.attack", 0.70F + rand.nextFloat() * 0.1F, 0.85F + rand.nextFloat() * 0.1F);
+//    	        
+//    			break;    			
+//    			
+//    		case m_iLooseBlockOnMortarAuxFXID:
+//    			
+//    			world.playSound(posX, posY, posZ, "mob.slime.attack", 0.15F + rand.nextFloat() * 0.1F, 0.6F + rand.nextFloat() * 0.1F);
+//    	        
+//    			break;
+//    			
+//    		case m_iLogSmoulderingFallAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "mob.zombie.woodbreak", 1.25F, 0.5F + rand.nextFloat() * 0.1F);
+//    	        
+//	            world.playSound(posX, posY, posZ, "mob.ghast.fireball", 1F, 0.5F + rand.nextFloat() * 0.1F);
+//    	        
+//    			break;
+//    			
+//    		case m_iLogSmoulderingExplosionAuxFXID:
+//
+//    			/*
+//    	        world.playSound(posX, posY, posZ, "random.explode", 
+//	        		1.25F, 0.7F + ((rand.nextFloat() - rand.nextFloat()) * 0.2F));
+//	        		*/
+//    	        world.playSound(posX, posY, posZ, "mob.zombie.wood", 1.25F, 0.5F + rand.nextFloat() * 0.1F);
+//    	        
+//    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0D, 0D, 0D);
+//    	        
+//    	        for (int iTempCount = 0; iTempCount < 10; iTempCount ++)
+//    	        {
+//    	        	world.spawnParticle("fccinders", posX, posY, posZ, 0D, 0D, 0D);
+//    	        }    	        
+//    	        
+//    			break;    			
+//    			
+//    		case m_iWaterEvaporateAuxFXID:
+//    			
+//    	        world.playSound(posX, posY, posZ, "random.fizz", 0.5F, 
+//    	    		2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
+//    	        
+//	            for(int iTempCount = 0; iTempCount < 8; iTempCount++)
+//	            {
+//	                world.spawnParticle("largesmoke", posX + rand.nextDouble() - 0.5D, 
+//	                	posY + rand.nextDouble() - 0.5D, posZ + rand.nextDouble() - 0.5D, 
+//	                	0D, 0D, 0D);
+//	            }
+//    	    	
+//    			break;
+//    			
+//    		case m_iWitherCreatedAuxFXID:
+//                
+//                for (int iTempCount = 0; iTempCount < 120; ++iTempCount)
+//                {
+//                    world.spawnParticle("snowballpoof", (double)i + world.rand.nextDouble(), 
+//                    	(double)(j - 2) + world.rand.nextDouble() * 3.9D, 
+//                    	(double)k + world.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
+//                }
+//                
+//    	        for(int iTempCount = 0; iTempCount < 8; iTempCount++)
+//    	        {
+//    	            world.spawnParticle("snowballpoof", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+//    	        }
+//
+//                world.playSound(posX, posY, posZ, "random.glass", 
+//            		1.0F, 1.2F / (rand.nextFloat() * 0.2F + 0.9F));
+//                
+//	            world.playSound(posX, posY, posZ, "mob.wither.death", 1.0F, 
+//	            	rand.nextFloat() * 0.2F + 0.5F);
+//	            
+//	            world.playSound(posX, posY, posZ, "mob.enderdragon.growl", 0.5F, 
+//	            	rand.nextFloat() * 0.2F + 1.5F);
+//	            
+//                for (int iTempCount = 0; iTempCount < 100; iTempCount++)
+//                {
+//					double particleX = (double)posX + rand.nextDouble() * 3D - 1.5D;
+//					double particleY = (double)posY + rand.nextDouble() * 3D - 1.5D;
+//					double particleZ = (double)posZ + rand.nextDouble() * 3D - 1.5D;
+//					
+//		            world.spawnParticle("mobSpell", particleX, particleY, particleZ, 0, 0, 0);
+//                }
+//                
+//    			break;
+//    			
+//    		case m_iLightningStrikeAuxFXID:
+// 
+//    	        world.spawnParticle("largeexplode", posX, posY, posZ, 0D, 0D, 0D);
+//    			
+//	            world.playSound(posX, posY, posZ, "random.explode", 
+//	            	4F, 0.5F + rand.nextFloat() * 0.2F);
+//	            
+//	            world.playSound(posX, posY, posZ, "ambient.weather.thunder", 
+//	            	10000F, 0.8F + rand.nextFloat() * 0.2F);	            
+//	            
+//    			break;
+//    			
+//    		case m_iFlamingNetherrackFallAuxFXID:
+//    			
+//	            world.playSound(posX, posY, posZ, "mob.ghast.fireball", 0.1F, 
+//	            	0.75F + rand.nextFloat() * 0.1F);
+//	            
+//	            break;
+//	            
+//    		case m_iCactusExplodeAuxFXID:
+//    			
+//    	        for (int iTempCount = 0; iTempCount < 150; iTempCount ++)
+//    	        {
+//    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
+//    	        	double dChunkY = posY - 0.45D;;
+//    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
+//    	        	
+//    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	double dChunkVelY = world.rand.nextDouble() * 0.7D;
+//    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.5D;
+//    	        	
+//    	        	// 338 = reed based particles
+//    	        	
+//    	            world.spawnParticle("iconcrack_338", dChunkX, dChunkY, dChunkZ, 
+//    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
+//    	        }
+//    	        
+//    			break;
+//    			
+//    		case m_iAnimalEatAuxFXID:
+//    			
+//    			world.playSound(posX, posY, posZ, "random.eat", 0.75F, 
+//    		    	(rand.nextFloat() - rand.nextFloat()) * 0.2F + 0.6F);
+//    		    
+//    	        for (int iTempCount = 0; iTempCount < 25; iTempCount ++)
+//    	        {
+//    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
+//    	        	double dChunkY = posY;
+//    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
+//    	        	
+//    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.25D;
+//    	        	double dChunkVelY = world.rand.nextDouble() * 0.35D;
+//    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.25D;
+//    	        	
+//    	        	// 361 = pumpkin seeds
+//    	        	
+//    	            world.spawnParticle("iconcrack_361", dChunkX, dChunkY, dChunkZ, 
+//    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
+//    	        }
+//    	        
+//    		    break;
+//    		    
+//    		case m_iWolfEatAuxFXID:
+//    			
+//	            world.playSound(posX, posY, posZ, "random.burp", 
+//            		1.0F, rand.nextFloat() * 0.4F + 0.7F);
+//    		    
+//    	        for (int iTempCount = 0; iTempCount < 25; iTempCount ++)
+//    	        {
+//    	        	double dChunkX = posX + world.rand.nextDouble() - 0.5D;
+//    	        	double dChunkY = posY;
+//    	        	double dChunkZ = posZ + world.rand.nextDouble() - 0.5D;
+//    	        	
+//    	        	double dChunkVelX = (world.rand.nextDouble() - 0.5D) * 0.25D;
+//    	        	double dChunkVelY = world.rand.nextDouble() * 0.35D;
+//    	        	double dChunkVelZ = (world.rand.nextDouble() - 0.5D) * 0.25D;
+//    	        	
+//    	        	// 281 = bowl based particles
+//    	        	
+//    	            world.spawnParticle("iconcrack_281", dChunkX, dChunkY, dChunkZ, 
+//    	            	dChunkVelX, dChunkVelY, dChunkVelZ);
+//    	        }
+//    	        
+//    		    break;
+//    		    
+//    		case m_iEatFailAuxFXID:
+//    			
+//	            world.playSound(posX, posY, posZ, "random.burp", 
+//            		0.25F, rand.nextFloat() * 0.3F + 1F);
+//	            
+//    			break;
+//    			
+//			default:
+//				
+//				return false;
+//    	}
+//    	
+//    	return true;
+//    }
 }

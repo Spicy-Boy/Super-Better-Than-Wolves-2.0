@@ -300,9 +300,9 @@ public class FCBlockTorchBase extends Block
     
 	//----------- Client Side Functionality -----------//
     
-    @Override
-    public boolean RenderBlock( RenderBlocks renderBlocks, int i, int j, int k )
-    {
-    	return renderBlocks.renderBlockTorch( this, i, j, k );
-    }
+//    @Override
+//    public boolean RenderBlock( RenderBlocks renderBlocks, int i, int j, int k )
+//    {
+//    	return renderBlocks.renderBlockTorch( this, i, j, k );
+//    }
 }

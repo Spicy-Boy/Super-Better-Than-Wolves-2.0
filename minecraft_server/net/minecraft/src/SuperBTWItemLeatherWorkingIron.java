@@ -56,14 +56,14 @@ public class SuperBTWItemLeatherWorkingIron extends SuperBTWItemBladeProgressive
 	 
 	 private Icon m_iconLeatherWorking;
 	 
-	 @Override    
-	 public void registerIcons( IconRegister register )
-	 {
-		 super.registerIcons( register );
-	    	
-	     m_iconLeatherWorking = register.registerIcon( "SuperBTWItemLeatherWorkingIron" );
-	 }
-	    
+//	 @Override    
+//	 public void registerIcons( IconRegister register )
+//	 {
+//		 super.registerIcons( register );
+//	    	
+//	     m_iconLeatherWorking = register.registerIcon( "SuperBTWItemLeatherWorkingIron" );
+//	 }
+//	    
 	 public void onCreated( ItemStack stack, World world, EntityPlayer player ) 
 	 {
 		 super.onCreated( stack, world, player );

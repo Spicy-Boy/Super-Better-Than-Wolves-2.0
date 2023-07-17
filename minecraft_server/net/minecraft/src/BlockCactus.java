@@ -41,12 +41,12 @@ public class BlockCactus extends Block
                 if (var7 == 15)
                 {
                     par1World.setBlock(par2, par3 + 1, par4, this.blockID);
-                    par1World.setBlockMetadataWithNotify(par2, par3, par4, 0, 4);
+                    par1World.setBlockMetadata(par2, par3, par4, 0, 4);
                     this.onNeighborBlockChange(par1World, par2, par3 + 1, par4, this.blockID);
                 }
                 else
                 {
-                    par1World.setBlockMetadataWithNotify(par2, par3, par4, var7 + 1, 4);
+                    par1World.setBlockMetadata(par2, par3, par4, var7 + 1, 4);
                 }
             }
         }
@@ -164,10 +164,10 @@ public class BlockCactus extends Block
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
-    public void registerIcons(IconRegister par1IconRegister)
-    {
-        this.blockIcon = par1IconRegister.registerIcon("cactus_side");
-        this.cactusTopIcon = par1IconRegister.registerIcon("cactus_top");
-        this.cactusBottomIcon = par1IconRegister.registerIcon("cactus_bottom");
-    }
+//    public void registerIcons(IconRegister par1IconRegister)
+//    {
+//        this.blockIcon = par1IconRegister.registerIcon("cactus_side");
+//        this.cactusTopIcon = par1IconRegister.registerIcon("cactus_top");
+//        this.cactusBottomIcon = par1IconRegister.registerIcon("cactus_bottom");
+//    }
 }

@@ -301,16 +301,16 @@ public class SuperBTWBlockBranchSlab extends FCBlockFalling {
 	public Icon[] topIcons;
 	public Icon[] sideIcons;
 
-	@Override
-	public void registerIcons(IconRegister register) {
-		topIcons = new Icon[topTextures.length];
-		sideIcons = new Icon[sideTextures.length];
-		
-		for (int i = 0; i < types.length; i++) {
-			topIcons[i] = register.registerIcon(topTextures[i]);
-			sideIcons[i] = register.registerIcon(sideTextures[i]);
-		}
-	}
+//	@Override
+//	public void registerIcons(IconRegister register) {
+//		topIcons = new Icon[topTextures.length];
+//		sideIcons = new Icon[sideTextures.length];
+//		
+//		for (int i = 0; i < types.length; i++) {
+//			topIcons[i] = register.registerIcon(topTextures[i]);
+//			sideIcons[i] = register.registerIcon(sideTextures[i]);
+//		}
+//	}
 	
 	public Icon getIcon(int side, int meta) {
         int dir = getDirection(meta);
@@ -325,20 +325,20 @@ public class SuperBTWBlockBranchSlab extends FCBlockFalling {
         }
     }
 	
-	@Override
-	public Icon getBlockTexture(IBlockAccess blockAccess, int x, int y, int z, int side) {
-        int meta = blockAccess.getBlockMetadata(x, y, z);
-		int dir = getDirection(meta);
-        int type = getType(meta);
-        
-        if (dir == 0 && (side == 2 || side == 3) ||
-            dir == 1 && (side == 4 || side == 5)) {
-        	return topIcons[type];
-        }
-        else {
-        	return sideIcons[type];
-        }
-	}
+//	@Override
+//	public Icon getBlockTexture(IBlockAccess blockAccess, int x, int y, int z, int side) {
+//        int meta = blockAccess.getBlockMetadata(x, y, z);
+//		int dir = getDirection(meta);
+//        int type = getType(meta);
+//        
+//        if (dir == 0 && (side == 2 || side == 3) ||
+//            dir == 1 && (side == 4 || side == 5)) {
+//        	return topIcons[type];
+//        }
+//        else {
+//        	return sideIcons[type];
+//        }
+//	}
 
 	//----------- Bounds -----------//
 	
@@ -392,73 +392,73 @@ public class SuperBTWBlockBranchSlab extends FCBlockFalling {
 		return isFullBlock(blockAccess.getBlockMetadata(i, j, k));
 	}
 		
-	public boolean RenderBlock(RenderBlocks render, int x, int y, int z)
-	{
-        int meta = render.blockAccess.getBlockMetadata(x, y, z);
-        int dir = getDirection(meta);
-
-        if (dir == 1) {
-			render.SetUvRotateTop(1);
-			render.SetUvRotateBottom(1);
-			render.SetUvRotateWest(1);
-			render.SetUvRotateEast(1);
-        }
-        else if (dir == 0) {
-			render.SetUvRotateNorth(1);
-			render.SetUvRotateSouth(1);
-        }
-        
-		render.setRenderBounds(GetBlockBoundsFromPoolBasedOnState(meta));
-		render.renderStandardBlock(this, x, y, z);
-		render.ClearUvRotation();
-		return true;
-	}
+//	public boolean RenderBlock(RenderBlocks render, int x, int y, int z)
+//	{
+//        int meta = render.blockAccess.getBlockMetadata(x, y, z);
+//        int dir = getDirection(meta);
+//
+//        if (dir == 1) {
+//			render.SetUvRotateTop(1);
+//			render.SetUvRotateBottom(1);
+//			render.SetUvRotateWest(1);
+//			render.SetUvRotateEast(1);
+//        }
+//        else if (dir == 0) {
+//			render.SetUvRotateNorth(1);
+//			render.SetUvRotateSouth(1);
+//        }
+//        
+//		render.setRenderBounds(GetBlockBoundsFromPoolBasedOnState(meta));
+//		render.renderStandardBlock(this, x, y, z);
+//		render.ClearUvRotation();
+//		return true;
+//	}
 	
 	//----------- Render Falling Block -----------//
 	
-	@Override
-	public void RenderFallingBlock(RenderBlocks render, int x, int y, int z, int meta) {
-        int dir = getDirection(meta);
-
-        if (dir == 1) {
-			render.SetUvRotateTop(1);
-			render.SetUvRotateBottom(1);
-			render.SetUvRotateWest(1);
-			render.SetUvRotateEast(1);
-        }
-        else if (dir == 0) {
-			render.SetUvRotateNorth(1);
-			render.SetUvRotateSouth(1);
-        }
-        
-		render.setRenderBounds(GetBlockBoundsFromPoolBasedOnState(meta));
-		render.RenderStandardFallingBlock(this, x, y, z, meta);
-		render.ClearUvRotation();
-	}
+//	@Override
+//	public void RenderFallingBlock(RenderBlocks render, int x, int y, int z, int meta) {
+//        int dir = getDirection(meta);
+//
+//        if (dir == 1) {
+//			render.SetUvRotateTop(1);
+//			render.SetUvRotateBottom(1);
+//			render.SetUvRotateWest(1);
+//			render.SetUvRotateEast(1);
+//        }
+//        else if (dir == 0) {
+//			render.SetUvRotateNorth(1);
+//			render.SetUvRotateSouth(1);
+//        }
+//        
+//		render.setRenderBounds(GetBlockBoundsFromPoolBasedOnState(meta));
+//		render.RenderStandardFallingBlock(this, x, y, z, meta);
+//		render.ClearUvRotation();
+//	}
 	
 	//----------- Render Item Block -----------//
 	
-	@Override
-	public void RenderBlockAsItem(RenderBlocks render, int damage, float fBrightness) {
-        int dir = getDirection(damage);
-
-        if (dir == 1) {
-			render.SetUvRotateTop(1);
-			render.SetUvRotateBottom(1);
-			render.SetUvRotateWest(1);
-			render.SetUvRotateEast(1);
-        }
-        else if (dir == 0) {
-			render.SetUvRotateNorth(1);
-			render.SetUvRotateSouth(1);
-        }
-        
-		render.setRenderBounds(GetBlockBoundsFromPoolBasedOnState(damage));
-		
-		FCClientUtilsRender.RenderInvBlockWithMetadata(render, this, -0.5F, -0.5F, -0.5F, damage);
-		
-		render.ClearUvRotation();
-	}
+//	@Override
+//	public void RenderBlockAsItem(RenderBlocks render, int damage, float fBrightness) {
+//        int dir = getDirection(damage);
+//
+//        if (dir == 1) {
+//			render.SetUvRotateTop(1);
+//			render.SetUvRotateBottom(1);
+//			render.SetUvRotateWest(1);
+//			render.SetUvRotateEast(1);
+//        }
+//        else if (dir == 0) {
+//			render.SetUvRotateNorth(1);
+//			render.SetUvRotateSouth(1);
+//        }
+//        
+//		render.setRenderBounds(GetBlockBoundsFromPoolBasedOnState(damage));
+//		
+//		FCClientUtilsRender.RenderInvBlockWithMetadata(render, this, -0.5F, -0.5F, -0.5F, damage);
+//		
+//		render.ClearUvRotation();
+//	}
 }
 
 

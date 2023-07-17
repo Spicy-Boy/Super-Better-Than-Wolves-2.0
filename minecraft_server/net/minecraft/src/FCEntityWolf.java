@@ -1012,60 +1012,60 @@ public class FCEntityWolf extends EntityWolf
 
 	//----------- Client Side Functionality -----------//
 
-	@Override
-	public String getTexture()
-	{
-		if ( isTamed() )
-		{
-			if ( IsStarving() )
-			{
-				return "/btwmodtex/fcWolf_tame_starving.png";
-			}
-
-			return "/mob/wolf_tame.png";
-		}
-		else if ( isAngry() )
-		{
-			return "/mob/wolf_angry.png";
-		}
-		else if ( IsStarving() )
-		{
-			return "/btwmodtex/fcWolf_wild_starving.png"; 
-		}
-
-		return texture; // intentionally bypass super method
-	}
-
-	@Override
-	public void handleHealthUpdate( byte bUpdateType )
-	{
-		if ( bUpdateType == 10 )
-		{
-			m_iHowlingCountdown = FCEntityAIWolfHowl.m_iHowlDuration;
-		}
-		else if ( bUpdateType == 11 )
-		{
-			addPotionEffect( new PotionEffect( Potion.wither.id, 40 * 20, 0 ) );
-		}
-		else
-		{    	
-			super.handleHealthUpdate(bUpdateType);
-		}
-	}
-
-	@Override
-	public float getTailRotation()
-	{
-		if ( IsWildAndHostile() )
-		{
-			return 1.5393804F;
-		}
-		else if ( isTamed() )
-		{
-			return ( 0.55F - (float)( 20 - this.dataWatcher.getWatchableObjectInt( 18 ) ) * 
-					0.02F ) * (float)Math.PI;
-		}
-
-		return (float)Math.PI / 5F;
-	}
+//	@Override
+//	public String getTexture()
+//	{
+//		if ( isTamed() )
+//		{
+//			if ( IsStarving() )
+//			{
+//				return "/btwmodtex/fcWolf_tame_starving.png";
+//			}
+//
+//			return "/mob/wolf_tame.png";
+//		}
+//		else if ( isAngry() )
+//		{
+//			return "/mob/wolf_angry.png";
+//		}
+//		else if ( IsStarving() )
+//		{
+//			return "/btwmodtex/fcWolf_wild_starving.png"; 
+//		}
+//
+//		return texture; // intentionally bypass super method
+//	}
+//
+//	@Override
+//	public void handleHealthUpdate( byte bUpdateType )
+//	{
+//		if ( bUpdateType == 10 )
+//		{
+//			m_iHowlingCountdown = FCEntityAIWolfHowl.m_iHowlDuration;
+//		}
+//		else if ( bUpdateType == 11 )
+//		{
+//			addPotionEffect( new PotionEffect( Potion.wither.id, 40 * 20, 0 ) );
+//		}
+//		else
+//		{    	
+//			super.handleHealthUpdate(bUpdateType);
+//		}
+//	}
+//
+//	@Override
+//	public float getTailRotation()
+//	{
+//		if ( IsWildAndHostile() )
+//		{
+//			return 1.5393804F;
+//		}
+//		else if ( isTamed() )
+//		{
+//			return ( 0.55F - (float)( 20 - this.dataWatcher.getWatchableObjectInt( 18 ) ) * 
+//					0.02F ) * (float)Math.PI;
+//		}
+//
+//		return (float)Math.PI / 5F;
+//	}
 }

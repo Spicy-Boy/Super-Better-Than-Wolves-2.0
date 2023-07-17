@@ -85,12 +85,12 @@ public class SuperBTWBlockBranch extends Block
     private Icon woodIcon;
     private Icon branchIcon;
     
-    public void registerIcons( IconRegister register )
-    {
-        woodIcon = register.registerIcon( "tree_spruce" );
-        branchIcon = register.registerIcon("SuperBTWBlockBranch");
-       // branchIcon = register.registerIcon("redstoneDust_cross");
-    }
+//    public void registerIcons( IconRegister register )
+//    {
+//        woodIcon = register.registerIcon( "tree_spruce" );
+//        branchIcon = register.registerIcon("SuperBTWBlockBranch");
+//       // branchIcon = register.registerIcon("redstoneDust_cross");
+//    }
     
     public Icon getIcon( int iSide, int iMetadata )
     {
@@ -105,44 +105,44 @@ public class SuperBTWBlockBranch extends Block
     
   
 /*SOCK'S RENDER CODE: has some z fighting and transparency issues...*/    
-    public boolean RenderBlock( RenderBlocks renderBlocks, int i, int j, int k)
-    {
-        
-        renderBlocks.setRenderBounds(12/16D, 0, 3/16D, 14/16D, 1/16D, 5/16D);
-        renderBlocks.renderStandardBlock(this, i, j, k);
-        
-        renderBlocks.setRenderBounds(11/16D, 0, 4/16D, 13/16D, 1/16D, 6/16D);
-        renderBlocks.renderStandardBlock(this, i, j, k);
-        
-        renderBlocks.setRenderBounds(10/16D, 0, 5/16D, 12/16D, 1/16D, 7/16D);
-        renderBlocks.renderStandardBlock(this, i, j, k);
-        
-        renderBlocks.setRenderBounds(9/16D, 0, 6/16D, 11/16D, 1/16D, 8/16D);
-        renderBlocks.renderStandardBlock(this, i, j, k);
-        
-        renderBlocks.setRenderBounds(7/16D, 0, 6/16D, 10/16D, 1/16D, 9/16D);
-        renderBlocks.renderStandardBlock(this, i, j, k);
-        
-        renderBlocks.setRenderBounds(8/16D, 0, 5/16D, 9/16D, 1/16D, 10/16D);
-        renderBlocks.renderStandardBlock(this, i, j, k);
-        
-        renderBlocks.setRenderBounds(6/16D, 0, 9/16D, 8/16D, 1/16D, 11/16D);
-        renderBlocks.renderStandardBlock(this, i, j, k);
-        
-        renderBlocks.setRenderBounds(5/16D, 0, 10/16D, 7/16D, 1/16D, 12/16D);
-        renderBlocks.renderStandardBlock(this, i, j, k);
-        
-        renderBlocks.setRenderBounds(4/16D, 0, 11/16D, 6/16D, 1/16D, 13/16D);
-        renderBlocks.renderStandardBlock(this, i, j, k);
-        
-        renderBlocks.setRenderBounds(3/16D, 0, 12/16D, 5/16D, 1/16D, 14/16D);
-        renderBlocks.renderStandardBlock(this, i, j, k);
-        
-        renderBlocks.setRenderBounds(2/16D, 0, 13/16D, 4/16D, 1/16D, 15/16D);
-        renderBlocks.renderStandardBlock(this, i, j, k);
-
-        return true;
-    }
+//    public boolean RenderBlock( RenderBlocks renderBlocks, int i, int j, int k)
+//    {
+//        
+//        renderBlocks.setRenderBounds(12/16D, 0, 3/16D, 14/16D, 1/16D, 5/16D);
+//        renderBlocks.renderStandardBlock(this, i, j, k);
+//        
+//        renderBlocks.setRenderBounds(11/16D, 0, 4/16D, 13/16D, 1/16D, 6/16D);
+//        renderBlocks.renderStandardBlock(this, i, j, k);
+//        
+//        renderBlocks.setRenderBounds(10/16D, 0, 5/16D, 12/16D, 1/16D, 7/16D);
+//        renderBlocks.renderStandardBlock(this, i, j, k);
+//        
+//        renderBlocks.setRenderBounds(9/16D, 0, 6/16D, 11/16D, 1/16D, 8/16D);
+//        renderBlocks.renderStandardBlock(this, i, j, k);
+//        
+//        renderBlocks.setRenderBounds(7/16D, 0, 6/16D, 10/16D, 1/16D, 9/16D);
+//        renderBlocks.renderStandardBlock(this, i, j, k);
+//        
+//        renderBlocks.setRenderBounds(8/16D, 0, 5/16D, 9/16D, 1/16D, 10/16D);
+//        renderBlocks.renderStandardBlock(this, i, j, k);
+//        
+//        renderBlocks.setRenderBounds(6/16D, 0, 9/16D, 8/16D, 1/16D, 11/16D);
+//        renderBlocks.renderStandardBlock(this, i, j, k);
+//        
+//        renderBlocks.setRenderBounds(5/16D, 0, 10/16D, 7/16D, 1/16D, 12/16D);
+//        renderBlocks.renderStandardBlock(this, i, j, k);
+//        
+//        renderBlocks.setRenderBounds(4/16D, 0, 11/16D, 6/16D, 1/16D, 13/16D);
+//        renderBlocks.renderStandardBlock(this, i, j, k);
+//        
+//        renderBlocks.setRenderBounds(3/16D, 0, 12/16D, 5/16D, 1/16D, 14/16D);
+//        renderBlocks.renderStandardBlock(this, i, j, k);
+//        
+//        renderBlocks.setRenderBounds(2/16D, 0, 13/16D, 4/16D, 1/16D, 15/16D);
+//        renderBlocks.renderStandardBlock(this, i, j, k);
+//
+//        return true;
+//    }
     
 
 }

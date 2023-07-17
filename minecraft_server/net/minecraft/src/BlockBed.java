@@ -58,7 +58,7 @@ public class BlockBed extends BlockDirectional
                         if (var21.isPlayerSleeping())
                         {
                         	 //AARON added the below via backport in order to fix sleeping bug of the wall transparent variety
-                            ChunkCoordinates var14 = var21.playerBedLocation;
+                        	ChunkCoordinates var14 = var21.playerBedLocation;                 
 //                        	ChunkCoordinates var14 = var21.playerLocation;
 
                             if (var14.posX == par2 && var14.posY == par3 && var14.posZ == par4)
@@ -129,31 +129,31 @@ public class BlockBed extends BlockDirectional
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public Icon getIcon(int par1, int par2)
-    {
-        if (par1 == 0)
-        {
-            return Block.planks.getBlockTextureFromSide(par1);
-        }
-        else
-        {
-            int var3 = getDirection(par2);
-            int var4 = Direction.bedDirection[var3][par1];
-            int var5 = isBlockHeadOfBed(par2) ? 1 : 0;
-            return (var5 != 1 || var4 != 2) && (var5 != 0 || var4 != 3) ? (var4 != 5 && var4 != 4 ? this.bedTopIcons[var5] : this.bedSideIcons[var5]) : this.field_94472_b[var5];
-        }
-    }
+//    public Icon getIcon(int par1, int par2)
+//    {
+//        if (par1 == 0)
+//        {
+//            return Block.planks.getBlockTextureFromSide(par1);
+//        }
+//        else
+//        {
+//            int var3 = getDirection(par2);
+//            int var4 = Direction.bedDirection[var3][par1];
+//            int var5 = isBlockHeadOfBed(par2) ? 1 : 0;
+//            return (var5 != 1 || var4 != 2) && (var5 != 0 || var4 != 3) ? (var4 != 5 && var4 != 4 ? this.bedTopIcons[var5] : this.bedSideIcons[var5]) : this.field_94472_b[var5];
+//        }
+//    }
 
     /**
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
-    public void registerIcons(IconRegister par1IconRegister)
-    {
-        this.bedTopIcons = new Icon[] {par1IconRegister.registerIcon("bed_feet_top"), par1IconRegister.registerIcon("bed_head_top")};
-        this.field_94472_b = new Icon[] {par1IconRegister.registerIcon("bed_feet_end"), par1IconRegister.registerIcon("bed_head_end")};
-        this.bedSideIcons = new Icon[] {par1IconRegister.registerIcon("bed_feet_side"), par1IconRegister.registerIcon("bed_head_side")};
-    }
+//    public void registerIcons(IconRegister par1IconRegister)
+//    {
+//        this.bedTopIcons = new Icon[] {par1IconRegister.registerIcon("bed_feet_top"), par1IconRegister.registerIcon("bed_head_top")};
+//        this.field_94472_b = new Icon[] {par1IconRegister.registerIcon("bed_feet_end"), par1IconRegister.registerIcon("bed_head_end")};
+//        this.bedSideIcons = new Icon[] {par1IconRegister.registerIcon("bed_feet_side"), par1IconRegister.registerIcon("bed_head_side")};
+//    }
 
     /**
      * The type of render function that is called for this block
@@ -262,8 +262,9 @@ public class BlockBed extends BlockDirectional
         {
             var5 &= -5;
         }
-
-        par0World.setBlockMetadataWithNotify(par1, par2, par3, var5, 4);
+        
+        //updated for SMP code (no notify server)
+        par0World.setBlockMetadata(par1, par2, par3, var5, 4);
     }
 
     /**

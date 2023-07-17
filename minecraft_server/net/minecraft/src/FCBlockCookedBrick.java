@@ -233,15 +233,15 @@ public class FCBlockCookedBrick extends Block
 	
 	//----------- Client Side Functionality -----------//
 	
-	@Override
-    public boolean shouldSideBeRendered( IBlockAccess blockAccess, int iNeighborI, int iNeighborJ, int iNeighborK, int iSide )
-    {
-		if ( iSide == 0 )
-		{
-			return FCClientUtilsRender.ShouldRenderNeighborFullFaceSide( blockAccess,
-				iNeighborI, iNeighborJ, iNeighborK, iSide );
-		}
-		
-		return true;
-    }
+//	@Override
+//    public boolean shouldSideBeRendered( IBlockAccess blockAccess, int iNeighborI, int iNeighborJ, int iNeighborK, int iSide )
+//    {
+//		if ( iSide == 0 )
+//		{
+//			return FCClientUtilsRender.ShouldRenderNeighborFullFaceSide( blockAccess,
+//				iNeighborI, iNeighborJ, iNeighborK, iSide );
+//		}
+//		
+//		return true;
+//    }
 }

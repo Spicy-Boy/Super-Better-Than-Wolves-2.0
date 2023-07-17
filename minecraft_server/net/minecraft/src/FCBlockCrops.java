@@ -267,39 +267,39 @@ public abstract class FCBlockCrops extends FCBlockPlants
     
 	//----------- Client Side Functionality -----------//
     
-    @Override
-    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
-    {
-    	RenderCrops( renderer, i, j, k );
-    	
-    	FCBetterThanWolves.fcBlockWeeds.RenderWeeds( this, renderer, i, j, k );
-		
-    	return true;
-    }
-    
-    protected void RenderCrops( RenderBlocks renderer, int i, int j, int k )
-    {
-        Tessellator tessellator = Tessellator.instance;
-        
-        tessellator.setBrightness( getMixedBrightnessForBlock( renderer.blockAccess, i, j, k ) );
-        tessellator.setColorOpaque_F( 1F, 1F, 1F );
-        
-        double dVerticalOffset = 0D;
-        Block blockBelow = Block.blocksList[renderer.blockAccess.getBlockId( i, j - 1, k )];
-        
-        if ( blockBelow != null )
-        {
-        	dVerticalOffset = blockBelow.GroundCoverRestingOnVisualOffset( 
-        		renderer.blockAccess, i, j - 1, k );
-        }
-        
-        RenderCrossHatch( renderer, i, j, k, getBlockTexture( renderer.blockAccess, i, j, k, 0 ), 
-        	4D / 16D, dVerticalOffset );
-    }
-    
-    @Override
-    public int idPicked( World world, int i, int j, int k )
-    {
-        return GetSeedItemID();
-    }
+//    @Override
+//    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
+//    {
+//    	RenderCrops( renderer, i, j, k );
+//    	
+//    	FCBetterThanWolves.fcBlockWeeds.RenderWeeds( this, renderer, i, j, k );
+//		
+//    	return true;
+//    }
+//    
+//    protected void RenderCrops( RenderBlocks renderer, int i, int j, int k )
+//    {
+//        Tessellator tessellator = Tessellator.instance;
+//        
+//        tessellator.setBrightness( getMixedBrightnessForBlock( renderer.blockAccess, i, j, k ) );
+//        tessellator.setColorOpaque_F( 1F, 1F, 1F );
+//        
+//        double dVerticalOffset = 0D;
+//        Block blockBelow = Block.blocksList[renderer.blockAccess.getBlockId( i, j - 1, k )];
+//        
+//        if ( blockBelow != null )
+//        {
+//        	dVerticalOffset = blockBelow.GroundCoverRestingOnVisualOffset( 
+//        		renderer.blockAccess, i, j - 1, k );
+//        }
+//        
+//        RenderCrossHatch( renderer, i, j, k, getBlockTexture( renderer.blockAccess, i, j, k, 0 ), 
+//        	4D / 16D, dVerticalOffset );
+//    }
+//    
+//    @Override
+//    public int idPicked( World world, int i, int j, int k )
+//    {
+//        return GetSeedItemID();
+//    }
 }

@@ -127,52 +127,52 @@ public abstract class SCBlockGourdVineFloweringBase extends SCBlockGourdVine {
 	public Icon[] flowerIcons;
 	
 
-    @Override
-    public void registerIcons( IconRegister register )
-    {
-        flowerIcons = new Icon[2];
-
-        for ( int iTempIndex = 0; iTempIndex < flowerIcons.length; iTempIndex++ )
-        {
-        	flowerIcons[iTempIndex] = register.registerIcon( "SCBlockPumpkinVineFlowering_" + iTempIndex );
-        }
-        
-        blockIcon = flowerIcons[1]; // for block hit effects and item render
-        
-        connectorIcons = new Icon[4];
-        for ( int iTempIndex = 0; iTempIndex < connectorIcons.length; iTempIndex++ )
-        {
-        	connectorIcons[iTempIndex] = register.registerIcon( "SCBlockPumpkinVineConnector_" + iTempIndex );
-        }
-   
-    }
-
-	@Override
-    public Icon getBlockTexture( IBlockAccess blockAccess, int i, int j, int k, int iSide )
-    {
-		if (!IsFullyGrown(blockAccess.getBlockMetadata(i, j, k)))
-		{
-			return flowerIcons[1];
-		}
-		else return flowerIcons[0];
-        
-    }
-	
-	public boolean renderVineConnector(RenderBlocks r, int par2, int par3, int par4)
-    {
-    	IBlockAccess blockAccess = r.blockAccess;
-    	
-    	Tessellator tess = Tessellator.instance;
-        tess.setBrightness(this.getMixedBrightnessForBlock(blockAccess, par2, par3, par4));
-        float var6 = 1.0F;
-        int var7 = this.colorMultiplier(blockAccess, par2, par3, par4);
-        float var8 = (float)(var7 >> 16 & 255) / 255.0F;
-        float var9 = (float)(var7 >> 8 & 255) / 255.0F;
-        float var10 = (float)(var7 & 255) / 255.0F;
-        
-        int growthLevel = this.GetGrowthLevel(blockAccess.getBlockMetadata(par2, par3, par4));
-        this.drawConnector(this, blockAccess.getBlockMetadata(par2, par3, par4), par2, par3, par4, 1.0F, this.connectorIcons[3]);
-        
-		return true;
-    }
+//    @Override
+//    public void registerIcons( IconRegister register )
+//    {
+//        flowerIcons = new Icon[2];
+//
+//        for ( int iTempIndex = 0; iTempIndex < flowerIcons.length; iTempIndex++ )
+//        {
+//        	flowerIcons[iTempIndex] = register.registerIcon( "SCBlockPumpkinVineFlowering_" + iTempIndex );
+//        }
+//        
+//        blockIcon = flowerIcons[1]; // for block hit effects and item render
+//        
+//        connectorIcons = new Icon[4];
+//        for ( int iTempIndex = 0; iTempIndex < connectorIcons.length; iTempIndex++ )
+//        {
+//        	connectorIcons[iTempIndex] = register.registerIcon( "SCBlockPumpkinVineConnector_" + iTempIndex );
+//        }
+//   
+//    }
+//
+//	@Override
+//    public Icon getBlockTexture( IBlockAccess blockAccess, int i, int j, int k, int iSide )
+//    {
+//		if (!IsFullyGrown(blockAccess.getBlockMetadata(i, j, k)))
+//		{
+//			return flowerIcons[1];
+//		}
+//		else return flowerIcons[0];
+//        
+//    }
+//	
+//	public boolean renderVineConnector(RenderBlocks r, int par2, int par3, int par4)
+//    {
+//    	IBlockAccess blockAccess = r.blockAccess;
+//    	
+//    	Tessellator tess = Tessellator.instance;
+//        tess.setBrightness(this.getMixedBrightnessForBlock(blockAccess, par2, par3, par4));
+//        float var6 = 1.0F;
+//        int var7 = this.colorMultiplier(blockAccess, par2, par3, par4);
+//        float var8 = (float)(var7 >> 16 & 255) / 255.0F;
+//        float var9 = (float)(var7 >> 8 & 255) / 255.0F;
+//        float var10 = (float)(var7 & 255) / 255.0F;
+//        
+//        int growthLevel = this.GetGrowthLevel(blockAccess.getBlockMetadata(par2, par3, par4));
+//        this.drawConnector(this, blockAccess.getBlockMetadata(par2, par3, par4), par2, par3, par4, 1.0F, this.connectorIcons[3]);
+//        
+//		return true;
+//    }
 }

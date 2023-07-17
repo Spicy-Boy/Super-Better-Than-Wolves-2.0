@@ -9,7 +9,6 @@ public class EntityItem extends Entity
     /**
      * The age of this EntityItem (used to animate it up and down as well as expire it)
      */
-	
     public int age;
     public int delayBeforeCanPickup;
 
@@ -133,7 +132,7 @@ public class EntityItem extends Entity
         {
             this.motionY *= -0.5D;
         }
-        
+
         ++this.age;
 
         // FCMOD: Code change
@@ -292,7 +291,7 @@ public class EntityItem extends Entity
         
         // FCMOD: Code added
         par1NBTTagCompound.setLong( "fcDespawnTime", m_lAbsoluteItemDespawnTime );
-    	
+        
     	par1NBTTagCompound.setString("yyDroppedByPlayerDeath", droppedByPlayerDeath);
     	par1NBTTagCompound.setInteger("yyNDeath", nDeath);
 	    // END FCMOD    
@@ -314,21 +313,19 @@ public class EntityItem extends Entity
 	    	m_lAbsoluteItemDespawnTime = par1NBTTagCompound.getLong( "fcDespawnTime" );
 	    }
 	    // END FCMOD
-	    //AARON ADDED from Yany Code
 	    if(par1NBTTagCompound.hasKey("yyDroppedByPlayerDeath"))
-	    	{
-	    		droppedByPlayerDeath = par1NBTTagCompound.getString("yyDroppedByPlayerDeath");
-	    	}
-	    	if(par1NBTTagCompound.hasKey("yyNDeath"))
-	    	{
-	    		nDeath = par1NBTTagCompound.getInteger("yyNDeath");
-	    	}
-        
+    	{
+    		droppedByPlayerDeath = par1NBTTagCompound.getString("yyDroppedByPlayerDeath");
+    	}
+    	if(par1NBTTagCompound.hasKey("yyNDeath"))
+    	{
+    		nDeath = par1NBTTagCompound.getInteger("yyNDeath");
+    	}
+	    
         if (this.getEntityItem() == null)
         {
             this.setDead();
         }
-        
     }
 
     /**
@@ -390,12 +387,9 @@ public class EntityItem extends Entity
         return false;
     }
 
-    /**
-     * Teleports the entity to another dimension. Params: Dimension number to teleport to
-     */
-    public void travelToDimension(int par1)
+    public void travelToTheEnd(int par1)
     {
-        super.travelToDimension(par1);
+        super.travelToTheEnd(par1);
 
         if (!this.worldObj.isRemote)
         {
@@ -435,13 +429,12 @@ public class EntityItem extends Entity
         this.getDataWatcher().setObjectWatched(10);
     }
 
-    // FCMOD: Code added    
+    // FCMOD: Code added
     private long m_lAbsoluteItemDespawnTime = 0;
     
     //AARON ADDED from YANY!!
     public String droppedByPlayerDeath = "";
     public int nDeath = -1;
-	
     
     private void UpdateHardcoreBuoy()
     {

@@ -310,17 +310,17 @@ public class BlockRedstoneTorch extends FCBlockTorchBase
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
-    public void registerIcons(IconRegister par1IconRegister)
-    {
-        if (this.torchActive)
-        {
-            this.blockIcon = par1IconRegister.registerIcon("redtorch_lit");
-        }
-        else
-        {
-            this.blockIcon = par1IconRegister.registerIcon("redtorch");
-        }
-    }
+//    public void registerIcons(IconRegister par1IconRegister)
+//    {
+//        if (this.torchActive)
+//        {
+//            this.blockIcon = par1IconRegister.registerIcon("redtorch_lit");
+//        }
+//        else
+//        {
+//            this.blockIcon = par1IconRegister.registerIcon("redtorch");
+//        }
+//    }
     
     // FCMOD: Added new
 	@Override

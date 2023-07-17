@@ -1,13 +1,13 @@
 package net.minecraft.src;
 
-import com.prupe.mcpatcher.cc.ColorizeBlock;
+//import com.prupe.mcpatcher.cc.ColorizeBlock;
 import java.util.List;
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
+//import org.lwjgl.opengl.GL11;
 
 // FCMOD: Added
-import net.minecraft.client.Minecraft; //client only
+//import net.minecraft.client.Minecraft; //client only
 // END FCMOD
 
 public class Block
@@ -459,20 +459,20 @@ public class Block
     }
 
     /**
-     * How bright to render this block based on the light its receiving. Args: iBlockAccess, x, y, z
-     */
-    public float getBlockBrightness(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
-    {
-        return par1IBlockAccess.getBrightness(par2, par3, par4, lightValue[par1IBlockAccess.getBlockId(par2, par3, par4)]);
-    }
-
-    /**
-     * Goes straight to getLightBrightnessForSkyBlocks for Blocks, does some fancy computing for Fluids
-     */
-    public int getMixedBrightnessForBlock(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
-    {
-        return par1IBlockAccess.getLightBrightnessForSkyBlocks(par2, par3, par4, lightValue[par1IBlockAccess.getBlockId(par2, par3, par4)]);
-    }
+//     * How bright to render this block based on the light its receiving. Args: iBlockAccess, x, y, z
+//     */
+//    public float getBlockBrightness(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+//    {
+//        return par1IBlockAccess.getBrightness(par2, par3, par4, lightValue[par1IBlockAccess.getBlockId(par2, par3, par4)]);
+//    }
+//
+//    /**
+//     * Goes straight to getLightBrightnessForSkyBlocks for Blocks, does some fancy computing for Fluids
+//     */
+//    public int getMixedBrightnessForBlock(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+//    {
+//        return par1IBlockAccess.getLightBrightnessForSkyBlocks(par2, par3, par4, lightValue[par1IBlockAccess.getBlockId(par2, par3, par4)]);
+//    }
 
     /**
      * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
@@ -499,26 +499,26 @@ public class Block
     /**
      * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
      */
-    public Icon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
-    {
-        return this.getIcon(par5, par1IBlockAccess.getBlockMetadata(par2, par3, par4));
-    }
-
-    /**
-     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-     */
-    public Icon getIcon(int par1, int par2)
-    {
-        return this.blockIcon;
-    }
-
-    /**
-     * Returns the block texture based on the side being looked at.  Args: side
-     */
-    public final Icon getBlockTextureFromSide(int par1)
-    {
-        return this.getIcon(par1, 0);
-    }
+//    public Icon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+//    {
+//        return this.getIcon(par5, par1IBlockAccess.getBlockMetadata(par2, par3, par4));
+//    }
+//
+//    /**
+//     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
+//     */
+//    public Icon getIcon(int par1, int par2)
+//    {
+//        return this.blockIcon;
+//    }
+//
+//    /**
+//     * Returns the block texture based on the side being looked at.  Args: side
+//     */
+//    public final Icon getBlockTextureFromSide(int par1)
+//    {
+//        return this.getIcon(par1, 0);
+//    }
 
     /**
      * Returns the bounding box of the wired rectangular prism to render.
@@ -891,10 +891,10 @@ public class Block
     /**
      * Returns which pass should this block be rendered on. 0 for solids and 1 for alpha
      */
-    public int getRenderBlockPass()
-    {
-        return 0;
-    }
+//    public int getRenderBlockPass()
+//    {
+//        return 0;
+//    }
 
     public boolean canPlaceBlockOnSide(World par1World, int par2, int par3, int par4, int par5, ItemStack par6ItemStack)
     {
@@ -955,7 +955,8 @@ public class Block
     /**
      * returns the block bounderies minX value
      */
-    public final double getBlockBoundsMinX()
+    //was previously getBlockBoundsMinX
+    public final double getMinX()
     {
         return this.minX;
     }
@@ -1000,27 +1001,27 @@ public class Block
         return this.maxZ;
     }
 
-    public int getBlockColor()
-    {
-        return ColorizeBlock.colorizeBlock(this) ? ColorizeBlock.blockColor : 16777215;
-    }
+//    public int getBlockColor()
+//    {
+//        return ColorizeBlock.colorizeBlock(this) ? ColorizeBlock.blockColor : 16777215;
+//    }
 
     /**
      * Returns the color this block should be rendered. Used by leaves.
      */
-    public int getRenderColor(int par1)
-    {
-        return ColorizeBlock.colorizeBlock(this, par1) ? ColorizeBlock.blockColor : 16777215;
-    }
+//    public int getRenderColor(int par1)
+//    {
+//        return ColorizeBlock.colorizeBlock(this, par1) ? ColorizeBlock.blockColor : 16777215;
+//    }
 
     /**
      * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
      * when first determining what to render.
      */
-    public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
-    {
-        return ColorizeBlock.colorizeBlock(this, par1IBlockAccess, par2, par3, par4) ? ColorizeBlock.blockColor : 16777215;
-    }
+//    public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+//    {
+//        return ColorizeBlock.colorizeBlock(this, par1IBlockAccess, par2, par3, par4) ? ColorizeBlock.blockColor : 16777215;
+//    }
 
     /**
      * Returns true if the block is emitting indirect/weak redstone power on the specified side. If isBlockNormalCube
@@ -1167,13 +1168,13 @@ public class Block
         return "tile." + this.unlocalizedName;
     }
 
-    /**
-     * Returns the unlocalized name without the tile. prefix. Caution: client-only.
-     */
-    public String getUnlocalizedName2()
-    {
-        return this.unlocalizedName;
-    }
+//    /**
+//     * Returns the unlocalized name without the tile. prefix. Caution: client-only.
+//     */
+//    public String getUnlocalizedName2()
+//    {
+//        return this.unlocalizedName;
+//    }
 
     /**
      * Called when the block receives a BlockEvent - see World.addBlockEvent. By default, passes it on to the tile
@@ -1214,10 +1215,10 @@ public class Block
     /**
      * Returns the default ambient occlusion value based on block opacity
      */
-    public float getAmbientOcclusionLightValue(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
-    {
-        return par1IBlockAccess.isBlockNormalCube(par2, par3, par4) ? 0.2F : 1.0F;
-    }
+//    public float getAmbientOcclusionLightValue(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+//    {
+//        return par1IBlockAccess.isBlockNormalCube(par2, par3, par4) ? 0.2F : 1.0F;
+//    }
 
     /**
      * Block's chance to react to an entity falling on it.
@@ -1228,10 +1229,10 @@ public class Block
      * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
      * FCNOTE: Client only
      */
-    public int idPicked(World par1World, int par2, int par3, int par4)
-    {
-        return this.blockID;
-    }
+//    public int idPicked(World par1World, int par2, int par3, int par4)
+//    {
+//        return this.blockID;
+//    }
 
     /**
      * Get the block's damage value (for use with pick block).
@@ -1341,18 +1342,18 @@ public class Block
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
-    public void registerIcons(IconRegister par1IconRegister)
-    {
-        this.blockIcon = par1IconRegister.registerIcon(this.unlocalizedName);
-    }
+//    public void registerIcons(IconRegister par1IconRegister)
+//    {
+//        this.blockIcon = par1IconRegister.registerIcon(this.unlocalizedName);
+//    }
 
     /**
      * Gets the icon name of the ItemBlock corresponding to this block. Used by hoppers.
      */
-    public String getItemIconName()
-    {
-        return null;
-    }
+//    public String getItemIconName()
+//    {
+//        return null;
+//    }
 
     static
     {
@@ -3617,7 +3618,7 @@ public class Block
      * Mainly used by shouldSideBeRendered() so that it can access the current render bounds.
      * NOTE: Does not apply to item rendering unless specifically set within RenderBlockAsItem()
      */
-    public RenderBlocks m_currentBlockRenderer = null;
+//    public RenderBlocks m_currentBlockRenderer = null;
     
     public boolean shouldSideBeRendered( IBlockAccess blockAccess, 
     	int iNeighborI, int iNeighborJ, int iNeighborK, int iSide )
@@ -3642,13 +3643,13 @@ public class Block
 		return !isOpaqueCube();
     }
     
-    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
-    {
-        renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
-        	renderer.blockAccess, i, j, k ) );
-        
-    	return renderer.renderStandardBlock( this, i, j, k );
-    }
+//    public boolean RenderBlock( RenderBlocks renderer, int i, int j, int k )
+//    {
+//        renderer.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
+//        	renderer.blockAccess, i, j, k ) );
+//        
+//    	return renderer.renderStandardBlock( this, i, j, k );
+//    }
 
     /** 
      * If the block has a second pass, like a kiln cooking overlay texture, it should Override this method.  This method does not call the overlay
@@ -3656,74 +3657,74 @@ public class Block
      * Note that this function is necessary to prevent potential recursion within RenderBlock, if it were to call its own overlays
      * directly, and then potentially get called with a texture overlay itself through RenderBlockWithTexture.
      */
-    public void RenderBlockSecondPass( RenderBlocks renderBlocks, int i, int j, int k, boolean bFirstPassResult )
-    {    
-    }
+//    public void RenderBlockSecondPass( RenderBlocks renderBlocks, int i, int j, int k, boolean bFirstPassResult )
+//    {    
+//    }
     
-    public boolean RenderBlockWithTexture( RenderBlocks renderBlocks, int i, int j, int k, Icon texture )
-    {
-    	boolean bReturnValue;
-    	
-    	renderBlocks.setOverrideBlockTexture( texture );
-    	
-		// this test is necessary due to optimizations in RenderStandardFullBlock() that 
-    	// assumes the texture isn't overriden 
-    	if ( !renderAsNormalBlock() )
-    	{
-	        bReturnValue = RenderBlock( renderBlocks, i, j, k );
-	        
-    	}
-    	else
-    	{
-        	renderBlocks.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
-        		renderBlocks.blockAccess, i, j, k ) );
-            
-            bReturnValue = renderBlocks.renderStandardBlock( this, i, j, k );            
-    	}
-    	
-        renderBlocks.clearOverrideBlockTexture();
-        
-        return bReturnValue;
-    }
+//    public boolean RenderBlockWithTexture( RenderBlocks renderBlocks, int i, int j, int k, Icon texture )
+//    {
+//    	boolean bReturnValue;
+//    	
+//    	renderBlocks.setOverrideBlockTexture( texture );
+//    	
+//		// this test is necessary due to optimizations in RenderStandardFullBlock() that 
+//    	// assumes the texture isn't overriden 
+//    	if ( !renderAsNormalBlock() )
+//    	{
+//	        bReturnValue = RenderBlock( renderBlocks, i, j, k );
+//	        
+//    	}
+//    	else
+//    	{
+//        	renderBlocks.setRenderBounds( GetBlockBoundsFromPoolBasedOnState( 
+//        		renderBlocks.blockAccess, i, j, k ) );
+//            
+//            bReturnValue = renderBlocks.renderStandardBlock( this, i, j, k );            
+//    	}
+//    	
+//        renderBlocks.clearOverrideBlockTexture();
+//        
+//        return bReturnValue;
+//    }
 
     public AxisAlignedBB GetBlockBoundsFromPoolForItemRender( int iItemDamage )
     {
     	return GetFixedBlockBoundsFromPool();
     }
     
-    public void RenderBlockAsItem( RenderBlocks renderBlocks, int iItemDamage, float fBrightness )
-    {
-    	renderBlocks.renderBlockAsItemVanilla( this, iItemDamage, fBrightness );
-    }
+//    public void RenderBlockAsItem( RenderBlocks renderBlocks, int iItemDamage, float fBrightness )
+//    {
+//    	renderBlocks.renderBlockAsItemVanilla( this, iItemDamage, fBrightness );
+//    }
     
-    public boolean DoesItemRenderAsBlock( int iItemDamage )
-    {
-    	return RenderBlocks.DoesRenderIDRenderItemIn3d( getRenderType() );
-    }    
+//    public boolean DoesItemRenderAsBlock( int iItemDamage )
+//    {
+//    	return RenderBlocks.DoesRenderIDRenderItemIn3d( getRenderType() );
+//    }    
     
-    public void RenderCookingByKilnOverlay( RenderBlocks renderBlocks, int i, int j, int k, boolean bFirstPassResult )
-    {
-    	if ( bFirstPassResult )
-    	{
-	    	IBlockAccess blockAccess = renderBlocks.blockAccess;
-	    	
-	    	// check texture override to prevent recursion
-			if ( !renderBlocks.hasOverrideBlockTexture() && GetCanBeCookedByKiln( blockAccess, i, j, k ) )
-			{
-	    		int iBlockBelowID = blockAccess.getBlockId( i, j - 1, k );
-	    		
-	    		if ( iBlockBelowID == FCBetterThanWolves.fcKiln.blockID )
-	    		{
-	    			Icon overlayTexture = FCBetterThanWolves.fcKiln.GetCookTextureForCurrentState( blockAccess, i, j - 1, k );
-	    			
-	            	if ( overlayTexture != null )
-	            	{
-	            		RenderBlockWithTexture( renderBlocks, i, j, k, overlayTexture );
-	            	}
-	    		} 
-			}
-    	}
-    }
+//    public void RenderCookingByKilnOverlay( RenderBlocks renderBlocks, int i, int j, int k, boolean bFirstPassResult )
+//    {
+//    	if ( bFirstPassResult )
+//    	{
+//	    	IBlockAccess blockAccess = renderBlocks.blockAccess;
+//	    	
+//	    	// check texture override to prevent recursion
+//			if ( !renderBlocks.hasOverrideBlockTexture() && GetCanBeCookedByKiln( blockAccess, i, j, k ) )
+//			{
+//	    		int iBlockBelowID = blockAccess.getBlockId( i, j - 1, k );
+//	    		
+//	    		if ( iBlockBelowID == FCBetterThanWolves.fcKiln.blockID )
+//	    		{
+//	    			Icon overlayTexture = FCBetterThanWolves.fcKiln.GetCookTextureForCurrentState( blockAccess, i, j - 1, k );
+//	    			
+//	            	if ( overlayTexture != null )
+//	            	{
+//	            		RenderBlockWithTexture( renderBlocks, i, j, k, overlayTexture );
+//	            	}
+//	    		} 
+//			}
+//    	}
+//    }
     
     public boolean ShouldRenderWhileFalling( World world, EntityFallingSand entity )
     {
@@ -3739,12 +3740,12 @@ public class Block
     /**
      * Applies both to falling blocks, and those pushed by pistons
      */     
-    public void RenderFallingBlock( RenderBlocks renderBlocks, int i, int j, int k, int iMetadata ) 
-    {
-        renderBlocks.setRenderBounds( GetFixedBlockBoundsFromPool() );
-        
-        renderBlocks.RenderStandardFallingBlock( this, i, j, k, iMetadata );
-    }
+//    public void RenderFallingBlock( RenderBlocks renderBlocks, int i, int j, int k, int iMetadata ) 
+//    {
+//        renderBlocks.setRenderBounds( GetFixedBlockBoundsFromPool() );
+//        
+//        renderBlocks.RenderStandardFallingBlock( this, i, j, k, iMetadata );
+//    }
     
     public boolean ShouldSideBeRenderedOnFallingBlock( int iSide, int iMetadata )
     {
@@ -3754,10 +3755,10 @@ public class Block
     	return true;
     }
     
-    public void RenderBlockMovedByPiston( RenderBlocks renderBlocks, int i, int j, int k )
-    {
-        renderBlocks.renderBlockAllFaces( this, i, j, k );
-    }
+//    public void RenderBlockMovedByPiston( RenderBlocks renderBlocks, int i, int j, int k )
+//    {
+//        renderBlocks.renderBlockAllFaces( this, i, j, k );
+//    }
     
     public AxisAlignedBB getSelectedBoundingBoxFromPool( World world, int i, int j, int k )
     {
@@ -3786,66 +3787,66 @@ public class Block
     	return null;
     }
     
-    protected void RenderCrossHatch( RenderBlocks renderer, int i, int j, int k, Icon icon, 
-    	double dBorderWidth, double dVerticalOffset )
-    {
-    	Tessellator tessellator = Tessellator.instance;
-    	
-    	double dX = i; 
-    	double dY = j + dVerticalOffset;
-    	double dZ = k;
-    	
-        double dMinU = icon.getMinU();
-        double dMinV = icon.getMinV();
-        double dMaxU = icon.getMaxU();
-        double dMaxV = icon.getMaxV();
-        
-        double dX1 = dX + 1D - dBorderWidth;
-        double dX2 = dX + dBorderWidth;
-        
-        double dZ1 = dZ;
-        double dZ2 = dZ + 1D;
-        
-        tessellator.addVertexWithUV( dX1, dY + 1D, dZ1, dMinU, dMinV );
-        tessellator.addVertexWithUV( dX1, dY + 0D, dZ1, dMinU, dMaxV );
-        tessellator.addVertexWithUV( dX1, dY + 0D, dZ2, dMaxU, dMaxV );
-        tessellator.addVertexWithUV( dX1, dY + 1D, dZ2, dMaxU, dMinV );
-        tessellator.addVertexWithUV( dX1, dY + 1D, dZ2, dMinU, dMinV );
-        tessellator.addVertexWithUV( dX1, dY + 0D, dZ2, dMinU, dMaxV );
-        tessellator.addVertexWithUV( dX1, dY + 0D, dZ1, dMaxU, dMaxV );
-        tessellator.addVertexWithUV( dX1, dY + 1D, dZ1, dMaxU, dMinV );
-        tessellator.addVertexWithUV( dX2, dY + 1D, dZ2, dMinU, dMinV );
-        tessellator.addVertexWithUV( dX2, dY + 0D, dZ2, dMinU, dMaxV );
-        tessellator.addVertexWithUV( dX2, dY + 0D, dZ1, dMaxU, dMaxV );
-        tessellator.addVertexWithUV( dX2, dY + 1D, dZ1, dMaxU, dMinV );
-        tessellator.addVertexWithUV( dX2, dY + 1D, dZ1, dMinU, dMinV );
-        tessellator.addVertexWithUV( dX2, dY + 0D, dZ1, dMinU, dMaxV );
-        tessellator.addVertexWithUV( dX2, dY + 0D, dZ2, dMaxU, dMaxV );
-        tessellator.addVertexWithUV( dX2, dY + 1D, dZ2, dMaxU, dMinV );
-        
-        dX1 = dX;
-        dX2 = dX + 1D;
-        
-        dZ1 = dZ + dBorderWidth;
-        dZ2 = dZ + 1D - dBorderWidth;
-        
-        tessellator.addVertexWithUV( dX1, dY + 1D, dZ1, dMinU, dMinV );
-        tessellator.addVertexWithUV( dX1, dY + 0D, dZ1, dMinU, dMaxV );
-        tessellator.addVertexWithUV( dX2, dY + 0D, dZ1, dMaxU, dMaxV );
-        tessellator.addVertexWithUV( dX2, dY + 1D, dZ1, dMaxU, dMinV );
-        tessellator.addVertexWithUV( dX2, dY + 1D, dZ1, dMinU, dMinV );
-        tessellator.addVertexWithUV( dX2, dY + 0D, dZ1, dMinU, dMaxV );
-        tessellator.addVertexWithUV( dX1, dY + 0D, dZ1, dMaxU, dMaxV );
-        tessellator.addVertexWithUV( dX1, dY + 1D, dZ1, dMaxU, dMinV );
-        tessellator.addVertexWithUV( dX2, dY + 1D, dZ2, dMinU, dMinV );
-        tessellator.addVertexWithUV( dX2, dY + 0D, dZ2, dMinU, dMaxV );
-        tessellator.addVertexWithUV( dX1, dY + 0D, dZ2, dMaxU, dMaxV );
-        tessellator.addVertexWithUV( dX1, dY + 1D, dZ2, dMaxU, dMinV );
-        tessellator.addVertexWithUV( dX1, dY + 1D, dZ2, dMinU, dMinV );
-        tessellator.addVertexWithUV( dX1, dY + 0D, dZ2, dMinU, dMaxV );
-        tessellator.addVertexWithUV( dX2, dY + 0D, dZ2, dMaxU, dMaxV );
-        tessellator.addVertexWithUV( dX2, dY + 1D, dZ2, dMaxU, dMinV );
-    }
+//    protected void RenderCrossHatch( RenderBlocks renderer, int i, int j, int k, Icon icon, 
+//    	double dBorderWidth, double dVerticalOffset )
+//    {
+//    	Tessellator tessellator = Tessellator.instance;
+//    	
+//    	double dX = i; 
+//    	double dY = j + dVerticalOffset;
+//    	double dZ = k;
+//    	
+//        double dMinU = icon.getMinU();
+//        double dMinV = icon.getMinV();
+//        double dMaxU = icon.getMaxU();
+//        double dMaxV = icon.getMaxV();
+//        
+//        double dX1 = dX + 1D - dBorderWidth;
+//        double dX2 = dX + dBorderWidth;
+//        
+//        double dZ1 = dZ;
+//        double dZ2 = dZ + 1D;
+//        
+//        tessellator.addVertexWithUV( dX1, dY + 1D, dZ1, dMinU, dMinV );
+//        tessellator.addVertexWithUV( dX1, dY + 0D, dZ1, dMinU, dMaxV );
+//        tessellator.addVertexWithUV( dX1, dY + 0D, dZ2, dMaxU, dMaxV );
+//        tessellator.addVertexWithUV( dX1, dY + 1D, dZ2, dMaxU, dMinV );
+//        tessellator.addVertexWithUV( dX1, dY + 1D, dZ2, dMinU, dMinV );
+//        tessellator.addVertexWithUV( dX1, dY + 0D, dZ2, dMinU, dMaxV );
+//        tessellator.addVertexWithUV( dX1, dY + 0D, dZ1, dMaxU, dMaxV );
+//        tessellator.addVertexWithUV( dX1, dY + 1D, dZ1, dMaxU, dMinV );
+//        tessellator.addVertexWithUV( dX2, dY + 1D, dZ2, dMinU, dMinV );
+//        tessellator.addVertexWithUV( dX2, dY + 0D, dZ2, dMinU, dMaxV );
+//        tessellator.addVertexWithUV( dX2, dY + 0D, dZ1, dMaxU, dMaxV );
+//        tessellator.addVertexWithUV( dX2, dY + 1D, dZ1, dMaxU, dMinV );
+//        tessellator.addVertexWithUV( dX2, dY + 1D, dZ1, dMinU, dMinV );
+//        tessellator.addVertexWithUV( dX2, dY + 0D, dZ1, dMinU, dMaxV );
+//        tessellator.addVertexWithUV( dX2, dY + 0D, dZ2, dMaxU, dMaxV );
+//        tessellator.addVertexWithUV( dX2, dY + 1D, dZ2, dMaxU, dMinV );
+//        
+//        dX1 = dX;
+//        dX2 = dX + 1D;
+//        
+//        dZ1 = dZ + dBorderWidth;
+//        dZ2 = dZ + 1D - dBorderWidth;
+//        
+//        tessellator.addVertexWithUV( dX1, dY + 1D, dZ1, dMinU, dMinV );
+//        tessellator.addVertexWithUV( dX1, dY + 0D, dZ1, dMinU, dMaxV );
+//        tessellator.addVertexWithUV( dX2, dY + 0D, dZ1, dMaxU, dMaxV );
+//        tessellator.addVertexWithUV( dX2, dY + 1D, dZ1, dMaxU, dMinV );
+//        tessellator.addVertexWithUV( dX2, dY + 1D, dZ1, dMinU, dMinV );
+//        tessellator.addVertexWithUV( dX2, dY + 0D, dZ1, dMinU, dMaxV );
+//        tessellator.addVertexWithUV( dX1, dY + 0D, dZ1, dMaxU, dMaxV );
+//        tessellator.addVertexWithUV( dX1, dY + 1D, dZ1, dMaxU, dMinV );
+//        tessellator.addVertexWithUV( dX2, dY + 1D, dZ2, dMinU, dMinV );
+//        tessellator.addVertexWithUV( dX2, dY + 0D, dZ2, dMinU, dMaxV );
+//        tessellator.addVertexWithUV( dX1, dY + 0D, dZ2, dMaxU, dMaxV );
+//        tessellator.addVertexWithUV( dX1, dY + 1D, dZ2, dMaxU, dMinV );
+//        tessellator.addVertexWithUV( dX1, dY + 1D, dZ2, dMinU, dMinV );
+//        tessellator.addVertexWithUV( dX1, dY + 0D, dZ2, dMinU, dMaxV );
+//        tessellator.addVertexWithUV( dX2, dY + 0D, dZ2, dMaxU, dMaxV );
+//        tessellator.addVertexWithUV( dX2, dY + 1D, dZ2, dMaxU, dMinV );
+//    }
     // END FCMOD
     
     //AARON imported from well it says so right below VVV

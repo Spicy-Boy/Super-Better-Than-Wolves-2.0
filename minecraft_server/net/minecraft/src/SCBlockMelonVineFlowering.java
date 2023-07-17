@@ -204,35 +204,35 @@ public class SCBlockMelonVineFlowering extends SCBlockGourdVineFloweringBase {
 	public Icon[] flowerIcons;
 	
 
-    @Override
-    public void registerIcons( IconRegister register )
-    {
-        flowerIcons = new Icon[2];
+//    @Override
+//    public void registerIcons( IconRegister register )
+//    {
+//        flowerIcons = new Icon[2];
+//
+//        for ( int iTempIndex = 0; iTempIndex < flowerIcons.length; iTempIndex++ )
+//        {
+//        	flowerIcons[iTempIndex] = register.registerIcon( "SCBlockMelonVineFlowering_" + iTempIndex );
+//        }
+//        
+//        blockIcon = flowerIcons[1]; // for block hit effects and item render
+//        
+//        connectorIcons = new Icon[4];
+//        for ( int iTempIndex = 0; iTempIndex < connectorIcons.length; iTempIndex++ )
+//        {
+//        	connectorIcons[iTempIndex] = register.registerIcon( "SCBlockMelonVineConnector_" + iTempIndex );
+//        }
+//   
+//    }
 
-        for ( int iTempIndex = 0; iTempIndex < flowerIcons.length; iTempIndex++ )
-        {
-        	flowerIcons[iTempIndex] = register.registerIcon( "SCBlockMelonVineFlowering_" + iTempIndex );
-        }
-        
-        blockIcon = flowerIcons[1]; // for block hit effects and item render
-        
-        connectorIcons = new Icon[4];
-        for ( int iTempIndex = 0; iTempIndex < connectorIcons.length; iTempIndex++ )
-        {
-        	connectorIcons[iTempIndex] = register.registerIcon( "SCBlockMelonVineConnector_" + iTempIndex );
-        }
-   
-    }
-
-	@Override
-    public Icon getBlockTexture( IBlockAccess blockAccess, int i, int j, int k, int iSide )
-    {
-		if (!IsFullyGrown(blockAccess.getBlockMetadata(i, j, k)))
-		{
-			return flowerIcons[1];
-		}
-		else return flowerIcons[0];
-        
-    }
+//	@Override
+//    public Icon getBlockTexture( IBlockAccess blockAccess, int i, int j, int k, int iSide )
+//    {
+//		if (!IsFullyGrown(blockAccess.getBlockMetadata(i, j, k)))
+//		{
+//			return flowerIcons[1];
+//		}
+//		else return flowerIcons[0];
+//        
+//    }
 
 }
