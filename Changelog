@@ -2,6 +2,10 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
+2.1 Hotfixt:
+
+- Added a missing file that caused a rendering crash! Oops!!! Sorry!!!
+
 Additions:
 
 -TEMPORARY OMISSION for BETA 2.0: Biome decorator places standard gourds with vanilla seeds/plants
@@ -163,7 +167,7 @@ RenderManager
 FCBlockAshGroundCover (shovel brick bug)
 FCBlockFurnaceBrick (lighting bug)
 FCBlockFurnaceBrickIdle
-PrimitiveGeometric
+FCUtilsPrimitiveGeometric
 RenderBlocksUtils
 GuiInGame (pumpkin overlay for wearing pumpkins)
 SlotArmor
