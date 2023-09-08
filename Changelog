@@ -2,7 +2,29 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
-2.1 Hotfixt:
+2.2 Brick & Mortar
+
+TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
+        TODO>Applied the same principle to soul filtering. Thank you Dawn for pointing all of this out!
+TODO- Added Tsughoggr's Gloryhole and Blow mod to SBTW
+        >Added the gloryhole, an oven-like block that can be used to create blocks of glass
+        >Changed the gloryhole recipe to require a block of obsidian rather than nether quarts
+        
+TODO- Add an addon initialization so that Tsug gets his credit!  
+
+TODO- Added the blowing rod so that the player can use glass from a gloryhole to blow bottles.
+        >The real impact of this feature will be felt later on.      
+
+TODO- Changed the anchor recipe to not be an iron ingot
+        
+TODO- Changed trap doors to act like ladders when opened, like in modern vanilla MC
+
+
+
+    - Changed/reverted glass to the state of not allowing monsters to spawn on top of it. No more need to light up large glass structures!
+    
+    
+2.1 Hotfix:
 
 - Added a missing file that caused a rendering crash! Oops!!! Sorry!!!
 
@@ -191,6 +213,9 @@ EnumStatus (hardcore soaked)
 #Added from CE 1.4.1:
 FCBlockBedroll
 FCItemBed
+
+#Base Class Edits 2.2 Brick & Mortar:
+Material.java (for glass spawning mechanics)
 
 #############################################################
 VERSION 3.0 Speculative TODO
