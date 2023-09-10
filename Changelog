@@ -2,6 +2,24 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
+<<<<<<< Updated upstream
+=======
+2.2 Feature List and Bug Fixes:
+
+BUG TODO: Torch pickup is bugged. It goes to first available leftward spot on hot bar invisibly
+
+BUG TODO: Hardcore Soaked may be broken rn
+
+Content TODO: Add Tsauger's Gloryholes and Blow mod 
+https://www.sargunster.com/btwforum/viewtopic.php?t=10163
+
+
+
+2.1 Hotfixt:
+
+- Added a missing file that caused a rendering crash! Oops!!! Sorry!!!
+
+>>>>>>> Stashed changes
 Additions:
 
 -TEMPORARY OMISSION for BETA 2.0: Biome decorator places standard gourds with vanilla seeds/plants
@@ -191,6 +209,10 @@ FCItemBed
 #############################################################
 VERSION 3.0 Speculative TODO
 Additions:
+
+x-x-CANDLES-x-x
+Get the fat from pork, make candles (but also get something to eat?
+-x-x-x-
 
 O- FIX The sword seam issue in the rendering caused by mc patcher
 
