@@ -1,6 +1,21 @@
 SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
+Started Gourd Reintroduction September 10th, 2023
+
+GOURD BRANCH CHANGES (to be merged with main when that time comes)
+
+TODO: check slot armor to make sure that shit lets you wear the new pumpkins!
+
+=======
+2.2 Feature List and Bug Fixes:
+
+BUG TODO: Torch pickup is bugged. It goes to first available leftward spot on hot bar invisibly
+
+BUG TODO: Hardcore Soaked may be broken rn
+
+Content TODO: Add Tsauger's Gloryholes and Blow mod 
+https://www.sargunster.com/btwforum/viewtopic.php?t=10163
 
 2.1 Hotfixt:
 
@@ -167,7 +182,7 @@ RenderManager
 FCBlockAshGroundCover (shovel brick bug)
 FCBlockFurnaceBrick (lighting bug)
 FCBlockFurnaceBrickIdle
-FCUtilsPrimitiveGeometric
+PrimitiveGeometric
 RenderBlocksUtils
 GuiInGame (pumpkin overlay for wearing pumpkins)
 SlotArmor
@@ -192,9 +207,16 @@ EnumStatus (hardcore soaked)
 FCBlockBedroll
 FCItemBed
 
+#Base Class Edits 2.Gourd Reintroduction:
+ComponentMineshaftCorridor.java (to add my own gourd seeds to mineshaft)
+
 #############################################################
 VERSION 3.0 Speculative TODO
 Additions:
+
+x-x-CANDLES-x-x
+Get the fat from pork, make candles (but also get something to eat?
+-x-x-x-
 
 O- FIX The sword seam issue in the rendering caused by mc patcher
 

@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Random;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
@@ -368,4 +369,144 @@ public abstract class FCAddOn {
 	public EntityFX spawnCustomParticle(World world, String particleType, double x, double y, double z, double velX, double velY, double velZ) {
 		return null;
 	}
+	
+	//AARON stole this from Socky
+	// --- SAU: Loot Contents --- //
+	
+	public void addBonusBasketLoot(ArrayList<FCUtilsRandomItemStack> bonusBasket) {}
+	
+	public void addWitchHutLoot(ArrayList<FCUtilsRandomItemStack> basketLoot) {}
+
+	public void addDesertWellLoot(ArrayList<FCUtilsRandomItemStack> arrayList) {};
+	
+	public void addDesertPyramidLoot(ArrayList<WeightedRandomChestContent> chestLoot, ArrayList<WeightedRandomChestContent> lootedChestLoot) {}
+	
+	protected int getNumberOfItemsInDesertPyramidChests(Random rand) {	return 0; };
+	
+	public void addJunglePyramidLoot(ArrayList<WeightedRandomChestContent> chestLoot, ArrayList<WeightedRandomChestContent> lootedChestLoot) {}
+	
+	protected int getNumberOfItemsInJunglePyramidChests(Random rand) {	return 0; };
+
+	public void addMinecartLoot(ArrayList<WeightedRandomChestContent> minecartLoot) {}
+
+	protected int getNumberOfItemsInMinecartChests(Random rand) {	return 0; };
+	
+	public void filterMinecartContents(EntityMinecartChest minecart)
+	{
+    	for ( int slot = 0; slot < minecart.getSizeInventory(); slot++ )
+    	{
+    		ItemStack tempStack = minecart.getStackInSlot( slot );
+
+    		if ( tempStack != null )
+    		{
+    			int itemID = tempStack.itemID;
+
+    			if ( itemID == Item.ingotIron.itemID )
+    			{
+    				if ( minecart.posY > 36F )
+    				{
+    					minecart.setInventorySlotContents( slot, null );
+    				}
+    				else
+    				{
+    					tempStack.stackSize = 1;
+    				}
+    			}
+    			else if ( itemID == Item.diamond.itemID )
+    			{
+    				if ( minecart.posY > 24F )
+    				{
+    					minecart.setInventorySlotContents( slot, null );
+    				}
+    				else
+    				{
+    					tempStack.stackSize = 1;
+    				}
+    			}
+            	else if ( itemID == Item.redstone.itemID )
+            	{
+            		if ( minecart.posY > 24F )
+            		{
+                		minecart.setInventorySlotContents( slot, null );
+            		}
+            	}           	
+            }
+        }
+	}
+
+	public void addDungeonChestLoot(ArrayList<FCUtilsRandomItemStack> chestLoot) {}
+
+	protected int getNumberOfItemsInDungeonChests(Random rand) { return 0; };
+	
+	public void filterDungeonChestContents(World world, int iChestI, int iChestJ, int iChestK)
+	{
+		TileEntityChest chestEnt = (TileEntityChest)world.getBlockTileEntity( iChestI, iChestJ, iChestK );
+
+		if ( chestEnt != null )
+		{
+			for ( int iSlot = 0; iSlot < chestEnt.getSizeInventory(); iSlot++ )
+			{
+				ItemStack tempStack = chestEnt.getStackInSlot( iSlot );
+
+				if ( tempStack != null )
+				{
+					int iItemID = tempStack.itemID;
+
+					if ( iItemID == Item.ingotIron.itemID )
+					{
+						if ( iChestJ > 36 )
+						{
+							chestEnt.setInventorySlotContents( iSlot, null );
+						}
+						else
+						{
+							tempStack.stackSize = 1;
+						}
+					}
+					else if ( iItemID == Item.bucketEmpty.itemID )
+					{
+						chestEnt.setInventorySlotContents( iSlot, null );
+					}
+					else if ( iItemID == Item.gunpowder.itemID )
+					{
+						if ( iChestJ > 36 )
+						{
+							chestEnt.setInventorySlotContents( iSlot, null );
+						}
+						else
+						{
+							tempStack.stackSize = 1;
+						}
+					}
+					else if ( iItemID == Item.redstone.itemID )
+					{
+						if ( iChestJ > 24 )
+						{
+							chestEnt.setInventorySlotContents( iSlot, null );
+						}
+					}
+					else if ( iItemID == Item.wheat.itemID )
+					{
+						chestEnt.setInventorySlotContents( iSlot, null );
+					}
+				}
+			}
+		}
+	}
+	
+	public void addBlacksmithChestLoot(ArrayList<WeightedRandomChestContent> chestLoot) {}
+	
+	protected int getNumberOfItemsInBlacksmithChests(Random rand) { return 0; };
+	
+	public void addStrongholdChestLoot(ArrayList<WeightedRandomChestContent> chestLoot) {}
+
+	protected int getNumberOfItemsInStrongholdChests(Random rand) { return 0; };
+	
+	public void addStrongholdLibraryChestLoot(ArrayList<WeightedRandomChestContent> chestLoot) {}
+	
+	protected int getNumberOfItemsInStrongholdLibraryChests(Random rand) { return 0; };
+	
+	public void addStrongholdCrossingChestLoot(ArrayList<WeightedRandomChestContent> chestLoot) {}
+
+	protected int getNumberOfItemsInStrongholdCrossingChests(Random rand) { return 0; };
 }

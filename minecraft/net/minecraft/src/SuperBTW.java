@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import java.util.ArrayList;
+
 public class SuperBTW extends FCAddOn
 {
 	
@@ -32,5 +34,15 @@ public class SuperBTW extends FCAddOn
 	{
 		return "SuperBTW";
 	}
+	
+	@Override
+		public void addMinecartLoot(ArrayList<WeightedRandomChestContent> minecartLoot) {
+			// TODO Auto-generated method stub
+//			minecartLoot.clear();
+		//takes out the old melons, allows the new water melons to be placed
+			minecartLoot.remove(new WeightedRandomChestContent(Item.melonSeeds.itemID, 0, 2, 4, 10) ); 
+			minecartLoot.add(new WeightedRandomChestContent(SuperBTWDefinitions.waterMelonSeeds.itemID, 0, 2, 4, 10) ); 
+			
+		}
 
 }
