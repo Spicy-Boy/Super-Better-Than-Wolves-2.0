@@ -3,19 +3,29 @@ Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 Started Gourd Reintroduction September 10th, 2023
 
-GOURD BRANCH CHANGES (to be merged with main when that time comes)
+GOURD BRANCH CHANGES (to be merged with main when that time comes):
+
+- Changed the abandoned minecart loot to contain watermelon seeds rather than generic melon seeds (HUH?)
+
+TODO- Choose how to find each plant type (seeds, natural spawning gourds, etc)
+        -SEE FORUM POST     
+        
+TODO- Make a semi-dead vine and stem, have plant vines die into this plant
+    >it looks like a live stem but deteriorates into true dead stem
+    
+TODO- Make dead stem able to be overwritten by other blocks like tall grass
+    
+TODO- Remove weeds from gourd stem plants
+   
+TODO- Do chickens eat all seed types?
 
 TODO: check slot armor to make sure that shit lets you wear the new pumpkins!
-
-=======
-2.2 Feature List and Bug Fixes:
 
 BUG TODO: Torch pickup is bugged. It goes to first available leftward spot on hot bar invisibly
 
 BUG TODO: Hardcore Soaked may be broken rn
 
-Content TODO: Add Tsauger's Gloryholes and Blow mod 
-https://www.sargunster.com/btwforum/viewtopic.php?t=10163
+========
 
 2.1 Hotfixt:
 
@@ -100,17 +110,7 @@ TODO CONTENT:
 O- From CE: make trap doors like ladders
         
 ***GOURD TODO***
-    O-Choose how to find each plant type (seeds, natural spawning gourds, etc)
-        -SEE FORUM POST     
 
-    O-Make a semi-dead vine and stem, have plant vines die into this plant
-    >it looks like a live stem but deteriorates into true dead stem
-    
-    O-Make dead stem able to be overwritten by other blocks like grass
-    
-    O-Remove weeds from gourd stem plants
-   
-    O- Do chickens eat all seed types?
 ~~~~~~~~~~~~~~~~~~~~~OWO~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 O-AUTOFILL water bucket in crafting grid if player is near water source block 
@@ -209,6 +209,7 @@ FCItemBed
 
 #Base Class Edits 2.Gourd Reintroduction:
 ComponentMineshaftCorridor.java (to add my own gourd seeds to mineshaft)
+fcblockSnowLoose
 
 #############################################################
 VERSION 3.0 Speculative TODO

@@ -15,7 +15,7 @@ public class SuperBTW extends FCAddOn
 	
     private SuperBTW() 
     {
-        super("SUPER BETTER THAN WOLVES", "BETA 2.1 (w/ trusty melons uwu)", "");
+        super("SUPER BETTER THAN WOLVES", "BETA 2.2 (w/ trusty melons uwu)", "");
     }
 
 	@Override
@@ -36,6 +36,7 @@ public class SuperBTW extends FCAddOn
 	}
 	
 	@Override
+	//Sockthing's fancy compatibility addon!
 		public void addMinecartLoot(ArrayList<WeightedRandomChestContent> minecartLoot) {
 			// TODO Auto-generated method stub
 //			minecartLoot.clear();

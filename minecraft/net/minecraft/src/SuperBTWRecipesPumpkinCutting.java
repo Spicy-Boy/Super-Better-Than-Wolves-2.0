@@ -102,9 +102,17 @@ public class SuperBTWRecipesPumpkinCutting implements IRecipe
             {
             	return resultStack;
             }
+            else if (pumpkinType == 2)
+            {
+            	return new ItemStack( SuperBTWDefinitions.orangePumpkinSeeds, 2 );
+            }
             else if (pumpkinType == 3)
             {
             	return new ItemStack( SuperBTWDefinitions.greenPumpkinSeeds, 5 );
+            }
+            else if (pumpkinType == 4)
+            {
+            	return new ItemStack( SuperBTWDefinitions.greenPumpkinSeeds, 3 );
             }
             else if (pumpkinType == 5)
             {
@@ -212,13 +220,13 @@ public class SuperBTWRecipesPumpkinCutting implements IRecipe
     	{
     		return 1;
     	}
-    	else if (iItemMetadata == 7)
-    	{
-    		return 3;
-    	}
     	else if (iItemMetadata == 2)
     	{
     		return 2;
+    	}
+    	else if (iItemMetadata == 7)
+    	{
+    		return 3;
     	}
     	else if (iItemMetadata == 6)
     	{
