@@ -37,12 +37,23 @@ public class SuperBTW extends FCAddOn
 	
 	@Override
 	//Sockthing's fancy compatibility addon!
-		public void addMinecartLoot(ArrayList<WeightedRandomChestContent> minecartLoot) {
+		public void addMinecartLoot(ArrayList<WeightedRandomChestContent> minecartLoot) 
+		{
 			// TODO Auto-generated method stub
 //			minecartLoot.clear();
 		//takes out the old melons, allows the new water melons to be placed
 			minecartLoot.remove(new WeightedRandomChestContent(Item.melonSeeds.itemID, 0, 2, 4, 10) ); 
 			minecartLoot.add(new WeightedRandomChestContent(SuperBTWDefinitions.waterMelonSeeds.itemID, 0, 2, 4, 10) ); 
+			//key for parameters: item id, damage, min chance to generate, max chance to generate, how many times it tries
+			
+		}
+	
+	@Override
+		public void addDesertPyramidLoot(ArrayList<WeightedRandomChestContent> chestLoot,
+				ArrayList<WeightedRandomChestContent> lootedChestLoot) 
+		{
+			// TODO Auto-generated method stub
+			lootedChestLoot.add( new WeightedRandomChestContent( SuperBTWDefinitions.canaryMelonSeeds.itemID, 0, 1, 1, 7 ) );
 			
 		}
 

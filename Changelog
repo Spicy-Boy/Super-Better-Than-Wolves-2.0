@@ -6,6 +6,7 @@ Started Gourd Reintroduction September 10th, 2023
 GOURD BRANCH CHANGES (to be merged with main when that time comes):
 
 - Changed the abandoned minecart loot to contain watermelon seeds rather than generic melon seeds (HUH?)
+- Changed the looted desert temple loot to contain canary melon seeds
 
 TODO- Choose how to find each plant type (seeds, natural spawning gourds, etc)
         -SEE FORUM POST     
@@ -131,6 +132,12 @@ O- Add back crafting recipe for eyes of ender-> e pearl + blaze powder. Add soul
 O- Change tier 2 priest trades to be not shit, efficiency IIIs and such
 ---
 
+#Base Class Edits 2.Gourd Reintroduction:
+ComponentMineshaftCorridor.java (to add my own gourd seeds to mineshaft)
+fcblockSnowLoose
+FCAddonHandler.java
+
+
 #Base Class Edits 1.0 (* means edited in 2.0):
 FCBlockWeb
 FCEntityChicken
@@ -206,10 +213,6 @@ EnumStatus (hardcore soaked)
 #Added from CE 1.4.1:
 FCBlockBedroll
 FCItemBed
-
-#Base Class Edits 2.Gourd Reintroduction:
-ComponentMineshaftCorridor.java (to add my own gourd seeds to mineshaft)
-fcblockSnowLoose
 
 #############################################################
 VERSION 3.0 Speculative TODO
