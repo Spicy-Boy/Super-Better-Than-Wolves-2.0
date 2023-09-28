@@ -38,11 +38,9 @@ public class FCBlockTorchFiniteBurning extends FCBlockTorchBaseBurning
 	@Override
     public boolean onBlockActivated( World world, int i, int j, int k, EntityPlayer player, int iFacing, float fXClick, float fYClick, float fZClick )
     {  
-//		System.out.println("HI RIGHT CLICK TORCH!!");
     
         if (!world.isRemote && player.getCurrentEquippedItem() == null )
         {
-//			System.out.println("EMPTY HAND DETECT!");
 			
 			FCTileEntityTorchFinite tileEntity = (FCTileEntityTorchFinite)world.getBlockTileEntity( i, j, k );
 	        //ItemStack cookStack = tileEntity.GetToolStack();
@@ -67,7 +65,11 @@ public class FCBlockTorchFiniteBurning extends FCBlockTorchBaseBurning
 	            //remains of fuckery  vvvv
 //	            breakBlock( world, i, j, k, FCBetterThanWolves.fcBlockTorchFiniteBurning.blockID, 20 );
 	            
-        		FCUtilsItem.GivePlayerStackOrEject( player, torchStack);
+	            //the method directly below, GivePlayerStackOrEject, is bugged when the player right clicks with an empty hand that is not the first open hot bar slot from left to right
+//        		FCUtilsItem.GivePlayerStackOrEject( player, torchStack);
+	            FCUtilsItem.GivePlayerStackOrEjectFavorEmptyHand( player, torchStack, i, j, k );
+	            
+//	            FCUtilsInventory.AddItemStackToInventoryInSlotRange( player.inventory, torchStack, 0, player.inventory.getSizeInventory() - 5);
 
         		world.removeBlockTileEntity(i, j, k);
         		world.setBlock(i, j, k, 0);
@@ -124,6 +126,7 @@ public class FCBlockTorchFiniteBurning extends FCBlockTorchBaseBurning
 			            if (tileEntity.canDropTorch())
 			            {
 			            	dropBlockAsItem_do( world, i, j, k, stack );
+			         
 			            }
 
 		            }

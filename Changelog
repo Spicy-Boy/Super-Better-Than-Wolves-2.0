@@ -19,11 +19,12 @@ TODO- Changed the anchor recipe to not be an iron ingot
         
 TODO- Changed trap doors to act like ladders when opened, like in modern vanilla MC
 
-
-
+    BUG TODO: Hardcore Soaked may be broken rn
+    
+    - Fixed crude torch pickup. There was a bug where right clicking a torch would sometimes cause the torch to be placed in the inventory invisibly
+    
     - Changed/reverted glass to the state of not allowing monsters to spawn on top of it. No more need to light up large glass structures!
-    
-    
+        
 2.1 Hotfix:
 
 - Added a missing file that caused a rendering crash! Oops!!! Sorry!!!
