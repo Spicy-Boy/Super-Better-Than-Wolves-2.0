@@ -16,15 +16,15 @@ TODO- Add an addon initialization so that Tsug gets his credit!
 TODO- Added the blowing rod so that the player can use glass from a gloryhole to blow bottles.
         >The real impact of this feature will be felt later on.      
 
-TODO- Changed the anchor recipe to not be an iron ingot
+- Changed the anchor recipe to require an iron nugget rather than an ingot
         
 TODO- Changed trap doors to act like ladders when opened, like in modern vanilla MC
     
-    - Fixed an issue that caused the player to wake up from rain even when it wasn't really raining on the bed
+- Fixed an issue that caused the player to wake up from rain even when it wasn't really raining on the bed
     
-    - Fixed crude torch pickup. There was a bug where right clicking a torch would sometimes cause the torch to be placed in the inventory invisibly
+- Fixed crude torch pickup. There was a bug where right clicking a torch would sometimes cause the torch to be placed in the inventory invisibly
     
-    - Changed/reverted glass to the state of not allowing monsters to spawn on top of it. No more need to light up large glass structures!
+- Changed/reverted glass to the state of not allowing monsters to spawn on top of it. No more need to light up large glass structures!
         
 2.1 Hotfix:
 
