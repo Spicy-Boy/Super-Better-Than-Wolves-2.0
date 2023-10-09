@@ -466,8 +466,9 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
 
                     var50 += var7;
                     var1 = var5;
-
-                    if (this.worldServers[0].areAllPlayersAsleep())
+                    
+                    //AARON added this line of code to make sure all the players are offline to turn off the speed up
+                    if (this.worldServers[0].areAllPlayersAsleep() && this.getCurrentPlayerCount() > 0)
                     {
                         this.tick();
                         var50 = 0L;

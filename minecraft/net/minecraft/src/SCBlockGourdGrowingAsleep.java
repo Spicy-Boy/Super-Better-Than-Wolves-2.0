@@ -97,6 +97,18 @@ public abstract class SCBlockGourdGrowingAsleep extends SCBlockGourdFalling
 		else return 3;
 	}
 	
+	@Override
+	protected Item ItemToDropOnExplode(int meta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected int ItemCountToDropOnExplode(World world, int i, int k, int j, int meta) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	protected boolean checkTimeOfDay(World world) {
 		int iTimeOfDay = (int)( world.worldInfo.getWorldTime() % 24000L );
 		return (iTimeOfDay > 24000 || iTimeOfDay > 0 && iTimeOfDay < 14000 );

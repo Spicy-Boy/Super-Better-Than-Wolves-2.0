@@ -3847,4 +3847,41 @@ public class Block
         tessellator.addVertexWithUV( dX2, dY + 1D, dZ2, dMaxU, dMinV );
     }
     // END FCMOD
+    
+    //AARON imported from well it says so right below VVV
+	//------- SocksAddonsUtils Functionality -------//
+	
+    /**
+     * Used to allow Blocks to be placed in a specific armorSlot 
+     * @param armorType 0: Helmet, 1: Chest, 2: Legs, 3: boots
+     * @param itemStack 
+     */
+	public boolean isValidForArmorSlot(int armorType, ItemStack itemStack) {
+		return false;
+	}
+	
+	/**
+	 * Example Pumpkin: "%blur%/misc/pumpkinblur.png"
+	 * @return Returns the directory string of the blur overlay texture that should be used when this is worn in the helmet slot
+	 */
+	public String getBlurOverlay(ItemStack itemStack) {
+		return null;
+	}
+	
+	/**
+	 * Returns true or false depending if the blur overlay should be shown when the player disabled the GUI 
+	 */
+	public boolean showBlurOverlayWithGuiDisabled(ItemStack itemStack) {
+		return false;
+	}
+	
+	/**
+	 * If leaves can replace this Block. Used when generating leaves for trees on world gen and tree growth
+	 */
+	public boolean canBeReplacedByLeaves()
+	{
+		return false;
+	}
+	
+	// END SAU
 }

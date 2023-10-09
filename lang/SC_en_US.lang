@@ -1,23 +1,23 @@
 # Pumpkins
 tile.SCBlockPumpkinHarvested.orange_0.name=Unripe Pumpkin
 tile.SCBlockPumpkinHarvested.orange_1.name=Unripe Pumpkin
-tile.SCBlockPumpkinHarvested.orange_2.name=Unripe Pumpkin
-tile.SCBlockPumpkinHarvested.orange_3.name=Pumpkin
+tile.SCBlockPumpkinHarvested.orange_2.name=Small Orange Pumpkin
+tile.SCBlockPumpkinHarvested.orange_3.name=Orange Pumpkin
 
 tile.SCBlockPumpkinHarvested.green_0.name=Unripe Pumpkin
 tile.SCBlockPumpkinHarvested.green_1.name=Unripe Pumpkin
-tile.SCBlockPumpkinHarvested.green_2.name=Unripe Pumpkin
-tile.SCBlockPumpkinHarvested.green_3.name=Pumpkin
+tile.SCBlockPumpkinHarvested.green_2.name=Small Green Pumpkin
+tile.SCBlockPumpkinHarvested.green_3.name=Green Pumpkin
 
 tile.SCBlockPumpkinHarvested.yellow_0.name=Unripe Pumpkin
 tile.SCBlockPumpkinHarvested.yellow_1.name=Unripe Pumpkin
-tile.SCBlockPumpkinHarvested.yellow_2.name=Unripe Pumpkin
-tile.SCBlockPumpkinHarvested.yellow_3.name=Pumpkin
+tile.SCBlockPumpkinHarvested.yellow_2.name=Unripe Yellow Pumpkin
+tile.SCBlockPumpkinHarvested.yellow_3.name=Yellow Pumpkin
 
 tile.SCBlockPumpkinHarvested.white_0.name=Unripe Pumpkin
 tile.SCBlockPumpkinHarvested.white_1.name=Unripe Pumpkin
-tile.SCBlockPumpkinHarvested.white_2.name=Unripe Pumpkin
-tile.SCBlockPumpkinHarvested.white_3.name=Pumpkin
+tile.SCBlockPumpkinHarvested.white_2.name=Unripe White Pumpkin
+tile.SCBlockPumpkinHarvested.white_3.name=White Pumpkin
 
 tile.SCBlockPumpkinCarved.orange.name=Carved Pumpkin
 tile.SCBlockPumpkinCarved.green.name=Carved Pumpkin
@@ -60,9 +60,14 @@ item.SCItemMelonYellowSlice.name=Canary Slice
 item.SCItemMelonWhiteSlice.name=Honeydew Slice
 item.SCItemMelonGreenSlice.name=Cantaloupe Slice
 
-item.SCItemOrangePumpkinSeeds.name=Giant Pumpkin Seeds
-item.SCItemGreenPumpkinSeeds.name=Green Pumpkin Seeds
-item.SCItemYellowPumpkinSeeds.name=Yellow Pumpkin Seeds
-item.SCItemWhitePumpkinSeeds.name=White Pumpkin Seeds
-item.SCItemLittlePumpkinSeeds.name=Little Gourd Seeds
+item.SCItemSeedsOrangePumpkin.name=Giant Pumpkin Seeds
+item.SCItemSeedsGreenPumpkin.name=Green Pumpkin Seeds
+item.SCItemSeedsYellowPumpkin.name=Yellow Pumpkin Seeds
+item.SCItemSeedsWhitePumpkin.name=White Pumpkin Seeds
+item.SCItemSeedsLittlePumpkin.name=Little Gourd Seeds
 item.SCItemFoulPumpkinSeeds.name=Foul Seeds
+
+item.SCItemSeedsWaterMelon.name=Watermelon Seeds
+item.SCItemSeedsCanaryMelon.name=Canary Melon Seeds
+item.SCItemSeedsHoneydewMelon.name=Honeydew Seeds
+item.SCItemSeedsCantaloupeMelon.name=Cantaloupe Seeds

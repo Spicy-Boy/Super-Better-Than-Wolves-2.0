@@ -37,18 +37,52 @@ public class SCBlockPumpkinHarvested extends SCBlockGourdHarvested {
 		else return super.IsNormalCube(blockAccess, i, j, k);
 	}
 	
+	//CHANGED to be per type seeds
 	@Override
-	protected Item ItemToDropOnExplode()
+	protected Item ItemToDropOnExplode(int meta)
 	{
+		if (meta == 3)
+		{
+			return SuperBTWDefinitions.orangePumpkinSeeds;
+		}
+		else if (meta == 7)
+		{
+			return SuperBTWDefinitions.greenPumpkinSeeds;
+		}
+		else if (meta == 11)
+		{
+			return SuperBTWDefinitions.yellowPumpkinSeeds;
+		}
+		else if (meta == 15)
+		{
+			return SuperBTWDefinitions.whitePumpkinSeeds;
+		}
+		
 		return Item.pumpkinSeeds;
 	}
 	
 	@Override
 	protected int ItemCountToDropOnExplode(World world, int i, int j, int k, int meta)
 	{
-		if (this.GetGrowthLevel(meta) == 3)
+		if (meta == 3)
 		{
-			return 1;
+			return 4;
+		}
+		else if (meta == 2)
+		{
+			return 3;
+		}
+		else if (meta == 7)
+		{
+			return 5;
+		}
+		else if (meta == 6)
+		{
+			return 4;
+		}
+		else if (this.GetGrowthLevel(meta) == 3)
+		{
+			return 3;
 		}
 		else return 0;
 	}

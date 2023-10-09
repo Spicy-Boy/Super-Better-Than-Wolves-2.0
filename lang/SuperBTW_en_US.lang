@@ -2,10 +2,11 @@
 tile.SuperBTWBlockBranch.name=Branch
 tile.SuperBTWBlockMeatCube.name=Meat Cube
 tile.fcBlockBedroll.name=Bedroll
-tile.SuperBTWBlockWetMudBrick.name=Wet Mud Bricks
+tile.SuperBTWBlockWetMudBrick.name=Wet Mud Brick
+tile.SuperBTWBlockBranchSlab.name=Branch Block
+
 
 #Items
-item.SuperBTWItemLeatherWorking.name=Leather Cutting
 item.SuperBTWItemFlintKnapping.name=Flint Knapping
 item.SuperBTWItemFlintBlade.name=Flint Knife
 item.SuperBTWItemIronBlade.name=Iron Knife
@@ -14,6 +15,7 @@ item.SuperBTWItemCowRib.name=Raw Beef Rib
 item.SuperBTWItemRib.name=Rib Bone
 item.SuperBTWItemCookedCowRib.name=Seared Beef Rib
 item.SuperBTWItemBonePickaxe.name=Bone Pickaxe
+item.SuperBTWItemLeatherWorking=Leather Cutting
 item.SuperBTWItemLeatherWorkingIron.name=Leather Cutting
 item.SuperBTWItemRibCarving.name=Rib Carving
 item.SuperBTWItemRibCarvingIron.name=Rib Carving
@@ -23,6 +25,6 @@ item.SuperBTWItemBowStringing.name=Bow Stringing
 item.SuperBTWItemDeathClub.name=Death Club
 item.SuperBTWItemMortarBucket.name=Bucket of Mortar
 item.SuperBTWItemTrowel.name=Trowel
-item.SuperBTWItemWetMudBrick=Wet Mud Bricks
+item.SuperBTWItemWetMudBrick.name=Wet Mud Brick
 
 item.fcItemBedroll.name=Bedroll

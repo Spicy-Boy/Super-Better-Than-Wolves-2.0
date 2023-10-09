@@ -12,7 +12,8 @@ public abstract class SCBlockPumpkinGrowingAsleep extends SCBlockGourdGrowingAsl
 	
 	protected float GetBaseGrowthChance()
     {
-    	return 0.08F;
+		//matches wheat!
+    	return 0.4F;
     }
 
 	
@@ -33,23 +34,6 @@ public abstract class SCBlockPumpkinGrowingAsleep extends SCBlockGourdGrowingAsl
 	public int damageDropped(int meta)
 	{
 		return getMetaHarvested(meta);
-	}
-
-	@Override
-	protected Item ItemToDropOnExplode()
-	{
-		return Item.pumpkinSeeds;
-	}
-	
-	@Override
-	protected int ItemCountToDropOnExplode(World world, int i, int j, int k , int meta)
-	{
-		int growthLevel = this.GetGrowthLevel(world, i, j, k);
-		if (growthLevel == 3)
-		{
-			return 1;
-		}
-		else return 0;
 	}
 
 	@Override

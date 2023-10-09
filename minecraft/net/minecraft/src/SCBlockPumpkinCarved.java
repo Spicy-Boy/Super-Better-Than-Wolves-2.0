@@ -23,6 +23,21 @@ public class SCBlockPumpkinCarved extends FCBlockPumpkinCarved {
     	setCreativeTab(CreativeTabs.tabBlock);
 	}
 	
+	//from Sock's newer code
+	@Override
+    public boolean isValidForArmorSlot(int armorType, ItemStack itemStack) {
+        
+        int type = itemStack.getItemDamage();
+        
+        return armorType == 0 && type == 3;
+    }
+    
+    @Override
+    public String getBlurOverlay(ItemStack itemStack) {
+        
+        return "%blur%/misc/pumpkinblur.png";
+    }
+	
     public boolean canPlaceBlockAt( World world, int i, int j, int k )
     {
 

@@ -21,6 +21,8 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 	//AARON ADDED
 	public int deathCounter = 0;
 	
+	//AARON ADDED for sleep
+	
     /** Inventory of the player */
     public InventoryPlayer inventory = new InventoryPlayer(this);
     private InventoryEnderChest theInventoryEnderChest = new InventoryEnderChest();
@@ -64,11 +66,15 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
      * The chunk coordinates of the bed the player is in (null if player isn't in a bed).
      */
     public ChunkCoordinates playerLocation;
+    //AARON ADDED in order to stop the player from slipping through walls. Follow these variables to see how I backported that shit
+    public ChunkCoordinates playerBedLocation;
+    public ChunkCoordinates playerBeforeAsleep;
+    
     private int sleepTimer;
     public float field_71079_bU;
     public float field_71082_cx;
     public float field_71089_bV;
-
+    
     /**
      * Holds the last coordinate to spawn based on last bed that the player sleep.
      */
@@ -291,6 +297,11 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                 else if (this.worldObj.isDaytime())
                 {
                     this.wakeUpPlayer(false, true, true);
+                }
+                //AARON added this to wake the player if it starts raining
+                else if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( (int)this.posX, (int)this.posY + 1, (int)this.posZ ))
+                {
+                	this.wakeUpPlayer(true, true, false);
                 }
             }
         }
@@ -948,8 +959,11 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
         if (this.sleeping)
         {
-            this.playerLocation = new ChunkCoordinates(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
-            this.wakeUpPlayer(true, true, false);
+        	//AARON CHANGED for slip through walls sleep bug
+//            this.playerLocation = new ChunkCoordinates(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
+        	this.playerBedLocation = new ChunkCoordinates(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
+        	
+        	this.wakeUpPlayer(true, true, false);
         }
 
         if (par1NBTTagCompound.hasKey("SpawnX") && par1NBTTagCompound.hasKey("SpawnY") && par1NBTTagCompound.hasKey("SpawnZ"))
@@ -1516,7 +1530,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
     	//AARON uncommented this portion!
         if (!this.worldObj.isRemote)
-        {
+        {	
             if (this.isPlayerSleeping() || !this.isEntityAlive())
             {
                 return EnumStatus.OTHER_PROBLEM;
@@ -1529,7 +1543,16 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
             if (this.worldObj.isDaytime())
             {
+            	//AARON test msg
+//            	System.out.println("detecting DAYTIoooooME DAYTIME DAYTIME");
                 return EnumStatus.NOT_POSSIBLE_NOW;
+            }
+            
+            //AARON added this sleeping status to detect if rain is soaking the player
+            if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( par1, par2 + 1, par3 ))
+            {
+//            	System.out.println("detecting SOAKED");
+            	return EnumStatus.TOO_WET;
             }
 
             if (Math.abs(this.posX - (double)par1) > 3.0D || Math.abs(this.posY - (double)par2) > 2.0D || Math.abs(this.posZ - (double)par3) > 3.0D)
@@ -1547,7 +1570,10 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                 //return EnumStatus.NOT_SAFE;
             }
         }
-
+        
+        //AARON ADDED THIS so that you can't flippy dip through walls after a sleep backported
+        this.playerBeforeAsleep = new ChunkCoordinates((int)posX, (int)posY, (int)posZ);
+        
         this.setSize(0.2F, 0.2F);
         this.yOffset = 0.2F;
 
@@ -1586,7 +1612,9 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
         this.sleeping = true;
         this.sleepTimer = 0;
-        this.playerLocation = new ChunkCoordinates(par1, par2, par3);
+        //AARON slipping through walls sleep backported
+        this.playerBedLocation = new ChunkCoordinates(par1, par2, par3);
+        
         this.motionX = this.motionZ = this.motionY = 0.0D;
 
         if (!this.worldObj.isRemote)
@@ -1630,14 +1658,18 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     {
         this.setSize(0.6F, 1.8F);
         this.resetHeight();
-        ChunkCoordinates var4 = this.playerLocation;
-        ChunkCoordinates var5 = this.playerLocation;
+//        ChunkCoordinates var4 = this.playerLocation;
+//        ChunkCoordinates var5 = this.playerLocation;
+        ChunkCoordinates var4 = this.playerBedLocation;
+        ChunkCoordinates var5 = this.playerBeforeAsleep;
 
         //AARON MODIFIED this if statement to prevent getting kicked out of bedrolls
 //        if (var4 != null && this.worldObj.getBlockId(var4.posX, var4.posY, var4.posZ) == Block.bed.blockID)
         if (var4 != null && Block.blocksList[this.worldObj.getBlockId(var4.posX, var4.posY, var4.posZ)] instanceof FCBlockBedBase)
         {
             BlockBed.setBedOccupied(this.worldObj, var4.posX, var4.posY, var4.posZ, false);
+            
+            //AARON commented this out to fix slipping through walls
             var5 = BlockBed.getNearestEmptyChunkCoordinates(this.worldObj, var4.posX, var4.posY, var4.posZ, 0);
 
             if (var5 == null)
@@ -1678,7 +1710,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     {
     	//AARON MODIFIED this return to prevent being kicked out of bedroll
 //        return this.worldObj.getBlockId(this.playerLocation.posX, this.playerLocation.posY, this.playerLocation.posZ) == Block.bed.blockID;
-        return Block.blocksList[this.worldObj.getBlockId(this.playerLocation.posX, this.playerLocation.posY, this.playerLocation.posZ)] instanceof FCBlockBedBase;
+        return Block.blocksList[this.worldObj.getBlockId(this.playerBedLocation.posX, this.playerBedLocation.posY, this.playerBedLocation.posZ)] instanceof FCBlockBedBase;
 
     }
 
@@ -1714,9 +1746,11 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
      */
     public float getBedOrientationInDegrees()
     {
-        if (this.playerLocation != null)
+    	//AARON changed to stop slipping through walls while sleepy
+        if (this.playerBedLocation != null)
         {
-            int var1 = this.worldObj.getBlockMetadata(this.playerLocation.posX, this.playerLocation.posY, this.playerLocation.posZ);
+        	//AARON here to... pretty much every instance of playerLocation is changed to playerBedLocation
+            int var1 = this.worldObj.getBlockMetadata(this.playerBedLocation.posX, this.playerBedLocation.posY, this.playerBedLocation.posZ);
             int var2 = BlockBed.getDirection(var1);
 
             switch (var2)

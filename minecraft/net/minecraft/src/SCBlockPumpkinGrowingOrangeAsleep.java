@@ -65,6 +65,7 @@ public class SCBlockPumpkinGrowingOrangeAsleep extends SCBlockPumpkinGrowingAsle
 
 	}
 	
+	
 	@Override
 	public AxisAlignedBB GetBlockBoundsFromPoolBasedOnState( IBlockAccess blockAccess, int i, int j, int k )
 	{
@@ -185,4 +186,10 @@ public class SCBlockPumpkinGrowingOrangeAsleep extends SCBlockPumpkinGrowingAsle
     	
     	return orangeIcon[growthLevel];
     }
+
+	@Override
+	protected Item ItemToDropOnExplode(int meta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
