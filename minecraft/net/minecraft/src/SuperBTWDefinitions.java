@@ -43,6 +43,8 @@ public class SuperBTWDefinitions {
 		
 		id_envelopeOpen = 20023,
 		id_envelopeClosed = 20024,
+		
+		id_cutGrass = 20025,
 	
 		//GOURD MANIA!
 				
@@ -102,6 +104,8 @@ public class SuperBTWDefinitions {
 	
 	public static SuperBTWBlockWetMudBrick wetMudBrick;
 	public static Item wetMudBrickItem;
+	
+	public static Item cutGrass;
 	
 	//GOURD MANIA!
 	
@@ -164,6 +168,8 @@ public class SuperBTWDefinitions {
 		wetMudBrick = new SuperBTWBlockWetMudBrick(id_wetMudBrick);
 		TileEntity.addMapping(SuperBTWTileEntityWetMudBrick.class, "wetMudbrick");
 		wetMudBrickItem = new SuperBTWItemWetMudBrick(id_wetMudBrickItem - 256);
+		
+		cutGrass = new SuperBTWItemCutGrass(id_cutGrass - 256);
 		
 //        branchBlock = new SuperBTWBlockBranchSlab(id_branchBlock);
 //        Item.itemsList[branchBlock.blockID] = new ItemMultiTextureTile(id_branchBlock - 256, branchBlock, SuperBTWBlockBranchSlab.types);

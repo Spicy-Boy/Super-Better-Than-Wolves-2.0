@@ -1,0 +1,39 @@
+THE DRAGON SLAYER MANIFESTO,
+by Aaron ( who the fuck else? )
+
+I want to preface this document by making it perfectly clear that I am talking about a Discord role on a niche Minecraft community server. While the time and effort that one can put into obtaining this role, the golden glorious Dragon Slayer, is enormous, it is important to remember that it is just a name tag at the end of the day. If gaining clout in a video game Discord is the only thing getting you through the day, like it once was for me, then you need to step back and consider what is really important in your life! And at the end of the day, a role on a Discord server doesn't define your lived experience... if you killed the dragon and worked damn hard to do it, don't let me or anybody else make you feel undeserving. 
+
+That said, as Better Than Wolves continues to change and branch into fresh design trajectories, the legitimacy of achieving something as awesome as killing the Ender Dragon in one of the most hardcore mods ever created can be called into question. Some might say that a standard needs to be set. I want to explore a few of the arguments in order to illustrate that having a strictly rules based approach to bestowing Dragon Slayer upon players is not a great solution going forward Whether within the Community Edition itself or through independent modpacks, the number of ways that players can enjoy the full scope of Better Than Wolves both as a survival overhaul and a tech mod is only going incease, so to set overly specific parameters for "beating" the game will innevitably leave some players that put in the time and effort feeling burned or upset. Nor do I think it is healthy or wise to perscribe a hyper-strict "legit" way to slay the dragon in our age of BTW-multiplicity! 
+
+Chapter 1: Cheating
+
+I think we can all agree that cheating using commands in order to bypass challenges in the game is a definite disqualifier. An easy example: going into creative mode to become invincible during a tense fight clearly breaks the immersion of the game world. The Dragon Slayer role implies that player has survived the horrors of Better Than Wolves to achieve a state of high technological progression and wordly domination within their own Minecraft world, so nullifying the core survival state of the game is a step too far. Monsters devouring you is part of the experience. Some players like Dawnraider have gotten very good at keeping their meat beyond the hungry maw of the zombies, but the threat is always present in Better Than Wolves no matter how much diamond plate you stick between your skin and the outside world.
+
+Same goes for any other survival aspect of the game that players might want to skip in order to live where they otherwise might have died. Spawning in food is super lame, not only because it is cheating the game but because the cheater is cheating himself of potentially hilarious, breathtaking survival situations. I can't even count the number of times starvation has forced me into crazy do-or-die scenarios. Do you poison yourself with mushrooms in order to go just a little bit longer? Do you gamble on rotten flesh or raw chicken so that the rest of your meat can cook in time? Do you ditch Fido so you don't have to share your dwindling supply of meat? Cheating eliminates these crucial narrative moments, and seriously undermines the emergent qualities that make BTW's gameplay unmatched in the industry of sandbox survival games.
+
+X-ray is a another area that players like to cheat with a lot. The frustration of successive cave dives with no diamonds in sight can drive players to try to peek beneath the crust of their worlds with MCEdit or texture packs. There are even legitimate methods of achieving x-ray vision using blocks in the game which I will not divulge here. Whether you are using an exploit, commands, or an external program to see through walls, I think all of it is bunk and should disqualify you from calling yourself a true Dragon Slayer. 
+
+There are legitimate reasons to cheat, of course, and I don't think it should even be called cheating when these situations arise. Chunk errors are a great example of a circumstance outside the game that necesitates the use of commands to remedy. If your world corrupts and a chunk gets reverted right on top of your valuables chest, of course you should be allowed to go into Creative Mode and rebuild as best as you can. The world we live in is not absolute or perfect, and Minecraft itself is definitely NOT a perfect piece of software! Having the tools to repair your own world after a glitch is very important.
+
+Chapter 2: Hardcore Spawn
+
+Well, what about cheating to bypass Hardcore Spawn? It is a hard fact that everybody has a death that they felt was cheap/unfair/stupid. I also believe that overcoming Hardcore Spawns is essential if anyone wants to call themselves a Dragon Slayer. Hardcore Spawn is the mechanic that introduces the most variance in the amount of time it takes to beat the game in the first place. Random luck can put you an ocean away from your base, or pretty much right on top of it if you are lucky! But without that looming threat of exile within your own world, their really isn't all that much to worry about in Better Than Wolves. ;)
+
+It doesn't make sense to 
+he exact mechanics behind Hardcore Spawn have changed before and are already starting to change again. In the past, the player spawned at a maximum only 2000 blocks from spawn. Then Flowerchild made it so that the radius continued to grow upon reaching milestones like entering the nether or slaying the wither. Now in the Community Edition, players can once again set the radius back to a stable 2000 blocks with relaxed mode. I like to imagine that someday we will just have a slider at world creation so that players can choose the HC radius themselves. Should a line be drawn in the sand somewhere? Short anything that eliminates HC spawn entirely, probably not. 
+
+While I personally really love that the HC Spawn radius grows because it means I will always have fresh land to survive in even after "beating" the game, I can understand that having to survive from scratch 6000 blocks away right before beating the game is cumbersome for a lot of players. While I think 2000 blocks is too low, especially with the potential that an ocean could be taking up most of that range, I guess it can't be helped. When you get to a 6000+ block range anyway, a lot of people just reroll spawns until they see something familiar in order to get home. Personally, I'd bump up the relaxed mode range a bit, maybe to 3000, but at least players are still incentivized to play out hardcore spawns and build infrastructure across the world. 
+
+Anyone that uses an addon, future CE update, or modpack that provides the option to totally turn off HC Spawn should be excluded from the Dragon Slayer running. Hardcore Spawn is really the glue that makes BTW the survival overhaul that it is. The game would take a fraction of the time to complete if you always respawned at your base, making killing the dragon significantly less monumental.
+
+As an aside, I am not opposed to the idea of playing with HC Spawn disabled. Plenty of people do it, especially in server environments where it is easy to teleport to other players. Some mods already exist, in fact, that let you tweak the HC Spawn radius or disable it entirely! With the amount of exploration that Better Than Wolves encourages, the player is certain to run into scary situations far from home no matter how they play. The hardcore survival experience as prescribed by the overlord himself
+
+Chapter X: Why do I care?
+
+Chapter X: Why should you care?
+
+Chapter X: Should you try a Dragon Slayer run yourself?
+
+Absolutely.
+
+

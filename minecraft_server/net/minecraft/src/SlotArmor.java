@@ -66,6 +66,7 @@ class SlotArmor extends Slot
   				return this.armorType == 0;
   			}
   			else {
+<<<<<<< Updated upstream
   				
   				if ( Item.itemsList[itemID].isValidForArmorSlot(this.armorType, itemStack) )
   				{
@@ -75,6 +76,17 @@ class SlotArmor extends Slot
   				{
   					return Block.blocksList[itemID].isValidForArmorSlot(this.armorType, itemStack);
   				}
+=======
+  				//Dont let this into the final version dude AARON please this is temp shit
+//  				if ( Item.itemsList[itemID].isValidForArmorSlot(this.armorType, itemStack) )
+//  				{
+//  					return Item.itemsList[itemID].isValidForArmorSlot(this.armorType, itemStack);
+//  				}
+//  				else if ( Block.blocksList[itemID].isValidForArmorSlot(this.armorType, itemStack) )
+//  				{
+//  					return Block.blocksList[itemID].isValidForArmorSlot(this.armorType, itemStack);
+//  				}
+>>>>>>> Stashed changes
   				
   				return false;
   			}
@@ -87,6 +99,10 @@ class SlotArmor extends Slot
    */
   public Icon getBackgroundIconIndex()
   {
+<<<<<<< Updated upstream
       return ItemArmor.func_94602_b(this.armorType);
+=======
+      return null; //ItemArmor.func_94602_b(this.armorType);
+>>>>>>> Stashed changes
   }
 }

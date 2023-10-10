@@ -15,7 +15,11 @@ public class SuperBTW extends FCAddOn
 	
     private SuperBTW() 
     {
+<<<<<<< Updated upstream
         super("SUPER BETTER THAN WOLVES", "BETA 2.2 (w/ trusty melons uwu)", "");
+=======
+        super("SUPER BETTER THAN WOLVES", "BETA 2.1 (w/ trusty melons uwu)", "");
+>>>>>>> Stashed changes
     }
 
 	@Override
