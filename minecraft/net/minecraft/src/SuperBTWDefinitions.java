@@ -66,7 +66,9 @@ public class SuperBTWDefinitions {
 		id_meatCube = 2003,
 		id_blockBedroll = 2004,
 		id_timeCube = 2005,
-		id_wetMudBrick = 2006;
+		id_wetMudBrick = 2006,
+	
+		id_gloryHole = 2007;
 	
 		
 	
@@ -99,6 +101,8 @@ public class SuperBTWDefinitions {
 	public static Block meatCube;
 	public static Block fcBlockBedroll;
 	public static Block timeCube;
+	
+	public static Block ghBlockGloryhole;
 	
 	public static SuperBTWBlockWetMudBrick wetMudBrick;
 	public static Item wetMudBrickItem;
@@ -182,6 +186,9 @@ public class SuperBTWDefinitions {
 		honeydewMelonSeeds = new SCItemHoneydewMelonSeeds (id_honeydewMelonSeeds - 256, SCDefs.id_melonStemHoneydew);
 		cantaloupeMelonSeeds = new SCItemCantaloupeMelonSeeds (id_cantaloupeMelonSeeds - 256, SCDefs.id_melonStemCantaloupe);
 	
+		//Ts
+		ghBlockGloryhole = new TSGBlockGloryhole(id_gloryHole).setUnlocalizedName("ghBlockGloryhole").setCreativeTab(CreativeTabs.tabDecorations);
+		Item.itemsList[ghBlockGloryhole.blockID] = new ItemBlock(ghBlockGloryhole.blockID - 256);
 		
 	}
 	

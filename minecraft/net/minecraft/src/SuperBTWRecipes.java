@@ -31,6 +31,18 @@ public class SuperBTWRecipes extends FCRecipes {
 	}
 
 	public static void addBlockRecipes() {
+		AddRecipe(
+				new ItemStack(SuperBTWDefinitions.ghBlockGloryhole),
+				new Object[] {
+					"IGI", "BPB", "BVB",
+					'I', new ItemStack(Item.ingotIron),
+					'G', new ItemStack(FCBetterThanWolves.fcItemGear),
+					'B', new ItemStack(FCBetterThanWolves.fcBlockBrickLoose),
+					'P', new ItemStack(Block.obsidian),
+					'V', new ItemStack(Block.fenceIron)
+				}
+			);
+		
 		AddRecipe(new ItemStack(FCBetterThanWolves.fcBlockWorkbench, 1), new Object[] // ITS BACK BABY
 		{ "###", "#X#", "###", '#', Block.planks, 'X', Item.ingotIron });
 		
