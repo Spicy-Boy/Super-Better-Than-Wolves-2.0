@@ -10,7 +10,9 @@ TODO: Add group specific tp locations
 
 Base Class Edits:
 CommandBase 
-ServerCommandTestFor (pure semantic changes for most of these, changed a rando name to findPlayer() )
+ServerCommandManager (for registering commands)
+
+ServerCommandTestFor (pure semantic changes for most of these, changed a rando method name to findPlayer() )
 CommandServerTP
 CommandClearInventory
 CommandEffect
@@ -20,6 +22,8 @@ CommandGive
 CommandServerMessage
 CommandSetSpawnpoint
 CommandXP
+
+EntityPlayerMP (for keeping track of tp requests)
 
 
 
