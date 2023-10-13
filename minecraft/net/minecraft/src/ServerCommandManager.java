@@ -39,6 +39,7 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
         //AARON added some commands
         this.registerCommand(new SuperBTWCommandTEST());
         this.registerCommand(new SuperBTWCommandTpRequest());
+        this.registerCommand(new SuperBTWCommandTpAccept());
 
         if (MinecraftServer.getServer().isDedicatedServer())
         {
