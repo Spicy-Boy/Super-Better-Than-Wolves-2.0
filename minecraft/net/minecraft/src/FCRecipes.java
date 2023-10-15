@@ -1769,25 +1769,12 @@ public abstract class FCRecipes
     		Character.valueOf( '#' ), FCBetterThanWolves.fcItemHempFibers 
 		} );
 		
-		//AARON changed this to make the anchor affordable
 		AddRecipe( new ItemStack( FCBetterThanWolves.fcAnchor ), new Object[] {
     		" X ", 
     		"###", 
     		Character.valueOf( '#' ), FCBetterThanWolves.fcItemStoneBrick, 
     		Character.valueOf( 'X' ), Item.ingotIron 
 		} );
-		AddRecipe( new ItemStack( FCBetterThanWolves.fcAnchor ), new Object[] {
-		" X ", 
-		"###", 
-		Character.valueOf( '#' ), FCBetterThanWolves.fcItemStoneBrick, 
-		Character.valueOf( 'X' ), FCBetterThanWolves.fcItemNuggetIron
-	} );
-		AddRecipe( new ItemStack( FCBetterThanWolves.fcAnchor ), new Object[] {
-		" X ", 
-		"###", 
-		Character.valueOf( '#' ), FCBetterThanWolves.fcItemStoneBrick, 
-		Character.valueOf( 'X' ), FCBetterThanWolves.fcItemNuggetSteel
-	} );
 		
 		AddRecipe( new ItemStack( FCBetterThanWolves.fcItemWaterWheel ), new Object[] {
 			"###",

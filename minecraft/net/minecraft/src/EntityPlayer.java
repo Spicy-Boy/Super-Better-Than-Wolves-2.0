@@ -299,13 +299,8 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                     this.wakeUpPlayer(false, true, true);
                 }
                 //AARON added this to wake the player if it starts raining
-//                else if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( (int)this.posX, (int)this.posY + 1, (int)this.posZ ))
-                //be careful, the player location is not perfect on the bed and can be caught in the rain easily 
-                else if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( (int)this.posX, (int)this.posY + 1, (int)Math.floor(this.posZ) ))
+                else if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( (int)this.posX, (int)this.posY + 1, (int)this.posZ ))
                 {
-                	//testers VVV
-//                	System.out.println("x:"+this.posX+"y:"+this.posY+"z:"+this.posZ);
-//                	System.out.println("x:"+(int)this.posX+"y:"+(int)this.posY+"z:"+Math.floor(this.posZ));
                 	this.wakeUpPlayer(true, true, false);
                 }
             }
@@ -1554,8 +1549,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
             }
             
             //AARON added this sleeping status to detect if rain is soaking the player
-//            if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( par1, par2, par3 ))
-            if (this.worldObj.IsRainingAtPos( par1, par2 + 1, par3 ))
+            if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( par1, par2 + 1, par3 ))
             {
 //            	System.out.println("detecting SOAKED");
             	return EnumStatus.TOO_WET;
