@@ -5,7 +5,18 @@ Switched to BETA 2.0 on July 12, 2023
 =======
 SMP Feature List and Bug Fixes:
 
-TODO: Add a tpa command
+- Added two creative-only blocks: super glass and super block
+    > Super glass is bedrock but see-through
+    >Super blocks are also just retextured bedrock, but a special beacon can be created from them that grants invulnerability
+
+TODO- Added new beacon effects (invulnerability and hunger freeze) check potion id type shit to see how to add new effects
+
+TODO- Config for hardcore soul mating?
+
+- Added two new teleportation commands: /tpa [player name] and /tpaccept [player name]
+
+
+
 TODO: Add group specific tp locations
 
 Base Class Edits:
@@ -24,6 +35,8 @@ CommandSetSpawnpoint
 CommandXP
 
 EntityPlayerMP (for keeping track of tp requests)
+
+FCTileEntityBeacon (for the new admin beacon using Super Blocks)
 
 
 

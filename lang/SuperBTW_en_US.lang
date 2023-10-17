@@ -4,7 +4,8 @@ tile.SuperBTWBlockMeatCube.name=Meat Cube
 tile.fcBlockBedroll.name=Bedroll
 tile.SuperBTWBlockWetMudBrick.name=Wet Mud Brick
 tile.SuperBTWBlockBranchSlab.name=Branch Block
-
+tile.SuperBTWBlockSuperGlass.name=Super Glass
+tile.SuperBTWBlockSuperBlock.name=Super Block
 
 #Items
 item.SuperBTWItemFlintKnapping.name=Flint Knapping
