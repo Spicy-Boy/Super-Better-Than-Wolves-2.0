@@ -56,6 +56,7 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
             //AARON added some commands :D
             this.registerCommand(new SuperBTWCommandTpRequest());
             this.registerCommand(new SuperBTWCommandTpAccept());
+            this.registerCommand(new SuperBTWCommandTpCancel());
             
             for (ICommand command : commandsServer) {
     			this.registerCommand(command);

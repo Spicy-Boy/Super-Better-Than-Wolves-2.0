@@ -13,7 +13,7 @@ public class SuperBTWCommandTpRequest extends CommandBase
 	
 	public int getRequiredPermissionlevel()
 	{
-		return 2;
+		return 0;
 	}
 	
 	public void processCommand(ICommandSender sender, String[] arguments)

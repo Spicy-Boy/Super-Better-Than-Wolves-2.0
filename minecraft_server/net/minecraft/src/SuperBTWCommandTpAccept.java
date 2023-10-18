@@ -9,7 +9,7 @@ public class SuperBTWCommandTpAccept extends CommandBase
 	
 	public int getRequiredPermissionlevel()
 	{
-		return 2;
+		return 0;
 	}
 	
 	public void processCommand(ICommandSender sender, String[] arguments)
@@ -52,6 +52,7 @@ public class SuperBTWCommandTpAccept extends CommandBase
             	
             	teleportingPlayer.mountEntity((Entity)null);
             	teleportingPlayer.playerNetServerHandler.setPlayerLocation(acceptingPlayer.posX, acceptingPlayer.posY, acceptingPlayer.posZ, acceptingPlayer.rotationYaw, acceptingPlayer.rotationPitch);
+            	teleportingPlayer.setTpaRequestName("");
             }
             else
             {
