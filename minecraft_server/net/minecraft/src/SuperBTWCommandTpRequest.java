@@ -11,10 +11,23 @@ public class SuperBTWCommandTpRequest extends CommandBase
 		return "tpa";
 	}
 	
-	public int getRequiredPermissionlevel()
-	{
-		return 0;
-	}
+    /**
+     * Return the required permission level for this command.
+     */
+	@Override
+	public int getRequiredPermissionLevel()
+    {
+        return 0;
+    }
+	
+    /**
+     * Returns true if the given command sender is allowed to use this command.
+     */
+	@Override
+    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
+    {
+        return true;
+    }
 	
 	public void processCommand(ICommandSender sender, String[] arguments)
 	{
@@ -23,6 +36,10 @@ public class SuperBTWCommandTpRequest extends CommandBase
 
 	        throw new WrongUsageException("Try /tpa [playername]", new Object[0]);
 	    } 
+		else if (!SuperBTW.instance.getTpaEnabled())
+		{
+			throw new WrongUsageException("This command is disabled.", new Object[0]);
+		}
 	    else 
 	    {
 	    	EntityPlayerMP teleportingPlayer;

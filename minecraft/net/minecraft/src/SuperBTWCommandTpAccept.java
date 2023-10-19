@@ -7,10 +7,10 @@ public class SuperBTWCommandTpAccept extends CommandBase
 		return "tpaccept";
 	}
 	
-	public int getRequiredPermissionlevel()
-	{
-		return 2;
-	}
+//	public int getRequiredPermissionlevel()
+//	{
+//		return 2;
+//	}
 	
 	public void processCommand(ICommandSender sender, String[] arguments)
 	{

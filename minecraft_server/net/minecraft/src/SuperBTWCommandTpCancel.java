@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.server.MinecraftServer;
+
 public class SuperBTWCommandTpCancel extends CommandBase
 {
 	public String getCommandName()
@@ -7,18 +9,35 @@ public class SuperBTWCommandTpCancel extends CommandBase
 		return "tpcancel";
 	}
 	
-	public int getRequiredPermissionlevel()
-	{
-		return 0;
-	}
+    /**
+     * Return the required permission level for this command.
+     */
+	@Override
+	public int getRequiredPermissionLevel()
+    {
+        return 0;
+    }
 	
+    /**
+     * Returns true if the given command sender is allowed to use this command.
+     */
+	@Override
+    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
+    {
+        return true;
+    }
+
 	public void processCommand(ICommandSender sender, String[] arguments)
 	{
 		
 	    if (arguments.length > 1) 
 	    {
 	        throw new WrongUsageException("Try /tpcancel", new Object[0]);
-	    } 
+	    }
+		else if (!SuperBTW.instance.getTpaEnabled())
+		{
+			throw new WrongUsageException("This command is disabled.", new Object[0]);
+		}
 	    else
 	    {
 		    

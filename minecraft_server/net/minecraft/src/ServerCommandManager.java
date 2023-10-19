@@ -35,6 +35,11 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
         this.registerCommand(new ServerCommandTestFor());
         this.registerCommand(new ServerCommandScoreboard());
         this.registerCommand(new FCCommandServerLoc());
+        
+        //AARON added some commands :D
+        this.registerCommand(new SuperBTWCommandTpRequest());
+        this.registerCommand(new SuperBTWCommandTpAccept());
+        this.registerCommand(new SuperBTWCommandTpCancel());
 
         if (MinecraftServer.getServer().isDedicatedServer())
         {
@@ -52,11 +57,6 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
             this.registerCommand(new CommandServerKick());
             this.registerCommand(new CommandServerList());
             this.registerCommand(new CommandServerWhitelist());
-            
-            //AARON added some commands :D
-            this.registerCommand(new SuperBTWCommandTpRequest());
-            this.registerCommand(new SuperBTWCommandTpAccept());
-            this.registerCommand(new SuperBTWCommandTpCancel());
             
             for (ICommand command : commandsServer) {
     			this.registerCommand(command);

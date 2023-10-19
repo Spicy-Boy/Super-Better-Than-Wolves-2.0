@@ -10,10 +10,10 @@ public class SuperBTWCommandTpRequest extends CommandBase
 		return "tpa";
 	}
 	
-	public int getRequiredPermissionlevel()
-	{
-		return 2;
-	}
+//	public int getRequiredPermissionlevel()
+//	{
+//		return 2;
+//	}
 	
 	public void processCommand(ICommandSender sender, String[] arguments)
 	{

@@ -1,6 +1,10 @@
 package net.minecraft.src;
 
+import java.io.File;
+
 public class SuperBTWDefinitions {
+	
+
 	
 	private static final int
 
@@ -184,5 +188,7 @@ public class SuperBTWDefinitions {
 	
 		
 	}
+	
+
 	
 }
