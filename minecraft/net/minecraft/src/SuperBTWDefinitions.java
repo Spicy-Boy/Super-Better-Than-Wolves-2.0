@@ -140,7 +140,7 @@ public class SuperBTWDefinitions {
 		ribCarvingIron = new SuperBTWItemRibCarvingIron(id_ribCarvingIron - 256);
 		cookedCowRibPartial = new SuperBTWItemCookedCowRibPartial(id_cookedCowRibPartial - 256);
 		cookedCowRibSpent = new SuperBTWItemCookedCowRibSpent(id_cookedCowRibSpent - 256);
-		hoeStoneNew = ( new FCItemHoe( id_hoeStoneNew, EnumToolMaterial.BONE ) ).setUnlocalizedName( "hoeStone" );;
+		hoeStoneNew = ( new FCItemHoe( id_hoeStoneNew, EnumToolMaterial.BONE ) ).setUnlocalizedName( "hoeStone" );
 		bowStringing = new SuperBTWItemBowStringing(id_bowStringing - 256);
 		deathClub = new SuperBTWItemDeathClub(id_deathClub - 256);
 		mortarBucket = new SuperBTWItemMortarBucket(id_mortarBucket - 256);
