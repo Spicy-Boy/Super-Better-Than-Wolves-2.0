@@ -71,7 +71,7 @@ public class SuperBTWCommandTpAccept extends CommandBase
             	
             	teleportingPlayer.mountEntity((Entity)null);
             	teleportingPlayer.playerNetServerHandler.setPlayerLocation(acceptingPlayer.posX, acceptingPlayer.posY, acceptingPlayer.posZ, acceptingPlayer.rotationYaw, acceptingPlayer.rotationPitch);
-            	teleportingPlayer.setTpaRequestName("");
+            	teleportingPlayer.setTpaRequestName(""); //prevents the accepter from spam-teleporting
             }
             else
             {

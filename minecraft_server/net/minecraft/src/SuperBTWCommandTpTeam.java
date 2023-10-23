@@ -24,17 +24,17 @@ public class SuperBTWCommandTpTeam extends CommandBase
 	
 	String filePath; //name or location of the file containing the above information
 	
-	/* EXAMPLE OF TEXT FILE FORMAT
+	/* EXAMPLE OF TEXT FILE FORMAT tpteams.txt
 
-$Team1
-x:200
-y:68
-z:2
-topguy
-EpicAaron29
-dingitaaaa
-dawnraider
-GatesOfLogic
+	$Team1
+	x:200
+	y:68
+	z:2
+	topguy
+	EpicAaron29
+	dingitaaaa
+	dawnraider
+	GatesOfLogic
 
 	 */
 	
@@ -48,20 +48,20 @@ GatesOfLogic
 		teamsAndCoords = createTeamsAndCoordsMap(filePath);
 		
 		//TESTER for teams&users map VVV
-		System.out.println(teamsAndUsernames);
-		
-		//TESTER for teams&coords map VVV
-        // Get the set of keys from the HashMap
-        Set<String> keySet = teamsAndCoords.keySet();
-
-        // Iterate through the key set and print the keys and their corresponding values
-        for (String key : keySet) 
-        {
-            System.out.println("Key: "+key);
-            System.out.println("x: "+teamsAndCoords.get(key)[0]);
-            System.out.println("y: "+teamsAndCoords.get(key)[1]);
-            System.out.println("z: "+teamsAndCoords.get(key)[2]);
-        }
+//		System.out.println(teamsAndUsernames);
+//		
+//		//TESTER for teams&coords map VVV
+//        // Get the set of keys from the HashMap
+//        Set<String> keySet = teamsAndCoords.keySet();
+//
+//        // Iterate through the key set and print the keys and their corresponding values
+//        for (String key : keySet) 
+//        {
+//            System.out.println("Key: "+key);
+//            System.out.println("x: "+teamsAndCoords.get(key)[0]);
+//            System.out.println("y: "+teamsAndCoords.get(key)[1]);
+//            System.out.println("z: "+teamsAndCoords.get(key)[2]);
+//        }
         //END TESTER for teams&coords map
 		
 	}
@@ -94,19 +94,51 @@ GatesOfLogic
     
     public void processCommand(ICommandSender par1ICommandSender, String[] commandStringArray)
     {
-    	if (commandStringArray.length < 1)
+    	if (commandStringArray.length < 1) //if no parameters are entered besides /tpteam
     	{
     		throw new WrongUsageException("Try /tpteam list, /tpteam list [teamname], /tpteam [teamname] (to teleport players), or /tpteam refresh", new Object[0]);
     	}
-    	else if (commandStringArray.length >= 1)
-        {
+    	if (commandStringArray.length == 1) //single parameter commands
+		{
+			if (isTeamName(commandStringArray[0])) //TELEPORT ENTIRE TEAM happens here!!
+			//checks to see if the parameter equals an existing team name
+			//if true, teleport all players in the team to the specified coordinates!
+			{
+				int x = teamsAndCoords.get(commandStringArray[0])[0]; //reminder: the x,y,z values are stored in an array
+				int y = teamsAndCoords.get(commandStringArray[0])[2];
+				int z = teamsAndCoords.get(commandStringArray[0])[3];
+				
+				List<String> usernamesInTeam = teamsAndUsernames.get(commandStringArray[0]);
+				
+				for (int p = 0; p < usernamesInTeam.size(); p++) //iterates all players in the team list
+				{
+					EntityPlayerMP teleportingPlayer = findPlayer(par1ICommandSender, usernamesInTeam.get(p));
+					if (teleportingPlayer != null) //if the player exists at time of execution
+					{
+						//teleport players one at a time
+						teleportingPlayer.playerNetServerHandler.setPlayerLocation(x, y, z, teleportingPlayer.rotationYaw, teleportingPlayer.rotationPitch);
+					}
+      
+				}
+				
+			}
+            else if (commandStringArray[0].equals("refresh")) //recreate the two hash maps while the server is running
+            {
+            	notifyAdmins(par1ICommandSender, "Refreshing tpteam text file!", new Object[0]);
+            	refreshMapsFromTextFile();
+            	return;
+            }
+		}
+    	else if (commandStringArray.length >= 1) //multi-parameter commands
+    	{
 
-            if (commandStringArray[0].equals("list")) //used to see team names and members in-game
+    		if (commandStringArray[0].equals("list")) //used to print team names and lists of players in teams
             {
                 if (commandStringArray.length < 2) 
                 //if command = "list" and nothing else, print list of teams
                 {
                 	Set<String> keySet = teamsAndCoords.keySet();
+                	
                 	String teams = "Teams:";
                 	for (String key : keySet)
                 	{
@@ -118,7 +150,7 @@ GatesOfLogic
                 else if (commandStringArray.length == 2) //ex: /tpteam list Team3 would print all the players under Team3
                 //if second parameter is a valid team name, print the usernames listed inside that team
                 {
-                	if (!isTeamName(commandStringArray[1])) //checks to see if the second parameter is a team name
+                	if (!isTeamName(commandStringArray[1])) //checks to see if the second parameter is/not a team name
                 	{
                 		throw new WrongUsageException("Team "+commandStringArray[1]+" couldn't be found.", new Object[0]);
                 	}
@@ -134,14 +166,10 @@ GatesOfLogic
                 }
 
             }
-            else if (commandStringArray[0].equals("refresh"))
-            {
-            	notifyAdmins(par1ICommandSender, "Refreshing tpteam text file!", new Object[0]);
-            	refreshMapsFromTextFile();
-            	return;
-            }
-        }
+    	}
+
     }
+
     
     public boolean isTeamName(String userInput) 
     //modularly checks to see if a team name has been typed, returns true if so 
