@@ -3,12 +3,17 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class BlockCactus extends Block
-{
+{   
+    //AARON
+    static {
+    	Gloryholes.instance.getVersionString();
+    }
 	
     //AARON
     static {
     	SuperBTW.instance.getVersionString();
     }
+
     
     private Icon cactusTopIcon;
     private Icon cactusBottomIcon;
