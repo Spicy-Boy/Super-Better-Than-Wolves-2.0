@@ -43,6 +43,7 @@ public class SuperBTWDefinitions {
 		
 		id_envelopeOpen = 20023,
 		id_envelopeClosed = 20024,
+		id_tombstonePlacer = 20025,
 	
 		//GOURD MANIA!
 				
@@ -94,6 +95,7 @@ public class SuperBTWDefinitions {
 	public static Item trowel;
 	public static Item envelopeOpen;
 	public static Item envelopeClosed;
+	public static Item tombstonePlacer;
 	
 	public static Block branchBlock;
 	public static Block sunflower;
@@ -168,6 +170,8 @@ public class SuperBTWDefinitions {
 		wetMudBrick = new SuperBTWBlockWetMudBrick(id_wetMudBrick);
 		TileEntity.addMapping(SuperBTWTileEntityWetMudBrick.class, "wetMudbrick");
 		wetMudBrickItem = new SuperBTWItemWetMudBrick(id_wetMudBrickItem - 256);
+		
+		tombstonePlacer = new SuperBTWItemTombstonePlacer(id_tombstonePlacer - 256);
 		
 //        branchBlock = new SuperBTWBlockBranchSlab(id_branchBlock);
 //        Item.itemsList[branchBlock.blockID] = new ItemMultiTextureTile(id_branchBlock - 256, branchBlock, SuperBTWBlockBranchSlab.types);

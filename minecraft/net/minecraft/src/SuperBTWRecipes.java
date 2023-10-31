@@ -31,6 +31,7 @@ public class SuperBTWRecipes extends FCRecipes {
 	}
 
 	public static void addBlockRecipes() {
+		
 		AddRecipe(
 				new ItemStack(SuperBTWDefinitions.ghBlockGloryhole),
 				new Object[] {
@@ -42,6 +43,13 @@ public class SuperBTWRecipes extends FCRecipes {
 					'V', new ItemStack(Block.fenceIron)
 				}
 			);
+		
+		//tombstone recipe from chiseling a stone slab
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.tombstonePlacer, 1 ), new Object[] 
+		{	    		
+	    		new ItemStack( FCBetterThanWolves.fcItemChiselIron, 1, m_iIgnoreMetadata ),
+	    		new ItemStack( Item.itemsList[FCBetterThanWolves.fcBlockSmoothStoneSidingAndCorner.blockID], 1, 0 )
+		} );
 		
 		AddRecipe(new ItemStack(FCBetterThanWolves.fcBlockWorkbench, 1), new Object[] // ITS BACK BABY
 		{ "###", "#X#", "###", '#', Block.planks, 'X', Item.ingotIron });

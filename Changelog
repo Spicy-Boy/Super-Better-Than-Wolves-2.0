@@ -4,22 +4,20 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.2 Brick & Mortar
 
+
+- Added the tombstone, a block that can be crafted by chiseling a slab of stone   
+
 TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
         TODO>Applied the same principle to soul filtering. Thank you Dawn for pointing all of this out!
         
 TODO- Added Tsughoggr's Gloryhole and Blow mod to SBTW
-        > Added the gloryhole, an oven-like block that can be used to create blocks of glass when filled with sand and heated from below
+        > Adds the gloryhole, an oven-like block that can be used to create blocks of glass when filled with sand from the top and heated from below
         > Changed the gloryhole recipe to require a block of obsidian rather than nether quarts
         TODO> add a particle effect to show that the glass is cooking inside
         
 TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten gloryhole glass
 
 TODO- Added the glass jars from Sockscrops! They can store smaller items!
-        
-TODO- Add an addon initialization so that Tsug gets his credit!  
-
-TODO- Added the blowing rod so that the player can use glass from a gloryhole to blow bottles.
-        >The real impact of this feature will be felt later on.      
 
 - Changed the anchor recipe to require an iron nugget rather than an ingot (steel nugget too because why not?)
       
@@ -30,9 +28,20 @@ TODO- Changed trap doors to act like ladders when opened, like in modern vanilla
 - Fixed an issue that caused the player to wake up from rain even when it wasn't really raining on the bed
     
 - Fixed crude torch pickup. There was a bug where right clicking a torch would sometimes cause the torch to be placed in the inventory invisibly
+
+TODO- Changed the chat window during sleep to be toggled off by default. Press "t" while sleeping to chat.
+
+TODO- Fix gloom sleeping bug! Gloom should not wake you up
+ 
     
 TODO- Added new librarian trades for block dispensers and detector blocks 
+
+TODO- Update level 2 priest trades to be decent and good
     
+TODO- Add water bucket refills after crafting if player is within certain radius of water source or full cistern (use explosion code to do this!)    
+
+TODO- Make wolves enter love mode when they eat a mystery meat!
+
 TODO- Added the Meat Golem
 
 TODO- Added the airship
