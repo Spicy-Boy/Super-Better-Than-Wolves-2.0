@@ -15,7 +15,7 @@ TODO- Added Tsughoggr's Gloryhole and Blow mod to SBTW
         > Changed the gloryhole recipe to require a block of obsidian rather than nether quarts
         TODO> add a particle effect to show that the glass is cooking inside
         
-TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten gloryhole glass
+TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
 
 TODO- Added the glass jars from Sockscrops! They can store smaller items!
 
@@ -23,17 +23,16 @@ TODO- Added the glass jars from Sockscrops! They can store smaller items!
       
 - Changed/reverted glass to the state of not allowing monsters to spawn on top of it. No more need to light up large glass structures!
         
+- Changed the chat window during sleep to be toggled off by default. Press "t" while sleeping to chat.        
+        
 TODO- Changed trap doors to act like ladders when opened, like in modern vanilla MC
     
-- Fixed an issue that caused the player to wake up from rain even when it wasn't really raining on the bed
+- Fixed an issue that caused the player to wake up from rain even when it wasn't really raining on the bed due to rounding problems
     
 - Fixed crude torch pickup. There was a bug where right clicking a torch would sometimes cause the torch to be placed in the inventory invisibly
 
-TODO- Changed the chat window during sleep to be toggled off by default. Press "t" while sleeping to chat.
+TODO- Added to the veracity of Hardcore Nightmares/make the sleep button invisible when gloomed
 
-TODO- Fix gloom sleeping bug! Gloom should not wake you up
- 
-    
 TODO- Added new librarian trades for block dispensers and detector blocks 
 
 TODO- Update level 2 priest trades to be decent and good
@@ -222,6 +221,10 @@ Block.java (SAU overlay junk)
 DamageSource (custom death messages)
 FCEntityWolf
 FCBetterThanWolves
+ThreadDownloadResources (url fix, but it didnt seem to actually fix anything)
+GuiChat (all for toggling chat during sleep... sort of shitty tbh)
+GuiNewChat
+GuiScreen 
 
 
 #For sleep integration:
