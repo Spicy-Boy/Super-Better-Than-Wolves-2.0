@@ -1,7 +1,9 @@
 package net.minecraft.src;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +22,7 @@ public class SuperBTWCommandTpTeam extends CommandBase
 	
 	//initializes a map with team names as the keys and an array of 3 coordinates a each value(integers)
 	//the coords will represent x y z values used for teleportation (in that order: x, y, z)
-	Map<String, int[]> teamsAndCoords;
+	Map<String, double[]> teamsAndCoords;
 	
 	String filePath; //name or location of the file containing the above information
 	
@@ -96,23 +98,37 @@ public class SuperBTWCommandTpTeam extends CommandBase
     {
     	if (commandStringArray.length < 1) //if no parameters are entered besides /tpteam
     	{
-    		throw new WrongUsageException("Try /tpteam list, /tpteam list [teamname], /tpteam [teamname] (to teleport players), or /tpteam refresh", new Object[0]);
+    		
+    		notifyAdmins(par1ICommandSender, "Information: /tpteam list, /tpteam list [teamname], tpteam refresh", new Object[0]);
+    		notifyAdmins(par1ICommandSender, "Teleportation: /tpteam [teamname] (team tp), /tpteam player [playername] (individual tp)", new Object[0]);
+    		notifyAdmins(par1ICommandSender, "Modification: /tpteam new [teamname], /tpteam set [teamname], tpteam remove [playername], tpteam add [playername]", new Object[0]);
+
+    		return;
     	}
-    	if (commandStringArray.length == 1) //single parameter commands
+    	
+   
+    	if (commandStringArray.length >= 1)
 		{
-			if (isTeamName(commandStringArray[0])) //TELEPORT ENTIRE TEAM happens here!!
-			//checks to see if the parameter equals an existing team name
+    		
+    		//tp entire team sub command
+			if (isTeamName(commandStringArray[0]))
+			//^^^checks to see if the parameter equals an existing team name
 			//if true, teleport all players in the team to the specified coordinates!
 			{
-				int x = teamsAndCoords.get(commandStringArray[0])[0]; //reminder: the x,y,z values are stored in an array
-				int y = teamsAndCoords.get(commandStringArray[0])[2];
-				int z = teamsAndCoords.get(commandStringArray[0])[3];
+				double x = teamsAndCoords.get(commandStringArray[0])[0]; //reminder: the x,y,z values are stored in an array
+//				System.out.println(x);
+				double y = teamsAndCoords.get(commandStringArray[0])[1];
+//				System.out.println(y);
+				double z = teamsAndCoords.get(commandStringArray[0])[2];
+//				System.out.println(z);
 				
 				List<String> usernamesInTeam = teamsAndUsernames.get(commandStringArray[0]);
+//				System.out.println(usernamesInTeam);
 				
 				for (int p = 0; p < usernamesInTeam.size(); p++) //iterates all players in the team list
 				{
-					EntityPlayerMP teleportingPlayer = findPlayer(par1ICommandSender, usernamesInTeam.get(p));
+//					EntityPlayerMP teleportingPlayer = findPlayer(par1ICommandSender, usernamesInTeam.get(p));
+					EntityPlayerMP teleportingPlayer = MinecraftServer.getServer().getConfigurationManager().getPlayerEntity(usernamesInTeam.get(p));
 					if (teleportingPlayer != null) //if the player exists at time of execution
 					{
 						//teleport players one at a time
@@ -122,17 +138,17 @@ public class SuperBTWCommandTpTeam extends CommandBase
 				}
 				
 			}
+			
+			//refresh sub command
             else if (commandStringArray[0].equals("refresh")) //recreate the two hash maps while the server is running
             {
-            	notifyAdmins(par1ICommandSender, "Refreshing tpteam text file!", new Object[0]);
+            	notifyAdmins(par1ICommandSender, "Refreshing tpteams.txt!", new Object[0]);
             	refreshMapsFromTextFile();
             	return;
             }
-		}
-    	else if (commandStringArray.length >= 1) //multi-parameter commands
-    	{
-
-    		if (commandStringArray[0].equals("list")) //used to print team names and lists of players in teams
+			
+			//list sub command
+            else if (commandStringArray[0].equals("list")) //used to print team names and lists of players in teams
             {
                 if (commandStringArray.length < 2) 
                 //if command = "list" and nothing else, print list of teams
@@ -166,13 +182,199 @@ public class SuperBTWCommandTpTeam extends CommandBase
                 }
 
             }
+            else if (commandStringArray[0].equals("player"))
+            //^^ /tpteam player [playername] to tp a player to their respective team coords (if multiple teams, random)
+            {
+            	
+            	EntityPlayerMP teleportingPlayer = MinecraftServer.getServer().getConfigurationManager().getPlayerEntity(commandStringArray[1]);
+            	
+            	for (String key : teamsAndCoords.keySet()) 
+            	{
+            		if (doesUsernameExistInTeam(commandStringArray[1], key) || doesUsernameExistInTeam(commandStringArray[1].toLowerCase(), key))
+            		{
+        				double x = teamsAndCoords.get(key)[0]; //reminder: the x,y,z values are stored in an array
+//        				System.out.println(x);
+        				double y = teamsAndCoords.get(key)[1];
+//        				System.out.println(y);
+        				double z = teamsAndCoords.get(key)[2];
+//        				System.out.println(z);
+        				
+    					if (teleportingPlayer != null) //if the player exists at time of execution
+    					{
+    						//teleport players one at a time
+    						teleportingPlayer.playerNetServerHandler.setPlayerLocation(x, y, z, teleportingPlayer.rotationYaw, teleportingPlayer.rotationPitch);
+    						notifyAdmins(par1ICommandSender, "Teleported "+commandStringArray[1]+" to location of "+key+".", new Object[0]);
+    						return;
+    					}
+            		}
+
+            		notifyAdmins(par1ICommandSender, "Player "+commandStringArray[1]+" could not be found in any teams.", new Object[0]);
+            		return;
+            	}
+            
+            }
+//            else if (commandStringArray[0].equals("self"))
+//            //^^ teleports the sender to their team location (if in multiple teams, random)
+////            In EntityPlayerMP, set an int to limit how many times a non-op can tp... probably this must be its own command?
+//            {
+//            	wadwadw
+//            }
+            else if (commandStringArray[0].equals("add")) 
+            //^^ /tpteam add [playername] [teamname] (team names are CASE SENSITIVE!!!)
+            //StringArray[1] = player name, [2] = team name
+            {
+                if (commandStringArray.length < 3) 
+                //^^ if command is only a single parameter, correct the player!
+                {
+               		throw new WrongUsageException("Try /tpteam add [player name] [team name].", new Object[0]);
+                }
+                
+                String teamKey = commandStringArray[2];
+                String newUser = commandStringArray[1];
+                
+                List<String> usernames;
+                
+                if (!(isTeamName(teamKey)))
+                {
+                 	throw new WrongUsageException("Specified team name doesn't exist. Case sensitive!", new Object[0]);
+                }
+
+                usernames = teamsAndUsernames.get(teamKey);
+                usernames.add(newUser);
+                
+                teamsAndUsernames.put(teamKey, usernames);
+                
+                try {
+					writeTextFile(); //save the changes to the text file
+					notifyAdmins(par1ICommandSender, "Added "+newUser+" to "+teamKey+".", new Object[0]);
+				} 
+                catch (IOException e) 
+                {
+					e.printStackTrace();
+				}
+            }
+            else if (commandStringArray[0].equals("remove"))
+            //^^ /tpteam remove [playername] [teamname] (team names are CASE SENSITIVE!!!)
+            //Removed a player from a specified team list
+            //No, you can't remove a team entirely using commands. That would suck to mess up!
+            {
+                if (commandStringArray.length < 3) 
+                //^^ if command is only a single parameter, correct the player!
+                {
+               		throw new WrongUsageException("Try /tpteam add [player name] [team name].", new Object[0]);
+                }
+                
+                String teamKey = commandStringArray[2];
+                String userToDelete = commandStringArray[1];
+                
+                List<String> usernames;
+                
+                if (!(isTeamName(teamKey)))
+                {
+                 	throw new WrongUsageException("Specified team name doesn't exist. Case sensitive!", new Object[0]);
+                }
+                
+                if (!(doesUsernameExistInTeam(userToDelete, teamKey)))
+                {
+                	throw new WrongUsageException("User isn't in specified team.", new Object[0]);
+                }
+
+                usernames = teamsAndUsernames.get(teamKey);
+                usernames.remove(userToDelete);
+                
+                teamsAndUsernames.put(teamKey, usernames);
+                
+                try {
+					writeTextFile(); //save the changes to the text file
+					notifyAdmins(par1ICommandSender, "Removed "+userToDelete+" from "+teamKey+".", new Object[0]);
+				} 
+                catch (IOException e) 
+                {
+					e.printStackTrace();
+				}
+            }
+            else if (commandStringArray[0].equals("set"))
+            //^^ /tpteam set [teamname] to set the coordinates of the team to your current standing position
+            //IF team doesn't exist, creates a new team with the set name! commandStringArray[1] = [teamname]
+            {
+            	EntityPlayerMP playerCommandSender = getCommandSenderAsPlayer(par1ICommandSender);
+            	
+            	if (isTeamName(commandStringArray[1])) //set new coords for team
+            	{
+            		teamsAndCoords.get(commandStringArray[1])[0] = playerCommandSender.posX;
+            		teamsAndCoords.get(commandStringArray[1])[1] = playerCommandSender.posY;
+            		teamsAndCoords.get(commandStringArray[1])[2] = playerCommandSender.posZ;
+            		
+    				notifyAdmins(par1ICommandSender, "Changed the coords for "+commandStringArray[1]+".", new Object[0]);
+
+            	}
+            	else //create brand new team
+            	{
+            		createNewTeam(commandStringArray[1], par1ICommandSender);
+            	}
+            	
+            	try {
+					writeTextFile();
+				} 
+            	catch (IOException e) 
+            	{
+					e.printStackTrace();
+				}
+            }
+            else if (commandStringArray[0].equals("new"))
+            //^^ /tpteam new [teamname] to create a new team with coordinates at your current standing position
+            //commandStringArray[1] = [teamname]
+            {
+            	
+            	createNewTeam(commandStringArray[1], par1ICommandSender);
+            	
+            	try {
+					writeTextFile();
+				} 
+            	catch (IOException e) 
+            	{
+					e.printStackTrace();
+				}
+            }
     	}
 
     }
 
+	public void writeTextFile() throws IOException   
+    //Recreates the tpteams.txt file, usually with added/removed usernames!
+    {
+    	BufferedWriter writer = new BufferedWriter(new FileWriter("tpteams.txt"));
+    	
+    	Set<String> keySet = teamsAndCoords.keySet(); //gets a set of key names (each key is a team name)
+    	
+    	for (String key : keySet) //iterates all key names, populating the space beneath it with coords + names
+    	{
+    		writer.write("$"+ key);
+    		writer.newLine();
+    		
+    		writer.write("x:"+teamsAndCoords.get(key)[0]);
+    		writer.newLine();
+    		
+    		writer.write("y:"+teamsAndCoords.get(key)[1]);
+    		writer.newLine();
+    		
+    		writer.write("z:"+teamsAndCoords.get(key)[2]);
+    		writer.newLine();
+    		
+        	for (int i = 0; i < teamsAndUsernames.get(key).size(); i++)
+        	{
+        		writer.write(teamsAndUsernames.get(key).get(i));
+        		writer.newLine();
+        	}
+        	writer.newLine();
+    	}
+    	
+    	writer.close();
+    	
+    }
     
     public boolean isTeamName(String userInput) 
-    //modularly checks to see if a team name has been typed, returns true if so 
+    //^^^ modularly checks to see if a team name has been typed, returns true if so 
     //(case sensitive!)
     {
     	Set<String> keySet = teamsAndCoords.keySet();
@@ -186,6 +388,49 @@ public class SuperBTWCommandTpTeam extends CommandBase
     	}
     	
     	return false;
+    }
+    
+    public boolean doesUsernameExistInTeam(String username, String team)
+    {
+    	List<String> listUsernames = teamsAndUsernames.get(team);
+    	
+    	for (int p = 0; p < listUsernames.size(); p++) 
+    	{
+    		if (username.equals(listUsernames.get(p)))
+    		{
+    			return true;
+    		}
+    	}
+    	
+    	return false;
+    }
+    
+    private void createNewTeam(String newTeamName, ICommandSender sender)
+    {
+    	if (!(teamsAndUsernames.containsKey(newTeamName))) //if the specified team name doesn't already exist
+    	{
+        	double[] arrayCoords = new double[3];
+        	
+        	List<String> listUsernames = new ArrayList<String>();
+        	
+        	teamsAndUsernames.put(newTeamName,listUsernames);
+        	
+        	EntityPlayerMP playerCommandSender = getCommandSenderAsPlayer(sender);
+        	
+        	arrayCoords[0] = playerCommandSender.posX;
+        	arrayCoords[1] = playerCommandSender.posY;
+        	arrayCoords[2] = playerCommandSender.posZ;
+        	
+        	teamsAndCoords.put(newTeamName,arrayCoords);
+        	
+			notifyAdmins(sender, "Created a new team called "+newTeamName+".", new Object[0]);
+			
+    	}
+    	else
+    	{
+        	throw new WrongUsageException("That team already exists!", new Object[0]);
+    	}
+
     }
 	
 	//creates an hash map connecting team names (Strings) to array lists of usernames (<Strings>)
@@ -230,9 +475,9 @@ public class SuperBTWCommandTpTeam extends CommandBase
 	}
 	
 	//creates an hash map connecting team names (Strings) to an array of coordinates (<integers>)
-	public Map<String, int[]> createTeamsAndCoordsMap(String filePath)
+	public Map<String, double[]> createTeamsAndCoordsMap(String filePath)
 	{
-		teamsAndCoords = new HashMap<String, int[]>();
+		teamsAndCoords = new HashMap<String, double[]>();
 
         try 
         {
@@ -248,19 +493,19 @@ public class SuperBTWCommandTpTeam extends CommandBase
         		if (line.startsWith("$")) //$ is the marker for a team name
         		{
         			currentTeam = line.substring(1); //excludes the $ marker
-        			teamsAndCoords.put(currentTeam, new int[3]); //maps the team name to an empty array of three ints
+        			teamsAndCoords.put(currentTeam, new double[3]); //maps the team name to an empty array of three ints
         		}
         		else if (line.startsWith("x:")) 
         		{
-        			teamsAndCoords.get(currentTeam)[0] = Integer.parseInt(line.substring(2).trim()); //adds the integer only (excludes the 'x:') to the arrayList at the specified team key
+        			teamsAndCoords.get(currentTeam)[0] = Double.parseDouble(line.substring(2).trim()); //adds the integer only (excludes the 'x:') to the arrayList at the specified team key
             	}
         		else if (line.startsWith("y:")) 
         		{
-        			teamsAndCoords.get(currentTeam)[1] = Integer.parseInt(line.substring(2).trim()); //adds the integer only (excludes the 'y:') to the arrayList at the specified team key
+        			teamsAndCoords.get(currentTeam)[1] = Double.parseDouble(line.substring(2).trim()); //adds the integer only (excludes the 'y:') to the arrayList at the specified team key
             	}
         		else if (line.startsWith("z:")) 
         		{
-        			teamsAndCoords.get(currentTeam)[2] = Integer.parseInt(line.substring(2).trim()); //adds the integer only (excludes the 'z:') to the arrayList at the specified team key
+        			teamsAndCoords.get(currentTeam)[2] = Double.parseDouble(line.substring(2).trim()); //adds the integer only (excludes the 'z:') to the arrayList at the specified team key
             	}
         	}
         	br.close();

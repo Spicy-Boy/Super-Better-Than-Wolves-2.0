@@ -13,9 +13,9 @@ TODO- Added new beacon effects (invulnerability and hunger freeze) check potion 
 
 TODO- Config for hardcore soul mating?
 
-- Added three new teleportation commands: /tpa [player name], /tpaccept [player name], and /tpcancel
+- Added three new player-to-player teleportation commands: /tpa [player name], /tpaccept [player name], and /tpcancel
 
-- Added a new configuration file, SBTWserver.properties to servers (auto-generated on start up) that allows server owners to disable or enable SBTW's new commands
+- Added a new configuration file, SBTWserver.properties, to servers (auto-generated on start up) that allows server owners to disable or enable SBTW's new tpa commands
 
 
 
