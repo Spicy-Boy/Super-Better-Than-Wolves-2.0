@@ -11,7 +11,14 @@ public class GuiSleepMP extends GuiChat
         super.setChatToggled(false);
         StringTranslate var1 = StringTranslate.getInstance();
         //AARON changed the height value so the player can see their status while sleeping
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height - 70, var1.translateKey("multiplayer.stopSleeping")));
+//        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height - 70, var1.translateKey("multiplayer.stopSleeping")));
+        //AARON added a new button
+        int x = 100;
+        int y = 65;
+        int bWidth = 75;
+        int bHeight = 20;
+        
+        this.buttonList.add(new GuiButton(1, this.width - x, this.height-y, bWidth, bHeight, var1.translateKey("multiplayer.stopSleeping")));
     }
 
     /**
@@ -21,8 +28,13 @@ public class GuiSleepMP extends GuiChat
     {
         if (par2 == 1)
         {
-        	super.setChatToggled(true);
-            this.wakeEntity();
+        	//AARON touches a lot in this class, best use a diff checker I think!
+        	if (this.mc.thePlayer.GetGloomLevel() == 0)
+        	{
+        		super.setChatToggled(true);
+        		this.wakeEntity();
+        	}
+        		
         }
         else if (par2 == 28 && super.isChatToggled())
         {
@@ -37,6 +49,7 @@ public class GuiSleepMP extends GuiChat
             this.mc.ingameGUI.getChatGUI().resetScroll();
             super.setChatToggled(false);
         }
+        //AARON added some toggles
         else if(par2 == mc.gameSettings.keyBindChat.keyCode && !super.isChatToggled())
         {
         	super.setChatToggled(true);
@@ -69,6 +82,24 @@ public class GuiSleepMP extends GuiChat
     {
         NetClientHandler var1 = this.mc.thePlayer.sendQueue;
         var1.addToSendQueue(new Packet19EntityAction(this.mc.thePlayer, 3));
+    }
+    
+    /**
+   * Draws the screen and all the components in it.
+  	*/
+    @Override
+    public void drawScreen(int par1, int par2, float par3)
+    {
+    	if (this.mc.thePlayer.GetGloomLevel() == 0)
+    	{//AARON's gloom checker >:)
+	    	//AARON adds the main toggle here to draw the text chat
+	    	if (this.chatToggled)
+	    	{
+	    		drawRect(2, this.height - 14, this.width - 2, this.height - 2, Integer.MIN_VALUE);
+	    		this.inputField.drawTextBox();
+	    	}
+	    	super.drawScreen(par1, par2, par3);
+    	}
     }
 }
 

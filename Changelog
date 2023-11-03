@@ -4,8 +4,11 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.2 Brick & Mortar
 
+BUG TODO: When crafting mortar bucket, you still get an empty bucket back!
 
 - Added the tombstone, a block that can be crafted by chiseling a slab of stone   
+
+- Added Hardcore Nightmares... remember, it is just a dream!
 
 TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
         TODO>Applied the same principle to soul filtering. Thank you Dawn for pointing all of this out!
@@ -23,15 +26,18 @@ TODO- Added the glass jars from Sockscrops! They can store smaller items!
       
 - Changed/reverted glass to the state of not allowing monsters to spawn on top of it. No more need to light up large glass structures!
         
-- Changed the chat window during sleep to be toggled off by default. Press "t" while sleeping to chat.        
+- Changed the chat window during sleep to be toggled off by default. Press "t" while sleeping to chat. 
+
+- Changed hearty stew to mainly be produced with beef. This makes stew less of a braindead endgame food option and more of a project to obtain automatically
+        >Notably, you can't make stew with pork, mutton only produces two servings of stew, and wolf chops only produce 3 servings. Fry up some eggs mate.        
         
 TODO- Changed trap doors to act like ladders when opened, like in modern vanilla MC
+    
+TODO- Added a new breeding method for wolves-- mystery meat! Credit to the CE team for this one. Wolves will get a little... excited after a successful hunt 
     
 - Fixed an issue that caused the player to wake up from rain even when it wasn't really raining on the bed due to rounding problems
     
 - Fixed crude torch pickup. There was a bug where right clicking a torch would sometimes cause the torch to be placed in the inventory invisibly
-
-TODO- Added to the veracity of Hardcore Nightmares/make the sleep button invisible when gloomed
 
 TODO- Added new librarian trades for block dispensers and detector blocks 
 
