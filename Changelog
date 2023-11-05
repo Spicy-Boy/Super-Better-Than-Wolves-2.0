@@ -17,6 +17,7 @@ TODO- Config for hardcore soul mating?
 
 - Added a new configuration file, SBTWserver.properties, to servers (auto-generated on start up) that allows server owners to disable or enable SBTW's new tpa commands
 
+- Added /tpteam commands for setting up teams of players and teleporting them as a group
 
 
 
