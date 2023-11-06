@@ -3882,6 +3882,12 @@ public class Block
 	{
 		return false;
 	}
+
+	//AARON added this method to signify whether a block can be busted down by a zombie
+	public boolean isWeakBlock(World worldObj, int x, int y, int z) {
+
+		return false;
+	}
 	
 	// END SAU
 }

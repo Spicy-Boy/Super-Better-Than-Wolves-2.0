@@ -44,6 +44,10 @@ public class SuperBTWDefinitions {
 		id_envelopeOpen = 20023,
 		id_envelopeClosed = 20024,
 		id_tombstonePlacer = 20025,
+		
+		id_pipeEmpty = 20026,
+		id_pipePacked = 20027,
+		id_pipeLit = 20028,
 	
 		//GOURD MANIA!
 				
@@ -96,6 +100,9 @@ public class SuperBTWDefinitions {
 	public static Item envelopeOpen;
 	public static Item envelopeClosed;
 	public static Item tombstonePlacer;
+	public static Item pipeEmpty;
+	public static Item pipePacked;
+	public static Item pipeLit;
 	
 	public static Block branchBlock;
 	public static Block sunflower;
@@ -143,9 +150,11 @@ public class SuperBTWDefinitions {
 		deathClub = new SuperBTWItemDeathClub(id_deathClub - 256);
 		mortarBucket = new SuperBTWItemMortarBucket(id_mortarBucket - 256);
 		trowel = new SuperBTWItemTrowel(id_trowel - 256);
-		
 		envelopeOpen = new SuperBTWItemEnvelopeOpen(id_envelopeOpen - 256);
 		envelopeClosed = new SuperBTWItemEnvelopeClosed(id_envelopeClosed - 256);
+		pipeEmpty = new SuperBTWItemPipeEmpty(id_pipeEmpty - 256);
+		pipePacked = new SuperBTWItemPipePacked(id_pipePacked - 256);
+		pipeLit = new SuperBTWItemPipeLit(id_pipeEmpty - 256);
 		
 		branchBlock = new SuperBTWBlockBranch(id_branchBlock);
 		Item.itemsList[branchBlock.blockID] = new ItemBlock(branchBlock.blockID - 256); 
