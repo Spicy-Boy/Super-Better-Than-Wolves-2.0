@@ -58,7 +58,7 @@ public class SuperBTWEntityAIBreakBlock extends EntityAIBase
                 tempPathPoint = new PathPoint(MathHelper.floor_double(this.theEntity.posX), MathHelper.floor_double(this.theEntity.posY), MathHelper.floor_double(this.theEntity.posZ));
             }
 
-            for (int dy : new int[]{1, 0}) {
+            for (int dy : new int[]{1, 0, -1}) {
 
                 for (int[] dxz : dxzList) {
 
@@ -80,8 +80,9 @@ public class SuperBTWEntityAIBreakBlock extends EntityAIBase
 //                            } else {
 //                                this.maxBreakingTime = (int) (this.targetBlock.getBlockHardness(this.theEntity.worldObj, this.targetPosX, this.targetPosY, this.targetPosZ) * 2560);
 //                            }
-                          this.maxBreakingTime = (int) (this.targetBlock.getBlockHardness(this.theEntity.worldObj, this.targetPosX, this.targetPosY, this.targetPosZ) * 2560);
-
+                        	
+//                          this.maxBreakingTime = (int) (this.targetBlock.getBlockHardness(this.theEntity.worldObj, this.targetPosX, this.targetPosY, this.targetPosZ) * /*2560*/5);
+                        	this.maxBreakingTime = 5;
 
                             return true;
                         }
@@ -100,7 +101,8 @@ public class SuperBTWEntityAIBreakBlock extends EntityAIBase
 
     public void resetTask() {
         super.resetTask();
-        this.breakingCooldownCounter = 20;
+        //AARON cooldown edit
+        this.breakingCooldownCounter = 3;
         this.theEntity.worldObj.destroyBlockInWorldPartially(this.theEntity.entityId, this.targetPosX, this.targetPosY, this.targetPosZ, -1);
     }
 
@@ -157,7 +159,13 @@ public class SuperBTWEntityAIBreakBlock extends EntityAIBase
 //                canBreak = block.getBlockHardness(this.theEntity.worldObj, x, y, z) > 0.0D && block.getBlockHardness(this.theEntity.worldObj, x, y, z) <= 1.5D;
 //            }
         	
+
         	canBreak = block.isWeakBlock(this.theEntity.worldObj, x, y, z);
+        	//TESTER VVV
+//        	if (canBreak)
+//        	{
+//            	System.out.println("WEAK BLOCK DETECTED!!!");
+//        	}
         	
         }
         return canBreak ? block : null;
