@@ -4,9 +4,13 @@ tile.SuperBTWBlockMeatCube.name=Meat Cube
 tile.fcBlockBedroll.name=Bedroll
 tile.SuperBTWBlockWetMudBrick.name=Wet Mud Brick
 tile.SuperBTWBlockBranchSlab.name=Branch Block
+tile.SuperBTWBlockReedThatchSlab.name=Reed Thatch Slab
+tile.SuperBTWBlockReedThatch.name=Reed Thatch
+tile.ghBlockGloryhole.name=Gloryhole
 
 
 #Items
+item.SuperBTWItemPipeEmpty.name=Empty Pipe
 item.SuperBTWItemFlintKnapping.name=Flint Knapping
 item.SuperBTWItemFlintBlade.name=Flint Knife
 item.SuperBTWItemIronBlade.name=Iron Knife

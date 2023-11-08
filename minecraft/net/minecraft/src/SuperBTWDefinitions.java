@@ -73,7 +73,10 @@ public class SuperBTWDefinitions {
 		id_timeCube = 2005,
 		id_wetMudBrick = 2006,
 	
-		id_gloryHole = 2007;
+		id_gloryHole = 2007,
+		
+		id_reedThatchSlab = 2008,
+		id_reedThatch = 2009;
 	
 		
 	
@@ -112,6 +115,9 @@ public class SuperBTWDefinitions {
 	public static Block timeCube;
 	
 	public static Block ghBlockGloryhole;
+	
+	public static Block reedThatchSlab;
+	public static Block reedThatch;
 	
 	public static SuperBTWBlockWetMudBrick wetMudBrick;
 	public static Item wetMudBrickItem;
@@ -152,6 +158,7 @@ public class SuperBTWDefinitions {
 		trowel = new SuperBTWItemTrowel(id_trowel - 256);
 		envelopeOpen = new SuperBTWItemEnvelopeOpen(id_envelopeOpen - 256);
 		envelopeClosed = new SuperBTWItemEnvelopeClosed(id_envelopeClosed - 256);
+		tombstonePlacer = new SuperBTWItemTombstonePlacer(id_tombstonePlacer - 256);
 		pipeEmpty = new SuperBTWItemPipeEmpty(id_pipeEmpty - 256);
 		pipePacked = new SuperBTWItemPipePacked(id_pipePacked - 256);
 		pipeLit = new SuperBTWItemPipeLit(id_pipeEmpty - 256);
@@ -180,7 +187,11 @@ public class SuperBTWDefinitions {
 		TileEntity.addMapping(SuperBTWTileEntityWetMudBrick.class, "wetMudbrick");
 		wetMudBrickItem = new SuperBTWItemWetMudBrick(id_wetMudBrickItem - 256);
 		
-		tombstonePlacer = new SuperBTWItemTombstonePlacer(id_tombstonePlacer - 256);
+		reedThatchSlab = new SuperBTWBlockReedThatchSlab(id_reedThatchSlab);
+		Item.itemsList[reedThatchSlab.blockID] = new SuperBTWItemBlockReedThatchSlab(reedThatchSlab.blockID - 256);
+		reedThatch = new SuperBTWBlockReedThatch(id_reedThatch);
+		Item.itemsList[reedThatch.blockID] = new ItemBlock(reedThatch.blockID - 256);
+
 		
 //        branchBlock = new SuperBTWBlockBranchSlab(id_branchBlock);
 //        Item.itemsList[branchBlock.blockID] = new ItemMultiTextureTile(id_branchBlock - 256, branchBlock, SuperBTWBlockBranchSlab.types);

@@ -32,6 +32,55 @@ public class SuperBTWRecipes extends FCRecipes {
 
 	public static void addBlockRecipes() {
 		
+		//alternative platform recipe high efficiency
+		AddRecipe( new ItemStack( FCBetterThanWolves.fcPlatform ), new Object[] {
+	    		"#X#", 
+	    		" # ", 
+	    		"#X#", 
+	    		Character.valueOf( '#' ), new ItemStack( FCBetterThanWolves.fcBlockWoodMouldingItemStubID, 1, m_iIgnoreMetadata ), 
+	    		Character.valueOf( 'X' ), SuperBTWDefinitions.reedThatch 
+			} );
+		//alternative platform recipe
+		AddRecipe( new ItemStack( FCBetterThanWolves.fcPlatform ), new Object[] {
+	    		"#X#", 
+	    		" # ", 
+	    		"#X#", 
+	    		Character.valueOf( '#' ), Block.planks, 
+	    		Character.valueOf( 'X' ), SuperBTWDefinitions.reedThatch 
+			} );
+		
+		//thatch recipes (shapeless with branch/stick variants)
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.reedThatchSlab  ), new Object[] {
+	    		new ItemStack( SuperBTWDefinitions.branch ),
+	    		new ItemStack( SuperBTWDefinitions.branch ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed )
+			} );
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.reedThatchSlab ), new Object[] {
+	    		new ItemStack( Item.stick ),
+	    		new ItemStack( SuperBTWDefinitions.branch ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed )
+			} );
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.reedThatchSlab ), new Object[] {
+				new ItemStack( Item.stick ),
+				new ItemStack( Item.stick ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed )
+			} );
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.reedThatchSlab  ), new Object[] {
+	    		new ItemStack( SuperBTWDefinitions.reedThatchSlab ),
+	    		new ItemStack( SuperBTWDefinitions.reedThatchSlab )
+			} );
+		//break down break down
+		AddShapelessRecipe( new ItemStack( Item.reed, 2 ), new Object[] {
+	    		new ItemStack( SuperBTWDefinitions.reedThatchSlab  ),
+			} );
+		AddShapelessRecipe( new ItemStack( Item.reed, 4 ), new Object[] {
+	    		new ItemStack( SuperBTWDefinitions.reedThatch  ),
+			} );
+		
+		
 		AddRecipe(
 				new ItemStack(SuperBTWDefinitions.ghBlockGloryhole),
 				new Object[] {
@@ -337,6 +386,58 @@ public class SuperBTWRecipes extends FCRecipes {
 				new Object[] { "IRI", "XYX", "IRI", Character.valueOf('X'), Item.ingotGold, Character.valueOf('I'),
 						Item.ingotIron, Character.valueOf('R'), Item.redstone, Character.valueOf('Y'), Item.stick, });
 
+		//full block thatch recipes (sort of cumbersome)
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.reedThatch ), new Object[] {
+				new ItemStack( Item.stick ),
+				new ItemStack( Item.stick ),
+				new ItemStack( Item.stick ),
+				new ItemStack( Item.stick ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed )
+			} );
+		//full block thatch recipes with mixed branches
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.reedThatch ), new Object[] {
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( Item.stick ),
+				new ItemStack( Item.stick ),
+				new ItemStack( Item.stick ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed )
+			} );
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.reedThatch ), new Object[] {
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( Item.stick ),
+				new ItemStack( Item.stick ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed )
+			} );
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.reedThatch ), new Object[] {
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( Item.stick ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed )
+			} );
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.reedThatch ), new Object[] {
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( SuperBTWDefinitions.branch ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed ),
+	    		new ItemStack( Item.reed )
+			} );
 		
 		// debug
 		// FCRecipes.AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.branchBlock,
