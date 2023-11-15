@@ -250,6 +250,9 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         		var1.itemID == itemInUse.itemID && ItemStack.areItemStackTagsEqual( itemInUse, var1 ) ) )
         	// END FCMOD
             {
+            	
+
+            	
             	// FCMOD: Added
             	itemInUse = var1;
             	// END FCMOD
@@ -717,30 +720,30 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
             this.dropPlayerItemWithRandomChoice(new ItemStack(Item.appleRed, 1), true);
         }
         
-        if (this.username.equals("TheLadyDawn"))
-        {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemNuggetSteel, 1), true);
-        }
-        	
-        if (this.username.equals("Sockthing"))
-        {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemArmorWoolBoots, 1, 0), true);
-        }
-        
-        if (this.username.equals("EpicAaron29"))
-        {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemDung, 1), true);
-        }
-        
+//        if (this.username.equals("TheLadyDawn"))
+//        {
+//            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemNuggetSteel, 1), true);
+//        }
+//        	
+//        if (this.username.equals("Sockthing"))
+//        {
+//            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemArmorWoolBoots, 1, 0), true);
+//        }
+//        
 //        if (this.username.equals("EpicAaron29"))
 //        {
-//        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.cookie, 1), true);
+//            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemDung, 1), true);
 //        }
-        
-        if (this.username.equals("Gilberreke"))
-        {
-        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.book, 1), true);
-        }
+//        
+////        if (this.username.equals("EpicAaron29"))
+////        {
+////        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.cookie, 1), true);
+////        }
+//        
+//        if (this.username.equals("Gilberreke"))
+//        {
+//        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.book, 1), true);
+//        }
         
 
 
@@ -2144,6 +2147,37 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                     return Item.bow.getItemIconForUseDuration(6);
                 }
             }
+            //AARON added the functionality for reloading the gun here!!!! Since this is the only place
+            else if (this.itemInUse != null && par1ItemStack.itemID == SuperBTWDefinitions.musket.itemID
+            		&& getReloadState(par1ItemStack) <= 0) //gun not loaded state = 0)
+            {
+//    			worldObj.playSoundAtEntity( this, 
+//    	        		"random.classic_hurt", 0.5F, 
+//    	        		1F + rand.nextFloat() * 0.1F);
+    			
+                int var4 = par1ItemStack.getMaxItemUseDuration() - this.itemInUseCount;
+                
+                if (var4 == 15)
+                {
+                	if (hasAmmo(par1ItemStack, worldObj, this))
+                	{
+            			//vvv RELOAD ANIMATION
+                    	this.swingItem();
+                    	//vvv Ammo is consumed right here, as if bullet is being placed in gun!
+                    	hasAmmoAndConsume(par1ItemStack, worldObj, this);
+                    	
+                    	
+                    	//TESTER VVV
+                    	System.out.println("EntityPlayer Reload Triggered");
+                    	setReloadState(par1ItemStack, 1);
+                    	
+                    	return var3;
+                	}
+                
+                }
+                //TESTER vvv for reloading loop
+//            	System.out.println("RELOADING MUSKET!!!");
+            }
             //AARON CHANGED: The bow stringing animations are below!
             else if (this.itemInUse != null && par1ItemStack.itemID == SuperBTWDefinitions.bowStringing.itemID)
             {
@@ -2179,7 +2213,54 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
         return var3;
     }
+    
+    //AARON added for gun reloading state manipulation (copied from itemGun)
+	private void initTagCompound(ItemStack itemstack) {
+		if (!itemstack.hasTagCompound()) {
+			itemstack.setTagCompound(new NBTTagCompound());
+		}
+	}
+    //AARON added for gun reloading state manipulation (copied from itemGun)
+	public void setReloadState(ItemStack itemstack, int state) {
+		// TESTER of STATESVVV
+		System.out.println("Set gun state to " + state);
 
+		initTagCompound(itemstack);
+		itemstack.getTagCompound().setByte("rld", (byte) state);
+	}
+	//AARON added for gun reloading state checking (copied from itemGun)
+	public int getReloadState(ItemStack itemstack) 
+	{
+		if (itemstack.hasTagCompound())
+			return itemstack.getTagCompound().getByte("rld");
+		return 0;
+	}
+	//AARON added reload functionality from itemGun
+	public boolean hasAmmo(ItemStack itemstack, World world, EntityPlayer player) {
+		for (int iTempSlot = 0; iTempSlot < 9; iTempSlot++) {
+			ItemStack tempStack = player.inventory.getStackInSlot(iTempSlot);
+
+			if (tempStack != null && tempStack.itemID == SuperBTWDefinitions.bullet.itemID) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+	//AARON more of the same! itemGun ported method
+	public boolean hasAmmoAndConsume(ItemStack itemstack, World world, EntityPlayer player) {
+		for (int iTempSlot = 0; iTempSlot < 9; iTempSlot++) {
+			ItemStack tempStack = player.inventory.getStackInSlot(iTempSlot);
+
+			if (tempStack != null && tempStack.itemID == SuperBTWDefinitions.bullet.itemID) {
+				player.inventory.consumeInventoryItem(SuperBTWDefinitions.bullet.itemID);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
     public ItemStack getCurrentArmor(int par1)
     {
         return this.inventory.armorItemInSlot(par1);

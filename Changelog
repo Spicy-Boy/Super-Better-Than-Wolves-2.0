@@ -1,8 +1,11 @@
+~ ~ ~ ! ! ! ~ ~ ~
 SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
 2.2 Brick & Mortar
+
+TODO- Added the gun. Awaken your inner colonizer!
 
 BUG TODO: When crafting mortar bucket, you still get an empty bucket back!
 
@@ -34,6 +37,9 @@ TODO- Added the glass jars from Sockscrops! They can store smaller items!
 TODO- Changed trap doors to act like ladders when opened, like in modern vanilla MC
     
 TODO- Added a new breeding method for wolves-- mystery meat! Credit to the CE team for this one. Wolves will get a little... excited after a successful hunt 
+    
+TODO- Added new music discs 
+    > Snagret Hole Pikmin 2 https://www.youtube.com/watch?v=Za1mP75f-j0&list=PL_SVwmHm9KWVWAs1VDStwDU1yTTBwXCs-&index=1    
     
 - Fixed an issue that caused the player to wake up from rain even when it wasn't really raining on the bed due to rounding problems
     
@@ -231,6 +237,7 @@ ThreadDownloadResources (url fix, but it didnt seem to actually fix anything)
 GuiChat (all for toggling chat during sleep... sort of shitty tbh)
 GuiNewChat
 GuiScreen 
+DamageSource
 
 
 #For sleep integration:

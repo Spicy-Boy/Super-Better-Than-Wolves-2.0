@@ -7,6 +7,8 @@ tile.SuperBTWBlockBranchSlab.name=Branch Block
 
 
 #Items
+item.SuperBTWItemMusket.name=Musket
+item.SuperBTWItemBullet.name=Musket Ball
 item.SuperBTWItemFlintKnapping.name=Flint Knapping
 item.SuperBTWItemFlintBlade.name=Flint Knife
 item.SuperBTWItemIronBlade.name=Iron Knife
@@ -27,5 +29,8 @@ item.SuperBTWItemMortarBucket.name=Bucket of Mortar
 item.SuperBTWItemTrowel.name=Trowel
 item.SuperBTWItemWetMudBrick.name=Wet Mud Brick
 item.SuperBTWItemTombstonePlacer.name=Gravestone
+item.SuperBTWItemPipeEmpty.name=Wooden Pipe
+item.SuperBTWItemPipePacked.name=Unlit Pipe
+item.SuperBTWItemPipeLit.name=Lit Pipe
 
 item.fcItemBedroll.name=Bedroll

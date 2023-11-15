@@ -44,6 +44,14 @@ public class SuperBTWDefinitions {
 		id_envelopeOpen = 20023,
 		id_envelopeClosed = 20024,
 		id_tombstonePlacer = 20025,
+		
+		id_pipeEmpty = 20026,
+		id_pipePacked = 20027,
+		id_pipeLit = 20028,
+		//>:)
+		id_musket = 20029,
+		id_pistol = 20030,
+		id_bullet = 20031,
 	
 		//GOURD MANIA!
 				
@@ -96,6 +104,12 @@ public class SuperBTWDefinitions {
 	public static Item envelopeOpen;
 	public static Item envelopeClosed;
 	public static Item tombstonePlacer;
+	public static Item pipeEmpty;
+	public static Item pipePacked;
+	public static Item pipeLit;
+	public static Item musket;
+	//public static Item pistol;
+	public static Item bullet;
 	
 	public static Block branchBlock;
 	public static Block sunflower;
@@ -143,9 +157,16 @@ public class SuperBTWDefinitions {
 		deathClub = new SuperBTWItemDeathClub(id_deathClub - 256);
 		mortarBucket = new SuperBTWItemMortarBucket(id_mortarBucket - 256);
 		trowel = new SuperBTWItemTrowel(id_trowel - 256);
-		
 		envelopeOpen = new SuperBTWItemEnvelopeOpen(id_envelopeOpen - 256);
 		envelopeClosed = new SuperBTWItemEnvelopeClosed(id_envelopeClosed - 256);
+		pipeEmpty = new SuperBTWItemPipeEmpty(id_pipeEmpty - 256);
+		pipePacked = new SuperBTWItemPipePacked(id_pipePacked - 256);
+		pipeLit = new SuperBTWItemPipeLit(id_pipeEmpty - 256);
+		tombstonePlacer = new SuperBTWItemTombstonePlacer(id_tombstonePlacer - 256);
+		
+		musket = new SuperBTWItemMusket(id_musket - 256);
+		bullet = new SuperBTWItemBullet(id_bullet - 256);
+		EntityList.addMapping(SuperBTWEntityBullet.class, "Bullet", 300); //Entity Arrow ID set to 300 for hope of no overlap
 		
 		branchBlock = new SuperBTWBlockBranch(id_branchBlock);
 		Item.itemsList[branchBlock.blockID] = new ItemBlock(branchBlock.blockID - 256); 
@@ -170,8 +191,6 @@ public class SuperBTWDefinitions {
 		wetMudBrick = new SuperBTWBlockWetMudBrick(id_wetMudBrick);
 		TileEntity.addMapping(SuperBTWTileEntityWetMudBrick.class, "wetMudbrick");
 		wetMudBrickItem = new SuperBTWItemWetMudBrick(id_wetMudBrickItem - 256);
-		
-		tombstonePlacer = new SuperBTWItemTombstonePlacer(id_tombstonePlacer - 256);
 		
 //        branchBlock = new SuperBTWBlockBranchSlab(id_branchBlock);
 //        Item.itemsList[branchBlock.blockID] = new ItemMultiTextureTile(id_branchBlock - 256, branchBlock, SuperBTWBlockBranchSlab.types);
