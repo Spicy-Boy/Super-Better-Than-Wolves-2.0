@@ -3744,4 +3744,103 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     	}
     }
     // END FCMOD
+    
+    //NOTE: CAUSES A DESYNC!!!
+    //NOTE: =(
+    //AARON added some utility for checking if there are water source blocks nearby!
+    //This will be useful for bucket crafting--buckets will automatically refill with water if a source if nearby during crafting!
+    public boolean isWaterSourceNearby()
+    {
+    	if (!worldObj.isRemote)
+    	{
+	    	
+	    	//THE THATCH TRAPDOOR APPROACH!
+	    
+		    int x = (int)this.posX;
+		    int y = (int)this.posY;
+		    int z = (int)this.posZ;
+		    
+		    int iHorizontalRange = 1;
+		    
+		    int iVerticalRange = 1;
+			
+		    for (int iteratingY = y - 1; iteratingY <= y + 1; iteratingY++ )
+		    {
+		  		//these if statements check all adjacent blocks for traps, including 
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x+1, y, z)))
+	    		{
+	    			return true;
+	    		}
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x-1, y, z)))
+	    		{
+	    			return true;
+	    		}
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x, y, z+1)))
+	    		{
+	    			return true;
+	    		}
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x, y, z-1)))
+	    		{
+	    			return true;
+	    		}
+	    		
+	    		//diagnilly, blocks drop in a 3x3 centered on the stepped-on block
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x-1, y, z-1)))
+	    		{
+	    			return true;
+	    		}
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x+1, y, z-1)))
+	    		{
+	    			return true;
+	    		}
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x+1, y, z+1)))
+	    		{
+	    			return true;
+	    		}
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x-1, y, z+1)))
+	    		{
+	    			return true;
+	    		}
+		    }
+		    
+	//	    for ( int iTempI = x - iHorizontalRange; iTempI <= x + iHorizontalRange; iTempI++ )
+	//	    {
+	//	        for ( int iTempJ = y - 1; iTempJ <= y + 1; iTempJ++ )
+	//	        {
+	//	            for ( int iTempK = z - iHorizontalRange; iTempK <= z + iHorizontalRange; iTempK++ )
+	//	            {
+	//	                if ( this.worldObj.getBlockMaterial( iTempI, iTempJ, iTempK ) == Material.water 
+	////	                		|| (this.worldObj.getBlockId( iTempI, iTempJ, iTempK ) == Block.cauldron.blockID
+	////	                		&& this.worldObj.getBlockMetadata(iTempI, iTempJ, iTempK) >= 0) 
+	//	                	)
+	//	                {
+	//	                	//TESTER VVV
+	//	                	System.out.println("Found source or cistern!");
+	//	                    return true;
+	//	                }
+	//	            }
+	//	        }
+	//	    }
+		    //TESTER VVV
+		    System.out.println("Didn't find a water source!");
+		    
+	    	}
+    	
+	    return false;
+    
+	    
+//        for ( int tempX = x; tempX <= x + iHorizontalRange; i++ )
+//        {
+//            for ( ; iTempJ <= j + 1; iTempJ++ )
+//            {
+//                for ( int iTempK = k - iHorizontalRange; iTempK <= k + iHorizontalRange; iTempK++ )
+//                {
+//                    if ( world.getBlockMaterial( iTempI, iTempJ, iTempK ) == Material.water )
+//                    {
+//                        return true;
+//                    }
+//                }
+//            }
+//        }
+    }
 }

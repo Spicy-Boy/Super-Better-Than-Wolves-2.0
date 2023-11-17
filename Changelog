@@ -4,6 +4,7 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.2 Brick & Mortar
 
+
 TODO- Added block of sticks, created by shift+right clicking with at least 4 sticks in hand
 
 - Added thatch, a new roofing material made of sticks and reeds
@@ -15,19 +16,25 @@ TODO- Added block of sticks, created by shift+right clicking with at least 4 sti
 
 - Added the tombstone, a decorative block that can be crafted by chiseling a slab of stone   
 
+
 - Added Hardcore Nightmares... remember, it is just a dream!
 
 TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
         TODO>Applied the same principle to soul filtering. Thank you Dawn for pointing all of this out!
         
-- Added Tsughoggr's Gloryhole and Blow mod to SBTW
+
+- Added part of Tsughoggr's Gloryhole and Blow mod to SBTW
         > Adds the gloryhole, an oven-like block that can be used to create blocks of glass when filled with sand from the top and heated from below
         > Changed the gloryhole recipe to require a block of obsidian rather than nether quarts
-        TODO> add a particle effect to show that the glass is cooking inside
+        TODO> add a particle effect to show that the glass is cooking inside the gloryhole
+        TODO> add blowpipe right click functionality
         
 TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
 
 TODO- Added the glass jars from Sockscrops! They can store smaller items!
+
+- Changed bread dough and mud brick crafting to maintain the full bucket of water between crafts. No more refilling
+    > This is a stopgap. Ideally, this behavior will be based on nearby water sources. Working on it!
 
 - Changed the anchor recipe to require an iron nugget rather than an ingot (steel nugget too because why not?)
       
@@ -42,9 +49,9 @@ TODO- Added the glass jars from Sockscrops! They can store smaller items!
         
 TODO- Changed trap doors to act like ladders when opened, like in modern vanilla MC
     
-- Added a new breeding method for wolves-- mystery meat! Credit to the CE team for this one. No more kibble breeding for now
 
-TODO- Wolves will get a little... excited after a successful hunt 
+- Added a new breeding method for wolves-- mystery meat! Credit to the CE team for this one. No more kibble breeding for now
+        >Wild wolves can breed now
     
 - Fixed an issue that caused the player to wake up from rain even when it wasn't really raining on the bed due to rounding problems
     
@@ -54,9 +61,6 @@ TODO- Added new librarian trades for block dispensers and detector blocks
 
 TODO- Update level 2 priest trades to be decent and good
     
-TODO- Add water bucket refills after crafting if player is within certain radius of water source or full cistern (use explosion code to do this!)    
-> check out ( HasIrrigatingBlocks( world, i, j, k ) || in farmland
-
 TODO- Added the Meat Golem
 
 TODO- Added the airship
@@ -245,6 +249,7 @@ Material.java (for glass spawning mechanics)
 FCEntityZombie (breaking blocks
 FCEnumFurnaceBurnTime
 FCEntityFallingBlock (special behavior for weaklings)
+SlotCrafting (for water bucket shenanigans)
 
 #For sleep integration:
 FCBlockBed
