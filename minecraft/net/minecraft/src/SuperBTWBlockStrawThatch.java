@@ -2,9 +2,9 @@ package net.minecraft.src;
 
 import java.util.Random;
 
-public class SuperBTWBlockReedThatch extends FCBlockFalling
+public class SuperBTWBlockStrawThatch extends FCBlockFalling 
 {
-    public SuperBTWBlockReedThatch( int iBlockID )
+    public SuperBTWBlockStrawThatch( int iBlockID )
     {
     	super( iBlockID, FCBetterThanWolves.fcMaterialWicker );
     	
@@ -12,13 +12,13 @@ public class SuperBTWBlockReedThatch extends FCBlockFalling
         
     	setHardness( 0.3F ); 
     	
-        SetAxesEffectiveOn(true);
+    	SetAxesEffectiveOn(true);
     	
     	SetFireProperties( FCEnumFlammability.HIGH );
     	
     	setStepSound( soundGrassFootstep );
     	
-    	setUnlocalizedName( "SuperBTWBlockReedThatch" );
+    	setUnlocalizedName( "SuperBTWBlockStrawThatch" );
         
         setCreativeTab( CreativeTabs.tabBlock );
         
@@ -28,7 +28,7 @@ public class SuperBTWBlockReedThatch extends FCBlockFalling
 	@Override
     public int idDropped( int iMetadata, Random rand, int iFortuneModifier )
     {
-        return SuperBTWDefinitions.reedThatch.blockID;
+        return SuperBTWDefinitions.strawThatch.blockID;
     }
 
     public int quantityDropped( Random rand )
@@ -39,17 +39,16 @@ public class SuperBTWBlockReedThatch extends FCBlockFalling
 //    @Override
 //    public void OnBlockDestroyedWithImproperTool( World world, EntityPlayer player, int i, int j, int k, int iMetadata )
 //    {
-//    	this.dropBlockAsItem_do(world, i, j, k, new ItemStack(Item.reed, 4));
+//    	this.dropBlockAsItem_do(world, i, j, k, new ItemStack(FCBetterThanWolves.fcItemStraw, 4));
 //    }
     
 	@Override
 	public boolean DropComponentItemsOnBadBreak( World world, int i, int j, int k, int iMetadata, float fChanceOfDrop )
 	{
-		DropItemsIndividualy( world, i, j, k, Item.reed.itemID, 4, 0, fChanceOfDrop );
+		DropItemsIndividualy( world, i, j, k, FCBetterThanWolves.fcItemStraw.itemID, 4, 0, fChanceOfDrop );
 		
 		return true;
 	}
-    
     
     @Override
     public void onBlockAdded( World world, int i, int j, int k )
@@ -91,7 +90,4 @@ public class SuperBTWBlockReedThatch extends FCBlockFalling
 		
 		super.OnPlayerWalksOnBlock(world, i, j, k, player);
     }
-
 }
-
-

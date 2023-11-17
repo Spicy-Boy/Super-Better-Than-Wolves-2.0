@@ -1499,7 +1499,53 @@ public class Block
     }
     
     public void OnPlayerWalksOnBlock( World world, int i, int j, int k, EntityPlayer player )
-    {    	
+    {  
+    	//AARON re-enabled some sinkhole behavior specifically related to weak blocks
+    	//in theory, you can create a pitfall trap
+    	if ( !SuperBTWDefinitions.doesBlockTriggerWeaklingFall(world.getBlockId(i,j,k)) &&
+    			 SuperBTWDefinitions.isWeakBlock(world.getBlockId(i, j-1, k)))
+    	{
+//    		System.out.println("Standing on non-trigger block, weak block beneath!");
+    		//this code works by converting the falling block to metadata 10, which triggers a fall in updateTick()
+    		world.setBlockMetadataWithNotify(i, j-1, k, 10);
+    		
+    		//these if statements check all adjacent blocks for traps, including 
+    		if (SuperBTWDefinitions.isWeakBlock(world.getBlockId(i+1, j-1, k)))
+    		{
+    			world.setBlockMetadataWithNotify(i+1, j-1, k, 10);
+    		}
+    		if (SuperBTWDefinitions.isWeakBlock(world.getBlockId(i-1, j-1, k)))
+    		{
+    			world.setBlockMetadataWithNotify(i-1, j-1, k, 10);
+    		}
+    		if (SuperBTWDefinitions.isWeakBlock(world.getBlockId(i, j-1, k+1)))
+    		{
+    			world.setBlockMetadataWithNotify(i, j-1, k+1, 10);
+    		}
+    		if (SuperBTWDefinitions.isWeakBlock(world.getBlockId(i, j-1, k-1)))
+    		{
+    			world.setBlockMetadataWithNotify(i, j-1, k-1, 10);
+    		}
+    		
+    		//diagnilly, blocks drop in a 3x3 centered on the stepped-on block
+    		if (SuperBTWDefinitions.isWeakBlock(world.getBlockId(i-1, j-1, k-1)))
+    		{
+    			world.setBlockMetadataWithNotify(i-1, j-1, k-1, 10);
+    		}
+    		if (SuperBTWDefinitions.isWeakBlock(world.getBlockId(i+1, j-1, k-1)))
+    		{
+    			world.setBlockMetadataWithNotify(i+1, j-1, k-1, 10);
+    		}
+    		if (SuperBTWDefinitions.isWeakBlock(world.getBlockId(i+1, j-1, k+1)))
+    		{
+    			world.setBlockMetadataWithNotify(i+1, j-1, k+1, 10);
+    		}
+    		if (SuperBTWDefinitions.isWeakBlock(world.getBlockId(i-1, j-1, k+1)))
+    		{
+    			world.setBlockMetadataWithNotify(i-1, j-1, k+1, 10);
+    		}
+    		
+    	}
 		// Disabled Hardcore sinkholes
     	/*
     	if ( IsFallingBlock( world, i, j, k ) )

@@ -2,9 +2,9 @@ package net.minecraft.src;
 
 import java.util.Random;
 
-public class SuperBTWBlockReedThatchSlab extends FCBlockSlabFalling
+public class SuperBTWBlockStrawThatchSlab extends FCBlockSlabFalling
 {
-    public SuperBTWBlockReedThatchSlab( int iBlockID )
+    public SuperBTWBlockStrawThatchSlab( int iBlockID )
     {
     	super( iBlockID, Material.wood );
     	
@@ -18,7 +18,7 @@ public class SuperBTWBlockReedThatchSlab extends FCBlockSlabFalling
     	
     	setStepSound( soundGrassFootstep );
     	
-    	setUnlocalizedName( "SuperBTWBlockReedThatchSlab" );
+    	setUnlocalizedName( "SuperBTWBlockStrawThatchSlab" );
     	
         setLightOpacity( 2 );
         Block.useNeighborBrightness[iBlockID] = true;
@@ -28,27 +28,26 @@ public class SuperBTWBlockReedThatchSlab extends FCBlockSlabFalling
         SetFurnaceBurnTime( FCEnumFurnaceBurnTime.KINDLING );
     }
     
-//	@Override
-//    public int idDropped( int iMetadata, Random rand, int iFortuneModifier )
-//    {
-//        return SuperBTWDefinitions.reedThatchSlab.blockID;
-//    }
-//
-//    public int quantityDropped( Random rand )
-//    {
-//        return 1;
-//    }
+	@Override
+    public int idDropped( int iMetadata, Random rand, int iFortuneModifier )
+    {
+        return SuperBTWDefinitions.strawThatchSlab.blockID;
+    }
+
+    public int quantityDropped( Random rand )
+    {
+        return 1;
+    }
     
     @Override
     public void OnBlockDestroyedWithImproperTool( World world, EntityPlayer player, int i, int j, int k, int iMetadata )
     {
-    	DropItemsIndividualy( world, i, j, k, Item.reed.itemID, 2, 0, 1 );
+    	DropItemsIndividualy( world, i, j, k, FCBetterThanWolves.fcItemStraw.itemID, 2, 0, 1 );
     }
-    
 //	@Override
 //	public boolean DropComponentItemsOnBadBreak( World world, int i, int j, int k, int iMetadata, float fChanceOfDrop )
 //	{
-//		DropItemsIndividualy( world, i, j, k, Item.reed.itemID, 2, 0, fChanceOfDrop );
+//		DropItemsIndividualy( world, i, j, k, FCBetterThanWolves.fcItemStraw.itemID, 2, 0, fChanceOfDrop );
 //		
 //		return true;
 //	}
@@ -68,7 +67,7 @@ public class SuperBTWBlockReedThatchSlab extends FCBlockSlabFalling
 	@Override
 	public int GetCombinedBlockID(int iMetadata) {
 		// TODO Auto-generated method stub
-		return SuperBTWDefinitions.reedThatch.blockID;
+		return SuperBTWDefinitions.strawThatch.blockID;
 	}
 	
     @Override
@@ -140,12 +139,13 @@ public class SuperBTWBlockReedThatchSlab extends FCBlockSlabFalling
 				MathHelper.floor_double( entity.posX ), 
 				MathHelper.floor_double( entity.posY ), 
 				MathHelper.floor_double( entity.posZ ), 0 );
-        	dropBlockAsItem_do( world, i, j, k, new ItemStack( Item.reed, 1) );     
+        	dropBlockAsItem_do( world, i, j, k, new ItemStack( FCBetterThanWolves.fcItemStraw, 1) );     
         	dropBlockAsItem_do( world, i, j, k, new ItemStack( FCBetterThanWolves.fcItemSawDust, 1) ); 
     	}
 
     }
     
     
-}
+	
 
+}

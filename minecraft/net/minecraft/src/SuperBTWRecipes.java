@@ -68,10 +68,20 @@ public class SuperBTWRecipes extends FCRecipes {
 	    		new ItemStack( Item.reed ),
 	    		new ItemStack( Item.reed )
 			} );
-		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.reedThatchSlab  ), new Object[] {
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.reedThatch  ), new Object[] {
 	    		new ItemStack( SuperBTWDefinitions.reedThatchSlab ),
 	    		new ItemStack( SuperBTWDefinitions.reedThatchSlab )
 			} );
+		
+		AddRecipe( new ItemStack( SuperBTWDefinitions.reedThatchSlab, 4 ), new Object[] {
+	    		"##", 
+	    		Character.valueOf( '#' ), new ItemStack( SuperBTWDefinitions.reedThatch )
+			} );
+		AddRecipe( new ItemStack( SuperBTWDefinitions.strawThatchSlab, 4 ), new Object[] {
+	    		"##", 
+	    		Character.valueOf( '#' ), new ItemStack( SuperBTWDefinitions.strawThatch )
+			} );
+		
 		//break down break down
 		AddShapelessRecipe( new ItemStack( Item.reed, 2 ), new Object[] {
 	    		new ItemStack( SuperBTWDefinitions.reedThatchSlab  ),
@@ -79,6 +89,38 @@ public class SuperBTWRecipes extends FCRecipes {
 		AddShapelessRecipe( new ItemStack( Item.reed, 4 ), new Object[] {
 	    		new ItemStack( SuperBTWDefinitions.reedThatch  ),
 			} );
+		
+		//straw thatch recipes 
+		//thatch recipes (shapeless with branch/stick variants)
+				AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.strawThatchSlab  ), new Object[] {
+			    		new ItemStack( SuperBTWDefinitions.branch ),
+			    		new ItemStack( SuperBTWDefinitions.branch ),
+			    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+			    		new ItemStack( FCBetterThanWolves.fcItemStraw )
+					} );
+				AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.strawThatchSlab ), new Object[] {
+			    		new ItemStack( Item.stick ),
+			    		new ItemStack( SuperBTWDefinitions.branch ),
+			    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+			    		new ItemStack( FCBetterThanWolves.fcItemStraw )
+					} );
+				AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.strawThatchSlab ), new Object[] {
+						new ItemStack( Item.stick ),
+						new ItemStack( Item.stick ),
+			    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+			    		new ItemStack( FCBetterThanWolves.fcItemStraw )
+					} );
+				AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.strawThatch  ), new Object[] {
+			    		new ItemStack( SuperBTWDefinitions.strawThatchSlab ),
+			    		new ItemStack( SuperBTWDefinitions.strawThatchSlab )
+					} );
+				//break down break down straw
+				AddShapelessRecipe( new ItemStack( FCBetterThanWolves.fcItemStraw, 2 ), new Object[] {
+			    		new ItemStack( SuperBTWDefinitions.strawThatchSlab  ),
+					} );
+				AddShapelessRecipe( new ItemStack( FCBetterThanWolves.fcItemStraw, 4 ), new Object[] {
+			    		new ItemStack( SuperBTWDefinitions.strawThatch  ),
+					} );
 		
 		
 		AddRecipe(
@@ -437,6 +479,59 @@ public class SuperBTWRecipes extends FCRecipes {
 	    		new ItemStack( Item.reed ),
 	    		new ItemStack( Item.reed ),
 	    		new ItemStack( Item.reed )
+			} );
+		
+		//full block straw thatch recipes (sort of cumbersome)
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.strawThatch ), new Object[] {
+				new ItemStack( Item.stick ),
+				new ItemStack( Item.stick ),
+				new ItemStack( Item.stick ),
+				new ItemStack( Item.stick ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw )
+			} );
+		//full block thatch recipes with mixed branches
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.strawThatch ), new Object[] {
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( Item.stick ),
+				new ItemStack( Item.stick ),
+				new ItemStack( Item.stick ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw )
+			} );
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.strawThatch ), new Object[] {
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( Item.stick ),
+				new ItemStack( Item.stick ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw )
+			} );
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.strawThatch ), new Object[] {
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( Item.stick ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw )
+			} );
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.strawThatch ), new Object[] {
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( SuperBTWDefinitions.branch ),
+				new ItemStack( SuperBTWDefinitions.branch ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw ),
+	    		new ItemStack( FCBetterThanWolves.fcItemStraw )
 			} );
 		
 		// debug

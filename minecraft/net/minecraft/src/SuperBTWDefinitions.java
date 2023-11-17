@@ -72,11 +72,13 @@ public class SuperBTWDefinitions {
 		id_blockBedroll = 2004,
 		id_timeCube = 2005,
 		id_wetMudBrick = 2006,
-	
 		id_gloryHole = 2007,
-		
 		id_reedThatchSlab = 2008,
-		id_reedThatch = 2009;
+		id_reedThatch = 2009,
+		id_strawThatchSlab = 2010,
+		id_strawThatch = 2011,
+		id_stickBundleLooseSlab = 2012,
+		id_stickBundleLoose = 2013;
 	
 		
 	
@@ -118,6 +120,11 @@ public class SuperBTWDefinitions {
 	
 	public static Block reedThatchSlab;
 	public static Block reedThatch;
+	public static Block strawThatchSlab;
+	public static Block strawThatch;
+	
+	public static Block stickBundleLooseSlab; //untied version
+	public static Block stickBundleLoose;
 	
 	public static SuperBTWBlockWetMudBrick wetMudBrick;
 	public static Item wetMudBrickItem;
@@ -191,6 +198,17 @@ public class SuperBTWDefinitions {
 		Item.itemsList[reedThatchSlab.blockID] = new SuperBTWItemBlockReedThatchSlab(reedThatchSlab.blockID - 256);
 		reedThatch = new SuperBTWBlockReedThatch(id_reedThatch);
 		Item.itemsList[reedThatch.blockID] = new ItemBlock(reedThatch.blockID - 256);
+		
+		strawThatchSlab = new SuperBTWBlockStrawThatchSlab(id_strawThatchSlab);
+		Item.itemsList[strawThatchSlab.blockID] = new SuperBTWItemBlockStrawThatchSlab(strawThatchSlab.blockID - 256);
+		strawThatch = new SuperBTWBlockStrawThatch(id_strawThatch);
+		Item.itemsList[strawThatch.blockID] = new ItemBlock(strawThatch.blockID - 256);
+		
+		stickBundleLooseSlab = new SuperBTWBlockStickBundleLooseSlab(id_stickBundleLooseSlab);
+		Item.itemsList[stickBundleLooseSlab.blockID] = new SuperBTWItemBlockStickBundleLooseSlab(stickBundleLooseSlab.blockID - 256);
+		stickBundleLoose = new SuperBTWBlockStickBundleLoose(id_stickBundleLoose);
+		Item.itemsList[stickBundleLoose.blockID] = new ItemBlock(stickBundleLoose.blockID - 256);
+		
 
 		
 //        branchBlock = new SuperBTWBlockBranchSlab(id_branchBlock);
@@ -215,5 +233,87 @@ public class SuperBTWDefinitions {
 		Item.itemsList[ghBlockGloryhole.blockID] = new ItemBlock(ghBlockGloryhole.blockID - 256);
 		
 	}
+	
+	//BLOCK ID CHECKERS, for when you need to check if a block has a certain quality to it!
+	
+	public static boolean isPlantBlock(int blockID)
+	{
+    	if (blockID == Block.tallGrass.blockID ||
+    			blockID == Block.plantRed.blockID ||
+    			blockID == Block.plantYellow.blockID ||
+    			blockID == Block.mushroomBrown.blockID ||
+    			blockID == Block.mushroomRed.blockID ||
+    			blockID == SuperBTWDefinitions.branchBlock.blockID
+        	)
+    	{
+    		return true;
+    	}
+    	
+    	return false;
+	}
+	
+	//a list of my weak blocks. If a block is weak, it will trigger certain new behaviors outlined in methods below!
+	//this mostly relates to gravity interactions
+	public static boolean isWeakBlock(int blockID)
+	{
+    	if (blockID == SuperBTWDefinitions.strawThatchSlab.blockID || 
+        		blockID == SuperBTWDefinitions.strawThatch.blockID ||
+        		blockID == SuperBTWDefinitions.reedThatchSlab.blockID ||
+        		blockID == SuperBTWDefinitions.reedThatch.blockID ||
+        		blockID == SuperBTWDefinitions.stickBundleLooseSlab.blockID ||
+        		blockID == SuperBTWDefinitions.stickBundleLoose.blockID
+        	)
+    	{
+    		return true;
+    	}
+    	
+    	return false;
+	}
+	
+    //checks if the block ID matches one that will cause weak blocks to break beneath them
+	//for example, if a block of obsidian is placed above thatch, blockIDAbove will equal obsidian
+    public static boolean doesBlockCrushWeaklings(int blockIDAbove)
+    {
+    	if (isWeakBlock(blockIDAbove))
+        {
+        	return false;
+        }
+    	
+    	return true;
+    }
+    
+    //checks if the block ID matches one that will cause weak blocks to fall
+    public static boolean doesBlockTriggerWeaklingFall(int blockIDAbove)
+    {
+
+    	if (isWeakBlock(blockIDAbove) || blockIDAbove == Block.sand.blockID
+    			|| blockIDAbove == FCBetterThanWolves.fcBlockSlabSandAndGravel.blockID
+    			|| blockIDAbove == Block.gravel.blockID
+    			|| blockIDAbove == FCBetterThanWolves.fcBlockDirtLoose.blockID
+    			|| blockIDAbove == FCBetterThanWolves.fcBlockDirtLooseSlab.blockID
+    			)
+        {
+        	return false;
+        }
+    	
+    	return true;
+    }
+    
+//    //AARON's compiled list of falling blocks to be used as pitfall bait
+//    public static boolean isFallingBlock(int blockID)
+//    {
+//    	if (blockID == SuperBTWDefinitions.strawThatchSlab.blockID || 
+//        		blockID == SuperBTWDefinitions.strawThatch.blockID ||
+//        		blockID == SuperBTWDefinitions.reedThatchSlab.blockID ||
+//        		blockID == SuperBTWDefinitions.reedThatch.blockID ||
+//        		blockID == SuperBTWDefinitions.stickBundleLooseSlab.blockID ||
+//        		blockID == SuperBTWDefinitions.stickBundleLoose.blockID
+//        	)
+//    	{
+//    		return true;
+//    	}
+//    	
+//    	return false;
+//    }
 	
 }
