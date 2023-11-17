@@ -200,7 +200,8 @@ public class TSGBlockGloryhole extends Block implements FCIBlockMechanical {
 		models[3].AddBox(0.2D, 0.52D, 0.2D, 0.2D + (double)(0.6D * ((md & 0x8) >> 3)), 0.7D, 0.2D + (double)(0.6D * ((md & 0x8) >> 3))); /*Sand*/
 		models[4].AddBox(0.2D, 0.2D, 0.2D, 0.2D + (double)(0.6D * ((md & 0x4) >> 2)), 0.44D, 0.2D + (double)(0.6D * ((md & 0x4) >> 2))); /*Glass*/
 		models[5].AddBox(0.5D - 0.12D, 0.5D - 0.12D, 1D, 0.5D + 0.12D, 0.5D + 0.12D, 1.05D); /*Axle on back*/
-		for(int i=0;i<6;++i){
+		for(int i=0;i<6;++i)
+		{
 			models[i].RotateAroundJToFacing(face);
 		}
 

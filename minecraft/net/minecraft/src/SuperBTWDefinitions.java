@@ -196,4 +196,19 @@ public class SuperBTWDefinitions {
 		
 	}
 	
+	public static boolean isWaterSourceBlock(int blockID)
+	{
+
+		if (blockID == Block.waterStill.blockID
+				|| blockID == Block.waterMoving.blockID
+				|| blockID == Block.cauldron.blockID)
+		{
+		    //TESTER VVV
+		    System.out.println("Found water source block nearby!");
+			return true;
+		}
+		
+		return false;
+	}
+	
 }

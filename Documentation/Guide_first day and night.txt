@@ -18,7 +18,8 @@ Step 1: Hunt for food
 
 Step 2: Gather Fuel
 
-[Picture of punching tree]
+[Picture of punched tree]
+[Picture of braches on the ground]
 [Picture of inventory filled with different types of fuel]
 
 
@@ -31,7 +32,7 @@ Step 3: Find shelter
 ~~~~~~STEP 1: HUNTING FOR FOOD~
 
 
-	No matter what, if you run out of food to eat, you will starve and die. Keeping yourself fed is your top priority in Better Than Wolves, and forgetting this essential fact will always lead to trouble down the road.
+	No matter what, if you run out of food to eat, you will starve and die. Keeping yourself fed is your top priority in Better Than Wolves, and forgetting this essential fact will always lead to trouble down the road. Remember, you can't eat diamonds.
 
 ~Spooking the Herd~
 
@@ -44,7 +45,7 @@ These mushrooms will not make you big and strong, nor will they give you interes
 It is not recommended that you eat red mushrooms at all when you can afford it, but especially don't eat them when you are already weakened or hungry. If you have plenty of hearts, however, lining your stomach in exchange for a few moments of poisoning might provide a buffer against starvation down the line. 
 
 
-~~~~~~STEP 1: GATHERING FUEL~
+~~~~~~STEP 2: GATHERING FUEL~
 
 	
 
@@ -56,5 +57,61 @@ It is not recommended that you eat red mushrooms at all when you can afford it, 
 
 ~Tip: KEEPING TRACK OF TIME~
 
+
+~~~~~~Camping 101: How to Cook~
+
+Comfortable and secure in your hidey hole? Good. We can make it even cozier by lighting a fire and roasting your hard-earned meat.
+
+~Lighting a Campfire~ 
+
+1. Start by crafting a campfire. This is done with 4 sticks in your crafting grid. Branches, shafts? Both are fine.
+[Picture of campfire crafting within the 2x2 grid]
+[Alternatively, picture of crafting with branches]
+V
+2. Place the campfire down anywhere you like, preferably not blocking your exit.
+V
+3. Next you need to add a "spit" to hang the food over the fire with. Craft a pointy stick.
+[Picture of sharp stick crafting]
+V
+4. Right click the campfire with your pointy stick. Now it is a spit!
+V
+5. Hang food over the campfire by right clicking the spit with a piece of uncooked meat in your hand.
+V
+6. Great! All there is left to do now is *light the fire*.
+Craft a fire plough.
+[Picture of fire plow crafting]
+V
+7. "Fire plough" is the technical term for the fire-starting apparatus that is created by... rubbing two sticks together.
+
+In order to start a fire with this plough, simply hover your curser over the campfire and hold *right click*.
+[Picture of player looking at campfire with plow in hand]
+V
+Yes, this process takes considerable energy and a long time.
+[Picture of player actively plowing]
+V
+A very long time... have faith!
+[Still actively plowing]
+V
+TADA! FIRE!
+[Picture of lit campfire]
+Notice that it takes about half the fire plough's durability just to start one measely fire. 
+
+
+~Feeding the campfire~
+
+This fire is dinky. You can get it hotter by adding fuel.
+
+Press [Q] to drop the item in your hand. 
+Alternatively, right click the fire with a piece of fuel to automatically burn it.
+
+FUEL CHART:
+
+Damp fuel: flowers
+
+Small fuel: Sawdust, feathers, wool, saplings, reeds
+
+Medium fuel: Shafts, branches
+
+Strong fuel: coal dust
 
 	
