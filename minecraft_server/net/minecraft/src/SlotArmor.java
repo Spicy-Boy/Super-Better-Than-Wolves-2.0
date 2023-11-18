@@ -31,64 +31,8 @@ class SlotArmor extends Slot
     /**
      * Check if the stack is a valid item for this slot. Always true beside for the armor slots.
      */
-    //AARON CHANGED to allow pumpkin hats
-//    public boolean isItemValid(ItemStack par1ItemStack)
-//    {
-//    	//make compatible with Socks Crops
-////        return itemStack == null ? false : (itemStack.getItem() instanceof ItemArmor ? ((ItemArmor)itemStack.getItem()).armorType == this.armorType : (itemStack.getItem().itemID != Block.pumpkin.blockID 
-////        		&& (getPumpkin(itemStack))/*par1ItemStack.getItem().itemID != SCDefs.pumpkinCarved.blockID */ && itemStack.getItem().itemID != Item.skull.itemID ? false : this.armorType == 0));
-//    	return par1ItemStack == null ? false : (par1ItemStack.getItem() instanceof ItemArmor ? ((ItemArmor)par1ItemStack.getItem()).armorType == this.armorType : ( getPumpkin(par1ItemStack) && par1ItemStack.getItem().itemID != Item.skull.itemID ? false : this.armorType == 0));
-//
-//    }
-    
-    //AARON edits this for SAU compat
-//  public boolean isItemValid(ItemStack par1ItemStack)
-//  {
-//      return par1ItemStack == null ? false : (par1ItemStack.getItem() instanceof ItemArmor ? ((ItemArmor)par1ItemStack.getItem()).armorType == this.armorType : (par1ItemStack.getItem().itemID != Block.pumpkin.blockID && par1ItemStack.getItem().itemID != Item.skull.itemID ? false : this.armorType == 0));
-//  }
-  // SAU: Replaced above with below
-//  public boolean isItemValid(ItemStack itemStack)
-//  {
-//  	if (itemStack == null)
-//  	{
-//  		return false;
-//  	}
-//  	else {
-//  		if (itemStack.getItem() instanceof ItemArmor)
-//  		{
-//  			return ((ItemArmor)itemStack.getItem()).armorType == this.armorType;
-//  		}
-//  		else {
-//  			int itemID = itemStack.getItem().itemID;
-//  			
-//  			if (itemID == Block.pumpkin.blockID || itemID == Item.skull.itemID)
-//  			{
-//  				return this.armorType == 0;
-//  			}
-//  			else {
-//  				
-//  				if ( Item.itemsList[itemID].isValidForArmorSlot(this.armorType, itemStack) )
-//  				{
-//  					return Item.itemsList[itemID].isValidForArmorSlot(this.armorType, itemStack);
-//  				}
-//  				else if ( Block.blocksList[itemID].isValidForArmorSlot(this.armorType, itemStack) )
-//  				{
-//  					return Block.blocksList[itemID].isValidForArmorSlot(this.armorType, itemStack);
-//  				}
-//  				
-//  				return false;
-//  			}
-//  		}
-//  	}
-//  }	
-
-  /**
-   * Returns the icon index on items.png that is used as background image of the slot.
-   */
-//  public Icon getBackgroundIconIndex()
-//  {
-//	  //AARON do not use this class file, it was copied here in error from client src
-////	  Icon d = "blud";
-////      return d;
-//  }
+    public boolean isItemValid(ItemStack par1ItemStack)
+    {
+        return par1ItemStack == null ? false : (par1ItemStack.getItem() instanceof ItemArmor ? ((ItemArmor)par1ItemStack.getItem()).armorType == this.armorType : (par1ItemStack.getItem().itemID != Block.pumpkin.blockID && par1ItemStack.getItem().itemID != Item.skull.itemID ? false : this.armorType == 0));
+    }
 }

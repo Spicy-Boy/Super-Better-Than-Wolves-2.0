@@ -7,22 +7,15 @@ SMP Feature List and Bug Fixes:
 
 - Added two creative-only blocks: super glass and super block
     > Super glass is bedrock but see-through
-    >Super blocks are also just retextured bedrock, but a special beacon can be created from them that grants invulnerability
-
-TODO- Added new beacon effects (invulnerability and hunger freeze) check potion id type shit to see how to add new effects
-
-TODO- Config for hardcore soul mating?
+    > Super blocks are also just retextured bedrock
 
 - Added three new player-to-player teleportation commands: /tpa [player name], /tpaccept [player name], and /tpcancel
 
+- Added /tpteam commands for setting up teams of players and teleporting them as a group
+    >TODO: configuration to make players spawn at their team location on first enter server
+
 - Added a new configuration file, SBTWserver.properties, to servers (auto-generated on start up) that allows server owners to disable or enable SBTW's new tpa commands
 
-- Added /tpteam commands for setting up teams of players and teleporting them as a group
-
-
-
-
-TODO: Add group specific tp locations
 
 Base Class Edits:
 CommandBase 
@@ -238,6 +231,13 @@ FCItemBed
 #############################################################
 VERSION 3.0 Speculative TODO
 Additions:
+
+O- MAKE stone tools break ice faster
+
+SMP Additions:
+TODO- Added new beacon effects (invulnerability and hunger freeze) check potion id type shit to see how to add new effects
+
+TODO- Config for hardcore soul mating?
 
 x-x-CANDLES-x-x
 Get the fat from pork, make candles (but also get something to eat?

@@ -1528,7 +1528,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     
     //AARON ADDED these variables in order to keep track of teleportation requests
     public String tpaRequestPlayerName;
-    
+
     //AARON added this method to keep track of teleport requests
     public void setTpaRequestName(String name)
     {

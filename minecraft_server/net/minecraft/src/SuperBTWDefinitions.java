@@ -1,10 +1,9 @@
 package net.minecraft.src;
 
-import java.io.File;
-
 public class SuperBTWDefinitions {
 	
-
+	//lifted straight out of Block.java
+	public static final StepSound soundGlassFootstep = new StepSoundStone("stone", 1.0F, 1.0F);
 	
 	private static final int
 
@@ -70,7 +69,9 @@ public class SuperBTWDefinitions {
 		id_meatCube = 2003,
 		id_blockBedroll = 2004,
 		id_timeCube = 2005,
-		id_wetMudBrick = 2006;
+		id_wetMudBrick = 2006,
+		id_superGlass = 2007,
+		id_superBlock = 2008;
 	
 		
 	
@@ -104,6 +105,9 @@ public class SuperBTWDefinitions {
 	public static Block fcBlockBedroll;
 	public static Block timeCube;
 	
+	public static Block superGlass;
+	public static Block superBlock;
+	
 	public static SuperBTWBlockWetMudBrick wetMudBrick;
 	public static Item wetMudBrickItem;
 	
@@ -136,7 +140,7 @@ public class SuperBTWDefinitions {
 		ribCarvingIron = new SuperBTWItemRibCarvingIron(id_ribCarvingIron - 256);
 		cookedCowRibPartial = new SuperBTWItemCookedCowRibPartial(id_cookedCowRibPartial - 256);
 		cookedCowRibSpent = new SuperBTWItemCookedCowRibSpent(id_cookedCowRibSpent - 256);
-		hoeStoneNew = ( new FCItemHoe( id_hoeStoneNew, EnumToolMaterial.BONE ) ).setUnlocalizedName( "hoeStone" );;
+		hoeStoneNew = ( new FCItemHoe( id_hoeStoneNew, EnumToolMaterial.BONE ) ).setUnlocalizedName( "hoeStone" );
 		bowStringing = new SuperBTWItemBowStringing(id_bowStringing - 256);
 		deathClub = new SuperBTWItemDeathClub(id_deathClub - 256);
 		mortarBucket = new SuperBTWItemMortarBucket(id_mortarBucket - 256);
@@ -157,12 +161,19 @@ public class SuperBTWDefinitions {
 		meatCube = new SuperBTWBlockMeatCube(id_meatCube);
 		Item.itemsList[meatCube.blockID] = new ItemBlock(meatCube.blockID - 256);
 		
+		superGlass = new SuperBTWBlockSuperGlass(id_superGlass, Material.glass).setHardness(0.3F).setStepSound(soundGlassFootstep).setBlockUnbreakable()
+				.setResistance( 6000000F ).setCreativeTab(CreativeTabs.tabBlock).setUnlocalizedName("SuperBTWBlockSuperGlass");
+		Item.itemsList[superGlass.blockID] = new ItemBlock(superGlass.blockID - 256);
+		
+		superBlock = new FCBlockBedrock(id_superBlock).setBlockUnbreakable().setResistance( 6000000F ).setCreativeTab(CreativeTabs.tabBlock)
+				.setUnlocalizedName("SuperBTWBlockSuperBlock");
+		Item.itemsList[superBlock.blockID] = new ItemBlock(superBlock.blockID - 256);
+		
 		fcBlockBedroll = new FCBlockBedroll(id_blockBedroll).setHardness(0.1F).SetBuoyant().setUnlocalizedName("fcBlockBedroll").disableStats();
 		fcItemBedroll = new FCItemBed(id_bedroll - 256, id_blockBedroll).SetBuoyant().SetIncineratedInCrucible().setMaxStackSize(1).setUnlocalizedName("fcItemBedroll");
 		
 		timeCube = new SuperBTWBlockTimeCube(id_timeCube, null);
-		Item.itemsList[timeCube.blockID] = new ItemBlock(timeCube.blockID - 256)
-				.setMaxStackSize( 16 );
+		Item.itemsList[timeCube.blockID] = new ItemBlock(timeCube.blockID - 256).setMaxStackSize( 16 );
 		TileEntity.addMapping(SuperBTWTileEntityTimeCube.class, "timeCube");
 		
 		wetMudBrick = new SuperBTWBlockWetMudBrick(id_wetMudBrick);
@@ -188,7 +199,5 @@ public class SuperBTWDefinitions {
 	
 		
 	}
-	
-
 	
 }
