@@ -1,13 +1,21 @@
 #Blocks
+tile.SuperBTWBlockStickBundleLoose.name=Block of Sticks
+tile.SuperBTWBlockStickBundleLooseSlab.name=Slab of Sticks
 tile.SuperBTWBlockBranch.name=Branch
 tile.SuperBTWBlockMeatCube.name=Meat Cube
 tile.fcBlockBedroll.name=Bedroll
 tile.SuperBTWBlockWetMudBrick.name=Wet Mud Brick
 tile.SuperBTWBlockBranchSlab.name=Branch Block
+tile.SuperBTWBlockReedThatchSlab.name=Thatch Slab
+tile.SuperBTWBlockReedThatch.name=Thatch
+tile.SuperBTWBlockStrawThatchSlab.name=Straw Thatch Slab
+tile.SuperBTWBlockStrawThatch.name=Straw Thatch
+tile.ghBlockGloryhole.name=Gloryhole
 tile.SuperBTWBlockSuperGlass.name=Super Glass
 tile.SuperBTWBlockSuperBlock.name=Super Block
 
 #Items
+item.SuperBTWItemPipeEmpty.name=Empty Pipe
 item.SuperBTWItemFlintKnapping.name=Flint Knapping
 item.SuperBTWItemFlintBlade.name=Flint Knife
 item.SuperBTWItemIronBlade.name=Iron Knife
@@ -27,5 +35,6 @@ item.SuperBTWItemDeathClub.name=Death Club
 item.SuperBTWItemMortarBucket.name=Bucket of Mortar
 item.SuperBTWItemTrowel.name=Trowel
 item.SuperBTWItemWetMudBrick.name=Wet Mud Brick
+item.SuperBTWItemTombstonePlacer.name=Gravestone
 
 item.fcItemBedroll.name=Bedroll
