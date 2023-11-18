@@ -48,6 +48,8 @@ public class SuperBTWItemFlintKnapping extends Item
     //when bad hits == 3, break item and return stone to player
     public void onPlayerStoppedUsing( ItemStack itemStack, World world, EntityPlayer player, int iTicksInUseRemaining )
     {	
+    	//a little animation :F
+    	player.swingItem();
     	
     	if (itemStack.getTagCompound() == null)
     	{
@@ -59,7 +61,7 @@ public class SuperBTWItemFlintKnapping extends Item
     	int badHits = itemStack.getTagCompound().getInteger("badHits");
 
     	int var6 = this.getMaxItemUseDuration(itemStack) - iTicksInUseRemaining;
-    	System.out.println("Var 6 = " + var6);
+//    	System.out.println("Var 6 = " + var6);
 //        float var7 = (float)var6 / 20.0F;
 //        var7 = (var7 * var7 + var7 * 2.0F) / 3.0F;
         
@@ -71,7 +73,7 @@ public class SuperBTWItemFlintKnapping extends Item
         if (var6 < 20 || var6 > 35)
         {
         	badHits++;
-        	System.out.println("Uh oh! bad hits: " + badHits);
+//        	System.out.println("Uh oh! bad hits: " + badHits);
         	
         	player.playSound( "random.bow", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F );
         	

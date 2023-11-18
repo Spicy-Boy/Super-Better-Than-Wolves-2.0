@@ -2,24 +2,67 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
-<<<<<<< Updated upstream
-=======
-2.2 Feature List and Bug Fixes:
+2.2 Brick & Mortar:
 
-BUG TODO: Torch pickup is bugged. It goes to first available leftward spot on hot bar invisibly
+- Added the tombstone, a block that can be crafted by chiseling a slab of stone   
 
-BUG TODO: Hardcore Soaked may be broken rn
+- Added Hardcore Nightmares... remember, it is just a dream!
+        
+- Added part of Tsughoggr's Gloryhole and Blow mod to SBTW
+        > Adds the gloryhole, an oven-like block that can be used to create blocks of glass when filled with sand from the top and heated from below
+        > Changed the gloryhole recipe to require a block of obsidian rather than nether quarts
+        
+- Added a new breeding method for wolves-- mystery meat! Credit to the CE team for this one. 
+    >Kibble is out, which will make dog armies a little tougher to make. I intend to make a non-mystery meat breeding item too for this purpose, but kibble isn't it folks
+    >Wild wolves can breed now
 
-Content TODO: Add Tsauger's Gloryholes and Blow mod 
-https://www.sargunster.com/btwforum/viewtopic.php?t=10163
+- Changed bread dough and mud brick crafting to maintain the full bucket of water between crafts. No more refilling
+    > This is a stopgap. Ideally, this behavior will be based on nearby water sources. Working on it!
 
+- Changed the anchor recipe to require an iron nugget rather than an ingot (steel nugget too because why not?)
+      
+- Changed/reverted glass to the state of not allowing monsters to spawn on top of it. No more need to light up large glass structures!
+        
+- Changed the chat window during sleep to be toggled off by default. Press "t" while sleeping to chat. 
 
+- Changed hearty stew to mainly be produced with beef. This makes stew less of a braindead endgame food option and more of a project to obtain automatically
+        >Notably, you can't make stew with pork, mutton only produces two servings of stew, and wolf chops only produce 3 servings. Fry up some eggs mate.        
+    
+- Fixed an issue that caused the player to wake up from rain even when it wasn't really raining on the bed due to rounding problems
+    
+- Fixed crude torch pickup. There was a bug where right clicking a torch would sometimes cause the torch to be placed in the inventory invisibly
 
-2.1 Hotfixt:
+TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
+        TODO>Apply the same principle to soul filtering. Thank you Dawn for pointing all of this out!
+
+TODO- Fix the villager refresh bug that CE team caught
+
+TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
+        TODO> add a particle effect to show that the glass is cooking inside the gloryhole
+
+TODO- Added the glass jars from Sockscrops! They can store smaller items!
+        
+TODO- Changed trap doors to act like ladders when opened, like in modern vanilla MC
+
+TODO- Added new librarian trades for block dispensers and detector blocks 
+
+TODO- Update level 2 priest trades to be decent and good
+    
+TODO- Added the Meat Golem
+
+TODO- Added the airship
+
+TODO- Added the pipe
+        >Used to rip fat clouds
+        
+ULTIMATE TODOS (not to be tackled until SBTW 2.0 is completely ready!
+- Add ctrl click functionality added by later CE
+- Create a special fork of Neodindium that works with SBTW
+        
+2.1 Hotfix:
 
 - Added a missing file that caused a rendering crash! Oops!!! Sorry!!!
 
->>>>>>> Stashed changes
 Additions:
 
 -TEMPORARY OMISSION for BETA 2.0: Biome decorator places standard gourds with vanilla seeds/plants
@@ -181,7 +224,7 @@ RenderManager
 FCBlockAshGroundCover (shovel brick bug)
 FCBlockFurnaceBrick (lighting bug)
 FCBlockFurnaceBrickIdle
-PrimitiveGeometric
+FCUtilsPrimitiveGeometric
 RenderBlocksUtils
 GuiInGame (pumpkin overlay for wearing pumpkins)
 SlotArmor
@@ -189,6 +232,11 @@ Block.java (SAU overlay junk)
 DamageSource (custom death messages)
 FCEntityWolf
 FCBetterThanWolves
+ThreadDownloadResources (url fix, but it didnt seem to actually fix anything)
+GuiChat (all for toggling chat during sleep... sort of shitty tbh)
+GuiNewChat
+GuiScreen 
+SlotCrafting (for water bucket shenanigans)
 
 
 #For sleep integration:
@@ -206,13 +254,12 @@ EnumStatus (hardcore soaked)
 FCBlockBedroll
 FCItemBed
 
+#Base Class Edits 2.2 Brick & Mortar:
+Material.java (for glass spawning mechanics)
+
 #############################################################
 VERSION 3.0 Speculative TODO
 Additions:
-
-x-x-CANDLES-x-x
-Get the fat from pork, make candles (but also get something to eat?
--x-x-x-
 
 O- FIX The sword seam issue in the rendering caused by mc patcher
 
