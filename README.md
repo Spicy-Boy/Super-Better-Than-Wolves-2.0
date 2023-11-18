@@ -30,13 +30,13 @@ Additions:
 
 -Added SLEEPING!
 
-    Like in Arminias mod/CE 1.4, the world is simulated during sleep. Time is not skipped! Monsters still lurk outside...
+   Like in Arminias mod/CE 1.4, the world is simulated during sleep. Time is not skipped! Monsters still lurk outside...
 
 -Added Hardcore Soaked!
 
 -Added the bedroll from CE 1.4. You can sleep on this! Great for camping trips.
 
-    Three recipes: wool knit + wool knit + string OR unknit wool OR two feathers
+   Three recipes: wool knit + wool knit + string OR unknit wool OR two feathers
 
 -Added the ability to pick up torches and bricks by right clicking them. No more fumbling!
 
@@ -44,23 +44,23 @@ Additions:
 
 -Added new item: Bucket of Mortar
 
-    right click to apply mortar to a block, depletes contents of bucket (16 uses)
+   right click to apply mortar to a block, depletes contents of bucket (16 uses)
 
 -Added new tool: the trowel
 
-    right click to apply mortar from your inventory
+   right click to apply mortar from your inventory
 
 -Added new block: Wet Mud Bricks
 
-    Can be dried in the sun or baked in a kiln to produce bricks more efficiently than with clay balls alone
+   Can be dried in the sun or baked in a kiln to produce bricks more efficiently than with clay balls alone
 
 -Added more efficient recipes for tanned leather armor
 
-    crafted using cut tanned leather in the 2x2 crafting grid, like untanned leather
+   crafted using cut tanned leather in the 2x2 crafting grid, like untanned leather
 
 -Added rib cracking: use a sharp axe to quickly get meat off a rib
 
-    the rib itself is reduced to bonemeal in the process
+   the rib itself is reduced to bonemeal in the process
 
 -Added the ability to cure ribs with nitre
 
