@@ -70,7 +70,10 @@ public class FCBlockTorchFiniteBurning extends FCBlockTorchBaseBurning
 	            FCUtilsItem.GivePlayerStackOrEjectFavorEmptyHand( player, torchStack, i, j, k );
 	            
 //	            FCUtilsInventory.AddItemStackToInventoryInSlotRange( player.inventory, torchStack, 0, player.inventory.getSizeInventory() - 5);
+	            
 
+                player.worldObj.playSoundAtEntity( player, "random.pop", 0.2F, 
+                		((player.rand.nextFloat() - player.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
         		world.removeBlockTileEntity(i, j, k);
         		world.setBlock(i, j, k, 0);
         		

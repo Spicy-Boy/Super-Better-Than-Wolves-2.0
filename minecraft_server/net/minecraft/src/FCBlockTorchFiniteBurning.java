@@ -67,8 +67,15 @@ public class FCBlockTorchFiniteBurning extends FCBlockTorchBaseBurning
 	            //remains of fuckery  vvvv
 //	            breakBlock( world, i, j, k, FCBetterThanWolves.fcBlockTorchFiniteBurning.blockID, 20 );
 	            
-        		FCUtilsItem.GivePlayerStackOrEject( player, torchStack);
+	            //the method directly below, GivePlayerStackOrEject, is bugged when the player right clicks with an empty hand that is not the first open hot bar slot from left to right
+//        		FCUtilsItem.GivePlayerStackOrEject( player, torchStack);
+	            FCUtilsItem.GivePlayerStackOrEjectFavorEmptyHand( player, torchStack, i, j, k );
 
+//	            FCUtilsInventory.AddItemStackToInventoryInSlotRange( player.inventory, torchStack, 0, player.inventory.getSizeInventory() - 5);
+	            
+
+                player.worldObj.playSoundAtEntity( player, "random.pop", 0.2F, 
+                		((player.rand.nextFloat() - player.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
         		world.removeBlockTileEntity(i, j, k);
         		world.setBlock(i, j, k, 0);
         		

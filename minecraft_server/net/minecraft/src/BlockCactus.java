@@ -4,9 +4,14 @@ import java.util.Random;
 
 public class BlockCactus extends Block
 {
-	
     //AARON
-    static {
+    static 
+    {
+    	Gloryholes.instance.getVersionString();
+    }
+    //AARON
+    static 
+    {
     	SuperBTW.instance.getVersionString();
     }
     

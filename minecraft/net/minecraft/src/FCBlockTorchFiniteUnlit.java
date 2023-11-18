@@ -22,13 +22,17 @@ public class FCBlockTorchFiniteUnlit extends FCBlockTorchBaseUnlit
         if (!world.isRemote && player.getCurrentEquippedItem() == null )
         {
 //			System.out.println("EMPTY HAND DETECT!");
-
+        		
+        	//prevents picking up burnt out torches
+        	if (!GetIsBurnedOut(world.getBlockMetadata(i, j, k)))
+        	{
         		player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack( FCBetterThanWolves.fcBlockTorchFiniteUnlit, 1);
                 player.worldObj.playSoundAtEntity( player, "random.pop", 0.2F, 
                 		((player.rand.nextFloat() - player.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
         		world.setBlock(i, j, k, 0);
         		
         		return true;
+        	}
         }
 		
 		return false;
