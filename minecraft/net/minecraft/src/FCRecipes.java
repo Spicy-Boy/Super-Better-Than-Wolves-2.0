@@ -923,13 +923,23 @@ public abstract class FCRecipes
     		Character.valueOf( '#' ), new ItemStack( FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata ) 
 		} );
 		
+
+		//AARON changed the wool block recipe to not rely on wicker!
+//		AddShapedRecipeWithCustomClass( FCRecipesWoolBlock.class, new ItemStack( Block.cloth ), new Object[] {
+//    		" # ", 
+//    		"#W#", 
+//    		" # ", 
+//    		Character.valueOf( '#' ), new ItemStack( FCBetterThanWolves.fcItemWool, 1, m_iIgnoreMetadata ), 
+//    		Character.valueOf( 'W' ), new ItemStack( FCBetterThanWolves.fcBlockWicker ) 
+//		} );
+		
 		AddShapedRecipeWithCustomClass( FCRecipesWoolBlock.class, new ItemStack( Block.cloth ), new Object[] {
-    		" # ", 
-    		"#W#", 
-    		" # ", 
-    		Character.valueOf( '#' ), new ItemStack( FCBetterThanWolves.fcItemWool, 1, m_iIgnoreMetadata ), 
-    		Character.valueOf( 'W' ), new ItemStack( FCBetterThanWolves.fcBlockWicker ) 
-		} );
+	    		" # ", 
+	    		"#W#", 
+	    		" # ", 
+	    		Character.valueOf( '#' ), new ItemStack( FCBetterThanWolves.fcItemWool, 1, m_iIgnoreMetadata ), 
+	    		Character.valueOf( 'W' ), Block.planks,
+			} );
 		
 		for ( int iTempColor = 0; iTempColor < 16; iTempColor++ )
 		{

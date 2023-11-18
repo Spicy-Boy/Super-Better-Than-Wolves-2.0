@@ -4,13 +4,25 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.2 Brick & Mortar
 
-- Added the tombstone, a block that can be crafted by chiseling a slab of stone   
+
+TODO- Added block of sticks, created by shift+right clicking with at least 4 sticks in hand
+
+- Added thatch, a new roofing material made of sticks and reeds
+    >Caution, this material is weaker than wood and may not stop a hungry zombie!
+    
+- Added straw thatch, a thatch variant that swaps reeds for straw
+    
+- Added more reasonable recipes for acquiring wool blocks and platforms that are not dependent on wicker weaving    
+
+- Added the tombstone, a decorative block that can be crafted by chiseling a slab of stone   
+
 
 - Added Hardcore Nightmares... remember, it is just a dream!
 
 TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
         TODO>Applied the same principle to soul filtering. Thank you Dawn for pointing all of this out!
         
+
 - Added part of Tsughoggr's Gloryhole and Blow mod to SBTW
         > Adds the gloryhole, an oven-like block that can be used to create blocks of glass when filled with sand from the top and heated from below
         > Changed the gloryhole recipe to require a block of obsidian rather than nether quarts
@@ -30,13 +42,16 @@ TODO- Added the glass jars from Sockscrops! They can store smaller items!
         
 - Changed the chat window during sleep to be toggled off by default. Press "t" while sleeping to chat. 
 
+- Changed the flint knapping animation to have a little extra throw to it!
+
 - Changed hearty stew to mainly be produced with beef. This makes stew less of a braindead endgame food option and more of a project to obtain automatically
-        >Notably, you can't make stew with pork, mutton only produces two servings of stew, and wolf chops only produce 3 servings. Fry up some eggs mate.        
+        >Notably, you can't make hearty stew with pork, mutton only produces two servings of stew, and wolf chops produce 3 servings. Fry up some eggs mate.        
         
 TODO- Changed trap doors to act like ladders when opened, like in modern vanilla MC
     
-- Added a new breeding method for wolves-- mystery meat! Credit to the CE team for this one.
-    >Wild wolves can breed now
+
+- Added a new breeding method for wolves-- mystery meat! Credit to the CE team for this one. No more kibble breeding for now
+        >Wild wolves can breed now
     
 - Fixed an issue that caused the player to wake up from rain even when it wasn't really raining on the bed due to rounding problems
     
@@ -230,8 +245,11 @@ ThreadDownloadResources (url fix, but it didnt seem to actually fix anything)
 GuiChat (all for toggling chat during sleep... sort of shitty tbh)
 GuiNewChat
 GuiScreen 
+Material.java (for glass spawning mechanics)
+FCEntityZombie (breaking blocks
+FCEnumFurnaceBurnTime
+FCEntityFallingBlock (special behavior for weaklings)
 SlotCrafting (for water bucket shenanigans)
-
 
 #For sleep integration:
 FCBlockBed
@@ -248,11 +266,14 @@ EnumStatus (hardcore soaked)
 FCBlockBedroll
 FCItemBed
 
-#Base Class Edits 2.2 Brick & Mortar:
-Material.java (for glass spawning mechanics)
 
 #############################################################
 VERSION 3.0 Speculative TODO
+WOLF BREEDING AUTOMATION:
+O - Make it possible to set wolves to "roaming" mode where they won't follow or teleport but aren't sitting either
+
+O - New automatable breeding item source besides mystery meat so people can build puppy mills
+
 Additions:
 
 O- FIX The sword seam issue in the rendering caused by mc patcher
@@ -592,4 +613,5 @@ Could be fun, maybe hard to implement.
 -smokable pipe!!!!
 
 Mark idea: Twigs snap under foot, making a loud snapping sound that could attract mobs
+
 

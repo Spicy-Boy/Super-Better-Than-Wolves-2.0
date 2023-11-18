@@ -717,30 +717,30 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
             this.dropPlayerItemWithRandomChoice(new ItemStack(Item.appleRed, 1), true);
         }
         
-        if (this.username.equals("TheLadyDawn"))
-        {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemNuggetSteel, 1), true);
-        }
-        	
-        if (this.username.equals("Sockthing"))
-        {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemArmorWoolBoots, 1, 0), true);
-        }
-        
-        if (this.username.equals("EpicAaron29"))
-        {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemDung, 1), true);
-        }
-        
+//        if (this.username.equals("TheLadyDawn"))
+//        {
+//            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemNuggetSteel, 1), true);
+//        }
+//        	
+//        if (this.username.equals("Sockthing"))
+//        {
+//            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemArmorWoolBoots, 1, 0), true);
+//        }
+//        
 //        if (this.username.equals("EpicAaron29"))
 //        {
-//        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.cookie, 1), true);
+//            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemDung, 1), true);
 //        }
-        
-        if (this.username.equals("Gilberreke"))
-        {
-        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.book, 1), true);
-        }
+//        
+////        if (this.username.equals("EpicAaron29"))
+////        {
+////        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.cookie, 1), true);
+////        }
+//        
+//        if (this.username.equals("Gilberreke"))
+//        {
+//        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.book, 1), true);
+//        }
         
 
 
