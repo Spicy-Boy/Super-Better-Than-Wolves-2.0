@@ -13,17 +13,17 @@ Switched to BETA 2.0 on July 12, 2023
     
 - Added more reasonable recipes for acquiring wool blocks and platforms that are not dependent on wicker weaving    
 
-TODO- Added two creative-only blocks: super glass and super block
+- Added two creative-only blocks: super glass and super block
     > Super glass is bedrock but see-through
     > Super blocks are also just retextured bedrock
 
-TODO- Added three new player-to-player teleportation commands: /tpa [player name], /tpaccept [player name], and /tpcancel
+- Added three new player-to-player teleportation commands: /tpa [player name], /tpaccept [player name], and /tpcancel
 
-TODO- Added /tpteam commands for setting up teams of players and teleporting them as a group
-    >TpTeams
+- Added /tpteam commands for setting up teams of players and teleporting them as a group
+    >/tpteam list, /tpteam list [teamname], tpteam refresh, /tpteam [teamname], /tpteam player [playername], /tpteam new [teamname], /tpteam set [teamname], tpteam remove [playername], tpteam add [playername]
     >TODO: configuration to make players spawn at their team location on first enter server
 
-TODO- Added a new configuration file, SBTWserver.properties, to servers (auto-generated on start up) that allows server owners to disable or enable SBTW's new tpa commands
+- Added a new configuration file, SBTWserver.properties, to servers (auto-generated on start up) that allows server owners to disable or enable SBTW's new tpa commands
 
 - Added the tombstone, a block that can be crafted by chiseling a slab of stone   
 
