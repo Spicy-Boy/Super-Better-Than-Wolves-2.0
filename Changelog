@@ -4,6 +4,27 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.2 Brick & Mortar:
 
+- Added thatch, a new roofing material made of sticks and reeds
+    >Caution, this material is weaker than wood and may not stop a hungry zombie!
+    
+- Added pitfall traps! Try setting them with thatch and another unstable block
+    
+- Added straw thatch, a thatch variant that swaps reeds for straw
+    
+- Added more reasonable recipes for acquiring wool blocks and platforms that are not dependent on wicker weaving    
+
+TODO- Added two creative-only blocks: super glass and super block
+    > Super glass is bedrock but see-through
+    > Super blocks are also just retextured bedrock
+
+TODO- Added three new player-to-player teleportation commands: /tpa [player name], /tpaccept [player name], and /tpcancel
+
+TODO- Added /tpteam commands for setting up teams of players and teleporting them as a group
+    >TpTeams
+    >TODO: configuration to make players spawn at their team location on first enter server
+
+TODO- Added a new configuration file, SBTWserver.properties, to servers (auto-generated on start up) that allows server owners to disable or enable SBTW's new tpa commands
+
 - Added the tombstone, a block that can be crafted by chiseling a slab of stone   
 
 - Added Hardcore Nightmares... remember, it is just a dream!
