@@ -67,6 +67,9 @@ public class BlockRedstoneTorch extends FCBlockTorchBase
 
         		player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack( Block.torchRedstoneActive, 1);
         		
+                player.worldObj.playSoundAtEntity( player, "random.pop", 0.2F, 
+                		((player.rand.nextFloat() - player.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+        		
         		world.setBlock(i, j, k, 0);
         		
         		return true;

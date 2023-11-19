@@ -923,13 +923,23 @@ public abstract class FCRecipes
     		Character.valueOf( '#' ), new ItemStack( FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata ) 
 		} );
 		
+
+		//AARON changed the wool block recipe to not rely on wicker!
+//		AddShapedRecipeWithCustomClass( FCRecipesWoolBlock.class, new ItemStack( Block.cloth ), new Object[] {
+//    		" # ", 
+//    		"#W#", 
+//    		" # ", 
+//    		Character.valueOf( '#' ), new ItemStack( FCBetterThanWolves.fcItemWool, 1, m_iIgnoreMetadata ), 
+//    		Character.valueOf( 'W' ), new ItemStack( FCBetterThanWolves.fcBlockWicker ) 
+//		} );
+		
 		AddShapedRecipeWithCustomClass( FCRecipesWoolBlock.class, new ItemStack( Block.cloth ), new Object[] {
-    		" # ", 
-    		"#W#", 
-    		" # ", 
-    		Character.valueOf( '#' ), new ItemStack( FCBetterThanWolves.fcItemWool, 1, m_iIgnoreMetadata ), 
-    		Character.valueOf( 'W' ), new ItemStack( FCBetterThanWolves.fcBlockWicker ) 
-		} );
+	    		" # ", 
+	    		"#W#", 
+	    		" # ", 
+	    		Character.valueOf( '#' ), new ItemStack( FCBetterThanWolves.fcItemWool, 1, m_iIgnoreMetadata ), 
+	    		Character.valueOf( 'W' ), Block.planks,
+			} );
 		
 		for ( int iTempColor = 0; iTempColor < 16; iTempColor++ )
 		{
@@ -1769,12 +1779,25 @@ public abstract class FCRecipes
     		Character.valueOf( '#' ), FCBetterThanWolves.fcItemHempFibers 
 		} );
 		
+		//AARON changed this to make the anchor affordable
 		AddRecipe( new ItemStack( FCBetterThanWolves.fcAnchor ), new Object[] {
     		" X ", 
     		"###", 
     		Character.valueOf( '#' ), FCBetterThanWolves.fcItemStoneBrick, 
     		Character.valueOf( 'X' ), Item.ingotIron 
 		} );
+		AddRecipe( new ItemStack( FCBetterThanWolves.fcAnchor ), new Object[] {
+		" X ", 
+		"###", 
+		Character.valueOf( '#' ), FCBetterThanWolves.fcItemStoneBrick, 
+		Character.valueOf( 'X' ), FCBetterThanWolves.fcItemNuggetIron
+	} );
+		AddRecipe( new ItemStack( FCBetterThanWolves.fcAnchor ), new Object[] {
+		" X ", 
+		"###", 
+		Character.valueOf( '#' ), FCBetterThanWolves.fcItemStoneBrick, 
+		Character.valueOf( 'X' ), FCBetterThanWolves.fcItemNuggetSteel
+	} );
 		
 		AddRecipe( new ItemStack( FCBetterThanWolves.fcItemWaterWheel ), new Object[] {
 			"###",
@@ -3618,50 +3641,54 @@ public abstract class FCRecipes
 				new ItemStack( Item.beefCooked ), 
 				new ItemStack( Item.bowlEmpty, 5 )
 		} );
+        
+      //AARON commented out, maybe a bad idea?
+//        AddCauldronRecipe( 
+//    		new ItemStack( FCBetterThanWolves.fcItemHeartyStew, 5 ), 
+//    		new ItemStack[] {
+//				new ItemStack( FCBetterThanWolves.fcItemBoiledPotato ), 
+//				new ItemStack( FCBetterThanWolves.fcItemCookedCarrot ), 
+//				new ItemStack( FCBetterThanWolves.fcItemMushroomBrown, 3 ),
+//				new ItemStack( FCBetterThanWolves.fcItemFlour ), 
+//				new ItemStack( Item.porkCooked ), 
+//				new ItemStack( Item.bowlEmpty, 5 )
+//		} );
     
+        //AARON changed mutton to produce less hearty stew than beef, only 2
         AddCauldronRecipe( 
-    		new ItemStack( FCBetterThanWolves.fcItemHeartyStew, 5 ), 
-    		new ItemStack[] {
-				new ItemStack( FCBetterThanWolves.fcItemBoiledPotato ), 
-				new ItemStack( FCBetterThanWolves.fcItemCookedCarrot ), 
-				new ItemStack( FCBetterThanWolves.fcItemMushroomBrown, 3 ),
-				new ItemStack( FCBetterThanWolves.fcItemFlour ), 
-				new ItemStack( Item.porkCooked ), 
-				new ItemStack( Item.bowlEmpty, 5 )
-		} );
-    
-        AddCauldronRecipe( 
-    		new ItemStack( FCBetterThanWolves.fcItemHeartyStew, 5 ), 
+    		new ItemStack( FCBetterThanWolves.fcItemHeartyStew, 2 ), 
     		new ItemStack[] {
 				new ItemStack( FCBetterThanWolves.fcItemBoiledPotato ), 
 				new ItemStack( FCBetterThanWolves.fcItemCookedCarrot ), 
 				new ItemStack( FCBetterThanWolves.fcItemMushroomBrown, 3 ),
 				new ItemStack( FCBetterThanWolves.fcItemFlour ), 
 				new ItemStack( FCBetterThanWolves.fcItemMuttonCooked ), 
-				new ItemStack( Item.bowlEmpty, 5 )
+				new ItemStack( Item.bowlEmpty, 2 ) //changed bowls too!
 		} );
-    
+        
+        //AARON changed wolf meat to only produce 3 servings of stew
         AddCauldronRecipe( 
-    		new ItemStack( FCBetterThanWolves.fcItemHeartyStew, 5 ), 
+    		new ItemStack( FCBetterThanWolves.fcItemHeartyStew, 3 ), 
     		new ItemStack[] {
 				new ItemStack( FCBetterThanWolves.fcItemBoiledPotato ), 
 				new ItemStack( FCBetterThanWolves.fcItemCookedCarrot ), 
 				new ItemStack( FCBetterThanWolves.fcItemMushroomBrown, 3 ),
 				new ItemStack( FCBetterThanWolves.fcItemFlour ), 
 				new ItemStack( FCBetterThanWolves.fcItemWolfCooked ), 
-				new ItemStack( Item.bowlEmpty, 5 )
+				new ItemStack( Item.bowlEmpty, 3 ) //changed bowls too!
 		} );
         
-        AddCauldronRecipe( 
-    		new ItemStack( FCBetterThanWolves.fcItemHeartyStew, 5 ), 
-    		new ItemStack[] {
-				new ItemStack( FCBetterThanWolves.fcItemBoiledPotato ), 
-				new ItemStack( FCBetterThanWolves.fcItemCookedCarrot ), 
-				new ItemStack( FCBetterThanWolves.fcItemMushroomBrown, 3 ),
-				new ItemStack( FCBetterThanWolves.fcItemFlour ), 
-				new ItemStack( FCBetterThanWolves.fcItemCookedMysteryMeat ),
-				new ItemStack( Item.bowlEmpty, 5 )
-		} );                
+        //AARON commented out, maybe a bad idea?
+//        AddCauldronRecipe( 
+//    		new ItemStack( FCBetterThanWolves.fcItemHeartyStew, 5 ), 
+//    		new ItemStack[] {
+//				new ItemStack( FCBetterThanWolves.fcItemBoiledPotato ), 
+//				new ItemStack( FCBetterThanWolves.fcItemCookedCarrot ), 
+//				new ItemStack( FCBetterThanWolves.fcItemMushroomBrown, 3 ),
+//				new ItemStack( FCBetterThanWolves.fcItemFlour ), 
+//				new ItemStack( FCBetterThanWolves.fcItemCookedMysteryMeat ),
+//				new ItemStack( Item.bowlEmpty, 5 )
+//		} );                
     
         AddCauldronRecipe( 
     		new ItemStack[] { 

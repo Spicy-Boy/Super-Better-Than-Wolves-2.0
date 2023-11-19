@@ -299,8 +299,13 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                     this.wakeUpPlayer(false, true, true);
                 }
                 //AARON added this to wake the player if it starts raining
-                else if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( (int)this.posX, (int)this.posY + 1, (int)this.posZ ))
+//                else if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( (int)this.posX, (int)this.posY + 1, (int)this.posZ ))
+                //be careful, the player location is not perfect on the bed and can be caught in the rain easily 
+                else if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( (int)this.posX, (int)this.posY + 1, (int)Math.floor(this.posZ) ))
                 {
+                	//testers VVV
+//                	System.out.println("x:"+this.posX+"y:"+this.posY+"z:"+this.posZ);
+//                	System.out.println("x:"+(int)this.posX+"y:"+(int)this.posY+"z:"+Math.floor(this.posZ));
                 	this.wakeUpPlayer(true, true, false);
                 }
             }
@@ -712,30 +717,30 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
             this.dropPlayerItemWithRandomChoice(new ItemStack(Item.appleRed, 1), true);
         }
         
-        if (this.username.equals("TheLadyDawn"))
-        {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemNuggetSteel, 1), true);
-        }
-        	
-        if (this.username.equals("Sockthing"))
-        {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemArmorWoolBoots, 1, 0), true);
-        }
-        
-        if (this.username.equals("EpicAaron29"))
-        {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemDung, 1), true);
-        }
-        
+//        if (this.username.equals("TheLadyDawn"))
+//        {
+//            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemNuggetSteel, 1), true);
+//        }
+//        	
+//        if (this.username.equals("Sockthing"))
+//        {
+//            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemArmorWoolBoots, 1, 0), true);
+//        }
+//        
 //        if (this.username.equals("EpicAaron29"))
 //        {
-//        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.cookie, 1), true);
+//            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemDung, 1), true);
 //        }
-        
-        if (this.username.equals("Gilberreke"))
-        {
-        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.book, 1), true);
-        }
+//        
+////        if (this.username.equals("EpicAaron29"))
+////        {
+////        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.cookie, 1), true);
+////        }
+//        
+//        if (this.username.equals("Gilberreke"))
+//        {
+//        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.book, 1), true);
+//        }
         
 
 
@@ -1549,7 +1554,8 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
             }
             
             //AARON added this sleeping status to detect if rain is soaking the player
-            if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( par1, par2 + 1, par3 ))
+//            if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( par1, par2, par3 ))
+            if (this.worldObj.IsRainingAtPos( par1, par2 + 1, par3 ))
             {
 //            	System.out.println("detecting SOAKED");
             	return EnumStatus.TOO_WET;
@@ -3738,4 +3744,103 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     	}
     }
     // END FCMOD
+    
+    //NOTE: CAUSES A DESYNC!!!
+    //NOTE: =(
+    //AARON added some utility for checking if there are water source blocks nearby!
+    //This will be useful for bucket crafting--buckets will automatically refill with water if a source if nearby during crafting!
+    public boolean isWaterSourceNearby()
+    {
+    	if (!worldObj.isRemote)
+    	{
+	    	
+	    	//THE THATCH TRAPDOOR APPROACH!
+	    
+		    int x = (int)this.posX;
+		    int y = (int)this.posY;
+		    int z = (int)this.posZ;
+		    
+		    int iHorizontalRange = 1;
+		    
+		    int iVerticalRange = 1;
+			
+		    for (int iteratingY = y - 1; iteratingY <= y + 1; iteratingY++ )
+		    {
+		  		//these if statements check all adjacent blocks for traps, including 
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x+1, y, z)))
+	    		{
+	    			return true;
+	    		}
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x-1, y, z)))
+	    		{
+	    			return true;
+	    		}
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x, y, z+1)))
+	    		{
+	    			return true;
+	    		}
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x, y, z-1)))
+	    		{
+	    			return true;
+	    		}
+	    		
+	    		//diagnilly, blocks drop in a 3x3 centered on the stepped-on block
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x-1, y, z-1)))
+	    		{
+	    			return true;
+	    		}
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x+1, y, z-1)))
+	    		{
+	    			return true;
+	    		}
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x+1, y, z+1)))
+	    		{
+	    			return true;
+	    		}
+	    		if (SuperBTWDefinitions.isWaterSourceBlock(worldObj.getBlockId(x-1, y, z+1)))
+	    		{
+	    			return true;
+	    		}
+		    }
+		    
+	//	    for ( int iTempI = x - iHorizontalRange; iTempI <= x + iHorizontalRange; iTempI++ )
+	//	    {
+	//	        for ( int iTempJ = y - 1; iTempJ <= y + 1; iTempJ++ )
+	//	        {
+	//	            for ( int iTempK = z - iHorizontalRange; iTempK <= z + iHorizontalRange; iTempK++ )
+	//	            {
+	//	                if ( this.worldObj.getBlockMaterial( iTempI, iTempJ, iTempK ) == Material.water 
+	////	                		|| (this.worldObj.getBlockId( iTempI, iTempJ, iTempK ) == Block.cauldron.blockID
+	////	                		&& this.worldObj.getBlockMetadata(iTempI, iTempJ, iTempK) >= 0) 
+	//	                	)
+	//	                {
+	//	                	//TESTER VVV
+	//	                	System.out.println("Found source or cistern!");
+	//	                    return true;
+	//	                }
+	//	            }
+	//	        }
+	//	    }
+		    //TESTER VVV
+		    System.out.println("Didn't find a water source!");
+		    
+	    	}
+    	
+	    return false;
+    
+	    
+//        for ( int tempX = x; tempX <= x + iHorizontalRange; i++ )
+//        {
+//            for ( ; iTempJ <= j + 1; iTempJ++ )
+//            {
+//                for ( int iTempK = k - iHorizontalRange; iTempK <= k + iHorizontalRange; iTempK++ )
+//                {
+//                    if ( world.getBlockMaterial( iTempI, iTempJ, iTempK ) == Material.water )
+//                    {
+//                        return true;
+//                    }
+//                }
+//            }
+//        }
+    }
 }

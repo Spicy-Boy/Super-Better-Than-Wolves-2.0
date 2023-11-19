@@ -274,7 +274,9 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                     this.wakeUpPlayer(false, true, true);
                 }
                 //AARON added this to wake the player if it starts raining
-                else if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( (int)this.posX, (int)this.posY + 1, (int)this.posZ ))
+//              else if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( (int)this.posX, (int)this.posY + 1, (int)this.posZ ))
+              //be careful, the player location is not perfect on the bed and can be caught in the rain easily 
+              else if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( (int)this.posX, (int)this.posY + 1, (int)Math.floor(this.posZ) ))
                 {
                 	this.wakeUpPlayer(true, true, false);
                 }
@@ -683,36 +685,36 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
             this.dropPlayerItemWithRandomChoice(new ItemStack(Item.appleRed, 1), true);
         }
         
-        //AARON CHANGED for unique drops per player
-        if (this.username.equals("Notch"))
-        {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(Item.appleRed, 1), true);
-        }
-        
-        if (this.username.equals("TheLadyDawn"))
-        {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemNuggetSteel, 1), true);
-        }
-        	
-        if (this.username.equals("Sockthing"))
-        {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemArmorWoolBoots, 1, 0), true);
-        }
-        
-        if (this.username.equals("EpicAaron29"))
-        {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemDung, 1), true);
-        }
-        
+//        //AARON CHANGED for unique drops per player
+//        if (this.username.equals("Notch"))
+//        {
+//            this.dropPlayerItemWithRandomChoice(new ItemStack(Item.appleRed, 1), true);
+//        }
+//        
+//        if (this.username.equals("TheLadyDawn"))
+//        {
+//            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemNuggetSteel, 1), true);
+//        }
+//        	
+//        if (this.username.equals("Sockthing"))
+//        {
+//            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemArmorWoolBoots, 1, 0), true);
+//        }
+//        
 //        if (this.username.equals("EpicAaron29"))
 //        {
-//        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.cookie, 1), true);
+//            this.dropPlayerItemWithRandomChoice(new ItemStack(FCBetterThanWolves.fcItemDung, 1), true);
 //        }
-        
-        if (this.username.equals("Gilberreke"))
-        {
-        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.book, 1), true);
-        }
+//        
+////        if (this.username.equals("EpicAaron29"))
+////        {
+////        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.cookie, 1), true);
+////        }
+//        
+//        if (this.username.equals("Gilberreke"))
+//        {
+//        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.book, 1), true);
+//        }
 
         if (!this.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory"))
         {
@@ -1521,8 +1523,8 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
             }
             
             //AARON added this sleeping status to detect if rain is soaking the player
-            if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( par1, par2 + 1, par3 ))
-            {
+//          if (this.worldObj.isRaining() && this.worldObj.IsRainingAtPos( par1, par2, par3 ))
+            if (this.worldObj.IsRainingAtPos( par1, par2 + 1, par3 ))            {
 //            	System.out.println("detecting SOAKED");
             	return EnumStatus.TOO_WET;
             }

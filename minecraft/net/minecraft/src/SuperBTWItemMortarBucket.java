@@ -52,5 +52,16 @@ public class SuperBTWItemMortarBucket extends FCItemMortar
     {
 		stack.damageItem( 1, player);
     }
+    
+    @Override
+    public boolean DoesConsumeContainerItemWhenCrafted( Item containerItem )
+    {
+    	if ( containerItem.itemID == Item.bucketEmpty.itemID )
+    	{
+    		return true;
+    	}
+    	
+    	return false;
+    }
 	
 }

@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+//this class is lifted from Grom's work. Thank you for your early contribution to modding!
+
 import java.util.Random;
 
 public class SuperBTWBlockGravestone extends Block
@@ -7,7 +9,8 @@ public class SuperBTWBlockGravestone extends Block
   private Icon iconFront;
   private Icon iconFrontBlank;
   private Icon iconSide;
-
+  
+  //placed by the item called "tombstonePlacer" in SuperBTWItemTombstonePlacer
   protected SuperBTWBlockGravestone(int id)
   {
     super(id, Material.rock);
@@ -16,7 +19,7 @@ public class SuperBTWBlockGravestone extends Block
     setResistance(10.0F);
     setStepSound(soundStoneFootstep);
     
-    setCreativeTab(CreativeTabs.tabDecorations);
+//    setCreativeTab(CreativeTabs.tabDecorations);
   }
 
   public boolean renderAsNormalBlock()
@@ -60,7 +63,7 @@ public class SuperBTWBlockGravestone extends Block
   {
     return side < 2 ? 2 : Direction.facingToDirection[side];
   }
-
+  
   //ClientOnly
   public void registerIcons(IconRegister r)
   {

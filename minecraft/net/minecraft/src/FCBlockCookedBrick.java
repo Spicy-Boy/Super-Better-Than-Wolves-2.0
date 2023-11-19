@@ -33,6 +33,8 @@ public class FCBlockCookedBrick extends Block
         if (FCUtilsInventory.AddItemStackToInventoryInSlotRange( player.inventory, brick, 0, player.inventory.getSizeInventory() - 5 ))
         {
 //            world.playAuxSFX(FCBetterThanWolves.m_iItemCollectionPopSoundAuxFXID, i, j, k, 0);
+            player.worldObj.playSoundAtEntity( player, "random.pop", 0.2F, 
+        		((player.rand.nextFloat() - player.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
             world.setBlockToAir(i, j, k);
 
             return true;
