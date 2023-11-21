@@ -2,7 +2,12 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
-2.2 Brick & Mortar:
+2.3 SMP BRANCH CHANGES:
+
+TODO- Added a the /deaths command that informs of you how many times you have died in the current world.
+
+
+~~~
 
 - Added thatch, a new roofing material made of sticks and reeds
     >Caution, this material is weaker than wood and may not stop a hungry zombie!
@@ -259,6 +264,21 @@ GuiNewChat
 GuiScreen 
 SlotCrafting (for water bucket shenanigans)
 
+SERVER ONLY:
+netLoginHandler (starting @ hc spawn)
+ServerCommandTestFor (pure semantic changes for most of these, changed a rando method name to findPlayer() )
+CommandServerTP
+CommandClearInventory
+CommandEffect
+CommandEnchant
+CommandGameMode
+CommandGive
+CommandServerMessage
+CommandSetSpawnpoint
+CommandXP
+CommandBase 
+ServerCommandManager (for registering commands)
+ServerConfigurationManager
 
 #For sleep integration:
 FCBlockBed

@@ -16,6 +16,7 @@ public class SuperBTW extends FCAddOn
 	//to initialize and read a settings file
 	private PropertyManager settings;
 	private boolean isTpaEnabled;
+	private boolean isRandomHCStartEnabled;
 	
     private SuperBTW() 
     {
@@ -45,6 +46,7 @@ public class SuperBTW extends FCAddOn
         FCAddOnHandler.LogMessage("Loading SBTW Server properties");
         this.settings = new PropertyManager(new File("SBTWserver.properties"), net.minecraft.server.MinecraftServer.getServer().getLogAgent());
         this.setTpaEnabled(this.settings.getBooleanProperty("Enable-TPA-commands", false));
+        this.setRandomHCStartEnabled(this.settings.getBooleanProperty("Start-with-random-HC-Spawn", false));
         
 	}
 	
@@ -56,6 +58,15 @@ public class SuperBTW extends FCAddOn
 	public boolean getTpaEnabled()
 	{
 		return isTpaEnabled;
+	}
+	
+	public void setRandomHCStartEnabled(boolean b) {
+		// TODO Auto-generated method stub
+		this.isRandomHCStartEnabled = b;
+	}
+	
+	public boolean getRandomHCStartEnabled() {
+		return isRandomHCStartEnabled;
 	}
 
 }
