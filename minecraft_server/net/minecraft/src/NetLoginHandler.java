@@ -183,10 +183,14 @@ public class NetLoginHandler extends NetHandler
                 //if the random hc start property is set to true, the player's first login is a random HC spawn
             	if (SuperBTW.instance.getRandomHCStartEnabled() && var2.deathCounter == 0)
             	{
+//            		TESTER VVV
+            		System.out.println("deaths = 0, randomHCStart enabled");
 //            		var2.playerNetServerHandler.playerEntity = mcServer.getConfigurationManager().respawnPlayer(var2, 0, false);
             		var2.playerNetServerHandler.playerEntity = mcServer.getConfigurationManager().recreatePlayerEntity(var2, 0, false);
-            	     
+            	    
             	}
+//        		TESTER VVV
+        		System.out.println("randomHCstart didn't trigger");
             
             }
         }

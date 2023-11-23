@@ -4,7 +4,10 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.3 SMP BRANCH CHANGES:
 
-TODO- Added a the /deaths command that informs of you how many times you have died in the current world.
+TODO- Added a server configuration to SBTWserver.properties that toggles HC Spawn on initial login
+    >basically, instead of starting at spawn, new players in a server start at an HC spawn
+
+- Added the /deaths command that informs the player how many times they have died in the current world.
 
 
 ~~~
@@ -278,7 +281,7 @@ CommandSetSpawnpoint
 CommandXP
 CommandBase 
 ServerCommandManager (for registering commands)
-ServerConfigurationManager
+ServerConfigurationManager (custom steve placement on first login)
 
 #For sleep integration:
 FCBlockBed

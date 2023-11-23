@@ -1205,6 +1205,149 @@ public abstract class ServerConfigurationManager
         return newPlayer;
     }
     
+    //AARON added this method 
+    public EntityPlayerMP recreatePlayerEntityAtTeamLocation( EntityPlayerMP oldPlayer, int iDefaultDimension, boolean bPlayerLeavingTheEnd )
+    {
+//    	wdadwahduwa set custom spawn based on a tpteam name parameter (take the coords of the tp team and send player to them)
+        oldPlayer.getServerForPlayer().getEntityTracker().removePlayerFromTrackers( oldPlayer );
+        
+    	// client
+        //oldPlayer.getServerForPlayer().getEntityTracker().removeEntityFromAllTrackingPlayers( oldPlayer );
+    	// server    	
+    	oldPlayer.getServerForPlayer().getEntityTracker().untrackEntity( oldPlayer );
+        
+        oldPlayer.getServerForPlayer().GetChunkTracker().RemovePlayer( oldPlayer );
+        
+        playerEntityList.remove( oldPlayer );
+        
+        mcServer.worldServerForDimension( oldPlayer.dimension ).removePlayerEntityDangerously( oldPlayer );
+        
+        ChunkCoordinates verifiedRespawnCoords = null;
+        boolean bRetainPreviousSpawn = false;
+
+    	String sSpawnFailMessage = null;
+    	
+    	int iNewDimension = iDefaultDimension;
+    	
+    	//START CUSTOM CODE HERE
+        if ( oldPlayer.HasRespawnCoordinates() )
+        {
+            if ( !bPlayerLeavingTheEnd )
+            {
+	        	ChunkCoordinates rawRespawnCoords = new ChunkCoordinates();
+	        	
+	            int iReturnValue = oldPlayer.GetValidatedRespawnCoordinates( mcServer.worldServerForDimension( oldPlayer.m_iSpawnDimension ), rawRespawnCoords );
+	
+	            if ( iReturnValue == 0 )
+	            {
+	            	verifiedRespawnCoords = rawRespawnCoords;	
+	            	iNewDimension = oldPlayer.m_iSpawnDimension;
+	            }
+	            else
+	            {
+		            if ( iReturnValue == 1 )
+		            {
+		            	sSpawnFailMessage = "Your respawn location was invalid";
+		            }
+		            else if ( iReturnValue == 2 )
+		            {
+		            	sSpawnFailMessage = "The beacon to which you were bound is no longer present";
+		            }
+		            else if ( iReturnValue == 3 )
+		            {
+		            	sSpawnFailMessage = "The beacon to which you are bound was too far away";
+		            	bRetainPreviousSpawn = true;
+		            }
+		            else if ( iReturnValue == 4 )
+		            {
+		            	sSpawnFailMessage = "The beacon to which you are bound was obstructed";
+		            	bRetainPreviousSpawn = true;
+		            }
+		            else
+		            {
+		            	sSpawnFailMessage = "Your respawn failed for an unknown reason";
+		            }
+		            
+	            }
+	        }
+            else
+            {
+            	// retain the player's previous respawn location when you pop back from the end
+            	
+            	bRetainPreviousSpawn = true;
+            }
+        }
+
+        ItemInWorldManager worldManager;
+
+        if (this.mcServer.isDemo())
+        {
+            worldManager = new DemoWorldManager(this.mcServer.worldServerForDimension( iNewDimension ) );
+        }
+        else
+        {
+            worldManager = new ItemInWorldManager(this.mcServer.worldServerForDimension( iNewDimension ) );
+        }
+
+        EntityPlayerMP newPlayer = new EntityPlayerMP( mcServer, mcServer.worldServerForDimension( iNewDimension ), oldPlayer.username, worldManager );
+        
+        newPlayer.playerNetServerHandler = oldPlayer.playerNetServerHandler;
+        
+        oldPlayer.dimension = iNewDimension;        
+        newPlayer.clonePlayer( oldPlayer, bPlayerLeavingTheEnd );
+        newPlayer.entityId = oldPlayer.entityId;
+        
+        WorldServer newWorldServer = mcServer.worldServerForDimension( oldPlayer.dimension );
+        
+        func_72381_a( newPlayer, oldPlayer, newWorldServer ); // initializes the game type
+        
+        if ( verifiedRespawnCoords != null )
+        {
+            newPlayer.setLocationAndAngles((double)((float)verifiedRespawnCoords.posX + 0.5F), (double)((float)verifiedRespawnCoords.posY + 0.1F), (double)((float)verifiedRespawnCoords.posZ + 0.5F), 0.0F, 0.0F);
+            
+            bRetainPreviousSpawn = true;
+            
+        }
+        else if ( !bPlayerLeavingTheEnd )
+        {
+    		FCUtilsHardcoreSpawn.HandleHardcoreSpawn( mcServer, oldPlayer, newPlayer );
+        }
+        
+        if ( bRetainPreviousSpawn )
+        {
+            newPlayer.setSpawnChunk( oldPlayer.getBedLocation(), oldPlayer.isSpawnForced(), oldPlayer.m_iSpawnDimension );
+        }
+        
+        if ( sSpawnFailMessage != null )
+        {
+            FCUtilsWorld.SendPacketToPlayer( newPlayer.playerNetServerHandler, new Packet3Chat( sSpawnFailMessage ) );
+        }
+        
+        newWorldServer.theChunkProviderServer.loadChunk((int)newPlayer.posX >> 4, (int)newPlayer.posZ >> 4);
+
+        while (!newWorldServer.getCollidingBoundingBoxes(newPlayer, newPlayer.boundingBox).isEmpty())
+        {
+            newPlayer.setPosition(newPlayer.posX, newPlayer.posY + 1.0D, newPlayer.posZ);
+        }
+
+        newPlayer.playerNetServerHandler.sendPacket(new Packet9Respawn(newPlayer.dimension, (byte)newPlayer.worldObj.difficultySetting, newPlayer.worldObj.getWorldInfo().getTerrainType(), newPlayer.worldObj.getHeight(), newPlayer.theItemInWorldManager.getGameType()));
+        verifiedRespawnCoords = newWorldServer.getSpawnPoint();
+        newPlayer.playerNetServerHandler.sendPacket(new Packet6SpawnPosition(verifiedRespawnCoords.posX, verifiedRespawnCoords.posY, verifiedRespawnCoords.posZ));
+        newPlayer.playerNetServerHandler.sendPacket(new Packet43Experience(newPlayer.experience, newPlayer.experienceTotal, newPlayer.experienceLevel));
+        this.updateTimeAndWeatherForPlayer(newPlayer, newWorldServer);
+        newWorldServer.GetChunkTracker().AddPlayer(newPlayer);
+        newWorldServer.spawnEntityInWorld(newPlayer);
+        this.playerEntityList.add(newPlayer);
+        newPlayer.addSelfToInternalCraftingInventory();
+        newPlayer.setEntityHealth(newPlayer.getHealth());
+        
+        // Code moved relative to vanilla version so that some loading occurs before loading screen dissapears
+        //AARON making a note here--could be useful for a hunger games style thing :)
+        newPlayer.playerNetServerHandler.setPlayerLocation(newPlayer.posX, newPlayer.posY, newPlayer.posZ, newPlayer.rotationYaw, newPlayer.rotationPitch);
+        
+        return newPlayer;
+    }
+    
     private void FlagChunksAroundTeleportingEntityForCheckForUnload( WorldServer world, Entity entity )
     {
         // flag area checked for teleport for unload check as the Teleporter 
