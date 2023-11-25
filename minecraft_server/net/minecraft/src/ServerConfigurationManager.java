@@ -15,7 +15,8 @@ import net.minecraft.server.MinecraftServer;
 
 public abstract class ServerConfigurationManager
 {
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd \'at\' HH:mm:ss z");
+    
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd \'at\' HH:mm:ss z");
 
     /** Reference to the MinecraftServer object. */
     private final MinecraftServer mcServer;
@@ -1206,9 +1207,8 @@ public abstract class ServerConfigurationManager
     }
     
     //AARON added this method 
-    public EntityPlayerMP recreatePlayerEntityAtTeamLocation( EntityPlayerMP oldPlayer, int iDefaultDimension, boolean bPlayerLeavingTheEnd )
+    public EntityPlayerMP recreatePlayerEntityAtTeamLocation( EntityPlayerMP oldPlayer, int iDefaultDimension, String teamName )
     {
-//    	wdadwahduwa set custom spawn based on a tpteam name parameter (take the coords of the tp team and send player to them)
         oldPlayer.getServerForPlayer().getEntityTracker().removePlayerFromTrackers( oldPlayer );
         
     	// client
@@ -1224,59 +1224,21 @@ public abstract class ServerConfigurationManager
         
         ChunkCoordinates verifiedRespawnCoords = null;
         boolean bRetainPreviousSpawn = false;
-
-    	String sSpawnFailMessage = null;
     	
     	int iNewDimension = iDefaultDimension;
     	
-    	//START CUSTOM CODE HERE
-        if ( oldPlayer.HasRespawnCoordinates() )
-        {
-            if ( !bPlayerLeavingTheEnd )
-            {
-	        	ChunkCoordinates rawRespawnCoords = new ChunkCoordinates();
-	        	
-	            int iReturnValue = oldPlayer.GetValidatedRespawnCoordinates( mcServer.worldServerForDimension( oldPlayer.m_iSpawnDimension ), rawRespawnCoords );
-	
-	            if ( iReturnValue == 0 )
-	            {
-	            	verifiedRespawnCoords = rawRespawnCoords;	
-	            	iNewDimension = oldPlayer.m_iSpawnDimension;
-	            }
-	            else
-	            {
-		            if ( iReturnValue == 1 )
-		            {
-		            	sSpawnFailMessage = "Your respawn location was invalid";
-		            }
-		            else if ( iReturnValue == 2 )
-		            {
-		            	sSpawnFailMessage = "The beacon to which you were bound is no longer present";
-		            }
-		            else if ( iReturnValue == 3 )
-		            {
-		            	sSpawnFailMessage = "The beacon to which you are bound was too far away";
-		            	bRetainPreviousSpawn = true;
-		            }
-		            else if ( iReturnValue == 4 )
-		            {
-		            	sSpawnFailMessage = "The beacon to which you are bound was obstructed";
-		            	bRetainPreviousSpawn = true;
-		            }
-		            else
-		            {
-		            	sSpawnFailMessage = "Your respawn failed for an unknown reason";
-		            }
-		            
-	            }
-	        }
-            else
-            {
-            	// retain the player's previous respawn location when you pop back from the end
-            	
-            	bRetainPreviousSpawn = true;
-            }
-        }
+//        if ( oldPlayer.HasRespawnCoordinates() )
+//        {
+//        	ChunkCoordinates rawRespawnCoords = new ChunkCoordinates();
+//        	
+//            int iReturnValue = oldPlayer.GetValidatedRespawnCoordinates( mcServer.worldServerForDimension( oldPlayer.m_iSpawnDimension ), rawRespawnCoords );
+//
+//            if ( iReturnValue == 0 )
+//            {
+//            	verifiedRespawnCoords = rawRespawnCoords;	
+//            	iNewDimension = oldPlayer.m_iSpawnDimension;
+//            }
+//        }
 
         ItemInWorldManager worldManager;
 
@@ -1294,34 +1256,12 @@ public abstract class ServerConfigurationManager
         newPlayer.playerNetServerHandler = oldPlayer.playerNetServerHandler;
         
         oldPlayer.dimension = iNewDimension;        
-        newPlayer.clonePlayer( oldPlayer, bPlayerLeavingTheEnd );
+        newPlayer.clonePlayer( oldPlayer, false/*bPlayerLeavingTheEnd*/ );
         newPlayer.entityId = oldPlayer.entityId;
         
         WorldServer newWorldServer = mcServer.worldServerForDimension( oldPlayer.dimension );
         
         func_72381_a( newPlayer, oldPlayer, newWorldServer ); // initializes the game type
-        
-        if ( verifiedRespawnCoords != null )
-        {
-            newPlayer.setLocationAndAngles((double)((float)verifiedRespawnCoords.posX + 0.5F), (double)((float)verifiedRespawnCoords.posY + 0.1F), (double)((float)verifiedRespawnCoords.posZ + 0.5F), 0.0F, 0.0F);
-            
-            bRetainPreviousSpawn = true;
-            
-        }
-        else if ( !bPlayerLeavingTheEnd )
-        {
-    		FCUtilsHardcoreSpawn.HandleHardcoreSpawn( mcServer, oldPlayer, newPlayer );
-        }
-        
-        if ( bRetainPreviousSpawn )
-        {
-            newPlayer.setSpawnChunk( oldPlayer.getBedLocation(), oldPlayer.isSpawnForced(), oldPlayer.m_iSpawnDimension );
-        }
-        
-        if ( sSpawnFailMessage != null )
-        {
-            FCUtilsWorld.SendPacketToPlayer( newPlayer.playerNetServerHandler, new Packet3Chat( sSpawnFailMessage ) );
-        }
         
         newWorldServer.theChunkProviderServer.loadChunk((int)newPlayer.posX >> 4, (int)newPlayer.posZ >> 4);
 
@@ -1331,7 +1271,35 @@ public abstract class ServerConfigurationManager
         }
 
         newPlayer.playerNetServerHandler.sendPacket(new Packet9Respawn(newPlayer.dimension, (byte)newPlayer.worldObj.difficultySetting, newPlayer.worldObj.getWorldInfo().getTerrainType(), newPlayer.worldObj.getHeight(), newPlayer.theItemInWorldManager.getGameType()));
+        
+        //AARON set the new spawning coordinates here?
         verifiedRespawnCoords = newWorldServer.getSpawnPoint();
+        
+        //by default, the coordinates are set to match a HC spawn!
+        //so, if the team name isn't found and a default isn't set, the player will HC spawn randomly
+//        double newX = verifiedRespawnCoords.posX;
+//        double newY = verifiedRespawnCoords.posY;
+//        double newZ = verifiedRespawnCoords.posZ;
+      double newX = 1000;
+      double newY = 75;
+      double newZ = 1000;
+        
+//		if (isTeamName(teamName))
+//		{
+//			newX = SuperBTW.instance.getTeamsAndCoordsMap().get(teamName)[0];
+//			newY = SuperBTW.instance.getTeamsAndCoordsMap().get(teamName)[1];
+//			newZ = SuperBTW.instance.getTeamsAndCoordsMap().get(teamName)[2];
+//		}
+//		else if (isDefaultTeamSet())
+//		{
+//			newX = SuperBTW.instance.getTeamsAndCoordsMap().get("default")[0];
+//			newY = SuperBTW.instance.getTeamsAndCoordsMap().get("default")[1];
+//			newZ = SuperBTW.instance.getTeamsAndCoordsMap().get("default")[2];
+//		}
+        
+        verifiedRespawnCoords = new ChunkCoordinates((int)newX, (int)newY, (int)newZ);
+        
+        
         newPlayer.playerNetServerHandler.sendPacket(new Packet6SpawnPosition(verifiedRespawnCoords.posX, verifiedRespawnCoords.posY, verifiedRespawnCoords.posZ));
         newPlayer.playerNetServerHandler.sendPacket(new Packet43Experience(newPlayer.experience, newPlayer.experienceTotal, newPlayer.experienceLevel));
         this.updateTimeAndWeatherForPlayer(newPlayer, newWorldServer);
@@ -1343,9 +1311,49 @@ public abstract class ServerConfigurationManager
         
         // Code moved relative to vanilla version so that some loading occurs before loading screen dissapears
         //AARON making a note here--could be useful for a hunger games style thing :)
-        newPlayer.playerNetServerHandler.setPlayerLocation(newPlayer.posX, newPlayer.posY, newPlayer.posZ, newPlayer.rotationYaw, newPlayer.rotationPitch);
+        
+        //ORIGINAL VV
+//        newPlayer.playerNetServerHandler.setPlayerLocation(newPlayer.posX, newPlayer.posY, newPlayer.posZ, newPlayer.rotationYaw, newPlayer.rotationPitch);
+        
+        newPlayer.playerNetServerHandler.setPlayerLocation(newX, newY, newZ, newPlayer.rotationYaw, newPlayer.rotationPitch);
+        
         
         return newPlayer;
+    }
+    
+    //AARON added this methods to make getting team coords easier
+    public boolean isTeamName(String teamName)
+    {
+    //^^^ modularly checks to see if a team name has been typed, returns true if so 
+    //(case sensitive!)
+    	Set<String> keySet = SuperBTW.instance.getTeamsAndCoordsMap().keySet();
+
+    	for (String key : keySet) //checks if the team name exists in the keys for teamsAndCoords map
+    	{
+    		if (key.equals(teamName))
+    		{
+    			return true;
+    		}
+    	}
+    	
+    	return false;
+    }
+    //AARON added this method to check for a default team
+    public boolean isDefaultTeamSet()
+    {
+    //^^^ modularly checks to see if a team name has been typed, returns true if so 
+    //(case sensitive!)
+    	Set<String> keySet = SuperBTW.instance.getTeamsAndCoordsMap().keySet();
+
+    	for (String key : keySet) //checks if the team name exists in the keys for teamsAndCoords map
+    	{
+    		if (key.equals("default") )
+    		{
+    			return true;
+    		}
+    	}
+    	
+    	return false;
     }
     
     private void FlagChunksAroundTeleportingEntityForCheckForUnload( WorldServer world, Entity entity )

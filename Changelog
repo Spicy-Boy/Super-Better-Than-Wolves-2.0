@@ -562,7 +562,7 @@ BlockLeaves
 FCBlockLeaves
 FCItemChiselWood
 FCItemChiselStone
-FCUtilsHardcoreSpawn
+FCUtilsHardcoreSpawn (death counter)
 FCBlockDeadBush
 BiomeDecorator
 ItemBow (for animating flint knapping...)

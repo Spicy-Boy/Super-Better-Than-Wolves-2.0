@@ -2221,7 +2221,9 @@ public abstract class Minecraft implements Runnable, IPlayerUsage
         boolean var2 = false;
         boolean var3 = true;
         boolean var4 = false;
-        String var5 = "Player" + getSystemTime() % 1000L;
+        //AARON can modify this to make a custom name :)
+//        String var5 = "Player" + getSystemTime() % 1000L;
+        String var5 = "captainbug";
         String var6 = var5;
 
         if (par0ArrayOfStr.length > 0)
