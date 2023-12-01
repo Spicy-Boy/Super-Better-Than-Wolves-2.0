@@ -1,0 +1,9 @@
+//paintings are placed instead of standard canvas paintings if player is actively spicy
+
+Zhil Scum painting
+
+Yabujin album cover guts picture
+
+Led Zepplin thatcher painting
+
+Caveman painting
