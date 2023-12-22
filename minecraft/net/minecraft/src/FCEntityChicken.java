@@ -99,6 +99,73 @@ public class FCEntityChicken extends EntityChicken
     	}
     }
     
+    //AARON anxietyCounter
+    int chickenAnxietyCounter = 0;
+    
+    //AARON is messing with chicken collision code for devious ends!
+    @Override
+    protected void func_85033_bc()
+    {
+    	
+        List var1 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
+        
+        if (chickenAnxietyCounter > 0)
+        {
+        	//TESTER VVV
+        	System.out.println("REDUCED chicken ANXIETY");
+        	//the de-increment of anxiety is 1 at a time, so it raises much faster than it drops afterwards
+        	chickenAnxietyCounter--;
+        }
+        
+        if (var1 != null && !var1.isEmpty())
+        {
+            for (int var2 = 0; var2 < var1.size(); ++var2)
+            {
+                Entity var3 = (Entity)var1.get(var2);
+                
+                //if colliding entity is an instance of EntityPlayer && player isn't holding a tempting item... 
+                //check chicken anxiety timer, increment, then startle chicken if anxiety is maxed!
+                if (var3 instanceof EntityPlayer)
+                {
+                	//TESTER VV
+//                    System.out.println("Just collided with a chicken!!!!");
+//                    System.out.println("Just collided with a chicken!!!!");
+                    
+                	//there has to be a != null check at the very beginning paired with the currentEquip check or the game will crash if empty handed
+                	//the getCurrentEquipment check is dangerous... if empty handed during check, the game just crashes!
+                	if ( ( ((EntityPlayer)var3).getCurrentEquippedItem() != null && !( this.IsTemptingItem( ((EntityPlayer)var3).getCurrentEquippedItem() ) )
+                			|| ((EntityPlayer)var3).getCurrentEquippedItem() == null
+                			))
+                	{
+	                	//400 at +5 is about 9 seconds of solid pushing! this number is different
+	                    if (chickenAnxietyCounter > 700)
+	                    {
+	                    	//initiates outburst
+	                    	OnNearbyPlayerStartles( (EntityPlayer)var3 );
+	                    	//reset anxiety after outburst
+	                    	chickenAnxietyCounter = 0;
+	                    }
+	                    else
+	                    {
+	                    	//TESTER VVV
+	                    	System.out.println("Added anxiety on collision, now: "+chickenAnxietyCounter);
+	                    	
+	                    	//SPOILER ALERT: the chicken anxiety increments rapidly, but it falls 15x slower. This makes chickens "remember" that they have been pushed and will remain agitated for a long time after contact
+	                    	chickenAnxietyCounter += 15;
+	                    }
+                	}
+                }
+                
+
+
+                if (var3.canBePushed())
+                {
+                    this.collideWithEntity(var3);
+                }
+            }
+        }
+    }
+    
     @Override
     public FCEntityChicken spawnBabyAnimal( EntityAgeable parent )
     {

@@ -2894,6 +2894,13 @@ public class Block
     	}
     }
     
+    //AARON added a method that can be overridden to cause animal scare
+    //primary use is campfires
+    public boolean alwaysStartlesAnimals()
+    {
+    	return false;
+    }
+    
 	/** 
 	 * returns true if the block still exists
 	 */

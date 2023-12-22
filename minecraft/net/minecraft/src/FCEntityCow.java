@@ -616,6 +616,7 @@ public class FCEntityCow extends EntityCow
         }        
     }
     
+    //AARON anxietyCounter
     int cowAnxietyCounter = 0;
     
     //AARON is messing with cow collision code for devious ends!
