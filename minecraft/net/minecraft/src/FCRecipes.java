@@ -5398,29 +5398,47 @@ public abstract class FCRecipes
 		
 		// ------ Priest ------ //
 		//Level 1
-		FCEntityVillager.addTradeToBuyMultipleItems(priest, FCBetterThanWolves.fcItemHemp.itemID, 18, 22, 1F, 1).setDefault(priest);
-		FCEntityVillager.addTradeToBuyMultipleItems(priest, FCBetterThanWolves.fcItemMushroomRed.itemID, 10, 16, 1F, 1);
-		FCEntityVillager.addTradeToBuyMultipleItems(priest, Block.cactus.blockID, 32, 64, 1F, 1);
+		//AARON commented for TESTER vvv
+//		FCEntityVillager.addTradeToBuyMultipleItems(priest, FCBetterThanWolves.fcItemHemp.itemID, 18, 22, 1F, 1).setDefault(priest);
+//		FCEntityVillager.addTradeToBuyMultipleItems(priest, FCBetterThanWolves.fcItemMushroomRed.itemID, 10, 16, 1F, 1);
+//		FCEntityVillager.addTradeToBuyMultipleItems(priest, Block.cactus.blockID, 32, 64, 1F, 1);
 		FCEntityVillager.addTradeToBuySingleItem(priest, Item.painting.itemID, 2, 3, 0.5F, 1);
-		FCEntityVillager.addTradeToBuySingleItem(priest, Item.flintAndSteel.itemID, 1, 1, 1F, 1);
+//		FCEntityVillager.addTradeToBuySingleItem(priest, Item.flintAndSteel.itemID, 1, 1, 1F, 1);
 		
 		FCEntityVillager.addLevelUpTradeToBuySingleItem(priest, Block.enchantmentTable.blockID, 2, 2, 1);
 		
 		//Level 2
-		FCEntityVillager.addEnchantmentTrade(priest, Item.swordIron.itemID, 2, 4, 0.25F, 2);
-		FCEntityVillager.addEnchantmentTrade(priest, Item.axeIron.itemID, 2, 4, 0.25F, 2);
-		FCEntityVillager.addEnchantmentTrade(priest, Item.pickaxeIron.itemID, 2, 4, 0.25F, 2);
+		//AARON is messing with trades, making them more delicious rather than random
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.swordIron.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.axeIron.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.pickaxeIron.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.helmetIron.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.plateIron.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.legsIron.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsIron.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.swordDiamond.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.axeDiamond.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.pickaxeDiamond.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.helmetDiamond.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.plateDiamond.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.legsDiamond.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsDiamond.itemID, 2, 4, 0.25F, 2);
+		// OLD ^ ^ ^
+		//AARON NEW enchantment trades VVV
+		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsIron.itemID, 2, 3, 0.25F, 2);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsGold.itemID, 1, 2, 0.05F, 2);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.pickaxeDiamond.itemID, 3, 5, 0.5F, 2);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.plateIron.itemID, 3, 5, 0.25F, 2);
 		FCEntityVillager.addEnchantmentTrade(priest, Item.helmetIron.itemID, 2, 4, 0.25F, 2);
-		FCEntityVillager.addEnchantmentTrade(priest, Item.plateIron.itemID, 2, 4, 0.25F, 2);
-		FCEntityVillager.addEnchantmentTrade(priest, Item.legsIron.itemID, 2, 4, 0.25F, 2);
-		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsIron.itemID, 2, 4, 0.25F, 2);
-		FCEntityVillager.addEnchantmentTrade(priest, Item.swordDiamond.itemID, 2, 4, 0.25F, 2);
-		FCEntityVillager.addEnchantmentTrade(priest, Item.axeDiamond.itemID, 2, 4, 0.25F, 2);
-		FCEntityVillager.addEnchantmentTrade(priest, Item.pickaxeDiamond.itemID, 2, 4, 0.25F, 2);
 		FCEntityVillager.addEnchantmentTrade(priest, Item.helmetDiamond.itemID, 2, 4, 0.25F, 2);
-		FCEntityVillager.addEnchantmentTrade(priest, Item.plateDiamond.itemID, 2, 4, 0.25F, 2);
-		FCEntityVillager.addEnchantmentTrade(priest, Item.legsDiamond.itemID, 2, 4, 0.25F, 2);
-		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsDiamond.itemID, 2, 4, 0.25F, 2);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.bow.itemID, 3, 5, 0.25F, 2);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.axeIron.itemID, 2, 4, 0.25F, 2);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.swordIron.itemID, 3, 5, 0.25F, 2);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.shears.itemID, 1, 2, 0.25F, 2);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.swordDiamond.itemID, 2, 4, 0.25F, 2);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.axeStone.itemID, 1, 2, 0.25F, 2);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.shovelDiamond.itemID, 3, 5, 0.5F, 2);
+		
 		
 		FCEntityVillager.addLevelUpTradeToBuySingleItem(priest, FCBetterThanWolves.fcBlockArcaneVessel.blockID, 2, 2, 2);
 		
@@ -5463,6 +5481,9 @@ public abstract class FCRecipes
 		
 		//Level 5
 		FCEntityVillager.addTradeToBuySingleItem(priest, FCBetterThanWolves.fcItemCanvas.itemID, 2, 3, 1F, 5);
+		//AARON'S Wizard Boots trade VVV
+		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsLeather.itemID, 45, 55, 0.15F, 1);
+		
 		
 		FCEntityVillager.addArcaneScrollTrade(priest, Enchantment.fortune.effectId, 48, 64, 1F, 5);
 		

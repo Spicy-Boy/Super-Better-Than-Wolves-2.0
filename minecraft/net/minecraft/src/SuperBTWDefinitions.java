@@ -48,9 +48,11 @@ public class SuperBTWDefinitions {
 		id_pipeEmpty = 20026,
 		id_pipePacked = 20027,
 		id_pipeLit = 20028,
+		
+		id_treat = 20029;
 	
 		//GOURD MANIA!
-				
+	private static final int
 		id_waterMelonSeeds = 31020,
 		id_canaryMelonSeeds = 31021,
 		id_honeydewMelonSeeds = 31022,
@@ -108,6 +110,7 @@ public class SuperBTWDefinitions {
 	public static Item pipeEmpty;
 	public static Item pipePacked;
 	public static Item pipeLit;
+	public static Item treat;
 	
 	public static Block branchBlock;
 	public static Block sunflower;
@@ -169,6 +172,7 @@ public class SuperBTWDefinitions {
 		pipeEmpty = new SuperBTWItemPipeEmpty(id_pipeEmpty - 256);
 		pipePacked = new SuperBTWItemPipePacked(id_pipePacked - 256);
 		pipeLit = new SuperBTWItemPipeLit(id_pipeEmpty - 256);
+		treat = new SuperBTWItemTreat(id_treat - 256);
 		
 		branchBlock = new SuperBTWBlockBranch(id_branchBlock);
 		Item.itemsList[branchBlock.blockID] = new ItemBlock(branchBlock.blockID - 256); 
@@ -204,13 +208,13 @@ public class SuperBTWDefinitions {
 		strawThatch = new SuperBTWBlockStrawThatch(id_strawThatch);
 		Item.itemsList[strawThatch.blockID] = new ItemBlock(strawThatch.blockID - 256);
 		
+		//Sockthing's beta code
 		stickBundleLooseSlab = new SuperBTWBlockStickBundleLooseSlab(id_stickBundleLooseSlab);
 		Item.itemsList[stickBundleLooseSlab.blockID] = new SuperBTWItemBlockStickBundleLooseSlab(stickBundleLooseSlab.blockID - 256);
 		stickBundleLoose = new SuperBTWBlockStickBundleLoose(id_stickBundleLoose);
 		Item.itemsList[stickBundleLoose.blockID] = new ItemBlock(stickBundleLoose.blockID - 256);
 		
 
-		
 //        branchBlock = new SuperBTWBlockBranchSlab(id_branchBlock);
 //        Item.itemsList[branchBlock.blockID] = new ItemMultiTextureTile(id_branchBlock - 256, branchBlock, SuperBTWBlockBranchSlab.types);
         
