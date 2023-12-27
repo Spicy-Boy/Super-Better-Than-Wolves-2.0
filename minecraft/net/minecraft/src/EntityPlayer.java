@@ -1982,9 +1982,9 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
                     if (this.isSprinting())
                     {
-                    	//This is where sprinting exhaustion hunger drain happens
-                    	//AARON TESTER VVV
-                    	System.out.println("EXHAUSTION FROM SPRINTING? var7 = "+ var7);
+//                    	//This is where sprinting exhaustion hunger drain happens
+//                    	//AARON TESTER VVV
+//                    	System.out.println("EXHAUSTION FROM SPRINTING? var7 = "+ var7);
                         this.addExhaustion(0.099999994F * (float)var7 * 0.01F);
                     }
                     else
