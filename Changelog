@@ -4,6 +4,8 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.3 Penultimate:
 
+- Changed trap doors to be climbable like ladders when opened.
+
 - Fixed an issue where loose dirt was breakable by zombies... sorry :)
 
 TODO- Change wither back to soulsand and regular ass skulls :P
@@ -11,19 +13,13 @@ TODO- Change wither back to soulsand and regular ass skulls :P
 TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
         TODO>Apply the same principle to soul filtering. Thank you Dawn for pointing all of this out!
 
-TODO- Fix the villager refresh bug that CE team caught
-
 TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
         TODO> add a particle effect to show that the glass is cooking inside the gloryhole
 
 TODO- Added the glass jars from Sockscrops! They can store smaller items!
-        
-TODO- Changed trap doors to act like ladders when opened, like in modern vanilla MC
 
 TODO- Added new librarian trades for block dispensers and detector blocks 
 
-TODO- Update level 2 priest trades to be decent and good
-    
 TODO- Added the Meat Golem
 
 TODO- Added the airship
