@@ -163,7 +163,8 @@ public class FCBlockMycelium extends BlockMycelium
 	{
     	if ( world.provider.dimensionId != 1 )
     	{
-	        if ( world.getBlockLightValue( i, j + 1, k ) >= 9 &&
+    		//AARON changed/commented this so mycelium can grow in the dahk
+	        if ( /*world.getBlockLightValue( i, j + 1, k ) >= 9 &&*/
 	        	!FCBlockGroundCover.IsGroundCoverRestingOnBlock( world, i, j, k ) )
 	        {
 	            for ( int iTempCount = 0; iTempCount < 2; iTempCount++ )
