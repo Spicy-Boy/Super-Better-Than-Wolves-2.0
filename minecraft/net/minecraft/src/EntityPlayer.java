@@ -1982,6 +1982,9 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
                     if (this.isSprinting())
                     {
+                    	//This is where sprinting exhaustion hunger drain happens
+                    	//AARON TESTER VVV
+                    	System.out.println("EXHAUSTION FROM SPRINTING? var7 = "+ var7);
                         this.addExhaustion(0.099999994F * (float)var7 * 0.01F);
                     }
                     else
@@ -2589,16 +2592,19 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         return ScorePlayerTeam.func_96667_a(this.getTeam(), this.username);
     }
     
+    //AARON added special key/ctrl click functionality VVV
     private boolean usingSpecialKey = false;
-    
+
 //    @Override
-//    public boolean isUsingSpecialKey() {
-//    	return this.usingSpecialKey;
-//    }
-    
+    public boolean isUsingSpecialKey() 
+    {
+    	return this.usingSpecialKey;
+    }
+
     public void setUsingSpecialKey(boolean usingSpecialKey) {
     	this.usingSpecialKey = usingSpecialKey;
     }
+    //^^^ special key/ctrl click functionality
 
     // FCMOD: Added New
     public ChunkCoordinates m_HardcoreSpawnChunk;

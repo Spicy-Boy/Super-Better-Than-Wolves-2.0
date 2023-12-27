@@ -2,38 +2,13 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
-2.3 Penultimate:
+2.3 Ctrl Click Branch:
 
-- Fixed an issue where loose dirt was breakable by zombies... sorry :)
+- Changed mycelium to grow in complete darkness. It didn't really make sense that it needed sunlight.
 
-TODO- Change wither back to soulsand and regular ass skulls :P
-
-TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
-        TODO>Apply the same principle to soul filtering. Thank you Dawn for pointing all of this out!
-
-TODO- Fix the villager refresh bug that CE team caught
-
-TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
-        TODO> add a particle effect to show that the glass is cooking inside the gloryhole
-
-TODO- Added the glass jars from Sockscrops! They can store smaller items!
-        
-TODO- Changed trap doors to act like ladders when opened, like in modern vanilla MC
-
-TODO- Added new librarian trades for block dispensers and detector blocks 
-
-TODO- Update level 2 priest trades to be decent and good
-    
-TODO- Added the Meat Golem
-
-TODO- Added the airship
-
-TODO- Added the pipe
-        >Used to rip fat clouds
-        
-ULTIMATE TODOS (not to be tackled until SBTW 2.0 is completely ready!
-- Add ctrl click functionality added by later CE
-- Create a special fork of Neodindium that works with SBTW
+TODO - Added the ctrl key as an alternative sprint button. This cannot be rebound at this time.
+    > If rebinding your ctrl key is something important to you, then please reach out to me and I can make it configurable. 
+    > I just didn't feel like coding that right now, and I won't bother if it isn't something anyone will use
 
 2.2 Brick & Mortar:
 
