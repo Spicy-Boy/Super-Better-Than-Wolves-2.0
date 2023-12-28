@@ -112,7 +112,7 @@ public class FCEntityChicken extends EntityChicken
         if (chickenAnxietyCounter > 0)
         {
         	//TESTER VVV
-        	System.out.println("REDUCED chicken ANXIETY");
+//        	System.out.println("REDUCED chicken ANXIETY");
         	//the de-increment of anxiety is 1 at a time, so it raises much faster than it drops afterwards
         	chickenAnxietyCounter--;
         }
@@ -148,7 +148,7 @@ public class FCEntityChicken extends EntityChicken
 	                    else
 	                    {
 	                    	//TESTER VVV
-	                    	System.out.println("Added anxiety on collision, now: "+chickenAnxietyCounter);
+//	                    	System.out.println("Added anxiety on collision, now: "+chickenAnxietyCounter);
 	                    	
 	                    	//SPOILER ALERT: the chicken anxiety increments rapidly, but it falls 15x slower. This makes chickens "remember" that they have been pushed and will remain agitated for a long time after contact
 	                    	chickenAnxietyCounter += 15;

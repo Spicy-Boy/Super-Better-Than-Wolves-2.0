@@ -139,7 +139,7 @@ public class FCEntitySheep extends EntitySheep
         if (sheepAnxietyCounter > 0)
         {
         	//TESTER VVV
-        	System.out.println("REDUCED sheep ANXIETY");
+//        	System.out.println("REDUCED sheep ANXIETY");
         	//the de-increment of anxiety is 1 at a time, so it raises much faster than it drops afterwards
         	sheepAnxietyCounter--;
         }
@@ -165,7 +165,7 @@ public class FCEntitySheep extends EntitySheep
                 			))
                 	{
 	                	//smaller number, quicker anxiety
-	                    if (sheepAnxietyCounter > 500)
+	                    if (sheepAnxietyCounter > 400)
 	                    {
 	                    	//initiates outburst
 	                    	OnNearbyPlayerStartles( (EntityPlayer)var3 );
@@ -175,7 +175,7 @@ public class FCEntitySheep extends EntitySheep
 	                    else
 	                    {
 	                    	//TESTER VVV
-	                    	System.out.println("Added anxiety on collision, now: "+sheepAnxietyCounter);
+//	                    	System.out.println("Added anxiety on collision, now: "+sheepAnxietyCounter);
 	                    	
 	                    	//SPOILER ALERT: the sheep anxiety increments rapidly, but it falls 15x slower. This makes sheeps "remember" that they have been pushed and will remain agitated for a long time after contact
 	                    	sheepAnxietyCounter += 15;

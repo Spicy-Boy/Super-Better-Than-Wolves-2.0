@@ -79,7 +79,7 @@ public class FCEntityPig extends EntityPig
         if (pigAnxietyCounter > 0)
         {
         	//TESTER VVV
-        	System.out.println("REDUCED pig ANXIETY");
+//        	System.out.println("REDUCED pig ANXIETY");
         	//the de-increment of anxiety is 1 at a time, so it raises much faster than it drops afterwards
         	pigAnxietyCounter--;
         }
@@ -105,7 +105,7 @@ public class FCEntityPig extends EntityPig
                 			))
                 	{
 	                	//smaller number, quicker anxiety
-	                    if (pigAnxietyCounter > 700)
+	                    if (pigAnxietyCounter > 600)
 	                    {
 	                    	//initiates outburst
 	                    	OnNearbyPlayerStartles( (EntityPlayer)var3 );
@@ -115,7 +115,7 @@ public class FCEntityPig extends EntityPig
 	                    else
 	                    {
 	                    	//TESTER VVV
-	                    	System.out.println("Added anxiety on collision, now: "+pigAnxietyCounter);
+//	                    	System.out.println("Added anxiety on collision, now: "+pigAnxietyCounter);
 	                    	
 	                    	//SPOILER ALERT: the pig anxiety increments rapidly, but it falls 15x slower. This makes pigs "remember" that they have been pushed and will remain agitated for a long time after contact
 	                    	//pigs recover quicker than other mobs

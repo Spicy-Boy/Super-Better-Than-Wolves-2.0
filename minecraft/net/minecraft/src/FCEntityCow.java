@@ -629,7 +629,7 @@ public class FCEntityCow extends EntityCow
         if (cowAnxietyCounter > 0)
         {
         	//TESTER VVV
-        	System.out.println("REDUCED COW ANXIETY");
+//        	System.out.println("REDUCED COW ANXIETY");
         	//the de-increment of anxiety is 1 at a time, so it raises much faster than it drops afterwards
         	cowAnxietyCounter--;
         }
@@ -655,7 +655,7 @@ public class FCEntityCow extends EntityCow
                 			))
                 	{
 	                	//400 at +5 is about 9 seconds of solid pushing! this number is different
-	                    if (cowAnxietyCounter > 700)
+	                    if (cowAnxietyCounter > 600)
 	                    {
 	                    	//initiates outburst
 	                    	OnNearbyPlayerStartles( (EntityPlayer)var3 );
@@ -665,7 +665,7 @@ public class FCEntityCow extends EntityCow
 	                    else
 	                    {
 	                    	//TESTER VVV
-	                    	System.out.println("Added anxiety on collision, now: "+cowAnxietyCounter);
+//	                    	System.out.println("Added anxiety on collision, now: "+cowAnxietyCounter);
 	                    	
 	                    	//SPOILER ALERT: the cow anxiety increments rapidly, but it falls 15x slower. This makes cows "remember" that they have been pushed and will remain agitated for a long time after contact
 	                    	cowAnxietyCounter += 15;
