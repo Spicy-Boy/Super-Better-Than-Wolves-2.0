@@ -1206,155 +1206,155 @@ public abstract class ServerConfigurationManager
         return newPlayer;
     }
     
-    //AARON added this method 
-    public EntityPlayerMP recreatePlayerEntityAtTeamLocation( EntityPlayerMP oldPlayer, int iDefaultDimension, String teamName )
-    {
-        oldPlayer.getServerForPlayer().getEntityTracker().removePlayerFromTrackers( oldPlayer );
-        
-    	// client
-        //oldPlayer.getServerForPlayer().getEntityTracker().removeEntityFromAllTrackingPlayers( oldPlayer );
-    	// server    	
-    	oldPlayer.getServerForPlayer().getEntityTracker().untrackEntity( oldPlayer );
-        
-        oldPlayer.getServerForPlayer().GetChunkTracker().RemovePlayer( oldPlayer );
-        
-        playerEntityList.remove( oldPlayer );
-        
-        mcServer.worldServerForDimension( oldPlayer.dimension ).removePlayerEntityDangerously( oldPlayer );
-        
-        ChunkCoordinates verifiedRespawnCoords = null;
-        boolean bRetainPreviousSpawn = false;
-    	
-    	int iNewDimension = iDefaultDimension;
-    	
-//        if ( oldPlayer.HasRespawnCoordinates() )
-//        {
-//        	ChunkCoordinates rawRespawnCoords = new ChunkCoordinates();
-//        	
-//            int iReturnValue = oldPlayer.GetValidatedRespawnCoordinates( mcServer.worldServerForDimension( oldPlayer.m_iSpawnDimension ), rawRespawnCoords );
+//    //AARON added this method 
+//    public EntityPlayerMP recreatePlayerEntityAtTeamLocation( EntityPlayerMP oldPlayer, int iDefaultDimension, String teamName )
+//    {
+//        oldPlayer.getServerForPlayer().getEntityTracker().removePlayerFromTrackers( oldPlayer );
+//        
+//    	// client
+//        //oldPlayer.getServerForPlayer().getEntityTracker().removeEntityFromAllTrackingPlayers( oldPlayer );
+//    	// server    	
+//    	oldPlayer.getServerForPlayer().getEntityTracker().untrackEntity( oldPlayer );
+//        
+//        oldPlayer.getServerForPlayer().GetChunkTracker().RemovePlayer( oldPlayer );
+//        
+//        playerEntityList.remove( oldPlayer );
+//        
+//        mcServer.worldServerForDimension( oldPlayer.dimension ).removePlayerEntityDangerously( oldPlayer );
+//        
+//        ChunkCoordinates verifiedRespawnCoords = null;
+//        boolean bRetainPreviousSpawn = false;
+//    	
+//    	int iNewDimension = iDefaultDimension;
+//    	
+////        if ( oldPlayer.HasRespawnCoordinates() )
+////        {
+////        	ChunkCoordinates rawRespawnCoords = new ChunkCoordinates();
+////        	
+////            int iReturnValue = oldPlayer.GetValidatedRespawnCoordinates( mcServer.worldServerForDimension( oldPlayer.m_iSpawnDimension ), rawRespawnCoords );
+////
+////            if ( iReturnValue == 0 )
+////            {
+////            	verifiedRespawnCoords = rawRespawnCoords;	
+////            	iNewDimension = oldPlayer.m_iSpawnDimension;
+////            }
+////        }
 //
-//            if ( iReturnValue == 0 )
-//            {
-//            	verifiedRespawnCoords = rawRespawnCoords;	
-//            	iNewDimension = oldPlayer.m_iSpawnDimension;
-//            }
+//        ItemInWorldManager worldManager;
+//
+//        if (this.mcServer.isDemo())
+//        {
+//            worldManager = new DemoWorldManager(this.mcServer.worldServerForDimension( iNewDimension ) );
 //        }
-
-        ItemInWorldManager worldManager;
-
-        if (this.mcServer.isDemo())
-        {
-            worldManager = new DemoWorldManager(this.mcServer.worldServerForDimension( iNewDimension ) );
-        }
-        else
-        {
-            worldManager = new ItemInWorldManager(this.mcServer.worldServerForDimension( iNewDimension ) );
-        }
-
-        EntityPlayerMP newPlayer = new EntityPlayerMP( mcServer, mcServer.worldServerForDimension( iNewDimension ), oldPlayer.username, worldManager );
-        
-        newPlayer.playerNetServerHandler = oldPlayer.playerNetServerHandler;
-        
-        oldPlayer.dimension = iNewDimension;        
-        newPlayer.clonePlayer( oldPlayer, false/*bPlayerLeavingTheEnd*/ );
-        newPlayer.entityId = oldPlayer.entityId;
-        
-        WorldServer newWorldServer = mcServer.worldServerForDimension( oldPlayer.dimension );
-        
-        func_72381_a( newPlayer, oldPlayer, newWorldServer ); // initializes the game type
-        
-        newWorldServer.theChunkProviderServer.loadChunk((int)newPlayer.posX >> 4, (int)newPlayer.posZ >> 4);
-
-        while (!newWorldServer.getCollidingBoundingBoxes(newPlayer, newPlayer.boundingBox).isEmpty())
-        {
-            newPlayer.setPosition(newPlayer.posX, newPlayer.posY + 1.0D, newPlayer.posZ);
-        }
-
-        newPlayer.playerNetServerHandler.sendPacket(new Packet9Respawn(newPlayer.dimension, (byte)newPlayer.worldObj.difficultySetting, newPlayer.worldObj.getWorldInfo().getTerrainType(), newPlayer.worldObj.getHeight(), newPlayer.theItemInWorldManager.getGameType()));
-        
-        //AARON set the new spawning coordinates here?
-        verifiedRespawnCoords = newWorldServer.getSpawnPoint();
-        
-        //by default, the coordinates are set to match a HC spawn!
-        //so, if the team name isn't found and a default isn't set, the player will HC spawn randomly
-//        double newX = verifiedRespawnCoords.posX;
-//        double newY = verifiedRespawnCoords.posY;
-//        double newZ = verifiedRespawnCoords.posZ;
-      double newX = 1000;
-      double newY = 75;
-      double newZ = 1000;
-        
-//		if (isTeamName(teamName))
-//		{
-//			newX = SuperBTW.instance.getTeamsAndCoordsMap().get(teamName)[0];
-//			newY = SuperBTW.instance.getTeamsAndCoordsMap().get(teamName)[1];
-//			newZ = SuperBTW.instance.getTeamsAndCoordsMap().get(teamName)[2];
-//		}
-//		else if (isDefaultTeamSet())
-//		{
-//			newX = SuperBTW.instance.getTeamsAndCoordsMap().get("default")[0];
-//			newY = SuperBTW.instance.getTeamsAndCoordsMap().get("default")[1];
-//			newZ = SuperBTW.instance.getTeamsAndCoordsMap().get("default")[2];
-//		}
-        
-        verifiedRespawnCoords = new ChunkCoordinates((int)newX, (int)newY, (int)newZ);
-        
-        
-        newPlayer.playerNetServerHandler.sendPacket(new Packet6SpawnPosition(verifiedRespawnCoords.posX, verifiedRespawnCoords.posY, verifiedRespawnCoords.posZ));
-        newPlayer.playerNetServerHandler.sendPacket(new Packet43Experience(newPlayer.experience, newPlayer.experienceTotal, newPlayer.experienceLevel));
-        this.updateTimeAndWeatherForPlayer(newPlayer, newWorldServer);
-        newWorldServer.GetChunkTracker().AddPlayer(newPlayer);
-        newWorldServer.spawnEntityInWorld(newPlayer);
-        this.playerEntityList.add(newPlayer);
-        newPlayer.addSelfToInternalCraftingInventory();
-        newPlayer.setEntityHealth(newPlayer.getHealth());
-        
-        // Code moved relative to vanilla version so that some loading occurs before loading screen dissapears
-        //AARON making a note here--could be useful for a hunger games style thing :)
-        
-        //ORIGINAL VV
-//        newPlayer.playerNetServerHandler.setPlayerLocation(newPlayer.posX, newPlayer.posY, newPlayer.posZ, newPlayer.rotationYaw, newPlayer.rotationPitch);
-        
-        newPlayer.playerNetServerHandler.setPlayerLocation(newX, newY, newZ, newPlayer.rotationYaw, newPlayer.rotationPitch);
-        
-        
-        return newPlayer;
-    }
+//        else
+//        {
+//            worldManager = new ItemInWorldManager(this.mcServer.worldServerForDimension( iNewDimension ) );
+//        }
+//
+//        EntityPlayerMP newPlayer = new EntityPlayerMP( mcServer, mcServer.worldServerForDimension( iNewDimension ), oldPlayer.username, worldManager );
+//        
+//        newPlayer.playerNetServerHandler = oldPlayer.playerNetServerHandler;
+//        
+//        oldPlayer.dimension = iNewDimension;        
+//        newPlayer.clonePlayer( oldPlayer, false/*bPlayerLeavingTheEnd*/ );
+//        newPlayer.entityId = oldPlayer.entityId;
+//        
+//        WorldServer newWorldServer = mcServer.worldServerForDimension( oldPlayer.dimension );
+//        
+//        func_72381_a( newPlayer, oldPlayer, newWorldServer ); // initializes the game type
+//        
+//        newWorldServer.theChunkProviderServer.loadChunk((int)newPlayer.posX >> 4, (int)newPlayer.posZ >> 4);
+//
+//        while (!newWorldServer.getCollidingBoundingBoxes(newPlayer, newPlayer.boundingBox).isEmpty())
+//        {
+//            newPlayer.setPosition(newPlayer.posX, newPlayer.posY + 1.0D, newPlayer.posZ);
+//        }
+//
+//        newPlayer.playerNetServerHandler.sendPacket(new Packet9Respawn(newPlayer.dimension, (byte)newPlayer.worldObj.difficultySetting, newPlayer.worldObj.getWorldInfo().getTerrainType(), newPlayer.worldObj.getHeight(), newPlayer.theItemInWorldManager.getGameType()));
+//        
+//        //AARON set the new spawning coordinates here?
+//        verifiedRespawnCoords = newWorldServer.getSpawnPoint();
+//        
+//        //by default, the coordinates are set to match a HC spawn!
+//        //so, if the team name isn't found and a default isn't set, the player will HC spawn randomly
+////        double newX = verifiedRespawnCoords.posX;
+////        double newY = verifiedRespawnCoords.posY;
+////        double newZ = verifiedRespawnCoords.posZ;
+//      double newX = 1000;
+//      double newY = 75;
+//      double newZ = 1000;
+//        
+////		if (isTeamName(teamName))
+////		{
+////			newX = SuperBTW.instance.getTeamsAndCoordsMap().get(teamName)[0];
+////			newY = SuperBTW.instance.getTeamsAndCoordsMap().get(teamName)[1];
+////			newZ = SuperBTW.instance.getTeamsAndCoordsMap().get(teamName)[2];
+////		}
+////		else if (isDefaultTeamSet())
+////		{
+////			newX = SuperBTW.instance.getTeamsAndCoordsMap().get("default")[0];
+////			newY = SuperBTW.instance.getTeamsAndCoordsMap().get("default")[1];
+////			newZ = SuperBTW.instance.getTeamsAndCoordsMap().get("default")[2];
+////		}
+//        
+//        verifiedRespawnCoords = new ChunkCoordinates((int)newX, (int)newY, (int)newZ);
+//        
+//        
+//        newPlayer.playerNetServerHandler.sendPacket(new Packet6SpawnPosition(verifiedRespawnCoords.posX, verifiedRespawnCoords.posY, verifiedRespawnCoords.posZ));
+//        newPlayer.playerNetServerHandler.sendPacket(new Packet43Experience(newPlayer.experience, newPlayer.experienceTotal, newPlayer.experienceLevel));
+//        this.updateTimeAndWeatherForPlayer(newPlayer, newWorldServer);
+//        newWorldServer.GetChunkTracker().AddPlayer(newPlayer);
+//        newWorldServer.spawnEntityInWorld(newPlayer);
+//        this.playerEntityList.add(newPlayer);
+//        newPlayer.addSelfToInternalCraftingInventory();
+//        newPlayer.setEntityHealth(newPlayer.getHealth());
+//        
+//        // Code moved relative to vanilla version so that some loading occurs before loading screen dissapears
+//        //AARON making a note here--could be useful for a hunger games style thing :)
+//        
+//        //ORIGINAL VV
+////        newPlayer.playerNetServerHandler.setPlayerLocation(newPlayer.posX, newPlayer.posY, newPlayer.posZ, newPlayer.rotationYaw, newPlayer.rotationPitch);
+//        
+//        newPlayer.playerNetServerHandler.setPlayerLocation(newX, newY, newZ, newPlayer.rotationYaw, newPlayer.rotationPitch);
+//        
+//        
+//        return newPlayer;
+//    }
     
-    //AARON added this methods to make getting team coords easier
-    public boolean isTeamName(String teamName)
-    {
-    //^^^ modularly checks to see if a team name has been typed, returns true if so 
-    //(case sensitive!)
-    	Set<String> keySet = SuperBTW.instance.getTeamsAndCoordsMap().keySet();
-
-    	for (String key : keySet) //checks if the team name exists in the keys for teamsAndCoords map
-    	{
-    		if (key.equals(teamName))
-    		{
-    			return true;
-    		}
-    	}
-    	
-    	return false;
-    }
-    //AARON added this method to check for a default team
-    public boolean isDefaultTeamSet()
-    {
-    //^^^ modularly checks to see if a team name has been typed, returns true if so 
-    //(case sensitive!)
-    	Set<String> keySet = SuperBTW.instance.getTeamsAndCoordsMap().keySet();
-
-    	for (String key : keySet) //checks if the team name exists in the keys for teamsAndCoords map
-    	{
-    		if (key.equals("default") )
-    		{
-    			return true;
-    		}
-    	}
-    	
-    	return false;
-    }
+//    //AARON added this methods to make getting team coords easier
+//    public boolean isTeamName(String teamName)
+//    {
+//    //^^^ modularly checks to see if a team name has been typed, returns true if so 
+//    //(case sensitive!)
+//    	Set<String> keySet = SuperBTW.instance.getTeamsAndCoordsMap().keySet();
+//
+//    	for (String key : keySet) //checks if the team name exists in the keys for teamsAndCoords map
+//    	{
+//    		if (key.equals(teamName))
+//    		{
+//    			return true;
+//    		}
+//    	}
+//    	
+//    	return false;
+//    }
+//    //AARON added this method to check for a default team
+//    public boolean isDefaultTeamSet()
+//    {
+//    //^^^ modularly checks to see if a team name has been typed, returns true if so 
+//    //(case sensitive!)
+//    	Set<String> keySet = SuperBTW.instance.getTeamsAndCoordsMap().keySet();
+//
+//    	for (String key : keySet) //checks if the team name exists in the keys for teamsAndCoords map
+//    	{
+//    		if (key.equals("default") )
+//    		{
+//    			return true;
+//    		}
+//    	}
+//    	
+//    	return false;
+//    }
     
     private void FlagChunksAroundTeleportingEntityForCheckForUnload( WorldServer world, Entity entity )
     {

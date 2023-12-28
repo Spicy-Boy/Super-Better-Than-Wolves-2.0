@@ -181,19 +181,19 @@ public class NetLoginHandler extends NetHandler
                 
             	//AARON added this if statement on Hiracho's advice, should allow random respawns on first server connect!
                 //if the random hc start property is set to true, the player's first login is a random HC spawn
-                if (SuperBTW.instance.getTeamStartEnabled() && var2.deathCounter == 0)
-                {
-                	//TESTER VVV
-                	System.out.println("ACCESSED team start code!");
-                	String teamName = "Hiracho"; //TEST PURPOSES ONLY
-                	//the real method will check the user's username against the list of teams and choose the team that they belong to
-//                	var2.playerNetServerHandler.playerEntity = mcServer.getConfigurationManager().recreatePlayerEntityAtTeamLocation(var2, 0, teamName);
-                	var2.playerNetServerHandler.playerEntity = mcServer.getConfigurationManager().recreatePlayerEntity(var2, 0, false);
-                }
-                else if (SuperBTW.instance.getRandomHCStartEnabled() && var2.deathCounter == 0)
+//                if (SuperBTW.instance.getTeamStartEnabled() && var2.deathCounter == 0)
+//                {
+//                	//TESTER VVV
+//                	System.out.println("ACCESSED team start code!");
+//                	String teamName = "Hiracho"; //TEST PURPOSES ONLY
+//                	//the real method will check the user's username against the list of teams and choose the team that they belong to
+////                	var2.playerNetServerHandler.playerEntity = mcServer.getConfigurationManager().recreatePlayerEntityAtTeamLocation(var2, 0, teamName);
+//                	var2.playerNetServerHandler.playerEntity = mcServer.getConfigurationManager().recreatePlayerEntity(var2, 0, false);
+//                }
+                if (SuperBTW.instance.getRandomHCStartEnabled() && var2.deathCounter == 0)
             	{
                 	//TESTER VVV
-                	System.out.println("ACCESSED random hc start code!");
+                	System.out.println("Sending player to random HC spawn!");
 //            		var2.playerNetServerHandler.playerEntity = mcServer.getConfigurationManager().respawnPlayer(var2, 0, false);
             		var2.playerNetServerHandler.playerEntity = mcServer.getConfigurationManager().recreatePlayerEntity(var2, 0, false);
             	    

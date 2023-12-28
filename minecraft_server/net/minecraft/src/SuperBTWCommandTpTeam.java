@@ -15,8 +15,6 @@ import net.minecraft.server.MinecraftServer;
 
 //tasty hashmap tutorial: https://www.youtube.com/watch?v=H62Jfv1DJlU
 
-//NOTE: the default team name is "default" with no caps, hardcoded for now in the ServerConfigurationManager class
-
 public class SuperBTWCommandTpTeam extends CommandBase
 {
 	//initializes a map with team names as the keys and lists of usernames as the values
@@ -50,10 +48,6 @@ public class SuperBTWCommandTpTeam extends CommandBase
 		
 		
 		teamsAndCoords = createTeamsAndCoordsMap(filePath);
-		
-		//these calls VVV update the SBTW instance map used outside this command class!
-		SuperBTW.instance.setTeamsAndUsernamesMap(teamsAndUsernames);
-		SuperBTW.instance.setTeamsAndCoordsMap(teamsAndCoords);
 		
 		//TESTER for teams&users map VVV
 //		System.out.println(teamsAndUsernames);
@@ -146,16 +140,10 @@ public class SuperBTWCommandTpTeam extends CommandBase
 			}
 			
 			//refresh sub command
-			//notably, this allows players in-game to refresh the SBTW instance maps, used for respawning!
             else if (commandStringArray[0].equals("refresh")) //recreate the two hash maps while the server is running
             {
             	notifyAdmins(par1ICommandSender, "Refreshing tpteams.txt!", new Object[0]);
             	refreshMapsFromTextFile();
-            	
-        		//these calls VVV update the instance map!
-        		SuperBTW.instance.setTeamsAndUsernamesMap(teamsAndUsernames);
-        		SuperBTW.instance.setTeamsAndCoordsMap(teamsAndCoords);
-        		
             	return;
             }
 			
@@ -440,10 +428,6 @@ public class SuperBTWCommandTpTeam extends CommandBase
     	}
     	
     	writer.close();
-    	
-		//these calls VVV update the instance map!
-		SuperBTW.instance.setTeamsAndUsernamesMap(teamsAndUsernames);
-		SuperBTW.instance.setTeamsAndCoordsMap(teamsAndCoords);
     	
     }
     

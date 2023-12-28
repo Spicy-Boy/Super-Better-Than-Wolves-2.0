@@ -4,8 +4,18 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.3 SMP BRANCH CHANGES:
 
-TODO- Added a server configuration to SBTWserver.properties that toggles HC Spawn on initial login
-    >basically, instead of starting at spawn, new players in a server start at an HC spawn
+TODO- Add the tpabove command from transient server
+TODO- update /tpa command to have tab auto completion (same with tp teams MAYBE?)
+
+- Added a server configuration to SBTWserver.properties that toggles team spawns on initial login (functions like /set spawn)
+    >basically, instead of starting at spawn, new players will begin at the location set by their respective team
+    >if a player is not a member of a team, they will spawn at the "default" team location (use /tpteam set default) 
+
+- Added a server configuration to SBTWserver.properties that toggles HC Spawn on initial login
+    >basically, instead of starting at spawn, new players in a server start at a random HC spawn
+    >players will spawn near each other due (I think) to hardcore soulmating, which helps performance
+
+NOTE: If both team start and HC start are enabled at the same time, then players will HC spawn rather than go to default if unassigned to a specific team
 
 - Added the /deaths command that informs the player how many times they have died in the current world.
 
