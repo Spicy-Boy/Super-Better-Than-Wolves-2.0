@@ -6,13 +6,19 @@ Switched to BETA 2.0 on July 12, 2023
 
 - Added the treat, a special item for your dog. Show some love to your canine companion and he might give some right back!
     >Another Sockthing classic texture!
-    
-- Changed spawners to spread mossy stone to loose cobble as well as mortared 
+
+- Changed/replaced the librarian trades for bookshelves and redstone with trades to purchase block dispensers and detector blocks
+
+- Changed the level 3 Librarian level up trade to a buddy block since you can now buy BDs from him
+
+- Changed/swapped around the blaze powder and bat wings trade because, IMO, bat wings are a lot harder to farm than blaze rods!
 
 - Changed the level 2 priest trades to be more desirable. Before, the trades consisted of random trash enchantments.
     >The priest knows how to use the enchanting table a lot better than you do tbh
 
 - Added a super secret trade for epic loot    
+
+- Changed spawners to spread mossy stone to loose cobble as well as mortared 
 
 - Changed/tweaked Hardcore Hoofsies to demand a little bit more respect than the community has been giving lately... >:)
     >Holding a tasty snack will make hoofsies much more forgiving of hugsies
@@ -58,8 +64,6 @@ TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars f
         TODO> add a particle effect to show that the glass is cooking inside the gloryhole
 
 TODO- Added the glass jars from Sockscrops! They can store smaller items!
-
-TODO- Added new librarian trades for block dispensers and detector blocks 
     
 TODO- Added the Meat Golem
 
