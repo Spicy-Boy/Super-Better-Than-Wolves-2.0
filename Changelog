@@ -2,13 +2,38 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
-2.3 Penultimate:
+2.3 Punish All Cow Abusers Update:
 
+- Added the treat, a special item for your dog. Show some love to your canine companion and he might give some right back!
+    >Another Sockthing classic texture
+
+- Changed/replaced the librarian trades for bookshelves and redstone with trades to purchase block dispensers and detector blocks
+
+- Changed the level 3 Librarian level up trade to a buddy block since you can now buy BDs from him
+
+- Changed/swapped around the blaze powder and bat wings librarian trade because, IMO, bat wings are a lot harder to farm than blaze rods!
+
+- Changed the level 2 priest trades to be more desirable. Before, the trades consisted of random trash enchantments.
+    >The priest knows how to use the enchanting table a lot better than you do tbh
+
+- Added a super secret trade for epic loot    
+
+- Changed spawners to spread mossy stone to loose cobble as well as mortared 
+
+- Changed/tweaked Hardcore Hoofsies to demand a little bit more respect than the community has been giving lately... >:)
+    >Holding a tasty snack will make hoofsies much more forgiving of hugsies
+
+- Changed campfires to startle animals when placed
+    
 - Changed trap doors to be climbable like ladders when opened.
 
-- Fixed an issue where loose dirt was breakable by zombies... sorry :)
+- Fixed an issue where loose dirt was breakable by zombies... sorry :)    
+    
+- Fixed a long standing issue where villager trades would not refresh properly (thanks CE team!)
 
-TODO- Change wither back to soulsand and regular ass skulls :P
+TODO- Reconfigure blacksmith trades to make a bit more sense
+
+TODO- Change wither back to soulsand :P
 
 TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
         TODO>Apply the same principle to soul filtering. Thank you Dawn for pointing all of this out!
@@ -18,18 +43,12 @@ TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars f
 
 TODO- Added the glass jars from Sockscrops! They can store smaller items!
 
-TODO- Added new librarian trades for block dispensers and detector blocks 
-
 TODO- Added the Meat Golem
 
 TODO- Added the airship
 
 TODO- Added the pipe
         >Used to rip fat clouds
-        
-ULTIMATE TODOS (not to be tackled until SBTW 2.0 is completely ready!
-- Add ctrl click functionality added by later CE
-- Create a special fork of Neodindium that works with SBTW
 
 2.2 Brick & Mortar:
 
@@ -260,6 +279,13 @@ GuiChat (all for toggling chat during sleep... sort of shitty tbh)
 GuiNewChat
 GuiScreen 
 SlotCrafting (for water bucket shenanigans)
+FCEntityVillager
+world (campfire scaring)
+fcBlockCampfire
+fcTileEntityMobSpawner
+FCEntityVillager 
+FcEntityVillagerFarmer
+Fcentityvillagerpriest
 
 
 #For sleep integration:
