@@ -183,33 +183,91 @@ public class SuperBTWCommandTpTeam extends CommandBase
 
             }
             else if (commandStringArray[0].equals("player"))
-            //^^ /tpteam player [playername] to tp a player to their respective team coords (if multiple teams, random)
+            	//^^ player specific teleportation. Player can be sent to their team or another team local
             {
             	
-            	EntityPlayerMP teleportingPlayer = MinecraftServer.getServer().getConfigurationManager().getPlayerEntity(commandStringArray[1]);
+                if (commandStringArray.length < 2) 
+                    //^^ if command is only a single parameter, correct the player!
+                    {
+                   		throw new WrongUsageException("Try /tpteam player [player name] or add [team name] to the end.", new Object[0]);
+                    }
+                
+                String userToTeleport = commandStringArray[1];
             	
-            	for (String key : teamsAndCoords.keySet()) 
+            	EntityPlayerMP teleportingPlayer = MinecraftServer.getServer().getConfigurationManager().getPlayerEntity(userToTeleport);
+            	
+            	if (commandStringArray.length == 2)
             	{
-            		if (doesUsernameExistInTeam(commandStringArray[1], key) || doesUsernameExistInTeam(commandStringArray[1].toLowerCase(), key))
-            		{
-        				double x = teamsAndCoords.get(key)[0]; //reminder: the x,y,z values are stored in an array
-//        				System.out.println(x);
-        				double y = teamsAndCoords.get(key)[1];
-//        				System.out.println(y);
-        				double z = teamsAndCoords.get(key)[2];
-//        				System.out.println(z);
-        				
-    					if (teleportingPlayer != null) //if the player exists at time of execution
-    					{
-    						//teleport players one at a time
-    						teleportingPlayer.playerNetServerHandler.setPlayerLocation(x, y, z, teleportingPlayer.rotationYaw, teleportingPlayer.rotationPitch);
-    						notifyAdmins(par1ICommandSender, "Teleported "+commandStringArray[1]+" to location of "+key+".", new Object[0]);
-    						return;
-    					}
-            		}
-
-            		notifyAdmins(par1ICommandSender, "Player "+commandStringArray[1]+" could not be found in any teams.", new Object[0]);
+                //^^ /tpteam player [playername] to tp a player to their respective team coords (if multiple teams, random)
+            		
+            		//TESTER VVVV
+            		notifyAdmins(par1ICommandSender, "Initiated /tpteam player [playername]", new Object[0]);
+                    
+            		//TESTER VVV shows all available keys
+//	            	for (String key : teamsAndCoords.keySet()) 
+//	            	{
+//	            		notifyAdmins(par1ICommandSender, ""+key, new Object[0]);
+//	            	}
+            		
+	            	for (String key : teamsAndCoords.keySet()) 
+	            	{
+	            		notifyAdmins(par1ICommandSender, "Scanning team "+key, new Object[0]);
+	            		
+	            		if (doesUsernameExistInTeam(userToTeleport, key) || doesUsernameExistInTeam(userToTeleport.toLowerCase(), key))
+	            		{
+	        				double x = teamsAndCoords.get(key)[0]; //reminder: the x,y,z values are stored in an array
+	//        				System.out.println(x);
+	        				double y = teamsAndCoords.get(key)[1];
+	//        				System.out.println(y);
+	        				double z = teamsAndCoords.get(key)[2];
+	//        				System.out.println(z);
+	        				
+	    					if (teleportingPlayer != null) //if the player exists at time of execution
+	    					{
+	    						//teleport players one at a time
+	    						teleportingPlayer.playerNetServerHandler.setPlayerLocation(x, y, z, teleportingPlayer.rotationYaw, teleportingPlayer.rotationPitch);
+	    						notifyAdmins(par1ICommandSender, "Teleported "+commandStringArray[1]+" to location of "+key+".", new Object[0]);
+	    						return;
+	    					}
+	            		}
+	            	}
+	            	
+            		notifyAdmins(par1ICommandSender, "Player "+userToTeleport+" could not be found in any teams.", new Object[0]);
             		return;
+            	}
+            	else if (commandStringArray.length == 3)
+            	{
+              	//^^ /tpteam player [playername] [teamname] teleports selected player to selected team location
+	            	
+             		//TESTER VVVV
+//            		notifyAdmins(par1ICommandSender, "Initiated /tpteam player [playername] [teamname]", new Object[0]);
+            		
+            		String teamKey = commandStringArray[2];
+            		
+                    if (!(isTeamName(teamKey)))
+                    {
+                     	throw new WrongUsageException("Specified team name doesn't exist. Case sensitive!", new Object[0]);
+                    }
+            		
+            		
+    				double x = teamsAndCoords.get(teamKey)[0]; //reminder: the x,y,z values are stored in an array
+//        				System.out.println(x);
+    				double y = teamsAndCoords.get(teamKey)[1];
+//        				System.out.println(y);
+    				double z = teamsAndCoords.get(teamKey)[2];
+//        				System.out.println(z);
+    				
+					if (teleportingPlayer != null) //if the player exists at time of execution
+					{
+						//teleport players one at a time
+						teleportingPlayer.playerNetServerHandler.setPlayerLocation(x, y, z, teleportingPlayer.rotationYaw, teleportingPlayer.rotationPitch);
+						notifyAdmins(par1ICommandSender, "Teleported "+userToTeleport+" to location of "+teamKey+".", new Object[0]);
+						return;
+					}
+        		
+            		notifyAdmins(par1ICommandSender, "Team or player not found!", new Object[0]);
+            		return;
+            	
             	}
             
             }
@@ -396,6 +454,8 @@ public class SuperBTWCommandTpTeam extends CommandBase
     	
     	for (int p = 0; p < listUsernames.size(); p++) 
     	{
+    		//TESTER VVV
+//    		System.out.println("Does "+username+" equal "+listUsernames.get(p));
     		if (username.equals(listUsernames.get(p)))
     		{
     			return true;
