@@ -615,7 +615,7 @@ public abstract class FCEntityVillager extends EntityVillager
 
 		return selector.next(this.rand).generateRecipe(this.rand);
 	}
-	
+
 	//AAROn updated this to CE max trades
 	public int getCurrentMaxNumTrades() {
 		//old VVV
@@ -1590,16 +1590,4 @@ public abstract class FCEntityVillager extends EntityVillager
 	}
 
 	//----------- Client Side Functionality -----------//
-
-	@Override
-	public void handleHealthUpdate(byte bUpdateType) {
-		super.handleHealthUpdate(bUpdateType);
-
-		if (bUpdateType == 14) {
-			// item collect sound on villager restock
-			worldObj.playSound(posX, posY, posZ, "random.pop", 
-					0.25F, ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1F) * 2F);
-		}
-	}
 }
-

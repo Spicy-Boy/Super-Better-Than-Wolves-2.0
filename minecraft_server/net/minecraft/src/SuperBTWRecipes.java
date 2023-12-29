@@ -229,6 +229,83 @@ public class SuperBTWRecipes extends FCRecipes {
 	}
 
 	public static void addFoodRecipes() {
+		//treat w/ mutton
+		AddRecipe( new ItemStack( SuperBTWDefinitions.treat ), new Object[] {
+	    		" X ", 
+	    		"O#O", 
+	    		" X ", 
+	    		Character.valueOf( '#' ), FCBetterThanWolves.fcItemMuttonCooked, 
+	    		Character.valueOf( 'O' ), FCBetterThanWolves.fcItemFlour, Character.valueOf( 'X' ), Item.sugar 
+			} );
+		AddRecipe( new ItemStack( SuperBTWDefinitions.treat ), new Object[] {
+	    		" O ", 
+	    		"X#X", 
+	    		" O ", 
+	    		Character.valueOf( '#' ), FCBetterThanWolves.fcItemMuttonCooked, 
+	    		Character.valueOf( 'O' ), FCBetterThanWolves.fcItemFlour, Character.valueOf( 'X' ), Item.sugar 
+			} );
+		//treat w/ pork
+		AddRecipe( new ItemStack( SuperBTWDefinitions.treat ), new Object[] {
+	    		" X ", 
+	    		"O#O", 
+	    		" X ", 
+	    		Character.valueOf( '#' ), Item.porkCooked, 
+	    		Character.valueOf( 'O' ), FCBetterThanWolves.fcItemFlour, Character.valueOf( 'X' ), Item.sugar 
+			} );
+		AddRecipe( new ItemStack( SuperBTWDefinitions.treat ), new Object[] {
+	    		" O ", 
+	    		"X#X", 
+	    		" O ", 
+	    		Character.valueOf( '#' ), Item.porkCooked,  
+	    		Character.valueOf( 'O' ), FCBetterThanWolves.fcItemFlour, Character.valueOf( 'X' ), Item.sugar 
+			} );
+		//treat w/ beef
+		AddRecipe( new ItemStack( SuperBTWDefinitions.treat ), new Object[] {
+	    		" X ", 
+	    		"O#O", 
+	    		" X ", 
+	    		Character.valueOf( '#' ), Item.beefCooked, 
+	    		Character.valueOf( 'O' ), FCBetterThanWolves.fcItemFlour, Character.valueOf( 'X' ), Item.sugar 
+			} );
+		AddRecipe( new ItemStack( SuperBTWDefinitions.treat ), new Object[] {
+	    		" O ", 
+	    		"X#X", 
+	    		" O ", 
+	    		Character.valueOf( '#' ), Item.beefCooked,  
+	    		Character.valueOf( 'O' ), FCBetterThanWolves.fcItemFlour,
+	    		Character.valueOf( 'X' ), Item.sugar 
+			} );
+		//treat w/ chicken
+		AddRecipe( new ItemStack( SuperBTWDefinitions.treat ), new Object[] {
+	    		" X ", 
+	    		"O#O", 
+	    		" X ", 
+	    		Character.valueOf( '#' ), Item.chickenCooked, 
+	    		Character.valueOf( 'O' ), FCBetterThanWolves.fcItemFlour, Character.valueOf( 'X' ), Item.sugar 
+			} );
+		AddRecipe( new ItemStack( SuperBTWDefinitions.treat ), new Object[] {
+	    		" O ", 
+	    		"X#X", 
+	    		" O ", 
+	    		Character.valueOf( '#' ), Item.chickenCooked,  
+	    		Character.valueOf( 'O' ), FCBetterThanWolves.fcItemFlour, Character.valueOf( 'X' ), Item.sugar 
+			} );
+		//treat w/ mystery meat
+		AddRecipe( new ItemStack( SuperBTWDefinitions.treat ), new Object[] {
+	    		" X ", 
+	    		"O#O", 
+	    		" X ", 
+	    		Character.valueOf( '#' ), FCBetterThanWolves.fcItemCookedMysteryMeat, 
+	    		Character.valueOf( 'O' ), FCBetterThanWolves.fcItemFlour, Character.valueOf( 'X' ), Item.sugar 
+			} );
+		AddRecipe( new ItemStack( SuperBTWDefinitions.treat ), new Object[] {
+	    		" O ", 
+	    		"X#X", 
+	    		" O ", 
+	    		Character.valueOf( '#' ), FCBetterThanWolves.fcItemCookedMysteryMeat,   
+	    		Character.valueOf( 'O' ), FCBetterThanWolves.fcItemFlour, Character.valueOf( 'X' ), Item.sugar 
+			} );
+		
 		FurnaceRecipes.smelting().addSmelting(SuperBTWDefinitions.cowRib.itemID,
 				new ItemStack(SuperBTWDefinitions.cookedCowRib), 0);
 

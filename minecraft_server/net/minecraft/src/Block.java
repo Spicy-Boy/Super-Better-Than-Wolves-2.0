@@ -3162,6 +3162,13 @@ public class Block
 		
 		return iCraftingCounter;
 	}
+	
+    //AARON added a method that can be overridden to cause animal scare
+    //primary use is campfires
+    public boolean alwaysStartlesAnimals()
+    {
+    	return false;
+    }
 
 	/*
 	 * Intended to play block specific FX and such
