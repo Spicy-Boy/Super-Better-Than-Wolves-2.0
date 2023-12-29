@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import java.util.List;
+
 import net.minecraft.server.MinecraftServer;
 
 public class SuperBTWCommandTpAccept extends CommandBase
@@ -81,4 +83,23 @@ public class SuperBTWCommandTpAccept extends CommandBase
 	    }
 	    
 	}
+	
+    //auto completes usernames
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    {
+        return par2ArrayOfStr.length >= 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, this.getPlayers()) : null;
+    }
+    
+    protected String[] getPlayers()
+    {
+        return MinecraftServer.getServer().getAllUsernames();
+    }
+
+    /**
+     * Return whether the specified command parameter index is a username parameter.
+     */
+    public boolean isUsernameIndex(String[] par1ArrayOfStr, int par2)
+    {
+        return par2 == 0;
+    }
 }

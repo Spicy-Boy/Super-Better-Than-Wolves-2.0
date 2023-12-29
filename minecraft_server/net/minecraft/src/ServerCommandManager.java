@@ -28,7 +28,7 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
         this.registerCommand(new CommandHelp());
         this.registerCommand(new CommandDebug());
         this.registerCommand(new CommandServerMessage());
-        this.registerCommand(new CommandServerSay());
+        this.registerCommand(new  CommandServerSay());
         this.registerCommand(new CommandSetSpawnpoint());
         this.registerCommand(new CommandGameRule());
         this.registerCommand(new CommandClearInventory());
@@ -42,6 +42,7 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
         this.registerCommand(new SuperBTWCommandTpCancel());
         this.registerCommand(new SuperBTWCommandTpTeam());
         this.registerCommand(new SuperBTWCommandDeaths());
+        this.registerCommand(new SuperBTWCommandTpAbove());
 
         if (MinecraftServer.getServer().isDedicatedServer())
         {
