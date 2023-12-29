@@ -2651,8 +2651,9 @@ public class Block
     public boolean AttempToSpreadMyceliumToBlock( World world, int i, int j, int k )
     {
     	if ( GetCanMyceliumSpreadToBlock( world, i, j, k ) &&
-    		world.getBlockLightValue( i, j + 1, k ) >= 
-    		FCBlockMycelium.m_iMyceliumSpreadToMinimumLightLevel &&
+        	//AARON changed/commented this so mycelium can grow in the dahk
+    		/*world.getBlockLightValue( i, j + 1, k ) >= 
+    		FCBlockMycelium.m_iMyceliumSpreadToMinimumLightLevel &&*/
     		Block.lightOpacity[world.getBlockId( i, j + 1, k )] <= 2 &&
     		!FCBlockGroundCover.IsGroundCoverRestingOnBlock( world, i, j, k ) )    		
     	{
@@ -2892,6 +2893,13 @@ public class Block
             	world.NotifyNearbyAnimalsOfPlayerBlockAddOrRemove( entityPlayer, this, i, j, k );
             }
     	}
+    }
+    
+    //AARON added a method that can be overridden to cause animal scare
+    //primary use is campfires
+    public boolean alwaysStartlesAnimals()
+    {
+    	return false;
     }
     
 	/** 

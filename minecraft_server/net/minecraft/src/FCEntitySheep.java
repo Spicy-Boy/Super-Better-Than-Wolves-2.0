@@ -89,6 +89,73 @@ public class FCEntitySheep extends EntitySheep
         return EntityAnimalInteract( player ); // skip super function
     }
     
+    //AARON anxietyCounter
+    int sheepAnxietyCounter = 0;
+
+    //AARON is messing with sheep collision code for devious ends!
+    @Override
+    protected void func_85033_bc()
+    {
+
+        List var1 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
+
+        if (sheepAnxietyCounter > 0)
+        {
+        	//TESTER VVV
+//        	System.out.println("REDUCED sheep ANXIETY");
+        	//the de-increment of anxiety is 1 at a time, so it raises much faster than it drops afterwards
+        	sheepAnxietyCounter--;
+        }
+
+        if (var1 != null && !var1.isEmpty())
+        {
+            for (int var2 = 0; var2 < var1.size(); ++var2)
+            {
+                Entity var3 = (Entity)var1.get(var2);
+
+                //if colliding entity is an instance of EntityPlayer && player isn't holding a tempting item... 
+                //check sheep anxiety timer, increment, then startle sheep if anxiety is maxed!
+                if (var3 instanceof EntityPlayer)
+                {
+                	//TESTER VV
+//                    System.out.println("Just collided with a sheep!!!!");
+//                    System.out.println("Just collided with a sheep!!!!");
+
+                	//there has to be a != null check at the very beginning paired with the currentEquip check or the game will crash if empty handed
+                	//the getCurrentEquipment check is dangerous... if empty handed during check, the game just crashes!
+                	if ( ( ((EntityPlayer)var3).getCurrentEquippedItem() != null && !( this.IsTemptingItem( ((EntityPlayer)var3).getCurrentEquippedItem() ) )
+                			|| ((EntityPlayer)var3).getCurrentEquippedItem() == null
+                			))
+                	{
+	                	//smaller number, quicker anxiety
+	                    if (sheepAnxietyCounter > 400)
+	                    {
+	                    	//initiates outburst
+	                    	OnNearbyPlayerStartles( (EntityPlayer)var3 );
+	                    	//reset anxiety after outburst
+	                    	sheepAnxietyCounter = 0;
+	                    }
+	                    else
+	                    {
+	                    	//TESTER VVV
+//	                    	System.out.println("Added anxiety on collision, now: "+sheepAnxietyCounter);
+
+	                    	//SPOILER ALERT: the sheep anxiety increments rapidly, but it falls 15x slower. This makes sheeps "remember" that they have been pushed and will remain agitated for a long time after contact
+	                    	sheepAnxietyCounter += 15;
+	                    }
+                	}
+                }
+
+
+
+                if (var3.canBePushed())
+                {
+                    this.collideWithEntity(var3);
+                }
+            }
+        }
+    }
+    
     @Override
     protected int getDropItemId()
     {

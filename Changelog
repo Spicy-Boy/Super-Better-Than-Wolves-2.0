@@ -2,9 +2,14 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
-2.3 SMP BRANCH CHANGES:
+2.3 Punish All Cow Abusers Update:
 
-TODO- Added lightning tweaker config option
+- Added the ctrl key as an alternative sprint button. This cannot be rebound at this time.
+    > If rebinding your ctrl key is something important to you, then please reach out to me and I can make it configurable. 
+    > I just didn't feel like coding that right now, and I won't bother if it isn't something anyone will use
+
+- Added the treat, a special item for your dog. Show some love to your canine companion and he might give some right back!
+    >Another Sockthing classic texture
 
 - Added a server config to SBTWserver.properties that toggles team spawns on initial login (functions like /set spawn)
     >basically, instead of starting at spawn, new players will begin at the location set by their respective team
@@ -18,8 +23,54 @@ NOTE: If both team start and HC start are enabled at the same time, then players
 
 - Added the /deaths command that informs the player how many times they have died in the current world.
 
+- Changed/replaced the librarian trades for bookshelves and redstone with trades to purchase block dispensers and detector blocks
 
-~~~
+- Changed the level 3 Librarian level up trade to a buddy block since you can now buy BDs from him
+
+- Changed/swapped around the blaze powder and bat wings librarian trade because, IMO, bat wings are a lot harder to farm than blaze rods!
+
+- Changed the level 2 priest trades to be more desirable. Before, the trades consisted of random trash enchantments.
+    >The priest knows how to use the enchanting table a lot better than you do tbh
+
+- Added a super secret trade for epic loot    
+
+- Changed spawners to spread mossy stone to loose cobble as well as mortared 
+
+- Changed/tweaked Hardcore Hoofsies to demand a little bit more respect than the community has been giving lately... >:)
+    >Holding a tasty snack will make hoofsies much more forgiving of hugsies
+
+- Changed campfires to startle animals when placed
+    
+- Changed trap doors to be climbable when placed above ladders
+
+- Changed mycelium to grow in complete darkness. It didn't really make sense that it needed sunlight.
+
+- Fixed an issue where loose dirt was breakable by zombies... sorry :)    
+    
+- Fixed a long standing issue where villager trades would not refresh properly (thanks CE team!)
+
+TODO- Added lightning tweaker config option
+
+TODO- Reconfigure blacksmith trades to make a bit more sense
+
+TODO- Change wither from bone blocks back to soulsand :P (maybe axe infused skulls entirely because why we gotta do that??)
+
+TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
+        TODO>Apply the same principle to soul filtering. Thank you Dawn for pointing all of this out!
+
+TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
+        TODO> add a particle effect to show that the glass is cooking inside the gloryhole
+
+TODO- Added the glass jars from Sockscrops! They can store smaller items!
+
+TODO- Added the Meat Golem
+
+TODO- Added the airship
+
+TODO- Added the pipe
+        >Used to rip fat clouds
+
+2.2 Brick & Mortar:
 
 - Added thatch, a new roofing material made of sticks and reeds
     >Caution, this material is weaker than wood and may not stop a hungry zombie!
@@ -69,39 +120,12 @@ NOTE: If both team start and HC start are enabled at the same time, then players
 - Fixed an issue that caused the player to wake up from rain even when it wasn't really raining on the bed due to rounding problems
     
 - Fixed crude torch pickup. There was a bug where right clicking a torch would sometimes cause the torch to be placed in the inventory invisibly
-
-TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
-        TODO>Apply the same principle to soul filtering. Thank you Dawn for pointing all of this out!
-
-TODO- Fix the villager refresh bug that CE team caught
-
-TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
-        TODO> add a particle effect to show that the glass is cooking inside the gloryhole
-
-TODO- Added the glass jars from Sockscrops! They can store smaller items!
-        
-TODO- Changed trap doors to act like ladders when opened, like in modern vanilla MC
-
-TODO- Added new librarian trades for block dispensers and detector blocks 
-
-TODO- Update level 2 priest trades to be decent and good
-    
-TODO- Added the Meat Golem
-
-TODO- Added the airship
-
-TODO- Added the pipe
-        >Used to rip fat clouds
-        
-ULTIMATE TODOS (not to be tackled until SBTW 2.0 is completely ready!
-- Add ctrl click functionality added by later CE
-- Create a special fork of Neodindium that works with SBTW
         
 2.1 Hotfix:
 
 - Added a missing file that caused a rendering crash! Oops!!! Sorry!!!
 
-Additions:
+2.0 Additions:
 
 -TEMPORARY OMISSION for BETA 2.0: Biome decorator places standard gourds with vanilla seeds/plants
     >@ the request of Wario-Luigi Hybrid
@@ -275,6 +299,13 @@ GuiChat (all for toggling chat during sleep... sort of shitty tbh)
 GuiNewChat
 GuiScreen 
 SlotCrafting (for water bucket shenanigans)
+FCEntityVillager
+world (campfire scaring)
+fcBlockCampfire
+fcTileEntityMobSpawner
+FCEntityVillager 
+FcEntityVillagerFarmer
+Fcentityvillagerpriest
 
 SERVER ONLY:
 netLoginHandler (starting @ hc spawn)

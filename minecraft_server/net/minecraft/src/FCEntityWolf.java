@@ -352,7 +352,7 @@ public class FCEntityWolf extends EntityWolf
 	//	Hiracho: changed to use mysterymeat
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return (stack !=null && (stack.itemID == FCBetterThanWolves.fcItemRawMysteryMeat.itemID || stack.itemID == FCBetterThanWolves.fcItemCookedMysteryMeat.itemID));
+		return (stack !=null && (stack.itemID == FCBetterThanWolves.fcItemRawMysteryMeat.itemID || stack.itemID == FCBetterThanWolves.fcItemCookedMysteryMeat.itemID || stack.itemID == SuperBTWDefinitions.treat.itemID));		
 	}
 
 	@Override
@@ -753,7 +753,8 @@ public class FCEntityWolf extends EntityWolf
 					MathHelper.floor_double( posZ ), 0 );        	
 		}
 		//		Hiracho: Added
-		if ( food.itemID == FCBetterThanWolves.fcItemRawMysteryMeat.itemID ||food.itemID == FCBetterThanWolves.fcItemCookedMysteryMeat.itemID )
+		//AARON added treat
+		if ( food.itemID == FCBetterThanWolves.fcItemRawMysteryMeat.itemID ||food.itemID == FCBetterThanWolves.fcItemCookedMysteryMeat.itemID ||food.itemID == SuperBTWDefinitions.treat.itemID )
 		{
 			OnEatBreedingItem();
 		}

@@ -13,7 +13,7 @@ public class SuperBTW extends FCAddOn
 	
     private SuperBTW() 
     {
-        super("SUPER BETTER THAN WOLVES", "BETA 2.2 (w/ vanilla melons owo)", "");
+        super("SUPER BETTER THAN WOLVES", "BETA 2.3 (w/ vanilla melons >_>)", "");
     }
 
 	@Override

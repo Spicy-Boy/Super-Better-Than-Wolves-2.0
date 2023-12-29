@@ -122,6 +122,74 @@ public class FCEntityPig extends EntityPig
     	return false;
     }
 	
+	  //AARON anxietyCounter
+    int pigAnxietyCounter = 0;
+
+    //AARON is messing with pig collision code for devious ends!
+    @Override
+    protected void func_85033_bc()
+    {
+
+        List var1 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
+
+        if (pigAnxietyCounter > 0)
+        {
+        	//TESTER VVV
+//        	System.out.println("REDUCED pig ANXIETY");
+        	//the de-increment of anxiety is 1 at a time, so it raises much faster than it drops afterwards
+        	pigAnxietyCounter--;
+        }
+
+        if (var1 != null && !var1.isEmpty())
+        {
+            for (int var2 = 0; var2 < var1.size(); ++var2)
+            {
+                Entity var3 = (Entity)var1.get(var2);
+
+                //if colliding entity is an instance of EntityPlayer && player isn't holding a tempting item... 
+                //check pig anxiety timer, increment, then startle pig if anxiety is maxed!
+                if (var3 instanceof EntityPlayer)
+                {
+                	//TESTER VV
+//                    System.out.println("Just collided with a pig!!!!");
+//                    System.out.println("Just collided with a pig!!!!");
+
+                	//there has to be a != null check at the very beginning paired with the currentEquip check or the game will crash if empty handed
+                	//the getCurrentEquipment check is dangerous... if empty handed during check, the game just crashes!
+                	if ( ( ((EntityPlayer)var3).getCurrentEquippedItem() != null && !( this.IsTemptingItem( ((EntityPlayer)var3).getCurrentEquippedItem() ) )
+                			|| ((EntityPlayer)var3).getCurrentEquippedItem() == null
+                			))
+                	{
+	                	//smaller number, quicker anxiety
+	                    if (pigAnxietyCounter > 600)
+	                    {
+	                    	//initiates outburst
+	                    	OnNearbyPlayerStartles( (EntityPlayer)var3 );
+	                    	//reset anxiety after outburst
+	                    	pigAnxietyCounter = 0;
+	                    }
+	                    else
+	                    {
+	                    	//TESTER VVV
+//	                    	System.out.println("Added anxiety on collision, now: "+pigAnxietyCounter);
+
+	                    	//SPOILER ALERT: the pig anxiety increments rapidly, but it falls 15x slower. This makes pigs "remember" that they have been pushed and will remain agitated for a long time after contact
+	                    	//pigs recover quicker than other mobs
+	                    	pigAnxietyCounter += 15;
+	                    }
+                	}
+                }
+
+
+
+                if (var3.canBePushed())
+                {
+                    this.collideWithEntity(var3);
+                }
+            }
+        }
+    }
+	
     @Override
     protected boolean GetCanCreatureTypeBePossessed()
     {
