@@ -2456,6 +2456,20 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     {
         return ScorePlayerTeam.func_96667_a(this.getTeam(), this.username);
     }
+    
+    //AARON added special key/ctrl click functionality VVV
+    private boolean usingSpecialKey = false;
+
+//    @Override
+    public boolean isUsingSpecialKey() 
+    {
+    	return this.usingSpecialKey;
+    }
+
+    public void setUsingSpecialKey(boolean usingSpecialKey) {
+    	this.usingSpecialKey = usingSpecialKey;
+    }
+    //^^^ special key/ctrl click functionality
 
     // FCMOD: Added New
     public ChunkCoordinates m_HardcoreSpawnChunk;
