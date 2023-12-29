@@ -19,12 +19,13 @@ public class FCBlockDirtLooseSlab extends FCBlockSlabFalling
         
 		setCreativeTab( CreativeTabs.tabBlock );
     }
-    
-    //AARON testing method
-	public boolean isWeakBlock(World worldObj, int x, int y, int z) {
 
-		return true;
-	}
+    //OOPS left this in!
+//    //AARON testing method
+//	public boolean isWeakBlock(World worldObj, int x, int y, int z) {
+//
+//		return true;
+//	}
     
 	@Override
 	public boolean DropComponentItemsOnBadBreak( World world, int i, int j, int k, int iMetadata, float fChanceOfDrop )

@@ -11,6 +11,8 @@ tile.SuperBTWBlockReedThatch.name=Thatch
 tile.SuperBTWBlockStrawThatchSlab.name=Straw Thatch Slab
 tile.SuperBTWBlockStrawThatch.name=Straw Thatch
 tile.ghBlockGloryhole.name=Gloryhole
+tile.SuperBTWBlockSuperGlass.name=Super Glass
+tile.SuperBTWBlockSuperBlock.name=Super Block
 
 #Items
 item.SuperBTWItemPipeEmpty.name=Empty Pipe
@@ -35,5 +37,4 @@ item.SuperBTWItemTrowel.name=Trowel
 item.SuperBTWItemWetMudBrick.name=Wet Mud Brick
 item.SuperBTWItemTombstonePlacer.name=Gravestone
 item.SuperBTWItemTreat.name=Dog Treat
-
 item.fcItemBedroll.name=Bedroll

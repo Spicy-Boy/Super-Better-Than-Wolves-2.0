@@ -11,7 +11,7 @@ Switched to BETA 2.0 on July 12, 2023
 
 - Changed the level 3 Librarian level up trade to a buddy block since you can now buy BDs from him
 
-- Changed/swapped around the blaze powder and bat wings trade because, IMO, bat wings are a lot harder to farm than blaze rods!
+- Changed/swapped around the blaze powder and bat wings librarian trade because, IMO, bat wings are a lot harder to farm than blaze rods!
 
 - Changed the level 2 priest trades to be more desirable. Before, the trades consisted of random trash enchantments.
     >The priest knows how to use the enchanting table a lot better than you do tbh
@@ -25,9 +25,53 @@ Switched to BETA 2.0 on July 12, 2023
 
 - Changed campfires to startle animals when placed
     
+- Changed trap doors to be climbable like ladders when opened.
+
+- Fixed an issue where loose dirt was breakable by zombies... sorry :)    
+    
 - Fixed a long standing issue where villager trades would not refresh properly (thanks CE team!)
 
+TODO- Reconfigure blacksmith trades to make a bit more sense
+
+TODO- Change wither back to soulsand :P
+
+TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
+        TODO>Apply the same principle to soul filtering. Thank you Dawn for pointing all of this out!
+
+TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
+        TODO> add a particle effect to show that the glass is cooking inside the gloryhole
+
+TODO- Added the glass jars from Sockscrops! They can store smaller items!
+
+TODO- Added the Meat Golem
+
+TODO- Added the airship
+
+TODO- Added the pipe
+        >Used to rip fat clouds
+
 2.2 Brick & Mortar:
+
+- Added thatch, a new roofing material made of sticks and reeds
+    >Caution, this material is weaker than wood and may not stop a hungry zombie!
+    
+- Added pitfall traps! Try setting them with thatch and another unstable block
+    
+- Added straw thatch, a thatch variant that swaps reeds for straw
+    
+- Added more reasonable recipes for acquiring wool blocks and platforms that are not dependent on wicker weaving    
+
+- Added two creative-only blocks: super glass and super block
+    > Super glass is bedrock but see-through
+    > Super blocks are also just retextured bedrock
+
+- Added three new player-to-player teleportation commands: /tpa [player name], /tpaccept [player name], and /tpcancel
+
+- Added /tpteam commands for setting up teams of players and teleporting them as a group
+    >/tpteam list, /tpteam list [teamname], tpteam refresh, /tpteam [teamname], /tpteam player [playername], /tpteam new [teamname], /tpteam set [teamname], tpteam remove [playername], tpteam add [playername]
+    >TODO: configuration to make players spawn at their team location on first enter server
+
+- Added a new configuration file, SBTWserver.properties, to servers (auto-generated on start up) that allows server owners to disable or enable SBTW's new tpa commands
 
 - Added the tombstone, a block that can be crafted by chiseling a slab of stone   
 
@@ -56,31 +100,12 @@ Switched to BETA 2.0 on July 12, 2023
 - Fixed an issue that caused the player to wake up from rain even when it wasn't really raining on the bed due to rounding problems
     
 - Fixed crude torch pickup. There was a bug where right clicking a torch would sometimes cause the torch to be placed in the inventory invisibly
-
-TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
-        TODO>Apply the same principle to soul filtering. Thank you Dawn for pointing all of this out!
-
-TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
-        TODO> add a particle effect to show that the glass is cooking inside the gloryhole
-
-TODO- Added the glass jars from Sockscrops! They can store smaller items!
-    
-TODO- Added the Meat Golem
-
-TODO- Added the airship
-
-TODO- Added the pipe
-        >Used to rip fat clouds
-        
-ULTIMATE TODOS (not to be tackled until SBTW 2.0 is completely ready!
-- Add ctrl click functionality added by later CE
-- Create a special fork of Neodindium that works with SBTW
         
 2.1 Hotfix:
 
 - Added a missing file that caused a rendering crash! Oops!!! Sorry!!!
 
-Additions:
+2.0 Additions:
 
 -TEMPORARY OMISSION for BETA 2.0: Biome decorator places standard gourds with vanilla seeds/plants
     >@ the request of Wario-Luigi Hybrid
