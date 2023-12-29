@@ -2,13 +2,59 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
-2.3 Ctrl Click Branch:
+2.3 Punish All Cow Abusers Update:
+
+- Added the ctrl key as an alternative sprint button. This cannot be rebound at this time.
+    > If rebinding your ctrl key is something important to you, then please reach out to me and I can make it configurable. 
+    > I just didn't feel like coding that right now, and I won't bother if it isn't something anyone will use
+
+- Added the treat, a special item for your dog. Show some love to your canine companion and he might give some right back!
+    >Another Sockthing classic texture
+
+- Changed/replaced the librarian trades for bookshelves and redstone with trades to purchase block dispensers and detector blocks
+
+- Changed the level 3 Librarian level up trade to a buddy block since you can now buy BDs from him
+
+- Changed/swapped around the blaze powder and bat wings librarian trade because, IMO, bat wings are a lot harder to farm than blaze rods!
+
+- Changed the level 2 priest trades to be more desirable. Before, the trades consisted of random trash enchantments.
+    >The priest knows how to use the enchanting table a lot better than you do tbh
+
+- Added a super secret trade for epic loot    
+
+- Changed spawners to spread mossy stone to loose cobble as well as mortared 
+
+- Changed/tweaked Hardcore Hoofsies to demand a little bit more respect than the community has been giving lately... >:)
+    >Holding a tasty snack will make hoofsies much more forgiving of hugsies
+
+- Changed campfires to startle animals when placed
+    
+- Changed trap doors to be climbable when placed above ladders
 
 - Changed mycelium to grow in complete darkness. It didn't really make sense that it needed sunlight.
 
-TODO - Added the ctrl key as an alternative sprint button. This cannot be rebound at this time.
-    > If rebinding your ctrl key is something important to you, then please reach out to me and I can make it configurable. 
-    > I just didn't feel like coding that right now, and I won't bother if it isn't something anyone will use
+- Fixed an issue where loose dirt was breakable by zombies... sorry :)    
+    
+- Fixed a long standing issue where villager trades would not refresh properly (thanks CE team!)
+
+TODO- Reconfigure blacksmith trades to make a bit more sense
+
+TODO- Change wither back to soulsand :P
+
+TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
+        TODO>Apply the same principle to soul filtering. Thank you Dawn for pointing all of this out!
+
+TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
+        TODO> add a particle effect to show that the glass is cooking inside the gloryhole
+
+TODO- Added the glass jars from Sockscrops! They can store smaller items!
+
+TODO- Added the Meat Golem
+
+TODO- Added the airship
+
+TODO- Added the pipe
+        >Used to rip fat clouds
 
 2.2 Brick & Mortar:
 
@@ -239,6 +285,13 @@ GuiChat (all for toggling chat during sleep... sort of shitty tbh)
 GuiNewChat
 GuiScreen 
 SlotCrafting (for water bucket shenanigans)
+FCEntityVillager
+world (campfire scaring)
+fcBlockCampfire
+fcTileEntityMobSpawner
+FCEntityVillager 
+FcEntityVillagerFarmer
+Fcentityvillagerpriest
 
 
 #For sleep integration:
