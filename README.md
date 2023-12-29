@@ -2,9 +2,11 @@
 The ultimate survival experience in Minecraft!
 
 Version 2.0 adds...
+>DOG TREATS
 >A GOURD OVERHAUL!
 >SLEEPING!
 >RIB SMASHING FUN!
+>THATCH!
 >NEW WAYS TO MAKE BRICKS!
 (and so much more!)
  
@@ -18,6 +20,53 @@ From the changelog:
 SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
+
+2.3 Punish All Cow Abusers Update:
+
+- Added the ctrl key as an alternative sprint button. This cannot be rebound at this time.
+    -If rebinding your ctrl key is something important to you, then please reach out to me and I can make it configurable. 
+    -I just didn't feel like coding that right now, and I won't bother if it isn't something anyone will use
+
+- Added the treat, a special item for your dog. Show some love to your canine companion and he might give some right back!
+    -Another Sockthing classic texture
+
+- Added a server config to SBTWserver.properties that toggles team spawns on initial login (functions like /set spawn)
+    -basically, instead of starting at spawn, new players will begin at the location set by their respective team
+    -if a player is not a member of a team, they will spawn at the "default" team location (use /tpteam set default) 
+
+- Added a server config to SBTWserver.properties that toggles HC Spawn on initial login
+    -basically, instead of starting at spawn, new players in a server start at a random HC spawn
+    -players will spawn near each other due (I think) to hardcore soulmating, which helps performance
+
+NOTE: If both team start and HC start are enabled at the same time, then players will random HC spawn rather than go to team default
+
+- Added the /deaths command that informs the player how many times they have died in the current world.
+
+- Changed/replaced the librarian trades for bookshelves and redstone with trades to purchase block dispensers and detector blocks
+
+- Changed the level 3 Librarian level up trade to a buddy block since you can now buy BDs from him
+
+- Changed/swapped around the blaze powder and bat wings librarian trade because, IMO, bat wings are a lot harder to farm than blaze rods!
+
+- Changed the level 2 priest trades to be more desirable. Before, the trades consisted of random trash enchantments.
+    -The priest knows how to use the enchanting table a lot better than you do tbh
+
+- Added a super secret trade for epic loot    
+
+- Changed spawners to spread mossy stone to loose cobble as well as mortared 
+
+- Changed/tweaked Hardcore Hoofsies to demand a little bit more respect than the community has been giving lately... >:)
+    -Holding a tasty snack will make hoofsies much more forgiving of hugsies
+
+- Changed campfires to startle animals when placed
+    
+- Changed trap doors to be climbable when placed above ladders
+
+- Changed mycelium to grow in complete darkness. It didn't really make sense that it needed sunlight.
+
+- Fixed an issue where loose dirt was breakable by zombies... sorry :)    
+    
+- Fixed a long standing issue where villager trades would not refresh properly (thanks CE team!)
 
 2.2:
 
