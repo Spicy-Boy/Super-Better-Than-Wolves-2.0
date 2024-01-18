@@ -2,7 +2,7 @@
 The ultimate survival experience in Minecraft!
 
 Version 2.0 adds...
->DOG TREATS
+>DOG TREATS!
 >A GOURD OVERHAUL!
 >SLEEPING!
 >RIB SMASHING FUN!
