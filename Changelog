@@ -2,6 +2,21 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
+2.4 BORDER CONTROL:
+
+TODO- Add configuration for changing the respawn radius from spawn chunks to any coordinate you like!
+... really, we just need a new way to change the actual spawn chunks
+
+- Added server configs to SBTWserver.properties that allows server admins to enable and set a custom HC respawn and exclusion radius
+
+- Added the /smite [playername] command for admin use
+
+- Added a server config to SBTWserver.properties that enables a world border forcefield at a default radius of 5000 blocks in every direction
+    - The world border is rectangular and centered around 0,0, but the origin can be changed to spawn in the config
+    - The world border dimensions (both x and z axis) can be set in the config
+
+TODO- Added the /name [name] command to allow players to name their favorite items
+
 2.3 Punish All Cow Abusers Update:
 
 - Added the ctrl key as an alternative sprint button. This cannot be rebound at this time.
@@ -200,8 +215,6 @@ Changes/Fixes:
 
 - ~ - ~ -
 TODO CONTENT:
-
-O- From CE: make trap doors like ladders
         
 ***GOURD TODO***
     O-Choose how to find each plant type (seeds, natural spawning gourds, etc)

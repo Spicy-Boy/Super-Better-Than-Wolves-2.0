@@ -25,10 +25,23 @@ public class SuperBTW extends FCAddOn
 	private boolean isTpaEnabled;
 	private boolean isRandomHCStartEnabled;
 	private boolean isTeamStartEnabled;
+	private boolean isWorldBorderEnabled;
+	
+	private int rectangularWorldBorderX;
+	private int rectangularWorldBorderZ;
+	private boolean isWorldBorderAroundSpawn;
+	
+	private boolean isCustomRespawnRadiusEnabled;
+	private int customRespawnRadius;
+	private int customRespawnExclusionRadius;
+	
+	private boolean isLightningFireEnabled;
+
+	
 	
     private SuperBTW() 
     {
-        super("SUPER BETTER THAN WOLVES", "BETA 2.3 (w/ vanilla gourds >_>)", "");
+        super("SUPER BETTER THAN WOLVES", "BETA 2.4 (w/ nilla gourds ~_~)", "");
     }
 
 	@Override
@@ -146,6 +159,13 @@ public class SuperBTW extends FCAddOn
     	
     	return false;
     }
+    
+    //updates the mappings for both coords and usernames maps
+    public void updateMaps()
+    {
+    	teamsAndUsernames = createTeamsAndUsernamesMap(filePath);
+    	teamsAndCoords = createTeamsAndCoordsMap(filePath);
+    }
 	
 	//creates an hash map connecting team names (Strings) to array lists of usernames (<Strings>)
 	public Map<String, List<String>> createTeamsAndUsernamesMap(String filePath)
@@ -237,8 +257,20 @@ public class SuperBTW extends FCAddOn
         FCAddOnHandler.LogMessage("Loading SBTW Server properties");
         this.settings = new PropertyManager(new File("SBTWserver.properties"), net.minecraft.server.MinecraftServer.getServer().getLogAgent());
         this.setTpaEnabled(this.settings.getBooleanProperty("Enable-TPA-commands", false));
+        
         this.setRandomHCStartEnabled(this.settings.getBooleanProperty("Start-with-random-HC-Spawn", false));
         this.setTeamStartEnabled(this.settings.getBooleanProperty("Start-at-tpteam-location", false));
+        
+        this.setWorldBorderEnabled(this.settings.getBooleanProperty("Enable-World-Border", false));
+        this.setIsWorldBorderAroundSpawn(this.settings.getBooleanProperty("Enable-world-border-centered-around-spawn", false));
+        this.setRectangularWorldBorderX(this.settings.getIntProperty("World-border-X-distance", 5000));
+        this.setRectangularWorldBorderZ(this.settings.getIntProperty("World-border-Z-distance", 5000));
+        
+        this.setCustomRespawnRadiusEnabled(this.settings.getBooleanProperty("Enable-custom-HC-respawn-radius", false));
+        this.setCustonRespawnRadius(this.settings.getIntProperty("Custom-HC-respawn-radius", 2000));
+        this.setCustomRespawnExclusionRadius(this.settings.getIntProperty("Custom-HC-respawn-exclusion-radius", 1000));
+	
+        this.setLightningFireEnabled(this.settings.getBooleanProperty("Enabled-lightning-fire", true));
 	}
 	
 	public void setTpaEnabled(boolean b) 
@@ -263,12 +295,81 @@ public class SuperBTW extends FCAddOn
 	{
 		this.isTeamStartEnabled = b;
 	}
-	
 	public boolean getTeamStartEnabled() 
 	{
 		return isTeamStartEnabled;
 	}
 	
+	public void setWorldBorderEnabled(boolean b) 
+	{
+		this.isWorldBorderEnabled = b;
+	}
+	public boolean getWorldBorderEnabled() 
+	{
+		return isWorldBorderEnabled;
+	}
 	
+	public void setIsWorldBorderAroundSpawn(boolean b) 
+	{
+		this.isWorldBorderAroundSpawn = b;
+	}
+	public boolean getIsWorldBorderAroundSpawn() 
+	{
+		return isWorldBorderAroundSpawn;
+	}
+	
+	public void setRectangularWorldBorderX(int i)
+	{
+		this.rectangularWorldBorderX = i;
+	}
+	public int getRectangularWorldBorderX()
+	{
+		return rectangularWorldBorderX;
+	}
+	
+	public void setRectangularWorldBorderZ(int i)
+	{
+		this.rectangularWorldBorderZ = i;
+	}
+	public int getRectangularWorldBorderZ()
+	{
+		return rectangularWorldBorderZ;
+	}
+	
+	public void setCustomRespawnRadiusEnabled(boolean b)
+	{
+		this.isCustomRespawnRadiusEnabled = b;
+	}
+	public boolean getCustomRespawnRadiusEnabled()
+	{
+		return isCustomRespawnRadiusEnabled;
+	}
+	
+	public void setCustonRespawnRadius(int i)
+	{
+		this.customRespawnRadius = i;
+	}
+	public int getCustomRespawnRadius()
+	{
+		return customRespawnRadius;
+	}
+	
+	public void setCustomRespawnExclusionRadius(int i)
+	{
+		this.customRespawnExclusionRadius = i;
+	}
+	public int getcustomRespawnExclusionRadius()
+	{
+		return customRespawnExclusionRadius;
+	}
+	
+	public void setLightningFireEnabled(boolean b)
+	{
+		this.isLightningFireEnabled = b;
+	}
+	public boolean getLightningFireEnabled()
+	{
+		return isLightningFireEnabled;
+	}
 
 }

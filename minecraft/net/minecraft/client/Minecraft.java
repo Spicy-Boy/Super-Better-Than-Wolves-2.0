@@ -2225,7 +2225,7 @@ public abstract class Minecraft implements Runnable, IPlayerUsage
         //DEFAULT RANDOM NAME ASSIGNMENT VVV
         String var5 = "Player" + getSystemTime() % 1000L;
         //CUSTOME NAME VVV
-//        String var5 = "monkedluffe";
+//        String var5 = "Prof_Ion";
         String var6 = var5;
 
         if (par0ArrayOfStr.length > 0)

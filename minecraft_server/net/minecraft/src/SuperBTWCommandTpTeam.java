@@ -429,6 +429,10 @@ public class SuperBTWCommandTpTeam extends CommandBase
     	
     	writer.close();
     	
+    	//THIS PART UPDATES THE MAPPING USED IN SuperBTW.java TO SET DEFAULT SPAWN!
+    	SuperBTW.instance.updateMaps();
+    	//Janky as hell, I know... I need to figure out a better way to share the maps between command and addon instance!
+    	
     }
     
     public boolean isTeamName(String userInput) 

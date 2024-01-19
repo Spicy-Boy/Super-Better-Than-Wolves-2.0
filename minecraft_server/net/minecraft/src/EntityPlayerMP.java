@@ -1071,11 +1071,79 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         
         UpdateHealthAndHungerEffects();
         
+        //Steve is influenced by magnets
         UpdateMagneticInfluences();
         
         UpdateSpawnChunksVisualization();
         
     	NotifyBlockWalkedOn();
+    	
+    	//AARON adds an SMP check to calculate the player's location and smite them if they beyond set boundaries
+    	checkBoundariesAndSmitePlayer();
+    }
+    
+    //AARON's custom border checker, runs in the update loop
+    private void checkBoundariesAndSmitePlayer()
+    {
+    	//TESTER
+//    	System.out.println("Ran Boundary Check!");
+    	
+    	//staggers the update 
+		if ( ( worldObj.getTotalWorldTime() + entityId ) % 40 != 0 )
+		{
+			return;
+		}
+		if (SuperBTW.instance.getWorldBorderEnabled())
+		{
+	    	//TESTER
+//	    	System.out.println("World Border Enabled");
+			
+			int worldBorderX = SuperBTW.instance.getRectangularWorldBorderX();
+			int worldBorderZ = SuperBTW.instance.getRectangularWorldBorderZ();
+			int warningDistance = 16; //HARD CODED!!! Player starts being warned 16 blocks from border
+			int originOfBorderX = 0;
+			int originOfBorderZ = 0;
+			if (SuperBTW.instance.getIsWorldBorderAroundSpawn())
+			{
+				ChunkCoordinates spawnPos = worldObj.getSpawnPoint();
+				originOfBorderX = spawnPos.posX;
+				originOfBorderZ = spawnPos.posZ;
+			}
+
+			
+			if(this.posX > (originOfBorderX + worldBorderX)
+					|| this.posX < (originOfBorderX - worldBorderX)
+					|| this.posZ > (originOfBorderZ + worldBorderZ)
+					|| this.posZ < (originOfBorderZ - worldBorderZ)
+					)
+			{
+				//TESTERS VVV
+//				System.out.println("PLAYER DETECTED BEYOND BORDER");
+				this.addChatMessage("YOU ARE BEYOND THE WORLD BORDER!");
+				
+				//smite player with lightning bolt
+				worldObj.addWeatherEffect( new FCEntityLightningBolt( worldObj, this.posX + 0.5D, 
+						this.posY, this.posZ + 0.5D ) );
+				return;
+			}
+			else if (this.posX > (originOfBorderX + worldBorderX - warningDistance)
+					|| this.posX < (originOfBorderX - worldBorderX + warningDistance)
+					|| this.posZ > (originOfBorderZ + worldBorderZ - warningDistance)
+					|| this.posZ < (originOfBorderZ - worldBorderZ + warningDistance)
+					) 
+			{
+				this.addChatMessage("CAUTION: APPROACHING WORLD BORDER. TURN BACK.");
+				return;
+			}
+			
+		}
+		else
+		{
+			//TESTER VVV
+//	    	System.out.println("World Border Disabled");
+			return;
+		}
+		
     }
     
 	private void UpdateMagneticInfluences()
@@ -1083,7 +1151,6 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 		if ( ( worldObj.getTotalWorldTime() + entityId ) % 40 != 0 )
 		{
 			// stagger these updates as they can be performance intensive
-			 
 			return;
 		}
 		 
