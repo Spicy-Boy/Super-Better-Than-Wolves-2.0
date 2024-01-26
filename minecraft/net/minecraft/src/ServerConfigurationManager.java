@@ -15,8 +15,7 @@ import net.minecraft.server.MinecraftServer;
 
 public abstract class ServerConfigurationManager
 {
-    
-	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd \'at\' HH:mm:ss z");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd \'at\' HH:mm:ss z");
 
     /** Reference to the MinecraftServer object. */
     private final MinecraftServer mcServer;
@@ -68,27 +67,27 @@ public abstract class ServerConfigurationManager
         par2EntityPlayerMP.theItemInWorldManager.setWorld((WorldServer)par2EntityPlayerMP.worldObj);
         String var4 = "local";
 
-        if (par1INetworkManager.getRemoteAddress() != null)
+        if (par1INetworkManager.getSocketAddress() != null)
         {
-            var4 = par1INetworkManager.getRemoteAddress().toString();
+            var4 = par1INetworkManager.getSocketAddress().toString();
         }
 
-        this.mcServer.getLogAgent().func_98233_a(par2EntityPlayerMP.username + "[" + var4 + "] logged in with entity id " + par2EntityPlayerMP.entityId + " at (" + par2EntityPlayerMP.posX + ", " + par2EntityPlayerMP.posY + ", " + par2EntityPlayerMP.posZ + ")");
+        this.mcServer.getLogAgent().logInfo(par2EntityPlayerMP.username + "[" + var4 + "] logged in with entity id " + par2EntityPlayerMP.entityId + " at (" + par2EntityPlayerMP.posX + ", " + par2EntityPlayerMP.posY + ", " + par2EntityPlayerMP.posZ + ")");
         WorldServer var5 = this.mcServer.worldServerForDimension(par2EntityPlayerMP.dimension);
         ChunkCoordinates var6 = var5.getSpawnPoint();
         this.func_72381_a(par2EntityPlayerMP, (EntityPlayerMP)null, var5);
         NetServerHandler var7 = new NetServerHandler(this.mcServer, par1INetworkManager, par2EntityPlayerMP);
-        var7.sendPacket(new Packet1Login(par2EntityPlayerMP.entityId, var5.getWorldInfo().getTerrainType(), par2EntityPlayerMP.theItemInWorldManager.getGameType(), var5.getWorldInfo().isHardcoreModeEnabled(), var5.provider.dimensionId, var5.difficultySetting, var5.getHeight(), this.getMaxPlayers()));
-        var7.sendPacket(new Packet6SpawnPosition(var6.posX, var6.posY, var6.posZ));
-        var7.sendPacket(new Packet202PlayerAbilities(par2EntityPlayerMP.capabilities));
-        var7.sendPacket(new Packet16BlockItemSwitch(par2EntityPlayerMP.inventory.currentItem));
+        var7.sendPacketToPlayer(new Packet1Login(par2EntityPlayerMP.entityId, var5.getWorldInfo().getTerrainType(), par2EntityPlayerMP.theItemInWorldManager.getGameType(), var5.getWorldInfo().isHardcoreModeEnabled(), var5.provider.dimensionId, var5.difficultySetting, var5.getHeight(), this.getMaxPlayers()));
+        var7.sendPacketToPlayer(new Packet6SpawnPosition(var6.posX, var6.posY, var6.posZ));
+        var7.sendPacketToPlayer(new Packet202PlayerAbilities(par2EntityPlayerMP.capabilities));
+        var7.sendPacketToPlayer(new Packet16BlockItemSwitch(par2EntityPlayerMP.inventory.currentItem));
         this.func_96456_a((ServerScoreboard)var5.getScoreboard(), par2EntityPlayerMP);
         this.updateTimeAndWeatherForPlayer(par2EntityPlayerMP, var5);
         this.sendPacketToAllPlayers(new Packet3Chat(EnumChatFormatting.YELLOW + par2EntityPlayerMP.getTranslatedEntityName() + EnumChatFormatting.YELLOW + " joined the game."));
         this.playerLoggedIn(par2EntityPlayerMP);
         var7.setPlayerLocation(par2EntityPlayerMP.posX, par2EntityPlayerMP.posY, par2EntityPlayerMP.posZ, par2EntityPlayerMP.rotationYaw, par2EntityPlayerMP.rotationPitch);
         this.mcServer.getNetworkThread().addPlayer(var7);
-        var7.sendPacket(new Packet4UpdateTime(var5.getTotalWorldTime(), var5.getWorldTime()));
+        var7.sendPacketToPlayer(new Packet4UpdateTime(var5.getTotalWorldTime(), var5.getWorldTime()));
 
         if (this.mcServer.getTexturePack().length() > 0)
         {
@@ -100,7 +99,7 @@ public abstract class ServerConfigurationManager
         while (var8.hasNext())
         {
             PotionEffect var9 = (PotionEffect)var8.next();
-            var7.sendPacket(new Packet41EntityEffect(par2EntityPlayerMP.entityId, var9));
+            var7.sendPacketToPlayer(new Packet41EntityEffect(par2EntityPlayerMP.entityId, var9));
         }
 
         par2EntityPlayerMP.addSelfToInternalCraftingInventory();
@@ -129,7 +128,7 @@ public abstract class ServerConfigurationManager
         while (var4.hasNext())
         {
             ScorePlayerTeam var5 = (ScorePlayerTeam)var4.next();
-            par2EntityPlayerMP.playerNetServerHandler.sendPacket(new Packet209SetPlayerTeam(var5, 0));
+            par2EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet209SetPlayerTeam(var5, 0));
         }
 
         for (int var9 = 0; var9 < 3; ++var9)
@@ -144,7 +143,7 @@ public abstract class ServerConfigurationManager
                 while (var7.hasNext())
                 {
                     Packet var8 = (Packet)var7.next();
-                    par2EntityPlayerMP.playerNetServerHandler.sendPacket(var8);
+                    par2EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(var8);
                 }
 
                 var3.add(var10);
@@ -157,7 +156,7 @@ public abstract class ServerConfigurationManager
      */
     public void setPlayerManager(WorldServer[] par1ArrayOfWorldServer)
     {
-        this.playerNBTManagerObj = par1ArrayOfWorldServer[0].getSaveHandler().getPlayerNBTManager();
+        this.playerNBTManagerObj = par1ArrayOfWorldServer[0].getSaveHandler().getSaveHandler();
     }
 
     public void func_72375_a(EntityPlayerMP par1EntityPlayerMP, WorldServer par2WorldServer)
@@ -231,7 +230,7 @@ public abstract class ServerConfigurationManager
         for (int var3 = 0; var3 < this.playerEntityList.size(); ++var3)
         {
             EntityPlayerMP var4 = (EntityPlayerMP)this.playerEntityList.get(var3);
-            par1EntityPlayerMP.playerNetServerHandler.sendPacket(new Packet201PlayerInfo(var4.username, true, var4.ping));
+            par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet201PlayerInfo(var4.username, true, var4.ping));
         }
     }
 
@@ -342,7 +341,7 @@ public abstract class ServerConfigurationManager
         while (var5.hasNext())
         {
             var4 = (EntityPlayerMP)var5.next();
-            var4.playerNetServerHandler.kickPlayer("You logged in from another location");
+            var4.playerNetServerHandler.kickPlayerFromServer("You logged in from another location");
         }
 
         Object var6;
@@ -360,14 +359,16 @@ public abstract class ServerConfigurationManager
     }
 
     /**
-     * Called on respawn
+     * creates and returns a respawned player based on the provided PlayerEntity. Args are the PlayerEntityMP to
+     * respawn, an INT for the dimension to respawn into (usually 0), and a boolean value that is true if the player
+     * beat the game rather than dying
      */
     // FCMOD: Function removed and replaced later
     /*
-    public EntityPlayerMP recreatePlayerEntity(EntityPlayerMP par1EntityPlayerMP, int par2, boolean par3)
+    public EntityPlayerMP respawnPlayer(EntityPlayerMP par1EntityPlayerMP, int par2, boolean par3)
     {
         par1EntityPlayerMP.getServerForPlayer().getEntityTracker().removePlayerFromTrackers(par1EntityPlayerMP);
-        par1EntityPlayerMP.getServerForPlayer().getEntityTracker().untrackEntity(par1EntityPlayerMP);
+        par1EntityPlayerMP.getServerForPlayer().getEntityTracker().removeEntityFromAllTrackingPlayers(par1EntityPlayerMP);
         par1EntityPlayerMP.getServerForPlayer().getPlayerManager().removePlayer(par1EntityPlayerMP);
         this.playerEntityList.remove(par1EntityPlayerMP);
         this.mcServer.worldServerForDimension(par1EntityPlayerMP.dimension).removePlayerEntityDangerously(par1EntityPlayerMP);
@@ -404,7 +405,7 @@ public abstract class ServerConfigurationManager
             }
             else
             {
-                var7.playerNetServerHandler.sendPacket(new Packet70GameEvent(0, 0));
+                var7.playerNetServerHandler.sendPacketToPlayer(new Packet70GameEvent(0, 0));
             }
         }
 
@@ -415,11 +416,11 @@ public abstract class ServerConfigurationManager
             var7.setPosition(var7.posX, var7.posY + 1.0D, var7.posZ);
         }
 
-        var7.playerNetServerHandler.sendPacket(new Packet9Respawn(var7.dimension, (byte)var7.worldObj.difficultySetting, var7.worldObj.getWorldInfo().getTerrainType(), var7.worldObj.getHeight(), var7.theItemInWorldManager.getGameType()));
+        var7.playerNetServerHandler.sendPacketToPlayer(new Packet9Respawn(var7.dimension, (byte)var7.worldObj.difficultySetting, var7.worldObj.getWorldInfo().getTerrainType(), var7.worldObj.getHeight(), var7.theItemInWorldManager.getGameType()));
         var9 = var8.getSpawnPoint();
         var7.playerNetServerHandler.setPlayerLocation(var7.posX, var7.posY, var7.posZ, var7.rotationYaw, var7.rotationPitch);
-        var7.playerNetServerHandler.sendPacket(new Packet6SpawnPosition(var9.posX, var9.posY, var9.posZ));
-        var7.playerNetServerHandler.sendPacket(new Packet43Experience(var7.experience, var7.experienceTotal, var7.experienceLevel));
+        var7.playerNetServerHandler.sendPacketToPlayer(new Packet6SpawnPosition(var9.posX, var9.posY, var9.posZ));
+        var7.playerNetServerHandler.sendPacketToPlayer(new Packet43Experience(var7.experience, var7.experienceTotal, var7.experienceLevel));
         this.updateTimeAndWeatherForPlayer(var7, var8);
         var8.getPlayerManager().addPlayer(var7);
         var8.spawnEntityInWorld(var7);
@@ -431,17 +432,13 @@ public abstract class ServerConfigurationManager
 	*/
 	// FCMOD
 
-
-    /**
-     * moves provided player from overworld to nether or vice versa
-     */
     public void transferPlayerToDimension(EntityPlayerMP par1EntityPlayerMP, int par2)
     {
         int var3 = par1EntityPlayerMP.dimension;
         WorldServer var4 = this.mcServer.worldServerForDimension(par1EntityPlayerMP.dimension);
         par1EntityPlayerMP.dimension = par2;
         WorldServer var5 = this.mcServer.worldServerForDimension(par1EntityPlayerMP.dimension);
-        par1EntityPlayerMP.playerNetServerHandler.sendPacket(new Packet9Respawn(par1EntityPlayerMP.dimension, (byte)par1EntityPlayerMP.worldObj.difficultySetting, var5.getWorldInfo().getTerrainType(), var5.getHeight(), par1EntityPlayerMP.theItemInWorldManager.getGameType()));
+        par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet9Respawn(par1EntityPlayerMP.dimension, (byte)par1EntityPlayerMP.worldObj.difficultySetting, var5.getWorldInfo().getTerrainType(), var5.getHeight(), par1EntityPlayerMP.theItemInWorldManager.getGameType()));
         var4.removePlayerEntityDangerously(par1EntityPlayerMP);
         par1EntityPlayerMP.isDead = false;
         this.transferEntityToWorld(par1EntityPlayerMP, var3, var4, var5);
@@ -455,11 +452,11 @@ public abstract class ServerConfigurationManager
         while (var6.hasNext())
         {
             PotionEffect var7 = (PotionEffect)var6.next();
-            par1EntityPlayerMP.playerNetServerHandler.sendPacket(new Packet41EntityEffect(par1EntityPlayerMP.entityId, var7));
+            par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet41EntityEffect(par1EntityPlayerMP.entityId, var7));
         }
         
         // FCMOD: Added
-        par1EntityPlayerMP.FlagAllWatchedObjectsDirty();
+        par1EntityPlayerMP.FlagAllWatchedObjectsDirty();        
         par1EntityPlayerMP.m_lTimeOfLastDimensionSwitch = var5.getWorldTime();
         // END FCMOD
     }
@@ -558,9 +555,9 @@ public abstract class ServerConfigurationManager
     }
 
     /**
-     * self explanitory
+     * sends 1 player per tick, but only sends a player once every 600 ticks
      */
-    public void onTick()
+    public void sendPlayerInfoToAllPlayers()
     {
         if (++this.playerPingIndex > 600)
         {
@@ -581,7 +578,7 @@ public abstract class ServerConfigurationManager
     {
         for (int var2 = 0; var2 < this.playerEntityList.size(); ++var2)
         {
-            ((EntityPlayerMP)this.playerEntityList.get(var2)).playerNetServerHandler.sendPacket(par1Packet);
+            ((EntityPlayerMP)this.playerEntityList.get(var2)).playerNetServerHandler.sendPacketToPlayer(par1Packet);
         }
     }
 
@@ -596,7 +593,7 @@ public abstract class ServerConfigurationManager
 
             if (var4.dimension == par2)
             {
-                var4.playerNetServerHandler.sendPacket(par1Packet);
+                var4.playerNetServerHandler.sendPacketToPlayer(par1Packet);
             }
         }
     }
@@ -679,10 +676,7 @@ public abstract class ServerConfigurationManager
         return this.ops.contains(par1Str.trim().toLowerCase()) || this.mcServer.isSinglePlayer() && this.mcServer.worldServers[0].getWorldInfo().areCommandsAllowed() && this.mcServer.getServerOwner().equalsIgnoreCase(par1Str) || this.commandsAllowedForAll;
     }
 
-    /**
-     * gets the player entity for the player with the name specified
-     */
-    public EntityPlayerMP getPlayerEntity(String par1Str)
+    public EntityPlayerMP getPlayerForUsername(String par1Str)
     {
         Iterator var2 = this.playerEntityList.iterator();
         EntityPlayerMP var3;
@@ -758,7 +752,7 @@ public abstract class ServerConfigurationManager
 
                 if (par1ChunkCoordinates != null && (par2 > 0 || par3 > 0))
                 {
-                    float var20 = par1ChunkCoordinates.getDistanceSquaredToChunkCoordinates(var16.getCommandSenderPosition());
+                    float var20 = par1ChunkCoordinates.getDistanceSquaredToChunkCoordinates(var16.getPlayerCoordinates());
 
                     if (par2 > 0 && var20 < (float)var13 || par3 > 0 && var20 > (float)var14)
                     {
@@ -844,9 +838,9 @@ public abstract class ServerConfigurationManager
     }
 
     /**
-     * sends a packet to players within d3 of point (x,y,z)
+     * params: x,y,z,d,dimension. The packet is sent to all players within d distance of x,y,z (d^2<x^2+y^2+z^2)
      */
-    public void sendPacketToPlayersAroundPoint(double par1, double par3, double par5, double par7, int par9, Packet par10Packet)
+    public void sendToAllNear(double par1, double par3, double par5, double par7, int par9, Packet par10Packet)
     {
         this.sendToAllNearExcept((EntityPlayer)null, par1, par3, par5, par7, par9, par10Packet);
     }
@@ -869,7 +863,7 @@ public abstract class ServerConfigurationManager
 
                 if (var14 * var14 + var16 * var16 + var18 * var18 < par8 * par8)
                 {
-                    var13.playerNetServerHandler.sendPacket(par11Packet);
+                    var13.playerNetServerHandler.sendPacketToPlayer(par11Packet);
                 }
             }
         }
@@ -925,22 +919,22 @@ public abstract class ServerConfigurationManager
      */
     public void updateTimeAndWeatherForPlayer(EntityPlayerMP par1EntityPlayerMP, WorldServer par2WorldServer)
     {
-        par1EntityPlayerMP.playerNetServerHandler.sendPacket(new Packet4UpdateTime(par2WorldServer.getTotalWorldTime(), par2WorldServer.getWorldTime()));
+        par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet4UpdateTime(par2WorldServer.getTotalWorldTime(), par2WorldServer.getWorldTime()));
 
         if (par2WorldServer.isRaining())
         {
         	// FCMOD: Code change so that initial rain strength is set to full on client
         	/*
-            par1EntityPlayerMP.playerNetServerHandler.sendPacket(new Packet70GameEvent(1, 0));
+            par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet70GameEvent(1, 0));
             */
-            par1EntityPlayerMP.playerNetServerHandler.sendPacket(new Packet70GameEvent(1, 1));
+            par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet70GameEvent(1, 1));
         	// END FCMOD
         }
         
         // FCMOD: Code added
         if (par2WorldServer.worldInfo.isThundering())
         {
-            par1EntityPlayerMP.playerNetServerHandler.sendPacket(new Packet70GameEvent(7, 1));
+            par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet70GameEvent(7, 1));
         }        
         // END FCMOD
     }
@@ -952,7 +946,7 @@ public abstract class ServerConfigurationManager
     {
         par1EntityPlayerMP.sendContainerToPlayer(par1EntityPlayerMP.inventoryContainer);
         par1EntityPlayerMP.setPlayerHealthUpdated();
-        par1EntityPlayerMP.playerNetServerHandler.sendPacket(new Packet16BlockItemSwitch(par1EntityPlayerMP.inventory.currentItem));
+        par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet16BlockItemSwitch(par1EntityPlayerMP.inventory.currentItem));
     }
 
     /**
@@ -976,7 +970,7 @@ public abstract class ServerConfigurationManager
      */
     public String[] getAvailablePlayerDat()
     {
-        return this.mcServer.worldServers[0].getSaveHandler().getPlayerNBTManager().getAvailablePlayerDat();
+        return this.mcServer.worldServers[0].getSaveHandler().getSaveHandler().getAvailablePlayerDat();
     }
 
     public boolean isWhiteListEnabled()
@@ -1028,6 +1022,11 @@ public abstract class ServerConfigurationManager
         return null;
     }
 
+    public void setGameType(EnumGameType par1EnumGameType)
+    {
+        this.gameType = par1EnumGameType;
+    }
+
     private void func_72381_a(EntityPlayerMP par1EntityPlayerMP, EntityPlayerMP par2EntityPlayerMP, World par3World)
     {
         if (par2EntityPlayerMP != null)
@@ -1043,13 +1042,21 @@ public abstract class ServerConfigurationManager
     }
 
     /**
+     * Sets whether all players are allowed to use commands (cheats) on the server.
+     */
+    public void setCommandsAllowedForAll(boolean par1)
+    {
+        this.commandsAllowedForAll = par1;
+    }
+
+    /**
      * Kicks everyone with "Server closed" as reason.
      */
     public void removeAllPlayers()
     {
         while (!this.playerEntityList.isEmpty())
         {
-            ((EntityPlayerMP)this.playerEntityList.get(0)).playerNetServerHandler.kickPlayer("Server closed");
+            ((EntityPlayerMP)this.playerEntityList.get(0)).playerNetServerHandler.kickPlayerFromServer("Server closed");
         }
     }
 
@@ -1062,18 +1069,18 @@ public abstract class ServerConfigurationManager
         this.sendPacketToAllPlayers(new Packet3Chat(par1Str));
     }
 
-    // FCMOD: Added    
+    // FCMOD: Added
     // client
-    //public EntityPlayerMP respawnPlayer( EntityPlayerMP oldPlayer, int iDefaultDimension, boolean bPlayerLeavingTheEnd )
+    public EntityPlayerMP respawnPlayer( EntityPlayerMP oldPlayer, int iDefaultDimension, boolean bPlayerLeavingTheEnd )
     // server
-    public EntityPlayerMP recreatePlayerEntity( EntityPlayerMP oldPlayer, int iDefaultDimension, boolean bPlayerLeavingTheEnd )
+    //public EntityPlayerMP recreatePlayerEntity( EntityPlayerMP oldPlayer, int iDefaultDimension, boolean bPlayerLeavingTheEnd )
     {
         oldPlayer.getServerForPlayer().getEntityTracker().removePlayerFromTrackers( oldPlayer );
         
     	// client
-        //oldPlayer.getServerForPlayer().getEntityTracker().removeEntityFromAllTrackingPlayers( oldPlayer );
+        oldPlayer.getServerForPlayer().getEntityTracker().removeEntityFromAllTrackingPlayers( oldPlayer );
     	// server    	
-    	oldPlayer.getServerForPlayer().getEntityTracker().untrackEntity( oldPlayer );
+    	//oldPlayer.getServerForPlayer().getEntityTracker().untrackEntity( oldPlayer );
         
         oldPlayer.getServerForPlayer().GetChunkTracker().RemovePlayer( oldPlayer );
         
@@ -1177,6 +1184,7 @@ public abstract class ServerConfigurationManager
             newPlayer.deathCounter = oldPlayer.deathCounter;
         }
         
+        
         if ( bRetainPreviousSpawn )
         {
             newPlayer.setSpawnChunk( oldPlayer.getBedLocation(), oldPlayer.isSpawnForced(), oldPlayer.m_iSpawnDimension );
@@ -1194,10 +1202,10 @@ public abstract class ServerConfigurationManager
             newPlayer.setPosition(newPlayer.posX, newPlayer.posY + 1.0D, newPlayer.posZ);
         }
 
-        newPlayer.playerNetServerHandler.sendPacket(new Packet9Respawn(newPlayer.dimension, (byte)newPlayer.worldObj.difficultySetting, newPlayer.worldObj.getWorldInfo().getTerrainType(), newPlayer.worldObj.getHeight(), newPlayer.theItemInWorldManager.getGameType()));
+        newPlayer.playerNetServerHandler.sendPacketToPlayer(new Packet9Respawn(newPlayer.dimension, (byte)newPlayer.worldObj.difficultySetting, newPlayer.worldObj.getWorldInfo().getTerrainType(), newPlayer.worldObj.getHeight(), newPlayer.theItemInWorldManager.getGameType()));
         verifiedRespawnCoords = newWorldServer.getSpawnPoint();
-        newPlayer.playerNetServerHandler.sendPacket(new Packet6SpawnPosition(verifiedRespawnCoords.posX, verifiedRespawnCoords.posY, verifiedRespawnCoords.posZ));
-        newPlayer.playerNetServerHandler.sendPacket(new Packet43Experience(newPlayer.experience, newPlayer.experienceTotal, newPlayer.experienceLevel));
+        newPlayer.playerNetServerHandler.sendPacketToPlayer(new Packet6SpawnPosition(verifiedRespawnCoords.posX, verifiedRespawnCoords.posY, verifiedRespawnCoords.posZ));
+        newPlayer.playerNetServerHandler.sendPacketToPlayer(new Packet43Experience(newPlayer.experience, newPlayer.experienceTotal, newPlayer.experienceLevel));
         this.updateTimeAndWeatherForPlayer(newPlayer, newWorldServer);
         newWorldServer.GetChunkTracker().AddPlayer(newPlayer);
         newWorldServer.spawnEntityInWorld(newPlayer);
@@ -1206,21 +1214,7 @@ public abstract class ServerConfigurationManager
         newPlayer.setEntityHealth(newPlayer.getHealth());
         
         // Code moved relative to vanilla version so that some loading occurs before loading screen dissapears
-        
-        //AARON is testing out setting player respawn locations permanently
-//        if (true)
-//        {
-//        	newPlayer.playerNetServerHandler.setPlayerLocation(0, 100, 0, newPlayer.rotationYaw, newPlayer.rotationPitch);
-//            return newPlayer;
-//        }
-        
         newPlayer.playerNetServerHandler.setPlayerLocation(newPlayer.posX, newPlayer.posY, newPlayer.posZ, newPlayer.rotationYaw, newPlayer.rotationPitch);
-        
-        //AARON is testing out setting player respawn locations permanently
-      if (true)
-      {
-      	newPlayer.playerNetServerHandler.setPlayerLocation(0, 100, 0, newPlayer.rotationYaw, newPlayer.rotationPitch);
-      }
         
         return newPlayer;
     }

@@ -20,11 +20,11 @@ public class FCCommandServerLoc extends CommandBase
         return "/loc";
     }
     //AARON tester method... COMMENT THIS OUT BEFORE BIG RELEASE!!!
-//	@Override
-//    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
-//    {
-//        return true;
-//    }
+	@Override
+    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
+    {
+        return true;
+    }
     
     @Override
     public void processCommand(ICommandSender par1ICommandSender, String par2ArrayOfStr[])    

@@ -4,7 +4,7 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.4 BORDER CONTROL UPDATE:
 
-
+COMMENT OUT serverLoc cheat
 
 - Added/Changed the config file to be more descriptive and organized
     -SBTW.properties is now located inside the config folder at the root of the server/.minecraft
