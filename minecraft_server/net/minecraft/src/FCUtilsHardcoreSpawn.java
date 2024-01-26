@@ -46,7 +46,7 @@ public class FCUtilsHardcoreSpawn
 		{
 			//TESTER VVV
 //			System.out.println("FCUTILS accessed! get player exclusion radius!!!");
-			return SuperBTW.instance.getcustomRespawnExclusionRadius();
+			return SuperBTW.instance.getCustomRespawnExclusionRadius();
 		}
 		
 		return m_dRadiusBaseExclusionDistance * GetWorldTypeRadiusMultiplier() * GetGameProgressRadiusMultiplier();

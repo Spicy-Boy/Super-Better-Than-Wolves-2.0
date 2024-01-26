@@ -41,7 +41,7 @@ public class SuperBTW extends FCAddOn
 	
     private SuperBTW() 
     {
-        super("SUPER BETTER THAN WOLVES", "BETA 2.4 (w/ nilla gourds ~_~)", "");
+        super("SUPER BETTER THAN WOLVES", "BETA 2.4 (w/ nilla gourds ~_~)", "SBTW");
     }
 
 	@Override
@@ -49,7 +49,8 @@ public class SuperBTW extends FCAddOn
 	{
 		FCAddOnHandler.LogMessage(this.getName() + " Version " + this.getVersionString() + " Preparing...");
 		
-		this.initializeServerProperties();
+		//Deprecated VVV As of January 25, 2024, we use the preinitialize config property manager set by FCAddon
+//		this.initializeServerProperties();
     	SuperBTWDefinitions.addDefinitions();
     	SuperBTWRecipes.addRecipes();
     	
@@ -69,6 +70,22 @@ public class SuperBTW extends FCAddOn
 		return "SuperBTW";
 	}
 	
+//	private PropertyManager settings;
+//	private boolean isTpaEnabled;
+//	private boolean isRandomHCStartEnabled;
+//	private boolean isTeamStartEnabled;
+//	private boolean isWorldBorderEnabled;
+//	
+//	private int rectangularWorldBorderX;
+//	private int rectangularWorldBorderZ;
+//	private boolean isWorldBorderAroundSpawn;
+//	
+//	private boolean isCustomRespawnRadiusEnabled;
+//	private int customRespawnRadius;
+//	private int customRespawnExclusionRadius;
+//
+//	private boolean isLightningFireEnabled;
+
 	@Override
 	public void serverPlayerConnectionInitialized(NetServerHandler serverHandler, EntityPlayerMP playerMP) 
 	{
@@ -81,10 +98,10 @@ public class SuperBTW extends FCAddOn
 			{
 				//TESTER VVV
 //				System.out.println("attempting a tpteams start teleportation baby");
+//				playerMP.playerNetServerHandler.setPlayerLocation(1000, 60, 100, playerMP.rotationYaw, playerMP.rotationPitch);
 				
 				teleportPlayerToTeamLocationOrDefault(playerMP);
 
-//				playerMP.playerNetServerHandler.setPlayerLocation(1000, 60, 100, playerMP.rotationYaw, playerMP.rotationPitch);
 			}
 		}
 		
@@ -92,6 +109,11 @@ public class SuperBTW extends FCAddOn
 	}
 
 //Methods (and variables) related to teams and coordinates (same functionality as SuperBTWCommandTpTeam methods) ~ ~ ~ ~ ~ ~ ~ ~ ~
+	/*
+	 * NOTE FOR THE FUTURE LOSER- Create a SuperBTWTpTeamManager object to keep track of tpteam information and file reading
+	 * 
+	 * 
+	 */
 	
 	//accessible tpteams maps
 	Map<String, List<String>> teamsAndUsernames;
@@ -250,28 +272,94 @@ public class SuperBTW extends FCAddOn
 		return teamsAndCoords;
 	}
 	
-//Methods related to the SBTWserver.properties file V V V ~~~~~~~~~~~~~~~~~~ V V V >_< ^_^
-	public void initializeServerProperties()
-	{
-        //AARON attempts to initialize a custom server config :D
-        FCAddOnHandler.LogMessage("Loading SBTW Server properties");
-        this.settings = new PropertyManager(new File("SBTWserver.properties"), net.minecraft.server.MinecraftServer.getServer().getLogAgent());
-        this.setTpaEnabled(this.settings.getBooleanProperty("Enable-TPA-commands", false));
-        
-        this.setRandomHCStartEnabled(this.settings.getBooleanProperty("Start-with-random-HC-Spawn", false));
-        this.setTeamStartEnabled(this.settings.getBooleanProperty("Start-at-tpteam-location", false));
-        
-        this.setWorldBorderEnabled(this.settings.getBooleanProperty("Enable-World-Border", false));
-        this.setIsWorldBorderAroundSpawn(this.settings.getBooleanProperty("Enable-world-border-centered-around-spawn", false));
-        this.setRectangularWorldBorderX(this.settings.getIntProperty("World-border-X-distance", 5000));
-        this.setRectangularWorldBorderZ(this.settings.getIntProperty("World-border-Z-distance", 5000));
-        
-        this.setCustomRespawnRadiusEnabled(this.settings.getBooleanProperty("Enable-custom-HC-respawn-radius", false));
-        this.setCustonRespawnRadius(this.settings.getIntProperty("Custom-HC-respawn-radius", 2000));
-        this.setCustomRespawnExclusionRadius(this.settings.getIntProperty("Custom-HC-respawn-exclusion-radius", 1000));
+	//Methods related to the SBTWserver.properties file V V V ~~~~~~~~~~~~~~~~~~ V V V >_< ^_^
+		@Override
+		public void PreInitialize() {
+			
+			String propertyName1 = "Enable-TPA-Commands";
+			registerProperty(propertyName1, "false", "Allows players to use the TPA commands--/tpa [playername], /tpaccept [playername], and /tpcancel..");
+			this.setTpaEnabled(this.loadConfigProperties().get(propertyName1).equals("true"));
+			//TESTER VVV
+			System.out.println(propertyName1 +"="+getTpaEnabled());
+			
+			String propertyName2 = "Enable-Lightning-Fire";
+			registerProperty(propertyName2, "true", "Toggles whether or not bolts of lightning can start fires..the horror....the horror..");
+			this.setLightningFireEnabled(this.loadConfigProperties().get(propertyName2).equals("true"));
+			
+			String propertyName3 = "Enable-Random-HC-Start";
+			registerProperty(propertyName3, "false", "Players will begin at a random hardcore spawn instead of worldspawn.");
+			this.setRandomHCStartEnabled(this.loadConfigProperties().get(propertyName3).equals("true"));
+			
+			String propertyName4 = "Enable-TpTeam-Start";
+			registerProperty(propertyName4, "false", "Players begin at their set tpteam location, or the default location if no team is specified. See tpteams.txt (/tpteam set default) (/tpteam add [playername] [tpteam name])..");
+			this.setTeamStartEnabled(this.loadConfigProperties().get(propertyName4).equals("true"));
+			
+			String propertyName5 = "Enable-World-Border";
+			registerProperty(propertyName5, "false", "The World Border gives players a zap for leaving the boundaries (a rectangle centered on 0,0)");
+			this.setWorldBorderEnabled(this.loadConfigProperties().get(propertyName5).equals("true"));
+			
+			String propertyName7 = "Set-World-Border-X-Axis";
+			registerProperty(propertyName7, "5000", "");
+			this.setRectangularWorldBorderX( Integer.parseInt(this.loadConfigProperties().get(propertyName7)) );
+			//TESTER VVV
+			System.out.println(propertyName7 +"="+getRectangularWorldBorderX());
+			
+			String propertyName8 = "Set-World-Border-Z-Axis";
+			registerProperty(propertyName8, "5000", "");
+	        this.setRectangularWorldBorderZ( Integer.parseInt(this.loadConfigProperties().get(propertyName8)) );
+			//TESTER VVV
+			System.out.println(propertyName8 +"="+getRectangularWorldBorderZ());
+	        
+			String propertyName6 = "Center-World-Border-around-SPAWN?";
+			registerProperty(propertyName6, "false", "");
+			this.setIsWorldBorderAroundSpawn(this.loadConfigProperties().get(propertyName6).equals("true"));
+			
+			String propertyName9 = "Enable-Custom-HC-Respawn-Radius";
+			registerProperty(propertyName9, "false", "If enabled, players will respawn within this set range");
+			this.setCustomRespawnRadiusEnabled(this.loadConfigProperties().get(propertyName9).equals("true"));
+
+			String propertyName10 = "Set-Custom-Respawn-Radius";
+			registerProperty(propertyName10, "2000", "An unchanging HC respawn radius..");
+			this.setCustomRespawnRadius( Integer.parseInt(this.loadConfigProperties().get(propertyName10)) );
+			//TESTER VVV
+			System.out.println(propertyName10 +"="+getCustomRespawnRadius());
+			
+			String propertyName11 = "Set-Custom-Respawn-Exclusion-Radius";
+			registerProperty(propertyName11, "100", "The inner disc of the HC Spawn radius where nobody can spawn..");
+			this.setCustomRespawnExclusionRadius( Integer.parseInt(this.loadConfigProperties().get(propertyName11)) );
+			//TESTER VVV
+			System.out.println(propertyName10 +"="+getCustomRespawnExclusionRadius());
+			
+//			String propertyName = "";
+//			registerProperty(propertyName, "false", "");
+//			this.set( Integer.parseInt(this.loadConfigProperties().get(propertyName10)) );
+			
+//			String propertyName = "";
+//			registerProperty(propertyName, "false", "");
+//			this.set( Integer.parseInt(this.loadConfigProperties().get(propertyName10)) );
+		}
 	
-        this.setLightningFireEnabled(this.settings.getBooleanProperty("Enabled-lightning-fire", true));
-	}
+//	public void initializeServerProperties()
+//	{
+//        //AARON attempts to initialize a custom server config :D
+//        FCAddOnHandler.LogMessage("Loading SBTW Server properties");
+//        this.settings = new PropertyManager(new File("SBTWserver.properties"), net.minecraft.server.MinecraftServer.getServer().getLogAgent());
+//        this.setTpaEnabled(this.settings.getBooleanProperty("Enable-TPA-commands", false));
+//        
+//        this.setRandomHCStartEnabled(this.settings.getBooleanProperty("Start-with-random-HC-Spawn", false));
+//        this.setTeamStartEnabled(this.settings.getBooleanProperty("Start-at-tpteam-location", false));
+//        
+//        this.setWorldBorderEnabled(this.settings.getBooleanProperty("Enable-World-Border", false));
+//        this.setIsWorldBorderAroundSpawn(this.settings.getBooleanProperty("Enable-world-border-centered-around-spawn", false));
+//        this.setRectangularWorldBorderX(this.settings.getIntProperty("World-border-X-distance", 5000));
+//        this.setRectangularWorldBorderZ(this.settings.getIntProperty("World-border-Z-distance", 5000));
+//        
+//        this.setCustomRespawnRadiusEnabled(this.settings.getBooleanProperty("Enable-custom-HC-respawn-radius", false));
+//        this.setCustonRespawnRadius(this.settings.getIntProperty("Custom-HC-respawn-radius", 2000));
+//        this.setCustomRespawnExclusionRadius(this.settings.getIntProperty("Custom-HC-respawn-exclusion-radius", 1000));
+//	
+//        this.setLightningFireEnabled(this.settings.getBooleanProperty("Enabled-lightning-fire", true));
+//	}
 	
 	public void setTpaEnabled(boolean b) 
 	{
@@ -345,7 +433,7 @@ public class SuperBTW extends FCAddOn
 		return isCustomRespawnRadiusEnabled;
 	}
 	
-	public void setCustonRespawnRadius(int i)
+	public void setCustomRespawnRadius(int i)
 	{
 		this.customRespawnRadius = i;
 	}
@@ -358,7 +446,7 @@ public class SuperBTW extends FCAddOn
 	{
 		this.customRespawnExclusionRadius = i;
 	}
-	public int getcustomRespawnExclusionRadius()
+	public int getCustomRespawnExclusionRadius()
 	{
 		return customRespawnExclusionRadius;
 	}
