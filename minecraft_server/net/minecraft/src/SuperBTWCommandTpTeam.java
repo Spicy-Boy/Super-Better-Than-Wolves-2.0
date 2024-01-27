@@ -46,7 +46,6 @@ public class SuperBTWCommandTpTeam extends CommandBase
 		
 		teamsAndUsernames = createTeamsAndUsernamesMap(filePath);
 		
-		
 		teamsAndCoords = createTeamsAndCoordsMap(filePath);
 		
 		//TESTER for teams&users map VVV
@@ -430,7 +429,7 @@ public class SuperBTWCommandTpTeam extends CommandBase
     	writer.close();
     	
     	//THIS PART UPDATES THE MAPPING USED IN SuperBTW.java TO SET DEFAULT SPAWN!
-    	SuperBTW.instance.updateMaps();
+    	SuperBTW.instance.tpteamManager.updateMaps();
     	//Janky as hell, I know... I need to figure out a better way to share the maps between command and addon instance!
     	
     }

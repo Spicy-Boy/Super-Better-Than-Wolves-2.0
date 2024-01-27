@@ -1206,21 +1206,7 @@ public abstract class ServerConfigurationManager
         newPlayer.setEntityHealth(newPlayer.getHealth());
         
         // Code moved relative to vanilla version so that some loading occurs before loading screen dissapears
-        
-        //AARON is testing out setting player respawn locations permanently
-//        if (true)
-//        {
-//        	newPlayer.playerNetServerHandler.setPlayerLocation(0, 100, 0, newPlayer.rotationYaw, newPlayer.rotationPitch);
-//            return newPlayer;
-//        }
-        
         newPlayer.playerNetServerHandler.setPlayerLocation(newPlayer.posX, newPlayer.posY, newPlayer.posZ, newPlayer.rotationYaw, newPlayer.rotationPitch);
-        
-        //AARON is testing out setting player respawn locations permanently
-      if (true)
-      {
-      	newPlayer.playerNetServerHandler.setPlayerLocation(0, 100, 0, newPlayer.rotationYaw, newPlayer.rotationPitch);
-      }
         
         return newPlayer;
     }
