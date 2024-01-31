@@ -826,6 +826,12 @@ public class NetServerHandler extends NetHandler
                 }
 
                 this.playerEntity = this.mcServer.getConfigurationManager().recreatePlayerEntity(this.playerEntity, 0, false);
+                
+                //AARON attempts to give players items on respawn vvv
+                if (SuperBTW.instance.getRespawnWithCompass())
+                {
+                	FCUtilsItem.GivePlayerStackOrEject( this.playerEntity, new ItemStack(Item.compass, 1));
+                }
             }
         }
     }

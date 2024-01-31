@@ -17,7 +17,6 @@ public class SuperBTW extends FCAddOn
  * @author EpicAaron29 (aaron on the discord)
  *
  */
-	
 
 	public static SuperBTW instance = new SuperBTW();
 	
@@ -25,7 +24,7 @@ public class SuperBTW extends FCAddOn
 	SuperBTWTpTeamManager tpteamManager;
 	
 	//to initialize and read a settings file
-	private PropertyManager settings;
+//	private PropertyManager settings;
 	private boolean isTpaEnabled;
 	private boolean isRandomHCStartEnabled;
 	private boolean isTeamStartEnabled;
@@ -40,6 +39,8 @@ public class SuperBTW extends FCAddOn
 	private int customRespawnExclusionRadius;
 	
 	private boolean isLightningFireEnabled;
+	
+	private boolean isRespawnWithCompassEnabled;
 
 	
 	
@@ -108,15 +109,15 @@ public class SuperBTW extends FCAddOn
 		@Override
 		public void PreInitialize() {
 			
+			String propertyName2 = "Enable-Lightning-Fire";
+			registerProperty(propertyName2, "true", "Toggles whether or not bolts of lightning can start fires..the horror....the horror..");
+			this.setLightningFireEnabled(this.loadConfigProperties().get(propertyName2).equals("true"));
+			
 			String propertyName1 = "Enable-TPA-Commands";
 			registerProperty(propertyName1, "false", "Allows players to use the TPA commands--/tpa [playername], /tpaccept [playername], and /tpcancel..");
 			this.setTpaEnabled(this.loadConfigProperties().get(propertyName1).equals("true"));
 			//TESTER VVV
 			System.out.println(propertyName1 +"="+getTpaEnabled());
-			
-			String propertyName2 = "Enable-Lightning-Fire";
-			registerProperty(propertyName2, "true", "Toggles whether or not bolts of lightning can start fires..the horror....the horror..");
-			this.setLightningFireEnabled(this.loadConfigProperties().get(propertyName2).equals("true"));
 			
 			String propertyName3 = "Enable-Random-HC-Start";
 			registerProperty(propertyName3, "false", "Players will begin at a random hardcore spawn instead of worldspawn.");
@@ -161,6 +162,11 @@ public class SuperBTW extends FCAddOn
 			this.setCustomRespawnExclusionRadius( Integer.parseInt(this.loadConfigProperties().get(propertyName11)) );
 			//TESTER VVV
 			System.out.println(propertyName11 +"="+getCustomRespawnExclusionRadius());
+			
+			String propertyName12 = "Enable-Respawn-w/-Compass";
+			registerProperty(propertyName12, "false", "If enabled, players respawn holding a compass.");
+			this.setRespawnWithCompass(this.loadConfigProperties().get(propertyName12).equals("true"));
+			
 			
 //			String propertyName = "";
 //			registerProperty(propertyName, "false", "");
@@ -268,6 +274,15 @@ public class SuperBTW extends FCAddOn
 	public boolean getLightningFireEnabled()
 	{
 		return isLightningFireEnabled;
+	}
+	
+	public void setRespawnWithCompass(boolean b)
+	{
+		this.isRespawnWithCompassEnabled = b;
+	}
+	public boolean getRespawnWithCompass()
+	{
+		return this.isRespawnWithCompassEnabled;
 	}
 	
 	//DEPRECATED TPTEAM METHODS --> moved to SuperBTWTpTeamManager
