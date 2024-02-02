@@ -4,23 +4,31 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.4 BORDER CONTROL UPDATE:
 
-COMMENT OUT serverLoc cheat
+COMMENT OUT serverLoc cheat be
 
-- Added/Changed the config file to be more descriptive and organized
-    -SBTW.properties is now located inside the config folder at the root of the server/.minecraft
+
+
+- Added the /worldborder commands to enable/disable worldborder and make individuals immune to the border
+    - /worldborder [playername] enables or disables a players border immunity
+
+- Added a config in SBTW.properties that allows players to respawn with a compass in hand
 
 TODO- Added the evil egg
 
 TODO- Add configuration for changing the respawn radius from spawn chunks to any coordinate you like!
 ... really, we just need a new way to change the actual spawn chunks
 
-- Added server configs to SBTWserver.properties that allows server admins to enable and set a custom HC respawn and exclusion radius
+- Added server configs to SBTW.properties that allows server admins to enable and set a custom HC respawn and exclusion radius
 
 - Added the /smite [playername] command for admin use
 
-- Added a server config to SBTWserver.properties that enables a world border forcefield at a default radius of 5000 blocks in every direction
+- Added a server config to SBTW.properties that enables a world border forcefield at a default radius of 5000 blocks in every direction from origin
     - The world border is rectangular and centered around 0,0, but the origin can be changed to spawn in the config
     - The world border dimensions (both x and z axis) can be set in the config
+
+- Added/Changed the config file to be more descriptive and organized, now called SBTW.properties
+    -SBTW.properties is now located inside the config folder at the root of the server/.minecraft
+
 
 TODO- Added the /name [name] command to allow players to name their favorite items
 

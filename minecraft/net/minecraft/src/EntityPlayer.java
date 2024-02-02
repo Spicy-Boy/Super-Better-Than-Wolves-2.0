@@ -2674,9 +2674,9 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 	    }
 	    //AARON ADDED to keep track of deaths
 	    if(tag.hasKey("yyNumberOfDeaths"))
-	    	{
-	    		deathCounter = tag.getInteger("yyNumberOfDeaths");
-	    	}
+    	{
+    		deathCounter = tag.getInteger("yyNumberOfDeaths");
+    	}
     }
     
     protected void WriteModDataToNBT( NBTTagCompound tag )

@@ -1304,16 +1304,123 @@ public class WorldServer extends World
     	ValidateLootingBeaconList();
     	
     	ValidateSpawnLocationList();
+    	
+    	//AARON adds a check here for world border timing!
+    	//Comment this out if it causes issues... it shouldn't :)
+    	worldBorderCheck();
+    }
+    
+    private long lTimeOfLastShrink = -1;
+    String shrinkingMessage;
+    boolean toggle = true;
+    //AARON added this method to handle world border shrinking shenanigans
+    private void worldBorderCheck()
+    {
+    	//if shrinking is disabled, skip worldBorderCheck() entirely
+    	//only run this method 
+    	if (!SuperBTW.instance.getWorldBorderEnabled() || !SuperBTW.instance.getCanWorldBorderShrink())
+    	{
+    		return;
+    	}
+    	int iTimeFactor = (int)getWorldTime();
+    	//Checks for new moon rise (~~time=108,700)
+    	//if new moon rising, the world border is toggled to start shrinking!
+    	if (iTimeFactor == 108700 && !SuperBTW.instance.getIsWorldBorderShrinkingToggled())
+    	{
+    		SuperBTW.instance.setIsWorldBorderShrinkingToggled(true);
+    		
+    		//lets every player know that the blood moon is rising! 
+    		//vvv permadeath is being toggled and shrinking world border!
+            Iterator playerIterator = this.playerEntities.iterator();
+
+            while (playerIterator.hasNext())
+            {
+                EntityPlayer selectedPlayer = (EntityPlayer)playerIterator.next();
+
+                selectedPlayer.addChatMessage("THE BLOOD MOON RISES: PERMADEATH STARTS NOW.");
+            }
+    	}
+    	//this pulses once to set off the shrinking timer
+    	if (lTimeOfLastShrink == -1 && SuperBTW.instance.getIsWorldBorderShrinkingToggled())
+    	{
+    		lTimeOfLastShrink = FCUtilsWorld.GetOverworldTimeServerOnly();
+    	}
+    	
+		//TESTERS VVV 
+		System.out.println("World Time: "+FCUtilsWorld.GetOverworldTimeServerOnly() );
+		System.out.println("lTimeOfLastShrink + getShrinkingTimerIncrement(): "+ (lTimeOfLastShrink + SuperBTW.instance.getShrinkingTimerIncrement()) );
+	
+    	if (SuperBTW.instance.getIsWorldBorderShrinkingToggled() && toggle)
+    	{
+    		toggle = false;
+    		//this prevents multiple pings at the same time, which WorldServer is prone to for some reason...
+    		if ( !( ( this.getTotalWorldTime()) % 100 != 0 ))
+    		{
+    			
+    	    	if (SuperBTW.instance.getIsWorldBorderShrinkingToggled())
+    	    	{
+    	    		//if enough time is passed (time between shrinks set by shrinkingTimerIncrement in SuperBTW.java)
+    	    		if ( FCUtilsWorld.GetOverworldTimeServerOnly() > lTimeOfLastShrink + SuperBTW.instance.getShrinkingTimerIncrement())
+    	    		{
+    	    			lTimeOfLastShrink = FCUtilsWorld.GetOverworldTimeServerOnly();
+    	    			shrinkingMessage = "The World Border will shrink by "+SuperBTW.instance.getShrinkingAmount()
+    	    				+" blocks in about "+getMinutesFromTicks(SuperBTW.instance.getShrinkingTimerIncrement())+" minutes!";
+    	    			
+    	    			//SEND MESSAGE TO ALL PLAYER vvv
+    	    	    	Iterator playerIterator = this.playerEntities.iterator();
+    	    	    	
+    	    	        while (playerIterator.hasNext())
+    	    	        {
+    	    	            EntityPlayer selectedPlayer = (EntityPlayer)playerIterator.next();
+    	    	
+    	    	        	selectedPlayer.addChatMessage(shrinkingMessage);
+    	    	        }
+    	    	        //Player messages ^^^
+    	    			
+    	    			int newX = SuperBTW.instance.getRectangularWorldBorderX() - SuperBTW.instance.getShrinkingAmount();
+    	    			SuperBTW.instance.setRectangularWorldBorderX(newX);
+    	    			
+    	    			int newZ = SuperBTW.instance.getRectangularWorldBorderZ() - SuperBTW.instance.getShrinkingAmount();
+    	    			SuperBTW.instance.setRectangularWorldBorderZ(newZ);
+    	    			
+    	    			//TESTER vvv
+    		    		System.out.println("WORLD BORDER UPDATED!!!!");
+
+    	    		}
+    	    		
+    	    	}
+    		}
+    	}
+    	
+
+    }
+    
+    //AAROn created this method in order to dynamically convert from ticks to minutes
+    //24000 ticks is equal to 20 minutes
+    private int getMinutesFromTicks(int ticks)
+    {
+//    	int ticksPerTwentyMinutes = 24000;
+//    	int twentyMinutes = 20;
+    	
+    	double minutes = ticks / (20 * 60);
+    	
+    	return (int)minutes;	
     }
     
     private void ValidateMagneticPointList()
     {
     	// periodically check the magnetic point list for dead points
     	
+    	//AARON TESTER
+//    	System.out.println("Inside Magnetic Points List!");
+    	
     	int iTimeFactor = (int)getWorldTime();
     	
     	if ( ( iTimeFactor & 15 ) == 0 )
     	{
+    		//AARON TESTER
+//        	System.out.println("UwU past the weird magnetic points list line :D");
+    		
     		int iListLength = m_MagneticPointList.m_MagneticPoints.size();
     		
     		if ( iListLength > 0 )

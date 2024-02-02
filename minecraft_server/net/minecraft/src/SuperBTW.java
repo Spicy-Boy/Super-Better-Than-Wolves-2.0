@@ -22,8 +22,8 @@ public class SuperBTW extends FCAddOn
 	
 	String filePath; //name or location of the file containing the above information
 	SuperBTWTpTeamManager tpteamManager;
+	SuperBTWWorldBorderManager worldBorderManager;
 	
-	//to initialize and read a settings file
 //	private PropertyManager settings;
 	private boolean isTpaEnabled;
 	private boolean isRandomHCStartEnabled;
@@ -33,6 +33,18 @@ public class SuperBTW extends FCAddOn
 	private int rectangularWorldBorderX;
 	private int rectangularWorldBorderZ;
 	private boolean isWorldBorderAroundSpawn;
+	
+	private boolean canWorldBorderShrink; //can it? Up to you!
+	private boolean isWorldBorderShrinkingToggled = false; //the internal game toggle-- it is always off until an admin or an automated start system turns it on!
+	private int shrinkingTimerIncrement; //the # of ticks between each world shrink
+	private int shrinkingAmount; //this is by how much the world border actually shrinks
+	// vvv the world border value used to warn players that the next shrink is coming! 
+	// vvv Move or be caught in the storm!
+	private int impendingWorldBorderX; 
+	private int impendingWorldBorderZ;
+	
+	private int rectangularWorldBorderXMinimum;
+	private int rectangularWorldBorderZMinimum;
 	
 	private boolean isCustomRespawnRadiusEnabled;
 	private int customRespawnRadius;
@@ -59,16 +71,10 @@ public class SuperBTW extends FCAddOn
     	SuperBTWDefinitions.addDefinitions();
     	SuperBTWRecipes.addRecipes();
     	
-    	if (SuperBTW.instance.getTeamStartEnabled())
-    	{
-	    	//server teams initialization, only if team start is enabled for now
-			filePath = "tpteams.txt";
-			tpteamManager = new SuperBTWTpTeamManager(filePath);
-			
-			//deprecated VVV
-//			teamsAndUsernames = createTeamsAndUsernamesMap(filePath);
-//			teamsAndCoords = createTeamsAndCoordsMap(filePath);
-    	}
+    	worldBorderManager = new SuperBTWWorldBorderManager();
+    	
+		filePath = "tpteams.txt";
+		tpteamManager = new SuperBTWTpTeamManager(filePath);
 		
     	FCAddOnHandler.LogMessage(this.getName() + " Super Better Than Wolves initialized!");
 	}
@@ -144,11 +150,39 @@ public class SuperBTW extends FCAddOn
 			System.out.println(propertyName8 +"="+getRectangularWorldBorderZ());
 	        
 			String propertyName6 = "Center-World-Border-around-SPAWN?";
-			registerProperty(propertyName6, "false", "");
+			registerProperty(propertyName6, "false", "Instead of the default of 0,0...");
 			this.setIsWorldBorderAroundSpawn(this.loadConfigProperties().get(propertyName6).equals("true"));
 			
+			String propertyName15 = "Enable-Word-Border-Shrinkage";
+			registerProperty(propertyName15, "false", "If enabled, the world border will shrink periodically..");
+			this.setCanWorldBorderShrink(this.loadConfigProperties().get(propertyName15).equals("true"));
+			
+			String propertyName16 = "Time-between-Shrinks";
+			registerProperty(propertyName16, "6000", "Time between border shrinks. EX: 6000 ~ 5 minutes, 12,000 is a full day, 24,000 is a full day+night");
+	        this.setShrinkingTimerIncrement(Integer.parseInt(this.loadConfigProperties().get(propertyName16)) );
+			//TESTER VVV
+			System.out.println(propertyName16 +"="+getShrinkingTimerIncrement());
+			
+			String propertyName17 = "Shrink-by-how-much?";
+			registerProperty(propertyName17, "200", "This determines how many blocks the world border is reduced by each shrink..");
+	        this.setShrinkingAmount(Integer.parseInt(this.loadConfigProperties().get(propertyName17)) );
+			//TESTER VVV
+			System.out.println(propertyName17 +"="+getShrinkingAmount());
+			
+			String propertyName13 = "Set-WB-X-Minimum";
+			registerProperty(propertyName13, "200", "These determine how small the shrinking world border can get on x and z axis..");
+			this.setRectangularWorldBorderXMinimum( Integer.parseInt(this.loadConfigProperties().get(propertyName13)) );
+			//TESTER VVV
+			System.out.println(propertyName13 +"="+getRectangularWorldBorderXMinimum());
+			
+			String propertyName14 = "Set-WB-Z-Minimum";
+			registerProperty(propertyName14, "200", "");
+	        this.setRectangularWorldBorderZMinimum( Integer.parseInt(this.loadConfigProperties().get(propertyName14)) );
+			//TESTER VVV
+			System.out.println(propertyName14 +"="+getRectangularWorldBorderZMinimum());
+			
 			String propertyName9 = "Enable-Custom-HC-Respawn-Radius";
-			registerProperty(propertyName9, "false", "If enabled, players will respawn within this set range");
+			registerProperty(propertyName9, "false", "If enabled, players will respawn within the range set below");
 			this.setCustomRespawnRadiusEnabled(this.loadConfigProperties().get(propertyName9).equals("true"));
 
 			String propertyName10 = "Set-Custom-Respawn-Radius";
@@ -238,6 +272,76 @@ public class SuperBTW extends FCAddOn
 	public int getRectangularWorldBorderZ()
 	{
 		return rectangularWorldBorderZ;
+	}
+	
+	public void setCanWorldBorderShrink(boolean b)
+	{
+		this.canWorldBorderShrink = b;
+	}
+	public boolean getCanWorldBorderShrink()
+	{
+		return this.canWorldBorderShrink;
+	}
+	
+	//Used to warn players that they are outside of the future world border and should MOVE NOW
+	public void setImpendingWorldBorderX(int i)
+	{
+		this.impendingWorldBorderX = i;
+	}
+	public int getImpendingWorldBorderX()
+	{
+		return impendingWorldBorderX;
+	}
+	public void setImpendingWorldBorderZ(int i)
+	{
+		this.impendingWorldBorderZ = i;
+	}
+	public int getImpendingWorldBorderZ()
+	{
+		return impendingWorldBorderZ;
+	}
+	
+	public void setIsWorldBorderShrinkingToggled(boolean b)
+	{
+		this.isWorldBorderShrinkingToggled = b;
+	}
+	public boolean getIsWorldBorderShrinkingToggled()
+	{
+		return this.isWorldBorderShrinkingToggled;
+	}
+	
+	public void setShrinkingTimerIncrement(int i)
+	{
+		this.shrinkingTimerIncrement = i;
+	}
+	public int getShrinkingTimerIncrement()
+	{
+		return this.shrinkingTimerIncrement;
+	}
+	public void setShrinkingAmount(int i)
+	{
+		this.shrinkingAmount = i;
+	}
+	public int getShrinkingAmount()
+	{
+		return this.shrinkingAmount;
+	}
+	
+	public void setRectangularWorldBorderXMinimum(int i)
+	{
+		this.rectangularWorldBorderXMinimum = i;
+	}
+	public int getRectangularWorldBorderXMinimum()
+	{
+		return rectangularWorldBorderXMinimum;
+	}
+	public void setRectangularWorldBorderZMinimum(int i)
+	{
+		this.rectangularWorldBorderZMinimum = i;
+	}
+	public int getRectangularWorldBorderZMinimum()
+	{
+		return rectangularWorldBorderZMinimum;
 	}
 	
 	public void setCustomRespawnRadiusEnabled(boolean b)

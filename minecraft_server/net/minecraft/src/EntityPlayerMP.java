@@ -129,6 +129,11 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
                 this.theItemInWorldManager.setGameType(EnumGameType.getByID(par1NBTTagCompound.getInteger("playerGameType")));
             }
         }
+        //AARON added a tag to keep track of world border immunity even after logging out
+        if (par1NBTTagCompound.hasKey("sbtwWorldBorderImmunity"))
+        {
+        	this.setIsImmuneToWorldBorder(par1NBTTagCompound.getBoolean("sbtwWorldBorderImmunity"));
+        }
     }
 
     /**
@@ -138,6 +143,9 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         super.writeEntityToNBT(par1NBTTagCompound);
         par1NBTTagCompound.setInteger("playerGameType", this.theItemInWorldManager.getGameType().getID());
+    
+        //AARON added a tag to keep track of world border immunity even after logging out
+        par1NBTTagCompound.setBoolean("sbtwWorldBorderImmunity", isImmuneToWorldBorder);
     }
 
     /**
@@ -1078,7 +1086,8 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         
     	NotifyBlockWalkedOn();
     	
-    	//AARON adds an SMP check to calculate the player's location and smite them if they beyond set boundaries
+    	//AARON adds an SMP check to calculate the player's location
+    	//and smite them if they are beyond set world border boundaries >:D
     	checkBoundariesAndSmitePlayer();
     }
     
@@ -1093,7 +1102,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 		{
 			return;
 		}
-		if (SuperBTW.instance.getWorldBorderEnabled())
+		if (SuperBTW.instance.getWorldBorderEnabled() && !this.getIsImmuneToWorldBorder())
 		{
 	    	//TESTER
 //	    	System.out.println("World Border Enabled");
@@ -1101,7 +1110,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 			int worldBorderX = SuperBTW.instance.getRectangularWorldBorderX();
 			int worldBorderZ = SuperBTW.instance.getRectangularWorldBorderZ();
 			int warningDistance = 16; //HARD CODED!!! Player starts being warned 16 blocks from border
-			int originOfBorderX = 0;
+			int originOfBorderX = 0; //HARD CODED ORIGIN!!! This will be configurable when I learn how to rip up og spawn and set it somewhere new
 			int originOfBorderZ = 0;
 			if (SuperBTW.instance.getIsWorldBorderAroundSpawn())
 			{
@@ -1604,5 +1613,16 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     public String getTpaRequestName()
     {
     	return tpaRequestPlayerName;
+    }
+    
+    //AARON added this variable and methods to keep track of border immunity
+    public boolean isImmuneToWorldBorder = false;
+    public void setIsImmuneToWorldBorder(boolean b)
+    {
+    	this.isImmuneToWorldBorder = b;
+    }
+    public boolean getIsImmuneToWorldBorder()
+    {
+    	return isImmuneToWorldBorder;
     }
 }
