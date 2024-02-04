@@ -1311,87 +1311,104 @@ public class WorldServer extends World
     }
     
     private long lTimeOfLastShrink = -1;
-    String shrinkingMessage;
-    boolean toggle = true;
     //AARON added this method to handle world border shrinking shenanigans
     private void worldBorderCheck()
     {
+    	
+    	//TESTER VV
+    	System.out.println("Is world border toggled? "+SuperBTW.instance.getIsWorldBorderShrinkingToggled());
+    	System.out.println("Time since last shrink: "+lTimeOfLastShrink);
+    	
     	//if shrinking is disabled, skip worldBorderCheck() entirely
-    	//only run this method 
+    	//only run this method if the world border is enabled in config AND has been toggled on in-game
+    	//WORLD BORDER SHRINKING IS NEVER RUNNING BY DEFAULT ON WORLD START!
     	if (!SuperBTW.instance.getWorldBorderEnabled() || !SuperBTW.instance.getCanWorldBorderShrink())
     	{
     		return;
     	}
+    	
     	int iTimeFactor = (int)getWorldTime();
-    	//Checks for new moon rise (~~time=108,700)
+    	// vvv Checks for new moon rise (~~time=108,700)
     	//if new moon rising, the world border is toggled to start shrinking!
     	if (iTimeFactor == 108700 && !SuperBTW.instance.getIsWorldBorderShrinkingToggled())
     	{
     		SuperBTW.instance.setIsWorldBorderShrinkingToggled(true);
     		
-    		//lets every player know that the blood moon is rising! 
-    		//vvv permadeath is being toggled and shrinking world border!
+    		//lets every player know that the blood moon is rising
+    		//vvv permadeath is being toggled and also shrinking world border too!
             Iterator playerIterator = this.playerEntities.iterator();
 
             while (playerIterator.hasNext())
             {
                 EntityPlayer selectedPlayer = (EntityPlayer)playerIterator.next();
 
-                selectedPlayer.addChatMessage("THE BLOOD MOON RISES: PERMADEATH STARTS NOW.");
+                selectedPlayer.addChatMessage("## THE NEW MOON RISES. ## Permadeath starts now.");
+                selectedPlayer.addChatMessage("The World Border will shrink by "+SuperBTW.instance.getShrinkingAmount()+" blocks in about "+getMinutesFromTicks(SuperBTW.instance.getShrinkingTimerIncrement())+" minutes!");
+                
+                //kickstart the loop by setting the impending world border to its initial size
+                SuperBTW.instance.setImpendingWorldBorderX(SuperBTW.instance.getRectangularWorldBorderX());
+                SuperBTW.instance.setImpendingWorldBorderZ(SuperBTW.instance.getRectangularWorldBorderZ());
             }
     	}
-    	//this pulses once to set off the shrinking timer
+    	//this pulses once to set off the shrinking timer properly
     	if (lTimeOfLastShrink == -1 && SuperBTW.instance.getIsWorldBorderShrinkingToggled())
     	{
     		lTimeOfLastShrink = FCUtilsWorld.GetOverworldTimeServerOnly();
     	}
     	
-		//TESTERS VVV 
-		System.out.println("World Time: "+FCUtilsWorld.GetOverworldTimeServerOnly() );
-		System.out.println("lTimeOfLastShrink + getShrinkingTimerIncrement(): "+ (lTimeOfLastShrink + SuperBTW.instance.getShrinkingTimerIncrement()) );
-	
-    	if (SuperBTW.instance.getIsWorldBorderShrinkingToggled() && toggle)
+    	//if worldborder is actively running, this loop operates timer + shrinking mechanism
+    	if (SuperBTW.instance.getIsWorldBorderShrinkingToggled())
     	{
-    		toggle = false;
-    		//this prevents multiple pings at the same time, which WorldServer is prone to for some reason...
-    		if ( !( ( this.getTotalWorldTime()) % 100 != 0 ))
+    		//prevents this calculation from being spammed like crazy
+    		if ( ( this.getTotalWorldTime()) % 100 != 0 )
     		{
-    			
-    	    	if (SuperBTW.instance.getIsWorldBorderShrinkingToggled())
-    	    	{
-    	    		//if enough time is passed (time between shrinks set by shrinkingTimerIncrement in SuperBTW.java)
-    	    		if ( FCUtilsWorld.GetOverworldTimeServerOnly() > lTimeOfLastShrink + SuperBTW.instance.getShrinkingTimerIncrement())
-    	    		{
-    	    			lTimeOfLastShrink = FCUtilsWorld.GetOverworldTimeServerOnly();
-    	    			shrinkingMessage = "The World Border will shrink by "+SuperBTW.instance.getShrinkingAmount()
-    	    				+" blocks in about "+getMinutesFromTicks(SuperBTW.instance.getShrinkingTimerIncrement())+" minutes!";
-    	    			
-    	    			//SEND MESSAGE TO ALL PLAYER vvv
-    	    	    	Iterator playerIterator = this.playerEntities.iterator();
-    	    	    	
-    	    	        while (playerIterator.hasNext())
-    	    	        {
-    	    	            EntityPlayer selectedPlayer = (EntityPlayer)playerIterator.next();
-    	    	
-    	    	        	selectedPlayer.addChatMessage(shrinkingMessage);
-    	    	        }
-    	    	        //Player messages ^^^
-    	    			
-    	    			int newX = SuperBTW.instance.getRectangularWorldBorderX() - SuperBTW.instance.getShrinkingAmount();
-    	    			SuperBTW.instance.setRectangularWorldBorderX(newX);
-    	    			
-    	    			int newZ = SuperBTW.instance.getRectangularWorldBorderZ() - SuperBTW.instance.getShrinkingAmount();
-    	    			SuperBTW.instance.setRectangularWorldBorderZ(newZ);
-    	    			
-    	    			//TESTER vvv
-    		    		System.out.println("WORLD BORDER UPDATED!!!!");
-
-    	    		}
-    	    		
-    	    	}
+    			//TESTERS VVV 
+    			System.out.println("World Time: "+FCUtilsWorld.GetOverworldTimeServerOnly() );
+    			System.out.println("lTimeOfLastShrink + getShrinkingTimerIncrement: "+ (lTimeOfLastShrink + SuperBTW.instance.getShrinkingTimerIncrement()) );
+    			return;
     		}
+    			//check timer to see if it has passed the amount of time required before a shrink... then shrink!!
+    		if ( FCUtilsWorld.GetOverworldTimeServerOnly() > lTimeOfLastShrink + SuperBTW.instance.getShrinkingTimerIncrement())
+    		{
+    			//perform the shrink below vvv
+    			SuperBTW.instance.setRectangularWorldBorderX(SuperBTW.instance.getImpendingWorldBorderX());
+    			SuperBTW.instance.setRectangularWorldBorderZ(SuperBTW.instance.getImpendingWorldBorderZ());
+    			
+    			lTimeOfLastShrink = (int)getWorldTime(); //reset the timer
+    			
+    			//Calculate world border shrink amount X for next shrink
+    			int shrunkenX = (int) (SuperBTW.instance.getRectangularWorldBorderX() - Math.ceil( SuperBTW.instance.getShrinkingAmount() / 3 ) );
+    				//vvv world border can never shrink beyond the minimum set in config!
+    			if (shrunkenX > SuperBTW.instance.getRectangularWorldBorderXMinimum())
+    			{
+    				shrunkenX = SuperBTW.instance.getRectangularWorldBorderXMinimum();
+    			}
+    			
+    			SuperBTW.instance.setImpendingWorldBorderX(shrunkenX);
+    			
+    			//Calculate world border shrink amount Z for next shrink
+    			int shrunkenZ = SuperBTW.instance.getRectangularWorldBorderZ() - SuperBTW.instance.getShrinkingAmount();
+    				//vvv world border can never shrink beyond the minimum set in config!
+    			if (shrunkenZ > SuperBTW.instance.getRectangularWorldBorderZMinimum())
+    			{
+    				shrunkenZ = SuperBTW.instance.getRectangularWorldBorderZMinimum();
+    			}
+    			
+    			SuperBTW.instance.setImpendingWorldBorderZ(shrunkenZ);
+    			
+    			//MESSAGE to players telling them time of next shrink
+                Iterator playerIterator = this.playerEntities.iterator();
+
+                while (playerIterator.hasNext())
+                {
+                    EntityPlayer selectedPlayer = (EntityPlayer)playerIterator.next();
+                    
+                    selectedPlayer.addChatMessage("## World Border closing in! ##");
+                    selectedPlayer.addChatMessage("The World Border will shrink by "+SuperBTW.instance.getShrinkingAmount()+" blocks in about "+getMinutesFromTicks(SuperBTW.instance.getShrinkingTimerIncrement())+" minutes!");
+                }
+    		}
+    		
     	}
-    	
 
     }
     

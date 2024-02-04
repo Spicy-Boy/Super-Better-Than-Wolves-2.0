@@ -10,7 +10,7 @@ public class SuperBTWCommandWorldBorder extends CommandBase
 	//COMMAND TRACKER
 	// /worldborder enable /worldborder disable
 	// /worldborder [playername] (toggles if player is immune to world border
-	// /worldborder shrinking (toggles if world border is shrinking)
+	// /worldborder shrink (toggles if world border is shrinking)
 	// ^^^ this is basically a toggle switch for world shrinking 
 	// /worldborder info (gives debug info, reads variables to admins)
 
@@ -44,7 +44,7 @@ public class SuperBTWCommandWorldBorder extends CommandBase
         		SuperBTW.instance.setWorldBorderEnabled(false);
         		notifyAdmins(sender, "Disabled the world border.", new Object[0]);
         	}
-        	else if (arguments[0].equals("shrinking"))
+        	else if (arguments[0].equals("shrink"))
         	{
         		if (SuperBTW.instance.getIsWorldBorderShrinkingToggled())
         		{
