@@ -11,6 +11,7 @@ public class SuperBTWCommandWorldBorder extends CommandBase
 	// /worldborder enable /worldborder disable
 	// /worldborder [playername] (toggles if player is immune to world border
 	// /worldborder shrink (toggles if world border is shrinking)
+	// /worldborder shrink [# to shrink by]
 	// ^^^ this is basically a toggle switch for world shrinking 
 	// /worldborder info (gives debug info, reads variables to admins)
 
@@ -27,7 +28,7 @@ public class SuperBTWCommandWorldBorder extends CommandBase
     }
     
     public void processCommand(ICommandSender sender, String[] arguments) {
-        if (arguments.length < 1 || arguments.length > 3) {
+        if (arguments.length < 1 || arguments.length > 4) {
 
             throw new WrongUsageException("Try /worldborder [playername] or /worldborder enable/disable", new Object[0]);
 
@@ -46,6 +47,7 @@ public class SuperBTWCommandWorldBorder extends CommandBase
         	}
         	else if (arguments[0].equals("shrink"))
         	{
+        		
         		if (SuperBTW.instance.getIsWorldBorderShrinkingToggled())
         		{
         			SuperBTW.instance.setIsWorldBorderShrinkingToggled(false);
@@ -85,6 +87,15 @@ public class SuperBTWCommandWorldBorder extends CommandBase
     
         		}
         	}
+        }
+        else if (arguments.length == 2)
+        {
+    		if (arguments[0].equals("shrink"))
+    		{
+    			SuperBTW.instance.setRectangularWorldBorderX(SuperBTW.instance.getRectangularWorldBorderX() - Integer.parseInt(arguments[1]));
+    			SuperBTW.instance.setRectangularWorldBorderZ(SuperBTW.instance.getRectangularWorldBorderZ() - Integer.parseInt(arguments[1]));
+    			
+    		}
         }
     }
     

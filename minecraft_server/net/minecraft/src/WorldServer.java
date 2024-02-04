@@ -1377,9 +1377,9 @@ public class WorldServer extends World
     			lTimeOfLastShrink = (int)getWorldTime(); //reset the timer
     			
     			//Calculate world border shrink amount X for next shrink
-    			int shrunkenX = (int) (SuperBTW.instance.getRectangularWorldBorderX() - Math.ceil( SuperBTW.instance.getShrinkingAmount() / 3 ) );
+    			int shrunkenX = SuperBTW.instance.getRectangularWorldBorderX() - SuperBTW.instance.getShrinkingAmount() / 3;
     				//vvv world border can never shrink beyond the minimum set in config!
-    			if (shrunkenX > SuperBTW.instance.getRectangularWorldBorderXMinimum())
+    			if (shrunkenX < SuperBTW.instance.getRectangularWorldBorderXMinimum())
     			{
     				shrunkenX = SuperBTW.instance.getRectangularWorldBorderXMinimum();
     			}
@@ -1387,9 +1387,9 @@ public class WorldServer extends World
     			SuperBTW.instance.setImpendingWorldBorderX(shrunkenX);
     			
     			//Calculate world border shrink amount Z for next shrink
-    			int shrunkenZ = SuperBTW.instance.getRectangularWorldBorderZ() - SuperBTW.instance.getShrinkingAmount();
+    			int shrunkenZ = SuperBTW.instance.getRectangularWorldBorderZ() - SuperBTW.instance.getShrinkingAmount() / 3;
     				//vvv world border can never shrink beyond the minimum set in config!
-    			if (shrunkenZ > SuperBTW.instance.getRectangularWorldBorderZMinimum())
+    			if (shrunkenZ < SuperBTW.instance.getRectangularWorldBorderZMinimum())
     			{
     				shrunkenZ = SuperBTW.instance.getRectangularWorldBorderZMinimum();
     			}
