@@ -61,7 +61,8 @@ public class SuperBTWItemFlintKnapping extends Item
     	int badHits = itemStack.getTagCompound().getInteger("badHits");
 
     	int var6 = this.getMaxItemUseDuration(itemStack) - iTicksInUseRemaining;
-    	System.out.println("Var 6 = " + var6);
+    	//TESTER VVV
+//    	System.out.println("Var 6 = " + var6);
 //        float var7 = (float)var6 / 20.0F;
 //        var7 = (var7 * var7 + var7 * 2.0F) / 3.0F;
         

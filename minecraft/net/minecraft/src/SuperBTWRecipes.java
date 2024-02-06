@@ -396,6 +396,13 @@ public class SuperBTWRecipes extends FCRecipes {
 		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.waterMelonSeeds, 1 ), new Object[] { 
         new ItemStack( SCDefs.melonWaterSlice, 1 )
 		} );
+		
+		//curing beef rib
+		FCRecipes.AddShapelessRecipe( new ItemStack( FCBetterThanWolves.fcItemMeatCured, 2 ), new Object[] { 
+	            new ItemStack( SuperBTWDefinitions.cowRib), new ItemStack( FCBetterThanWolves.fcItemNitre), new ItemStack( FCBetterThanWolves.fcItemNitre),
+	            new ItemStack( FCBetterThanWolves.fcItemNitre)
+	        } );
+		
 	}
 
 	private static void addProgressRecipes() {

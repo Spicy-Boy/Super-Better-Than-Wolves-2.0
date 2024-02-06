@@ -175,7 +175,7 @@ public class FCEntityFallingBlock extends EntityFallingSand
     }
     
     //------------- Class Specific Methods ------------//
-    //AARON adds to this method to make special rules for 
+    //AARON adds to this method to make special rules for block falling?
     private boolean AttemptToReplaceBlockAtPosition( int i, int j, int k )
     {
     	if ( !m_bHasBlockBrokenOnLand && 

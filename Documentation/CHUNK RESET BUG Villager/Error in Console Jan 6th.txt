@@ -1,0 +1,72 @@
+2024-01-06 18:35:31 [SERVER] [INFO] Saving chunks for level 'The Crater'/Overworld
+2024-01-06 18:35:31 [SERVER] [INFO] Saving chunks for level 'The Crater'/Nether
+2024-01-06 18:35:31 [SERVER] [INFO] Saving chunks for level 'The Crater'/The End
+net.minecraft.src.ReportedException: Loading entity NBT
+	at net.minecraft.src.Entity.readFromNBT(Entity.java:3152)
+	at net.minecraft.src.EntityList.createEntityFromNBT(EntityList.java:140)
+	at net.minecraft.src.AnvilChunkLoader.readChunkFromNBT(AnvilChunkLoader.java:367)
+	at net.minecraft.src.AnvilChunkLoader.checkedReadChunkFromNBT(AnvilChunkLoader.java:83)
+	at net.minecraft.src.AnvilChunkLoader.loadChunk(AnvilChunkLoader.java:63)
+	at net.minecraft.src.ChunkProviderServer.safeLoadChunk(ChunkProviderServer.java:171)
+	at net.minecraft.src.ChunkProviderServer.loadChunk(ChunkProviderServer.java:108)
+	at net.minecraft.src.ChunkProviderServer.provideChunk(ChunkProviderServer.java:155)
+	at net.minecraft.src.World.getChunkFromChunkCoords(World.java:458)
+	at net.minecraft.src.World.getBlockId(World.java:338)
+	at net.minecraft.src.Teleporter.placeInExistingPortal(Teleporter.java:110)
+	at net.minecraft.src.Teleporter.placeInPortal(Teleporter.java:37)
+	at net.minecraft.src.ServerConfigurationManager.transferEntityToWorld(ServerConfigurationManager.java:545)
+	at net.minecraft.src.ServerConfigurationManager.transferPlayerToDimension(ServerConfigurationManager.java:444)
+	at net.minecraft.src.EntityPlayerMP.travelToDimension(EntityPlayerMP.java:424)
+	at net.minecraft.src.Entity.onEntityUpdate(Entity.java:474)
+	at net.minecraft.src.EntityLiving.onEntityUpdate(EntityLiving.java:586)
+	at net.minecraft.src.Entity.onUpdate(Entity.java:426)
+	at net.minecraft.src.EntityLiving.onUpdate(EntityLiving.java:841)
+	at net.minecraft.src.EntityPlayer.onUpdate(EntityPlayer.java:323)
+	at net.minecraft.src.EntityPlayerMP.onUpdateEntity(EntityPlayerMP.java:261)
+	at net.minecraft.src.NetServerHandler.handleFlying(NetServerHandler.java:246)
+	at net.minecraft.src.Packet10Flying.processPacket(Packet10Flying.java:48)
+	at net.minecraft.src.MemoryConnection.processReadPackets(MemoryConnection.java:74)
+	at net.minecraft.src.NetServerHandler.networkTick(NetServerHandler.java:77)
+	at net.minecraft.src.NetworkListenThread.networkTick(NetworkListenThread.java:48)
+	at net.minecraft.src.IntegratedServerListenThread.networkTick(IntegratedServerListenThread.java:99)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:689)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:592)
+	at net.minecraft.src.IntegratedServer.tick(IntegratedServer.java:126)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:481)
+	at net.minecraft.src.ThreadMinecraftServer.run(ThreadMinecraftServer.java:18)
+Caused by: java.lang.NullPointerException: Cannot invoke "net.minecraft.src.FCEntityVillager$WeightedMerchantEntry.matchesMerchantRecipe(net.minecraft.src.MerchantRecipe)" because "entry" is null
+	at net.minecraft.src.FCEntityVillager.isInvalidProfessionTrade(FCEntityVillager.java:674)
+	at net.minecraft.src.FCEntityVillager.checkForInvalidTrades(FCEntityVillager.java:641)
+	at net.minecraft.src.FCEntityVillager.readEntityFromNBT(FCEntityVillager.java:227)
+	at net.minecraft.src.Entity.readFromNBT(Entity.java:3135)
+	... 31 more
+
+
+
+~~~ It happened agaiN!
+net.minecraft.src.ReportedException: Loading entity NBT
+	at net.minecraft.src.Entity.readFromNBT(Entity.java:3152)
+	at net.minecraft.src.EntityList.createEntityFromNBT(EntityList.java:140)
+	at net.minecraft.src.AnvilChunkLoader.readChunkFromNBT(AnvilChunkLoader.java:367)
+	at net.minecraft.src.AnvilChunkLoader.checkedReadChunkFromNBT(AnvilChunkLoader.java:83)
+	at net.minecraft.src.AnvilChunkLoader.loadChunk(AnvilChunkLoader.java:63)
+	at net.minecraft.src.ChunkProviderServer.safeLoadChunk(ChunkProviderServer.java:171)
+	at net.minecraft.src.ChunkProviderServer.loadChunk(ChunkProviderServer.java:108)
+	at net.minecraft.src.ChunkProviderServer.provideChunk(ChunkProviderServer.java:155)
+	at net.minecraft.src.World.getChunkFromChunkCoords(World.java:458)
+	at net.minecraft.src.World.spawnEntityInWorld(World.java:1532)
+	at net.minecraft.src.World.spawnEntityInWorld(World.java:1471)
+	at net.minecraft.src.ServerConfigurationManager.playerLoggedIn(ServerConfigurationManager.java:227)
+	at net.minecraft.src.ServerConfigurationManager.initializeConnectionToPlayer(ServerConfigurationManager.java:87)
+	at net.minecraft.src.IntegratedServerListenThread.networkTick(IntegratedServerListenThread.java:87)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:689)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:592)
+	at net.minecraft.src.IntegratedServer.tick(IntegratedServer.java:126)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:481)
+	at net.minecraft.src.ThreadMinecraftServer.run(ThreadMinecraftServer.java:18)
+Caused by: java.lang.NullPointerException: Cannot invoke "net.minecraft.src.FCEntityVillager$WeightedMerchantEntry.matchesMerchantRecipe(net.minecraft.src.MerchantRecipe)" because "entry" is null
+	at net.minecraft.src.FCEntityVillager.isInvalidProfessionTrade(FCEntityVillager.java:674)
+	at net.minecraft.src.FCEntityVillager.checkForInvalidTrades(FCEntityVillager.java:641)
+	at net.minecraft.src.FCEntityVillager.readEntityFromNBT(FCEntityVillager.java:227)
+	at net.minecraft.src.Entity.readFromNBT(Entity.java:3135)
+	... 18 more

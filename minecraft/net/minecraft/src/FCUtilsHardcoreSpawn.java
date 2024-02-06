@@ -96,6 +96,10 @@ public class FCUtilsHardcoreSpawn
         
     	if ( oldPlayer.playerConqueredTheEnd )
     	{
+    		//AARON added this little operation to make sure death counter is preserved
+//    		newPlayer.deathCounter = oldPlayer.deathCounter;
+    		//NVM IT DIDNT WORK!
+    		
     		ReturnPlayerToOriginalSpawn( newWorld, newPlayer );
     		
     		return;

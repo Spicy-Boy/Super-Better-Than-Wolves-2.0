@@ -52,7 +52,8 @@ public class SuperBTWDefinitions {
 		id_pipePacked = 20027,
 		id_pipeLit = 20028,
 		
-		id_treat = 20029;
+		id_treat = 20029,
+		id_badTreat = 20030;
 	
 		//GOURD MANIA!
 	private static final int
@@ -116,6 +117,7 @@ public class SuperBTWDefinitions {
 	public static Item pipePacked;
 	public static Item pipeLit;
 	public static Item treat;
+	public static Item badTreat;
 	
 	public static Block branchBlock;
 	public static Block sunflower;
@@ -182,6 +184,7 @@ public class SuperBTWDefinitions {
 		pipePacked = new SuperBTWItemPipePacked(id_pipePacked - 256);
 		pipeLit = new SuperBTWItemPipeLit(id_pipeEmpty - 256);
 		treat = new SuperBTWItemTreat(id_treat - 256);
+		badTreat = new SuperBTWItemBadTreat(id_badTreat - 256);
 		
 		branchBlock = new SuperBTWBlockBranch(id_branchBlock);
 		Item.itemsList[branchBlock.blockID] = new ItemBlock(branchBlock.blockID - 256); 

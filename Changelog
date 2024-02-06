@@ -2,6 +2,52 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
+2.4 The Epic Update:
+
+
+
+^^^ ~Brick and Mortar~
+
+
+- Changed withers to be made with soulsand again. Yes, you can still use bone blocks if you like
+
+- Changed/tweaked Hardcore Hoosies 2.0 just a little bit more, as some evil players still wanted to abuse the poor animals
+
+- Fixed an issue where trades weren't refreshing properly (again... ;I)
+
+- Fixed an issue where the death counter was being reset to 0 when going through the end portal
+
+- Fixed an issue that caused a crash when applying arrows (and maybe other things too) to your armor slots. 
+
+NOTE- CRASH THAT REVERTS CHUNKS WHEN LOADING VILLAGERS WITH TRADES THAT NO LONGER EXIST IN CODE... look into it!
+
+TODO- APPLY socks pumpkins to head
+
+TODO- Finalize bucket of mortar texture!
+
+TODO SMP COMMANDS - Add basic once-per-life praying command, have lightning strike player
+
+LOOKINTO- Stone pick + gold pick cannot mine iron blocks at all.. Maybe get something??
+
+TODO- Added conversion recipe from clay bricks to clay balls
+
+TODO- Reconfigure blacksmith trades to make a bit more sense
+
+TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
+        TODO>Apply the same principle to soul filtering. Thank you Dawn for pointing all of this out!
+
+TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
+        TODO> add a particle effect to show that the glass is cooking inside the gloryhole
+
+TODO- Added the glass jars from Sockscrops! They can store smaller items!
+
+TODO- Added the Meat Golem
+
+TODO- Added the airship
+
+TODO- Added the pipe
+        >Used to rip fat clouds
+
 2.3 Punish All Cow Abusers Update:
 
 - Added the ctrl key as an alternative sprint button. This cannot be rebound at this time.
@@ -48,27 +94,6 @@ NOTE: If both team start and HC start are enabled at the same time, then players
 - Fixed an issue where loose dirt was breakable by zombies... sorry :)    
     
 - Fixed a long standing issue where villager trades would not refresh properly (thanks CE team!)
-
-TODO- Added lightning tweaker config option
-
-TODO- Reconfigure blacksmith trades to make a bit more sense
-
-TODO- Change wither from bone blocks back to soulsand :P (maybe axe infused skulls entirely because why we gotta do that??)
-
-TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
-        TODO>Apply the same principle to soul filtering. Thank you Dawn for pointing all of this out!
-
-TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
-        TODO> add a particle effect to show that the glass is cooking inside the gloryhole
-
-TODO- Added the glass jars from Sockscrops! They can store smaller items!
-
-TODO- Added the Meat Golem
-
-TODO- Added the airship
-
-TODO- Added the pipe
-        >Used to rip fat clouds
 
 2.2 Brick & Mortar:
 

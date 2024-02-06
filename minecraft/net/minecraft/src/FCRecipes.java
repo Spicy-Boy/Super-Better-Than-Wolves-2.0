@@ -5347,7 +5347,7 @@ public abstract class FCRecipes
 		FCEntityVillager.addArcaneScrollTrade(farmer, Enchantment.looting.effectId, 16, 32, 1F, 5);
 		
 		// ------ Librarian ------ //
-		//Level 1
+//		//Level 1
 		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Item.paper.itemID, 27, 38, 1F, 1);
 		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Item.dyePowder.itemID, 0, 27, 38, 1F, 1);
 		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Item.feather.itemID, 27, 38, 1F, 1);
@@ -5355,8 +5355,8 @@ public abstract class FCRecipes
 //		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Item.feather.itemID, 1, 1, 1F, 1);
 		
 		FCEntityVillager.addLevelUpTradeToBuySingleItem(librarian, Item.enchantedBook.itemID, 2, 2, 1);
-		
-		//Level 2
+	
+//		//Level 2
 		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Item.book.itemID, 1, 3, 1F, 2);
 		//AARON removed writable book... that's a dumb trade. Replaced with BD sale!
 //		FCEntityVillager.addTradeToBuySingleItem(librarian, Item.writableBook.itemID, 1, 1, 1F, 2);
@@ -5411,7 +5411,7 @@ public abstract class FCRecipes
 		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Item.magmaCream.itemID, 8, 12, 1F, 3);
 		//AARON swapped blaze powder and bat wings trade
 		FCEntityVillager.addTradeToBuyMultipleItems(librarian, FCBetterThanWolves.fcItemBatWing.itemID, 14, 16, 1F, 3);
-//		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Item.blazePowder.itemID, 4, 6, 1F, 3);
+		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Item.blazePowder.itemID, 4, 6, 1F, 3);
 		
 		//the level up trade used to be block dispenser... since you can now buy those from librarian now, AARON changed to Buddy Block!
 //		FCEntityVillager.addLevelUpTradeToBuySingleItem(librarian, FCBetterThanWolves.fcBlockDispenser.blockID, 4, 4, 3);
@@ -5422,7 +5422,7 @@ public abstract class FCRecipes
 		FCEntityVillager.addTradeToBuyMultipleItems(librarian, FCBetterThanWolves.fcBuddyBlock.blockID, 2, 3, 1F, 4);
 		FCEntityVillager.addTradeToBuyMultipleItems(librarian, FCBetterThanWolves.fcBlockDispenser.blockID, 2, 3, 1F, 4);
 		FCEntityVillager.addTradeToBuySingleItem(librarian, FCBetterThanWolves.fcLens.blockID, 2, 3, 1F, 4);
-		
+
 		FCEntityVillager.addLevelUpTradeToBuySingleItem(librarian, FCBetterThanWolves.fcItemEnderSpectacles.itemID, 3, 3, 4);
 		
 		//Level 5
@@ -5436,9 +5436,20 @@ public abstract class FCRecipes
 		//Mandatory trades
 		FCEntityVillager.addItemConversionTrade(librarian, Item.enderPearl.itemID, 6, 8, Item.eyeOfEnder.itemID, 1F, 5).setMandatory();
 		
+		//AARON librarian tester trades- uncomment to use
+//		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Item.paper.itemID, 1, 2, 1F, 1).setDefault(librarian);
+//		FCEntityVillager.addLevelUpTradeToBuySingleItem(librarian, Block.blockDiamond.blockID, 4, 4, 1);
+//		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Block.cobblestoneMossy.blockID, 1, 2, 1F, 2);
+//		FCEntityVillager.addLevelUpTradeToBuySingleItem(librarian, Block.blockDiamond.blockID, 4, 4, 2);
+//		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Item.ghastTear.itemID, 1, 2, 1F, 3);
+//		FCEntityVillager.addLevelUpTradeToBuySingleItem(librarian, Block.blockDiamond.blockID, 4, 4, 3);
+//		FCEntityVillager.addTradeToBuyMultipleItems(librarian, FCBetterThanWolves.fcBuddyBlock.blockID, 2, 3, 1F, 4);
+//		FCEntityVillager.addLevelUpTradeToBuySingleItem(librarian, Block.blockDiamond.blockID, 4, 4, 4);
+//		FCEntityVillager.addTradeToBuySingleItem(librarian, FCBetterThanWolves.fcItemBloodMossSpores.itemID, 1, 1, 1F, 5);
+//		FCEntityVillager.addLevelUpTradeToBuySingleItem(librarian, Block.blockDiamond.blockID, 4, 4, 5);
+		
 		// ------ Priest ------ //
 		//Level 1
-		//AARON commented for TESTER vvv
 		FCEntityVillager.addTradeToBuyMultipleItems(priest, FCBetterThanWolves.fcItemHemp.itemID, 18, 22, 1F, 1).setDefault(priest);
 		FCEntityVillager.addTradeToBuyMultipleItems(priest, FCBetterThanWolves.fcItemMushroomRed.itemID, 10, 16, 1F, 1);
 		FCEntityVillager.addTradeToBuyMultipleItems(priest, Block.cactus.blockID, 32, 64, 1F, 1);
@@ -5466,7 +5477,6 @@ public abstract class FCRecipes
 		// OLD ^ ^ ^
 		//AARON NEW enchantment trades VVV
 		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsIron.itemID, 2, 3, 0.25F, 2);
-		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsGold.itemID, 1, 2, 0.05F, 2);
 		FCEntityVillager.addEnchantmentTrade(priest, Item.pickaxeDiamond.itemID, 3, 5, 0.5F, 2);
 		FCEntityVillager.addEnchantmentTrade(priest, Item.plateIron.itemID, 3, 5, 0.25F, 2);
 		FCEntityVillager.addEnchantmentTrade(priest, Item.helmetIron.itemID, 2, 4, 0.25F, 2);
@@ -5493,6 +5503,7 @@ public abstract class FCRecipes
 		FCEntityVillager.addTradeToBuyMultipleItems(priest, Item.skull.itemID, 2, 2, 4, 1F, 3);
 		FCEntityVillager.addTradeToBuyMultipleItems(priest, Item.skull.itemID, 4, 2, 4, 1F, 3);
 		FCEntityVillager.addTradeToBuyMultipleItems(priest, FCBetterThanWolves.fcAestheticOpaque.blockID, FCBlockAestheticOpaque.m_iSubtypeBone, 2, 3, 1F, 3);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsGold.itemID, 1, 2, 0.05F, 3);
 		
 		FCEntityVillager.addLevelUpTradeToBuySingleItem(priest, Item.skull.itemID, 1, 3, 3, 3);
 		
@@ -5522,10 +5533,22 @@ public abstract class FCRecipes
 		//Level 5
 		FCEntityVillager.addTradeToBuySingleItem(priest, FCBetterThanWolves.fcItemCanvas.itemID, 2, 3, 1F, 5);
 		//AARON'S Wizard Boots trade VVV
-		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsLeather.itemID, 45, 55, 0.15F, 1);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsLeather.itemID, 45, 55, 0.15F, 5);
 		
 		
 		FCEntityVillager.addArcaneScrollTrade(priest, Enchantment.fortune.effectId, 48, 64, 1F, 5);
+		
+		//AARON priest tester trades- uncomment to use
+//		FCEntityVillager.addTradeToBuyMultipleItems(priest, FCBetterThanWolves.fcItemHemp.itemID, 18, 22, 1F, 1).setDefault(priest);
+//		FCEntityVillager.addLevelUpTradeToBuySingleItem(priest, Block.blockDiamond.blockID, 4, 4, 1);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.swordIron.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addLevelUpTradeToBuySingleItem(priest, Block.blockDiamond.blockID, 4, 4, 2);
+//		FCEntityVillager.addTradeToBuyMultipleItems(priest, Item.skull.itemID, 0, 3, 5, 1F, 3);
+//		FCEntityVillager.addLevelUpTradeToBuySingleItem(priest, Block.blockDiamond.blockID, 4, 4, 3);
+//		FCEntityVillager.addTradeToBuyMultipleItems(priest, FCBetterThanWolves.fcItemSoulUrn.itemID, 2, 3, 1F, 4);
+//		FCEntityVillager.addLevelUpTradeToBuySingleItem(priest, Block.blockDiamond.blockID, 4, 4, 4);
+//		FCEntityVillager.addTradeToBuySingleItem(priest, FCBetterThanWolves.fcItemCanvas.itemID, 2, 3, 1F, 5);
+//		FCEntityVillager.addLevelUpTradeToBuySingleItem(priest, Block.blockDiamond.blockID, 4, 4, 5);
 		
 		// ------ Blacksmith ------ //
 		//Level 1

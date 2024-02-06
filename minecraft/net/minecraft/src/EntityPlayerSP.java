@@ -6,6 +6,14 @@ public class EntityPlayerSP extends EntityPlayer
 {
     public MovementInput movementInput;
     protected Minecraft mc;
+    
+//    //PLASMA
+//    @Override
+//    public boolean CanJump()
+//    {
+//        
+//    	return false;
+//    }
 
     /**
      * Used to tell if the player pressed forward twice. If this is at 0 and it's pressed (And they are allowed to
@@ -265,7 +273,7 @@ public class EntityPlayerSP extends EntityPlayer
                 }
 
                 if (this.movementInput.jump)
-                {
+                {	
                     this.motionY += 0.15D;
                 }
             }

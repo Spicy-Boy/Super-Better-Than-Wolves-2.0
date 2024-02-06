@@ -234,7 +234,7 @@ public class FCEntityCow extends EntityCow
                 			))
                 	{
 	                	//400 at +5 is about 9 seconds of solid pushing! this number is different
-	                    if (cowAnxietyCounter > 600)
+	                    if (cowAnxietyCounter > 550)
 	                    {
 	                    	//initiates outburst
 	                    	OnNearbyPlayerStartles( (EntityPlayer)var3 );

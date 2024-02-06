@@ -280,6 +280,11 @@ public class FCEntityUrn extends EntityThrowable
     			return true;
     		}
     	}
+    	//AARON added back soulsand as a viable body block... because it looks way cooler than bone blocks ;p
+    	else if (iBlockID == Block.slowSand.blockID)
+    	{
+    		return true;
+    	}
     	
     	return false;
     }

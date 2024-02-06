@@ -15,17 +15,18 @@ public class FCEntityVillagerPriest extends FCEntityVillager {
 	}
 
 	//AARON commented this ish out because it is now done in FCEntityVillager
-//	@Override
-//	public int getCurrentMaxNumTrades() {
-//		int tradeLevel = this.GetCurrentTradeLevel();
-//		
-//		if (tradeLevel >= 4) {
-//			return tradeLevel + 1;
-//		}
-//		else {
-//			return tradeLevel;
-//		}
-//	}
+	//AARON nvm I didn't!!
+	@Override
+	public int getCurrentMaxNumTrades() {
+		int tradeLevel = this.GetCurrentTradeLevel();
+		
+		if (tradeLevel >= 4) {
+			return tradeLevel + 1;
+		}
+		else {
+			return tradeLevel;
+		}
+	}
 	
 	@Override
 	protected void spawnCustomParticles() {

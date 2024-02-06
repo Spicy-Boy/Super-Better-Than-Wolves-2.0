@@ -16,7 +16,8 @@ import java.util.function.ToDoubleFunction;
 
 public abstract class FCEntityVillager extends EntityVillager
 {
-	public static int m_iNumProfessionTypes = 5;
+	//AAROn commented out
+//	public static int m_iNumProfessionTypes = 5;
 
 	protected static final int m_iInLoveDataWatcherID = 22;	
 	protected static final int m_iTradeLevelDataWatcherID = 23;
@@ -122,6 +123,11 @@ public abstract class FCEntityVillager extends EntityVillager
 				checkForNewTrades(1);
 			}
 			else if (m_iUpdateTradesCountdown > 0) {
+				//AARON added Hiracho's last null pointer avoidance measure
+				if(buyingList == null) {
+					buyingList = new MerchantRecipeList();
+				}
+				
 				m_iUpdateTradesCountdown--;
 
 				if (m_iUpdateTradesCountdown <= 0) {
@@ -480,8 +486,10 @@ public abstract class FCEntityVillager extends EntityVillager
 			if (this.buyingList == null) {
 				this.buyingList = new MerchantRecipeList();
 			}
-
-			for (int i = 0; i < availableTrades && i < recipeList.size(); ++i) {
+			
+			//AARON replaced for loop
+//			for (int i = 0; i < availableTrades && i < recipeList.size(); ++i) {
+			for (int i = 0; i < recipeList.size(); ++i) {
 				this.buyingList.addToListWithCheck((MerchantRecipe)recipeList.get(i));
 			}
 		}
@@ -496,49 +504,45 @@ public abstract class FCEntityVillager extends EntityVillager
 				tradeList.add(entry);
 			}
 		}
-
-		//AARON backporting the CE villager fix for refreshing trades - - -
+		
+		//AARON recplacing for overload fix 
 //		for (; availableTrades > 0; availableTrades--) {
 //			recipeList.add(this.getRandomTradeFromAdjustedWeight(tradeList));
-		//OLD ^^^
-		
 		// Sanity check to prevent infinite loops
 		int currentAttempts = 0;
 		int maxAttempts = 50;
 
-		while (availableTrades > 0 && currentAttempts < maxAttempts) 
-		{
+		while (availableTrades > 0 && currentAttempts < maxAttempts) {
 			MerchantRecipe recipe = this.getRandomTradeFromAdjustedWeight(tradeList);
 
-			if (!this.DoesRecipeListAlreadyContainRecipe(recipe)) 
-			{
+			if (!this.doesRecipeListAlreadyContainRecipe(recipe)) {
 				recipeList.add(recipe);
 				availableTrades--;
 			}
 
 			currentAttempts++;
-		
 		}
 	}
 
 	// TODO: For some reason mandatory trades occasionally do not get populated - requires further investigation
+	//AARON ^ is attempting to fix this with CE magic
 	protected int checkForProfessionMandatoryTrades(MerchantRecipeList recipeList, int availableTrades, int level) {
 		Set<WeightedMerchantEntry> entries = tradeByProfessionList.get(this.getProfessionFromClass());
 
 		if (entries != null) {
 			for (WeightedMerchantEntry entry : entries) {
 				if (entry.level <= level && availableTrades > 0 && entry.isMandatory()) {
-					//AARON backports CE fix for trade repopulation
+					//AARON replaxes below fix trades not refreshing
 //					recipeList.add(entry.generateRecipe(this.rand));
-					//OLD ^^
-					
+//					//AARON added VV
+//					availableTrades--;
 					MerchantRecipe recipe = entry.generateRecipe(this.rand);
 
-					if (!this.DoesRecipeListAlreadyContainRecipe(recipe)) {
+					if (!this.doesRecipeListAlreadyContainRecipe(recipe)) {
 						recipeList.add(recipe);
 						availableTrades--;
 					}
-					
+					//^^
 				}
 			}
 		}
@@ -549,7 +553,7 @@ public abstract class FCEntityVillager extends EntityVillager
 	private boolean checkForLevelUpTrade() {
 		MerchantRecipe recipe = this.getProfessionLevelUpTrade(this.GetCurrentTradeLevel());
 
-		if (recipe != null && !this.DoesRecipeListAlreadyContainRecipe(recipe)) {
+		if (recipe != null && !this.doesRecipeListAlreadyContainRecipe(recipe)) {
 			this.buyingList.add(recipe);
 			return true;
 		}
@@ -564,32 +568,37 @@ public abstract class FCEntityVillager extends EntityVillager
 		return entry.generateRecipe(this.rand);
 	}
 
-	protected boolean DoesRecipeListAlreadyContainRecipe(MerchantRecipe recipe)
-	{
-		//AARON snuck in this null check... maybe a bad idea?
-		if (buyingList == null)
-		{
-			return false;
-		}
-		//this just prevents a crash when you use eggs to spawn vills
-		
+	//AARON replaces for refresh fix
+//	protected boolean DoesRecipeListAlreadyContainRecipe(MerchantRecipe recipe)
+//	{
+//		
 //		for (int iTempRecipeIndex = 0; iTempRecipeIndex < buyingList.size(); ++iTempRecipeIndex)
 //		{
 //			MerchantRecipe tempRecipe = (MerchantRecipe)buyingList.get(iTempRecipeIndex);
 //
 //			if (recipe.hasSameIDsAs(tempRecipe))
 //			{
-		//OLD ^^^
-		for (int i = 0; i < buyingList.size(); ++i) 
+	protected boolean doesRecipeListAlreadyContainRecipe(MerchantRecipe recipe) {
+		
+//		for (int i = 0; i < buyingList.size(); ++i) {
+//			MerchantRecipe recipeForCompare = (MerchantRecipe) buyingList.get(i);
+//
+//			if (recipe.hasSameIDsAs(recipeForCompare)) {
+//				return true;
+		//Hiracho's changes to fix null pointer 
+		if (this.buyingList != null) 
 		{
-			MerchantRecipe recipeForCompare = (MerchantRecipe) buyingList.get(i);
-
-			if (recipe.hasSameIDsAs(recipeForCompare)) 
+			for (int i = 0; i < buyingList.size(); ++i) 
 			{
-				return true;
+				MerchantRecipe recipeForCompare = (MerchantRecipe) buyingList.get(i);
+
+				if (recipe.hasSameIDsAs(recipeForCompare)) 
+				{
+					return true;
+				}
 			}
 		}
-
+		//^^
 		return false;
 	}
 
@@ -616,20 +625,8 @@ public abstract class FCEntityVillager extends EntityVillager
 		return selector.next(this.rand).generateRecipe(this.rand);
 	}
 
-	//AAROn updated this to CE max trades
 	public int getCurrentMaxNumTrades() {
-		//old VVV
-		//return this.getCurrentTradeLevel();
-		// ^^^
-		int numMandatoryTrades = 0;
-
-		for (WeightedMerchantEntry entry : tradeByProfessionList.get(this.getProfessionFromClass())) {
-			if (entry.level <= this.GetCurrentTradeLevel() && entry.isMandatory()) {
-				numMandatoryTrades++;
-			}
-		}
-
-		return this.GetCurrentTradeLevel() + numMandatoryTrades;
+		return GetCurrentTradeLevel();
 	}
 
 	private void checkForInvalidTrades() {
@@ -1590,4 +1587,15 @@ public abstract class FCEntityVillager extends EntityVillager
 	}
 
 	//----------- Client Side Functionality -----------//
+
+//	@Override
+//	public void handleHealthUpdate(byte bUpdateType) {
+//		super.handleHealthUpdate(bUpdateType);
+//
+//		if (bUpdateType == 14) {
+//			// item collect sound on villager restock
+//			worldObj.playSound(posX, posY, posZ, "random.pop", 
+//					0.25F, ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1F) * 2F);
+//		}
+//	}
 }
