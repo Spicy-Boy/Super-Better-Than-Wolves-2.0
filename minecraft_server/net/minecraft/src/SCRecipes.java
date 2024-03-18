@@ -17,8 +17,9 @@ public class SCRecipes {
 		FCEntityVillager.removeTradeToBuy(farmer, Block.melon.blockID, 0);
 		FCEntityVillager.removeTradeToBuy(farmer, FCBetterThanWolves.fcBlockPumpkinFresh.blockID, 0);
 		
-		FCEntityVillager.addTradeToBuyMultipleItems(farmer, SCDefs.melonHarvested.blockID, 3, 8, 10, 1F, 3);
-		FCEntityVillager.addTradeToBuyMultipleItems(farmer, SCDefs.pumpkinHarvested.blockID, 3, 10, 16, 1F, 3);
+		//AARON updated the counts to require fewer gourds... since growing large volumes is a lot harder! //prev, 8-10 or 10-16
+		FCEntityVillager.addTradeToBuyMultipleItems(farmer, SCDefs.melonHarvested.blockID, 3, 3, 8, 1F, 3);
+		FCEntityVillager.addTradeToBuyMultipleItems(farmer, SCDefs.pumpkinHarvested.blockID, 3, 3, 8, 1F, 3);
 		
 		//pumpkin pie
 		FCRecipes.AddShapelessRecipe( new ItemStack( FCBetterThanWolves.fcItemPastryUncookedPumpkinPie, 1 ), 

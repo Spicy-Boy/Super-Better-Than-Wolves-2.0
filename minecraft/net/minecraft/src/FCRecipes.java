@@ -5398,8 +5398,9 @@ public abstract class FCRecipes
 		
 		//AARON removed redstone... losing a half stack of redstone to a trade sucks
 //		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Item.redstone.itemID, 32, 48, 1F, 2);
-		//replaced with mossy cobble to make it flavorful that the priest is learning about summoning and block magic
+		//replaced with mossy cobble to make it flavorful that the librarian is learning about summoning and block magic
 		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Block.cobblestoneMossy.blockID, 6, 10, 1F, 2);
+		
 		
 		FCEntityVillager.addLevelUpTradeToBuySingleItem(librarian, Item.brewingStand.itemID, 2, 2, 2);
 		
@@ -5430,6 +5431,11 @@ public abstract class FCRecipes
 		FCEntityVillager.addTradeToBuyMultipleItems(librarian, FCBetterThanWolves.fcAestheticVegetation.blockID, 
 				FCBlockAestheticVegetation.m_iSubtypeBloodWoodSapling, 8, 16, 1F, 5);
 		FCEntityVillager.addTradeToBuySingleItem(librarian, FCBetterThanWolves.fcItemBloodMossSpores.itemID, 2, 3, 1F, 5);
+		
+		//LEGACY librarian trades-- AARON adds these to prevent chunk reversion if a villager attempts to load a deleted trade
+		FCEntityVillager.addTradeToBuyMultipleItems(librarian, Item.redstone.itemID, 32, 48, 1F, 6);
+		FCEntityVillager.addTradeToBuySingleItem(librarian, Block.bookShelf.blockID, 1, 1, 1F, 6);
+		FCEntityVillager.addTradeToBuySingleItem(librarian, Item.writableBook.itemID, 1, 1, 1F, 2);
 		
 		FCEntityVillager.addArcaneScrollTrade(librarian, Enchantment.power.effectId, 32, 48, 1F, 5);
 		
@@ -5480,7 +5486,7 @@ public abstract class FCRecipes
 		FCEntityVillager.addEnchantmentTrade(priest, Item.pickaxeDiamond.itemID, 3, 5, 0.5F, 2);
 		FCEntityVillager.addEnchantmentTrade(priest, Item.plateIron.itemID, 3, 5, 0.25F, 2);
 		FCEntityVillager.addEnchantmentTrade(priest, Item.helmetIron.itemID, 2, 4, 0.25F, 2);
-		FCEntityVillager.addEnchantmentTrade(priest, Item.helmetDiamond.itemID, 2, 4, 0.25F, 2);
+//		FCEntityVillager.addEnchantmentTrade(priest, Item.helmetDiamond.itemID, 2, 4, 0.25F, 2);
 		FCEntityVillager.addEnchantmentTrade(priest, Item.bow.itemID, 3, 5, 0.25F, 2);
 		FCEntityVillager.addEnchantmentTrade(priest, Item.axeIron.itemID, 2, 4, 0.25F, 2);
 		FCEntityVillager.addEnchantmentTrade(priest, Item.swordIron.itemID, 3, 5, 0.25F, 2);
@@ -5535,6 +5541,14 @@ public abstract class FCRecipes
 		//AARON'S Wizard Boots trade VVV
 		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsLeather.itemID, 45, 55, 0.15F, 5);
 		
+		//LEGACY TRADES-- AARON added to prevent crash 
+		FCEntityVillager.addEnchantmentTrade(priest, Item.plateDiamond.itemID, 2, 4, 0.25F, 6);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.legsDiamond.itemID, 2, 4, 0.25F, 6);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.bootsDiamond.itemID, 2, 4, 0.25F, 6);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.axeDiamond.itemID, 2, 4, 0.25F, 6);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.legsIron.itemID, 2, 4, 0.25F, 6);
+		FCEntityVillager.addEnchantmentTrade(priest, Item.pickaxeIron.itemID, 2, 4, 0.25F, 6);
+
 		
 		FCEntityVillager.addArcaneScrollTrade(priest, Enchantment.fortune.effectId, 48, 64, 1F, 5);
 		

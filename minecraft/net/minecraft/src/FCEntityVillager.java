@@ -1305,20 +1305,21 @@ public abstract class FCEntityVillager extends EntityVillager
 				result = input.copy(); 
 				EnchantmentHelper.setEnchantments(toolEnchantments, result);
 			}
-			else if (input.itemID == Item.helmetDiamond.itemID) //diamond helmet aqua affinity I unbreaking III
-			{
-				int enchantmentID = 6;
-				int enchantmentLevel = 1;
-				Map<Integer, Integer> toolEnchantments = new HashMap<Integer, Integer>();
-				toolEnchantments.put(enchantmentID, enchantmentLevel);
-
-				enchantmentID = 34;
-				enchantmentLevel = 3;
-				toolEnchantments.put(enchantmentID, enchantmentLevel);
-						
-				result = input.copy(); 
-				EnchantmentHelper.setEnchantments(toolEnchantments, result);
-			}
+			//AARON says NVM... diamond helmet trade dumb and dillutes the good trades
+//			else if (input.itemID == Item.helmetDiamond.itemID) //diamond helmet aqua affinity I unbreaking III
+//			{
+//				int enchantmentID = 6;
+//				int enchantmentLevel = 1;
+//				Map<Integer, Integer> toolEnchantments = new HashMap<Integer, Integer>();
+//				toolEnchantments.put(enchantmentID, enchantmentLevel);
+//
+//				enchantmentID = 34;
+//				enchantmentLevel = 3;
+//				toolEnchantments.put(enchantmentID, enchantmentLevel);
+//						
+//				result = input.copy(); 
+//				EnchantmentHelper.setEnchantments(toolEnchantments, result);
+//			}
 			else if (input.itemID == Item.bow.itemID) //bow power II unbreaking II
 			{
 				int enchantmentID = 48;

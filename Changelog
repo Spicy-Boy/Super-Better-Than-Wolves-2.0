@@ -2,12 +2,11 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
-2.4 The Epic Update:
-
-
+2.4 The Pro Choice Update:
 
 ^^^ ~Brick and Mortar~
 
+- Changed the first layer of the ender beacon to be the trans-dimensional chest instead of a dimensional chest (swapped lvl 1->2,2->3,3->1) 
 
 - Changed withers to be made with soulsand again. Yes, you can still use bone blocks if you like
 
@@ -16,11 +15,22 @@ Switched to BETA 2.0 on July 12, 2023
 - Fixed an issue where trades weren't refreshing properly (again... ;I)
 
 - Fixed an issue where the death counter was being reset to 0 when going through the end portal
+    NOTE: respawning at a Steel Beacon still resets the death counter! Will probably get fixed someday?
 
 - Fixed an issue that caused a crash when applying arrows (and maybe other things too) to your armor slots. 
 
-NOTE- CRASH THAT REVERTS CHUNKS WHEN LOADING VILLAGERS WITH TRADES THAT NO LONGER EXIST IN CODE... look into it!
+- Fixed an evasive bug that caused chunks to revert if a villager trade recipe is removed while an existing villager in a world still has the trade
 
+TODO - FIX bug that allows players to sleep in the overworld and speed up time in the nether
+
+TODO- ADDED nametag
+
+TODO - Added terracotta, a sturdy ceramic decorative block that is fired in a kiln
+    - unfired terracotta is made with clay, sand, and dye of choice
+
+TODO- Added adobe, a building block of mud, clay, and straw/reeds that must be dried in the sun to harden
+    - wet adobe is made with clay, dirt, and reeds or straw. 
+    - wet adobe can be picked up perfectly with stone shovel, dry with stone pick
 TODO- APPLY socks pumpkins to head
 
 TODO- Finalize bucket of mortar texture!
