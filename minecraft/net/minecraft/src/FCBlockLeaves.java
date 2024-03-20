@@ -78,7 +78,11 @@ public class FCBlockLeaves extends BlockLeaves
             {
                 int iIdDropped = idDroppedExceptThisTimeItIsAStick( iMetadata, world.rand, iFortuneModifier );
                 
-                dropBlockAsItem_do( world, i, j, k, new ItemStack( iIdDropped, 1, 0) );
+                if (SuperBTW.instance.getBranchesEnabled()) //AARON added a config for the mouth breathers
+                {
+                    dropBlockAsItem_do( world, i, j, k, new ItemStack( iIdDropped, 1, 0) );
+                }
+
             }            
         }
         

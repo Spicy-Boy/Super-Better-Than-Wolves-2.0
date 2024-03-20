@@ -438,35 +438,42 @@ public class SuperBTWRecipes extends FCRecipes {
 
 	private static void addMiscRecipes() 
 	{
-		FCRecipes.AddShapelessRecipe(new ItemStack(Item.plateLeather, 1),
-				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
-						new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
-						new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
-						new ItemStack(FCBetterThanWolves.fcItemLeatherCut) });
-		FCRecipes.AddShapelessRecipe(new ItemStack(Item.legsLeather, 1),
-				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
-						new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
-						new ItemStack(FCBetterThanWolves.fcItemLeatherCut) });
-		FCRecipes.AddShapelessRecipe(new ItemStack(Item.bootsLeather, 1),
-				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
-						new ItemStack(FCBetterThanWolves.fcItemLeatherCut) });
-		FCRecipes.AddShapelessRecipe(new ItemStack(Item.helmetLeather, 1),
-				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemLeatherCut) });
+		//AARON added a config for these! If disabled, players cannot craft the super efficient leather armor
+		if (SuperBTW.instance.get2x2LeatherEnabled())
+		{
+			FCRecipes.AddShapelessRecipe(new ItemStack(Item.plateLeather, 1),
+					new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
+							new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
+							new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
+							new ItemStack(FCBetterThanWolves.fcItemLeatherCut) });
+			FCRecipes.AddShapelessRecipe(new ItemStack(Item.legsLeather, 1),
+					new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
+							new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
+							new ItemStack(FCBetterThanWolves.fcItemLeatherCut) });
+			FCRecipes.AddShapelessRecipe(new ItemStack(Item.bootsLeather, 1),
+					new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemLeatherCut),
+							new ItemStack(FCBetterThanWolves.fcItemLeatherCut) });
+			FCRecipes.AddShapelessRecipe(new ItemStack(Item.helmetLeather, 1),
+					new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemLeatherCut) });
+			
+			FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcItemArmorTannedChest, 1),
+					new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
+							new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
+							new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
+							new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut) });	
+			FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcItemArmorTannedLeggings, 1),
+					new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
+							new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
+							new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut) });
+			FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcItemArmorTannedBoots, 1),
+					new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
+							new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut) });
+			FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcItemArmorTannedHelm, 1),
+					new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut) });
+		}
+
 		
-		FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcItemArmorTannedChest, 1),
-				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
-						new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
-						new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
-						new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut) });	
-		FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcItemArmorTannedLeggings, 1),
-				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
-						new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
-						new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut) });
-		FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcItemArmorTannedBoots, 1),
-				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut),
-						new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut) });
-		FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcItemArmorTannedHelm, 1),
-				new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut) });
+
 
 		// branch recipes!
 		FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcBlockTorchFiniteUnlit, 1),

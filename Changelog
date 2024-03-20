@@ -6,13 +6,15 @@ Switched to BETA 2.0 on July 12, 2023
 
 - Changed the config system to use the official FCAddon property manager 
     - SBTW.properties contains all configs. It can be found alongside the BTW properties file in the configs folder
-   
+
 - Added a config to disable the fire caused by lightning strikes
     - If you know you know...
     
 - Added a config to set the HC respawn radius to whatever you like
     - Yes, this means you can disable Hardcore Spawn entirely by setting the respawn radius super low
     - This is a stop gap feature: ideally, this config will be set at world creation and be applied per-world
+
+- Added the /smite [player] command to place divine retribution into the hands of admins
 
 - Changed the first layer of the ender beacon to be the trans-dimensional chest instead of a dimensional chest (swapped lvl 1->2,2->3,3->1) 
 

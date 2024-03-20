@@ -37,10 +37,11 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
         this.registerCommand(new FCCommandServerLoc());
         
         //AARON added some commands
-        this.registerCommand(new SuperBTWCommandTEST());
-        this.registerCommand(new SuperBTWCommandTpRequest());
-        this.registerCommand(new SuperBTWCommandTpAccept());
+//        this.registerCommand(new SuperBTWCommandTEST());
+//        this.registerCommand(new SuperBTWCommandTpRequest());
+//        this.registerCommand(new SuperBTWCommandTpAccept());
         this.registerCommand(new SuperBTWCommandDeaths());
+        this.registerCommand(new SuperBTWCommandSmite());
 
         if (MinecraftServer.getServer().isDedicatedServer())
         {

@@ -401,7 +401,11 @@ public class BiomeDecorator
             var3 = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             var4 = this.randomGenerator.nextInt(128);
             var7 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            this.branchGen.generate(this.currentWorld, this.randomGenerator, var3, var4, var7);
+            if (SuperBTW.instance.getBranchesEnabled()) //AARON added a config for branch gen
+            {
+                this.branchGen.generate(this.currentWorld, this.randomGenerator, var3, var4, var7);
+            }
+
         }
     }
 

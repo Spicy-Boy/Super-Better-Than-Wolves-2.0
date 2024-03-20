@@ -76,22 +76,21 @@ public class SuperBTW extends FCAddOn
 //		System.out.println(propertyName10 +"="+getCustomRespawnExclusionRadius());
 		
 		String propertyName18 = "Enable-Dynamic-Torches";
-		registerProperty(propertyName18, "true", "If enabled, torches emit light when held in the hand!");
+		registerProperty(propertyName18, "true", "Turn this off to stop torches from emitting light when held in the hand!");
 		this.setDynamicTorchesEnabled(this.loadConfigProperties().get(propertyName18).equals("true"));
 		
 		String propertyName19 = "Enable-2x2-Leather-Armor-Crafting";
-		registerProperty(propertyName19, "true", "If enabled, leather armor can be crafted from cut leather in the 2x2 grid!");
+		registerProperty(propertyName19, "true", "Turn this off to restrict leather armor crafting to the crafting table");
 		this.set2x2LeatherEnabled(this.loadConfigProperties().get(propertyName19).equals("true"));
 		
 		String propertyName20 = "Enable-Branches";
-		registerProperty(propertyName20, "true", "If enabled, branches fall from trees and generate under trees!");
+		registerProperty(propertyName20, "true", "Turn this off to stop branches from falling from trees or generating!");
 		this.setBranchesEnabled(this.loadConfigProperties().get(propertyName20).equals("true"));
 		
 		String propertyName21 = "Enable-Hunger-Tweaks";
 		registerProperty(propertyName21, "true", "Turn this off to experience the original BTW hunger bar properties.. (ex: can't jump on famished)");
 		this.setHungerTweaksEnabled(this.loadConfigProperties().get(propertyName21).equals("true"));
 		
-
 	}
 	
 	public void setLightningFireEnabled(boolean b)
