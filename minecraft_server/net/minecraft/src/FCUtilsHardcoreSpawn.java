@@ -25,6 +25,12 @@ public class FCUtilsHardcoreSpawn
 	 */
 	public static double GetPlayerSpawnRadius()
 	{
+		//AARON adds this to allow players to set a custom, unchanging respawn radius!
+		if (SuperBTW.instance.getCustomRespawnRadiusEnabled())
+		{
+			return SuperBTW.instance.getCustomRespawnRadius();
+		}
+		
 		return m_dRadiusBase * GetWorldTypeRadiusMultiplier() * GetGameProgressRadiusMultiplier();
 	}
 
@@ -33,6 +39,12 @@ public class FCUtilsHardcoreSpawn
 	 */
 	public static double GetPlayerSpawnExclusionRadius()
 	{
+		//AARON modifies this to allow players to set a custom, unchanging zone of exclusion!
+		if (SuperBTW.instance.getCustomRespawnRadiusEnabled())
+		{
+			return SuperBTW.instance.getCustomRespawnExclusionRadius();
+		}
+		
 		return m_dRadiusBaseExclusionDistance * GetWorldTypeRadiusMultiplier() * GetGameProgressRadiusMultiplier();
 	}
 

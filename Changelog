@@ -4,7 +4,15 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.4 The Pro Choice Update:
 
-^^^ ~Brick and Mortar~
+- Changed the config system to use the official FCAddon property manager 
+    - SBTW.properties contains all configs. It can be found alongside the BTW properties file in the configs folder
+   
+- Added a config to disable the fire caused by lightning strikes
+    - If you know you know...
+    
+- Added a config to set the HC respawn radius to whatever you like
+    - Yes, this means you can disable Hardcore Spawn entirely by setting the respawn radius super low
+    - This is a stop gap feature: ideally, this config will be set at world creation and be applied per-world
 
 - Changed the first layer of the ender beacon to be the trans-dimensional chest instead of a dimensional chest (swapped lvl 1->2,2->3,3->1) 
 
@@ -12,7 +20,7 @@ Switched to BETA 2.0 on July 12, 2023
 
 - Changed/tweaked Hardcore Hoosies 2.0 just a little bit more, as some evil players still wanted to abuse the poor animals
 
-- Fixed an issue where trades weren't refreshing properly (again... ;I)
+- Fixed an issue where trades weren't refreshing properly (again... ;I) and added a measure to prevent chunk reversion in rare cases
 
 - Fixed an issue where the death counter was being reset to 0 when going through the end portal
     NOTE: respawning at a Steel Beacon still resets the death counter! Will probably get fixed someday?

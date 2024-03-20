@@ -12,7 +12,6 @@ import java.util.Map;
 public class SuperBTW extends FCAddOn
 {
 	
-
 /**
  * @author EpicAaron29 (aaron on the discord)
  *
@@ -26,9 +25,20 @@ public class SuperBTW extends FCAddOn
 	private boolean isRandomHCStartEnabled;
 	private boolean isTeamStartEnabled;
 	
+	private boolean areDynamicTorchesEnabled;
+	private boolean is2x2LeatherEnabled;
+	private boolean areHungerTweaksEnabled;
+	private boolean areBranchesEnabled;
+	
+	private boolean isLightningFireEnabled;
+	
+	private boolean isCustomRespawnRadiusEnabled;
+	private int customRespawnRadius;
+	private int customRespawnExclusionRadius;
+	
     private SuperBTW() 
     {
-        super("SUPER BETTER THAN WOLVES", "BETA 2.3 (w/ vanilla gourds >_>)", "");
+    	super("SUPER BETTER THAN WOLVES", "BETA 2.4 (w/ nilla gourds ~_~)", "SBTW");
     }
 
 	@Override
@@ -36,7 +46,9 @@ public class SuperBTW extends FCAddOn
 	{
 		FCAddOnHandler.LogMessage(this.getName() + " Version " + this.getVersionString() + " Preparing...");
 		
-		this.initializeServerProperties();
+		//deprecated vvv as of Jan 25, 2024, we use the preinitialize config method set by FCAddon
+//		this.initializeServerProperties();
+		
     	SuperBTWDefinitions.addDefinitions();
     	SuperBTWRecipes.addRecipes();
     	
@@ -230,15 +242,63 @@ public class SuperBTW extends FCAddOn
 		return teamsAndCoords;
 	}
 	
-//Methods related to the SBTWserver.properties file V V V ~~~~~~~~~~~~~~~~~~ V V V >_< ^_^
-	public void initializeServerProperties()
+	//Methods related to the SBTW.properties file V V V ~~~~~~~~~~~~~~~~~~ V V V >_< ^_^
+	//NOTE the temp variables propertyName[X] are a holdover from rough draft of code... 
+	//I kept them, but just know they don't mean anything
+	@Override
+	public void PreInitialize()
 	{
-        //AARON attempts to initialize a custom server config :D
-        FCAddOnHandler.LogMessage("Loading SBTW Server properties");
-        this.settings = new PropertyManager(new File("SBTWserver.properties"), net.minecraft.server.MinecraftServer.getServer().getLogAgent());
-        this.setTpaEnabled(this.settings.getBooleanProperty("Enable-TPA-commands", false));
-        this.setRandomHCStartEnabled(this.settings.getBooleanProperty("Start-with-random-HC-Spawn", false));
-        this.setTeamStartEnabled(this.settings.getBooleanProperty("Start-at-tpteam-location", false));
+		String propertyName1 = "Enable-TPA-Commands";
+		registerProperty(propertyName1, "false", "Allows players to use the TPA commands--/tpa [playername], /tpaccept [playername], and /tpcancel..");
+		this.setTpaEnabled(this.loadConfigProperties().get(propertyName1).equals("true"));
+		//TESTER VVV
+		System.out.println(propertyName1 +"="+getTpaEnabled());
+		
+		String propertyName2 = "Enable-Lightning-Fire";
+		registerProperty(propertyName2, "true", "Toggles whether or not bolts of lightning can start fires..the horror....the horror..");
+		this.setLightningFireEnabled(this.loadConfigProperties().get(propertyName2).equals("true"));
+		
+		String propertyName3 = "Enable-Random-HC-Start";
+		registerProperty(propertyName3, "false", "Players will begin at a random hardcore spawn instead of worldspawn.");
+		this.setRandomHCStartEnabled(this.loadConfigProperties().get(propertyName3).equals("true"));
+		
+		String propertyName4 = "Enable-TpTeam-Start";
+		registerProperty(propertyName4, "false", "Players begin at their set tpteam location, or the default location if no team is specified. See tpteams.txt (/tpteam set default) (/tpteam add [playername] [tpteam name])..");
+		this.setTeamStartEnabled(this.loadConfigProperties().get(propertyName4).equals("true"));
+		
+		String propertyName9 = "Enable-Custom-HC-Respawn-Radius";
+		registerProperty(propertyName9, "false", "If enabled, players will respawn within this set range");
+		this.setCustomRespawnRadiusEnabled(this.loadConfigProperties().get(propertyName9).equals("true"));
+
+		String propertyName10 = "Set-Custom-Respawn-Radius";
+		registerProperty(propertyName10, "2000", "An unchanging HC respawn radius..");
+		this.setCustomRespawnRadius( Integer.parseInt(this.loadConfigProperties().get(propertyName10)) );
+		//TESTER VVV
+		System.out.println(propertyName10 +"="+getCustomRespawnRadius());
+		
+		String propertyName11 = "Set-Custom-Respawn-Exclusion-Radius";
+		registerProperty(propertyName11, "100", "The inner disc of the HC Spawn radius where nobody can spawn..");
+		this.setCustomRespawnExclusionRadius( Integer.parseInt(this.loadConfigProperties().get(propertyName11)) );
+		//TESTER VVV
+		System.out.println(propertyName10 +"="+getCustomRespawnExclusionRadius());
+		
+		String propertyName18 = "Enable-Dynamic-Torches";
+		registerProperty(propertyName18, "true", "If enabled, torches emit light when held in the hand!");
+		this.setDynamicTorchesEnabled(this.loadConfigProperties().get(propertyName18).equals("true"));
+		
+		String propertyName19 = "Enable-2x2-Leather-Armor-Crafting";
+		registerProperty(propertyName19, "true", "If enabled, leather armor can be crafted from cut leather in the 2x2 grid!");
+		this.set2x2LeatherEnabled(this.loadConfigProperties().get(propertyName19).equals("true"));
+		
+		String propertyName20 = "Enable-Branches";
+		registerProperty(propertyName20, "true", "If enabled, branches fall from trees and generate under trees!");
+		this.setBranchesEnabled(this.loadConfigProperties().get(propertyName20).equals("true"));
+		
+		String propertyName21 = "Enable-Hunger-Tweaks";
+		registerProperty(propertyName21, "true", "Turn this off to experience the original BTW hunger bar properties.. (ex: can't jump on famished)");
+		this.setHungerTweaksEnabled(this.loadConfigProperties().get(propertyName21).equals("true"));
+		
+
 	}
 	
 	public void setTpaEnabled(boolean b) 
@@ -269,6 +329,86 @@ public class SuperBTW extends FCAddOn
 		return isTeamStartEnabled;
 	}
 	
+	public void setLightningFireEnabled(boolean b)
+	{
+		this.isLightningFireEnabled = b;
+	}
+	public boolean getLightningFireEnabled()
+	{
+		return this.isLightningFireEnabled;
+	}
 	
+	public void setDynamicTorchesEnabled(boolean b)
+	{
+		this.areDynamicTorchesEnabled = b;
+	}
+	public boolean getDynamicTorchesEnabled()
+	{
+		return this.areDynamicTorchesEnabled;
+	}
+	
+	public void set2x2LeatherEnabled(boolean b)
+	{
+		this.is2x2LeatherEnabled = b;
+	}
+	public boolean get2x2LeatherEnabled()
+	{
+		return this.is2x2LeatherEnabled;
+	}
+	
+	public void setBranchesEnabled(boolean b)
+	{
+		this.areBranchesEnabled = b;
+	}
+	public boolean getBranchesEnabled()
+	{
+		return this.areBranchesEnabled;
+	}
+	
+	public void setHungerTweaksEnabled(boolean b)
+	{
+		this.areHungerTweaksEnabled = b;
+	}
+	public boolean areHungerTweaksEnabled()
+	{
+		return this.areHungerTweaksEnabled;
+	}
+	
+	public void setCustomRespawnRadiusEnabled(boolean b)
+	{
+		this.isCustomRespawnRadiusEnabled = b;
+	}
+	public boolean getCustomRespawnRadiusEnabled()
+	{
+		return isCustomRespawnRadiusEnabled;
+	}
+	
+	public void setCustomRespawnRadius(int i)
+	{
+		this.customRespawnRadius = i;
+	}
+	public int getCustomRespawnRadius()
+	{
+		return customRespawnRadius;
+	}
+	
+	public void setCustomRespawnExclusionRadius(int i)
+	{
+		this.customRespawnExclusionRadius = i;
+	}
+	public int getCustomRespawnExclusionRadius()
+	{
+		return customRespawnExclusionRadius;
+	}
+	
+//	public void initializeServerProperties()
+//	{
+//        //AARON attempts to initialize a custom server config :D
+//        FCAddOnHandler.LogMessage("Loading SBTW Server properties");
+//        this.settings = new PropertyManager(new File("SBTWserver.properties"), net.minecraft.server.MinecraftServer.getServer().getLogAgent());
+//        this.setTpaEnabled(this.settings.getBooleanProperty("Enable-TPA-commands", false));
+//        this.setRandomHCStartEnabled(this.settings.getBooleanProperty("Start-with-random-HC-Spawn", false));
+//        this.setTeamStartEnabled(this.settings.getBooleanProperty("Start-at-tpteam-location", false));
+//	}
 
 }
