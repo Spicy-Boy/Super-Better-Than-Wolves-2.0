@@ -20,6 +20,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 {
 	//AARON ADDED
 	public int deathCounter = 0;
+	public boolean areDynamicTorchesEnabled = SuperBTW.instance.getDynamicTorchesEnabled();
 	
 	//AARON ADDED for sleep
 	
@@ -407,7 +408,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         			isholdingtorch =false;
         		}
         		
-                if (isholdingtorch) 
+                if (isholdingtorch && areDynamicTorchesEnabled) //AARON added the second boolean to make torches configurable
                 {
                     FCUtilsBlockPos lightpos = new FCUtilsBlockPos(MathHelper.floor_double( posX ), 
                     		MathHelper.floor_double(boundingBox.maxY), MathHelper.floor_double( posZ));

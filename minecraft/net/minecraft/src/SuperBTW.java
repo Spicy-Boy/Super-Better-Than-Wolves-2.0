@@ -64,13 +64,13 @@ public class SuperBTW extends FCAddOn
 		this.setCustomRespawnRadiusEnabled(this.loadConfigProperties().get(propertyName9).equals("true"));
 
 		String propertyName10 = "Set-Custom-Respawn-Radius";
-		registerProperty(propertyName10, "8000", "An unchanging HC respawn radius decided by you..");
+		registerProperty(propertyName10, "8000", "vvv The HC respawn radius decided by you..");
 		this.setCustomRespawnRadius( Integer.parseInt(this.loadConfigProperties().get(propertyName10)) );
 		//TESTER VVV
 //		System.out.println(propertyName10 +"="+getCustomRespawnRadius());
 		
 		String propertyName11 = "Set-Custom-Respawn-Exclusion-Radius";
-		registerProperty(propertyName11, "100", "The inner disc of the HC Spawn radius where nobody can spawn..");
+		registerProperty(propertyName11, "100", "vvv The inner disc of the HC Spawn radius within which nobody can spawn..");
 		this.setCustomRespawnExclusionRadius( Integer.parseInt(this.loadConfigProperties().get(propertyName11)) );
 		//TESTER VVV
 //		System.out.println(propertyName10 +"="+getCustomRespawnExclusionRadius());
