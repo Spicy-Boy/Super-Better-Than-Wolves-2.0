@@ -2355,40 +2355,44 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     public boolean canPlayerEdit(int par1, int par2, int par3, int par4, ItemStack par5ItemStack)
     {
         // FCMOD: Code added to prevent the player from placing blocks while in mid air
-        boolean disableHardcoreBouncing = false;
+        //AAron commented this out because, frankly, it wasn't supposed to be here :p
+        //literally deco code lol
+//        boolean disableHardcoreBouncing = false;
 
-        try {
-            Class decoManagerClass;
-
-            if (FCUtilsReflection.isObfuscated()) {
-                decoManagerClass = Class.forName("net.minecraft.src.DecoManager");
-            }
-            else {
-                decoManagerClass = Class.forName("DecoManager");
-            }
-
-            Method decoInstanceGetter = decoManagerClass.getDeclaredMethod("getInstance");
-            FCAddOn decoInstance = (FCAddOn) decoInstanceGetter.invoke(null);
-
-            Field disableHarcoreBouncingField = decoManagerClass.getDeclaredField("disableHardcoreBouncing");
-            disableHardcoreBouncing = (Boolean) disableHarcoreBouncingField.get(decoInstance);
-        } catch (ClassNotFoundException e) {
-
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Class decoManagerClass;
+//
+//            if (FCUtilsReflection.isObfuscated()) {
+//                decoManagerClass = Class.forName("net.minecraft.src.DecoManager");
+//            }
+//            else {
+//                decoManagerClass = Class.forName("DecoManager");
+//            }
+//
+//            Method decoInstanceGetter = decoManagerClass.getDeclaredMethod("getInstance");
+//            FCAddOn decoInstance = (FCAddOn) decoInstanceGetter.invoke(null);
+//
+//            Field disableHarcoreBouncingField = decoManagerClass.getDeclaredField("disableHardcoreBouncing");
+//            disableHardcoreBouncing = (Boolean) disableHarcoreBouncingField.get(decoInstance);
+//        } catch (ClassNotFoundException e) {
+//
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (SecurityException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (IllegalArgumentException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        }
         
-        if (disableHardcoreBouncing) {
+    	//AARON added a config for bouncy bouncy block place while jumping
+//        if (disableHardcoreBouncing) {
+    	if (SuperBTW.instance.isHardcoreBouncingEnabled()) {
             if (!capabilities.isCreativeMode && !onGround && !inWater && !isOnLadder() && ridingEntity == null && !handleLavaMovement())
             {
                 return false;
@@ -2771,23 +2775,16 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 	
 	@Override
     public boolean CanJump()
-    {	
-		//AARON testing for plasma
-    	//PLASMA
-//		boolean canJump = health > 2 && foodStats.getFoodLevel() > 6 && (int)foodStats.getSaturationLevel() < 18;
-//		
-//		if (!canJump)
-//		{
-//	    	System.out.println("JUMP ATTEMPTED");
-//	    	playSound( "random.classic_hurt", 1.0F, 1.0F );
-//		}
-//		
-//		return canJump;
-
-		//OG CODE VVV
-//		//Aaron changed: original values are health 4 and FoodLevel 12
-    	return health > 2 && foodStats.getFoodLevel() > 6 && (int)foodStats.getSaturationLevel() < 18;
-    }
+    {		
+		//Aaron changed: original values are health 4 and FoodLevel 12
+		//see config in SuperBTW.java
+		if (SuperBTW.instance.areHungerTweaksEnabled())
+		{
+			return health > 2 && foodStats.getFoodLevel() > 6 && (int)foodStats.getSaturationLevel() < 18;
+	    }
+		//original Flowerchild values
+		return health > 4 && foodStats.getFoodLevel() > 12 && (int)foodStats.getSaturationLevel() < 18;
+	}
 	
 	@Override
     public boolean CanSwim()

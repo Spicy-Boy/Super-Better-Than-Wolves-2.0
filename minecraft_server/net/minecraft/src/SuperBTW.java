@@ -29,6 +29,7 @@ public class SuperBTW extends FCAddOn
 	private boolean is2x2LeatherEnabled;
 	private boolean areHungerTweaksEnabled;
 	private boolean areBranchesEnabled;
+	private boolean isHardcoreBouncingEnabled;
 	
 	private boolean isLightningFireEnabled;
 	
@@ -298,6 +299,9 @@ public class SuperBTW extends FCAddOn
 		registerProperty(propertyName21, "true", "Turn this off to experience the original BTW hunger bar properties.. (ex: can't jump on famished)");
 		this.setHungerTweaksEnabled(this.loadConfigProperties().get(propertyName21).equals("true"));
 		
+		String propertyName22 = "Enable-Hardcore-Bouncing";
+		registerProperty(propertyName22, "false", "Hardcore bouncing prevents block placement while airborn. Disabled by default in SBTW!");
+		this.setIsHardcoreBouncingEnabled(this.loadConfigProperties().get(propertyName22).equals("true"));
 
 	}
 	
@@ -399,6 +403,15 @@ public class SuperBTW extends FCAddOn
 	public int getCustomRespawnExclusionRadius()
 	{
 		return customRespawnExclusionRadius;
+	}
+	
+	public void setIsHardcoreBouncingEnabled(boolean b)
+	{
+		this.isHardcoreBouncingEnabled = b;
+	}
+	public boolean isHardcoreBouncingEnabled()
+	{
+		return isHardcoreBouncingEnabled;
 	}
 	
 //	public void initializeServerProperties()

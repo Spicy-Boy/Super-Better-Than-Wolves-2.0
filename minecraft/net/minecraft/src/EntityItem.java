@@ -70,6 +70,13 @@ public class EntityItem extends Entity
     public void onUpdate()
     {
         super.onUpdate();
+        
+        //AARON adds a dupe check here. If a floating itemstack size is somehow 0 or less, immediately kill it
+//        if (this.getEntityItem().stackSize <= 0)
+//        {
+//        	this.setDead();
+//        }
+        //!! Aaron commented it out ^^^ for now ;p needs to test before random ass ship!
 
         if (this.delayBeforeCanPickup > 0)
         {

@@ -1,0 +1,45 @@
+In my notebook, I have the date [DATE] marked as the "Best Day of my Life". Absolute addrenaline rush of a day 
+
+>LINKS TO VIDEOS!!!
+
+Viewers in TDLMC's stream asked a few really obvious questions that I didn't have an immediate answer for: "What is SBTW?" "What is different about SBTW?" People wanted to know if it was a harder version of the game, and some players responded that it was "easy mode." I guess it is easy compared to 2020 BTW? I didn't make SBTW to be an EZ mode for noobs, I wanted to make a 
+
+Here is a peek at this new properties file:
+<spoiler>
+
+# Toggles whether or not bolts of lightning can start fires..the horror....the horror..
+Enable-Lightning-Fire=true
+
+# If enabled, you will respawn within a set range, unchanging!
+Enable-Custom-HC-Respawn-Radius=false
+
+# vvv The HC respawn radius decided by you..
+Set-Custom-Respawn-Radius=8000
+
+# vvv The inner disc of the HC Spawn radius within which nobody can spawn..
+Set-Custom-Respawn-Exclusion-Radius=100
+
+# Turn this off to stop torches from emitting light when held in the hand!
+Enable-Dynamic-Torches=true
+
+# Turn this off to restrict leather armor crafting to the crafting table
+Enable-2x2-Leather-Armor-Crafting=true
+
+# Turn this off to stop branches from falling from trees or generating!
+Enable-Branches=true
+
+# Turn this off to experience the original BTW hunger bar properties.. (ex: can't jump on famished)
+Enable-Hunger-Tweaks=true
+
+# Hardcore bouncing prevents block placement while airborn. Disabled by default in SBTW!
+Enable-Hardcore-Bouncing=false
+
+TODO: Disable sleeping config ;p true hardcore
+
+</spoiler>
+
+That's right. You can disable lightning fire. You can disable hardcore spawn. You can enable block-jump-placement. You can even turn off Dynamic Lighting and experience caving the OG BTW way.
+
+I am adding all the config options that FC explicitly refused to create. FC rejected broad configs because he wanted to curate a unified gameplay experience. He thought (probably correctly) that if there were configs for controversial features like HC Spawn, the majority of players would disable them instead of challenging themselves to experience the feature. He didn't want to have to deal with players 
+
+The thing is: 

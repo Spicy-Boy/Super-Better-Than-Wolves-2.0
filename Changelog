@@ -4,6 +4,12 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.4 The Pro Choice Update:
 
+NOTE: Added 
+
+IDEA: Imp mob, spawns in gloom darkness and flees from light. Vanishes in a poof of smoke instantaneously in sunlight
+
+IDEA: Solar eclipse weather- extremely rare event when the moon covers the sun for a few minutes, total gloom like new moon during the day
+
 - Changed the config system to use the official FCAddon property manager 
     - SBTW.properties contains all configs. It can be found alongside the BTW properties file in the configs folder
 
@@ -13,6 +19,8 @@ Switched to BETA 2.0 on July 12, 2023
 - Added a config to set the HC respawn radius to whatever you like
     - Yes, this means you can disable Hardcore Spawn entirely by setting the respawn radius super low
     - This is a stop gap feature: ideally, this config will be set at world creation and be applied per-world
+
+- Added a config to stop branches from generating/falling from trees (in case you hate wood for some reason)
 
 - Added the /smite [player] command to place divine retribution into the hands of admins
 
@@ -169,7 +177,6 @@ NOTE: If both team start and HC start are enabled at the same time, then players
 2.1 Hotfix:
 
 - Added a missing file that caused a rendering crash! Oops!!! Sorry!!!
-
 2.0 Additions:
 
 -TEMPORARY OMISSION for BETA 2.0: Biome decorator places standard gourds with vanilla seeds/plants

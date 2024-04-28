@@ -2236,38 +2236,41 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         // FCMOD: Code added to prevent the player from placing blocks while in mid air
         boolean disableHardcoreBouncing = false;
 
-        try {
-            Class decoManagerClass;
-
-            if (FCUtilsReflection.isObfuscated()) {
-                decoManagerClass = Class.forName("net.minecraft.src.DecoManager");
-            }
-            else {
-                decoManagerClass = Class.forName("DecoManager");
-            }
-
-            Method decoInstanceGetter = decoManagerClass.getDeclaredMethod("getInstance");
-            FCAddOn decoInstance = (FCAddOn) decoInstanceGetter.invoke(null);
-
-            Field disableHarcoreBouncingField = decoManagerClass.getDeclaredField("disableHardcoreBouncing");
-            disableHardcoreBouncing = (Boolean) disableHarcoreBouncingField.get(decoInstance);
-        } catch (ClassNotFoundException e) {
-
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
+        //AAron commented this out because, frankly, it wasn't supposed to be here :p
+        //literally deco code lol
+//        try {
+//            Class decoManagerClass;
+//
+//            if (FCUtilsReflection.isObfuscated()) {
+//                decoManagerClass = Class.forName("net.minecraft.src.DecoManager");
+//            }
+//            else {
+//                decoManagerClass = Class.forName("DecoManager");
+//            }
+//
+//            Method decoInstanceGetter = decoManagerClass.getDeclaredMethod("getInstance");
+//            FCAddOn decoInstance = (FCAddOn) decoInstanceGetter.invoke(null);
+//
+//            Field disableHarcoreBouncingField = decoManagerClass.getDeclaredField("disableHardcoreBouncing");
+//            disableHardcoreBouncing = (Boolean) disableHarcoreBouncingField.get(decoInstance);
+//        } catch (ClassNotFoundException e) {
+//
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (SecurityException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (IllegalArgumentException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        }
         
-        if (disableHardcoreBouncing) {
+//        if (disableHardcoreBouncing) {
+    	if (SuperBTW.instance.isHardcoreBouncingEnabled()) {
             if (!capabilities.isCreativeMode && !onGround && !inWater && !isOnLadder() && ridingEntity == null && !handleLavaMovement())
             {
                 return false;
@@ -2637,8 +2640,15 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     public boolean CanJump()
     {		
 		//Aaron changed: original values are health 4 and FoodLevel 12
-    	return health > 2 && foodStats.getFoodLevel() > 6 && (int)foodStats.getSaturationLevel() < 18;
-    }
+		//see config in SuperBTW.java
+		if (SuperBTW.instance.areHungerTweaksEnabled())
+		{
+			return health > 2 && foodStats.getFoodLevel() > 6 && (int)foodStats.getSaturationLevel() < 18;
+	    }
+		//original Flowerchild values
+		return health > 4 && foodStats.getFoodLevel() > 12 && (int)foodStats.getSaturationLevel() < 18;
+	}
+    	
 	
 	@Override
     public boolean CanSwim()
