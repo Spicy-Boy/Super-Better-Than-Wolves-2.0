@@ -2,7 +2,19 @@ In my notebook, I have the date [DATE] marked as the "Best Day of my Life". Abso
 
 >LINKS TO VIDEOS!!!
 
-Viewers in TDLMC's stream asked a few really obvious questions that I didn't have an immediate answer for: "What is SBTW?" "What is different about SBTW?" People wanted to know if it was a harder version of the game, and some players responded that it was "easy mode." I guess it is easy compared to 2020 BTW? I didn't make SBTW to be an EZ mode for noobs, I wanted to make a 
+Viewers in TDLMC's stream asked a few really obvious questions that I didn't have an immediate answer for: "What is SBTW?" "What is different about SBTW?" People wanted to know if it was a harder version of the game, and some players responded that it was "easy mode." I didn't make SBTW to be an EZ mode for noobs, I wanted to make an interesting new earlygame with lots of ways to approach the progression beyond the tired old chunks>chisel>craftingstump speedrun. Certainly, SBTW's changes from 2020 BTW are no more progression bending than the CE changes. Here's a handy timeline:
+
+20xx: Flowerchild departs 
+> CE 1.0 released
+> Zhil gives Aaron the BTW-gradle
+> Aaron begins work on SBTW
+> CE XX released
+> Aaron finally releases SBTW 1.0
+> Arminias ports Awoken Dreams to BTW
+> Aaron begins work on SBTW 2.0, with the stated goal of adding 
+> CE 2.X releases, adding Sinew
+
+Regardless, I decided to take the criticism to heart and create a robust configuration file that players can use to change SBTW's "easy mode" features back to their Flowerchild defaults. So there-- SBTW is HARDMODE now. Not that anyone that cares about that sort of thing will play SBTW anyway, I imagine. ;p
 
 Here is a peek at this new properties file:
 <spoiler>
@@ -38,8 +50,15 @@ TODO: Disable sleeping config ;p true hardcore
 
 </spoiler>
 
-That's right. You can disable lightning fire. You can disable hardcore spawn. You can enable block-jump-placement. You can even turn off Dynamic Lighting and experience caving the OG BTW way.
+That's right. You can disable lightning fire. You can disable hardcore spawn. You can enable block-jump-placement. You can even turn off Dynamic Lighting and experience caving the OG BTW way. You can make the game harder, and you can make it easier too. Eventually you will even be able to disable sleeping, if for some god forsaken reason you want to experience BTW in its truest hardcore sense.
 
-I am adding all the config options that FC explicitly refused to create. FC rejected broad configs because he wanted to curate a unified gameplay experience. He thought (probably correctly) that if there were configs for controversial features like HC Spawn, the majority of players would disable them instead of challenging themselves to experience the feature. He didn't want to have to deal with players 
+I am adding a whole load of config options that FC explicitly refused to create. FC rejected broad configs because he wanted to curate a single gameplay experience. He thought (probably correctly) that if there were configs for controversial features like HC Spawn, the majority of players would disable them instead of challenging themselves to experience the feature. He didn't want to have to deal with players 
 
-The thing is: 
+The thing is: I don't care all that much. The great BTW experiment is already a success. FC produced a fantastic survival game with an expansive playerbase that continues to grow even after his parting. If players want to mix up the medicine themselves (as I myself have done since 2018 through modding), then who am I to stop them? I can pontificate about the benefits of HC Spawn all day, but I gain very little by coercing inexperienced players into running with it. On the contrary, giving players the option to play without Hardcore Spawn might reveal to them why HC Spawn is actually a fun thing in the first place. Or they will just play and have fun in their own way. 
+
+At this point, the real ideological challenge facing BTW in 2024 is convincing players to stick with a single world in the first place. While I appreciate the massive surge in interest that TDLMC's content has brought to BTW, the trend of playing exclusively in "Hardcore Mode" is giga-lame. This new generation of BTW players is obsessed with pure difficulty, and they treat worlds as disposable. For them, the difficulty of BTW is the be-all-end-all with "beating" the game as the ultimate goal of the experience. In my mind, this is a perversion of the whole point of BTW. FC didn't sit down one day and code up a bunch of insane challenges for the sake of torturing blind players. No, BTW's hardcore modes were built up in layers over the course of years in order to expand upon aspects of the game.
+
+The challenge exist to give you a reason to actually play Minecraft. In BTW, the mechanics have you build functional defensive structures, increasingly complex farms, and even practical roadways. BTW gives Minecraft a much needed sense of progression, lengthening the early game while imbuing the later game with purpose. To put it another way: BTW makes it so that you aren't just larping in a sandbox--the game is hard enough that planning and building is actually rewarded.
+
+Enough ranting
+
