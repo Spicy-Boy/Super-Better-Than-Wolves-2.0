@@ -281,9 +281,15 @@ public class FoodStats
         {
             ++foodTimer;
             
+            int starvationThreshold = 80;
+            
             //AARON CHANGED to make starvation take slightly longer (original value: 80)
             //God bless Yany for discovering this
-            if ( foodTimer >= 200 )
+            if (SuperBTW.instance.areHungerTweaksEnabled())
+            {
+            	starvationThreshold = 200;
+            }
+            if ( foodTimer >= starvationThreshold ) //Aaron's value is 200, FC 80
             {
             	if ( iDifficulty > 0 )
             	{

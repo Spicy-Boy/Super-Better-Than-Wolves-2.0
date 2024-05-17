@@ -22,6 +22,10 @@ IDEA: Solar eclipse weather- extremely rare event when the moon covers the sun f
 
 - Added a config to stop branches from generating/falling from trees (in case you hate wood for some reason)
 
+- Added a config to re-enable hardcore bouncing (prevents block placement while in the air)
+
+- Added a config to revert Steve's hunger bar properties to FC defaults (faster health drain while starving, can't jump while famished)
+
 - Added the /smite [player] command to place divine retribution into the hands of admins
 
 - Changed the first layer of the ender beacon to be the trans-dimensional chest instead of a dimensional chest (swapped lvl 1->2,2->3,3->1) 
@@ -37,7 +41,7 @@ IDEA: Solar eclipse weather- extremely rare event when the moon covers the sun f
 
 - Fixed an issue that caused a crash when applying arrows (and maybe other things too) to your armor slots. 
 
-- Fixed an evasive bug that caused chunks to revert if a villager trade recipe is removed while an existing villager in a world still has the trade
+- Fixed (possibly) an evasive bug that caused chunks to revert if a villager trade recipe is removed while an existing villager in a world still has the trade
 
 TODO - FIX bug that allows players to sleep in the overworld and speed up time in the nether
 
