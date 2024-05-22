@@ -4,12 +4,6 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.4 The Pro Choice Update:
 
-NOTE: Added 
-
-IDEA: Imp mob, spawns in gloom darkness and flees from light. Vanishes in a poof of smoke instantaneously in sunlight
-
-IDEA: Solar eclipse weather- extremely rare event when the moon covers the sun for a few minutes, total gloom like new moon during the day
-
 - Changed the config system to use the official FCAddon property manager 
     - SBTW.properties contains all configs. It can be found alongside the BTW properties file in the configs folder
 
@@ -28,6 +22,8 @@ IDEA: Solar eclipse weather- extremely rare event when the moon covers the sun f
 
 - Added the /smite [player] command to place divine retribution into the hands of admins
 
+- Added the /tpabove [player] [# of blocks] command to allow admins to spy on players.. works with negative numbers, defaults 20 blocks
+
 - Changed the first layer of the ender beacon to be the trans-dimensional chest instead of a dimensional chest (swapped lvl 1->2,2->3,3->1) 
 
 - Changed withers to be made with soulsand again. Yes, you can still use bone blocks if you like
@@ -37,13 +33,11 @@ IDEA: Solar eclipse weather- extremely rare event when the moon covers the sun f
 - Fixed an issue where trades weren't refreshing properly (again... ;I) and added a measure to prevent chunk reversion in rare cases
 
 - Fixed an issue where the death counter was being reset to 0 when going through the end portal
-    NOTE: respawning at a Steel Beacon still resets the death counter! Will probably get fixed someday?
+    NOTE: respawning at a Steel Beacon still resets the death counter! Will probably get fixed someday? NBD
 
 - Fixed an issue that caused a crash when applying arrows (and maybe other things too) to your armor slots. 
 
-- Fixed (possibly) an evasive bug that caused chunks to revert if a villager trade recipe is removed while an existing villager in a world still has the trade
-
-TODO - FIX bug that allows players to sleep in the overworld and speed up time in the nether
+TODO KNOWN BUG - bug that allows players to sleep in the overworld and speed up time in the nether (LOL BE CAREFUL!!!)
 
 TODO- ADDED nametag
 
@@ -400,6 +394,11 @@ Material.java (for glass spawning mechanics)
 #############################################################
 VERSION 3.0 Speculative TODO
 Additions:
+
+
+IDEA: Imp mob, spawns in gloom darkness and flees from light. Vanishes in a poof of smoke instantaneously in sunlight
+
+IDEA: Solar eclipse weather- extremely rare event when the moon covers the sun for a few minutes, total gloom like new moon during the day
 
 O- FIX The sword seam issue in the rendering caused by mc patcher
 

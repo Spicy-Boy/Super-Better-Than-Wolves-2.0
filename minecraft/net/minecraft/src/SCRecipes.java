@@ -14,12 +14,14 @@ public class SCRecipes {
 	{
 		int farmer = FCEntityVillager.professionIDFarmer;
 		
-		FCEntityVillager.removeTradeToBuy(farmer, Block.melon.blockID, 0);
-		FCEntityVillager.removeTradeToBuy(farmer, FCBetterThanWolves.fcBlockPumpkinFresh.blockID, 0);
+		//TEMPORARILY DISABLED the new gourd trades from farmers :p
+		
+//		FCEntityVillager.removeTradeToBuy(farmer, Block.melon.blockID, 0);
+//		FCEntityVillager.removeTradeToBuy(farmer, FCBetterThanWolves.fcBlockPumpkinFresh.blockID, 0);
 		
 		//AARON updated the counts to require fewer gourds... since growing large volumes is a lot harder! //prev, 8-10 or 10-16
-		FCEntityVillager.addTradeToBuyMultipleItems(farmer, SCDefs.melonHarvested.blockID, 3, 3, 8, 1F, 3);
-		FCEntityVillager.addTradeToBuyMultipleItems(farmer, SCDefs.pumpkinHarvested.blockID, 3, 3, 8, 1F, 3);
+//		FCEntityVillager.addTradeToBuyMultipleItems(farmer, SCDefs.melonHarvested.blockID, 3, 3, 8, 1F, 3);
+//		FCEntityVillager.addTradeToBuyMultipleItems(farmer, SCDefs.pumpkinHarvested.blockID, 3, 3, 8, 1F, 3);
 		
 		//pumpkin pie
 		FCRecipes.AddShapelessRecipe( new ItemStack( FCBetterThanWolves.fcItemPastryUncookedPumpkinPie, 1 ), 
