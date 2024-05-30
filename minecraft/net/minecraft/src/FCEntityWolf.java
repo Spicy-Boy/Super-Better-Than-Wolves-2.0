@@ -372,9 +372,9 @@ public class FCEntityWolf extends EntityWolf
 	{
 		// only eat loose food if the wolf is not fed.  Don't do it if they are just 
 		// wounded like by hand, nor do it for breeding like with other animals.
-		// Hiracho: changed, do check breeding items on ground
-
-		return (!IsFullyFed() || IsReadyToEatBreedingItem());
+		// Hiracho: changed vvv, do check breeding items on ground
+//		return (!IsFullyFed() || IsReadyToEatBreedingItem());
+		return (!IsFullyFed());
 	}
 
 	@Override
@@ -545,11 +545,54 @@ public class FCEntityWolf extends EntityWolf
 		return true;
 	}
 
+	//AARON edits the hunger state method to make baby wolves more reasonable to care for
 	@Override
 	protected void UpdateHungerState()
 	{
-		super.UpdateHungerState();
+		//AAROn commented out the super call (from EntityAnimal)
+//		super.UpdateHungerState();
+		
+		//re-implement the method without exception for children 
+		if ( IsSubjectToHunger() )
+		{
+			if ( !isChild() )
+			{
+				m_iHungerCountdown--;
+			}
+			else    			
+			{
+				// puppies burn more energy
 
+				m_iHungerCountdown -= 2;
+			}
+
+			if ( m_iHungerCountdown <= 0 )
+			{
+				if ( IsFullyFed() )
+				{
+					OnBecomeFamished();
+				}
+				else if ( IsFamished() )
+				{
+					OnBecomeStarving();
+				}
+				else // starving
+				{
+					if (!isChild()) //if adult wolf, normal starve
+					{	
+						OnStarvingCountExpired();
+					}
+					else
+					{
+						//children/puppies starve extremely quickly
+						attackEntityFrom( DamageSource.starve, 1 );
+					}
+				}
+
+				ResetHungerCountdown();
+			}
+		}
+		
 		UpdateShitState();
 	}
 

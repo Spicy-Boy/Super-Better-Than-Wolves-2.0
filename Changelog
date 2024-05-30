@@ -4,6 +4,8 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.4 The Pro Choice Update:
 
+NOTE for Aaron: temporarily disabled gourd trades (re-enable when gourds are back!)
+
 - Changed the config system to use the official FCAddon property manager 
     - SBTW.properties contains all configs. It can be found alongside the BTW properties file in the configs folder
 
@@ -37,6 +39,10 @@ Switched to BETA 2.0 on July 12, 2023
 
 - Fixed an issue that caused a crash when applying arrows (and maybe other things too) to your armor slots. 
 
+- Fixed an issue where baby wolves/puppies would not eat food off the ground and could only be fed when dying of starvation.
+
+- Fixed an issue where horny wolves would eat an endless amount of food off the ground... hehe I'm sorry for this one! A single misplaced line of code.
+
 TODO KNOWN BUG - bug that allows players to sleep in the overworld and speed up time in the nether (LOL BE CAREFUL!!!)
 
 TODO- ADDED nametag
@@ -50,8 +56,6 @@ TODO- Added adobe, a building block of mud, clay, and straw/reeds that must be d
 TODO- APPLY socks pumpkins to head
 
 TODO- Finalize bucket of mortar texture!
-
-TODO SMP COMMANDS - Add basic once-per-life praying command, have lightning strike player
 
 LOOKINTO- Stone pick + gold pick cannot mine iron blocks at all.. Maybe get something??
 
@@ -395,6 +399,8 @@ Material.java (for glass spawning mechanics)
 VERSION 3.0 Speculative TODO
 Additions:
 
+
+idea SMP COMMANDS - Add basic once-per-life praying command, have lightning strike player
 
 IDEA: Imp mob, spawns in gloom darkness and flees from light. Vanishes in a poof of smoke instantaneously in sunlight
 
