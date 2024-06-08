@@ -4,10 +4,18 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.4 The Pro Choice Update:
 
-NOTE for Aaron: temporarily disabled gourd trades (re-enable when gourds are back!)
+- Added terracotta, whose unfired form is crafted with sand+clay. Taken from Deco Addon!
+    - Can be stained en-masse with dye in the cauldron
+
+- Added piston packing to the meat cube... meat packing :D
+
+- Added the ability to pulverize ore chunks into dust in the millstone (gold and iron)
+    - the purpose of this new industrial process will be revealed in a later update
+
+- Added a Latin translation for BTW (replaces Klingon.. sorry?) provided by Waluiji. TY!!! You can now RP as a Roman colonist.
 
 - Changed the config system to use the official FCAddon property manager 
-    - SBTW.properties contains all configs. It can be found alongside the BTW properties file in the configs folder
+    - SBTW.properties now contains all configs. It can be found alongside the BTW properties file in the configs
 
 - Added a config to disable the fire caused by lightning strikes
     - If you know you know...
@@ -26,6 +34,8 @@ NOTE for Aaron: temporarily disabled gourd trades (re-enable when gourds are bac
 
 - Added the /tpabove [player] [# of blocks] command to allow admins to spy on players.. works with negative numbers, defaults 20 blocks
 
+- Added a new recipe for the bedroll that just uses padding. There are now 4 bedroll recipes to fit every possible sleeping arrangement.
+
 - Changed the first layer of the ender beacon to be the trans-dimensional chest instead of a dimensional chest (swapped lvl 1->2,2->3,3->1) 
 
 - Changed withers to be made with soulsand again. Yes, you can still use bone blocks if you like
@@ -35,7 +45,7 @@ NOTE for Aaron: temporarily disabled gourd trades (re-enable when gourds are bac
 - Fixed an issue where trades weren't refreshing properly (again... ;I) and added a measure to prevent chunk reversion in rare cases
 
 - Fixed an issue where the death counter was being reset to 0 when going through the end portal
-    NOTE: respawning at a Steel Beacon still resets the death counter! Will probably get fixed someday? NBD
+    NOTE: respawning at a Steel Beacon still resets the death counter! Will probably get fixed someday? NBD perhaps
 
 - Fixed an issue that caused a crash when applying arrows (and maybe other things too) to your armor slots. 
 
@@ -43,7 +53,11 @@ NOTE for Aaron: temporarily disabled gourd trades (re-enable when gourds are bac
 
 - Fixed an issue where horny wolves would eat an endless amount of food off the ground... hehe I'm sorry for this one! A single misplaced line of code.
 
-TODO KNOWN BUG - bug that allows players to sleep in the overworld and speed up time in the nether (LOL BE CAREFUL!!!)
+- Fixed an issue where the bed would break into components as well as an entire intact bed at the same time
+
+- Fixed a server issue where players sleeping in the overworld would speed up time even if there were non-sleepers in other dimensions. Instant-death in most cases.
+
+NOTE for Aaron: temporarily disabled neo-gourd trades (re-enable when gourds are back!)
 
 TODO- ADDED nametag
 

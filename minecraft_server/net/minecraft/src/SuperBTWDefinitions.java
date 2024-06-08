@@ -85,9 +85,11 @@ public class SuperBTWDefinitions {
 		id_stickBundleLooseSlab = 2012,
 		id_stickBundleLoose = 2013,
 		id_superGlass = 2014,
-		id_superBlock = 2015;
-	
-		
+		id_superBlock = 2015,
+		// 2016-2020 saved
+		id_terracotta = 2021,
+		id_stainedTerracotta = 2022,
+		id_unfiredTerracotta = 2023;
 	
 	public static Item leatherWorking;
 	public static Item flintKnapping;
@@ -140,6 +142,8 @@ public class SuperBTWDefinitions {
 	
 	public static SuperBTWBlockWetMudBrick wetMudBrick;
 	public static Item wetMudBrickItem;
+	
+	public static Block terracotta, stainedTerracotta, unfiredTerracotta;
 	
 	//GOURD MANIA!
 	

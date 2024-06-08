@@ -455,7 +455,11 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
                     var1 = var5;
                     
                     //AARON added this line of code to make sure all the players are offline to turn off the speed up
-                    if (this.worldServers[0].areAllPlayersAsleep() && this.getCurrentPlayerCount() > 0)
+//                    if (this.worldServers[0].areAllPlayersAsleep() && this.getCurrentPlayerCount() > 0)
+                    if (this.worldServers[0].areAllPlayersAsleep() 
+                    		&& this.worldServers[1].playerEntities.size() < 1 //ensures nobody is in the nether
+                    		&& this.worldServers[2].playerEntities.size() < 1 //ensures nobody is in the end
+                    		&& this.getCurrentPlayerCount() > 0)
                     {
                         this.tick();
                         var50 = 0L;
@@ -469,19 +473,19 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
                         }
                     }
 
-                    if (this.worldServers[0].areAllPlayersAsleep())
-                    {
-                        this.tick();
-                        var50 = 0L;
-                    }
-                    else
-                    {
-                        while (var50 > 50L)
-                        {
-                            var50 -= 50L;
-                            this.tick();
-                        }
-                    }
+//                    if (this.worldServers[0].areAllPlayersAsleep())
+//                    {
+//                        this.tick();
+//                        var50 = 0L;
+//                    }
+//                    else
+//                    {
+//                        while (var50 > 50L)
+//                        {
+//                            var50 -= 50L;
+//                            this.tick();
+//                        }
+//                    }
 
                     Thread.sleep(1L);
                 }

@@ -12,7 +12,6 @@ public class SuperBTWRecipes extends FCRecipes {
 		addCustomRecipeClasses();
 		addBlockRecipes();
 		addFoodRecipes();
-		addToolRecipes();
 		addProgressRecipes();
 		addBladeRecipes();
 		addMiscRecipes();
@@ -211,6 +210,10 @@ public class SuperBTWRecipes extends FCRecipes {
 		FCRecipes.AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.deathClub, 1), new ItemStack[] {
 				new ItemStack(SuperBTWDefinitions.rib), new ItemStack(SuperBTWDefinitions.rib), new ItemStack(Item.stick), new ItemStack(Item.stick) });
 	
+		AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.fcItemBedroll), new Object[] {
+				new ItemStack(FCBetterThanWolves.fcItemPadding, 1),
+				new ItemStack(FCBetterThanWolves.fcItemPadding, 1)});
+		
 		AddShapelessRecipe(new ItemStack(SuperBTWDefinitions.fcItemBedroll), new Object[] {
 				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
 				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),

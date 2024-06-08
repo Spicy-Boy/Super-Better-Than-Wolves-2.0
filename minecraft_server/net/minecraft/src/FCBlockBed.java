@@ -18,8 +18,10 @@ public class FCBlockBed extends FCBlockBedBase
 	@Override
 	public boolean DropComponentItemsOnBadBreak(World world, int x, int y, int z, int iMetadata, float chanceOfDrop) {
 		DropItemsIndividualy(world, x, y, z, FCBetterThanWolves.fcItemSawDust.itemID, 3, 0, chanceOfDrop);
-		DropItemsIndividualy(world, x, y, z, Item.stick.itemID, 1, 0, chanceOfDrop);
-		DropItemsIndividualy(world, x, y, z, FCBetterThanWolves.fcItemPadding.itemID, 2, 0, chanceOfDrop);
+		//AARON updated the bed to drop 3 sticks instead of 1
+		DropItemsIndividualy(world, x, y, z, Item.stick.itemID, 3, 0, chanceOfDrop);
+		//Aaron updated the bed to drop 3 padding instead of 2
+		DropItemsIndividualy(world, x, y, z, FCBetterThanWolves.fcItemPadding.itemID, 3, 0, chanceOfDrop);
 		
 		return true;
 	}

@@ -208,10 +208,11 @@ public class BlockBed extends BlockDirectional
         {
             par1World.setBlockToAir(par2, par3, par4);
 
-            if (!par1World.isRemote)
-            {
-                this.dropBlockAsItem(par1World, par2, par3, par4, var6, 0);
-            }
+            //AARON commented this out to fix double bed drop on bad break
+//            if (!par1World.isRemote)
+//            {
+//                this.dropBlockAsItem(par1World, par2, par3, par4, var6, 0);
+//            }
         }
     }
 

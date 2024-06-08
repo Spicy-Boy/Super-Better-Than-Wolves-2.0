@@ -61,7 +61,7 @@ public class FCBlockDeadBush extends BlockDeadBush
     //AARON added chance to drop
     public void dropBlockAsItemWithChance( World world, int i, int j, int k, int iMetadata, float fChance, int iFortuneModifier )
     {
-        if ( !world.isRemote )
+        if ( !world.isRemote && SuperBTW.instance.getBranchesEnabled()) //AARON added config to turn off branches
         {
         	if ( world.rand.nextDouble() > .20 )
             {

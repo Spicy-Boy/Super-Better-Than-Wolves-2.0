@@ -31,8 +31,9 @@ public class SuperBTW extends FCAddOn
 	private int customRespawnRadius;
 	private int customRespawnExclusionRadius;
 	
-
-
+	//Dawn's color order from Deco Addon!!
+	public final static String[] colorOrder = {"black", "red", "green", "brown", "blue", "purple", "cyan", "lightGray", "gray", "pink", "lime", "yellow", "lightBlue", "magenta", "orange", "white"};
+	
 	@Override
 	public void Initialize() 
 	{

@@ -38,3 +38,25 @@ item.SuperBTWItemWetMudBrick.name=Wet Mud Brick
 item.SuperBTWItemTombstonePlacer.name=Gravestone
 item.SuperBTWItemTreat.name=Dog Treat
 item.fcItemBedroll.name=Bedroll
+
+# Deco Complex Blocks
+tile.decoBlockTerracotta.name=Terracotta
+tile.decoBlockTerracottaUnfired.name=Terracotta Sand
+
+tile.decoBlockTerracottaStained.black.name=Black Stained Terracotta
+tile.decoBlockTerracottaStained.red.name=Red Stained Terracotta
+tile.decoBlockTerracottaStained.green.name=Green Stained Terracotta
+tile.decoBlockTerracottaStained.brown.name=Brown Stained Terracotta
+tile.decoBlockTerracottaStained.blue.name=Blue Stained Terracotta
+tile.decoBlockTerracottaStained.purple.name=Purple Stained Terracotta
+tile.decoBlockTerracottaStained.cyan.name=Cyan Stained Terracotta
+tile.decoBlockTerracottaStained.lightGray.name=Light Gray Stained Terracotta
+tile.decoBlockTerracottaStained.gray.name=Gray Stained Terracotta
+tile.decoBlockTerracottaStained.pink.name=Pink Stained Terracotta
+tile.decoBlockTerracottaStained.lime.name=Lime Stained Terracotta
+tile.decoBlockTerracottaStained.yellow.name=Yellow Stained Terracotta
+tile.decoBlockTerracottaStained.lightBlue.name=Light Blue Stained Terracotta
+tile.decoBlockTerracottaStained.magenta.name=Magenta Stained Terracotta
+tile.decoBlockTerracottaStained.orange.name=Orange Stained Terracotta
+tile.decoBlockTerracottaStained.white.name=White Stained Terracotta
+
