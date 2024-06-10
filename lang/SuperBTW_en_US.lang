@@ -86,13 +86,12 @@ tile.decoBlockWhiteBricks.cracked.name=Cracked White Stone Bricks
 tile.decoBlockWhiteBricks.chiseled.name=Chiseled White Stone Bricks
 tile.decoBlockWhiteBricksStairs.name=White Stone Brick Stairs
 
-tile.decoBlockSandStoneBrickLarge.name=Sandstone Bricks
-tile.decoBlockSandStoneBrickSlab.0.name=Sandstone Brick Slab
-tile.decoBlockSandStoneBrickLarge.mossy.name=Mossy Sandstone Bricks
-tile.decoBlockSandStoneBrickLarge.cracked.name=Cracked Sandstone Bricks
-tile.decoBlockSandStoneBrickLarge.chiseled.name=Chiseled Sandstone Bricks
-
-tile.decoBlockSandStoneBrickLargeStairs.name=Sandstone Brick Stairs
-tile.decoBlockSandStoneBrickLargeMossyStairs.name=Mossy Sandstone Brick Stairs
-tile.decoBlockSandStoneBrickLargeCrackedStairs.name=Cracked Sandstone Brick Stairs
+tile.decoBlockSandstoneBrickLarge.name=Sandstone Bricks
+tile.decoBlockSandstoneBrickLargeSlab.0.name=Sandstone Brick Slab
+tile.decoBlockSandstoneBrickLarge.mossy.name=Mossy Sandstone Bricks
+tile.decoBlockSandstoneBrickLarge.cracked.name=Cracked Sandstone Bricks
+tile.decoBlockSandstoneBrickLarge.chiseled.name=Chiseled Sandstone Bricks
+tile.decoBlockSandstoneBrickLargeStairs.name=Sandstone Brick Stairs
+tile.decoBlockSandstoneBrickLargeMossyStairs.name=Mossy Sandstone Brick Stairs
+tile.decoBlockSandstoneBrickLargeCrackedStairs.name=Cracked Sandstone Brick Stairs
 

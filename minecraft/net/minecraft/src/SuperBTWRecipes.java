@@ -188,8 +188,8 @@ public class SuperBTWRecipes extends FCRecipes {
 			FCRecipes.AddCauldronRecipe(new ItemStack(SuperBTWDefinitions.stainedTerracotta, 16, i % 16), new ItemStack[] { new ItemStack(SuperBTWDefinitions.terracotta, 16), new ItemStack(Item.dyePowder, 1, i)});
 		}
 		
-		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.terracottaSlabDefault, 6), new Object[] {"###", '#', new ItemStack(SuperBTWDefinitions.terracotta, 1)});
-		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.terracotta, 1), new Object[] {"#", "#", '#', new ItemStack(SuperBTWDefinitions.terracottaSlabDefault, 1)});
+//		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.terracottaSlabDefault, 6), new Object[] {"###", '#', new ItemStack(SuperBTWDefinitions.terracotta, 1)});
+//		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.terracotta, 1), new Object[] {"#", "#", '#', new ItemStack(SuperBTWDefinitions.terracottaSlabDefault, 1)});
 		
 		for(int i = 0; i < 16; i++)
 		{
