@@ -43,20 +43,56 @@ item.fcItemBedroll.name=Bedroll
 tile.decoBlockTerracotta.name=Terracotta
 tile.decoBlockTerracottaUnfired.name=Terracotta Sand
 
-tile.decoBlockTerracottaStained.black.name=Black Stained Terracotta
-tile.decoBlockTerracottaStained.red.name=Red Stained Terracotta
-tile.decoBlockTerracottaStained.green.name=Green Stained Terracotta
-tile.decoBlockTerracottaStained.brown.name=Brown Stained Terracotta
-tile.decoBlockTerracottaStained.blue.name=Blue Stained Terracotta
-tile.decoBlockTerracottaStained.purple.name=Purple Stained Terracotta
-tile.decoBlockTerracottaStained.cyan.name=Cyan Stained Terracotta
-tile.decoBlockTerracottaStained.lightGray.name=Light Gray Stained Terracotta
-tile.decoBlockTerracottaStained.gray.name=Gray Stained Terracotta
-tile.decoBlockTerracottaStained.pink.name=Pink Stained Terracotta
-tile.decoBlockTerracottaStained.lime.name=Lime Stained Terracotta
-tile.decoBlockTerracottaStained.yellow.name=Yellow Stained Terracotta
-tile.decoBlockTerracottaStained.lightBlue.name=Light Blue Stained Terracotta
-tile.decoBlockTerracottaStained.magenta.name=Magenta Stained Terracotta
-tile.decoBlockTerracottaStained.orange.name=Orange Stained Terracotta
-tile.decoBlockTerracottaStained.white.name=White Stained Terracotta
+tile.decoBlockTerracottaStained.black.name=Black Terracotta
+tile.decoBlockTerracottaStained.red.name=Red Terracotta
+tile.decoBlockTerracottaStained.green.name=Green Terracotta
+tile.decoBlockTerracottaStained.brown.name=Brown Terracotta
+tile.decoBlockTerracottaStained.blue.name=Blue Terracotta
+tile.decoBlockTerracottaStained.purple.name=Purple Terracotta
+tile.decoBlockTerracottaStained.cyan.name=Cyan Terracotta
+tile.decoBlockTerracottaStained.lightGray.name=Light Gray Terracotta
+tile.decoBlockTerracottaStained.gray.name=Gray Terracotta
+tile.decoBlockTerracottaStained.pink.name=Pink Terracotta
+tile.decoBlockTerracottaStained.lime.name=Lime Terracotta
+tile.decoBlockTerracottaStained.yellow.name=Yellow Terracotta
+tile.decoBlockTerracottaStained.lightBlue.name=Light Blue Terracotta
+tile.decoBlockTerracottaStained.magenta.name=Magenta Terracotta
+tile.decoBlockTerracottaStained.orange.name=Orange Terracotta
+tile.decoBlockTerracottaStained.white.name=White Terracotta
+
+tile.decoBlockTerracottaSlabDefault.0.name=Terracotta Slab
+tile.decoBlockTerracottaSlab.0.name=Black Terracotta Slab
+tile.decoBlockTerracottaSlab.1.name=Red Terracotta Slab
+tile.decoBlockTerracottaSlab.2.name=Green Terracotta Slab
+tile.decoBlockTerracottaSlab.3.name=Brown Terracotta Slab
+tile.decoBlockTerracottaSlab.4.name=Blue Terracotta Slab
+tile.decoBlockTerracottaSlab.5.name=Purple Terracotta Slab
+tile.decoBlockTerracottaSlab.6.name=Cyan Terracotta Slab
+tile.decoBlockTerracottaSlab.7.name=Light Gray Terracotta Slab
+
+tile.decoBlockTerracottaSlab2.0.name=Gray Terracotta Slab
+tile.decoBlockTerracottaSlab2.1.name=Pink Terracotta Slab
+tile.decoBlockTerracottaSlab2.2.name=Lime Terracotta Slab
+tile.decoBlockTerracottaSlab2.3.name=Yellow Terracotta Slab
+tile.decoBlockTerracottaSlab2.4.name=Light Blue Terracotta Slab
+tile.decoBlockTerracottaSlab2.5.name=Magenta Terracotta Slab
+tile.decoBlockTerracottaSlab2.6.name=Orange Terracotta Slab
+tile.decoBlockTerracottaSlab2.7.name=White Terracotta slab
+
+tile.decoBlockWhiteBricks.name=White Stone Bricks
+tile.decoBlockWhiteStoneBrickSlab.0.name=White Stone Brick Slab
+tile.decoBlockWhiteBricks.mossy.name=Mossy White Stone Bricks
+tile.decoBlockWhiteBricks.cracked.name=Cracked White Stone Bricks
+tile.decoBlockWhiteBricks.chiseled.name=Chiseled White Stone Bricks
+tile.decoBlockWhiteBricksStairs.name=White Stone Brick Stairs
+
+tile.decoBlockSandStoneBrickLarge.name=Sandstone Bricks
+tile.decoBlockSandStoneBrickSlab.0.name=Sandstone Brick Slab
+tile.decoBlockSandStoneBrickLarge.mossy.name=Mossy Sandstone Bricks
+tile.decoBlockSandStoneBrickLarge.cracked.name=Cracked Sandstone Bricks
+tile.decoBlockSandStoneBrickLarge.chiseled.name=Chiseled Sandstone Bricks
+
+tile.decoBlockSandStoneBrickLargeStairs.name=Sandstone Brick Stairs
+tile.decoBlockSandStoneBrickLargeMossyStairs.name=Mossy Sandstone Brick Stairs
+tile.decoBlockSandStoneBrickLargeCrackedStairs.name=Cracked Sandstone Brick Stairs
 

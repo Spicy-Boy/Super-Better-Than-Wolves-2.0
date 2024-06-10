@@ -182,6 +182,23 @@ public class SuperBTWRecipes extends FCRecipes {
 	    		new ItemStack( Item.clay ),
 	    		new ItemStack( Block.sand )
 			} );
+		//staining terracotta
+		for (int i = 0; i < 32; i++)
+		{
+			FCRecipes.AddCauldronRecipe(new ItemStack(SuperBTWDefinitions.stainedTerracotta, 16, i % 16), new ItemStack[] { new ItemStack(SuperBTWDefinitions.terracotta, 16), new ItemStack(Item.dyePowder, 1, i)});
+		}
+		
+		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.terracottaSlabDefault, 6), new Object[] {"###", '#', new ItemStack(SuperBTWDefinitions.terracotta, 1)});
+		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.terracotta, 1), new Object[] {"#", "#", '#', new ItemStack(SuperBTWDefinitions.terracottaSlabDefault, 1)});
+		
+		for(int i = 0; i < 16; i++)
+		{
+			FCRecipes.AddRecipe(new ItemStack(i < 8 ? SuperBTWDefinitions.terracottaSlab : SuperBTWDefinitions.terracottaSlab2, 6, i % 8), new Object[] {"###", '#', new ItemStack(SuperBTWDefinitions.stainedTerracotta, 1, i)});
+			FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.stainedTerracotta, 1, i), new Object[] {"#", "#", '#', new ItemStack(i < 8 ? SuperBTWDefinitions.terracottaSlab : SuperBTWDefinitions.terracottaSlab2, 1, i % 8)});
+		}
+		
+
+		//newer ce functionality vv
 //		FCRecipes.addKilnRecipe(new ItemStack(SuperBTWDefinitions.terracotta),
 //				SuperBTWDefinitions.unfiredTerracotta,
 //				FCRecipes.cookTimeMultiplierClay);

@@ -90,7 +90,16 @@ public class SuperBTWDefinitions {
 		// 2016-2020 saved
 		id_terracotta = 2021,
 		id_stainedTerracotta = 2022,
-		id_unfiredTerracotta = 2023;
+		id_unfiredTerracotta = 2023,
+		id_terracottaSlab = 2024,
+		id_terracottaSlab2 = 2025,
+		id_terracottaSlabDefault = 2026,
+		id_whiteStoneBrick = 2027,
+		id_whiteStoneBrickStairs = 2028,
+		id_whiteStoneBrickSlab = 2029,
+		id_sandstoneBrickLarge = 2030,
+		id_sandstoneBrickLargeStairs = 2031,
+		id_sandstoneBrickLargeSlab = 2032;
 	
 	public static Item leatherWorking;
 	public static Item flintKnapping;
@@ -146,6 +155,9 @@ public class SuperBTWDefinitions {
 	public static Item wetMudBrickItem;
 	
 	public static Block terracotta, stainedTerracotta, unfiredTerracotta;
+	public static Block terracottaSlab, terracottaSlab2, terracottaSlabDefault;
+	public static Block whiteStoneBrick, whiteStoneBrickStairs, whiteStoneBrickSlab;
+	public static Block sandstoneBrickLarge, sandstoneBrickLargeStairs, sandstoneBrickLargeSlab;
 	
 	//GOURD MANIA!
 	
@@ -262,12 +274,36 @@ public class SuperBTWDefinitions {
 		//Deco additions!
 		terracotta = new DecoBlockTerracotta(id_terracotta).setHardness(1.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("decoBlockTerracotta").setCreativeTab(CreativeTabs.tabBlock);
 		Item.itemsList[terracotta.blockID] = new ItemBlock(terracotta.blockID - 256);
-		
 		stainedTerracotta = (new DecoBlockTerracottaStained(id_stainedTerracotta)).setHardness(1.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setCreativeTab(CreativeTabs.tabBlock).setUnlocalizedName("decoBlockTerracottaStained");
 		Item.itemsList[stainedTerracotta.blockID] = new DecoItemBlockColored(stainedTerracotta.blockID - 256, stainedTerracotta);
 		
 		unfiredTerracotta = new DecoBlockTerracottaUnfired(id_unfiredTerracotta).setUnlocalizedName("decoBlockTerracottaUnfired");
 		Item.itemsList[unfiredTerracotta.blockID] = new ItemBlock(unfiredTerracotta.blockID - 256);
+		
+		terracottaSlabDefault = new DecoBlockSlabStone(id_terracottaSlabDefault, new Block[] {SuperBTWDefinitions.terracotta}, new int[] {0}).setUnlocalizedName("decoBlockTerracottaSlabDefault");
+		Item.itemsList[SuperBTWDefinitions.terracottaSlabDefault.blockID] = new DecoItemBlockSlab(SuperBTWDefinitions.terracottaSlabDefault.blockID - 256);
+		terracottaSlab = new DecoBlockSlabStone(id_terracottaSlab, new Block[] {SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta}, new int[] {0, 1, 2, 3, 4, 5, 6, 7}).setUnlocalizedName("decoBlockTerracottaSlab");
+		Item.itemsList[SuperBTWDefinitions.terracottaSlab.blockID] = new DecoItemBlockSlab(SuperBTWDefinitions.terracottaSlab.blockID - 256);
+		terracottaSlab2 = new DecoBlockSlabStone(id_terracottaSlab2, new Block[] {SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta}, new int[] {8, 9, 10, 11, 12, 13, 14, 15}).setUnlocalizedName("decoBlockTerracottaSlab2");
+		Item.itemsList[SuperBTWDefinitions.terracottaSlab2.blockID] = new DecoItemBlockSlab(SuperBTWDefinitions.terracottaSlab2.blockID - 256);
+		
+//		whiteStoneBrick = new DecoBlockWhiteStoneBrick(id_whiteStoneBrick).setUnlocalizedName("decoBlockWhiteBricks");
+//		Item.itemsList[whiteStoneBrick.blockID] = new DecoItemBlockBrick(whiteStoneBrick.blockID - 256, whiteStoneBrick);
+//		whiteStoneBrickSlab = new DecoBlockSlabStone(id_whiteStoneBrickSlab, new Block[] {SuperBTWDefinitions.whiteStoneBrick}, new int[] {0}).setUnlocalizedName("decoBlockWhiteStoneBrickSlab");
+//		Item.itemsList[SuperBTWDefinitions.terracottaSlabDefault.blockID] = new DecoItemBlockSlab(SuperBTWDefinitions.whiteStoneBrickSlab.blockID - 256);
+//		whiteStoneBrickStairs = new FCBlockStairs(id_whiteStoneBrickStairs, whiteStoneBrick, 0).setUnlocalizedName("decoBlockWhiteBricksStairs");
+//		Item.itemsList[whiteStoneBrickStairs.blockID] = new ItemBlock(whiteStoneBrickStairs.blockID - 256);
+//		
+//		sandstoneBrickLarge = new DecoBlockWhiteStoneBrick(id_sandstoneBrickLarge).setUnlocalizedName("decoBlockSandstoneBrickLarge");
+//		Item.itemsList[whiteStoneBrick.blockID] = new DecoItemBlockBrick(whiteStoneBrick.blockID - 256, whiteStoneBrick);
+//		
+//		sandstoneBrickLargeSlab = new DecoBlockSlabStone(id_sandstoneBrickLargeSlab, new Block[] {SuperBTWDefinitions.sandstoneBrickLarge}, new int[] {0}).setUnlocalizedName("decoBlockSandstoneBrickLargeSlab");
+//		Item.itemsList[SuperBTWDefinitions.sandstoneBrickLargeSlab.blockID] = new DecoItemBlockSlab(SuperBTWDefinitions.sandstoneBrickLargeSlab.blockID - 256);
+//
+//		sandstoneBrickLargeStairs = new FCBlockStairs(id_sandstoneBrickLargeStairs, sandstoneBrickLarge, 0).setUnlocalizedName("decoBlockSandstoneBrickLargeStairs");
+//		Item.itemsList[sandstoneBrickLargeStairs.blockID] = new ItemBlock(sandstoneBrickLargeStairs.blockID - 256);
+//		
+//		sandStoneBrickLargeStairs = new DecoBlockStairsSandStone(id_sandstoneBrickLargeStairs, Block.sandStone, 6).setUnlocalizedName("decoBlockStairsSandStoneBrickLarge");
 	}
 	
 	//BLOCK ID CHECKERS, for when you need to check if a block has a certain quality to it!

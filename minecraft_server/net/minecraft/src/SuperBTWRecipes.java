@@ -12,6 +12,7 @@ public class SuperBTWRecipes extends FCRecipes {
 		addCustomRecipeClasses();
 		addBlockRecipes();
 		addFoodRecipes();
+		addToolRecipes();
 		addProgressRecipes();
 		addBladeRecipes();
 		addMiscRecipes();
@@ -174,6 +175,23 @@ public class SuperBTWRecipes extends FCRecipes {
 		AddShapelessRecipe( new ItemStack( Item.bucketEmpty, 1), new Object[] {
 	    		new ItemStack( SuperBTWDefinitions.mortarBucket, 1,  m_iIgnoreMetadata  ),
 			} );
+		
+		
+		//DECO!
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.unfiredTerracotta, 1), new Object[] {
+	    		new ItemStack( Item.clay ),
+	    		new ItemStack( Block.sand )
+			} );
+		//staining terracotta
+		for (int i = 0; i < 32; i++)
+		{
+			FCRecipes.AddCauldronRecipe(new ItemStack(SuperBTWDefinitions.stainedTerracotta, 16, i % 16), new ItemStack[] { new ItemStack(SuperBTWDefinitions.terracotta, 16), new ItemStack(Item.dyePowder, 1, i)});
+		}
+		
+		//newer ce functionality vv
+//		FCRecipes.addKilnRecipe(new ItemStack(SuperBTWDefinitions.terracotta),
+//				SuperBTWDefinitions.unfiredTerracotta,
+//				FCRecipes.cookTimeMultiplierClay);
 	}
 
 	public static void addToolRecipes() {
@@ -399,6 +417,12 @@ public class SuperBTWRecipes extends FCRecipes {
 		FCRecipes.AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.waterMelonSeeds, 1 ), new Object[] { 
         new ItemStack( SCDefs.melonWaterSlice, 1 )
 		} );
+		
+		//curing beef rib
+		FCRecipes.AddShapelessRecipe( new ItemStack( FCBetterThanWolves.fcItemMeatCured, 2 ), new Object[] { 
+            new ItemStack( SuperBTWDefinitions.cowRib), new ItemStack( FCBetterThanWolves.fcItemNitre), new ItemStack( FCBetterThanWolves.fcItemNitre),
+            new ItemStack( FCBetterThanWolves.fcItemNitre)
+        } );
 	}
 
 	private static void addProgressRecipes() {
@@ -502,6 +526,10 @@ public class SuperBTWRecipes extends FCRecipes {
 		//rib recipes
 		AddMillStoneRecipe( new ItemStack( Item.dyePowder, 6, 15 ), new ItemStack( SuperBTWDefinitions.rib, 1) );
 		AddMillStoneRecipe( new ItemStack( Item.dyePowder, 2, 15 ), new ItemStack( FCBetterThanWolves.fcItemClubBone, 1) );
+		
+		//reduce ore to dust recipes
+		AddMillStoneRecipe( new ItemStack( FCBetterThanWolves.fcItemPileIronOre, 2), new ItemStack( FCBetterThanWolves.fcItemChunkIronOre, 1) );
+		AddMillStoneRecipe( new ItemStack( FCBetterThanWolves.fcItemPileGoldOre, 2), new ItemStack( FCBetterThanWolves.fcItemChunkGoldOre, 1) );
 		
 		AddStokedCrucibleRecipe(new ItemStack(SuperBTWDefinitions.rib, 1),
 				new ItemStack[] { new ItemStack(SuperBTWDefinitions.cowRib) });
