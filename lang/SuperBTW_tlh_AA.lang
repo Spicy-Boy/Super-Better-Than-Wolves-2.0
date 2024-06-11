@@ -1,0 +1,97 @@
+#Blocks
+tile.SuperBTWBlockStickBundleLoose.name=Cubus Virgulārum
+tile.SuperBTWBlockStickBundleLooseSlab.name=Scamnum Virgulārum
+tile.SuperBTWBlockBranch.name=Virga
+tile.SuperBTWBlockMeatCube.name=Cubus Carnis
+tile.fcBlockBedroll.name=Lectulus Crūdus
+tile.SuperBTWBlockWetMudBrick.name=Later Luteus Ūmidus
+tile.SuperBTWBlockBranchSlab.name=Cubus Virgārum
+tile.SuperBTWBlockReedThatchSlab.name=Scamnum Strāmentī
+tile.SuperBTWBlockReedThatch.name=Strāmentum
+tile.SuperBTWBlockStrawThatchSlab.name=Scamnum Strāmentī
+tile.SuperBTWBlockStrawThatch.name=Cubus Strāmentī
+tile.ghBlockGloryhole.name=Fornāx Vitrō
+tile.SuperBTWBlockSuperGlass.name=Vitrum Magnificum
+tile.SuperBTWBlockSuperBlock.name=Cubus Magnificus
+
+#Items
+item.SuperBTWItemPipeEmpty.name=Fistula Vacua
+item.SuperBTWItemFlintKnapping.name=Silex Caelandus
+item.SuperBTWItemFlintBlade.name=Cultrum Siliceum
+item.SuperBTWItemIronBlade.name=Cultrum Ferreum
+item.SuperBTWItemBranch.name=Virga
+item.SuperBTWItemCowRib.name=Costa Bovīna Crūda
+item.SuperBTWItemRib.name=Costa Bovīna
+item.SuperBTWItemCookedCowRib.name=Costa Bovīna Assāta
+item.SuperBTWItemBonePickaxe.name=Dolābra Ossea
+item.SuperBTWItemLeatherWorking=Corium Secandum
+item.SuperBTWItemLeatherWorkingIron.name=Corium Secandum
+item.SuperBTWItemRibCarving.name=Costa Bovīna Carpenda
+item.SuperBTWItemRibCarvingIron.name=Costa Bovīna Carpenda
+item.SuperBTWItemCookedCowRibPartial.name=Costa Bovīna Assāta
+item.SuperBTWItemCookedCowRibSpent.name=Costa Bovīna Assāta
+item.SuperBTWItemBowStringing.name=Arcus Tendendus
+item.SuperBTWItemDeathClub.name=Clāva Mortis
+item.SuperBTWItemMortarBucket.name=Hama Mortāriī
+item.SuperBTWItemTrowel.name=Trulla
+item.SuperBTWItemWetMudBrick.name=Later Luteus Ūmidus
+item.SuperBTWItemTombstonePlacer.name=Monumentum Sepulcrālis
+item.SuperBTWItemTreat.name=Praemium Canum
+item.fcItemBedroll.name=Lectulus Crūdus
+
+# Deco Complex Blocks
+tile.decoBlockTerracotta.name=Terra Cocta
+tile.decoBlockTerracottaUnfired.name=Harēna Terrae Coctae
+
+tile.decoBlockTerracottaStained.black.name=Terra Cocta Ātra
+tile.decoBlockTerracottaStained.red.name=Terra Cocta Russa
+tile.decoBlockTerracottaStained.green.name=Terra Cocta Herbācea
+tile.decoBlockTerracottaStained.brown.name=Terra Cocta Pulla
+tile.decoBlockTerracottaStained.blue.name=Terra Cocta Caerulea
+tile.decoBlockTerracottaStained.purple.name=Terra Cocta Purpurea
+tile.decoBlockTerracottaStained.cyan.name=Terra Cocta Cȳanea
+tile.decoBlockTerracottaStained.lightGray.name=Terra Cocta Argentea
+tile.decoBlockTerracottaStained.gray.name=Terra Cocta Fusca
+tile.decoBlockTerracottaStained.pink.name=Terra Cocta Rosea
+tile.decoBlockTerracottaStained.lime.name=Terra Cocta Prasina
+tile.decoBlockTerracottaStained.yellow.name=Terra Cocta Flāva
+tile.decoBlockTerracottaStained.lightBlue.name=Terra Cocta Cȳanea Clāra
+tile.decoBlockTerracottaStained.magenta.name=Terra Cocta Amethystīna
+tile.decoBlockTerracottaStained.orange.name=Terra Cocta Flammea
+tile.decoBlockTerracottaStained.white.name=Terra Cocta Alba
+
+tile.decoBlockTerracottaSlabDefault.0.name=Scamnum Terrae Coctae
+tile.decoBlockTerracottaSlab.0.name=Scamnum Terrae Coctae Ātrum
+tile.decoBlockTerracottaSlab.1.name=Scamnum Terrae Coctae Russum
+tile.decoBlockTerracottaSlab.2.name=Scamnum Terrae Coctae Herbāceum
+tile.decoBlockTerracottaSlab.3.name=Scamnum Terrae Coctae Pullum
+tile.decoBlockTerracottaSlab.4.name=Scamnum Terrae Coctae Caeruleum
+tile.decoBlockTerracottaSlab.5.name=Scamnum Terrae Coctae Purpureum
+tile.decoBlockTerracottaSlab.6.name=Scamnum Terrae Coctae Cȳaneum
+tile.decoBlockTerracottaSlab.7.name=Scamnum Terrae Coctae Argenteum
+
+tile.decoBlockTerracottaSlab2.0.name=Scamnum Terrae Coctae Fuscum
+tile.decoBlockTerracottaSlab2.1.name=Scamnum Terrae Coctae Roseum
+tile.decoBlockTerracottaSlab2.2.name=Scamnum Terrae Coctae Prasinum
+tile.decoBlockTerracottaSlab2.3.name=Scamnum Terrae Coctae Flāvum
+tile.decoBlockTerracottaSlab2.4.name=Scamnum Terrae Coctae Cȳaneum Clārum
+tile.decoBlockTerracottaSlab2.5.name=Scamnum Terrae Coctae Amethystīnum
+tile.decoBlockTerracottaSlab2.6.name=Scamnum Terrae Coctae Flammeum
+tile.decoBlockTerracottaSlab2.7.name=Scamnum Terrae Coctae Album
+
+tile.decoBlockWhiteBricks.name=Laterēs Saxī Albī
+tile.decoBlockWhiteStoneBrickSlab.0.name=Scamnum Laterum Saxōrum Albōrum
+tile.decoBlockWhiteBricks.mossy.name=Laterēs Saxī Albī Mūscōsī
+tile.decoBlockWhiteBricks.cracked.name=Laterēs Saxī Albī Hiulcī
+tile.decoBlockWhiteBricks.chiseled.name=Laterēs Saxī Albī Sculptilēs
+tile.decoBlockWhiteBricksStairs.name=Scālae Laterum Saxōrum Albōrum
+
+tile.decoBlockSandstoneBrickLarge.name=Laterēs Harēnāriī
+tile.decoBlockSandstoneBrickLargeSlab.0.name=Scamnum Laterum Harēnāriōrum
+tile.decoBlockSandstoneBrickLarge.mossy.name=Laterēs Harēnāriī Mūscōsī
+tile.decoBlockSandstoneBrickLarge.cracked.name=Laterēs Harēnāriī Hiulcī
+tile.decoBlockSandstoneBrickLarge.chiseled.name=Laterēs Harēnāriī Sculptilēs
+tile.decoBlockSandstoneBrickLargeStairs.name=Scālae Laterum Harēnāriōrum
+tile.decoBlockSandstoneBrickLargeMossyStairs.name=Scālae Laterum Harēnāriōrum Mūscōsae
+tile.decoBlockSandstoneBrickLargeCrackedStairs.name=Scālae Laterum Harēnāriōrum Hiulcae
+

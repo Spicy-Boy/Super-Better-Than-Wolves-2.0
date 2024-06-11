@@ -1,0 +1,73 @@
+# Pumpkins
+tile.SCBlockPumpkinHarvested.orange_0.name=Cucurbita Immātūra
+tile.SCBlockPumpkinHarvested.orange_1.name=Cucurbita Immātūra
+tile.SCBlockPumpkinHarvested.orange_2.name=Cucurbita Rubra Parva
+tile.SCBlockPumpkinHarvested.orange_3.name=Cucurbita Rubra
+
+tile.SCBlockPumpkinHarvested.green_0.name=Cucurbita Immātūra
+tile.SCBlockPumpkinHarvested.green_1.name=Cucurbita Immātūra
+tile.SCBlockPumpkinHarvested.green_2.name=Cucurbita Viridis Parva
+tile.SCBlockPumpkinHarvested.green_3.name=Cucurbita Viridis
+
+tile.SCBlockPumpkinHarvested.yellow_0.name=Cucurbita Immātūra
+tile.SCBlockPumpkinHarvested.yellow_1.name=Cucurbita Immātūra
+tile.SCBlockPumpkinHarvested.yellow_2.name=Cucurbita Lūtea Immātūra
+tile.SCBlockPumpkinHarvested.yellow_3.name=Cucurbita Lūtea
+
+tile.SCBlockPumpkinHarvested.white_0.name=Cucurbita Immātūra
+tile.SCBlockPumpkinHarvested.white_1.name=Cucurbita Immātūra
+tile.SCBlockPumpkinHarvested.white_2.name=Cucurbita Alba Immātūra
+tile.SCBlockPumpkinHarvested.white_3.name=Cucurbita Alba
+
+tile.SCBlockPumpkinCarved.orange.name=Cucurbita Sculptilis
+tile.SCBlockPumpkinCarved.green.name=Cucurbita Sculptilis
+tile.SCBlockPumpkinCarved.yellow.name=Cucurbita Sculptilis
+tile.SCBlockPumpkinCarved.white.name=Cucurbita Sculptilis
+
+tile.SCBlockPumpkinJack.orange.name=Ignis Fatuus
+tile.SCBlockPumpkinJack.green.name=Ignis Fatuus
+tile.SCBlockPumpkinJack.yellow.name=Ignis Fatuus
+tile.SCBlockPumpkinJack.white.name=Ignis Fatuus
+
+item.SCItemPumpkinSlice.name=Segmentum Cucurbitae Crūdum
+item.SCItemPumpkinSlice_cooked.name=Segmentum Cucurbitae Assātum
+item.SCItemPumpkinSlice_boiled.name=Segmentum Cucurbitae Ēlixum
+
+
+# Melons
+tile.SCBlockMelonHarvested.water_0.name=Pepō Immātūra
+tile.SCBlockMelonHarvested.water_1.name=Pepō Immātūra
+tile.SCBlockMelonHarvested.water_2.name=Pepō Immātūra
+tile.SCBlockMelonHarvested.water_3.name=Pepō
+
+tile.SCBlockMelonHarvested.honeydew_0.name=Mēlō Viridis Immātūrus
+tile.SCBlockMelonHarvested.honeydew_1.name=Mēlō Viridis Immātūra
+tile.SCBlockMelonHarvested.honeydew_2.name=Mēlō Viridis Immātūra
+tile.SCBlockMelonHarvested.honeydew_3.name=Mēlō Viridis
+
+tile.SCBlockMelonHarvested.cantaloupe_0.name=Mēlō Cantalupēnsis Immātūrus
+tile.SCBlockMelonHarvested.cantaloupe_1.name=Mēlō Cantalupēnsis Immātūrus
+tile.SCBlockMelonHarvested.cantaloupe_2.name=Mēlō Cantalupēnsis Immātūrus
+tile.SCBlockMelonHarvested.cantaloupe_3.name=Mēlō Cantalupēnsis
+
+tile.SCBlockMelonCanaryHarvested.canary_0.name=Mēlō Lūteus Immātūrus
+tile.SCBlockMelonCanaryHarvested.canary_1.name=Mēlō Lūteus Immātūrus
+tile.SCBlockMelonCanaryHarvested.canary_2.name=Mēlō Lūteus Immātūrus
+tile.SCBlockMelonCanaryHarvested.canary_3.name=Mēlō Lūteus
+
+item.SCItemMelonSlice.name=Segmentum Pepōnis
+item.SCItemMelonYellowSlice.name=Segmentum Mēlōnis Lūteī
+item.SCItemMelonWhiteSlice.name=Segmentum Mēlōnis Viridis
+item.SCItemMelonGreenSlice.name=Segmentum Mēlōnis Cantalupēnsis
+
+item.SCItemSeedsOrangePumpkin.name=Sēmen Cucurbitae Ingentis
+item.SCItemSeedsGreenPumpkin.name=Sēmen Cucurbitae Viridis
+item.SCItemSeedsYellowPumpkin.name=Sēmen Cucurbitae Lūteae
+item.SCItemSeedsWhitePumpkin.name=Sēmen Cucurbitae Albae
+item.SCItemSeedsLittlePumpkin.name=Sēmen Cucurbitae Parvae
+item.SCItemFoulPumpkinSeeds.name=Sēmen Foedum
+
+item.SCItemSeedsWaterMelon.name=Sēmen Pepōnis
+item.SCItemSeedsCanaryMelon.name=Sēmen Mēlōnis Lūteī
+item.SCItemSeedsHoneydewMelon.name=Sēmen Mēlōnis Viridis
+item.SCItemSeedsCantaloupeMelon.name=Sēmen Mēlōnis Cantalupēnsis
