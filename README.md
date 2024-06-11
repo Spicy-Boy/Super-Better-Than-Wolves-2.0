@@ -8,6 +8,7 @@ Version 2.0 adds...
 >RIB SMASHING FUN!
 >THATCH!
 >NEW WAYS TO MAKE BRICKS!
+>CONFIGS!
 (and so much more!)
  
 For updates and design musings, visit my dev diary thread:
@@ -20,8 +21,69 @@ From the changelog:
 SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
+Released Beta 2.4 on June 11, 2024
 
-2.3 Punish All Cow Abusers Update:
+BETA 2.4 The Pro-Choice Update:
+
+- Added a new ceramic block, terracotta, whose unfired form is crafted with sand+clay. Taken from Deco Addon!
+    - Can be stained en-masse with dye in the cauldron, 16 terracotta per dye
+
+- Added two new Deco brick types: white stone bricks and sandstone bricks. Crafted with 4 of respective block
+    - Stairs and slabs available, cracked and mossy available as whole blocks
+    
+- Added piston packing to the meat cube... meat packing :D
+
+- Added the ability to pulverize ore chunks into dust in the millstone (gold and iron)
+    - the purpose of this new industrial process will be revealed in a later update
+
+- Added a Latin translation for BTW (replaces Klingon.. sorry?) provided by Waluiji. TY!!! You can now RP as a Roman colonist.
+
+- Changed the config system to use the official FCAddon property manager 
+    - SBTW.properties now contains all configs. It can be found alongside the BTW properties file in the configs
+
+- Added a config to disable the fire caused by lightning strikes
+    - If you know you know...
+    
+- Added a config to set the HC respawn radius to whatever you like
+    - Yes, this means you can disable Hardcore Spawn entirely by setting the respawn radius super low
+    - This is a stop gap feature: ideally, this config will be set at world creation and be applied per-world
+
+- Added a config to stop branches from generating/falling from trees (in case you hate wood for some reason)
+
+- Added a config to re-enable hardcore bouncing (prevents block placement while in the air)
+
+- Added a config to revert Steve's hunger bar properties to FC defaults (faster health drain while starving, can't jump while famished)
+
+- Added the /smite [player] command to place divine retribution into the hands of admins
+
+- Added the /tpabove [player] [# of blocks] command to allow admins to spy on players.. works with negative numbers, defaults 20 blocks
+
+- Added a new recipe for the bedroll that just uses padding. There are now 4 bedroll recipes to fit every possible sleeping arrangement.
+
+- Changed the first layer of the ender beacon to be the trans-dimensional chest instead of a dimensional chest (swapped lvl 1->2,2->3,3->1) 
+
+- Changed withers to be made with soulsand again. Yes, you can still use bone blocks if you like
+
+- Changed/tweaked Hardcore Hoosies 2.0 just a little bit more, as some evil players still wanted to abuse the poor animals
+
+- Fixed an issue where trades weren't refreshing properly (again... ;I) and added a measure to prevent chunk reversion in rare cases
+
+- Fixed an issue where the death counter was being reset to 0 when going through the end portal
+     NOTE: respawning at a Steel Beacon still resets the death counter! Will probably get fixed someday? NBD perhaps
+
+- Fixed an issue that caused a crash when applying arrows (and maybe other things too) to your armor slots. 
+
+- Fixed an issue where baby wolves/puppies would not eat food off the ground and could only be fed when dying of starvation.
+
+- Fixed an issue where horny wolves would eat an endless amount of food off the ground... hehe I'm sorry for this one! A single misplaced line of code.
+
+- Fixed an issue where the bed would break into components as well as an entire intact bed at the same time
+
+- Fixed a server issue where players sleeping in the overworld would speed up time even if there were non-sleepers in other dimensions. Instant-death in most cases.
+
+NOTE for Aaron: temporarily disabled neo-gourd trades (re-enable when gourds are back!)
+
+BETA 2.3 Punish All Cow Abusers Update:
 
 - Added the ctrl key as an alternative sprint button. This cannot be rebound at this time.
     -If rebinding your ctrl key is something important to you, then please reach out to me and I can make it configurable. 
@@ -68,7 +130,7 @@ NOTE: If both team start and HC start are enabled at the same time, then players
     
 - Fixed a long standing issue where villager trades would not refresh properly (thanks CE team!)
 
-2.2:
+BETA 2.2:
 
 - Added thatch, a new roofing material made of sticks and reeds
     -Caution, this material is weaker than wood and may not stop a hungry zombie!
@@ -120,8 +182,10 @@ NOTE: If both team start and HC start are enabled at the same time, then players
 - Fixed crude torch pickup. There was a bug where right clicking a torch would sometimes cause the torch to be placed in the inventory invisibly
 
 
-2.1 Hotfix:
+BETA 2.1 Hotfix:
 -Added some files that were forgotten initially. This fixes a crash related to rendering baskets!
+
+BETA 2.0: 
 
 Additions:
 
