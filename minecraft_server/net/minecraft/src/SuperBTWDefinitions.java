@@ -52,7 +52,8 @@ public class SuperBTWDefinitions {
 		id_pipePacked = 20027,
 		id_pipeLit = 20028,
 		
-		id_treat = 20029;
+		id_treat = 20029,
+		id_badTreat = 20030;
 	
 		//GOURD MANIA!
 	private static final int
@@ -89,7 +90,17 @@ public class SuperBTWDefinitions {
 		// 2016-2020 saved
 		id_terracotta = 2021,
 		id_stainedTerracotta = 2022,
-		id_unfiredTerracotta = 2023;
+		id_unfiredTerracotta = 2023,
+		id_terracottaSlab = 2024,
+		id_terracottaSlab2 = 2025,
+		id_terracottaSlabDefault = 2026,
+		id_whiteStoneBrick = 2027,
+		id_whiteStoneBrickStairs = 2028,
+		id_whiteStoneBrickSlab = 2029,
+		id_sandstoneBrickLarge = 2030,
+		id_sandstoneBrickLargeStairs = 2031,
+		id_sandstoneBrickLargeSlab = 2032;
+//		id_decoStoneSlab = 2032;
 	
 	public static Item leatherWorking;
 	public static Item flintKnapping;
@@ -118,6 +129,7 @@ public class SuperBTWDefinitions {
 	public static Item pipePacked;
 	public static Item pipeLit;
 	public static Item treat;
+	public static Item badTreat;
 	
 	public static Block branchBlock;
 	public static Block sunflower;
@@ -126,7 +138,6 @@ public class SuperBTWDefinitions {
 	public static Block fcBlockBedroll;
 	public static Block timeCube;
 	
-
 	public static Block superGlass;
 	public static Block superBlock;
 
@@ -139,11 +150,16 @@ public class SuperBTWDefinitions {
 	
 	public static Block stickBundleLooseSlab; //untied version
 	public static Block stickBundleLoose;
+
 	
 	public static SuperBTWBlockWetMudBrick wetMudBrick;
 	public static Item wetMudBrickItem;
 	
 	public static Block terracotta, stainedTerracotta, unfiredTerracotta;
+	public static Block terracottaSlab, terracottaSlab2, terracottaSlabDefault;
+	public static Block whiteStoneBrick, whiteStoneBrickStairs, whiteStoneBrickSlab;
+	public static Block sandstoneBrickLarge, sandstoneBrickLargeStairs, sandstoneBrickLargeSlab;
+	public static Block decoStoneSlab;
 	
 	//GOURD MANIA!
 	
@@ -159,7 +175,7 @@ public class SuperBTWDefinitions {
 	
 	public static void addDefinitions() 
 	{
-
+		//Item initialization
 		leatherWorking = new SuperBTWItemLeatherWorking(id_leatherWorking - 256);
 		flintKnapping = new SuperBTWItemFlintKnapping(id_flintKnapping - 256);
 		flintBlade = new SuperBTWItemFlintBlade(id_flintBlade - 256);
@@ -186,7 +202,9 @@ public class SuperBTWDefinitions {
 //		pipePacked = new SuperBTWItemPipePacked(id_pipePacked - 256);
 //		pipeLit = new SuperBTWItemPipeLit(id_pipeEmpty - 256);
 		treat = new SuperBTWItemTreat(id_treat - 256);
+//		badTreat = new SuperBTWItemBadTreat(id_badTreat - 256);
 		
+		//Block Initialization, requires an itemblock with it to actually show up in inventory
 		branchBlock = new SuperBTWBlockBranch(id_branchBlock);
 		Item.itemsList[branchBlock.blockID] = new ItemBlock(branchBlock.blockID - 256); 
 	
@@ -252,10 +270,54 @@ public class SuperBTWDefinitions {
 		honeydewMelonSeeds = new SCItemHoneydewMelonSeeds (id_honeydewMelonSeeds - 256, SCDefs.id_melonStemHoneydew);
 		cantaloupeMelonSeeds = new SCItemCantaloupeMelonSeeds (id_cantaloupeMelonSeeds - 256, SCDefs.id_melonStemCantaloupe);
 	
-		//Ts
+		//Ts Gloryholes! (and related glass blowing recipes eventually)
 		ghBlockGloryhole = new TSGBlockGloryhole(id_gloryHole).setUnlocalizedName("ghBlockGloryhole").setCreativeTab(CreativeTabs.tabDecorations);
 		Item.itemsList[ghBlockGloryhole.blockID] = new ItemBlock(ghBlockGloryhole.blockID - 256);
 		
+		//Deco additions!
+		terracotta = new DecoBlockTerracotta(id_terracotta).setHardness(1.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("decoBlockTerracotta").setCreativeTab(CreativeTabs.tabBlock);
+		Item.itemsList[terracotta.blockID] = new ItemBlock(terracotta.blockID - 256);
+		stainedTerracotta = (new DecoBlockTerracottaStained(id_stainedTerracotta)).setHardness(1.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setCreativeTab(CreativeTabs.tabBlock).setUnlocalizedName("decoBlockTerracottaStained");
+		Item.itemsList[stainedTerracotta.blockID] = new DecoItemBlockColored(stainedTerracotta.blockID - 256, stainedTerracotta);
+		
+		unfiredTerracotta = new DecoBlockTerracottaUnfired(id_unfiredTerracotta).setUnlocalizedName("decoBlockTerracottaUnfired");
+		Item.itemsList[unfiredTerracotta.blockID] = new ItemBlock(unfiredTerracotta.blockID - 256);
+		
+		terracottaSlabDefault = new DecoBlockSlabStone(id_terracottaSlabDefault, new Block[] {SuperBTWDefinitions.terracotta}, new int[] {0}).setUnlocalizedName("decoBlockTerracottaSlabDefault");
+		Item.itemsList[SuperBTWDefinitions.terracottaSlabDefault.blockID] = new DecoItemBlockSlab(SuperBTWDefinitions.terracottaSlabDefault.blockID - 256);
+		
+		terracottaSlab = new DecoBlockSlabStone(id_terracottaSlab, new Block[] {SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta}, new int[] {0, 1, 2, 3, 4, 5, 6, 7}).setUnlocalizedName("decoBlockTerracottaSlab");
+		Item.itemsList[SuperBTWDefinitions.terracottaSlab.blockID] = new DecoItemBlockSlab(SuperBTWDefinitions.terracottaSlab.blockID - 256);
+		terracottaSlab2 = new DecoBlockSlabStone(id_terracottaSlab2, new Block[] {SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta, SuperBTWDefinitions.stainedTerracotta}, new int[] {8, 9, 10, 11, 12, 13, 14, 15}).setUnlocalizedName("decoBlockTerracottaSlab2");
+		Item.itemsList[SuperBTWDefinitions.terracottaSlab2.blockID] = new DecoItemBlockSlab(SuperBTWDefinitions.terracottaSlab2.blockID - 256);
+
+		//White stone bricks
+		whiteStoneBrick = new DecoBlockWhiteStoneBrick(id_whiteStoneBrick).setUnlocalizedName("decoBlockWhiteBricks");
+		Item.itemsList[whiteStoneBrick.blockID] = new DecoItemBlockBrick(whiteStoneBrick.blockID - 256, whiteStoneBrick);
+		
+		whiteStoneBrickSlab = new DecoBlockSlabStone(id_whiteStoneBrickSlab, new Block[] {SuperBTWDefinitions.whiteStoneBrick}, new int[] {0}).setUnlocalizedName("decoBlockWhiteStoneBrickSlab");
+		Item.itemsList[SuperBTWDefinitions.whiteStoneBrickSlab.blockID] = new DecoItemBlockSlab(SuperBTWDefinitions.whiteStoneBrickSlab.blockID - 256);
+		
+		whiteStoneBrickStairs = new FCBlockStairs(id_whiteStoneBrickStairs, SuperBTWDefinitions.whiteStoneBrick, 0).setUnlocalizedName("decoBlockWhiteBricksStairs").setCreativeTab(CreativeTabs.tabBlock);
+		Item.itemsList[whiteStoneBrickStairs.blockID] = new ItemBlock(whiteStoneBrickStairs.blockID - 256);
+		
+		//sandstone bricks (large variant, though a small doesnt exist unless chiseled form)
+		//the "large" implies that this is the large version of the block. There is also a sandstone brick
+		sandstoneBrickLarge = new SuperBTWBlockSandstoneBrickLarge(id_sandstoneBrickLarge).setUnlocalizedName("decoBlockSandstoneBrickLarge");
+		Item.itemsList[sandstoneBrickLarge.blockID] = new DecoItemBlockBrick(sandstoneBrickLarge.blockID - 256, sandstoneBrickLarge);
+		
+		sandstoneBrickLargeSlab = new DecoBlockSlabStone(id_sandstoneBrickLargeSlab, new Block[] {SuperBTWDefinitions.sandstoneBrickLarge}, new int[] {0}).setUnlocalizedName("decoBlockSandstoneBrickLargeSlab");
+		Item.itemsList[SuperBTWDefinitions.sandstoneBrickLargeSlab.blockID] = new DecoItemBlockSlab(SuperBTWDefinitions.sandstoneBrickLargeSlab.blockID - 256);
+		
+		sandstoneBrickLargeStairs = new SuperBTWBlockSandstoneBrickLargeStairs(id_sandstoneBrickLargeStairs, sandstoneBrickLarge, 0).setUnlocalizedName("decoBlockSandstoneBrickLargeStairs").setCreativeTab(CreativeTabs.tabBlock);
+		Item.itemsList[sandstoneBrickLargeStairs.blockID] = new ItemBlock(sandstoneBrickLargeStairs.blockID - 256);
+	
+		
+//		sandstoneBrickLargeSlab = new DecoBlockSlabStone(id_sandstoneBrickLargeSlab, new Block[] {SuperBTWDefinitions.sandstoneBrickLarge}, new int[] {0}).setUnlocalizedName("decoBlockSandstoneBrickLargeSlab");
+//		Item.itemsList[SuperBTWDefinitions.sandstoneBrickLargeSlab.blockID] = new DecoItemBlockSlab(SuperBTWDefinitions.sandstoneBrickLargeSlab.blockID - 256);
+//
+	
+//		sandStoneBrickLargeStairs = new DecoBlockStairsSandStone(id_sandstoneBrickLargeStairs, Block.sandStone, 6).setUnlocalizedName("decoBlockStairsSandStoneBrickLarge");
 	}
 	
 	//BLOCK ID CHECKERS, for when you need to check if a block has a certain quality to it!

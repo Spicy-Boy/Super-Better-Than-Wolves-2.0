@@ -187,15 +187,34 @@ public class SuperBTWRecipes extends FCRecipes {
 		{
 			FCRecipes.AddCauldronRecipe(new ItemStack(SuperBTWDefinitions.stainedTerracotta, 16, i % 16), new ItemStack[] { new ItemStack(SuperBTWDefinitions.terracotta, 16), new ItemStack(Item.dyePowder, 1, i)});
 		}
-		
-//		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.terracottaSlabDefault, 6), new Object[] {"###", '#', new ItemStack(SuperBTWDefinitions.terracotta, 1)});
-//		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.terracotta, 1), new Object[] {"#", "#", '#', new ItemStack(SuperBTWDefinitions.terracottaSlabDefault, 1)});
-		
+		// terracotta slabs
+		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.terracottaSlabDefault, 6), new Object[] {"###", '#', new ItemStack(SuperBTWDefinitions.terracotta, 1)});
+		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.terracotta, 1), new Object[] {"#", "#", '#', new ItemStack(SuperBTWDefinitions.terracottaSlabDefault, 1)});
 		for(int i = 0; i < 16; i++)
 		{
 			FCRecipes.AddRecipe(new ItemStack(i < 8 ? SuperBTWDefinitions.terracottaSlab : SuperBTWDefinitions.terracottaSlab2, 6, i % 8), new Object[] {"###", '#', new ItemStack(SuperBTWDefinitions.stainedTerracotta, 1, i)});
 			FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.stainedTerracotta, 1, i), new Object[] {"#", "#", '#', new ItemStack(i < 8 ? SuperBTWDefinitions.terracottaSlab : SuperBTWDefinitions.terracottaSlab2, 1, i % 8)});
 		}
+		//white stone bricks
+		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.whiteStoneBrick,4), new Object[]{"XX","XX",'X',new ItemStack(FCBetterThanWolves.fcAestheticOpaque,1,9)});
+		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.whiteStoneBrickStairs, 4), new Object[] {"#  ", "## ", "###", '#', new ItemStack(SuperBTWDefinitions.whiteStoneBrick)});
+		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.whiteStoneBrickSlab, 6), new Object[] {"###", '#', new ItemStack(SuperBTWDefinitions.whiteStoneBrick)});
+		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.whiteStoneBrick, 1), new Object[] {"X", "X", 'X', new ItemStack(SuperBTWDefinitions.whiteStoneBrickSlab, 1)});
+		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.whiteStoneBrick,4,3), new Object[]{"XX","XX",'X',new ItemStack(SuperBTWDefinitions.whiteStoneBrick)}); //chiseled
+
+		
+		//sandstone bricks
+//		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.sandstoneBrickLarge, 4), new Object[]{"XX","XX",'X',new ItemStack(Block.sandStone, 2)});
+		//sandstone bricks acquired with chisel splitting
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.sandstoneBrickLarge, 1 ), new Object[] {	    		
+	    		new ItemStack( FCBetterThanWolves.fcItemChiselIron, 1, m_iIgnoreMetadata ),
+	    		new ItemStack( Block.sandStone, 1 )
+			} );
+		
+		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.sandstoneBrickLargeStairs, 4), new Object[] {"#  ", "## ", "###", '#', new ItemStack(SuperBTWDefinitions.sandstoneBrickLarge)});
+		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.sandstoneBrickLargeSlab, 6), new Object[] {"###", '#', new ItemStack(SuperBTWDefinitions.sandstoneBrickLarge)});
+		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.sandstoneBrickLarge, 1), new Object[] {"X", "X", 'X', new ItemStack(SuperBTWDefinitions.sandstoneBrickLargeSlab, 1)});
+		FCRecipes.AddRecipe(new ItemStack(SuperBTWDefinitions.sandstoneBrickLarge,4,3), new Object[]{"XX","XX",'X',new ItemStack(SuperBTWDefinitions.sandstoneBrickLarge)});
 		
 
 		//newer ce functionality vv

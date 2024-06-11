@@ -270,7 +270,7 @@ public class SuperBTWDefinitions {
 		honeydewMelonSeeds = new SCItemHoneydewMelonSeeds (id_honeydewMelonSeeds - 256, SCDefs.id_melonStemHoneydew);
 		cantaloupeMelonSeeds = new SCItemCantaloupeMelonSeeds (id_cantaloupeMelonSeeds - 256, SCDefs.id_melonStemCantaloupe);
 	
-		//Ts
+		//Ts Gloryholes! (and related glass blowing recipes eventually)
 		ghBlockGloryhole = new TSGBlockGloryhole(id_gloryHole).setUnlocalizedName("ghBlockGloryhole").setCreativeTab(CreativeTabs.tabDecorations);
 		Item.itemsList[ghBlockGloryhole.blockID] = new ItemBlock(ghBlockGloryhole.blockID - 256);
 		
@@ -312,7 +312,7 @@ public class SuperBTWDefinitions {
 		sandstoneBrickLargeStairs = new SuperBTWBlockSandstoneBrickLargeStairs(id_sandstoneBrickLargeStairs, sandstoneBrickLarge, 0).setUnlocalizedName("decoBlockSandstoneBrickLargeStairs").setCreativeTab(CreativeTabs.tabBlock);
 		Item.itemsList[sandstoneBrickLargeStairs.blockID] = new ItemBlock(sandstoneBrickLargeStairs.blockID - 256);
 	
-//		
+		
 //		sandstoneBrickLargeSlab = new DecoBlockSlabStone(id_sandstoneBrickLargeSlab, new Block[] {SuperBTWDefinitions.sandstoneBrickLarge}, new int[] {0}).setUnlocalizedName("decoBlockSandstoneBrickLargeSlab");
 //		Item.itemsList[SuperBTWDefinitions.sandstoneBrickLargeSlab.blockID] = new DecoItemBlockSlab(SuperBTWDefinitions.sandstoneBrickLargeSlab.blockID - 256);
 //

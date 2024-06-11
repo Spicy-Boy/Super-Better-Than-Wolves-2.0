@@ -4,12 +4,6 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.4 The Pro Choice Update:
 
-//TODO AARON :D :D :D
-1. add crafting recipes for new deco blocks
-1.5 test that mossy and cracked variants produce correctly
-2. convert new deco blocks to server side code 
-3. add new lang files from Waluiji for Latin, then RELEASE :D
-
 - Added a new ceramic block, terracotta, whose unfired form is crafted with sand+clay. Taken from Deco Addon!
     - Can be stained en-masse with dye in the cauldron, 16 terracotta per dye
 
