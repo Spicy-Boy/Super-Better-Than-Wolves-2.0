@@ -62,3 +62,32 @@ The challenge exist to give you a reason to actually play Minecraft. In BTW, the
 
 Enough ranting
 
+[size=150]THE PRO-CHOICE UPDATE![/size]
+
+SBTW BETA 2.4 has released! Full changelog on the github page.
+
+[url]https://github.com/Spicy-Boy/Super-Better-Than-Wolves-2.0/releases/tag/beta2.4_June[/url]
+
+[img]https://i.imgur.com/2gsRD7h.png[/img]
+
+New recipes of note:
+[spoiler]
+[img]https://i.imgur.com/VSw61Zf.png[/img]
+[img]https://i.imgur.com/GDQKdab.png[/img]
+[img]https://i.imgur.com/H3JW2iT.png[/img]
+[img]https://i.imgur.com/lNfvg7B.png[/img]
+[/spoiler]
+
+~ STORY TIME ~
+
+In my IRL diary, I have January 20, 2024 marked as "The Awesomest Day Ever." I started a new job, I hosted a hugely successful (it didnt explode) [url="https://forum.btwce.com/viewtopic.php?t=10282"]Hunger Games Server[/url], and TDLMC streamed gameplay of my mod to hundreds of people! Extremely validating, I have never felt so fulfilled in my life. There is no high in this world like the euphoria of sharing your creations and having people engage with them. Even if it is just a niche mod of a mod of a block game, I was so amped up that I became physically exhausted. I could barely even participate in my own Hunger Games server that day.
+
+TDLMC plays SBTW hunger games: [url]https://www.youtube.com/watch?v=nhLdIMT3Q30&list=PLsIrzF4ixf5Sl8xVDzivK0NRNBcXgqbpx&index=4[/url]
+
+TDLMC tries a run of SBTW himself: [url]https://www.youtube.com/watch?v=cn3BfN7W7vQ&list=PLsIrzF4ixf5Sl8xVDzivK0NRNBcXgqbpx&index=47[/url]
+
+I am grateful to TDLMC for giving me a moment in the sun and all the kind people that have reached out with interest in SBTW. Super special thanks to Fabio and Wario-Luigi-Hybrid/Alfredus Magnus for taking SBTW very seriously and completing entire tech tree runs of the mod. Your feedback and bug reports have been invaluable to development. 
+
+All that said, having all these eyes on my project did come with its small share of chafing. Mainly, folks in TDLMC's streams would ask a few really obvious questions that I was not prepared to answer: "What is SBTW?" "What is different about SBTW?" People wanted to know if it was a harder version of the game, with others deriding it as "EZ mode". I decided to write up a brief timeline:
+
+

@@ -2,6 +2,10 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
+2.5 HOT Fix
+
+- Fixed the issue that caused a crash when applying items to armor slots... but I thought I already fixed that? Version control man...
+
 2.4 The Pro Choice Update:
 
 - Added a new ceramic block, terracotta, whose unfired form is crafted with sand+clay. Taken from Deco Addon!

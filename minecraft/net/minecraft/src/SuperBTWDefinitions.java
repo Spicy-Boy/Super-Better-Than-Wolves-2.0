@@ -159,7 +159,7 @@ public class SuperBTWDefinitions {
 	public static Block terracottaSlab, terracottaSlab2, terracottaSlabDefault;
 	public static Block whiteStoneBrick, whiteStoneBrickStairs, whiteStoneBrickSlab;
 	public static Block sandstoneBrickLarge, sandstoneBrickLargeStairs, sandstoneBrickLargeSlab;
-	public static Block decoStoneSlab;
+//	public static Block decoStoneSlab;
 	
 	//GOURD MANIA!
 	
