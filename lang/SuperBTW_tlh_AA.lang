@@ -13,6 +13,7 @@ tile.SuperBTWBlockStrawThatch.name=Cubus Strāmentī
 tile.ghBlockGloryhole.name=Fornāx Vitrō
 tile.SuperBTWBlockSuperGlass.name=Vitrum Magnificum
 tile.SuperBTWBlockSuperBlock.name=Cubus Magnificus
+tile.SuperBTWBlockChunkIronSintered.name=Cubus Ferrī Agglomerātī
 
 #Items
 item.SuperBTWItemPipeEmpty.name=Fistula Vacua
@@ -38,6 +39,7 @@ item.SuperBTWItemWetMudBrick.name=Later Luteus Ūmidus
 item.SuperBTWItemTombstonePlacer.name=Monumentum Sepulcrālis
 item.SuperBTWItemTreat.name=Praemium Canum
 item.fcItemBedroll.name=Lectulus Crūdus
+item.SuperBTWItemChunkIronSintered.name=Rūdus Ferrī Agglomerātī
 
 # Deco Complex Blocks
 tile.decoBlockTerracotta.name=Terra Cocta

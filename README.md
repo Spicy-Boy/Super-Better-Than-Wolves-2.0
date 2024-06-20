@@ -9,6 +9,7 @@ Version 2.0 adds...
 >THATCH!
 >NEW WAYS TO MAKE BRICKS!
 >CONFIGS!
+>ADVANCED IRON PROCESSING!
 (and so much more!)
  
 For updates and design musings, visit my dev diary thread:
@@ -22,6 +23,24 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 Released Beta 2.4 on June 11, 2024
+
+BETA 2.5 The HOT Fix:
+
+- Added a new industrial process: Hardcore Iron Sintering! With this, iron ore can maintain some value even post-mobtrap (and you can build a new machine!)
+
+- Added a new item: Chunk of Iron Sinter (name needs work). Created by combining iron dust and coal dust in a stoked cauldron.
+    - Sintering is the industrial process of pulverizing ore and reforming it into chunks. Double your ore output with tech!
+
+- Added a new block: Block of Sintered Iron. Pack your sinter into a block and smelt for an ingot! Millstone + stoked fire = advanced iron refining
+
+- Changed endermen to pick up flowers and mushrooms again. I always thought it was a shame that FC stopped flower picking, it is a charming detail
+
+- Changed ocean clay to sometimes generate with full blocks of clay (9 whole clay balls per block). Let there be ocean dredging!
+
+- Fixed a bug that caused craftguide to crash when used... because of a single missing comma!
+
+- Fixed the issue that caused a crash when applying items to armor slots... but I thought I already fixed that? Version control man...
+
 
 BETA 2.4 The Pro-Choice Update:
 
