@@ -13,6 +13,7 @@ tile.SuperBTWBlockStrawThatch.name=Straw Thatch
 tile.ghBlockGloryhole.name=Gloryhole
 tile.SuperBTWBlockSuperGlass.name=Super Glass
 tile.SuperBTWBlockSuperBlock.name=Super Block
+tile.SuperBTWBlockChunkIronSintered.name=Block of Sintered Iron
 
 #Items
 item.SuperBTWItemPipeEmpty.name=Empty Pipe
@@ -38,6 +39,7 @@ item.SuperBTWItemWetMudBrick.name=Wet Mud Brick
 item.SuperBTWItemTombstonePlacer.name=Gravestone
 item.SuperBTWItemTreat.name=Dog Treat
 item.fcItemBedroll.name=Bedroll
+item.SuperBTWItemChunkIronSintered.name=Chunk of Iron Sinter
 
 # Deco Complex Blocks
 tile.decoBlockTerracotta.name=Terracotta

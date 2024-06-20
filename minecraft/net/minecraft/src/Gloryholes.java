@@ -12,7 +12,7 @@ public class Gloryholes extends FCAddOn
 	
     private Gloryholes() 
     {
-        super("Tsughoggr's Gloryholes", "V0.Jars", "");
+        super("Tsughoggr's Gloryholes & Dawn's Deco", "", "");
     }
 	
 	@Override

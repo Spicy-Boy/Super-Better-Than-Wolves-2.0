@@ -180,8 +180,9 @@ public class SuperBTWRecipes extends FCRecipes {
 		//DECO!
 		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.unfiredTerracotta, 1), new Object[] {
 	    		new ItemStack( Item.clay ),
-	    		new ItemStack( Block.sand )
+	    		new ItemStack( Block.sand ),
 			} );
+		
 		//staining terracotta
 		for (int i = 0; i < 32; i++)
 		{
@@ -449,9 +450,10 @@ public class SuperBTWRecipes extends FCRecipes {
 		
 		//curing beef rib
 		FCRecipes.AddShapelessRecipe( new ItemStack( FCBetterThanWolves.fcItemMeatCured, 2 ), new Object[] { 
-            new ItemStack( SuperBTWDefinitions.cowRib), new ItemStack( FCBetterThanWolves.fcItemNitre), new ItemStack( FCBetterThanWolves.fcItemNitre),
-            new ItemStack( FCBetterThanWolves.fcItemNitre)
-        } );
+	            new ItemStack( SuperBTWDefinitions.cowRib), new ItemStack( FCBetterThanWolves.fcItemNitre), new ItemStack( FCBetterThanWolves.fcItemNitre),
+	            new ItemStack( FCBetterThanWolves.fcItemNitre)
+	        } );
+		
 	}
 
 	private static void addProgressRecipes() {
@@ -520,7 +522,10 @@ public class SuperBTWRecipes extends FCRecipes {
 			FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcItemArmorTannedHelm, 1),
 					new ItemStack[] { new ItemStack(FCBetterThanWolves.fcItemTannedLeatherCut) });
 		}
+
 		
+
+
 		// branch recipes!
 		FCRecipes.AddShapelessRecipe(new ItemStack(FCBetterThanWolves.fcBlockTorchFiniteUnlit, 1),
 				new ItemStack[] { new ItemStack(Item.coal), new ItemStack(SuperBTWDefinitions.branch) });
@@ -559,6 +564,28 @@ public class SuperBTWRecipes extends FCRecipes {
 		//reduce ore to dust recipes
 		AddMillStoneRecipe( new ItemStack( FCBetterThanWolves.fcItemPileIronOre, 2), new ItemStack( FCBetterThanWolves.fcItemChunkIronOre, 1) );
 		AddMillStoneRecipe( new ItemStack( FCBetterThanWolves.fcItemPileGoldOre, 2), new ItemStack( FCBetterThanWolves.fcItemChunkGoldOre, 1) );
+		
+		//sintering! double your iron ore output with these cute mechanical tricks!
+        AddStokedCauldronRecipe(
+			new ItemStack( SuperBTWDefinitions.chunkIronSintered, 1 ), 
+			new ItemStack[] {
+				new ItemStack( FCBetterThanWolves.fcItemPileIronOre, 1 ),
+				new ItemStack( FCBetterThanWolves.fcItemCoalDust, 1 )
+		} );
+		AddRecipe( new ItemStack( SuperBTWDefinitions.blockIronSinteredStorage ), new Object[] {
+	    		"###", 
+	    		"###", 
+	    		"###", 
+	    		Character.valueOf( '#' ), SuperBTWDefinitions.chunkIronSintered
+			} );
+		
+		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.chunkIronSintered, 9 ), new Object[] {
+	    		new ItemStack( SuperBTWDefinitions.blockIronSinteredStorage )
+			} );
+		
+		FurnaceRecipes.smelting().addSmelting( SuperBTWDefinitions.chunkIronSintered.itemID, new ItemStack( FCBetterThanWolves.fcItemNuggetIron ), 0, 3 );
+			
+		
 		
 		AddStokedCrucibleRecipe(new ItemStack(SuperBTWDefinitions.rib, 1),
 				new ItemStack[] { new ItemStack(SuperBTWDefinitions.cowRib) });

@@ -37,12 +37,14 @@ public class SuperBTW extends FCAddOn
 	private int customRespawnRadius;
 	private int customRespawnExclusionRadius;
 	
+	private boolean isEndermanGriefingEnabled;
+	
 	//Dawn's color order from Deco Addon!!
 	public final static String[] colorOrder = {"black", "red", "green", "brown", "blue", "purple", "cyan", "lightGray", "gray", "pink", "lime", "yellow", "lightBlue", "magenta", "orange", "white"};
 	
     private SuperBTW() 
     {
-    	super("SUPER BETTER THAN WOLVES", "BETA 2.4 (w/ nilla gourds ~_~)", "SBTW");
+    	super("SUPER BTW", "BETA 2.5 (w/ old melons O_O)", "SBTW");
     }
 
 	@Override
@@ -306,6 +308,10 @@ public class SuperBTW extends FCAddOn
 		registerProperty(propertyName22, "false", "Hardcore bouncing prevents block placement while airborn. Disabled by default in SBTW!");
 		this.setIsHardcoreBouncingEnabled(this.loadConfigProperties().get(propertyName22).equals("true"));
 
+		String propertyName23 = "Enable-Enderman-Griefing";
+		registerProperty(propertyName23, "true", "If disabled, enderman will no longer pick up anything but flowers..");
+		this.setIsEndermanGriefingEnabled(this.loadConfigProperties().get(propertyName23).equals("true"));
+		
 	}
 	
 	public void setTpaEnabled(boolean b) 
@@ -415,6 +421,15 @@ public class SuperBTW extends FCAddOn
 	public boolean isHardcoreBouncingEnabled()
 	{
 		return isHardcoreBouncingEnabled;
+	}
+	
+	public void setIsEndermanGriefingEnabled(boolean b)
+	{
+		this.isEndermanGriefingEnabled = b;
+	}
+	public boolean getIsEndermanGriefingEnabled()
+	{
+		return isEndermanGriefingEnabled;
 	}
 	
 //	public void initializeServerProperties()

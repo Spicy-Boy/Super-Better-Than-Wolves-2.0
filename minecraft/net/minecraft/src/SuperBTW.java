@@ -2,7 +2,6 @@ package net.minecraft.src;
 
 public class SuperBTW extends FCAddOn
 {
-	
 
 /**
  * @author EpicAaron29 (aaron on the discord)
@@ -13,7 +12,7 @@ public class SuperBTW extends FCAddOn
 	
     private SuperBTW() 
     {
-    	super("SUPER BETTER THAN WOLVES", "BETA 2.4 (w/ nilla gourds ~_~)", "SBTW");
+    	super("SUPER BTW", "BETA 2.5 (w/ old melons O_O)", "SBTW");
     }
     
     //settings variables
@@ -30,6 +29,8 @@ public class SuperBTW extends FCAddOn
 	private boolean isCustomRespawnRadiusEnabled;
 	private int customRespawnRadius;
 	private int customRespawnExclusionRadius;
+	
+	private boolean isEndermanGriefingEnabled;
 	
 	//Dawn's color order from Deco Addon!!
 	public final static String[] colorOrder = {"black", "red", "green", "brown", "blue", "purple", "cyan", "lightGray", "gray", "pink", "lime", "yellow", "lightBlue", "magenta", "orange", "white"};
@@ -61,6 +62,10 @@ public class SuperBTW extends FCAddOn
 		registerProperty(propertyName2, "true", "Toggles whether or not bolts of lightning can start fires..the horror....the horror..");
 		this.setLightningFireEnabled(this.loadConfigProperties().get(propertyName2).equals("true"));
 		
+		String propertyName18 = "Enable-Dynamic-Torches";
+		registerProperty(propertyName18, "true", "Turn this off to stop torches from emitting light when held in the hand!");
+		this.setDynamicTorchesEnabled(this.loadConfigProperties().get(propertyName18).equals("true"));
+		
 		String propertyName9 = "Enable-Custom-HC-Respawn-Radius";
 		registerProperty(propertyName9, "false", "If enabled, you will respawn within a set range, unchanging!");
 		this.setCustomRespawnRadiusEnabled(this.loadConfigProperties().get(propertyName9).equals("true"));
@@ -72,17 +77,13 @@ public class SuperBTW extends FCAddOn
 //		System.out.println(propertyName10 +"="+getCustomRespawnRadius());
 		
 		String propertyName11 = "Set-Custom-Respawn-Exclusion-Radius";
-		registerProperty(propertyName11, "100", "vvv The inner disc of the HC Spawn radius within which nobody can spawn..");
+		registerProperty(propertyName11, "100", "vvv The inner disc of the HC Spawn radius within which nobody can spawn.. (make smaller than main radius!)");
 		this.setCustomRespawnExclusionRadius( Integer.parseInt(this.loadConfigProperties().get(propertyName11)) );
 		//TESTER VVV
 //		System.out.println(propertyName10 +"="+getCustomRespawnExclusionRadius());
 		
-		String propertyName18 = "Enable-Dynamic-Torches";
-		registerProperty(propertyName18, "true", "Turn this off to stop torches from emitting light when held in the hand!");
-		this.setDynamicTorchesEnabled(this.loadConfigProperties().get(propertyName18).equals("true"));
-		
 		String propertyName19 = "Enable-2x2-Leather-Armor-Crafting";
-		registerProperty(propertyName19, "true", "Turn this off to restrict leather armor crafting to the crafting table");
+		registerProperty(propertyName19, "true", "Turn this off to restrict leather armor crafting to the crafting table..");
 		this.set2x2LeatherEnabled(this.loadConfigProperties().get(propertyName19).equals("true"));
 		
 		String propertyName20 = "Enable-Branches";
@@ -96,6 +97,10 @@ public class SuperBTW extends FCAddOn
 		String propertyName22 = "Enable-Hardcore-Bouncing";
 		registerProperty(propertyName22, "false", "Hardcore bouncing prevents block placement while airborn. Disabled by default in SBTW!");
 		this.setIsHardcoreBouncingEnabled(this.loadConfigProperties().get(propertyName22).equals("true"));
+		
+		String propertyName23 = "Enable-Enderman-Griefing";
+		registerProperty(propertyName23, "true", "If disabled, enderman will no longer pick up anything but flowers..");
+		this.setIsEndermanGriefingEnabled(this.loadConfigProperties().get(propertyName23).equals("true"));
 		
 	}
 	
@@ -178,5 +183,14 @@ public class SuperBTW extends FCAddOn
 	public boolean isHardcoreBouncingEnabled()
 	{
 		return isHardcoreBouncingEnabled;
+	}
+	
+	public void setIsEndermanGriefingEnabled(boolean b)
+	{
+		this.isEndermanGriefingEnabled = b;
+	}
+	public boolean getIsEndermanGriefingEnabled()
+	{
+		return isEndermanGriefingEnabled;
 	}
 }

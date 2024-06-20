@@ -53,7 +53,9 @@ public class SuperBTWDefinitions {
 		id_pipeLit = 20028,
 		
 		id_treat = 20029,
-		id_badTreat = 20030;
+		id_badTreat = 20030,
+		
+		id_chunkIronSintered = 20031;
 	
 		//GOURD MANIA!
 	private static final int
@@ -99,7 +101,9 @@ public class SuperBTWDefinitions {
 		id_whiteStoneBrickSlab = 2029,
 		id_sandstoneBrickLarge = 2030,
 		id_sandstoneBrickLargeStairs = 2031,
-		id_sandstoneBrickLargeSlab = 2032;
+		id_sandstoneBrickLargeSlab = 2032,
+		id_blockIronSintered = 2033,
+		id_blockIronSinteredStorage = 2034;
 //		id_decoStoneSlab = 2032;
 	
 	public static Item leatherWorking;
@@ -130,6 +134,7 @@ public class SuperBTWDefinitions {
 	public static Item pipeLit;
 	public static Item treat;
 	public static Item badTreat;
+	public static Item chunkIronSintered;
 	
 	public static Block branchBlock;
 	public static Block sunflower;
@@ -151,6 +156,8 @@ public class SuperBTWDefinitions {
 	public static Block stickBundleLooseSlab; //untied version
 	public static Block stickBundleLoose;
 
+	public static Block blockIronSintered;
+	public static Block blockIronSinteredStorage;
 	
 	public static SuperBTWBlockWetMudBrick wetMudBrick;
 	public static Item wetMudBrickItem;
@@ -203,6 +210,11 @@ public class SuperBTWDefinitions {
 		pipeLit = new SuperBTWItemPipeLit(id_pipeEmpty - 256);
 		treat = new SuperBTWItemTreat(id_treat - 256);
 		badTreat = new SuperBTWItemBadTreat(id_badTreat - 256);
+
+		blockIronSintered = new SuperBTWBlockChunkIronSintered(id_blockIronSintered);
+		blockIronSinteredStorage = new SuperBTWBlockChunkIronSinteredStorage(id_blockIronSinteredStorage);
+		Item.itemsList[blockIronSinteredStorage.blockID] = new ItemBlock(blockIronSinteredStorage.blockID - 256);
+		chunkIronSintered = new SuperBTWItemChunkIronSintered(id_chunkIronSintered - 256);
 		
 		//Block Initialization, requires an itemblock with it to actually show up in inventory
 		branchBlock = new SuperBTWBlockBranch(id_branchBlock);
