@@ -570,7 +570,7 @@ public class SuperBTWRecipes extends FCRecipes {
 			new ItemStack( SuperBTWDefinitions.chunkIronSintered, 1 ), 
 			new ItemStack[] {
 				new ItemStack( FCBetterThanWolves.fcItemPileIronOre, 1 ),
-				new ItemStack( FCBetterThanWolves.fcItemCoalDust, 1 )
+				new ItemStack( FCBetterThanWolves.fcItemCoalDust, 1 ),
 		} );
 		AddRecipe( new ItemStack( SuperBTWDefinitions.blockIronSinteredStorage ), new Object[] {
 	    		"###", 
@@ -580,12 +580,10 @@ public class SuperBTWRecipes extends FCRecipes {
 			} );
 		
 		AddShapelessRecipe( new ItemStack( SuperBTWDefinitions.chunkIronSintered, 9 ), new Object[] {
-	    		new ItemStack( SuperBTWDefinitions.blockIronSinteredStorage )
+	    		new ItemStack( SuperBTWDefinitions.blockIronSinteredStorage ),
 			} );
 		
 		FurnaceRecipes.smelting().addSmelting( SuperBTWDefinitions.chunkIronSintered.itemID, new ItemStack( FCBetterThanWolves.fcItemNuggetIron ), 0, 3 );
-			
-		
 		
 		AddStokedCrucibleRecipe(new ItemStack(SuperBTWDefinitions.rib, 1),
 				new ItemStack[] { new ItemStack(SuperBTWDefinitions.cowRib) });

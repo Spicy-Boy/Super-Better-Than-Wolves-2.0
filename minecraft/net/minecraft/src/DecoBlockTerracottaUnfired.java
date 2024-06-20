@@ -46,6 +46,12 @@ public class DecoBlockTerracottaUnfired extends FCBlockFallingFullBlock
     {
     	return 4; //same as bricks
     }
+    
+	@Override
+    public int GetItemIndexDroppedWhenCookedByKiln( IBlockAccess blockAccess, int i, int j, int k )
+    {
+		return SuperBTWDefinitions.terracotta.blockID;
+    }
 	
 	//TODO: Packing! How do I add complex packing that considers 2 different ingredients, though?
     
@@ -54,4 +60,6 @@ public class DecoBlockTerracottaUnfired extends FCBlockFallingFullBlock
     {
         this.RenderCookingByKilnOverlay(var1, var2, var3, var4, var5);
     }
+    
+
 }

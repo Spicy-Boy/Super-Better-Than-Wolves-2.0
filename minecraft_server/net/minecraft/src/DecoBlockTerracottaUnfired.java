@@ -40,6 +40,12 @@ public class DecoBlockTerracottaUnfired extends FCBlockFallingFullBlock
         var1.setBlockWithNotify(var2, var3, var4, 0);
         FCUtilsItem.EjectSingleItemWithRandomOffset(var1, var2, var3, var4, SuperBTWDefinitions.terracotta.blockID, 0);
     }
+    
+	@Override
+    public int GetItemIndexDroppedWhenCookedByKiln( IBlockAccess blockAccess, int i, int j, int k )
+    {
+		return SuperBTWDefinitions.terracotta.blockID;
+    }
 	
     @Override
     public int GetCookTimeMultiplierInKiln( IBlockAccess blockAccess, int i, int j, int k )
