@@ -32,6 +32,8 @@ public class SuperBTW extends FCAddOn
 	
 	private boolean isEndermanGriefingEnabled;
 	
+	private boolean isEnderSequenceBreakEnabled;
+	
 	//Dawn's color order from Deco Addon!!
 	public final static String[] colorOrder = {"black", "red", "green", "brown", "blue", "purple", "cyan", "lightGray", "gray", "pink", "lime", "yellow", "lightBlue", "magenta", "orange", "white"};
 	
@@ -61,6 +63,10 @@ public class SuperBTW extends FCAddOn
 		String propertyName2 = "Enable-Lightning-Fire";
 		registerProperty(propertyName2, "true", "Toggles whether or not bolts of lightning can start fires..the horror....the horror..");
 		this.setLightningFireEnabled(this.loadConfigProperties().get(propertyName2).equals("true"));
+		
+		String propertyName23 = "Enable-Enderman-Griefing";
+		registerProperty(propertyName23, "true", "If disabled, enderman will no longer pick up anything but flowers..");
+		this.setIsEndermanGriefingEnabled(this.loadConfigProperties().get(propertyName23).equals("true"));
 		
 		String propertyName18 = "Enable-Dynamic-Torches";
 		registerProperty(propertyName18, "true", "Turn this off to stop torches from emitting light when held in the hand!");
@@ -98,9 +104,9 @@ public class SuperBTW extends FCAddOn
 		registerProperty(propertyName22, "false", "Hardcore bouncing prevents block placement while airborn. Disabled by default in SBTW!");
 		this.setIsHardcoreBouncingEnabled(this.loadConfigProperties().get(propertyName22).equals("true"));
 		
-		String propertyName23 = "Enable-Enderman-Griefing";
-		registerProperty(propertyName23, "true", "If disabled, enderman will no longer pick up anything but flowers..");
-		this.setIsEndermanGriefingEnabled(this.loadConfigProperties().get(propertyName23).equals("true"));
+		String propertyName24 = "Enable-Eye-of-Ender-Sequence-Break";
+		registerProperty(propertyName24, "false", "CAUTION: MAJOR SEQUENCE BREAK: Enables a crafting recipe for Eyes of Ender..");
+		this.setIsEnderSequenceBreakEnabled(this.loadConfigProperties().get(propertyName24).equals("true"));
 		
 	}
 	
@@ -192,5 +198,14 @@ public class SuperBTW extends FCAddOn
 	public boolean getIsEndermanGriefingEnabled()
 	{
 		return isEndermanGriefingEnabled;
+	}
+	
+	public void setIsEnderSequenceBreakEnabled(boolean b)
+	{
+		this.isEnderSequenceBreakEnabled = b;
+	}
+	public boolean getIsEnderSequenceBreakEnabled()
+	{
+		return isEnderSequenceBreakEnabled;
 	}
 }

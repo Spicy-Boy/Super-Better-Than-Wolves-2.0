@@ -2,6 +2,10 @@ SBTW VERSION 2.0
 Started August 8, 2022
 Switched to BETA 2.0 on July 12, 2023
 
+2.6 Update:
+
+- Added a config to enable Vanilla% Eyes of Ender. Allows you to bypass trading by crafting an Eye of Ender with blaze powder and an enderpearl
+
 2.5 The HOT Fix:
 
 - Added a new industrial process: Hardcore Iron Sintering! With this, iron ore can maintain some value even post-mobtrap (and you can build a new machine!)
@@ -10,6 +14,8 @@ Switched to BETA 2.0 on July 12, 2023
     - Sintering is the industrial process of pulverizing ore and reforming it into chunks. Double your ore output with tech!
 
 - Added a new block: Block of Sintered Iron. Pack your sinter into a block and smelt for an ingot! Millstone + stoked fire = advanced iron refining
+
+- Added a new config to toggle enderman griefing (if disabled, endermen can only pick up flowers)
 
 - Changed endermen to pick up flowers and mushrooms again. I always thought it was a shame that FC stopped flower picking, it is a charming detail
 

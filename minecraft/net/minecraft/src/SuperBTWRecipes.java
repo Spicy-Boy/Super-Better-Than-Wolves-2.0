@@ -489,6 +489,14 @@ public class SuperBTWRecipes extends FCRecipes {
 
 	private static void addMiscRecipes() 
 	{
+		//EYE OF ENDER SEQUENCE BREAK, only to be enabled by config!
+		if (SuperBTW.instance.getIsEnderSequenceBreakEnabled())
+		{
+			FCRecipes.AddShapelessRecipe(new ItemStack(Item.eyeOfEnder, 1),
+					new ItemStack[] { new ItemStack(Item.blazePowder),
+							new ItemStack(Item.enderPearl) });
+		}
+		
 		//AARON added a config for these! If disabled, players cannot craft the super efficient leather armor
 		if (SuperBTW.instance.get2x2LeatherEnabled())
 		{
