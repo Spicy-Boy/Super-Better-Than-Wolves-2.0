@@ -83,7 +83,7 @@ public class SuperBTWItemFlintKnapping extends Item
             if (badHits > 3)
             {
         		itemStack.damageItem( 11, player );
-        		FCUtilsItem.GivePlayerStackOrEject( player, new ItemStack(FCBetterThanWolves.fcItemStone, 1));
+//        		FCUtilsItem.GivePlayerStackOrEject( player, new ItemStack(FCBetterThanWolves.fcItemStone, 1));
         		//player.inventory.mainInventory[player.inventory.currentItem] = null;
         		player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack( FCBetterThanWolves.fcItemStone, 1);
             }

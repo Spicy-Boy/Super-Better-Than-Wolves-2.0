@@ -745,7 +745,8 @@ public class FCEntityWolf extends EntityWolf
 		}
 		else // !isTamed()
 		{
-			if (  playerStack.itemID == Item.bone.itemID && !IsWildAndHostile() )
+			//AARON added the rib as an option
+			if (  (playerStack.itemID == Item.bone.itemID || playerStack.itemID == SuperBTWDefinitions.rib.itemID) && !IsWildAndHostile() )
 			{
 				if ( !worldObj.isRemote )
 				{

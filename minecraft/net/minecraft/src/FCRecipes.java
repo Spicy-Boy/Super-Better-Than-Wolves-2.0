@@ -42,7 +42,22 @@ public abstract class FCRecipes
 	{
     	return CraftingManager.getInstance().addRecipe( itemStack, aobj );
 	}
+    
+//    AARONS CUSTOM SHAPED RECIPE w/ plus sign/secondary output
+    public static ShapedRecipes AddShapedRecipeWithSecondaryOutputIndicator( ItemStack itemStack, Object aobj[])
+    {
+    	ShapedRecipes recipe = CraftingManager.getInstance().addRecipe( itemStack, aobj );
+    	
+    	if ( recipe != null )
+    	{
+    		recipe.SetHasSecondaryOutput( true );
+    	}
+    	
+    	return recipe;
+    }
 	
+    // ^^ Aaron's custom recipe
+    
     public static ShapelessRecipes AddShapelessRecipe( ItemStack itemStack, Object aobj[] )
 	{
     	return CraftingManager.getInstance().AddShapelessRecipe( itemStack, aobj );

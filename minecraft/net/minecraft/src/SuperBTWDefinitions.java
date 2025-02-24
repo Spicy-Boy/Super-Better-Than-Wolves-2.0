@@ -46,11 +46,11 @@ public class SuperBTWDefinitions {
 		
 		id_envelopeOpen = 20023,
 		id_envelopeClosed = 20024,
-		id_tombstonePlacer = 20025,
+		id_tombstonePlacer = 20025, //an item that places a tombstone
 		
 		id_pipeEmpty = 20026,
-		id_pipePacked = 20027,
-		id_pipeLit = 20028,
+//		id_pipePacked = 20027,
+//		id_pipeLit = 20028,
 		
 		id_treat = 20029,
 		id_badTreat = 20030,
@@ -206,8 +206,8 @@ public class SuperBTWDefinitions {
 		envelopeClosed = new SuperBTWItemEnvelopeClosed(id_envelopeClosed - 256);
 		tombstonePlacer = new SuperBTWItemTombstonePlacer(id_tombstonePlacer - 256);
 		pipeEmpty = new SuperBTWItemPipeEmpty(id_pipeEmpty - 256);
-		pipePacked = new SuperBTWItemPipePacked(id_pipePacked - 256);
-		pipeLit = new SuperBTWItemPipeLit(id_pipeEmpty - 256);
+//		pipePacked = new SuperBTWItemPipePacked(id_pipePacked - 256);
+//		pipeLit = new SuperBTWItemPipeLit(id_pipeEmpty - 256);
 		treat = new SuperBTWItemTreat(id_treat - 256);
 		badTreat = new SuperBTWItemBadTreat(id_badTreat - 256);
 

@@ -4,7 +4,7 @@ public class SuperBTWItemCowRib extends FCItemFood
 {
 	public SuperBTWItemCowRib (int iItemID) 
 	{
-		super (iItemID, 2, 0.25F, false, "SuperBTWItemCowRib", true);
+		super (iItemID, 2, 0.25F, true, "SuperBTWItemCowRib", true); //4th was false, changed to true for wolfs
 		
     	SetIncineratedInCrucible();
     	setUnlocalizedName( "SuperBTWItemCowRib" );

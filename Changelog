@@ -4,7 +4,30 @@ Switched to BETA 2.0 on July 12, 2023
 
 2.6 Update:
 
-- Added a config to enable Vanilla% Eyes of Ender. Allows you to bypass trading by crafting an Eye of Ender with blaze powder and an enderpearl
+TODO: FIX THE FUCKING TANNED LEATHER NAME!!
+
+- Added a wooden pipe
+
+IDEA - GUI-less Brewing!
+
+todo - plywood block that is 16 sawdust and glue packed (multi ingredient packing)
+
+todo - rotten flesh planks from 2x blocks in 2x2 grid recipe
+
+> add carving recipe that can accept different inputs depending on item stack input combo
+> return knife, get "unfinished wood carving" with nbt of progress and knife back
+> make pipe, bowl, sign, and button
+
+- Added a config to enable crafting Eyes of Ender with blaze powder (OFF BY DEFAULT). Allows players to bypass trading completely to reach the End
+    - Use at your own risk! This is a major shake up to progression
+
+- Changed cooked and raw ribs to be viable wolf food (they ignored it before)
+
+- Changed the rib bone to be a viable wolf taming item, like regular bones
+
+- Fixed an exploit that allowed the duplication of stones when knapping (that may or may not have been imagined)
+
+- Fixed an issue where the millstones had nothing to worry about
 
 2.5 The HOT Fix:
 

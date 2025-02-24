@@ -277,6 +277,15 @@ public class SuperBTWRecipes extends FCRecipes {
 				new ItemStack(FCBetterThanWolves.fcItemWoolKnit, 1, m_iIgnoreMetadata),
 				new ItemStack(Item.feather, 1),
 				new ItemStack(Item.feather, 1)});
+		
+		//WIDDLING RECIPES, WOOD CARVING w/ KNIFE!
+		
+		//TODO, DOESNT WORK YET!!!
+		AddShapedRecipeWithSecondaryOutputIndicator( new ItemStack(SuperBTWDefinitions.pipeEmpty, 1), 
+				new Object[] { "K", "B", Character.valueOf('K'), SuperBTWDefinitions.ironBlade,
+					Character.valueOf('B'), new ItemStack( Block.wood, 1, 3 )
+				});
+		
 	}
 
 	public static void addFoodRecipes() {

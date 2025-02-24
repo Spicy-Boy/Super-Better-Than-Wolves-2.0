@@ -4,7 +4,7 @@ public class SuperBTWItemCookedCowRib extends ItemFood
 {
 	public SuperBTWItemCookedCowRib (int iItemID) 
 	{
-		super (iItemID, 2, 0.25F, false, false);
+		super (iItemID, 2, 0.25F, true, false);
 		
     	SetIncineratedInCrucible();
     	setUnlocalizedName( "SuperBTWItemCookedCowRib" );
