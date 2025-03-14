@@ -8,13 +8,15 @@ TODO: FIX THE FUCKING TANNED LEATHER NAME!!
 
 - Added a wooden pipe
 
+TODO: 
+
 IDEA - GUI-less Brewing!
 
 todo - plywood block that is 16 sawdust and glue packed (multi ingredient packing)
 
-todo - rotten flesh planks from 2x blocks in 2x2 grid recipe
+todo - rotten flesh slabs from 2x blocks in 2x2 grid recipe
 
-> add carving recipe that can accept different inputs depending on item stack input combo
+todo> add carving recipe that can accept different inputs depending on item stack input combo
 > return knife, get "unfinished wood carving" with nbt of progress and knife back
 > make pipe, bowl, sign, and button
 
@@ -27,7 +29,34 @@ todo - rotten flesh planks from 2x blocks in 2x2 grid recipe
 
 - Fixed an exploit that allowed the duplication of stones when knapping (that may or may not have been imagined)
 
-- Fixed an issue where the millstones had nothing to worry about
+- Fixed an issue where the millstones actually had nothing to worry about
+
+TODO- ADDED nametag
+
+TODO- Added adobe, a building block of mud, clay, and straw/reeds that must be dried in the sun to harden
+    - wet adobe is made with clay, dirt, and reeds or straw. 
+    - wet adobe can be picked up perfectly with stone shovel, dry with stone pick
+TODO- APPLY socks pumpkins to head
+
+TODO- Finalize bucket of mortar texture!
+
+LOOKINTO- Stone pick + gold pick cannot mine iron blocks at all.. Maybe get something??
+
+TODO- Added conversion recipe from clay bricks to clay balls
+
+TODO- Reconfigure blacksmith trades to make a bit more sense
+
+TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
+        TODO> add a particle effect to show that the glass is cooking inside the gloryhole
+
+TODO- Added the glass jars from Sockscrops! They can store smaller items!
+
+TODO- Added the Meat Golem
+
+TODO- Added the airship
+
+TODO- Added the pipe
+        >Used to rip fat clouds
 
 2.5 The HOT Fix:
 
@@ -107,39 +136,6 @@ todo - rotten flesh planks from 2x blocks in 2x2 grid recipe
 - Fixed a server issue where players sleeping in the overworld would speed up time even if there were non-sleepers in other dimensions. Instant-death in most cases.
 
 NOTE for Aaron: temporarily disabled neo-gourd trades (re-enable when gourds are back!)
-
-TODO- ADDED nametag
-
-TODO - Added terracotta, a sturdy ceramic decorative block that is fired in a kiln
-    - unfired terracotta is made with clay, sand, and dye of choice
-
-TODO- Added adobe, a building block of mud, clay, and straw/reeds that must be dried in the sun to harden
-    - wet adobe is made with clay, dirt, and reeds or straw. 
-    - wet adobe can be picked up perfectly with stone shovel, dry with stone pick
-TODO- APPLY socks pumpkins to head
-
-TODO- Finalize bucket of mortar texture!
-
-LOOKINTO- Stone pick + gold pick cannot mine iron blocks at all.. Maybe get something??
-
-TODO- Added conversion recipe from clay bricks to clay balls
-
-TODO- Reconfigure blacksmith trades to make a bit more sense
-
-TODO- Fixed a bug/oversight/lie that caused netherrack to not poison animals when pulverized. Nothing to worry about honestly, carry on.
-        TODO>Apply the same principle to soul filtering. Thank you Dawn for pointing all of this out!
-
-TODO- Added the blowpipe, a new tool that can be used to blow bottles and jars from hot, molten, gloryhole glass
-        TODO> add a particle effect to show that the glass is cooking inside the gloryhole
-
-TODO- Added the glass jars from Sockscrops! They can store smaller items!
-
-TODO- Added the Meat Golem
-
-TODO- Added the airship
-
-TODO- Added the pipe
-        >Used to rip fat clouds
 
 2.3 Punish All Cow Abusers Update:
 
@@ -242,6 +238,7 @@ NOTE: If both team start and HC start are enabled at the same time, then players
 2.1 Hotfix:
 
 - Added a missing file that caused a rendering crash! Oops!!! Sorry!!!
+
 2.0 Additions:
 
 -TEMPORARY OMISSION for BETA 2.0: Biome decorator places standard gourds with vanilla seeds/plants
