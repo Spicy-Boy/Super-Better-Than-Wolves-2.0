@@ -21,7 +21,8 @@ public class SuperBTWCommandSpawn extends CommandBase
 	{
     	EntityPlayerMP teleportingPlayer;
     	teleportingPlayer = getCommandSenderAsPlayer(sender);
-    	
+
+    	// dont care actually vvv let them tp in the nether LOL 
 //        if (!(teleportingPlayer.worldObj.getWorldInfo().getDimension() == 0))
 //        {
 //            throw new WrongUsageException("You can't do that here :)", new Object[0]);

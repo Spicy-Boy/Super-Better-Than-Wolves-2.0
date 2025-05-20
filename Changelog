@@ -6,11 +6,11 @@ Switched to BETA 2.0 on July 12, 2023
 
 TODO: FIX THE FUCKING TANNED LEATHER NAME!!
 
+- Added a new command: /spawn (teleports you to spawn)
+
 - Added a wooden pipe
 
 TODO: 
-
-IDEA - GUI-less Brewing!
 
 todo - plywood block that is 16 sawdust and glue packed (multi ingredient packing)
 
@@ -30,6 +30,9 @@ todo> add carving recipe that can accept different inputs depending on item stac
 - Fixed an exploit that allowed the duplication of stones when knapping (that may or may not have been imagined)
 
 - Fixed an issue where the millstones actually had nothing to worry about
+
+- Removed certain end game blocks from the creative menu to keep the mystery alive
+
 
 TODO- ADDED nametag
 
@@ -57,6 +60,8 @@ TODO- Added the airship
 
 TODO- Added the pipe
         >Used to rip fat clouds
+        
+IDEA - GUI-less Brewing!
 
 2.5 The HOT Fix:
 
