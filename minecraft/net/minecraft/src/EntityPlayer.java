@@ -717,6 +717,11 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         {
             this.dropPlayerItemWithRandomChoice(new ItemStack(Item.appleRed, 1), true);
         }
+        else if (this.username.equals("Ollove"))
+        {
+        	this.dropPlayerItemWithRandomChoice(new ItemStack(Item.cookie, 1), true);
+        }
+        
         
 //        if (this.username.equals("TheLadyDawn"))
 //        {

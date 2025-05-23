@@ -6,7 +6,8 @@ Switched to BETA 2.0 on July 12, 2023
 
 TODO: FIX THE FUCKING TANNED LEATHER NAME!!
 
-- Added a new command: /spawn (teleports you to spawn)
+- Added a new command: /spawn (teleports you to spawn coordinates)
+    >not advised to use in the nether :)
 
 - Added a wooden pipe
 
@@ -26,6 +27,8 @@ todo> add carving recipe that can accept different inputs depending on item stac
 - Changed cooked and raw ribs to be viable wolf food (they ignored it before)
 
 - Changed the rib bone to be a viable wolf taming item, like regular bones
+
+- Fixed an issue where the lapiz beacon effect would not render (Sockthing accidentally commented some code out, reverted entire GuiIngame)
 
 - Fixed an exploit that allowed the duplication of stones when knapping (that may or may not have been imagined)
 
@@ -151,7 +154,7 @@ NOTE for Aaron: temporarily disabled neo-gourd trades (re-enable when gourds are
 - Added the treat, a special item for your dog. Show some love to your canine companion and he might give some right back!
     >Another Sockthing classic texture
 
-- Added a server config to SBTWserver.properties that toggles team spawns on initial login (functions like /set spawn)
+- Added a server config to SBTWserver.properties that toggles team spawns on initial login (functions like /set spawn with extra steps)
     >basically, instead of starting at spawn, new players will begin at the location set by their respective team
     >if a player is not a member of a team, they will spawn at the "default" team location (use /tpteam set default) 
 

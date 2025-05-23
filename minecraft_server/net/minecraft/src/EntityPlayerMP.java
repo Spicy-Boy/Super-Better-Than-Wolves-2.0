@@ -1538,4 +1538,35 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
     	return tpaRequestPlayerName;
     }
+    
+    //the teleport coordinates for a player's personal set home
+    public int xHome;
+    public void setXCoordHome(int x)
+    {
+    	xHome = x;
+    }
+    public int getXCoordHome()
+    {
+    	return xHome;
+    }
+    
+    public int yHome;
+    public void setYCoordHome(int y)
+    {
+    	yHome = y;
+    }
+    public int getYCoordHome()
+    {
+    	return yHome;
+    }
+    
+    public int zHome;
+    public void setZCoordHome(int z)
+    {
+    	zHome = z;
+    }
+    public int getZCoordHome()
+    {
+    	return zHome;
+    }
 }

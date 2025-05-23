@@ -2223,9 +2223,9 @@ public abstract class Minecraft implements Runnable, IPlayerUsage
         boolean var4 = false;
         //AARON can modify this to make a custom name :)
         //DEFAULT RANDOM NAME ASSIGNMENT VVV
-        String var5 = "Player" + getSystemTime() % 1000L;
+//        String var5 = "Player" + getSystemTime() % 1000L;
         //CUSTOME NAME VVV
-//        String var5 = "monkeyDLuffy";
+        String var5 = "Notch";
         
         String var6 = var5;
 
