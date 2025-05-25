@@ -8,18 +8,29 @@ TODO: FIX THE FUCKING TANNED LEATHER NAME!!
 
 - Added a new command: /spawn (teleports you to spawn coordinates)
     >not advised to use in the nether :)
+    
+- Added two new commands: /sethome and /home (a personal teleportation suite)
+    >must be enabled in the config, like /tpa
 
 - Added a wooden pipe
 
-TODO: 
+Todo: Finish /sethome and /home
+
+Todo: Nerf sheep drop to 1-2 meat
+
+TODO: FIX invisible player bug by searching the github repo for (chunk entity tracking and ticking client side remote players) (invisible player mp/multiplayer fix)
+
+TODO: add directional crafting with knife and log to produce various wooden products (pipe, bowl, sign, button)
+--> return knife, get "unfinished wood carving" with nbt of progress and knife back
+--> make pipe, bowl, sign, and button
+
+TODO: Multi ingredient packing (16 sawdust + glue, loose block + mortar)
 
 todo - plywood block that is 16 sawdust and glue packed (multi ingredient packing)
 
 todo - rotten flesh slabs from 2x blocks in 2x2 grid recipe
 
-todo> add carving recipe that can accept different inputs depending on item stack input combo
-> return knife, get "unfinished wood carving" with nbt of progress and knife back
-> make pipe, bowl, sign, and button
+todo -> mechanical chisel, when no more mechanical power, apply metadata based effect to block below
 
 - Added a config to enable crafting Eyes of Ender with blaze powder (OFF BY DEFAULT). Allows players to bypass trading completely to reach the End
     - Use at your own risk! This is a major shake up to progression

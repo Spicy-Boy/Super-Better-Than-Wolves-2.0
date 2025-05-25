@@ -22,6 +22,7 @@ public class SuperBTW extends FCAddOn
 	//to initialize and read a settings file
 	private PropertyManager settings;
 	private boolean isTpaEnabled;
+	private boolean isSetHomeEnabled;
 	private boolean isRandomHCStartEnabled;
 	private boolean isTeamStartEnabled;
 	
@@ -262,6 +263,11 @@ public class SuperBTW extends FCAddOn
 		//TESTER VVV
 		System.out.println(propertyName1 +"="+getTpaEnabled());
 		
+		String propertyName25 = "Enable-SetHome";
+		registerProperty(propertyName25, "false", "Enable to allow server players to set and teleport to home coordinates.");
+		this.setSetHomeEnabled(this.loadConfigProperties().get(propertyName25).equals("true"));
+		System.out.println(propertyName25 +"="+getSetHomeEnabled());
+		
 		String propertyName2 = "Enable-Lightning-Fire";
 		registerProperty(propertyName2, "true", "Toggles whether or not bolts of lightning can start fires..the horror....the horror..");
 		this.setLightningFireEnabled(this.loadConfigProperties().get(propertyName2).equals("true"));
@@ -317,6 +323,8 @@ public class SuperBTW extends FCAddOn
 		String propertyName24 = "Enable-Eye-of-Ender-Sequence-Break";
 		registerProperty(propertyName24, "false", "CAUTION: MAJOR SEQUENCE BREAK: Enables a crafting recipe for Eyes of Ender..");
 		this.setIsEnderSequenceBreakEnabled(this.loadConfigProperties().get(propertyName24).equals("true"));
+		
+
 	}
 	
 	public void setTpaEnabled(boolean b) 
@@ -326,6 +334,15 @@ public class SuperBTW extends FCAddOn
 	public boolean getTpaEnabled()
 	{
 		return isTpaEnabled;
+	}
+	
+	public void setSetHomeEnabled(boolean b) 
+	{
+		this.isSetHomeEnabled = b;
+	}
+	public boolean getSetHomeEnabled()
+	{
+		return isSetHomeEnabled;
 	}
 	
 	public void setRandomHCStartEnabled(boolean b) 
