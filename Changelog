@@ -10,7 +10,10 @@ TODO: FIX THE FUCKING TANNED LEATHER NAME!!
     >not advised to use in the nether :)
     
 - Added two new commands: /sethome and /home (a personal teleportation suite)
+    >home coordinates reset on death
     >must be enabled in the config, like /tpa
+    >available client-side for single player!
+    >not advised to use in the nether :)
 
 - Added a wooden pipe
 
@@ -39,7 +42,7 @@ todo -> mechanical chisel, when no more mechanical power, apply metadata based e
 
 - Changed the rib bone to be a viable wolf taming item, like regular bones
 
-- Fixed an issue where the lapiz beacon effect would not render (Sockthing accidentally commented some code out, reverted entire GuiIngame)
+- Fixed an issue where the lapis beacon effect would not render (Sockthing accidentally commented some code out, reverted entire GuiIngame)
 
 - Fixed an exploit that allowed the duplication of stones when knapping (that may or may not have been imagined)
 

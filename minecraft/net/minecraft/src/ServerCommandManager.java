@@ -43,6 +43,8 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
         this.registerCommand(new SuperBTWCommandDeaths());
         this.registerCommand(new SuperBTWCommandSmite());
         this.registerCommand(new SuperBTWCommandSpawn());
+        this.registerCommand(new SuperBTWCommandSetHome());
+        this.registerCommand(new SuperBTWCommandHome());
 
         if (MinecraftServer.getServer().isDedicatedServer())
         {

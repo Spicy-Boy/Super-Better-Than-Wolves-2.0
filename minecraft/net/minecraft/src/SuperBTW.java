@@ -18,6 +18,8 @@ public class SuperBTW extends FCAddOn
     //settings variables
 	private PropertyManager settings;
 	
+	private boolean isSetHomeEnabled;
+	
 	private boolean areDynamicTorchesEnabled;
 	private boolean is2x2LeatherEnabled;
 	private boolean areHungerTweaksEnabled;
@@ -60,6 +62,11 @@ public class SuperBTW extends FCAddOn
 	@Override
 	public void PreInitialize()
 	{		
+		String propertyName25 = "Enable-SetHome";
+		registerProperty(propertyName25, "false", "Enable to allow server players to set and teleport to home coordinates.");
+		this.setSetHomeEnabled(this.loadConfigProperties().get(propertyName25).equals("true"));
+//		System.out.println(propertyName25 +"="+getSetHomeEnabled());
+		
 		String propertyName2 = "Enable-Lightning-Fire";
 		registerProperty(propertyName2, "true", "Toggles whether or not bolts of lightning can start fires..the horror....the horror..");
 		this.setLightningFireEnabled(this.loadConfigProperties().get(propertyName2).equals("true"));
@@ -208,4 +215,14 @@ public class SuperBTW extends FCAddOn
 	{
 		return isEnderSequenceBreakEnabled;
 	}
+	
+	public void setSetHomeEnabled(boolean b) 
+	{
+		this.isSetHomeEnabled = b;
+	}
+	public boolean getSetHomeEnabled()
+	{
+		return isSetHomeEnabled;
+	}
+	
 }

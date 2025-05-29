@@ -129,6 +129,11 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
                 this.theItemInWorldManager.setGameType(EnumGameType.getByID(par1NBTTagCompound.getInteger("playerGameType")));
             }
         }
+        
+        //AARON added these NBT tags to write home coords from saved NBT data
+        this.setXCoordHome(par1NBTTagCompound.getDouble("xCoordHome"));
+        this.setYCoordHome(par1NBTTagCompound.getDouble("yCoordHome"));
+        this.setZCoordHome(par1NBTTagCompound.getDouble("zCoordHome"));
     }
 
     /**
@@ -138,6 +143,12 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         super.writeEntityToNBT(par1NBTTagCompound);
         par1NBTTagCompound.setInteger("playerGameType", this.theItemInWorldManager.getGameType().getID());
+        
+        //AARON added these NBT tags to save home coords for our dear server players :)
+        par1NBTTagCompound.setDouble("xCoordHome", this.getXCoordHome());
+        par1NBTTagCompound.setDouble("yCoordHome", this.getYCoordHome());
+        par1NBTTagCompound.setDouble("zCoordHome", this.getZCoordHome());
+        
     }
 
     /**
@@ -1531,5 +1542,36 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     public String getTpaRequestName()
     {
     	return tpaRequestPlayerName;
+    }
+    
+    //the teleport coordinates for a player's personal set home
+    public double xHome = 0;
+    public void setXCoordHome(double x)
+    {
+    	xHome = x;
+    }
+    public double getXCoordHome()
+    {
+    	return xHome;
+    }
+    
+    public double yHome = 0;
+    public void setYCoordHome(double y)
+    {
+    	yHome = y;
+    }
+    public double getYCoordHome()
+    {
+    	return yHome;
+    }
+    
+    public double zHome = -15;
+    public void setZCoordHome(double z)
+    {
+    	zHome = z;
+    }
+    public double getZCoordHome()
+    {
+    	return zHome;
     }
 }
